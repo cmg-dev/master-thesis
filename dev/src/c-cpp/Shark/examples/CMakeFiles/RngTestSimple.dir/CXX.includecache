@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/Rng/RngTestSimple.cpp
+iostream
+-
+Rng/Uniform.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/Rng/Rng/Uniform.h
+
+include/Rng/RNG.h
+cstdlib
+-
+sys/types.h
+-
+ctime
+-
+
+include/Rng/RandomVar.h
+cmath
+-
+vector
+-
+Rng/RNG.h
+include/Rng/Rng/RNG.h
+
+include/Rng/Uniform.h
+Rng/RandomVar.h
+include/Rng/Rng/RandomVar.h
+

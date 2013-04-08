@@ -55,3 +55,9 @@ dev/src/c-cpp/Shark/doc/*
 #[waffles]
 dev/src/c-cpp/waffles/web/*
 dev/src/c-cpp/waffles/demos/*
+
+#ignode the misc-code directory
+dev/src/misc/*
+#ignore the playground-folder
+dev/src/c-cpp/playground/*
+

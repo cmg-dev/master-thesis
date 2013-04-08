@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/Rng/RngTest.cpp
+iostream
+-
+vector
+-
+Rng/DiffGeometric.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/Rng/Rng/DiffGeometric.h
+
+include/Rng/DiffGeometric.h
+Rng/Geometric.h
+include/Rng/Rng/Geometric.h
+
+include/Rng/Geometric.h
+Rng/RandomVar.h
+include/Rng/Rng/RandomVar.h
+
+include/Rng/RNG.h
+cstdlib
+-
+sys/types.h
+-
+ctime
+-
+
+include/Rng/RandomVar.h
+cmath
+-
+vector
+-
+Rng/RNG.h
+include/Rng/Rng/RNG.h
+
