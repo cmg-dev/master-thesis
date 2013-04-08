@@ -1,0 +1,6 @@
+Copyright and Reprint Permission:  Abstracting is permitted with credit to the source.  Libraries are 
+permitted to photocopy beyond the limit of U.S. copyright law for private use of patrons those articles in 
+this volume that carry a code at the bottom of the first page, provided the per-copy fee indicated in the 
+code is paid through Copyright Clearance Center, 222 Rosewood Drive, Danvers, MA  01923.  For 
+other copying, reprint or republication permission, write to IEEE Copyrights Manager, IEEE Operations 
+Center, 445 Hoes Lane, Piscataway, NJ  08854.  All rights reserved.  Copyright 2013 by IEEE. 
