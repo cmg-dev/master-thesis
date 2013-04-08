@@ -40,3 +40,15 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+
+#*** ignores for the large, and rarely needed documentation files
+#ignore the dlib first it is too large...
+dev/src/c-cpp/dlib-18.1/*
+#dev/src/c-cpp/dlib-18.1/docs/*
+
+#[Shark]
+dev/src/c-cpp/Shark/doc/*
+dev/src/c-cpp/Shark/examples/*
+#[waffles]
+dev/src/c-cpp/waffles/web/*
+dev/src/c-cpp/waffles/demos/*
