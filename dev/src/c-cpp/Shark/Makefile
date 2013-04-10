@@ -35,6 +35,9 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
 CMAKE_SOURCE_DIR = /home/cg/dev/master-thesis/dev/src/c-cpp/Shark
 
@@ -46,8 +49,8 @@ CMAKE_BINARY_DIR = /home/cg/dev/master-thesis/dev/src/c-cpp/Shark
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
-	/usr/bin/cmake -i .
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -180,6 +183,19 @@ shark/fast:
 .PHONY : shark/fast
 
 #=============================================================================
+# Target rules for targets named Classification
+
+# Build rule for target.
+Classification: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Classification
+.PHONY : Classification
+
+# fast build rule for target.
+Classification/fast:
+	$(MAKE) -f examples/CMakeFiles/Classification.dir/build.make examples/CMakeFiles/Classification.dir/build
+.PHONY : Classification/fast
+
+#=============================================================================
 # Target rules for targets named CrossValidation
 
 # Build rule for target.
@@ -191,6 +207,19 @@ CrossValidation: cmake_check_build_system
 CrossValidation/fast:
 	$(MAKE) -f examples/CMakeFiles/CrossValidation.dir/build.make examples/CMakeFiles/CrossValidation.dir/build
 .PHONY : CrossValidation/fast
+
+#=============================================================================
+# Target rules for targets named EA
+
+# Build rule for target.
+EA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 EA
+.PHONY : EA
+
+# fast build rule for target.
+EA/fast:
+	$(MAKE) -f examples/CMakeFiles/EA.dir/build.make examples/CMakeFiles/EA.dir/build
+.PHONY : EA/fast
 
 #=============================================================================
 # Target rules for targets named FileUtilClass
@@ -412,6 +441,19 @@ RMMEDAtest: cmake_check_build_system
 RMMEDAtest/fast:
 	$(MAKE) -f examples/CMakeFiles/RMMEDAtest.dir/build.make examples/CMakeFiles/RMMEDAtest.dir/build
 .PHONY : RMMEDAtest/fast
+
+#=============================================================================
+# Target rules for targets named Regression
+
+# Build rule for target.
+Regression: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Regression
+.PHONY : Regression
+
+# fast build rule for target.
+Regression/fast:
+	$(MAKE) -f examples/CMakeFiles/Regression.dir/build.make examples/CMakeFiles/Regression.dir/build
+.PHONY : Regression/fast
 
 #=============================================================================
 # Target rules for targets named RngTest
@@ -5410,7 +5452,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... shark"
 	@echo "... test"
+	@echo "... Classification"
 	@echo "... CrossValidation"
+	@echo "... EA"
 	@echo "... FileUtilClass"
 	@echo "... FileUtilSimple"
 	@echo "... FisherLDA"
@@ -5428,6 +5472,7 @@ help:
 	@echo "... PAES"
 	@echo "... PCAtest"
 	@echo "... RMMEDAtest"
+	@echo "... Regression"
 	@echo "... RngTest"
 	@echo "... RngTest2"
 	@echo "... RngTestSimple"

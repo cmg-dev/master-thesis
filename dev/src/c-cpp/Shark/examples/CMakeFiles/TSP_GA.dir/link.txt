@@ -1,1 +1,1 @@
-/usr/bin/c++       CMakeFiles/TSP_GA.dir/EALib/TSP_GA.cpp.o  -o TSP_GA -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 
+/usr/bin/c++   -O3 -DNDEBUG    CMakeFiles/TSP_GA.dir/EALib/TSP_GA.cpp.o  -o TSP_GA -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 

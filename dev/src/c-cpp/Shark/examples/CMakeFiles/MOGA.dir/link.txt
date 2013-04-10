@@ -1,1 +1,1 @@
-/usr/bin/c++       CMakeFiles/MOGA.dir/MOO-EALib/MOGA.cpp.o  -o MOGA -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 
+/usr/bin/c++   -O3 -DNDEBUG    CMakeFiles/MOGA.dir/MOO-EALib/MOGA.cpp.o  -o MOGA -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 

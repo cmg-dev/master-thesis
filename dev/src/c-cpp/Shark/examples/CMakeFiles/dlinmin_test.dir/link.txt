@@ -1,1 +1,1 @@
-/usr/bin/c++       CMakeFiles/dlinmin_test.dir/LinAlg/dlinmin_test.cpp.o  -o dlinmin_test -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 
+/usr/bin/c++   -O3 -DNDEBUG    CMakeFiles/dlinmin_test.dir/LinAlg/dlinmin_test.cpp.o  -o dlinmin_test -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 

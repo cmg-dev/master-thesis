@@ -1,1 +1,1 @@
-/usr/bin/c++       CMakeFiles/fonMO-CMA.dir/MOO-EALib/fonMO-CMA.cpp.o  -o fonMO-CMA -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 
+/usr/bin/c++   -O3 -DNDEBUG    CMakeFiles/fonMO-CMA.dir/MOO-EALib/fonMO-CMA.cpp.o  -o fonMO-CMA -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 

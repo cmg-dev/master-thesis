@@ -1,0 +1,26 @@
+\documentclass[a4paper,10pt,fleqn,titlepage]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage{fontenc}
+\usepackage{graphicx}
+
+%opening
+\title{}
+\author{Christoph M. Gnip}
+\date{04/10/13}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\input{abstract.tex}
+
+\end{abstract}
+
+\tableofcontents
+
+\section{}
+
+\end{document}

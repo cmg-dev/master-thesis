@@ -43,6 +43,9 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
 CMAKE_SOURCE_DIR = /home/cg/dev/master-thesis/dev/src/c-cpp/Shark
 
@@ -56,7 +59,7 @@ CMAKE_BINARY_DIR = /home/cg/dev/master-thesis/dev/src/c-cpp/Shark
 CMakeFiles/shark.dir/all:
 	$(MAKE) -f CMakeFiles/shark.dir/build.make CMakeFiles/shark.dir/depend
 	$(MAKE) -f CMakeFiles/shark.dir/build.make CMakeFiles/shark.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96
 	@echo "Built target shark"
 .PHONY : CMakeFiles/shark.dir/all
 
@@ -66,7 +69,7 @@ all: CMakeFiles/shark.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/shark.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/shark.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : CMakeFiles/shark.dir/rule
@@ -88,7 +91,9 @@ clean: CMakeFiles/shark.dir/clean
 # Directory level rules for directory examples
 
 # Convenience name for "all" pass in the directory.
+examples/all: examples/CMakeFiles/Classification.dir/all
 examples/all: examples/CMakeFiles/CrossValidation.dir/all
+examples/all: examples/CMakeFiles/EA.dir/all
 examples/all: examples/CMakeFiles/FileUtilClass.dir/all
 examples/all: examples/CMakeFiles/FileUtilSimple.dir/all
 examples/all: examples/CMakeFiles/FisherLDA.dir/all
@@ -106,6 +111,7 @@ examples/all: examples/CMakeFiles/NSGA2example.dir/all
 examples/all: examples/CMakeFiles/PAES.dir/all
 examples/all: examples/CMakeFiles/PCAtest.dir/all
 examples/all: examples/CMakeFiles/RMMEDAtest.dir/all
+examples/all: examples/CMakeFiles/Regression.dir/all
 examples/all: examples/CMakeFiles/RngTest.dir/all
 examples/all: examples/CMakeFiles/RngTest2.dir/all
 examples/all: examples/CMakeFiles/RngTestSimple.dir/all
@@ -158,7 +164,9 @@ examples/all: examples/CMakeFiles/svdsort_test.dir/all
 .PHONY : examples/all
 
 # Convenience name for "clean" pass in the directory.
+examples/clean: examples/CMakeFiles/Classification.dir/clean
 examples/clean: examples/CMakeFiles/CrossValidation.dir/clean
+examples/clean: examples/CMakeFiles/EA.dir/clean
 examples/clean: examples/CMakeFiles/FileUtilClass.dir/clean
 examples/clean: examples/CMakeFiles/FileUtilSimple.dir/clean
 examples/clean: examples/CMakeFiles/FisherLDA.dir/clean
@@ -176,6 +184,7 @@ examples/clean: examples/CMakeFiles/NSGA2example.dir/clean
 examples/clean: examples/CMakeFiles/PAES.dir/clean
 examples/clean: examples/CMakeFiles/PCAtest.dir/clean
 examples/clean: examples/CMakeFiles/RMMEDAtest.dir/clean
+examples/clean: examples/CMakeFiles/Regression.dir/clean
 examples/clean: examples/CMakeFiles/RngTest.dir/clean
 examples/clean: examples/CMakeFiles/RngTest2.dir/clean
 examples/clean: examples/CMakeFiles/RngTestSimple.dir/clean
@@ -232,13 +241,48 @@ examples/preinstall:
 .PHONY : examples/preinstall
 
 #=============================================================================
+# Target rules for target examples/CMakeFiles/Classification.dir
+
+# All Build rule for target.
+examples/CMakeFiles/Classification.dir/all: CMakeFiles/shark.dir/all
+	$(MAKE) -f examples/CMakeFiles/Classification.dir/build.make examples/CMakeFiles/Classification.dir/depend
+	$(MAKE) -f examples/CMakeFiles/Classification.dir/build.make examples/CMakeFiles/Classification.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	@echo "Built target Classification"
+.PHONY : examples/CMakeFiles/Classification.dir/all
+
+# Include target in all.
+all: examples/CMakeFiles/Classification.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/Classification.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
+	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/Classification.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
+.PHONY : examples/CMakeFiles/Classification.dir/rule
+
+# Convenience name for target.
+Classification: examples/CMakeFiles/Classification.dir/rule
+.PHONY : Classification
+
+# clean rule for target.
+examples/CMakeFiles/Classification.dir/clean:
+	$(MAKE) -f examples/CMakeFiles/Classification.dir/build.make examples/CMakeFiles/Classification.dir/clean
+.PHONY : examples/CMakeFiles/Classification.dir/clean
+
+# clean rule for target.
+clean: examples/CMakeFiles/Classification.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target examples/CMakeFiles/CrossValidation.dir
 
 # All Build rule for target.
 examples/CMakeFiles/CrossValidation.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/CrossValidation.dir/build.make examples/CMakeFiles/CrossValidation.dir/depend
 	$(MAKE) -f examples/CMakeFiles/CrossValidation.dir/build.make examples/CMakeFiles/CrossValidation.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  1
 	@echo "Built target CrossValidation"
 .PHONY : examples/CMakeFiles/CrossValidation.dir/all
 
@@ -248,7 +292,7 @@ all: examples/CMakeFiles/CrossValidation.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/CrossValidation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/CrossValidation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/CrossValidation.dir/rule
@@ -267,13 +311,48 @@ clean: examples/CMakeFiles/CrossValidation.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target examples/CMakeFiles/EA.dir
+
+# All Build rule for target.
+examples/CMakeFiles/EA.dir/all: CMakeFiles/shark.dir/all
+	$(MAKE) -f examples/CMakeFiles/EA.dir/build.make examples/CMakeFiles/EA.dir/depend
+	$(MAKE) -f examples/CMakeFiles/EA.dir/build.make examples/CMakeFiles/EA.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+	@echo "Built target EA"
+.PHONY : examples/CMakeFiles/EA.dir/all
+
+# Include target in all.
+all: examples/CMakeFiles/EA.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/EA.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 75
+	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/EA.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
+.PHONY : examples/CMakeFiles/EA.dir/rule
+
+# Convenience name for target.
+EA: examples/CMakeFiles/EA.dir/rule
+.PHONY : EA
+
+# clean rule for target.
+examples/CMakeFiles/EA.dir/clean:
+	$(MAKE) -f examples/CMakeFiles/EA.dir/build.make examples/CMakeFiles/EA.dir/clean
+.PHONY : examples/CMakeFiles/EA.dir/clean
+
+# clean rule for target.
+clean: examples/CMakeFiles/EA.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target examples/CMakeFiles/FileUtilClass.dir
 
 # All Build rule for target.
 examples/CMakeFiles/FileUtilClass.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/FileUtilClass.dir/build.make examples/CMakeFiles/FileUtilClass.dir/depend
 	$(MAKE) -f examples/CMakeFiles/FileUtilClass.dir/build.make examples/CMakeFiles/FileUtilClass.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  17
 	@echo "Built target FileUtilClass"
 .PHONY : examples/CMakeFiles/FileUtilClass.dir/all
 
@@ -283,7 +362,7 @@ all: examples/CMakeFiles/FileUtilClass.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/FileUtilClass.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/FileUtilClass.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/FileUtilClass.dir/rule
@@ -308,7 +387,7 @@ clean: examples/CMakeFiles/FileUtilClass.dir/clean
 examples/CMakeFiles/FileUtilSimple.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/FileUtilSimple.dir/build.make examples/CMakeFiles/FileUtilSimple.dir/depend
 	$(MAKE) -f examples/CMakeFiles/FileUtilSimple.dir/build.make examples/CMakeFiles/FileUtilSimple.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target FileUtilSimple"
 .PHONY : examples/CMakeFiles/FileUtilSimple.dir/all
 
@@ -318,7 +397,7 @@ all: examples/CMakeFiles/FileUtilSimple.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/FileUtilSimple.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/FileUtilSimple.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/FileUtilSimple.dir/rule
@@ -353,7 +432,7 @@ all: examples/CMakeFiles/FisherLDA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/FisherLDA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/FisherLDA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/FisherLDA.dir/rule
@@ -378,7 +457,7 @@ clean: examples/CMakeFiles/FisherLDA.dir/clean
 examples/CMakeFiles/HypervolumeBenchmark.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/HypervolumeBenchmark.dir/build.make examples/CMakeFiles/HypervolumeBenchmark.dir/depend
 	$(MAKE) -f examples/CMakeFiles/HypervolumeBenchmark.dir/build.make examples/CMakeFiles/HypervolumeBenchmark.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  18
 	@echo "Built target HypervolumeBenchmark"
 .PHONY : examples/CMakeFiles/HypervolumeBenchmark.dir/all
 
@@ -388,7 +467,7 @@ all: examples/CMakeFiles/HypervolumeBenchmark.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/HypervolumeBenchmark.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/HypervolumeBenchmark.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/HypervolumeBenchmark.dir/rule
@@ -423,7 +502,7 @@ all: examples/CMakeFiles/KM.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/KM.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/KM.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/KM.dir/rule
@@ -458,7 +537,7 @@ all: examples/CMakeFiles/KNN.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/KNN.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/KNN.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/KNN.dir/rule
@@ -483,7 +562,7 @@ clean: examples/CMakeFiles/KNN.dir/clean
 examples/CMakeFiles/KalmanFilterTest.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/KalmanFilterTest.dir/build.make examples/CMakeFiles/KalmanFilterTest.dir/depend
 	$(MAKE) -f examples/CMakeFiles/KalmanFilterTest.dir/build.make examples/CMakeFiles/KalmanFilterTest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  3
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  19
 	@echo "Built target KalmanFilterTest"
 .PHONY : examples/CMakeFiles/KalmanFilterTest.dir/all
 
@@ -493,7 +572,7 @@ all: examples/CMakeFiles/KalmanFilterTest.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/KalmanFilterTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/KalmanFilterTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/KalmanFilterTest.dir/rule
@@ -528,7 +607,7 @@ all: examples/CMakeFiles/KernelOptimization.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/KernelOptimization.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/KernelOptimization.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/KernelOptimization.dir/rule
@@ -553,7 +632,7 @@ clean: examples/CMakeFiles/KernelOptimization.dir/clean
 examples/CMakeFiles/LinearClassifierTest.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/LinearClassifierTest.dir/build.make examples/CMakeFiles/LinearClassifierTest.dir/depend
 	$(MAKE) -f examples/CMakeFiles/LinearClassifierTest.dir/build.make examples/CMakeFiles/LinearClassifierTest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target LinearClassifierTest"
 .PHONY : examples/CMakeFiles/LinearClassifierTest.dir/all
 
@@ -563,7 +642,7 @@ all: examples/CMakeFiles/LinearClassifierTest.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/LinearClassifierTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/LinearClassifierTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/LinearClassifierTest.dir/rule
@@ -588,7 +667,7 @@ clean: examples/CMakeFiles/LinearClassifierTest.dir/clean
 examples/CMakeFiles/LinearRegressionTest.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/LinearRegressionTest.dir/build.make examples/CMakeFiles/LinearRegressionTest.dir/depend
 	$(MAKE) -f examples/CMakeFiles/LinearRegressionTest.dir/build.make examples/CMakeFiles/LinearRegressionTest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  20
 	@echo "Built target LinearRegressionTest"
 .PHONY : examples/CMakeFiles/LinearRegressionTest.dir/all
 
@@ -598,7 +677,7 @@ all: examples/CMakeFiles/LinearRegressionTest.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/LinearRegressionTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/LinearRegressionTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/LinearRegressionTest.dir/rule
@@ -633,7 +712,7 @@ all: examples/CMakeFiles/MOGA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/MOGA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/MOGA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/MOGA.dir/rule
@@ -658,7 +737,7 @@ clean: examples/CMakeFiles/MOGA.dir/clean
 examples/CMakeFiles/McSvm.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/McSvm.dir/build.make examples/CMakeFiles/McSvm.dir/depend
 	$(MAKE) -f examples/CMakeFiles/McSvm.dir/build.make examples/CMakeFiles/McSvm.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  5
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target McSvm"
 .PHONY : examples/CMakeFiles/McSvm.dir/all
 
@@ -668,7 +747,7 @@ all: examples/CMakeFiles/McSvm.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/McSvm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/McSvm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/McSvm.dir/rule
@@ -693,7 +772,7 @@ clean: examples/CMakeFiles/McSvm.dir/clean
 examples/CMakeFiles/NSGA2.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/NSGA2.dir/build.make examples/CMakeFiles/NSGA2.dir/depend
 	$(MAKE) -f examples/CMakeFiles/NSGA2.dir/build.make examples/CMakeFiles/NSGA2.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  21
 	@echo "Built target NSGA2"
 .PHONY : examples/CMakeFiles/NSGA2.dir/all
 
@@ -703,7 +782,7 @@ all: examples/CMakeFiles/NSGA2.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/NSGA2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/NSGA2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/NSGA2.dir/rule
@@ -728,7 +807,7 @@ clean: examples/CMakeFiles/NSGA2.dir/clean
 examples/CMakeFiles/NSGA2example.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/NSGA2example.dir/build.make examples/CMakeFiles/NSGA2example.dir/depend
 	$(MAKE) -f examples/CMakeFiles/NSGA2example.dir/build.make examples/CMakeFiles/NSGA2example.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  6
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target NSGA2example"
 .PHONY : examples/CMakeFiles/NSGA2example.dir/all
 
@@ -738,7 +817,7 @@ all: examples/CMakeFiles/NSGA2example.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/NSGA2example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/NSGA2example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/NSGA2example.dir/rule
@@ -773,7 +852,7 @@ all: examples/CMakeFiles/PAES.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/PAES.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/PAES.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/PAES.dir/rule
@@ -798,7 +877,7 @@ clean: examples/CMakeFiles/PAES.dir/clean
 examples/CMakeFiles/PCAtest.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/PCAtest.dir/build.make examples/CMakeFiles/PCAtest.dir/depend
 	$(MAKE) -f examples/CMakeFiles/PCAtest.dir/build.make examples/CMakeFiles/PCAtest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  22
 	@echo "Built target PCAtest"
 .PHONY : examples/CMakeFiles/PCAtest.dir/all
 
@@ -808,7 +887,7 @@ all: examples/CMakeFiles/PCAtest.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/PCAtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/PCAtest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/PCAtest.dir/rule
@@ -833,7 +912,7 @@ clean: examples/CMakeFiles/PCAtest.dir/clean
 examples/CMakeFiles/RMMEDAtest.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/RMMEDAtest.dir/build.make examples/CMakeFiles/RMMEDAtest.dir/depend
 	$(MAKE) -f examples/CMakeFiles/RMMEDAtest.dir/build.make examples/CMakeFiles/RMMEDAtest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  7
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target RMMEDAtest"
 .PHONY : examples/CMakeFiles/RMMEDAtest.dir/all
 
@@ -843,7 +922,7 @@ all: examples/CMakeFiles/RMMEDAtest.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/RMMEDAtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/RMMEDAtest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/RMMEDAtest.dir/rule
@@ -859,6 +938,41 @@ examples/CMakeFiles/RMMEDAtest.dir/clean:
 
 # clean rule for target.
 clean: examples/CMakeFiles/RMMEDAtest.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target examples/CMakeFiles/Regression.dir
+
+# All Build rule for target.
+examples/CMakeFiles/Regression.dir/all: CMakeFiles/shark.dir/all
+	$(MAKE) -f examples/CMakeFiles/Regression.dir/build.make examples/CMakeFiles/Regression.dir/depend
+	$(MAKE) -f examples/CMakeFiles/Regression.dir/build.make examples/CMakeFiles/Regression.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  23
+	@echo "Built target Regression"
+.PHONY : examples/CMakeFiles/Regression.dir/all
+
+# Include target in all.
+all: examples/CMakeFiles/Regression.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/Regression.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
+	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/Regression.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
+.PHONY : examples/CMakeFiles/Regression.dir/rule
+
+# Convenience name for target.
+Regression: examples/CMakeFiles/Regression.dir/rule
+.PHONY : Regression
+
+# clean rule for target.
+examples/CMakeFiles/Regression.dir/clean:
+	$(MAKE) -f examples/CMakeFiles/Regression.dir/build.make examples/CMakeFiles/Regression.dir/clean
+.PHONY : examples/CMakeFiles/Regression.dir/clean
+
+# clean rule for target.
+clean: examples/CMakeFiles/Regression.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -878,7 +992,7 @@ all: examples/CMakeFiles/RngTest.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/RngTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/RngTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/RngTest.dir/rule
@@ -903,7 +1017,7 @@ clean: examples/CMakeFiles/RngTest.dir/clean
 examples/CMakeFiles/RngTest2.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/RngTest2.dir/build.make examples/CMakeFiles/RngTest2.dir/depend
 	$(MAKE) -f examples/CMakeFiles/RngTest2.dir/build.make examples/CMakeFiles/RngTest2.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  8
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  24
 	@echo "Built target RngTest2"
 .PHONY : examples/CMakeFiles/RngTest2.dir/all
 
@@ -913,7 +1027,7 @@ all: examples/CMakeFiles/RngTest2.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/RngTest2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/RngTest2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/RngTest2.dir/rule
@@ -948,7 +1062,7 @@ all: examples/CMakeFiles/RngTestSimple.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/RngTestSimple.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/RngTestSimple.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/RngTestSimple.dir/rule
@@ -983,7 +1097,7 @@ all: examples/CMakeFiles/SVMclassification.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/SVMclassification.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/SVMclassification.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/SVMclassification.dir/rule
@@ -1008,7 +1122,7 @@ clean: examples/CMakeFiles/SVMclassification.dir/clean
 examples/CMakeFiles/SVMregression.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/SVMregression.dir/build.make examples/CMakeFiles/SVMregression.dir/depend
 	$(MAKE) -f examples/CMakeFiles/SVMregression.dir/build.make examples/CMakeFiles/SVMregression.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  9
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  25
 	@echo "Built target SVMregression"
 .PHONY : examples/CMakeFiles/SVMregression.dir/all
 
@@ -1018,7 +1132,7 @@ all: examples/CMakeFiles/SVMregression.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/SVMregression.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/SVMregression.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/SVMregression.dir/rule
@@ -1053,7 +1167,7 @@ all: examples/CMakeFiles/SchwefelEllipsoidCMSA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/SchwefelEllipsoidCMSA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/SchwefelEllipsoidCMSA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/SchwefelEllipsoidCMSA.dir/rule
@@ -1078,7 +1192,7 @@ clean: examples/CMakeFiles/SchwefelEllipsoidCMSA.dir/clean
 examples/CMakeFiles/SvmApproximationExample.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/SvmApproximationExample.dir/build.make examples/CMakeFiles/SvmApproximationExample.dir/depend
 	$(MAKE) -f examples/CMakeFiles/SvmApproximationExample.dir/build.make examples/CMakeFiles/SvmApproximationExample.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  10
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target SvmApproximationExample"
 .PHONY : examples/CMakeFiles/SvmApproximationExample.dir/all
 
@@ -1088,7 +1202,7 @@ all: examples/CMakeFiles/SvmApproximationExample.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/SvmApproximationExample.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/SvmApproximationExample.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/SvmApproximationExample.dir/rule
@@ -1113,7 +1227,7 @@ clean: examples/CMakeFiles/SvmApproximationExample.dir/clean
 examples/CMakeFiles/TSP_GA.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/TSP_GA.dir/build.make examples/CMakeFiles/TSP_GA.dir/depend
 	$(MAKE) -f examples/CMakeFiles/TSP_GA.dir/build.make examples/CMakeFiles/TSP_GA.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  26
 	@echo "Built target TSP_GA"
 .PHONY : examples/CMakeFiles/TSP_GA.dir/all
 
@@ -1123,7 +1237,7 @@ all: examples/CMakeFiles/TSP_GA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/TSP_GA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/TSP_GA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/TSP_GA.dir/rule
@@ -1158,7 +1272,7 @@ all: examples/CMakeFiles/VEGA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/VEGA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/VEGA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/VEGA.dir/rule
@@ -1183,7 +1297,7 @@ clean: examples/CMakeFiles/VEGA.dir/clean
 examples/CMakeFiles/ackleyES.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/ackleyES.dir/build.make examples/CMakeFiles/ackleyES.dir/depend
 	$(MAKE) -f examples/CMakeFiles/ackleyES.dir/build.make examples/CMakeFiles/ackleyES.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  11
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target ackleyES"
 .PHONY : examples/CMakeFiles/ackleyES.dir/all
 
@@ -1193,7 +1307,7 @@ all: examples/CMakeFiles/ackleyES.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/ackleyES.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ackleyES.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/ackleyES.dir/rule
@@ -1218,7 +1332,7 @@ clean: examples/CMakeFiles/ackleyES.dir/clean
 examples/CMakeFiles/cblnsrch_test.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/cblnsrch_test.dir/build.make examples/CMakeFiles/cblnsrch_test.dir/depend
 	$(MAKE) -f examples/CMakeFiles/cblnsrch_test.dir/build.make examples/CMakeFiles/cblnsrch_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  27
 	@echo "Built target cblnsrch_test"
 .PHONY : examples/CMakeFiles/cblnsrch_test.dir/all
 
@@ -1228,7 +1342,7 @@ all: examples/CMakeFiles/cblnsrch_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/cblnsrch_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/cblnsrch_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/cblnsrch_test.dir/rule
@@ -1253,7 +1367,7 @@ clean: examples/CMakeFiles/cblnsrch_test.dir/clean
 examples/CMakeFiles/countingOnes.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/countingOnes.dir/build.make examples/CMakeFiles/countingOnes.dir/depend
 	$(MAKE) -f examples/CMakeFiles/countingOnes.dir/build.make examples/CMakeFiles/countingOnes.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  12
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target countingOnes"
 .PHONY : examples/CMakeFiles/countingOnes.dir/all
 
@@ -1263,7 +1377,7 @@ all: examples/CMakeFiles/countingOnes.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/countingOnes.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/countingOnes.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/countingOnes.dir/rule
@@ -1298,7 +1412,7 @@ all: examples/CMakeFiles/covar_corrcoef_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/covar_corrcoef_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/covar_corrcoef_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/covar_corrcoef_test.dir/rule
@@ -1323,7 +1437,7 @@ clean: examples/CMakeFiles/covar_corrcoef_test.dir/clean
 examples/CMakeFiles/detsymm_test.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/detsymm_test.dir/build.make examples/CMakeFiles/detsymm_test.dir/depend
 	$(MAKE) -f examples/CMakeFiles/detsymm_test.dir/build.make examples/CMakeFiles/detsymm_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  28
 	@echo "Built target detsymm_test"
 .PHONY : examples/CMakeFiles/detsymm_test.dir/all
 
@@ -1333,7 +1447,7 @@ all: examples/CMakeFiles/detsymm_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/detsymm_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/detsymm_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/detsymm_test.dir/rule
@@ -1358,7 +1472,7 @@ clean: examples/CMakeFiles/detsymm_test.dir/clean
 examples/CMakeFiles/dlinmin_test.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/dlinmin_test.dir/build.make examples/CMakeFiles/dlinmin_test.dir/depend
 	$(MAKE) -f examples/CMakeFiles/dlinmin_test.dir/build.make examples/CMakeFiles/dlinmin_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  13
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target dlinmin_test"
 .PHONY : examples/CMakeFiles/dlinmin_test.dir/all
 
@@ -1368,7 +1482,7 @@ all: examples/CMakeFiles/dlinmin_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/dlinmin_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/dlinmin_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/dlinmin_test.dir/rule
@@ -1403,7 +1517,7 @@ all: examples/CMakeFiles/eigenerr_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/eigenerr_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/eigenerr_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/eigenerr_test.dir/rule
@@ -1428,7 +1542,7 @@ clean: examples/CMakeFiles/eigenerr_test.dir/clean
 examples/CMakeFiles/eigensort_test.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/eigensort_test.dir/build.make examples/CMakeFiles/eigensort_test.dir/depend
 	$(MAKE) -f examples/CMakeFiles/eigensort_test.dir/build.make examples/CMakeFiles/eigensort_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  14
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  29
 	@echo "Built target eigensort_test"
 .PHONY : examples/CMakeFiles/eigensort_test.dir/all
 
@@ -1438,7 +1552,7 @@ all: examples/CMakeFiles/eigensort_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/eigensort_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/eigensort_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/eigensort_test.dir/rule
@@ -1473,7 +1587,7 @@ all: examples/CMakeFiles/eigensymmJacobi2_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/eigensymmJacobi2_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/eigensymmJacobi2_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/eigensymmJacobi2_test.dir/rule
@@ -1508,7 +1622,7 @@ all: examples/CMakeFiles/eigensymmJacobi_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/eigensymmJacobi_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/eigensymmJacobi_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/eigensymmJacobi_test.dir/rule
@@ -1533,7 +1647,7 @@ clean: examples/CMakeFiles/eigensymmJacobi_test.dir/clean
 examples/CMakeFiles/eigensymm_test.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/eigensymm_test.dir/build.make examples/CMakeFiles/eigensymm_test.dir/depend
 	$(MAKE) -f examples/CMakeFiles/eigensymm_test.dir/build.make examples/CMakeFiles/eigensymm_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  15
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  30
 	@echo "Built target eigensymm_test"
 .PHONY : examples/CMakeFiles/eigensymm_test.dir/all
 
@@ -1543,7 +1657,7 @@ all: examples/CMakeFiles/eigensymm_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/eigensymm_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/eigensymm_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/eigensymm_test.dir/rule
@@ -1578,7 +1692,7 @@ all: examples/CMakeFiles/embeddingTest.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/embeddingTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/embeddingTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/embeddingTest.dir/rule
@@ -1603,7 +1717,7 @@ clean: examples/CMakeFiles/embeddingTest.dir/clean
 examples/CMakeFiles/fft_test.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/fft_test.dir/build.make examples/CMakeFiles/fft_test.dir/depend
 	$(MAKE) -f examples/CMakeFiles/fft_test.dir/build.make examples/CMakeFiles/fft_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  16
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target fft_test"
 .PHONY : examples/CMakeFiles/fft_test.dir/all
 
@@ -1613,7 +1727,7 @@ all: examples/CMakeFiles/fft_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/fft_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/fft_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/fft_test.dir/rule
@@ -1638,7 +1752,7 @@ clean: examples/CMakeFiles/fft_test.dir/clean
 examples/CMakeFiles/fonMO-CMA.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/fonMO-CMA.dir/build.make examples/CMakeFiles/fonMO-CMA.dir/depend
 	$(MAKE) -f examples/CMakeFiles/fonMO-CMA.dir/build.make examples/CMakeFiles/fonMO-CMA.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  31
 	@echo "Built target fonMO-CMA"
 .PHONY : examples/CMakeFiles/fonMO-CMA.dir/all
 
@@ -1648,7 +1762,7 @@ all: examples/CMakeFiles/fonMO-CMA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/fonMO-CMA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/fonMO-CMA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/fonMO-CMA.dir/rule
@@ -1683,7 +1797,7 @@ all: examples/CMakeFiles/fonSteadyStateMO-CMA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/fonSteadyStateMO-CMA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/fonSteadyStateMO-CMA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/fonSteadyStateMO-CMA.dir/rule
@@ -1708,7 +1822,7 @@ clean: examples/CMakeFiles/fonSteadyStateMO-CMA.dir/clean
 examples/CMakeFiles/g_inverse_matrix.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/g_inverse_matrix.dir/build.make examples/CMakeFiles/g_inverse_matrix.dir/depend
 	$(MAKE) -f examples/CMakeFiles/g_inverse_matrix.dir/build.make examples/CMakeFiles/g_inverse_matrix.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  17
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target g_inverse_matrix"
 .PHONY : examples/CMakeFiles/g_inverse_matrix.dir/all
 
@@ -1718,7 +1832,7 @@ all: examples/CMakeFiles/g_inverse_matrix.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/g_inverse_matrix.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/g_inverse_matrix.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/g_inverse_matrix.dir/rule
@@ -1743,7 +1857,7 @@ clean: examples/CMakeFiles/g_inverse_matrix.dir/clean
 examples/CMakeFiles/integerES.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/integerES.dir/build.make examples/CMakeFiles/integerES.dir/depend
 	$(MAKE) -f examples/CMakeFiles/integerES.dir/build.make examples/CMakeFiles/integerES.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  32
 	@echo "Built target integerES"
 .PHONY : examples/CMakeFiles/integerES.dir/all
 
@@ -1753,7 +1867,7 @@ all: examples/CMakeFiles/integerES.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/integerES.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/integerES.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/integerES.dir/rule
@@ -1778,7 +1892,7 @@ clean: examples/CMakeFiles/integerES.dir/clean
 examples/CMakeFiles/linalg_simple_test.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/linalg_simple_test.dir/build.make examples/CMakeFiles/linalg_simple_test.dir/depend
 	$(MAKE) -f examples/CMakeFiles/linalg_simple_test.dir/build.make examples/CMakeFiles/linalg_simple_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  18
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target linalg_simple_test"
 .PHONY : examples/CMakeFiles/linalg_simple_test.dir/all
 
@@ -1788,7 +1902,7 @@ all: examples/CMakeFiles/linalg_simple_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/linalg_simple_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/linalg_simple_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/linalg_simple_test.dir/rule
@@ -1823,7 +1937,7 @@ all: examples/CMakeFiles/linmin_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/linmin_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/linmin_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/linmin_test.dir/rule
@@ -1848,7 +1962,7 @@ clean: examples/CMakeFiles/linmin_test.dir/clean
 examples/CMakeFiles/lnsrch_test.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/lnsrch_test.dir/build.make examples/CMakeFiles/lnsrch_test.dir/depend
 	$(MAKE) -f examples/CMakeFiles/lnsrch_test.dir/build.make examples/CMakeFiles/lnsrch_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  33
 	@echo "Built target lnsrch_test"
 .PHONY : examples/CMakeFiles/lnsrch_test.dir/all
 
@@ -1858,7 +1972,7 @@ all: examples/CMakeFiles/lnsrch_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/lnsrch_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/lnsrch_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/lnsrch_test.dir/rule
@@ -1883,7 +1997,7 @@ clean: examples/CMakeFiles/lnsrch_test.dir/clean
 examples/CMakeFiles/lorenz84.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/lorenz84.dir/build.make examples/CMakeFiles/lorenz84.dir/depend
 	$(MAKE) -f examples/CMakeFiles/lorenz84.dir/build.make examples/CMakeFiles/lorenz84.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  19
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target lorenz84"
 .PHONY : examples/CMakeFiles/lorenz84.dir/all
 
@@ -1893,7 +2007,7 @@ all: examples/CMakeFiles/lorenz84.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/lorenz84.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/lorenz84.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/lorenz84.dir/rule
@@ -1928,7 +2042,7 @@ all: examples/CMakeFiles/mg-example.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/mg-example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/mg-example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/mg-example.dir/rule
@@ -1953,7 +2067,7 @@ clean: examples/CMakeFiles/mg-example.dir/clean
 examples/CMakeFiles/paraboloidCMA.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/paraboloidCMA.dir/build.make examples/CMakeFiles/paraboloidCMA.dir/depend
 	$(MAKE) -f examples/CMakeFiles/paraboloidCMA.dir/build.make examples/CMakeFiles/paraboloidCMA.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  20
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  34
 	@echo "Built target paraboloidCMA"
 .PHONY : examples/CMakeFiles/paraboloidCMA.dir/all
 
@@ -1963,7 +2077,7 @@ all: examples/CMakeFiles/paraboloidCMA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/paraboloidCMA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/paraboloidCMA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/paraboloidCMA.dir/rule
@@ -1998,7 +2112,7 @@ all: examples/CMakeFiles/paraboloidElitistCMA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/paraboloidElitistCMA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/paraboloidElitistCMA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/paraboloidElitistCMA.dir/rule
@@ -2033,7 +2147,7 @@ all: examples/CMakeFiles/pvmSphereGA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/pvmSphereGA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/pvmSphereGA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/pvmSphereGA.dir/rule
@@ -2058,7 +2172,7 @@ clean: examples/CMakeFiles/pvmSphereGA.dir/clean
 examples/CMakeFiles/rank_decomp_test.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/rank_decomp_test.dir/build.make examples/CMakeFiles/rank_decomp_test.dir/depend
 	$(MAKE) -f examples/CMakeFiles/rank_decomp_test.dir/build.make examples/CMakeFiles/rank_decomp_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  21
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  35
 	@echo "Built target rank_decomp_test"
 .PHONY : examples/CMakeFiles/rank_decomp_test.dir/all
 
@@ -2068,7 +2182,7 @@ all: examples/CMakeFiles/rank_decomp_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/rank_decomp_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/rank_decomp_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/rank_decomp_test.dir/rule
@@ -2103,7 +2217,7 @@ all: examples/CMakeFiles/rank_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/rank_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/rank_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/rank_test.dir/rule
@@ -2128,7 +2242,7 @@ clean: examples/CMakeFiles/rank_test.dir/clean
 examples/CMakeFiles/rbfn-example.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/rbfn-example.dir/build.make examples/CMakeFiles/rbfn-example.dir/depend
 	$(MAKE) -f examples/CMakeFiles/rbfn-example.dir/build.make examples/CMakeFiles/rbfn-example.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  22
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target rbfn-example"
 .PHONY : examples/CMakeFiles/rbfn-example.dir/all
 
@@ -2138,7 +2252,7 @@ all: examples/CMakeFiles/rbfn-example.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/rbfn-example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/rbfn-example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/rbfn-example.dir/rule
@@ -2163,7 +2277,7 @@ clean: examples/CMakeFiles/rbfn-example.dir/clean
 examples/CMakeFiles/realcoded-NSGA2.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/realcoded-NSGA2.dir/build.make examples/CMakeFiles/realcoded-NSGA2.dir/depend
 	$(MAKE) -f examples/CMakeFiles/realcoded-NSGA2.dir/build.make examples/CMakeFiles/realcoded-NSGA2.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  36
 	@echo "Built target realcoded-NSGA2"
 .PHONY : examples/CMakeFiles/realcoded-NSGA2.dir/all
 
@@ -2173,7 +2287,7 @@ all: examples/CMakeFiles/realcoded-NSGA2.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/realcoded-NSGA2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/realcoded-NSGA2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/realcoded-NSGA2.dir/rule
@@ -2208,7 +2322,7 @@ all: examples/CMakeFiles/simpleFFNet.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/simpleFFNet.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/simpleFFNet.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/simpleFFNet.dir/rule
@@ -2233,7 +2347,7 @@ clean: examples/CMakeFiles/simpleFFNet.dir/clean
 examples/CMakeFiles/simpleFFNetSource.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/simpleFFNetSource.dir/build.make examples/CMakeFiles/simpleFFNetSource.dir/depend
 	$(MAKE) -f examples/CMakeFiles/simpleFFNetSource.dir/build.make examples/CMakeFiles/simpleFFNetSource.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  96
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  97
 	@echo "Built target simpleFFNetSource"
 .PHONY : examples/CMakeFiles/simpleFFNetSource.dir/all
 
@@ -2243,7 +2357,7 @@ all: examples/CMakeFiles/simpleFFNetSource.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/simpleFFNetSource.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/simpleFFNetSource.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/simpleFFNetSource.dir/rule
@@ -2278,7 +2392,7 @@ all: examples/CMakeFiles/simpleMSERNNet.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/simpleMSERNNet.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/simpleMSERNNet.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/simpleMSERNNet.dir/rule
@@ -2303,7 +2417,7 @@ clean: examples/CMakeFiles/simpleMSERNNet.dir/clean
 examples/CMakeFiles/simpleRBFNet.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/simpleRBFNet.dir/build.make examples/CMakeFiles/simpleRBFNet.dir/depend
 	$(MAKE) -f examples/CMakeFiles/simpleRBFNet.dir/build.make examples/CMakeFiles/simpleRBFNet.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  97
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target simpleRBFNet"
 .PHONY : examples/CMakeFiles/simpleRBFNet.dir/all
 
@@ -2313,7 +2427,7 @@ all: examples/CMakeFiles/simpleRBFNet.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/simpleRBFNet.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/simpleRBFNet.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/simpleRBFNet.dir/rule
@@ -2338,7 +2452,7 @@ clean: examples/CMakeFiles/simpleRBFNet.dir/clean
 examples/CMakeFiles/simpleRNNet.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/simpleRNNet.dir/build.make examples/CMakeFiles/simpleRNNet.dir/depend
 	$(MAKE) -f examples/CMakeFiles/simpleRNNet.dir/build.make examples/CMakeFiles/simpleRNNet.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  98
 	@echo "Built target simpleRNNet"
 .PHONY : examples/CMakeFiles/simpleRNNet.dir/all
 
@@ -2348,7 +2462,7 @@ all: examples/CMakeFiles/simpleRNNet.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/simpleRNNet.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/simpleRNNet.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/simpleRNNet.dir/rule
@@ -2383,7 +2497,7 @@ all: examples/CMakeFiles/sphereGA.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/sphereGA.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/sphereGA.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/sphereGA.dir/rule
@@ -2408,7 +2522,7 @@ clean: examples/CMakeFiles/sphereGA.dir/clean
 examples/CMakeFiles/steadyState.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/steadyState.dir/build.make examples/CMakeFiles/steadyState.dir/depend
 	$(MAKE) -f examples/CMakeFiles/steadyState.dir/build.make examples/CMakeFiles/steadyState.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  98
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target steadyState"
 .PHONY : examples/CMakeFiles/steadyState.dir/all
 
@@ -2418,7 +2532,7 @@ all: examples/CMakeFiles/steadyState.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/steadyState.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/steadyState.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/steadyState.dir/rule
@@ -2443,7 +2557,7 @@ clean: examples/CMakeFiles/steadyState.dir/clean
 examples/CMakeFiles/sugeno.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/sugeno.dir/build.make examples/CMakeFiles/sugeno.dir/depend
 	$(MAKE) -f examples/CMakeFiles/sugeno.dir/build.make examples/CMakeFiles/sugeno.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  99
 	@echo "Built target sugeno"
 .PHONY : examples/CMakeFiles/sugeno.dir/all
 
@@ -2453,7 +2567,7 @@ all: examples/CMakeFiles/sugeno.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/sugeno.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/sugeno.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/sugeno.dir/rule
@@ -2478,7 +2592,7 @@ clean: examples/CMakeFiles/sugeno.dir/clean
 examples/CMakeFiles/svd_test.dir/all: CMakeFiles/shark.dir/all
 	$(MAKE) -f examples/CMakeFiles/svd_test.dir/build.make examples/CMakeFiles/svd_test.dir/depend
 	$(MAKE) -f examples/CMakeFiles/svd_test.dir/build.make examples/CMakeFiles/svd_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles  99
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 
 	@echo "Built target svd_test"
 .PHONY : examples/CMakeFiles/svd_test.dir/all
 
@@ -2488,7 +2602,7 @@ all: examples/CMakeFiles/svd_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/svd_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/svd_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/svd_test.dir/rule
@@ -2523,7 +2637,7 @@ all: examples/CMakeFiles/svdrank_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/svdrank_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 73
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 60
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/svdrank_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/svdrank_test.dir/rule
@@ -2558,7 +2672,7 @@ all: examples/CMakeFiles/svdsort_test.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/svdsort_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 74
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 61
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/svdsort_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/CMakeFiles 0
 .PHONY : examples/CMakeFiles/svdsort_test.dir/rule

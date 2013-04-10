@@ -413,3 +413,6 @@
 /usr/local/share/shark/examples//Rng/RngTestSimple.cpp
 /usr/local/share/shark/examples//TimeSeries/lorenz84.cpp
 /usr/local/share/shark/examples//TimeSeries/embeddingTest.cpp
+/usr/local/share/shark/examples/ReClaM/QT/Regression
+/usr/local/share/shark/examples/ReClaM/QT/Classification
+/usr/local/share/shark/examples/EALib/QT/EA

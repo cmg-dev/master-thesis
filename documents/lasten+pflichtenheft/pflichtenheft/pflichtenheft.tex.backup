@@ -1,0 +1,68 @@
+%----------------------------------------------------------------------------
+% Author: Christoph Gnip
+% Date: 10|April|2013
+%
+% This LaTex-file contains the deteiled description of how I'm planning to
+% execute my master-thesis. Target criterias are set and the way to achieve
+% them is sketched up
+%
+%----------------------------------------------------------------------------
+\documentclass[a4paper,16pt,fleqn,titlepage]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+
+%opening
+\title{}
+\author{Christoph M. Gnip}
+\date{04/10/13}
+
+\begin{document}
+
+%----------------------------------------------------------------------------
+\maketitle
+
+%----------------------------------------------------------------------------
+\begin{abstract}
+\input{abstract.tex}
+
+\end{abstract}
+
+%----------------------------------------------------------------------------
+%own page for the toc
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------
+\section{Motivation}
+\input{motivation.tex}
+
+%----------------------------------------------------------------------------
+\section{Aufgabenstellung}
+Im Folgenden ist die Aufgabenstellung detailliert ausgeführt.
+\subsection{Muss-Kriterien}
+\subsection{Soll-Kriterien}
+\subsection{Wunsch-Kriterien}
+
+%----------------------------------------------------------------------------
+\section{Umsetzung}
+Dieses Kapitel beschreibt die beabsichtigte herangehensweise des Autors an die
+ihm gestellte Aufgabenstellung.
+\subsection{}
+
+%----------------------------------------------------------------------------
+\subsection{Werkzeuge und Umgebungen}
+
+%----------------------------------------------------------------------------
+\section{Projektplanung}
+Die Dauer der Arbeit beträgt 20 Wochen.
+\subsection{Projektzeitplan}
+\input{project_time_table.tex}
+
+%----------------------------------------------------------------------------
+
+\end{document}

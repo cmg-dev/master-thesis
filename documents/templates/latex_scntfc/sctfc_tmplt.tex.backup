@@ -1,0 +1,18 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+%opening
+\title{Entwurf und Implementation eines Assistenzsystems zur automatischen Entfernungsabschätzung für präzise RFID-Positionsbestimmung durch evulutionäre Methoden}
+\author{Christoph M. Gnip}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{}
+
+\end{document}
