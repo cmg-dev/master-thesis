@@ -41,8 +41,10 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 
-#*** ignores for the large, and rarely needed documentation files
+#igonre the backup files from kate etc.
+*~
 
+#*** ignores for the large, and rarely needed documentation files
 [dLib]
 #ignore the dlib entirely it is too large...
 dev/src/c-cpp/dlib-18.1/*
