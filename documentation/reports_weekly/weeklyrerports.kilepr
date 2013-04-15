@@ -1,0 +1,27 @@
+[General]
+def_graphic_ext=pdf
+img_extIsRegExp=false
+img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
+kileprversion=2
+kileversion=2.9.60
+lastDocument=X:/master-thesis/documentation/reports_weekly/w1.tex
+masterDocument=
+name=WeeklyRerports
+pkg_extIsRegExp=false
+pkg_extensions=.cls .sty .bbx .cbx .lbx
+src_extIsRegExp=false
+src_extensions=.tex .ltx .latex .dtx .ins
+
+[Tools]
+MakeIndex=
+QuickBuild=
+
+[item:X:/master-thesis/documentation/reports_weekly/weeklyrerports.kilepr]
+archive=true
+column=120
+encoding=
+highlight=
+line=0
+mode=
+open=false
+order=-1
