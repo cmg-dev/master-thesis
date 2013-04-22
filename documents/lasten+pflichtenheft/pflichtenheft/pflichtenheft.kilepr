@@ -4,7 +4,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.9.60
-lastDocument=X:/master-thesis/documents/lasten+pflichtenheft/pflichtenheft/pflichtenheft.tex
+lastDocument=X:/master-thesis/documents/lasten+pflichtenheft/pflichtenheft/abstract.tex
 masterDocument=
 name=Pflichtenheft
 pkg_extIsRegExp=false
@@ -63,7 +63,7 @@ encoding=UTF-8
 highlight=LaTeX
 line=0
 mode=LaTeX
-open=true
+open=false
 order=2
 
 [item:X:/master-thesis/documents/lasten+pflichtenheft/pflichtenheft/project_time_table.tex]
@@ -73,7 +73,7 @@ encoding=UTF-8
 highlight=LaTeX
 line=0
 mode=LaTeX
-open=true
+open=false
 order=1
 
 [item:abstract.tex]
@@ -83,7 +83,7 @@ encoding=UTF-8
 highlight=LaTeX
 line=0
 mode=LaTeX
-open=true
+open=false
 order=3
 
 [item:pflichtenheft.kilepr]
@@ -103,7 +103,7 @@ encoding=UTF-8
 highlight=LaTeX
 line=27
 mode=LaTeX
-open=true
+open=false
 order=0
 
 [view-settings,view=0,item:X:/master-thesis/documents/lasten+pflichtenheft/pflichtenheft/motivation.tex]
