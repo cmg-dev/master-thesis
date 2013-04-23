@@ -47,7 +47,7 @@
 %Linie unten
 \renewcommand{\footrulewidth}{0.5pt}
 
-% set font  ----------------------------------------------------------
+% Import Macros  ----------------------------------------------------------
 \input{../macros/cmgMacros.tex}
 
 \begin{document}
@@ -69,33 +69,35 @@
 %-------------------------------------------------------------------------------
 % the document
 %-------------------------------------------------------------------------------
-%- Chapter 1 ------------------------------------------------------------------
-
+%- Section 1 -------------------------------------------------------------------
 \section[Allgemeines]{Allgemeines}
 Arbeiten an der Masterarbeit aufgenommen.
 \subsection{Organisation der Arbeit}
 \begin{table}[right]
+    \renewcommand{\arraystretch}{1.5}
     \begin{tabular}{lp{11cm}}
-      Titel der Arbeit:  [DE]&
-      Entwicklung eines Systems zur Entfernungsabschätzung für Phasen basiertes
+      Titel der Arbeit:  [DE]		&	Entwicklung eines Systems zur Entfernungsabschätzung für Phasen basiertes
       UHF RFID Tracking durch Verwendung evolutionärer Berechnungsverfahren \\
-      Titel der Arbeit:  [EN]&
-      Development of a Distance Estimation System for Phase-Based UHF RFID
-      Tracking  by Utilizing Methodes of Evolutionary Computation \\
-      Interne Projektbezeichnung: &  \{PROJEKT NAME\}\\
-      Projektnummernzuweisung: & \{PROJEC TNUMBER\} \\
-      Zeitraum: &22.April-2.September (20 Wochen) \\
+      Titel der Arbeit:  [EN]		&	Development of a Distance Estimation System for Phase-Based UHF RFID
+      Tracking by Utilizing Methodes of Evolutionary Computation \\
+      Interne Projektbezeichnung:	&	PRPS-Evo
+      Projektnummernzuweisung:		&	\{PROJEC TNUMBER\} \\
+      Zeitraum:				&	22.April-2.September (20 Wochen) \\
 
     \end{tabular}
 \end{table}
-
+%
 Am Donnerstag, den 18.4., fand ein Treffen mit Herrn Prof.
 Dr. Frank Bärmann statt. Ihm wurde die Masterthesis vorgestellt und er erklärt
 sich als Erstbetreuer für die Arbeit einverstanden.
+\newline
+%
 Die Anmeldung erfolgt am 25.4.
-Aufsetzen der in diesem Projekt verwendeten Entwicklungsumgebung(en). Die
-Entwicklungsumgebung, die im Rahmen dieser Arbeit verwendet werden, wurden im Pflichtenheft zu dieser Arbeit vorgestellt und diskutiert.
-% \nn
+\newline
+%
+Aufsetzen der in diesem Projekt verwendeten Entwicklungsumgebung(en). Die Entwicklungsumgebung, die im Rahmen dieser Arbeit verwendet werden, wurden im Pflichtenheft zu dieser Arbeit vorgestellt und diskutiert.
+\newline
+%
 Folgende Umgebungen wurden in dieser Woche aufgesetzt:
 \begin{itemize}
   \item Installation der virtuellen Maschine, die als Produktivumgebung in diesem
@@ -106,7 +108,7 @@ Projekt verwendet wird, als Betriebssystem wird Ubuntu 12.04 verwendet
   Dazu wurde die Umgebung aufgesetzt. Sie steht sowohl auf der Linux-Maschine als auch auf dem Windowshost zur Verfügung.
 \end{itemize}
 
-%- Chapter 2 -------------------------------------------------------------------
+%- Section 2 -------------------------------------------------------------------
 \section[Fortschritte]{Fortschritte}
 \begin{enumerate}
  \item Einarbeitung in den CMA-ES Algorithmus. Der Algorithmus wurde erfolgreich in Matlab
@@ -118,32 +120,13 @@ Projekt verwendet wird, als Betriebssystem wird Ubuntu 12.04 verwendet
 
 Bereits in dieser Woche ist es gelungen die Beispiel-Programme der Shark-Library zu erstellen.
 
-%- Chapter 3 -----------------------------------------------------------------
+%- Section 3 -------------------------------------------------------------------
 \section[Probleme]{Probleme}
 Die Einrichtung der \LaTeX{} Umgebung dauerte länger als erwartet. Es war ein Tag Arbeit
 vorgesehen, aber 2 benötigt. \newline
 Unter Windows\copyright gab es Stabilitätsprobleme mit dem verwendeten Editor. Besonders Instabilitäten mit der Verwendung von BibTex.
 
-\begin{appendix}
-\newpage
-\huge{Anhänge}
-\thispagestyle{plain}
-\section{Verwendete Abkürzungen}
-\dots{}
-
-\newpage
-\thispagestyle{plain}
-\section[AppendixA]{Anhang A}
-\label{sec:greetings}
-
-\newpage
-\thispagestyle{plain}
-\section[AppendixB]{Anhang B}
-
-\newpage
-\thispagestyle{plain}
-\section[AppendixC]{Anhang C}
-
-\end{appendix}
+%- Appendix --------------------------------------------------------------------
+\input{append/appendix_w1.tex}
 
 \end{document}
