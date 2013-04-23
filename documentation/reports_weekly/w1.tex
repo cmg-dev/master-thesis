@@ -24,6 +24,7 @@
 
 \usepackage{eso-pic}
 
+% HEADER -------------------------------------------------------------
 \fancyhead[R]{
   \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
 }
@@ -38,26 +39,16 @@
 %Linie oben
 \renewcommand{\headrulewidth}{0.5pt}
 
+% HEADER -------------------------------------------------------------
 %Fußzeile links bzw. innen
 \fancyfoot[L]{Stand: \today}
 %Fußzeile rechts bzw. außen
 \fancyfoot[R]{\thepage{} von \pageref{LastPage}}
 %Linie unten
 \renewcommand{\footrulewidth}{0.5pt}
- \renewcommand{\familydefault}{\rmdefault}
-%---- End Page Layout
 
-\newcommand{\nn}{\newline\newline}
-\newcommand\BackgroundPic{
-  \put(0,0){
-    \parbox[b][\paperheight]{\paperwidth}{%
-      \vfill
-	\centering
-	\includegraphics[width=100px,height=50px]{img/background.png}%
-      \vfill
-    }
-  }
-}
+% set font  ----------------------------------------------------------
+\input{../macros/cmgMacros.tex}
 
 \begin{document}
 \setlength{\headheight}{36pt}
