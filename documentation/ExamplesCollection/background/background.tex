@@ -1,0 +1,53 @@
+﻿\documentclass[a4paper,12pt,fleqn]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+
+\usepackage{tikz} % for \gradientbox below.
+\usepackage{eso-pic}
+
+\newcommand{\gradientbox}[3]{%
+  \begin{tikzpicture}
+    \node[left color=#1,right color=#2] {#3};
+  \end{tikzpicture}%
+}
+
+
+\begin{document}
+
+\AddToShipoutPicture*{%
+  \AtPageLowerLeft{%
+    \rotatebox{90}{
+      \gradientbox{orange}{white}{%
+        \begin{minipage}{\paperheight}%
+          \hspace*{ \stretch{1} }\textcopyright~2013
+\makeatletter\@author\makeatother.\hspace*{ \stretch{1} }
+        \end{minipage}%
+      }
+    }%
+  }%
+}
+
+testsetsets
+
+\newpage
+
+dasdasd
+
+\AddToShipoutPicture*{%
+  \AtPageLowerLeft{%
+    \rotatebox{90}{
+      \gradientbox{orange!20}{white}{%
+        \begin{minipage}{\paperheight}%
+          \hspace*{ \stretch{1} }\textcopyright~2013
+\makeatletter\@author\makeatother.\hspace*{ \stretch{1} }
+        \end{minipage}%
+      }
+    }%
+  }%
+}
+\end{document}
