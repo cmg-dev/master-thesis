@@ -63,3 +63,6 @@ dev/src/misc/*
 #ignore the playground-folder
 dev/src/c-cpp/playground/*
 
+#ignore the .backup automatically generated files
+*.backup
+
