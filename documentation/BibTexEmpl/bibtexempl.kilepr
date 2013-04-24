@@ -28,16 +28,16 @@ ReadWrite=true
 
 [item:X:/master-thesis/documentation/BibTexEmpl/BibTexExmpl.tex]
 archive=true
-column=21
+column=27
 encoding=UTF-8
 highlight=LaTeX
-line=13
+line=3
 mode=LaTeX
 open=false
 order=0
 
 [view-settings,view=0,item:X:/master-thesis/documentation/BibTexEmpl/BibTexExmpl.tex]
-CursorColumn=21
-CursorLine=13
+CursorColumn=27
+CursorLine=3
 JumpList=
 ViMarks=
