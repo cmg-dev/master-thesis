@@ -3,7 +3,7 @@ def_graphic_ext=pdf
 img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
-kileversion=2.9.60
+kileversion=2.1.0
 lastDocument=X:/master-thesis/documentation/reports_weekly/w1.tex
 masterDocument=
 name=WeeklyRerports
@@ -38,12 +38,12 @@ ReadWrite=true
 
 [item:X:/master-thesis/documentation/reports_weekly/templates/weekly_report-template.tex]
 archive=true
-column=10
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=10
+line=0
 mode=LaTeX
-open=true
+open=false
 order=1
 
 [item:X:/master-thesis/documentation/reports_weekly/tt/tt_w1.tex]
@@ -58,12 +58,12 @@ order=-1
 
 [item:X:/master-thesis/documentation/reports_weekly/w1.tex]
 archive=true
-column=24
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=12
+line=0
 mode=LaTeX
-open=true
+open=false
 order=0
 
 [item:X:/master-thesis/documentation/reports_weekly/weeklyrerports.kilepr]
@@ -77,13 +77,13 @@ open=false
 order=-1
 
 [view-settings,view=0,item:X:/master-thesis/documentation/reports_weekly/templates/weekly_report-template.tex]
-CursorColumn=10
-CursorLine=10
+CursorColumn=0
+CursorLine=0
 JumpList=
 ViMarks=
 
 [view-settings,view=0,item:X:/master-thesis/documentation/reports_weekly/w1.tex]
-CursorColumn=24
-CursorLine=12
+CursorColumn=0
+CursorLine=0
 JumpList=
 ViMarks=
