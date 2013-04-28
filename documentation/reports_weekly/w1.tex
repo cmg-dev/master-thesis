@@ -1,57 +1,128 @@
 ﻿\documentclass[a4paper,12pt,fleqn]{scrartcl}
-
 \usepackage[T1]{fontenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
-\usepackage{graphicx}
 \usepackage{ngerman}
 \usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
 
-% Title Page
-\title{Wochenbericht KW dasdasdasdddXX}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+
+%---- Title Page
+\title{Wochenbericht KW 17}
 \author{Christoph Gnip}
-\date{14.4.2013}
+\date{ 22.4.-28.4.2013 }
+
+%---- End Title Page
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+% HEADER -------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+}
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: RFID-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+
+% HEADER -------------------------------------------------------------
+%Fußzeile links bzw. innen
+\fancyfoot[L]{Stand: \today}
+%Fußzeile rechts bzw. außen
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+%Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+
+% Import Macros  ----------------------------------------------------------
+\input{../macros/cmgMacros.tex}
 
 \begin{document}
+\setlength{\headheight}{36pt}
+%- the Title page --------------------------------------------------------
+\begin{titlepage}
+% \AddToShipoutPicture*{\BackgroundPic}
+
+% make the title
 \maketitle
 
-Start der Masterarbeit.
+%this has to be called here, after \maketitle
+\thispagestyle{empty}
 
-\section[Allgemeines]{Aufzaehlungen und Nummerierungen}
+%----include the time table for this week
+\input{tt/tt_w1.tex}
 
-Aufsetzen der in diesem Projekt verwendeten Entwicklungsumgebung(en). Die
-Entwicklungsumgebungen, die im Rahmen dieser Arbeit verwendet werden, wurden im
-Pflichtenheft zu dieser Arbeit vorgestellt und diskutiert.
-
+\end{titlepage}
+%-------------------------------------------------------------------------------
+% the document
+%-------------------------------------------------------------------------------
+%- Section 1 -------------------------------------------------------------------
+\section[Allgemeines]{Allgemeines}
+Arbeiten an der Masterarbeit aufgenommen.
+\subsection{Organisation der Arbeit}
+\begin{table}[right]
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{lp{11cm}}
+      Titel der Arbeit:  [DE] & Entwicklung eines Systems zur Entfernungsabschätzung für Phasen basiertes UHF RFID Tracking durch Verwendung evolutionärer Berechnungsverfahren \\
+      Titel der Arbeit:  [EN] & Development of a Distance Estimation System for Phase-Based UHF RFID Tracking by Utilizing Methodes of Evolutionary Computation \\
+      Interne Projektbezeichnung: & PRPS-Evo      \\
+      Zeitraum: & 22.April-2.September (20 Wochen)
+    \end{tabular}
+\end{table}
+%
+Am Donnerstag, den 18.4., fand ein Treffen mit Herrn Prof.
+Dr. Frank Bärmann statt. Ihm wurde die Masterthesis vorgestellt und er erklärt
+sich als Erstbetreuer für die Arbeit einverstanden.
+\newline
+%
+Die Anmeldung erfolgt am 25.4.
+\newline
+%
+Aufsetzen der in diesem Projekt verwendeten Entwicklungsumgebung(en). Die Entwicklungsumgebung, die im Rahmen dieser Arbeit verwendet werden, wurden im Pflichtenheft zu dieser Arbeit vorgestellt und diskutiert.
+\newline
+%
 Folgende Umgebungen wurden in dieser Woche aufgesetzt:
-Installation einer Virtuellen Maschine; Neuinstallation einer Ubuntu 12.04.
-Installation  der Shark-Library;
-Kompilation der Shark-Library.
-
-Einarbeitung in den CMA-ES Algorithmus.
-
-
-\section[Aufzhlungen]{Aufzaehlungen und Nummerierungen}
 \begin{itemize}
-  \item Ein Tagesordnungspunkt.
-  \item Ein weiterer Tagesordnungspunkt.
-  \item Noch ein Tagesordnungspunkt!
-  \item Gemeinsames Mittagessen.% Es folgt ein beispielhaft
-                                % eingeschobener Absatz
-
-    Folgende drei Menüs stehen zur Auswahl:
-       \begin{enumerate}
-        \item Vegetarischer Gänsebraten an blauen Bohnen.
-        \item Flusspferd mit Kroketten und Hirse-Plinsen.
-        \item Getreidekeimling mit Hefen in Ingwerbrot,
-          Buchweizengrütze mit gehobelten Perserklee und
-
-          -- als Wunderwaffe für den Älteren Herren --
-          flambierte Kürbiskerne.
-       \end{enumerate}
-  \item Letzter Tagesordnungspunkt.
-  \item Wecken und Verabschiedung.
+  \item Installation der virtuellen Maschine, die als Produktivumgebung in diesem
+Projekt verwendet wird, als Betriebssystem wird Ubuntu 12.04 verwendet
+  \item Übersetzung und Installation der Shark-Library auf der frischen
+  Linux-Maschine
+  \item Für die Erstellung der Dokumentation und der Thesis selbst, wird \LaTeX{} verwendet.
+  Dazu wurde die Umgebung aufgesetzt. Sie steht sowohl auf der Linux-Maschine als auch auf dem Windowshost zur Verfügung.
 \end{itemize}
 
+%- Section 2 -------------------------------------------------------------------
+\section[Fortschritte]{Fortschritte}
+\begin{enumerate}
+ \item Einarbeitung in den CMA-ES Algorithmus. Der Algorithmus wurde erfolgreich in Matlab
+      implementiert und erste Versuche (Benchmarks) wurden mit verschiedenen Populationsgrößen durchgeführt. Die Ergebnisse des Benchmarks sind in
+      Ein Auszug aus dem Quellcode ist im  gezeigt.
+ \item
+        dasdasdasd
+\end{enumerate}
+
+Bereits in dieser Woche ist es gelungen die Beispiel-Programme der Shark-Library zu erstellen.
+
+%- Section 3 -------------------------------------------------------------------
+\section[Probleme]{Probleme}
+Die Einrichtung der \LaTeX{} Umgebung dauerte länger als erwartet. Es war ein Tag Arbeit
+vorgesehen, aber 2 benötigt. \newline
+Unter Windows\copyright gab es Stabilitätsprobleme mit dem verwendeten Editor. Besonders Instabilitäten mit der Verwendung von BibTex.
+
+%- Appendix --------------------------------------------------------------------
+\input{append/appendix_w1.tex}
+
 \end{document}
-s

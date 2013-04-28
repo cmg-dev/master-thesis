@@ -1,0 +1,36 @@
+﻿%Erzeugt mit dem LaTeX-Generator: http://latex.sehnot.de
+
+%Schriftgröße, Layout, Papierformat, Art des Dokumentes
+\documentclass[11pt,a4paper]{scrartcl}
+
+%Einstellungen der Seitenränder
+\usepackage[inner=0cm,outer=2cm,top=1.5cm,bottom=1cm,includeheadfoot]{geometry
+}
+
+%neue Rechtschreibung
+\usepackage{ngerman}
+
+%Umlaute ermöglichen
+\usepackage[latin1]{inputenc}
+
+%Kopf- und Fußzeile
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+%Kopfzeile rechts bzw. außen
+\fancyhead[R]{\nouppercase{\leftmark}}
+
+%Linie oben
+\renewcommand{\headrulewidth}{1pt}
+
+%Fußzeile links bzw. innen
+\fancyfoot[L]{Fußzeile links bzw. innen}
+%Fußzeile rechts bzw. außen
+\fancyfoot[R]{\thepage}
+%Linie unten
+\renewcommand{\footrulewidth}{1pt}
+
+\begin{document}
+Hier Text einfügen!
+\end{document}
