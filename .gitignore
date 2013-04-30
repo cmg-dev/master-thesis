@@ -88,3 +88,6 @@ documents/*/*.bbl
 
 #ignore gnuplot temp data
 *.swp
+
+#ignore the backup files of kbibtex
+*~[1234567890]
