@@ -11,6 +11,7 @@
 \usepackage{longtable}
 \usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
 \usepackage{fancyhdr}
+% \usepackage{url}
 
 %---- Title
 \title{Wochenbericht KW 17}
@@ -32,7 +33,7 @@
   \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
 }
 
-\fancyhead[C]{ Wochenbericht KW17 }
+\fancyhead[C]{ Wochenbericht KW 17 }
 
 \fancyhead[L]{
   \begin{tabular}[b]{l}
@@ -106,7 +107,7 @@ Die Anmeldung erfolgt am 2.5. Der Termin verspätet sich aufgrund der Öffnungsz
 %- Section 2 ----------------------------------------------------------------
 \section[Fortschritt]{Projektfortschritt}
 In dieser Woche haben die Arbeiten an der Masterarbeit begonnen. Der Rahmen der Arbeit (Muss-, Soll- und Wunschkriterien)
-wurde detaillierter im Pflichtenheft abgesteckt. Die Fertigstellung des Pflichtenhefts wird Anfang KW 19 erwartet.
+wurde detaillierter im Pflichtenheft abgesteckt. Das fertige Pflichtenheft wird bis Anfang KW 20 ausgearbeitet.
 
 Weiterhin wurden in dieser Woche die in diesem Projekt verwendeten Entwicklungsumgebung(en) aufgesetzt und bedarfsgerecht
 installiert. Die Entwicklungsumgebungen, die im Rahmen dieser Arbeit verwendet werden, werden im Pflichtenheft ausführlicher vorgestellt und diskutiert.
@@ -126,8 +127,7 @@ in anderen Projekten der Amedo GmbH eingesetzt.
   \item Installation der virtuellen Maschine, die als Produktivumgebung in
       diesem Projekt verwendet wird, als Betriebssystem wird Ubuntu in der Version 12.04 verwendet
   \item Installation aller zur Kompilierung notwendigen Software (u.A. GCC)
-  \item Übersetzung und Installation der Shark-Library auf der frischen
-      Linux-Maschine
+  \item Übersetzung und Installation der Shark-Library auf der Linux-Maschine
 \end{itemize}
 
 %- Section 2.3 --------------------------------------------------------------
@@ -139,20 +139,23 @@ in anderen Projekten der Amedo GmbH eingesetzt.
 \end{itemize}
 
 %- Section 2.4 --------------------------------------------------------------
-\subsection{Projektfortschritt}
+\subsection{Shark-Library}
 \begin{enumerate}
+ \item Bereits in dieser Woche ist es gelungen die Beispiel-Programme der Shark-Library
+      zu erstellen.
  \item Einarbeitung in den CMA-ES Algorithmus. Der Algorithmus wurde erfolgreich
-      in Matlab implementiert und erste Versuche (Benchmarks) wurden mit verschiedenen Populationsgrößen durchgeführt.
+      in Matlab umgesetzt und erste Versuche (Benchmarks) wurden mit verschiedenen Populationsgrößen durchgeführt.
       Die Ergebnisse des Benchmarks sind hier im Einzelnen nicht vorgestellt, da sie nur der Einarbeitung dienen.
       Ein Auszug aus dem Quellcode ist im \ Anhang~\ref{lst:cmaes-mat-code} gezeigt.
  \item Bereits in dieser Woche ist es gelungen die Beispiel-Programme der Shark-Library zu erstellen.
 
 \end{enumerate}
 
-\cite{KALMANandSMOOTHING}
-Bereits in dieser Woche ist es gelungen die Beispiel-Programme der Shark-Library
-zu erstellen.
-
+\subsection{Recherche}
+Am Donnerstag wurde im Rahmen des Aufenthalts an der Westf. Hochschule Recherchearbeiten durchgeführt. Dabei lag der
+Schwerpunkt auf der Stand der Technik zum den Themen RFID-Tracking und Evolutionäre Verfahren, insb. die Kombintation aus beiden Themenkomplexen.
+Ein interessantes Paper \cite{KALMANandSMOOTHING} der gefundenen Literatur beschreibt, wie man mittes Phasen Messung und Kalmann Filtern \cite{Wiki:1} und einem
+Glättungsfilter. Die präsentierte Methode war in ihrem Setup ähnlich dem von der Amedo GmbH verwendeten Aufbau.
 
 %- Section 3 -------------------------------------------------------------------
 \section[Probleme]{Probleme}
@@ -166,7 +169,10 @@ Die beobachteten Instabilitäten traten nicht in der Ubuntu-Umgebung auf. Ein en
 
 \newpage
 %- Bibliography ----------------------------------------------------------------
-\bibliography{../bib/mathesis_collection1}{}
-\bibliographystyle{plain}
+\bibliographystyle{alpha}
+\bibliography{../bib/mathesis_collection1}
+
+% \bibliography{../bib/mathesis_collection1}{}
+% \bibliographystyle{IEEEtran}
 
 \end{document}
