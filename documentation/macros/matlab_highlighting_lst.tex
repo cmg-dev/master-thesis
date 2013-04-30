@@ -1,0 +1,33 @@
+
+% listings print source code
+
+% define colors for source code list
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{0,1,0.3}
+\definecolor{colString}{rgb}{0,0.5,0}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+
+\lstset{language=Matlab,
+   keywords={break,case,catch,continue,else,elseif,end,for,function,
+   global,if,otherwise,persistent,return,switch,try,while,ones,zeros},
+   float=hbp,
+   basicstyle=\ttfamily\small,
+   identifierstyle=\color{colIdentifier},
+   keywordstyle=\color{blue},
+   commentstyle=\color{dkgreen},
+   stringstyle=\color{red},
+   columns=flexible,
+   tabsize=2,
+   frame=single,
+   numbers=left,
+   extendedchars=true,
+   showspaces=false,
+   numberstyle=\tiny\color{gray},
+   stepnumber=1,
+   numbersep=10pt,
+   showspaces=false,
+   showstringspaces=false,
+   breakautoindent=true}
