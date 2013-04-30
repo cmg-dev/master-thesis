@@ -11,7 +11,13 @@
 \usepackage{longtable}
 \usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
 \usepackage{fancyhdr}
-% \usepackage{url}
+\usepackage{url}
+
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+
+% highlighting
+\usepackage{xcolor,soul}
+
 
 %---- Title
 \title{Wochenbericht KW 17}
@@ -80,9 +86,11 @@
 
 \end{titlepage}
 
-%- Section 1 -------------------------------------------------------------------
+%- Section 1 ----------------------------------------------------------------
 \section[Allgemeines]{Allgemeines}
-Arbeiten an der Masterarbeit aufgenommen.
+In dieser Woche hat die Bearbeitung der Masterarbeit begonnen. Dieses Dokument ist der erste Wochenbericht. Es werden jede Woche ein in Umfang an den jeweiligen Projektfortschritt angepasster Bericht erstellt.
+
+%- Section 1.2---------------------------------------------------------------
 \subsection{Organisation der Arbeit}
 \begin{table}[right]
     \renewcommand{\arraystretch}{1.5}
@@ -98,41 +106,40 @@ Phase-Based UHF RFID Tracking by Utilizing Methodes of Evolutionary Computation
     \end{tabular}
 \end{table}
 %
-Am Donnerstag, den 18.4., fand ein Treffen mit Herrn Prof. Dr. Frank Bärmann statt. Ihm wurde die Masterthesis vorgestellt und er erklärt
-sich als Erstbetreuer für die Arbeit einverstanden.
-\newline
-Die Anmeldung erfolgt am 2.5. Der Termin verspätet sich aufgrund der Öffnungszeiten des Prüfungsamts.
+Am Donnerstag, den 18.4., fand ein Treffen mit Herrn Prof. Dr. Frank Bärmann statt. Ihm wurde das Thema und der grobe Ablauf der Masterthesis vorgestellt.
+Er erklärt sich als Erstbetreuer für die Arbeit einverstanden.
+Die Anmeldung erfolgt am 2.5. Der Vorgang verspätete sich aufgrund der Öffnungszeiten des Prüfungsamts.
 
 
 %- Section 2 ----------------------------------------------------------------
 \section[Fortschritt]{Projektfortschritt}
 In dieser Woche haben die Arbeiten an der Masterarbeit begonnen. Der Rahmen der Arbeit (Muss-, Soll- und Wunschkriterien)
-wurde detaillierter im Pflichtenheft abgesteckt. Das fertige Pflichtenheft wird bis Anfang KW 20 ausgearbeitet.
+wurde detaillierter im Pflichtenheft abgesteckt. Das fertige Pflichtenheft wird bis Anfang KW 20 ausgearbeitet. Auch ein grober Projektplan wird im Zuge des Pflichtenhefts erstellt.
 
 Weiterhin wurden in dieser Woche die in diesem Projekt verwendeten Entwicklungsumgebung(en) aufgesetzt und bedarfsgerecht
 installiert. Die Entwicklungsumgebungen, die im Rahmen dieser Arbeit verwendet werden, werden im Pflichtenheft ausführlicher vorgestellt und diskutiert.
 
-Folgende Umgebungen wurden in dieser Woche aufgesetzt:
+Im Folgenden werden die Arbeiten dieser Woche Kategorisch beschrieben.
 
 %- Section 2.1 --------------------------------------------------------------
 \subsection{Projektverwaltung}
 Für die Verwaltung dieser Arbeit wird das Versionsverwaltungssystem Git verwendet. Es wird mit GitHub \cite{github} webbasierter
 Hosting-Dienst verwendet um die Datensicherung zu gewährleisten. Da GitHub im Rahmen einer Abschlussarbeit verwendet wird, erlaubt
-es der Betreiber das Repository den öffentlich Zugang zu verweigern. Somit geht das mit der Geheimhaltung konform. Git wird bereits
-in anderen Projekten der Amedo GmbH eingesetzt.
+es das Repository den öffentlich Zugang zu verweigern. Somit geht das mit der Geheimhaltung konform. Git wird bereits
+in anderen Projekten der Amedo GmbH eingesetzt. Durch seine Flexibilität wird Git für alle Arbeiten und Dokumente dieser Arbeit verwendet, nicht nur für die entwickelten Programme.
 
 %- Section 2.2 --------------------------------------------------------------
 \subsection{Entwicklung}
 \begin{itemize}
-  \item Installation der virtuellen Maschine, die als Produktivumgebung in
-      diesem Projekt verwendet wird, als Betriebssystem wird Ubuntu in der Version 12.04 verwendet
-  \item Installation aller zur Kompilierung notwendigen Software (u.A. GCC)
-  \item Übersetzung und Installation der Shark-Library auf der Linux-Maschine
+  \item Installation der virtuellen Maschine, die als Produktivumgebung in diesem Projekt verwendet wird, als Betriebssystem wird Ubuntu in der Version 12.04 (LTS) verwendet.
+  \item Installation aller zur Kompilierung notwendigen Software (u.A. GCC).
+  \item Übersetzung und Installation der Shark-Library (Siehe~\ref{sec:shark}) in der Linux Umgebung.
 \end{itemize}
 
 %- Section 2.3 --------------------------------------------------------------
 \subsection{Dokumentation}
 \begin{itemize}
+  \item Anlegen einer geeigneten Verzeichnisstruktur auf dem Server; Diese wird analog in dem Git-Repository verwendet.
   \item Für die Erstellung der Dokumentation und der Thesis selbst, wird
       \LaTeX{} verwendet.
 
@@ -140,39 +147,45 @@ in anderen Projekten der Amedo GmbH eingesetzt.
 
 %- Section 2.4 --------------------------------------------------------------
 \subsection{Shark-Library}
+\label{sec:shark}
+Bei der Shark-Library \cite{Shark:1} handelt es sich um eine C++-Bibliothek in der unterschiedliche Methoden der linearen- und nicht-linearen Optimierung implementiert sind.
+Insbesondere ist auch der in dieser Arbeit zur Anwendung kommen Algorithmus CMA-ES (Covariance Matrix Adaption - Evolutionary Strategy) implementiert und kann so ggf. gegen andere Verfahren verglichen werden.
+Das Verfahren wird, sobald es umfassend verstanden ist, in einem Bericht vorgestellt.
+
+Des Weiteren:
 \begin{enumerate}
- \item Bereits in dieser Woche ist es gelungen die Beispiel-Programme der Shark-Library
-      zu erstellen.
- \item Einarbeitung in den CMA-ES Algorithmus. Der Algorithmus wurde erfolgreich
-      in Matlab umgesetzt und erste Versuche (Benchmarks) wurden mit verschiedenen Populationsgrößen durchgeführt.
-      Die Ergebnisse des Benchmarks sind hier im Einzelnen nicht vorgestellt, da sie nur der Einarbeitung dienen.
-      Ein Auszug aus dem Quellcode ist im \ Anhang~\ref{lst:cmaes-mat-code} gezeigt.
- \item Bereits in dieser Woche ist es gelungen die Beispiel-Programme der Shark-Library zu erstellen.
+  \item Einarbeitung in den CMA-ES Algorithmus; In Shark stehen verschiedene Tutorials zur Verfügung; Diese wurden zum aktuellen Zeitpunkt jedoch nicht vollständig verstanden.
+  \item Bereits in dieser Woche ist es gelungen die Beispiel-Programme der Shark-Library zu erstellen.
+  \item Ein erstes eigenes C++ Programm wurde erstellt; Es soll später mit dem Matlab-Code (Anhang~\ref{lst:cmaes-mat-code}) vergleichen werden.
 
 \end{enumerate}
 
+Außerdem:
+Der Algorithmus wurde in einem Matlab-Skript umgesetzt und erste Versuche (Benchmarks) wurden in dieser Umgebung mit verschiedenen Populationsgrößen durchgeführt.
+Da dieser Schritt der Einarbeitung dient, werden die Ergebnisse des Benchmarks noch nicht vorgestellt.
+Das Matlab-Skript ist im \ Anhang~\ref{lst:cmaes-mat-code} gezeigt, es ist im wesentlichen Kopiert und wurde in anderen Varianten für Tests verwendet.
+
+%- Section 2.5 --------------------------------------------------------------
 \subsection{Recherche}
 Am Donnerstag wurde im Rahmen des Aufenthalts an der Westf. Hochschule Recherchearbeiten durchgeführt. Dabei lag der
-Schwerpunkt auf der Stand der Technik zum den Themen RFID-Tracking und Evolutionäre Verfahren, insb. die Kombintation aus beiden Themenkomplexen.
-Ein interessantes Paper \cite{KALMANandSMOOTHING} der gefundenen Literatur beschreibt, wie man mittes Phasen Messung und Kalmann Filtern \cite{Wiki:1} und einem
-Glättungsfilter. Die präsentierte Methode war in ihrem Setup ähnlich dem von der Amedo GmbH verwendeten Aufbau.
+Schwerpunkt auf der Stand der Technik zum den Themen: RFID-Tracking und Evolutionäre Verfahren, insb. Literatur die eine Kombintation aus beiden
+Themenkomplexen enthält. Ein dem Paper \cite{KALMANandSMOOTHING} ist beschrieben, wie man mittels Phasen Messung, Kalman Filtern \cite{Wiki:1} und der
+Verwendung eines Glättungsfilter eine gute Positionsgenauigkeit erreicht. Die präsentierte Methode war in ihrem Setup ähnlich dem von der Amedo GmbH verwendetem.
 
-%- Section 3 -------------------------------------------------------------------
+%- Section 3 -----------------------------------------------------------------
 \section[Probleme]{Probleme}
 Die Einrichtung der \LaTeX{} Umgebung dauerte länger als erwartet. Es war ein
 Tag Arbeit vorgesehen, aber es wurden zwei benötigt.
 Unter Windows gab es Stabilitätsprobleme mit dem verwendeten Editor Kile und dem KBibTeX-Tool.
 Die beobachteten Instabilitäten traten nicht in der Ubuntu-Umgebung auf. Ein entsprechender Bug-Report wurde eingereicht.
+Die Erstellung des ersten Wochenberichts dauerte länger und dieser konnte erst in KW 18 fertiggestellt werden.
 
-%- Appendix --------------------------------------------------------------------
+%- Appendix ------------------------------------------------------------------
 \input{append/appendix_w1.tex}
 
 \newpage
-%- Bibliography ----------------------------------------------------------------
-\bibliographystyle{alpha}
+%- Bibliography --------------------------------------------------------------
+\bibliographystyle{ieeetr}
 \bibliography{../bib/mathesis_collection1}
-
-% \bibliography{../bib/mathesis_collection1}{}
-% \bibliographystyle{IEEEtran}
 
 \end{document}
