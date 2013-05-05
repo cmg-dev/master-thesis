@@ -1,17 +1,22 @@
-﻿Die Positionsbestimmung (Tracking) mittels RFID bietet gegenüber vergleichbaren
-Methoden (z.B. Ultraschall, Optisch ) verschiedene Vorteile. Durch das
-zugrunde liegende Messprinzip ist es möglich unabhängig von einer direkten
-Sichtlinie (Line of sight:=LOS) ein Objekt zu lokalisieren. Das von dem
-Messsystem der Amedo GmbH verwendete Verfahren basiert auf der Messung der
-Phasenlage der Antwort eines Tags. Die Phasenlage ist direkt proportional zu
-einer Entfernung. Das Problem liegt in den unbekannten, komplex zu
-modellierenden Verhalten der elektromagnetischen Funkwellen in geschlossenen
-Räumen. Diese Führen zu einem Fehler der Phase und damit direkt zu einem
-Messfehler der Position.
-\newline
-[Beschreibung der Wellenzahl][Referenz auf die Dipl. Arbeit von Bernd]
-\newline
-Ziel dieser Arbeit ist es ein System zu
-implementieren, das eine direkte Abschätzung (Ad-Hoc) der Wellenzahl erlaubt.
-Dafür werden Methoden der Numerik verwendet um die Fehler der Phasenlage zu
-korrigieren.
+Die Positionsbestimmung (Tracking) mittels RFID (Remote Frequency Identification) bietet gegenüber vergleichbaren Methoden (z.B. Ultraschall, Optisch) verschiedene Vorteile. Am bedeutendsten ist, dass durch das zugrunde liegende Messprinzip keine direkte Sichtlinie sog. LOS (Line of Sight) notwendig ist um ein Objekt zu lokalisieren. Gegenüber optischen Verfahren ist RFID damit überlegen. Weiterhin erlauben die als Positionsgeber verwendeten Tags zusätzliche Informationen auf ihnen abzulegen, beispielsweise eine Identifikationsnummer und Weiteres. Dadurch wächst das Anwendungsspektrum weiter. Das Auslesen von zusätzlichen Informationen ist in keiner der anderen Technologien möglich.\\
+
+Das von dem Messsystem der {Amedo GmbH} verwendete Verfahren basiert auf der Messung der Phasenlage der Antwort eines Tags. Die Phasenlage ist direkt proportional zu einer Entfernung. Dabei kommt es aufgrund der Physik im wesentlichen zu folgenden Problemen:
+\begin{enumerate}
+\item Die Messung der Position erfolgt über die Auswertung der Phasenlage des empfangenen Signals in Bezug auf ein Referenzsignal. Da in der EU sind nur bestimmte Frequenzen für die Verwendung für RFID erlaubt (850–950 MHz) kann man die Wellenlänge mit: $ \sim0,35 m $ angeben. Daraus folgt, dass alle 35 cm die gleiche Konfiguration der Phase vorliegt. In dieser Arbeit wird dies Isophasen genannt. Die gewonnene Information aus der Phase ist somit redundant, d.h. man kann durch die Kenntnis nicht unmittelbar auf die korrekte Postion schließen. Man kann das Problem umgehen in dem man auf die errechnete Position ein ganzzahliges Vielfaches der Wellenlänge addiert. Die sog. Wellenzahl.
+\item Das System der Amedo STS verwendet eine spezielle Antennenanordnung um die Position zu ermitteln. Dabei wird eine Antennenanzahl >4 eingesetzt. Für jede dieser Antennen muss eine eigene Wellenzahl bestimmt werden. Durch Auslöschung des Signals, Absorption etc. kann es dazu kommen, dass eine Antenne eine unbestimmte Zeit lang kein Signal vom Tag empfängt. Wenn die Antenne nach dieser Zeit erneut ein Signal empfängt ist die ihr zugehörige Wellenzahl unbekannt und muss neu bestimmt werden. 
+\item In realen Umgebungen treten zusätzlich noch Ruflektionen und ein sog. Multipath-Effekt auf. Dabei wird das Signal nicht auf dem Direkten Weg Antenne-Tag-Antenne empfangen sondern über einen unbekannten, längeren Weg. Dadurch kommt es zu einem Fehler in der Phase. Zusätzlich ist dieser Effekt individuell für jede Antenne.
+\end{enumerate}
+
+Eine analytische Lösung des Problems ist schwierig und bisher nicht gelungen. In dieser Arbeit soll mittels numerischer Methoden und Modellen die beschriebenen Probleme zu gelöst werden.
+
+%
+%Das Problem liegt in den unbekannten, komplex zu modellierenden Verhalten der elektromagnetischen Funkwellen in geschlossenen Räumen (insb. Auslöschung, Multipath, Reflektion). Diese führen zu einem Fehler der Phase und damit direkt zu einer Falschaussage der Position.\\ \\
+%\textbf{Beschreibung der Wellenzahl[Referenz auf die Dipl. Arbeit von Bernd]}\\\\
+%Ziel dieser Arbeit ist es ein System zu
+%implementieren, das eine direkte Abschätzung (Ad-Hoc-Messung) der Wellenzahl erlaubt.
+%Dafür werden Methoden der Numerik verwendet um die Uneindeutigkeit der Phasenlage zu
+%eliminieren.
+%\\ \\ \\
+%Tags gibt es mit unterschiedlichen Funktionsweisen, in dieser Arbeit und in dem von der {Amedo STS} verwendeten System kommen passive Tags zum Einsatz. Diese versorgen sich aus den Funksignalen des Abfragegeräts mit der notwendigen Energie und modulieren ihre "Antwort" auf das Trägersignal auf.\\\\\\
+%In der Positionsbestimmung wird im Zusammenhang von "Marker" gesprochen. In der in dieser Arbeit werden RFID-Transponder (sog. Tags) als Marker verwendet. D.h. Es wird die Position im Raum von einem Transponder ermittelt. \\
+%
