@@ -86,6 +86,12 @@ documents/*/*.log
 documents/*/*.blg
 documents/*/*.bbl
 
+documents/*/*/*.aux
+documents/*/*/*.dvi
+documents/*/*/*.log
+documents/*/*/*.blg
+documents/*/*/*.bbl
+
 #ignore gnuplot temp data
 *.swp
 
