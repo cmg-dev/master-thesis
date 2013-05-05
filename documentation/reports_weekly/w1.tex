@@ -18,13 +18,6 @@
 % highlighting
 \usepackage{xcolor,soul}
 
-
-%---- Title
-\title{Wochenbericht KW 17}
-\author{Christoph Gnip}
-\date{ 22.4.-28.4.2013 }
-%---- End Title
-
 %---- PageLayout
 \pagestyle{fancy}
 
@@ -57,6 +50,7 @@
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ }
 \fancyfoot[R]{\thepage{} von \pageref{LastPage}}
 
 % Linie unten
@@ -76,13 +70,13 @@
 \begin{titlepage}
 
 % make the title
-\maketitle
+%\maketitle
 
 %this has to be called here, after \maketitle
-\thispagestyle{empty}
+%\thispagestyle{empty}
 
 %----include the time table for this week
-\input{tt/tt_w1.tex}
+\input{title/title_w1.tex}
 
 \end{titlepage}
 
@@ -102,7 +96,7 @@ evolutionärer Berechnungsverfahren \\
 Phase-Based UHF RFID Tracking by Utilizing Methodes of Evolutionary Computation
 \\
       Interne Projektbezeichnung: & PRPS-Evo      \\
-      Zeitraum: & 22.April-2.September (20 Wochen)
+      Zeitraum: & 22.April-9.September (20 Wochen)
     \end{tabular}
 \end{table}
 %
@@ -168,14 +162,14 @@ Das Matlab-Skript ist im \ Anhang~\ref{lst:cmaes-mat-code} gezeigt, es ist im we
 %- Section 2.5 --------------------------------------------------------------
 \subsection{Recherche}
 Am Donnerstag wurde im Rahmen des Aufenthalts an der Westf. Hochschule Recherchearbeiten durchgeführt. Dabei lag der
-Schwerpunkt auf der Stand der Technik zum den Themen: RFID-Tracking und Evolutionäre Verfahren, insb. Literatur die eine Kombintation aus beiden
+Schwerpunkt auf der Stand der Technik zum den Themen: RFID-Tracking und Evolutionäre Verfahren, insb. Literatur die eine Kombination aus beiden
 Themenkomplexen enthält. Ein dem Paper \cite{KALMANandSMOOTHING} ist beschrieben, wie man mittels Phasen Messung, Kalman Filtern \cite{Wiki:1} und der
 Verwendung eines Glättungsfilter eine gute Positionsgenauigkeit erreicht. Die präsentierte Methode war in ihrem Setup ähnlich dem von der Amedo GmbH verwendetem.
 
 %- Section 3 -----------------------------------------------------------------
 \section[Probleme]{Probleme}
 Die Einrichtung der \LaTeX{} Umgebung dauerte länger als erwartet. Es war ein
-Tag Arbeit vorgesehen, aber es wurden zwei benötigt.
+Tag Arbeit vorgesehen, jedoch wurden zwei benötigt.
 Unter Windows gab es Stabilitätsprobleme mit dem verwendeten Editor Kile und dem KBibTeX-Tool.
 Die beobachteten Instabilitäten traten nicht in der Ubuntu-Umgebung auf. Ein entsprechender Bug-Report wurde eingereicht.
 Die Erstellung des ersten Wochenberichts dauerte länger und dieser konnte erst in KW 18 fertiggestellt werden.
