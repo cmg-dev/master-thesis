@@ -91,3 +91,6 @@ documents/*/*.bbl
 
 #ignore the backup files of kbibtex
 *~[1234567890]
+
+#ignore
+*.synctex.gz
