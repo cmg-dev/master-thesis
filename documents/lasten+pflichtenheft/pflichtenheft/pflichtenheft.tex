@@ -12,7 +12,7 @@
 \usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
 \usepackage{fancyhdr}
 \usepackage{url}
-
+\usepackage{pgfgantt}
 \usepackage{amsmath,amssymb,amsfonts,amstext}
 
 % highlighting
@@ -43,12 +43,7 @@
 
 %Linie oben
 \renewcommand{\headrulewidth}{0.5pt}
-%----------------------------------------------------------------------------
-
-
-%----------------------------------------------------------------------------
-%----------------------------------------------------------------------------
-%----------------------------------------------------------------------------
+%---------------------------------------------------------------------------
 \fancyfoot[L]{Stand: \today}
 \fancyfoot[C]{ }
 \fancyfoot[R]{\thepage{} von \pageref{LastPage}}
@@ -64,6 +59,14 @@
 % Start the Document --------------------------------------------------------
 %----------------------------------------------------------------------------
 \begin{document}
+
+%\definecolor{barblue}{RGB}{153,204,254}
+%\definecolor{groupblue}{RGB}{51,102,254}
+%\definecolor{linkred}{RGB}{165,0,33}
+%\renewcommand\sfdefault{phv}
+%\renewcommand\mddefault{mc}
+%\renewcommand\bfdefault{bc}
+%\sffamily
 
 \setlength{\headheight}{36pt}
 
@@ -95,7 +98,7 @@ Im Folgenden ist die Aufgabenstellung detailliert ausgeführt. Die Anforderungen
 Ziel dieser Arbeit ist es ein System zu entwerfen und umzusetzen, das die eingangs beschriebene Problematik, der unbekannten, nicht analytisch bestimmbaren Wellenzahl löst. Dazu sollen evolutionäre Verfahren verwendet werden. Zu Beginn der Arbeit wird eine State of the Art-Erhebung durchgeführt, um die geeignetste Methode zu finden. In Vor
 
 \subsection{Sollkriterien}
-Es ist zu erwarten, dass die aktuell vorliegenden Messdaten, nicht ausreichen um sie in einem entsprechenden Algorithmus zu verwenden. Sollte sich diese Annahme im Laufe der Arbeit bestätigen, sind entsprechende Maßnahmen zu treffen, z.B.:
+Die Vorarbeiten zu diesem Projekt lassen erwarten, dass die aktuell vorliegenden Messdaten nur bedingt für die Auswertung verwendet werden können. Sollte sich diese Annahme im Laufe der Arbeit bestätigen, sind entsprechende Maßnahmen zu treffen, denkbar wären:
 \begin{itemize}
 \item Filterung der Daten
 \item Anpassung der Messdatenaufnahme
@@ -105,13 +108,29 @@ Es ist zu erwarten, dass die aktuell vorliegenden Messdaten, nicht ausreichen um
 Ein in der Bearbeitung impliziertes Problem betrifft die Kalibrierung des Systems. Es ist sehr erstrebenswert, dass die Ergebnisse dieser Arbeit auch einen Lösungsansatz zu dieser Problemstellung liefern. In Vorüberlegungen zu dieser Arbeit wurden Abschätzungen vorgenommen über die Realisierbarkeit der Aufgabe, dabei wurde auch ein Lösungsansatz mittels Neuronaler Netze diskutiert. Die Beurteilung dieses Ansatzes umfasst, dass es zur Zeit nicht praktikabel ist die entsprechend große Anzahl an Datensätzen zu generieren, der Ansatz generell vielversprechend ist. Es ist davon auszugehen, dass im Rahmen der Kalibrierung ausreichend viele Daten anfallen, um ein Neuronales Netz zu trainieren. Wenn es in die Bearbeitungszeit der Arbeit passt, wird dieser Ansatz weiter verfolgt.
 
 \subsection{Abgrenzungskriterien}
-Algorithmen und Testanordnungen welche bereits entwickelt wurden sind einzusetzen und nicht neu zu erfinden. Es dürfen/ sollen alle bereits erbrachten Arbeitsergebnisse der Amedo STS genutzt werden und in der Masterarbeit von Herrn Gnip mit entsprechender Quellenangabe verwendet werden.
+Algorithmen und Testanordnungen welche bereits entwickelt wurden sind einzusetzen und nicht neu zu erfinden. Es dürfen/ sollen alle bereits erbrachten Arbeitsergebnisse der Amedo STS genutzt werden und werden in dieser Masterarbeit mit entsprechender Quellenangabe verwendet werden.
 
 %----------------------------------------------------------------------------
 \section{Umsetzung}
-Dieses Kapitel beschreibt die beabsichtigte herangehensweise des Autors an die
-ihm gestellte Aufgabenstellung.
-\subsection{}
+Dieses Kapitel beschreibt die beabsichtigte Herangehensweise des Autors an die
+ihm gestellte Aufgabenstellung. Aus den Beschreibungen geht hervor welche Schritte durchgeführt werden um das Projekt zu bearbeiten.
+
+\subsection{Problembeschreibung}
+
+Die Entfernungsmessung über die Phasenlage des Empfangenen Signals kann durch folgende Gleichung beschrieben werden:
+
+%\begin{equation}
+\begin{alignat}{2}\label{eq:Wavenumbers}
+ 	d(\Theta)&=\frac{\lambda}{2}(\frac{\Theta}{2\pi}+n) &\quad
+ 	,\lambda&=\frac{c}{\nu}
+\end{alignat}
+
+$d(\Theta)$ meint die Distanz von einem Tag für eine bekannte Phase $\Theta$
+       
+% \qquad \text{Maxwell's equations}
+%\end{equation}
+
+
 
 %----------------------------------------------------------------------------
 \section{Systemkenndaten}
@@ -152,7 +171,7 @@ Während des Projekts wird in auf wöchentlicher Basis ein Bericht angefertigt a
 \section{Projektplanung}
 Die Dauer der Arbeit beträgt 20 Wochen. Start in der KW 17. Abgabe des Projekts ist am 9. September 2013.
 \subsection{Projektlaufplan}
-\input{project_time_table.tex}
+Siehe~\ref{sec:projectplan}
 
 %----------------------------------------------------------------------------
 %- Appendix ------------------------------------------------------------------
