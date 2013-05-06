@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,fleqn]{scrartcl}
+\documentclass[a4paper,12pt,fleqn]{article}
 \usepackage[T1]{fontenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
@@ -9,10 +9,11 @@
 \usepackage{listings}
 \usepackage{pdflscape}
 \usepackage{longtable}
+\usepackage{tikz}
 \usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
 \usepackage{fancyhdr}
 \usepackage{url}
-
+\usepackage{draftwatermark}
 \usepackage{amsmath,amssymb,amsfonts,amstext}
 
 % highlighting
@@ -24,7 +25,9 @@
 \setlength{\headsep}{10mm}
 
 \usepackage{eso-pic}
-
+\SetWatermarkText{Vertraulich}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
 %----------------------------------------------------------------------------
 % HEADER --------------------------------------------------------------------
 %----------------------------------------------------------------------------
@@ -50,7 +53,7 @@
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \fancyfoot[L]{Stand: \today}
-\fancyfoot[C]{ }
+\fancyfoot[C]{}
 \fancyfoot[R]{\thepage{} von \pageref{LastPage}}
 
 % Linie unten
@@ -79,7 +82,6 @@
 \input{title/title_w1.tex}
 
 \end{titlepage}
-
 %- Section 1 ----------------------------------------------------------------
 \section[Allgemeines]{Allgemeines}
 In dieser Woche hat die Bearbeitung der Masterarbeit begonnen. Dieses Dokument ist der erste Wochenbericht. Es werden jede Woche ein in Umfang an den jeweiligen Projektfortschritt angepasster Bericht erstellt.
