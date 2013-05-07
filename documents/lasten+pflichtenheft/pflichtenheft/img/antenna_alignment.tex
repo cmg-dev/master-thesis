@@ -1,0 +1,60 @@
+% Intersection of
+% Author: Rasmus Pank Roulund
+
+\begin{tikzpicture}[
+    scale=10,
+    axis/.style={very thick, ->, >=stealth'},
+    vector/.style={thick, ->, >=stealth'},
+    antenna/.style={thick},
+    important line/.style={thick},
+    dashed line/.style={dashed, thin},
+    pile/.style={thick, ->, >=stealth', shorten <=2pt, shorten
+    >=2pt},
+    every node/.style={color=black}
+    ]
+    % axis
+    \draw[axis] (-0.05,0)  -- (0.2,0) node(xline)[right] {$x$};
+    \draw[axis] (0,-0.05) -- (0,0.2) node(yline)[above] {$z$};
+    % Lines
+    \draw[vector] (0,0) coordinate (Xor) -- (.40,.25)
+        coordinate (A) node[right, text width=5em]{};
+%
+    \draw[antenna,rotate around={40:(A)}] (A) -- (.40,.32) coordinate (b) node[right, text width=5em] {};
+
+    \draw[antenna,rotate around={220:(A)}] (A) -- (.40,.32);
+
+    \draw[axis,rotate around={40:(A)},gray] (A)  -- ( .40,.30) node(xline)[above] {$x'$};
+    \draw[axis,rotate around={40:(A)},gray] (A) -- ( .45,.25) node(yline)[above] {$z'$};
+        
+%        
+%    \draw[important line] (0.9,0.5) coordinate (C) -- (D) node[right, text width=5em]
+%%    \draw[important line] (D) -- (0.5,0.9) coordinate (F) node[right, text width=5em]
+%%         {$\mathit{NX}=x$};
+%
+%	\fill[red] (-.075,-.2) coordinate (out) circle (.2pt)
+%        node[below left] {$B$};
+
+%    % Intersection of lines
+%    \fill[red] (intersection cs:
+%       first line={(A) -- (B)},
+%       second line={(C) -- (D)}) coordinate (E) circle (.4pt)
+%       node[above,] {$A$};
+%    % The E point is placed more or less randomly
+%    \fill[red]  (E) +(-.075cm,-.2cm) coordinate (out) circle (.4pt)
+%        node[below left] {$B$};
+%    % Line connecting out and ext balances
+%    \draw [pile] (out) -- (intersection of A--B and out--[shift={(0:1pt)}]out)
+%        coordinate (extbal);
+%    \fill[red] (extbal) circle (.4pt) node[above] {$C$};
+%    % line connecting  out and int balances
+%    \draw [pile] (out) -- (intersection of C--D and out--[shift={(0:1pt)}]out)
+%        coordinate (intbal);
+%    \fill[red] (intbal) circle (.4pt) node[above] {$D$};
+%    % line between out og all balanced out :)
+%    \draw[pile] (out) -- (E);
+\end{tikzpicture}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

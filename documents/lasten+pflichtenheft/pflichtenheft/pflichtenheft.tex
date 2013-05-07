@@ -15,6 +15,9 @@
 \usepackage{pgfgantt}
 \usepackage{amsmath,amssymb,amsfonts,amstext}
 
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
 % highlighting
 \usepackage{xcolor,soul}
 
@@ -87,34 +90,40 @@
 \newpage
 
 %----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
 \section{Motivation}
 \input{motivation.tex}
 
 %----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
 \section{Aufgabenstellung}
 Im Folgenden ist die Aufgabenstellung detailliert ausgeführt. Die Anforderungen der Arbeit sind in Muss-, Soll- und Wunschkriterien unterteilt. Entsprechend dieser Einteilung ergibt sich die Priorität der Aufgaben.
-
+%----------------------------------------------------------------------------
 \subsection{Musskriterien}
 Ziel dieser Arbeit ist es ein System zu entwerfen und umzusetzen, das die eingangs beschriebene Problematik, der unbekannten, nicht analytisch bestimmbaren Wellenzahl löst. Dazu sollen evolutionäre Verfahren verwendet werden. Zu Beginn der Arbeit wird eine State of the Art-Erhebung durchgeführt, um die geeignetste Methode zu finden. In Vor
-
+%----------------------------------------------------------------------------
 \subsection{Sollkriterien}
 Die Vorarbeiten zu diesem Projekt lassen erwarten, dass die aktuell vorliegenden Messdaten nur bedingt für die Auswertung verwendet werden können. Sollte sich diese Annahme im Laufe der Arbeit bestätigen, sind entsprechende Maßnahmen zu treffen, denkbar wären:
 \begin{itemize}
 \item Filterung der Daten
 \item Anpassung der Messdatenaufnahme
 \end{itemize}
-
+%----------------------------------------------------------------------------
 \subsection{Wunschkriterien}
 Ein in der Bearbeitung impliziertes Problem betrifft die Kalibrierung des Systems. Es ist sehr erstrebenswert, dass die Ergebnisse dieser Arbeit auch einen Lösungsansatz zu dieser Problemstellung liefern. In Vorüberlegungen zu dieser Arbeit wurden Abschätzungen vorgenommen über die Realisierbarkeit der Aufgabe, dabei wurde auch ein Lösungsansatz mittels Neuronaler Netze diskutiert. Die Beurteilung dieses Ansatzes umfasst, dass es zur Zeit nicht praktikabel ist die entsprechend große Anzahl an Datensätzen zu generieren, der Ansatz generell vielversprechend ist. Es ist davon auszugehen, dass im Rahmen der Kalibrierung ausreichend viele Daten anfallen, um ein Neuronales Netz zu trainieren. Wenn es in die Bearbeitungszeit der Arbeit passt, wird dieser Ansatz weiter verfolgt.
-
+%----------------------------------------------------------------------------
 \subsection{Abgrenzungskriterien}
 Algorithmen und Testanordnungen welche bereits entwickelt wurden sind einzusetzen und nicht neu zu erfinden. Es dürfen/ sollen alle bereits erbrachten Arbeitsergebnisse der Amedo STS genutzt werden und werden in dieser Masterarbeit mit entsprechender Quellenangabe verwendet werden.
 
 %----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
 \section{Umsetzung}
 Dieses Kapitel beschreibt die beabsichtigte Herangehensweise des Autors an die
 ihm gestellte Aufgabenstellung. Aus den Beschreibungen geht hervor welche Schritte durchgeführt werden um das Projekt zu bearbeiten.
-
+%----------------------------------------------------------------------------
 \subsection{Problembeschreibung}
 
 Die Entfernungsmessung über die Phasenlage des Empfangenen Signals kann durch folgende Gleichung beschrieben werden:
@@ -126,14 +135,14 @@ Die Entfernungsmessung über die Phasenlage des Empfangenen Signals kann durch f
 \end{alignat}
 
 $d(\Theta)$ meint die Distanz von einem Tag für eine bekannte Phase $\Theta$
-       
-% \qquad \text{Maxwell's equations}
-%\end{equation}
-
-
+%----------------------------------------------------------------------------
+\subsection{Genrelle Überlegungen}
 
 %----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
 \section{Systemkenndaten}
+
 %----------------------------------------------------------------------------
 \subsection{Hardware}
 Das Projekt verwendet das PRPS-System der Amedo STS. Es handelt sich dabei um ein System aus mehreren Antennen, die mehrere RFID-Tags ausmessen können. Die Messdatenaufnahme erfolgt durch einen leistungsstarken FPGA (Field Programmable Gate Array). In dem System steht ein PC mit dem Betriebssystem Ubuntu zur Verfügung. Nach der Vorverarbeitung durch den FPGA werden die Daten zu dem PC übertragen und dort die abschließende Positionsberechnung durchgeführt. Die Schnittstelle zum Endkunden/ andere Software erfolgt via TCP/IP und dem PRPS-Protokoll. Über das Protokoll kann die Hardware gesteuert werden.\\
@@ -148,8 +157,9 @@ Im Rahmen dieser Arbeit steht Matlab in der Version 2013b zur Verfügung. Der Ei
 
 
 %----------------------------------------------------------------------------
-\subsection{Werkzeuge und Umgebungen}
-\subsubsection{Quellcodeverwaltung}
+\section{Werkzeuge und Umgebungen}
+%----------------------------------------------------------------------------
+\subsection{Quellcodeverwaltung}
 In dieser Arbeit wird das Quelloffene Versionsverwaltungssystem Git verwendet.
 Das Repository wird auf den Servern des Web-dienst ''GitHub.com'' hinterlegt um
 einen Austausch zwischen den verschiedenen Umgebungen zu erleichtern. Dieses
@@ -159,19 +169,26 @@ die Sicherheit und Integrität der Daten gelegt. Wie im Folgenden
 genauer beschreiben.
 
 %----------------------------------------------------------------------------
-\subsubsection{Programmierung}
-Die Software, die in diesem Projekt erstellt wird, muss auf dem Linux-Rechner im PRPS lauffähig sein. Die Entwicklungsumgebung sollte aus Gründen der Einfachheit daher entweder die Möglichkeit zur Cross-Kompilierung bieten oder eine direkte Portierung der erstellten Programme ermöglichen. Am geeignetsten für diese Aufgabe stellt sich die IDE (Integrated Development Environment) Eclipse heraus. Es wird die Herlios Version verwendet. Die Wahl des Betriebssystems fällt auf Ubuntu 12.04 LTS für die Programmierumgebung. Dabei wird die Umgebung in einer Virtuellen Maschine unter der Verwendung von Oracle Virtual Box aufgesetzt. Dies ermöglicht eine einfache Portierung und Dokumentation, da die Gesamte Maschine einfach zwischen verschiedenen Rechnen und Betriebssystemen kopiert werden kann.
+\subsection{Programmierung}
+Die Software, die in diesem Projekt erstellt wird, muss auf dem Linux-Rechner im PRPS lauffähig sein. Die Entwicklungsumgebung sollte aus Gründen der Einfachheit daher entweder die Möglichkeit zur Cross-Kompilierung bieten oder eine direkte Portierung der erstellten Programme ermöglichen. Am geeignetsten für diese Aufgabe stellt sich die IDE (Integrated Development Environment) Eclipse heraus. Es wird die Helios Version von Eclipse verwendet. Die Wahl des Betriebssystems fällt auf Ubuntu 12.04 LTS für die Programmierumgebung. Dabei wird die Umgebung in einer Virtuellen Maschine unter der Verwendung von Oracle Virtual Box aufgesetzt. Dies ermöglicht eine einfache Portierung und Dokumentation, da die Gesamte Maschine einfach zwischen verschiedenen Rechnen und Betriebssystemen kopiert werden kann.
 
 %----------------------------------------------------------------------------
-\subsubsection{Dokumentation}
+\subsection{Dokumentation}
+
 Die Projektdokumentation wird in \LaTeX{} erstellt. Eine entsprechende Umgebung ist auf allen in dem Projekt verwendeten Rechner aufzusetzen.\\
-Während des Projekts wird in auf wöchentlicher Basis ein Bericht angefertigt aus dem der aktuelle Projektstand hervorgeht.
+Während des Projekts wird in auf wöchentlicher Basis ein Bericht angefertigt aus dem der aktuelle Projektstand hervorgeht. In dem Verteiler für die Wochenberichte befinden sich:
+\begin{itemize}
+\item Prof. Dr. Frank Bärmann
+\item Dipl. Ing. Volker Trösken
+\end{itemize}
+Die Wochenberichte sind bis Mitte der Folgewoche zu erstellen.\\
+Für die Erstellung der Quellcode Dokumentation wird Doxygen \cite{Dox1} verwendet. \\
 
 %----------------------------------------------------------------------------
 \section{Projektplanung}
-Die Dauer der Arbeit beträgt 20 Wochen. Start in der KW 17. Abgabe des Projekts ist am 9. September 2013.
+Die Dauer der Arbeit beträgt 20 Wochen. Start in der KW 17. Abgabe des Projekts ist am 9. September 2013. Eine Verlängerung um bis zu vier Wochen ist auf Antrag beim Prüfungsamt möglich.
 \subsection{Projektlaufplan}
-Siehe~\ref{sec:projectplan}
+Eine erste Version des Projektlaufplans wird mit der Ausgabe des Pflichtenhefts gültig. Der Plan befindet sich im Anhang~\ref{sec:projectplan}. Der Projektlaufplan wird fortlaufend den Wochenberichte beigefügt um eine Übersicht über die Fortschritte zu ermöglichen.
 
 %----------------------------------------------------------------------------
 %- Appendix ------------------------------------------------------------------
@@ -180,6 +197,6 @@ Siehe~\ref{sec:projectplan}
 \newpage
 %- Bibliography --------------------------------------------------------------
 \bibliographystyle{ieeetr}
-\bibliography{bib/mathesis_collection1}
+\bibliography{mathesis_collection}
 
 \end{document}
