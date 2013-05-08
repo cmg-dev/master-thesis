@@ -1,60 +1,215 @@
-% Intersection of
-% Author: Rasmus Pank Roulund
 
-\begin{tikzpicture}[
-    scale=10,
-    axis/.style={very thick, ->, >=stealth'},
-    vector/.style={thick, ->, >=stealth'},
-    antenna/.style={thick},
-    important line/.style={thick},
-    dashed line/.style={dashed, thin},
-    pile/.style={thick, ->, >=stealth', shorten <=2pt, shorten
-    >=2pt},
-    every node/.style={color=black}
-    ]
-    % axis
-    \draw[axis] (-0.05,0)  -- (0.2,0) node(xline)[right] {$x$};
-    \draw[axis] (0,-0.05) -- (0,0.2) node(yline)[above] {$z$};
-    % Lines
-    \draw[vector] (0,0) coordinate (Xor) -- (.40,.25)
-        coordinate (A) node[right, text width=5em]{};
-%
-    \draw[antenna,rotate around={40:(A)}] (A) -- (.40,.32) coordinate (b) node[right, text width=5em] {};
+\definecolor{c808080}{RGB}{128,128,128}
+\definecolor{c800000}{RGB}{128,0,0}
+\definecolor{cd40000}{RGB}{212,0,0}
+\definecolor{cd45500}{RGB}{212,85,0}
+\definecolor{c008000}{RGB}{0,128,0}
+\definecolor{cb3b3b3}{RGB}{179,179,179}
 
-    \draw[antenna,rotate around={220:(A)}] (A) -- (.40,.32);
 
-    \draw[axis,rotate around={40:(A)},gray] (A)  -- ( .40,.30) node(xline)[above] {$x'$};
-    \draw[axis,rotate around={40:(A)},gray] (A) -- ( .45,.25) node(yline)[above] {$z'$};
-        
-%        
-%    \draw[important line] (0.9,0.5) coordinate (C) -- (D) node[right, text width=5em]
-%%    \draw[important line] (D) -- (0.5,0.9) coordinate (F) node[right, text width=5em]
-%%         {$\mathit{NX}=x$};
-%
-%	\fill[red] (-.075,-.2) coordinate (out) circle (.2pt)
-%        node[below left] {$B$};
+\begin{tikzpicture}[y=0.80pt, x=0.8pt,yscale=-1, inner sep=0pt, outer sep=0pt]
+\begin{scope}[shift={(0,-308.2677)}]% layer1
+  % path2999
+  \path[draw=black,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (180.9154,472.5030) -- (119.0846,492.2214);
 
-%    % Intersection of lines
-%    \fill[red] (intersection cs:
-%       first line={(A) -- (B)},
-%       second line={(C) -- (D)}) coordinate (E) circle (.4pt)
-%       node[above,] {$A$};
-%    % The E point is placed more or less randomly
-%    \fill[red]  (E) +(-.075cm,-.2cm) coordinate (out) circle (.4pt)
-%        node[below left] {$B$};
-%    % Line connecting out and ext balances
-%    \draw [pile] (out) -- (intersection of A--B and out--[shift={(0:1pt)}]out)
-%        coordinate (extbal);
-%    \fill[red] (extbal) circle (.4pt) node[above] {$C$};
-%    % line connecting  out and int balances
-%    \draw [pile] (out) -- (intersection of C--D and out--[shift={(0:1pt)}]out)
-%        coordinate (intbal);
-%    \fill[red] (intbal) circle (.4pt) node[above] {$D$};
-%    % line between out og all balanced out :)
-%    \draw[pile] (out) -- (E);
+  % path3009
+  \path[draw=black,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (361.0625,618.0014) -- (298.9375,636.7230);
+
+  % path3011
+  \path[draw=black,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (355.9333,511.9161) -- (332.8496,494.5108) -- (304.0667,472.8083);
+
+  % rect3013
+  \path[draw=black,line join=miter,line cap=butt,line width=0.517pt,rounded corners=0.0000cm] (9.9993,458.0095) rectangle (389.3526,707.3629);
+
+  % path3049
+  \path[shift={(0,308.2677)}] (120.0000,139.0945) -- (100.0898,130.5897) -- (80.1795,122.0849) -- (97.5000,109.0945) -- (114.8205,96.1041) -- (117.4103,117.5993) -- cycle;
+
+  % path3051
+  \path[shift={(0,308.2677)}] (125.0000,94.0945) -- (122.9904,125.2547) -- (120.9808,156.4150) -- (95.0000,139.0945) -- (69.0192,121.7740) -- (97.0096,107.9342) -- cycle;
+
+  % path3053
+  \path[shift={(0,308.2677)}] (75.0000,144.0945) -- (56.6747,129.6746) -- (38.3494,115.2547) -- (60.0000,106.5945) -- (81.6506,97.9342) -- (78.3253,121.0144) -- cycle;
+
+  % path3055
+  \path[shift={(0,308.2677)}] (125.0000,89.0945) -- (92.4103,127.9102) -- (59.8205,166.7259) -- (42.5000,119.0945) -- (25.1795,71.4631) -- (75.0897,80.2788) -- cycle;
+
+  % path3057
+  \path[shift={(0,308.2677)}] (50.0000,89.0945) -- (70.4904,107.2644) -- (90.9808,125.4342) -- (65.0000,134.0945) -- (39.0192,142.7547) -- (44.5096,115.9246) -- cycle;
+
+  % path3059
+  \path[shift={(0,308.2677)}] (55.0000,119.0945) -- (48.5048,107.8445) -- (42.0096,96.5945) -- (55.0000,96.5945) -- (67.9904,96.5945) -- (61.4952,107.8445) -- cycle;
+
+  % path3061
+  \path[shift={(0,308.2677)}] (50.0000,129.0945) -- (29.4452,135.6756) -- (54.3301,136.5945) -- (58.9081,115.5029) -- (45.6699,136.5945) -- (61.6467,151.1049) -- cycle;
+
+  % path3063
+  \path[shift={(0,308.2677)}] (60.0000,169.0945) -- (55.7992,151.5198) -- (42.6795,139.0945) -- (60.0000,144.2438) -- (77.3205,139.0945) -- (64.2008,151.5198) -- cycle;
+
+  % path3065
+  \path[shift={(0,308.2677)}] (45.0000,79.0945) -- (85.0000,119.0945) -- (45.0000,159.0945) -- (5.0000,119.0945) -- cycle;
+
+  % path3067
+  \path[shift={(0,308.2677)}] (65.0000,114.0945) -- (70.0000,169.0945) -- (15.0000,174.0945) -- (10.0000,119.0945) -- cycle;
+
+  % path3069
+  \path[shift={(0,308.2677)}] (95.0000,164.0945) -- (-20.0000,159.0945) -- (-15.0000,44.0945) -- (100.0000,49.0945) -- cycle;
+
+  % path3085
+  \path[shift={(0,308.2677)},draw=black,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (20.0000,364.0945) -- (20.0000,389.0945) -- (45.0000,389.0945);
+
+  \begin{scope}[cm={{0.74861,-0.66301,0.66301,0.74861,(-398.40694,255.0537)}}]% g13273
+    % path3007
+    \path[draw=black,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (179.9726,570.1836) -- (180.0273,634.5407);
+
+    % path6551
+    \path[draw=c808080,line join=miter,line cap=butt,miter limit=3.90,line width=0.800pt] (179.9864,591.3538) -- (180.0779,606.3535) -- (195.0776,606.2620);
+
+  \end{scope}
+  % path13280
+  \path[shift={(20.20305,332.00628)},draw=c800000,fill=c800000,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (255.0000,226.5945) .. controls (255.0000,227.9752) and (253.8807,229.0945) .. (252.5000,229.0945) .. controls (251.1193,229.0945) and (250.0000,227.9752) .. (250.0000,226.5945) .. controls (250.0000,225.2138) and (251.1193,224.0945) .. (252.5000,224.0945) .. controls (253.8807,224.0945) and (255.0000,225.2138) .. (255.0000,226.5945) -- cycle;
+
+  % path14712
+  \path[draw=cd40000,dash pattern=on 1.60pt off 0.80pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt,<-] (138.0044,590.4122) -- (20.4068,696.8397);
+
+  % path14918
+  \path[draw=cd45500,dash pattern=on 0.80pt off 2.40pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (139.1959,589.0473) -- (268.3849,560.0734);
+
+  % text15561
+  \path[xscale=1.034,yscale=0.967,fill=black] (46.200352,722.57739) node[above right] (text15561) {x};
+
+  % text15565
+  \path[xscale=1.063,yscale=0.941,fill=black] (17.27549,709.89178) node[above right] (text15565) {z};
+
+  % path15700
+  \path[draw=c008000,dash pattern=on 6.43pt off 1.61pt on 0.80pt off 1.61pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.804pt, latex-] (268.5056,560.6042) -- (20.4193,696.8272);
+
+  % path15844
+  \path[draw=cb3b3b3,dash pattern=on 4.80pt off 4.80pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt, -latex] (329.8520,626.8458) -- (275.6436,561.9882);
+
+  % path15846
+  \path[draw=cb3b3b3,dash pattern=on 4.80pt off 4.80pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt,->] (330.3127,492.3687) -- (275.9070,555.2671);
+
+  % path15848
+  \path[draw=cb3b3b3,dash pattern=on 4.80pt off 4.80pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt, ->] (149.1581,483.4898) -- (268.6295,556.1004);
+
+  % text16011
+  \path[cm={{0.6536,-0.80076,0.74949,0.61175,(0.0,0.0)}},<<->,fill=c808080] (-341.30841,501.25629) node[above right] (text16011) {x'};
+
+  % text16015
+  \path[cm={{0.67211,-0.82344,0.72885,0.5949,(0.0,0.0)}},<<->,fill=c808080] (-352.30103,493.94711) node[above right] (text16015) {z'};
+
+  % text16023
+  \path[fill=black] (100.62763,560.85443) node[above right] (text16023) {A1};
+
+  % text16027
+  \path[fill=black] (181.69237,470.06696) node[above right] (text16027) {A2};
+
+  % text16043
+  \path[fill=black] (358.72159,511.98828) node[above right] (text16043) {A3};
+
+  % text16047
+  \path[fill=black] (363.01474,620.07458) node[above right] (text16047) {AN};
+
+  % text16051
+  \path[fill=black] (80.414063,630.92621) node[above right] (text16051) {Xor};
+
+  % text16055
+  \path[fill=black] (200.49254,571.50897) node[above right] (text16055) {Xo};
+
+  % text16059
+  \path (171.43781,621.49689) node[above right] (text16059) {Xr};
+
+  % text16063
+  \path[fill=black] (277.02338,563.54565) node[above right] (text16063) {Tag};
+
+\end{scope}
+
 \end{tikzpicture}
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:
+
+
+%\begin{tikzpicture}[
+%    scale=10,
+%    axis/.style={very thick, ->, >=stealth'},
+%    vector/.style={thick, ->,-latex, >=stealth'},
+%    antenna/.style={thick},
+%    important line/.style={thick},
+%    dashed line/.style={dashed, thin},
+%    pile/.style={thick, ->, >=stealth', shorten <=2pt, shorten
+%    >=2pt},
+%    every node/.style={color=black},
+%    main node/.style={circle,fill=blue!20,draw}
+%    ]
+%    % axis
+%    \draw[axis] (-0.05,0)  -- (0.2,0) node(xline)[right] {$x$};
+%    \draw[axis] (0,-0.05) -- (0,0.2) node(yline)[above] {$z$};
+%    % Lines
+%    \draw[vector] (0,0) coordinate (Xor) -- (.20,.30)
+%        coordinate (A) node[right, text width=5em]{};
+%
+%	\coordinate (A1_s) at (A)+(.07,.0);
+%	\coordinate (A2_s) at (.25,.60);
+%	\coordinate (A3_s) at (.75,.65);
+%	\coordinate (A4_s) at (.80,.25);
+%
+%	\coordinate (A1_c) at (A);	
+%	\coordinate (A2_c) at (.32,.60);
+%	\coordinate (A3_c) at (.82,.65);
+%	\coordinate (A4_c) at (.87,.25);
+%	
+%	\coordinate (A1_e) at (A)+(-.07,.0);	
+%	\coordinate (A2_e) at (.39,.60);
+%	\coordinate (A3_e) at (.89,.65);
+%	\coordinate (A4_e) at (.94,.25);
+%	
+%	\coordinate (Tag) at (.5,.59);
+%	
+%% draw the first antenna.
+%    \draw[antenna,rotate around={130:(A1_c)}] (.27,.30) -- (.13,.30) coordinate (b) node[right, below, text width=5em] {$A_1$};
+%
+%%    \draw[antenna,rotate around={220:(A)}] (A) -- (.40,.32);
+%
+%% coordinate system for antenna 1
+%    \draw[axis,rotate around={40:(A)},gray] (A)  -- ( .25,.30) node(xline)[above, left] {$x'$};
+%    \draw[axis,rotate around={40:(A)},gray] (A) -- ( .20,.35) node(yline)[above] {$z'$};
+%	
+%		
+%    \draw[antenna,rotate around={35:(A2_c)}] (A2_s) -- (.39,.60) node[right, text width=5em] {$A_2$};
+%
+%    \draw[antenna,rotate around={90:(A3_c)}] (A3_s) -- (.89,.65) node[right, text width=5em] {$A_3$};
+%
+%    \draw[antenna,rotate around={56:(A4_c)}] (A4_s) -- (.94,.25) node[right, text width=5em] {$A_4$};                
+%    
+%    \node[main node] (Tag){};
+%%        
+%%    \draw[important line] (0.9,0.5) coordinate (C) -- (D) node[right, text width=5em]
+%%%    \draw[important line] (D) -- (0.5,0.9) coordinate (F) node[right, text width=5em]
+%%%         {$\mathit{NX}=x$};
+%%
+%%	\fill[red] (-.075,-.2) coordinate (out) circle (.2pt)
+%%        node[below left] {$B$};
+%
+%%    % Intersection of lines
+%%    \fill[red] (intersection cs:
+%%       first line={(A) -- (B)},
+%%       second line={(C) -- (D)}) coordinate (E) circle (.4pt)
+%%       node[above,] {$A$};
+%%    % The E point is placed more or less randomly
+%%    \fill[red]  (E) +(-.075cm,-.2cm) coordinate (out) circle (.4pt)
+%%        node[below left] {$B$};
+%%    % Line connecting out and ext balances
+%%    \draw [pile] (out) -- (intersection of A--B and out--[shift={(0:1pt)}]out)
+%%        coordinate (extbal);
+%%    \fill[red] (extbal) circle (.4pt) node[above] {$C$};
+%%    % line connecting  out and int balances
+%%    \draw [pile] (out) -- (intersection of C--D and out--[shift={(0:1pt)}]out)
+%%        coordinate (intbal);
+%%    \fill[red] (intbal) circle (.4pt) node[above] {$D$};
+%%    % line between out og all balanced out :)
+%%    \draw[pile] (out) -- (E);
+%\end{tikzpicture}
+%
+%%%% Local Variables:
+%%%% mode: latex
+%%%% TeX-master: t
+%%%% End:
