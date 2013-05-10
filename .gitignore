@@ -67,30 +67,12 @@ dev/src/c-cpp/playground/*
 *.backup
 
 #LaTeX-ignore patterns
-documentation/*/*.aux
-documentation/*/*.dvi
-documentation/*/*.pdf
-documentation/*/*.log
-documentation/*/*.blg
-documentation/*/*.bbl
-
-thesis-final/*/*.aux
-thesis-final/*/*.dvi
-thesis-final/*/*.log
-thesis-final/*/*.blg
-thesis-final/*/*.bbl
-
-documents/*/*.aux
-documents/*/*.dvi
-documents/*/*.log
-documents/*/*.blg
-documents/*/*.bbl
-
-documents/*/*/*.aux
-documents/*/*/*.dvi
-documents/*/*/*.log
-documents/*/*/*.blg
-documents/*/*/*.bbl
+*.aux
+*.dvi
+*.pdf
+*.log
+*.blg
+*.bbl
 
 #ignore gnuplot temp data
 *.swp
