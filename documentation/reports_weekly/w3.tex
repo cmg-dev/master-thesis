@@ -1,0 +1,105 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{draftwatermark}
+
+\SetWatermarkText{Vertraulich}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
+
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+}
+
+\fancyhead[C]{ Wochenbericht KW 19 }
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+\input{../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+
+\setlength{\headheight}{36pt}
+
+\begin{titlepage}
+
+\input{title/title_w3.tex}
+
+\end{titlepage}
+
+%- Section 1 ----------------------------------------------------------------
+\section[Allgemeines]{Allgemeines}
+Ein Projektlaufplan wurde erstellt um den aktuellen Stand des Projektes übersichtlich darstellen zu können. Eine erste Version des Plans befindet sich in Anhang~\ref{sec:projectplan}. Die erste gültige Version wird mit Veröffentlichung des Pflichtenhefts erscheinen.
+
+%- Section 2 ----------------------------------------------------------------
+\section[Fortschritt]{Projektfortschritt}
+Die Einarbeitung in die numerischen Verfahren wurde weitergeführt. Eine Übersicht über die Eignung und Fähigkeiten der Verfahren, die bisher untersucht wurden, wird voraussichtlich der nächste Wochenbericht enthalten.
+
+%- Section 2.2 --------------------------------------------------------------
+\subsection{Datenaufnahme}
+Da es für die weiteren Entwicklungen von großem Vorteil ist auf reale Daten zugreifen zu können, wurden in dieser Woche Anstrengungen intensiviert diese Daten zu generieren. Die Entwicklung der FPGA-Software sowie der PC-Software ermöglichen dies seit dieser Woche. Dazu wurden einige Anpassungen der PC-Software notwendig. Erste Messkurven konnten visualisiert werden und stehen für die weitere Auswertung bereit.
+
+%- Section 3 -----------------------------------------------------------------
+\section[Probleme]{Probleme}
+Am Freitag wurden Sicherheitsrelevante Updates der Serverinfrastruktur aufgespielt werden. Diese betreffen auch dieses Projekt. Dieser Punkt war zeitlich nicht eingeplant und erforderte ein administratives Eingreifen meinerseits. Durch diesen Umstand und durch den Feiertag waren es lediglich drei effektive Werktage in dieser Woche.
+
+%- Appendix ------------------------------------------------------------------
+\input{append/appendix_w3.tex}
+
+\newpage
+%- Bibliography --------------------------------------------------------------
+\bibliographystyle{ieeetr}
+\bibliography{../bib/mathesis_collection1}
+
+\end{document}
