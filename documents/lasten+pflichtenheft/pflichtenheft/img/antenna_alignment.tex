@@ -6,146 +6,70 @@
 \definecolor{c008000}{RGB}{0,128,0}
 \definecolor{cb3b3b3}{RGB}{179,179,179}
 
+\begin{tikzpicture}[
+    scale=1,
+    axis/.style={thick, ->, >=stealth'},
+    vector/.style={thick, ->,-latex, >=stealth'},
+    antenna/.style={thick},
+    important line/.style={thick},
+    dashed line/.style={dashed, thin},
+    pile/.style={thick, ->, >=stealth', shorten <=2pt, shorten
+    >=2pt},
+    every node/.style={color=black},
+    main node/.style={circle,fill=blue!20,draw},
+    help lines/.style={gray,very thin}
+    ]
+    % axis
+    \draw[axis] (-.1,0)  -- (1,0) node(xline)[right] {$x$};
+    \draw[axis] (0,-.1) -- (0,1) node(yline)[above] {$z$};
 
-\begin{tikzpicture}[y=0.80pt, x=0.8pt,yscale=-1, inner sep=0pt, outer sep=0pt]
-\begin{scope}[shift={(0,-308.2677)}]% layer1
-  % path2999
-  \path[draw=black,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (180.9154,472.5030) -- (119.0846,492.2214);
+	\draw[gray, very thin, dotted] (0,0) grid (9,6);
 
-  % path3009
-  \path[draw=black,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (361.0625,618.0014) -- (298.9375,636.7230);
+	\coordinate [label=left:$A_1$] (A1) at (.5,3);
+	\coordinate [label=right:$A_2$] (A2) at (8,0.5);
+	\coordinate [label=above:$C$](SP) at (6,4);
+	\coordinate (ISO_Start) at (6.8,4.8);
+	\coordinate (ISO_End) at (4,0.2);
+	
+	\coordinate (SP_0) at ($(A1)!0.5!(A2)$);
+	\coordinate (Int1) at ($(A1)!(SP)!(A2)$);
+	\coordinate (help1) at (5,3);
+		
+    \draw [gray, dashed] plot [smooth] coordinates { (ISO_Start) (SP) (help1) (SP_0) (ISO_End)};;
+	
+	\node [gray, right,font=\scriptsize ] at (ISO_End.west) {$Iso-Phase$};
+			
+	\tikzstyle{every node}=[sloped, midway,below,font=\scriptsize]
 
-  % path3011
-  \path[draw=black,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (355.9333,511.9161) -- (332.8496,494.5108) -- (304.0667,472.8083);
+	\draw[important line, -latex] (A1) -- node[above] {$l_1+\Delta$}(SP);
+	\draw[important line, -latex] (A2) -- node[above] {$l_2+\Delta$}(SP);
 
-  % rect3013
-  \path[draw=black,line join=miter,line cap=butt,line width=0.517pt,rounded corners=0.0000cm] (9.9993,458.0095) rectangle (389.3526,707.3629);
+	\draw [important line]  (Int1) -- node[above] {$h$} (SP);
+				
+	\draw [thick, blue, -latex] (A1) --  node {$l_1$} (SP_0) ;
+	\draw [thick, blue, latex-latex] (SP_0) --  node {$\delta$} (Int1);
 
-  % path3049
-  \path[shift={(0,308.2677)}] (120.0000,139.0945) -- (100.0898,130.5897) -- (80.1795,122.0849) -- (97.5000,109.0945) -- (114.8205,96.1041) -- (117.4103,117.5993) -- cycle;
+	\draw [thick, blue, -latex] (A2) --  node[black] {$l_2 - \delta$}(Int1);
 
-  % path3051
-  \path[shift={(0,308.2677)}] (125.0000,94.0945) -- (122.9904,125.2547) -- (120.9808,156.4150) -- (95.0000,139.0945) -- (69.0192,121.7740) -- (97.0096,107.9342) -- cycle;
+	\draw[snake=brace,raise snake=12pt,black, mirror snake] (A1) -- node [yshift=-12pt, below] {$l_1 + \delta$}(Int1); 
+	\draw[snake=brace,raise snake=15pt,black, mirror snake] (SP_0) -- node [yshift=-15pt, below, blue] {$l_2$}(A2); 
+		
+	\fill[red] (SP_0) circle [radius=2pt];
+		
+%	 \draw[important line] let \p1=(alphaas), \p2=(cfas) in 
+%	    (\p1) node[left] {$\alpha_s^\A$} -| (\x2, \y1) -| (\p2)
+%	    node[below] {$\mathit{NV^\A_s}$};
+	    
+%	\coordinate [label=left:$A$] (A) at (0,0);
+%	\coordinate [label=right:$B$] (B) at (2,2);
 
-  % path3053
-  \path[shift={(0,308.2677)}] (75.0000,144.0945) -- (56.6747,129.6746) -- (38.3494,115.2547) -- (60.0000,106.5945) -- (81.6506,97.9342) -- (78.3253,121.0144) -- cycle;
-
-  % path3055
-  \path[shift={(0,308.2677)}] (125.0000,89.0945) -- (92.4103,127.9102) -- (59.8205,166.7259) -- (42.5000,119.0945) -- (25.1795,71.4631) -- (75.0897,80.2788) -- cycle;
-
-  % path3057
-  \path[shift={(0,308.2677)}] (50.0000,89.0945) -- (70.4904,107.2644) -- (90.9808,125.4342) -- (65.0000,134.0945) -- (39.0192,142.7547) -- (44.5096,115.9246) -- cycle;
-
-  % path3059
-  \path[shift={(0,308.2677)}] (55.0000,119.0945) -- (48.5048,107.8445) -- (42.0096,96.5945) -- (55.0000,96.5945) -- (67.9904,96.5945) -- (61.4952,107.8445) -- cycle;
-
-  % path3061
-  \path[shift={(0,308.2677)}] (50.0000,129.0945) -- (29.4452,135.6756) -- (54.3301,136.5945) -- (58.9081,115.5029) -- (45.6699,136.5945) -- (61.6467,151.1049) -- cycle;
-
-  % path3063
-  \path[shift={(0,308.2677)}] (60.0000,169.0945) -- (55.7992,151.5198) -- (42.6795,139.0945) -- (60.0000,144.2438) -- (77.3205,139.0945) -- (64.2008,151.5198) -- cycle;
-
-  % path3065
-  \path[shift={(0,308.2677)}] (45.0000,79.0945) -- (85.0000,119.0945) -- (45.0000,159.0945) -- (5.0000,119.0945) -- cycle;
-
-  % path3067
-  \path[shift={(0,308.2677)}] (65.0000,114.0945) -- (70.0000,169.0945) -- (15.0000,174.0945) -- (10.0000,119.0945) -- cycle;
-
-  % path3069
-  \path[shift={(0,308.2677)}] (95.0000,164.0945) -- (-20.0000,159.0945) -- (-15.0000,44.0945) -- (100.0000,49.0945) -- cycle;
-
-  % path3085
-  \path[shift={(0,308.2677)},draw=black,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (20.0000,364.0945) -- (20.0000,389.0945) -- (45.0000,389.0945);
-
-  \begin{scope}[cm={{0.74861,-0.66301,0.66301,0.74861,(-398.40694,255.0537)}}]% g13273
-    % path3007
-    \path[draw=black,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (179.9726,570.1836) -- (180.0273,634.5407);
-
-    % path6551
-    \path[draw=c808080,line join=miter,line cap=butt,miter limit=3.90,line width=0.800pt] (179.9864,591.3538) -- (180.0779,606.3535) -- (195.0776,606.2620);
-
-  \end{scope}
-  % path13280
-  \path[shift={(20.20305,332.00628)},draw=c800000,fill=c800000,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (255.0000,226.5945) .. controls (255.0000,227.9752) and (253.8807,229.0945) .. (252.5000,229.0945) .. controls (251.1193,229.0945) and (250.0000,227.9752) .. (250.0000,226.5945) .. controls (250.0000,225.2138) and (251.1193,224.0945) .. (252.5000,224.0945) .. controls (253.8807,224.0945) and (255.0000,225.2138) .. (255.0000,226.5945) -- cycle;
-
-  % path14712
-  \path[draw=cd40000,dash pattern=on 1.60pt off 0.80pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt,<-] (138.0044,590.4122) -- (20.4068,696.8397);
-
-  % path14918
-  \path[draw=cd45500,dash pattern=on 0.80pt off 2.40pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt] (139.1959,589.0473) -- (268.3849,560.0734);
-
-  % text15561
-  \path[xscale=1.034,yscale=0.967,fill=black] (46.200352,722.57739) node[above right] (text15561) {x};
-
-  % text15565
-  \path[xscale=1.063,yscale=0.941,fill=black] (17.27549,709.89178) node[above right] (text15565) {z};
-
-  % path15700
-  \path[draw=c008000,dash pattern=on 6.43pt off 1.61pt on 0.80pt off 1.61pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.804pt, latex-] (268.5056,560.6042) -- (20.4193,696.8272);
-
-  % path15844
-  \path[draw=cb3b3b3,dash pattern=on 4.80pt off 4.80pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt, -latex] (329.8520,626.8458) -- (275.6436,561.9882);
-
-  % path15846
-  \path[draw=cb3b3b3,dash pattern=on 4.80pt off 4.80pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt,->] (330.3127,492.3687) -- (275.9070,555.2671);
-
-  % path15848
-  \path[draw=cb3b3b3,dash pattern=on 4.80pt off 4.80pt,line join=miter,line cap=butt,miter limit=4.00,line width=0.800pt, ->] (149.1581,483.4898) -- (268.6295,556.1004);
-
-  % text16011
-  \path[cm={{0.6536,-0.80076,0.74949,0.61175,(0.0,0.0)}},<<->,fill=c808080] (-341.30841,501.25629) node[above right] (text16011) {x'};
-
-  % text16015
-  \path[cm={{0.67211,-0.82344,0.72885,0.5949,(0.0,0.0)}},<<->,fill=c808080] (-352.30103,493.94711) node[above right] (text16015) {z'};
-
-  % text16023
-  \path[fill=black] (100.62763,560.85443) node[above right] (text16023) {A1};
-
-  % text16027
-  \path[fill=black] (181.69237,470.06696) node[above right] (text16027) {A2};
-
-  % text16043
-  \path[fill=black] (358.72159,511.98828) node[above right] (text16043) {A3};
-
-  % text16047
-  \path[fill=black] (363.01474,620.07458) node[above right] (text16047) {AN};
-
-  % text16051
-  \path[fill=black] (80.414063,630.92621) node[above right] (text16051) {Xor};
-
-  % text16055
-  \path[fill=black] (200.49254,571.50897) node[above right] (text16055) {Xo};
-
-  % text16059
-  \path (171.43781,621.49689) node[above right] (text16059) {Xr};
-
-  % text16063
-  \path[fill=black] (277.02338,563.54565) node[above right] (text16063) {Tag};
-
-\end{scope}
-
-\end{tikzpicture}
-
-
-
-%\begin{tikzpicture}[
-%    scale=10,
-%    axis/.style={very thick, ->, >=stealth'},
-%    vector/.style={thick, ->,-latex, >=stealth'},
-%    antenna/.style={thick},
-%    important line/.style={thick},
-%    dashed line/.style={dashed, thin},
-%    pile/.style={thick, ->, >=stealth', shorten <=2pt, shorten
-%    >=2pt},
-%    every node/.style={color=black},
-%    main node/.style={circle,fill=blue!20,draw}
-%    ]
-%    % axis
-%    \draw[axis] (-0.05,0)  -- (0.2,0) node(xline)[right] {$x$};
-%    \draw[axis] (0,-0.05) -- (0,0.2) node(yline)[above] {$z$};
-%    % Lines
-%    \draw[vector] (0,0) coordinate (Xor) -- (.20,.30)
-%        coordinate (A) node[right, text width=5em]{};
+	
+	\draw [->,thick] (A1) -- ($(A1)!.1!(A2)$,0) node (x_axis) [below] {$x'$};
+	\draw [->,thick] (A1) --  ($(A1)!.1!90:(A2)$) node (z_axis) [right, above] {$z'$};
+%	\draw (A) -- (B);
+%	\draw[blue] let \p1 = ($(A2)-(SP)$) in (A2) -- ++({veclen(\x1,\y1)},0); 
+	%arc (0:95:({veclen(\x1,\y1)}););
+	
 %
 %	\coordinate (A1_s) at (A)+(.07,.0);
 %	\coordinate (A2_s) at (.25,.60);
@@ -207,7 +131,7 @@
 %%    \fill[red] (intbal) circle (.4pt) node[above] {$D$};
 %%    % line between out og all balanced out :)
 %%    \draw[pile] (out) -- (E);
-%\end{tikzpicture}
+\end{tikzpicture}
 %
 %%%% Local Variables:
 %%%% mode: latex
