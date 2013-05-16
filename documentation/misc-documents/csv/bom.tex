@@ -1,0 +1,22 @@
+\documentclass[a0paper,2pt,fleqn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{csvsimple}
+\usepackage{pdflscape}
+
+\begin{document}
+\begin{landscape}
+	\csvautotabular{fpga1.csv}
+\begin{tabular}{|l|l|l|}\hline%
+\bfseries ddd & \bfseries xxx & \bfseries yyy
+\csvreader[head to column names]{fpga1.csv}{}%
+{\\\Comment & \Description & \LogicalDesignator}%
+\\\hline
+\end{tabular}
+
+\end{landscape}
+
+\end{document}
