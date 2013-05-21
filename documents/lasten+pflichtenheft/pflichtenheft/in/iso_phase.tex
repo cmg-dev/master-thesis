@@ -1,0 +1,54 @@
+Auf den folgenden Seiten befindet sich eine Modellierung des physikalischen Zusammenhangs. Ziel ist die Entwicklung eines Modells, dass sich für die Verwendung in einer Minimierungsstrategie eignet.
+%----------------------------------------------------------------------------
+\begin{figure}[h]
+	\begin{center}
+		\input{img/antenna_alignment.tex}
+		 \caption[Kurzeintrag]{Entwurf des Modells für die Berechnung. Gezeigt ist, ein Tag und zwei Antennen. Die graue Linie stellt eine Iso-Fläche der Phase dar. Von diesen Flächen befinden sich $N$ viele mit einem Abstand von $\frac{\lambda}{2}$ (der Übersicht halber nicht eingezeichnet).} 
+	\end{center}
+\end{figure}
+
+Aus einfachen Überlegungen ergibt sich:
+
+\begin{equation}\label{eq:Tri1}
+(l_1+\Delta)^2 = (l_1+\delta)^2+h^2
+\end{equation}
+\begin{equation}\label{eq:Tri2}
+(l_2+\Delta)^2 = (l_2-\delta)^2+h^2
+\end{equation}
+%
+aus \eqref{eq:Tri1}:
+\begin{align}
+h^2 &= (l_1+\Delta)^2 - (l_1+\delta)^2\\
+	&= l_1^2 + 2l_1\Delta + \Delta^2 -[ l_1^2 + 2 l_1 \delta + \delta^2]\nonumber\\
+	&= l_1^2 + 2l_1\Delta + \Delta^2 - l_1^2 - 2 l_1 \delta - \delta^2	\nonumber\\
+	&= 2l_1\Delta + \Delta^2 - 2 l_1 \delta - \delta^2 \label{eq:Tri3}
+\end{align}
+%
+analog dazu lässt sich aus~\eqref{eq:Tri2} ableiten:
+%
+\begin{align}
+h^2 &= 2l_2\Delta + \Delta^2 + 2 l_2 \delta - \delta^2 \label{eq:Tri4}
+\end{align}
+%
+Wir suchen einen Ausdruck um $\Delta$ zu eliminieren, \eqref{eq:Tri3}=\eqref{eq:Tri4}:
+%
+\begin{align}
+	2l_1\Delta + \Delta^2 - 2 l_1 \delta - \delta^2 &=  2l_2\Delta + \Delta^2 + 2 l_2 \delta - \delta^2 \nonumber \\
+	2l_1\Delta + \Delta^2 - 2l_2\Delta - \Delta^2&= 2 l_2 \delta - \delta^2 +2l_1\delta +\delta^2 \nonumber \\
+	\Delta(l_1 - l_2  ) &= \delta (l_1+l_2) \nonumber \\
+	\Delta &= \delta\frac{(l_1 + l_2)}{(l_1 - l_2)} \label{eq:Tri5}
+\end{align}
+
+\eqref{eq:Tri5} in \eqref{eq:Tri3} einsetzen:
+\begin{align}
+	h^2 &= 2l_1\delta\left(\frac{(l_1 + l_2)}{(l_1 - l_2)}\right) + \delta^2\left(\frac{(l_1 + l_2)}{(l_1 - l_2)}\right)^2 - 2l_1 \delta - \delta^2 \nonumber \\
+	&= \underbrace{\left(\frac{(l_1 + l_2)}{(l_1 - l_2)} - 1 \right)^2}_\text{$a_0$} \delta^2 + \underbrace{\left(\frac{(l_1 + l_2)}{(l_1 - l_2)}  - 1 \right)}_\text{$a_1$} 2l_1\delta
+\end{align}
+
+Nun können wir für $\delta$ den Ausdruck $x'$ einführen. und erhalten:
+\begin{equation}
+	h^2 = a_0 x'^2 + a_1 x' \label{eq:TriFinal}
+\end{equation}
+%
+Gleichung~\eqref{eq:TriFinal} drückt aus, dass sich die Berechnung noch in dem Koordinatensystem der beiden gewählten Antennen liegt. Es ist noch eine geeignete Koordinatensystem-Transformation zu wählen um auf ein vernünftiges Referenz-Koordinatensystem zu kommen.
+Weiterhin gelten die Überlegungen nur für diesen Zweidimensionalen Fall. Eine Anwendung auf die dritte Dimension sollte über die Erweiterung von $h^2 = y^2+z^2$ möglich sein.
