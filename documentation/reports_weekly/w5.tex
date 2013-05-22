@@ -1,0 +1,117 @@
+\documentclass[a4paper,10pt,fleqn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{draftwatermark}
+\usepackage{booktabs }
+
+%\setlist{nolistsep}
+
+\SetWatermarkText{Vertraulich}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
+
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usepackage{tikz}
+\usetikzlibrary{arrows, snakes}
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+}
+
+\fancyhead[C]{ Wochenbericht KW 21 }
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+\input{../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+
+\setlength{\headheight}{36pt}
+
+\begin{titlepage}
+
+\input{title/title_w5.tex}
+
+\end{titlepage}
+
+%- Section 1 ----------------------------------------------------------------
+\section[Allgemeines]{Allgemeines}
+%Ein Projektlaufplan wurde erstellt um den aktuellen Stand des Projektes festzuhalten und übersichtlich darstellen zu können. Eine erste (vorläufige) Version des Plans befindet sich in Anhang~\ref{sec:projectplan}. Die erste gültige Version wird mit Veröffentlichung des Pflichtenhefts erscheinen.
+
+%- Section 2 ----------------------------------------------------------------
+\section[Fortschritt]{Projektfortschritt}
+Das in der letzten Woche vorgestellte Modell, basierend auf der Trilateration, wurde in dieser Woche Erweitert. Das Ergebnis steht in Anhang~\ref{sec:extended_trilateration_model}.\\
+Zu Beginn der Woche stand das neue Kalibrierstück zur Verfügung, mit dem Modell aus der letzten Woche wurde die Anordnung vermessen und die Koordinaten der einzelnen Antennen berechnet. Die Ergebnisse sind im Anhang~{} zu finden. Zu erkennen ist, dass der mittlere Fehler bei
+%In dieser Woche wurden die Arbeiten an der Modellbildung für die num. Verfahren gearbeitet. Diese Überlegungen sind im Anhang~\ref{sec:iso_phase_modell} und im Anhang~\ref{sec:trilateration_modell} zu finden.
+%Am Ende der Woche ist es gelungen, Messdaten von allen Antennen zu erhalten. Dadurch ist sichergestellt, dass auf Daten zurück gegriffen werden kann, wenn die Modellbildung weit genug fortgeschritten ist. 
+
+%- Section 2.2 --------------------------------------------------------------
+\subsection{Modellbildung}
+%- Section 2.3 --------------------------------------------------------------
+\subsection{Kalibierung}
+%- Section 3 -----------------------------------------------------------------
+\section[Probleme]{Probleme}
+%Durch die Feiertage läuft die Entwicklung zur Zeit langsamer als ursprünglich geplant. Es wird voraussichtlich einer Anpassung des Projektplans notwendig sein um diesem Umstand gerecht zu werden.
+
+%- Appendix ------------------------------------------------------------------
+\input{append/appendix_w5.tex}
+
+\newpage
+%- Bibliography --------------------------------------------------------------
+\bibliographystyle{ieeetr}
+\bibliography{../bib/mathesis_collection1}
+
+\end{document}
