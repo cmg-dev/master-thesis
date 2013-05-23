@@ -89,19 +89,25 @@
 
 %- Section 1 ----------------------------------------------------------------
 \section[Allgemeines]{Allgemeines}
-%Ein Projektlaufplan wurde erstellt um den aktuellen Stand des Projektes festzuhalten und übersichtlich darstellen zu können. Eine erste (vorläufige) Version des Plans befindet sich in Anhang~\ref{sec:projectplan}. Die erste gültige Version wird mit Veröffentlichung des Pflichtenhefts erscheinen.
+In dieser Woche konnte das Modell um Wellenzahl und Phaseninformationen erweitert werden.\\
+Es wurde durch analytische und numerische Lösungsmethoden der Aktuelle Messaufbau, bei dem die Antennenposition frei gewählt werden kann, erfolgreich Vermessen.\\
+ 
 
 %- Section 2 ----------------------------------------------------------------
 \section[Fortschritt]{Projektfortschritt}
-Das in der letzten Woche vorgestellte Modell, basierend auf der Trilateration, wurde in dieser Woche Erweitert. Das Ergebnis steht in Anhang~\ref{sec:extended_trilateration_model}.\\
-Zu Beginn der Woche stand das neue Kalibrierstück zur Verfügung, mit dem Modell aus der letzten Woche wurde die Anordnung vermessen und die Koordinaten der einzelnen Antennen berechnet. Die Ergebnisse sind im Anhang~{} zu finden. Zu erkennen ist, dass der mittlere Fehler bei
+
 %In dieser Woche wurden die Arbeiten an der Modellbildung für die num. Verfahren gearbeitet. Diese Überlegungen sind im Anhang~\ref{sec:iso_phase_modell} und im Anhang~\ref{sec:trilateration_modell} zu finden.
 %Am Ende der Woche ist es gelungen, Messdaten von allen Antennen zu erhalten. Dadurch ist sichergestellt, dass auf Daten zurück gegriffen werden kann, wenn die Modellbildung weit genug fortgeschritten ist. 
 
 %- Section 2.2 --------------------------------------------------------------
 \subsection{Modellbildung}
+Das in Anhang~\ref{sec:extended_trilateration_model} vorgestellte Modell enthält 7 Veränderliche. Die 7 Variablen machen es möglich eine spätere Implementation in Shark mit Ergebnissen anderes num. Lösungsmethoden (z.B. Excel Solver) zu vergleichen.\\
+Das in der letzten Woche vorgestellte Modell, basierend auf der Trilateration, wurde in dieser Woche Erweitert. Das Ergebnis steht in Anhang~\ref{sec:extended_trilateration_model}.\\
+Zu Beginn der Woche stand das neue Kalibrierstück zur Verfügung, mit dem Modell aus der letzten Woche wurde die Anordnung vermessen und die Koordinaten der einzelnen Antennen berechnet. Die Ergebnisse sind im Anhang~{} zu finden. Der Fehler kann mit $r_0\pm\delta_r. mit\delta_r=[0.26,2.01]\% $ angegeben werden.\\
+
 %- Section 2.3 --------------------------------------------------------------
 \subsection{Kalibierung}
+Das Modell der letzten Woche\footnote{Wochenbericht KW 20 Anhang B} wurde in Excel implementiert und auf mehrere Arten eine Lösung gefunden. Zum Einen wurde durch analytische Herangehensweise die, für das verwendete Gleichungssystem eindeutige, Lösung bestimmt. Zum Anderen wurde auf Grundlage der gleichen Messdaten mit dem Excel Solver das Problem numerisch behandelt. Die numerischen Ergebnisse sind zu den analytischen identisch. Die Ergebnisse sind in Anhang~\ref{sec:coordinate_Measurements} und Anhang~\ref{sec:coordinate_Measurements_Numerical} diesem Wochenbericht beigefügt.
 %- Section 3 -----------------------------------------------------------------
 \section[Probleme]{Probleme}
 %Durch die Feiertage läuft die Entwicklung zur Zeit langsamer als ursprünglich geplant. Es wird voraussichtlich einer Anpassung des Projektplans notwendig sein um diesem Umstand gerecht zu werden.
