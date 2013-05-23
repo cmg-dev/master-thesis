@@ -67,23 +67,23 @@ splot "gp_ready_a1_1.txt"
 # set lable 1 'A1_1' at @POS
 splot "gp_ready_a1_2.txt" 
 
-@M1MARGIN; @LMARGIN
-@NOXTICS; @YTICS
-# set lable 1 'A2_1' at @POS
-splot "gp_ready_a2_1.txt" 
+#@M1MARGIN; @LMARGIN
+#@NOXTICS; @YTICS
+## set lable 1 'A2_1' at @POS
+#splot "gp_ready_a2_1.txt" 
 
-@M1MARGIN; @RMARGIN
-@NOXTICS; @NOYTICS
-# set lable 1 'A2_2' at @POS
-splot "gp_ready_a2_2.txt" 
+#@M1MARGIN; @RMARGIN
+#@NOXTICS; @NOYTICS
+## set lable 1 'A2_2' at @POS
+#splot "gp_ready_a2_2.txt" 
 
-@M2MARGIN; @LMARGIN
-@NOXTICS; @YTICS
-splot "gp_ready_a3_1.txt"
+#@M2MARGIN; @LMARGIN
+#@NOXTICS; @YTICS
+#splot "gp_ready_a3_1.txt"
 
-@M2MARGIN; @RMARGIN
-@NOXTICS; @NOYTICS
-splot "gp_ready_a3_2.txt" 
+#@M2MARGIN; @RMARGIN
+#@NOXTICS; @NOYTICS
+#splot "gp_ready_a3_2.txt" 
 
 @BMARGIN; @LMARGIN
 @XTICS; @YTICS
