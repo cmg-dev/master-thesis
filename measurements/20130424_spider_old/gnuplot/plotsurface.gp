@@ -12,6 +12,6 @@ show contour
 
 set pm3d
 set view map
-#set contour
+set contour
 set key outside
 set palette gray negative
