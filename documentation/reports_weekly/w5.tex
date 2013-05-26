@@ -88,29 +88,37 @@
 \end{titlepage}
 
 %- Section 1 ----------------------------------------------------------------
-\section[Allgemeines]{Allgemeines}
-In dieser Woche konnte das Modell um Wellenzahl und Phaseninformationen erweitert werden.\\
-Es wurde durch analytische und numerische Lösungsmethoden der Aktuelle Messaufbau, bei dem die Antennenposition frei gewählt werden kann, erfolgreich Vermessen.\\
- 
+%\section[Allgemeines]{Allgemeines}
 
 %- Section 2 ----------------------------------------------------------------
 \section[Fortschritt]{Projektfortschritt}
+In dieser Woche konnte das Modell um Wellenzahl und Phaseninformationen erweitert werden.\\
+Es wurde durch analytische und numerische Lösungsmethoden der Aktuelle Messaufbau, bei dem die Antennenposition frei gewählt werden kann, erfolgreich Vermessen.\\
+Bis zum Ende der Woche wurde daran gearbeitet, reale Messdaten aus dem neuen Aufbau zu gewinnen. Dies ist in Ansätzen gelungen, jedoch zeigte sich bei der Verarbeitung der Daten, dass die Messwerte noch nicht sauber den Antennen zugeordnet werden können.
 
 %In dieser Woche wurden die Arbeiten an der Modellbildung für die num. Verfahren gearbeitet. Diese Überlegungen sind im Anhang~\ref{sec:iso_phase_modell} und im Anhang~\ref{sec:trilateration_modell} zu finden.
 %Am Ende der Woche ist es gelungen, Messdaten von allen Antennen zu erhalten. Dadurch ist sichergestellt, dass auf Daten zurück gegriffen werden kann, wenn die Modellbildung weit genug fortgeschritten ist. 
 
 %- Section 2.2 --------------------------------------------------------------
 \subsection{Modellbildung}
-Das in Anhang~\ref{sec:extended_trilateration_model} vorgestellte Modell enthält 7 Veränderliche. Die 7 Variablen machen es möglich eine spätere Implementation in Shark mit Ergebnissen anderes num. Lösungsmethoden (z.B. Excel Solver) zu vergleichen.\\
-Das in der letzten Woche vorgestellte Modell, basierend auf der Trilateration, wurde in dieser Woche Erweitert. Das Ergebnis steht in Anhang~\ref{sec:extended_trilateration_model}.\\
-Zu Beginn der Woche stand das neue Kalibrierstück zur Verfügung, mit dem Modell aus der letzten Woche wurde die Anordnung vermessen und die Koordinaten der einzelnen Antennen berechnet. Die Ergebnisse sind im Anhang~{} zu finden. Der Fehler kann mit $r_0\pm\delta_r. mit\delta_r=[0.26,2.01]\% $ angegeben werden.\\
+Das in der letzten Woche vorgestellte Modell, basierend auf der Trilateration, wurde in dieser Woche Erweitert. Das Ergebnis steht in Anhang~\ref{sec:extended_trilateration_model}. Die Erweiterung führt zu einem Modell indem Wellenzahl und Phase enthalten sind. Die Phasenlage wird von dem Messaufbau ermittelt, die Wellenzahl, als final gesuchte Größe, durch num. Verfahren gefunden. Aus dem Modell werden in weiteren Schritten sinnvolle Randbedingungen (im Folgenden Constraints genannt) abgeleitet, die eine Berechung effizient gestalten werden.\\
+%
+Das vorgestellte Modell enthält 7 Veränderliche. Diese Menge ermöglicht es eine spätere Implementation in Shark mit den Ergebnissen des Excel Solver zu vergleichen. Die in Anhang~\ref{sec:coordinate_Measurements_Numerical} gezeigte Lösung wurde mit dem Excel Solver gefunden. \\
+%
+Es sollte auch möglich sein, Anhand der Koeffizientenmatrix \textbf{A} eine Fehlerabschätzung treffen zu können. Diese Überlegung sollten es ermöglichen die Beste Antennenkonfiguration aus den möglichen Antennen im Vorfeld zu bestimmen, so müssen nicht alle Konfigurationen ermittelt werden und anschließend die Beste gewählt werden. Die Arbeiten daran werden in der nächsten Woche weitergeführt.\\
+%
+Das Modell wurde in Excel bereits implementiert und erwartet nun die Eingabe von Messdaten. Da dieses Ergebnis durch das Optimierungsverfahren ermittelt wurde bestätigt sich die Annahme, dass das Modell sich für eine solches Verfahren prinzipiell eignet. Um den gesamten Prozess zu vereinfachen wurde in einem weiterem Schritt einige Macros in der Excel Arbeitsmappe hinterlegt. Diese erleichtern wiederkehrende Aufgaben wie das kopieren der entsprechenden Messwerte in das betreffende Arbeitsblatt, die Automatisierung des Solvers und das erstmalige Befüllen der Solver Vorhersagen mit zufälligen Werten. \\
+
+%
+Zu Beginn der Woche stand das neue Kalibrierstück zur Verfügung. Es wurden die noch zur Berechnung fehlenden Größen ermittelt und mit dem Modell aus der letzten Woche wurde die Anordnung berechnet. Es konnten alle Koordinaten der einzelnen Antennen berechnet werden. Die Anschließende Verifikation mit den zur Verfügung stehenden Messmitteln zeigte eine sehr gute Übereinstimmung der Berechnung mit dem realen Aufbau. Die Ergebnisse (analytisch gefunden) sind im Anhang~{} zu finden. Der Fehler kann mit $r_0\pm\delta_r.$ mit $\delta_r=[0.26,2.01]\%$ angegeben werden.\\
 
 %- Section 2.3 --------------------------------------------------------------
 \subsection{Kalibierung}
 Das Modell der letzten Woche\footnote{Wochenbericht KW 20 Anhang B} wurde in Excel implementiert und auf mehrere Arten eine Lösung gefunden. Zum Einen wurde durch analytische Herangehensweise die, für das verwendete Gleichungssystem eindeutige, Lösung bestimmt. Zum Anderen wurde auf Grundlage der gleichen Messdaten mit dem Excel Solver das Problem numerisch behandelt. Die numerischen Ergebnisse sind zu den analytischen identisch. Die Ergebnisse sind in Anhang~\ref{sec:coordinate_Measurements} und Anhang~\ref{sec:coordinate_Measurements_Numerical} diesem Wochenbericht beigefügt.
+
 %- Section 3 -----------------------------------------------------------------
 \section[Probleme]{Probleme}
-%Durch die Feiertage läuft die Entwicklung zur Zeit langsamer als ursprünglich geplant. Es wird voraussichtlich einer Anpassung des Projektplans notwendig sein um diesem Umstand gerecht zu werden.
+Das Problem mit der Zuordnung der Messwerte zu den entsprechendem Antennen macht eine weitere Auswertung zur Zeit nicht möglich. Eine Lösung für dieses Problem wird in der nächsten Woche erwartet.
 
 %- Appendix ------------------------------------------------------------------
 \input{append/appendix_w5.tex}
