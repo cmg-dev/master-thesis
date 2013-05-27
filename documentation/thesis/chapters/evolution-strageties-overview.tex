@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,fleqn]{article}
+\documentclass[a4paper,12pt,fleqn]{book}
 \usepackage[T1]{fontenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
@@ -26,8 +26,9 @@
 \usepackage{pgfgantt}
 \usepackage{amsmath,amssymb,amsfonts,amstext}
 \usepackage{floatflt}
+
 \usepackage{tikz}
-\usetikzlibrary{arrows, snakes}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
 \usetikzlibrary{through}
 \usetikzlibrary{calc}
 
@@ -61,7 +62,6 @@
 \renewcommand{\headrulewidth}{0.5pt}
 %----------------------------------------------------------------------------
 
-
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
@@ -83,18 +83,34 @@
 
 \setlength{\headheight}{36pt}
 
-%\begin{titlepage}
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{titlepage}
 %
-%%\input{title/title_w5-extern.tex}
+Lorem Ipsum
 %
-%\end{titlepage}
+\end{titlepage}
 
+%----------------------------------------------------------------------------
+% Kapitel 1 -----------------------------------------------------------------
+%----------------------------------------------------------------------------
+\chapter{Optimierungsverfahren}
+
+Dieses Kapitel Beschreibt die Verschiedenen Optimierungsverfahren, die in dieser Arbeit vergleichen und verwendet wurden. Detailliert wird auf die Evolutionsstrategien eingegangen, da sie im Rahmen dieser Arbeit eine besondere Stellung einnehmen. Speziell das CMA-ES (Covariance Matrix Adaption- Evolustionary Strategy) wird ausführlich erläutert.
+
+% Section 1 -----------------------------------------------------------------
 \input{es.tex}
-%- Appendix ------------------------------------------------------------------
-%\input{append/appendix_w5-extern.tex}
+
+%----------------------------------------------------------------------------
+% Kapitel X -----------------------------------------------------------------
+%----------------------------------------------------------------------------
+%\chapter{}
 
 %\newpage
-%- Bibliography --------------------------------------------------------------
+%----------------------------------------------------------------------------
+% Literatur -----------------------------------------------------------------
+%----------------------------------------------------------------------------
 %\bibliographystyle{ieeetr}
 %\bibliography{../bib/mathesis_collection1}
 

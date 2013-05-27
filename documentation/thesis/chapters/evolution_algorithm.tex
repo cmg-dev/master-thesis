@@ -1,7 +1,50 @@
 \begin{figure}[h]
 	\begin{center}
 		\caption[Kurzeintrag]{lorem ipsum}
-%		\input{img/antenna_alignment.tex}
-		
+		\vspace{0.5cm}
+		\begin{tikzpicture}[auto]
+		\scriptsize
+			\tikzstyle{decision} = [diamond, draw=black, thick, fill=black!20, text width=5em, text badly centered, inner sep=1pt]
+%			
+			\tikzstyle{block} = [rectangle, draw=black, thick, fill=gray!20, text width=15em, text centered, rounded corners, minimum height=4em]
+%	
+			\tikzstyle{line} = [draw, thick, -latex',shorten >=1pt];
+			\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
+%	
+			\tikzstyle{cloud} = [ dotted, draw=green!50, thick, ellipse,,fill=green!20, minimum height=2em, text width= 10em];
+%	
+			\matrix [column sep=5mm,row sep=7mm]
+			{
+				% row 1
+				& \node [block] (start) { Start }; & \\
+				% row 2
+				&\node [block] (init) {Erstelle Startpopulation $X_p^1$ bestehend aus $\mu$-Individuen }; & 
+				\node [cloud] (comment1) {Initialisierung}; \\
+				% row 4
+				& \node [block] (identify) {Erzeuge eine Menge von $\lambda$ Nachkommen $X_c^k$ aus der aktuellen Elterngeneration $X_p^k$ durch Rekombination \& Mutation}; & \\
+				% row 5
+				\node [block] (update) {Nächste Stufe der Evolution; k++}; &
+				\node [block] (evaluate) {Durch Selektion die besten $\mu$ Nachkommen für die Generation $X_p^{k+1}$ auswählen}; & \\
+				% row 6
+				& \node [decision] (decide) {$\Delta \geq \Delta_{min}$}; & 
+				\node [cloud] (criteria) {Abbruchkriterium; Muss geeignet gewählt werden, bspw. max. Anzahl der Generationen oder Erreichen des Optimums};\\
+				% row 7
+				& \node [block] (stop) {Ende}; & \\
+			};
+% Arrows
+			\tikzstyle{every path}=[line]
+			\path (init) -- (identify);
+			\path (identify) -- (evaluate);
+			\path (evaluate) -- (decide);
+			\path (update) |- (identify);
+			\path (decide) -| node [near start] {Ja} (update);
+			\path (decide) -- node [midway] {Nein} (stop);
+			\path (start) -- (init);
+			
+			\tikzstyle{every path}=[commentline]
+			\path (criteria) -- (decide);
+			\path (comment1) -- (init);
+			
+		\end{tikzpicture}
 	\end{center}
 \end{figure}
