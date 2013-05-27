@@ -1,0 +1,101 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{draftwatermark}
+\usepackage{booktabs }
+
+\usepackage{enumitem}
+
+%\setlist{nolistsep}
+
+\SetWatermarkText{Vertraulich}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
+
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usepackage{tikz}
+\usetikzlibrary{arrows, snakes}
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{../img/amedo2012.png}
+}
+
+\fancyhead[C]{ Überblick Evolutionäre Algorithmen}
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ EXTERN }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+%\input{../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+
+\setlength{\headheight}{36pt}
+
+%\begin{titlepage}
+%
+%%\input{title/title_w5-extern.tex}
+%
+%\end{titlepage}
+
+\input{es.tex}
+%- Appendix ------------------------------------------------------------------
+%\input{append/appendix_w5-extern.tex}
+
+%\newpage
+%- Bibliography --------------------------------------------------------------
+%\bibliographystyle{ieeetr}
+%\bibliography{../bib/mathesis_collection1}
+
+\end{document}

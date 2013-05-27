@@ -1,0 +1,77 @@
+%- Section 1 ----------------------------------------------------------------
+\section[Allgemeines]{Evolutionsstrategien}
+Nach dem Vorbild natürlicher Evolution entworfene stochastische Optimierungsverfahren werden Evolutionsstrategie bezeichnet. Sie verwenden die Prinzipien der Mutation, Rekombination und Selektion analog zu der nat. Evolution.\\
+Wie in der Natur auch werden Nachkommen aus der Menge der verfügbaren Eltern gebildet. Dabei bezeichnet im Folgenden:
+\begin{itemize}
+\item $\mu$ die Anzahl der Eltern (=> Größe der Population)
+\item $\lambda$ die Anzahl der Eltern die bei Rekombination neue Kinder erzeugt; Die Anzahl der erzeugten Nachkommen einer neuen Generation
+\item $\mathbf{x}_p$ Elternpunkt (Parent)
+\item $\mathbf{x}_c$ Nachkomme einer Generation (Child)
+\item $X_p^1$ Die Menge aller Eltern der ersten Generation $X_p = \{\mathbf{x}_{p_1}^1,..,\mathbf{x}_{p_\mu}^1\}$
+\item $X_p^k$ Die Menge aller Eltern der k-ten Generation $X_p = \{\mathbf{x}_{p_1}^k,..,\mathbf{x}_{p_\mu}^k\}$
+\end{itemize}
+%
+%- Section 1.1 ----------------------------------------------------------------
+\subsection[Mutation]{Mutation}
+Ein Nachkomme $\mathbf{x}_C$ wird aus seinem Elternteil $\mathbf{x}_P$ und einer zufälligen Variation $\mathbf{d}$ gebildet.
+\begin{equation} \label{eq:Mutation_Child}
+	\mathbf{x}_c = \mathbf{x}_P + \mathbf{d}
+\end{equation}
+Dabei ist $\mathbf{d}$ ein bei jeder Mutation neu zu bestimmender $(0,\sigma^2)-normalverteilte$ Zufallszahl $Z(0,\sigma^2)$:
+\begin{equation}\label{eq:wavenumber_trilateration_model}
+\mathbf{d}=
+\left(
+	\begin{array}{c}
+		d_1 \\
+		\vdots\\
+		d_n 
+	\end{array}
+\right)
+=
+\left(
+	\begin{array}{c}
+		Z(0,\sigma_1^2) \\
+		\vdots\\
+		Z(0,\sigma_n^2) 
+	\end{array}
+\right)
+=
+\left(
+	\begin{array}{c}
+		Z(0,1) \sigma_1 \\
+		\vdots\\
+		Z(0,1) \sigma_n 
+	\end{array}
+\right)
+\end{equation}
+%
+Die Normalverteilung der Variation ist nützlich, da kleine Änderungen wahrscheinlicher sind als große. Die maximale Größe der Variation wird durch die Standardabweichung $\sigma_i$ bestimmt.
+%
+%- Section 1.2 ----------------------------------------------------------------
+\subsection[Rekombination]{Rekombination}
+Durch Rekombination zweier oder mehr Eltern aus der Menge aller $\mu$-Eltern $X_{\varrho} \subset X_E$. Die Wahl der Eltern sollte zufällig erfolgen um Inzuchtprobleme zu verhindern.\\
+Zwei Arten der Rekombination sind denkbar:\\
+
+Die \textit{intermediär Rekombination} erstellt einen Nachkommen durch das gewichtete Mittel von $\varrho$ Eltern.
+%
+\begin{equation}
+\mathbf{x}_c = \Sigma^\varrho_{i=1} \alpha_i\mathbf{x}_{p_i},\\ \Sigma^\varrho_{i=1} \alpha_i = 1,\\ 2\leq\varrho\leq\mu
+\end{equation} 
+%
+
+Bei der \textit{diskreten Rekombination} vom $\varrho$-Eltern wird die \textit{i}-te Komponente $x_{ic}$ eines Nachkommen $\mathbf{x}_c$ mit der \textit{i}-te Komponente eines zufällig gewählten Elternpunktes gleichgesetzt.
+%
+\begin{equation}
+\mathbf{x}_{ic} = \mathbf{x}_{ip_j},\\ j\in\{1,...,\varrho\},\\i=1,...,n
+\end{equation} 
+%
+%- Section 1.3 ----------------------------------------------------------------
+\subsection[Selektion]{Selektion}
+Die durch Rekombination und/oder Mutation erzeugten Nachkommen werden in dem Schritt Ausgewählt um einen Evolutionsfortschritt zu erreichen. Dies erfolgt anhand des Vergleichs mit dem Zielfunktionswert $f(\mathbf{x})$. Das beste Individuum oder die besten werden für die nachfolgende Generation ausgewählt. Dabei gibt es Strategien bei denen nur die Nachkommen an der Auswahl beteiligt sind und welche bei denen Eltern und Kinder teilnehmen.
+
+%- Section 2.3 ----------------------------------------------------------------
+\subsection{Evolutionsalgorithmus}
+%
+\input{evolution_algorithm.tex}
+
+\label{sec:Problems}
