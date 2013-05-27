@@ -1,22 +1,17 @@
-%\begin{figure}[h]
-%	\begin{center}
-%		\caption[dasd]{2D-Übersicht auf die Szene mit drei Antennen, einem Tag und einer Landmarke. Die Position von $\{A_1,A_3,A_3\}$, sowie der Landmarke, zum Koordinatenursprung sind bekannt. Die Vektoren $r_1,r_2,r_3$ sind die gemessene Entfernung zu einer Antenne. Die Landmarke wird im späteren Verlauf eine Antenne sein, die ihrerseits ein gemessene Entfernung $r_0$ produziert. Der Schnittpunkt aller Kreise ist die Lösung der gemessenen Entfernung und der geom. Anordnung, die sich für die Position des Tags ergibt.} 
-%		\input{img/trilaterationScene.tex}
-%		
-%	\end{center}
-%\end{figure}
-%
+{
+\small
 Folgende Nomenklatur und Symbole gelten für diesen Abschnitt:
-\begin{itemize}
+\begin{itemize}[itemsep=0mm]
 	\item	$N:=$Anzahl der Antennen $N=\{1,..,8\}$
 	\item	$k$ ist der Index der Antennen, es gilt $k = \{1,2,..,N-1\}$
 	\item	$r_{k}$ := Abstand vom Tag zur Antenne
 	\item	$d_{k0}$ := Abstand zur Landmarke
 	\item	fette Großbuchstaben stehen für Matrizen (bspw. $\mathbf{A}$)
 	\item	fette Kleinbuchstaben stehen für Vektoren (bspw. $\mathbf{x}$)
+	
 \end{itemize}
 %
-Wie gezeigt werden konnte \footnote{Wochenbericht KW 20, Anhang B} ergibt sich für den Fall der Trilateration und der Annahme, dass vier Antennen Messwerte liefern, die Gleichung:
+Wie gezeigt werden konnte\footnote{Wochenbericht KW 20, Anhang B} ergibt sich für den Fall der Trilateration und der Annahme, dass vier Antennen Messwerte liefern, die Gleichung:
 \begin{equation}\label{eq:final_trilateration_model}
 0=
 \left(
@@ -82,15 +77,15 @@ in Gleichung~\eqref{c_k0_rearragend} ein, erhalten die finale Form der Gleichung
 c_{k0}(\Theta_0, \Theta_k, n_0, n_k) = a_{0k}+a_1(n_0^2-n_k^2)+a_2(\Theta_0n_0-\Theta_kn_k)-a_{3k0}\label{c_k0_final_form}   
 \end{equation}
 %
-Die Einführung hat zum Einen den praktischen Nutzen die Gleichung übersichtlicher zu machen. Zum Anderen sind mit Blick auf eine spätere Softwareimplementation so Rechenschritte zu sparen. Das sollte sich positiv auf den späteren Berechnungsaufwand auswirken.
+Die Einführung der Konstanten macht zum Einen die Gleichung übersichtlicher. Zum Anderen können so, mit Blick auf eine spätere Softwareimplementation, Rechenschritte gespart werden. Das sollte sich positiv auf den späteren Berechnungsaufwand auswirken.\\
 %
 Im Weiteren erkennt man durch scharfes hinsehen das in Gleichung~\eqref{c_k0_final_form}, für $\Theta_k=\text{const.}$ \& $\Theta_0=\text{const.}$ gilt. Das resultiert aus der Tatsache, dass . Es ermöglicht uns zu schreiben:
 \begin{equation}
 c_{k0}(\Theta_0, \Theta_k, n_0, n_k) = c_{k0}(n_0, n_k)
 \end{equation}
 %
-Im engeren Sinne einer mathematischen Funktion sollten wir die Parameter alle als Argument aufnehmen. Im späteren Gebrauch wird diese Gleichung in der Optimierung eingesetzt werden. jedoch soll diese Form darstellen, das
-Für unser Gleichungssystem ergibt sich:
+Im engeren Sinne einer mathematischen Funktion sollten wir die Parameter alle als Argument aufnehmen. Diese Form soll darstellen, welche Größen von Interesse sind. Im späteren Gebrauch wird diese Gleichung in der Optimierung eingesetzt werden.
+Für unser Gleichungssystem aus\eqref{eq:final_trilateration_model} ergibt sich:
 \begin{equation}\label{eq:wavenumber_trilateration_model}
 0=
 \left(
@@ -113,7 +108,7 @@ Für unser Gleichungssystem ergibt sich:
 \right)
 \end{equation}
 %
-Betrachten wir den vormals\footnote{Wochenbericht KW 20, Anhang B} beschriebenen Fall und setzen $N'=4$, d.h. wir verwenden 4 Antennen. 1 ist die Referenz-Antenne und 3 Weitere sind Messwertgeber.
+Betrachten wir nun \eqref{eq:wavenumber_trilateration_model} und setzen $N'=4$, d.h. wir verwenden 4 Antennen. Wir beschreiben die Konfiguration wie folgt: Antenne 0 ist die Referenz-Antenne und Antenne 0-3 sind Messwertgeber für die Phaseninformation. 
 %
 \begin{equation}\label{eq:wavenumber_trilateration_model_explicit}
 0=
@@ -154,7 +149,7 @@ Betrachten wir den vormals\footnote{Wochenbericht KW 20, Anhang B} beschriebenen
 %
 Das Ergebnis ist ein um $\Theta$ und $n$ erweitertes Gleichungssystem. Zusätzlich enthält  es mehrere geometrische Konstanten ($a_{0k}, k=\{1,..,N-1\}$), mehrere Phasen-Konstanten ($a_{3k0}, k=\{1,..,N-1\}$), sowie zwei allgemeine ($a_1$ und $a_2$). Allgemeiner formuliert ergibt sich:
 %
-\begin{multline}\label{final_equation}
+\begin{multline}\label{eq:final_equation}
 0=
 \left(
 	\begin{array}{ccc}
@@ -176,6 +171,7 @@ Das Ergebnis ist ein um $\Theta$ und $n$ erweitertes Gleichungssystem. Zusätzli
 	\right)
 \end{multline}
 %
-Aus Gleichung~\eqref{final_equation} ist durch eine geeignete Wahl von $N'={4,..,N}]$ sofort ersichtlich wie viele Veränderliche sich für eine gewählte Konstellation an Antennen ergeben. Für $k$ gilt in diesem Fall $k=\{1,..,N'-1\}$.
+Aus Gleichung~\eqref{eq:final_equation} ist durch eine geeignete Wahl von $N'=\{4,..,N\}$ sofort ersichtlich wie viele Veränderliche sich für eine gewählte Konstellation an Antennen ergeben. Für $k$ gilt in diesem Fall $k=\{1,..,N'-1\}$.\\
 %
-Beispielsweise ergibt sich für das Modell aus Gleichung~\eqref{eq:wavenumber_trilateration_model_explicit} mit $N'=4$, insgesamt 7 ($\mathbf{x},n_0,n_1,n_2,n_3$) Variablen. Analog würde sich für ein Modell mit allen 8 Antennen, 11 Variablen ergeben.
+Beispielsweise ergibt sich für das Modell aus Gleichung~\eqref{eq:final_equation} mit $N'=4$, insgesamt 7 Variablen ($\mathbf{x},n_0,n_1,n_2,n_3$) . Analog würde sich für ein Modell mit allen 8 Antennen, 11 Variablen ($\mathbf{x},n_0,..,n_7$) ergeben.
+}

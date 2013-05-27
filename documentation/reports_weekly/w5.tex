@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt,fleqn]{article}
+\documentclass[a4paper,12pt,fleqn]{article}
 \usepackage[T1]{fontenc}
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
@@ -14,6 +14,8 @@
 \usepackage{url}
 \usepackage{draftwatermark}
 \usepackage{booktabs }
+
+\usepackage{enumitem}
 
 %\setlist{nolistsep}
 
@@ -88,37 +90,37 @@
 \end{titlepage}
 
 %- Section 1 ----------------------------------------------------------------
-%\section[Allgemeines]{Allgemeines}
+\section[Allgemeines]{Allgemeines}
 
 %- Section 2 ----------------------------------------------------------------
 \section[Fortschritt]{Projektfortschritt}
 In dieser Woche konnte das Modell um Wellenzahl und Phaseninformationen erweitert werden.\\
-Es wurde durch analytische und numerische Lösungsmethoden der Aktuelle Messaufbau, bei dem die Antennenposition frei gewählt werden kann, erfolgreich Vermessen.\\
-Bis zum Ende der Woche wurde daran gearbeitet, reale Messdaten aus dem neuen Aufbau zu gewinnen. Dies ist in Ansätzen gelungen, jedoch zeigte sich bei der Verarbeitung der Daten, dass die Messwerte noch nicht sauber den Antennen zugeordnet werden können.
-
-%In dieser Woche wurden die Arbeiten an der Modellbildung für die num. Verfahren gearbeitet. Diese Überlegungen sind im Anhang~\ref{sec:iso_phase_modell} und im Anhang~\ref{sec:trilateration_modell} zu finden.
-%Am Ende der Woche ist es gelungen, Messdaten von allen Antennen zu erhalten. Dadurch ist sichergestellt, dass auf Daten zurück gegriffen werden kann, wenn die Modellbildung weit genug fortgeschritten ist. 
+Es wurde durch analytische und numerische Lösungsmethoden der aktuelle Messaufbau, bei dem die Antennenposition frei gewählt werden kann, erfolgreich Vermessen.\\
+Bis zum Ende der Woche wurde daran gearbeitet, reale Messdaten aus dem neuen Aufbau zu gewinnen. Dies ist in Ansätzen gelungen, jedoch zeigte sich bei der Verarbeitung der Daten, dass die Messwerte noch nicht sauber den Antennen zugeordnet werden können. Ausführlicher wird dies in Abschnitt~\ref{sec:Problems}
 
 %- Section 2.2 --------------------------------------------------------------
 \subsection{Modellbildung}
-Das in der letzten Woche vorgestellte Modell, basierend auf der Trilateration, wurde in dieser Woche Erweitert. Das Ergebnis steht in Anhang~\ref{sec:extended_trilateration_model}. Die Erweiterung führt zu einem Modell indem Wellenzahl und Phase enthalten sind. Die Phasenlage wird von dem Messaufbau ermittelt, die Wellenzahl, als final gesuchte Größe, durch num. Verfahren gefunden. Aus dem Modell werden in weiteren Schritten sinnvolle Randbedingungen (im Folgenden Constraints genannt) abgeleitet, die eine Berechung effizient gestalten werden.\\
+Das in der letzten Woche vorgestellte Modell, basierend auf der Trilateration, wurde in dieser Woche Erweitert. Das Ergebnis steht in Anhang~\ref{sec:extended_trilateration_model}. Die Erweiterung führt zu einem Modell indem Wellenzahl und Phase enthalten sind. Die Phasenlage wird von dem Messaufbau ermittelt, die Wellenzahl, als final gesuchte Größe, durch num. Verfahren gefunden. Aus dem Modell werden in weiteren Schritten sinnvolle Randbedingungen (im Folgenden Constraints genannt) abgeleitet, die eine Berechnung effizient gestalten werden.\\
 %
 Das vorgestellte Modell enthält 7 Veränderliche. Diese Menge ermöglicht es eine spätere Implementation in Shark mit den Ergebnissen des Excel Solver zu vergleichen. Die in Anhang~\ref{sec:coordinate_Measurements_Numerical} gezeigte Lösung wurde mit dem Excel Solver gefunden. \\
 %
-Es sollte auch möglich sein, Anhand der Koeffizientenmatrix \textbf{A} eine Fehlerabschätzung treffen zu können. Diese Überlegung sollten es ermöglichen die Beste Antennenkonfiguration aus den möglichen Antennen im Vorfeld zu bestimmen, so müssen nicht alle Konfigurationen ermittelt werden und anschließend die Beste gewählt werden. Die Arbeiten daran werden in der nächsten Woche weitergeführt.\\
+ Anhand der Koeffizientenmatrix \textbf{A}, kann eine Fehlerabschätzung erstellt werden. Da in dieser Matrix die geometrischen Gegebenheiten eingehen, kann man im Vorfeld die Beste Antennenkonfiguration aus den möglichen Antennen im bestimmen. Es ergibt sich so der Vorteil, dass nicht alle Konfigurationen berechnet werden müssen um anschließend die Beste (:= die mit dem kleinsten Fehler) auszuwählen. Die Arbeiten daran werden in der nächsten Woche weitergeführt.\\
 %
 Das Modell wurde in Excel bereits implementiert und erwartet nun die Eingabe von Messdaten. Da dieses Ergebnis durch das Optimierungsverfahren ermittelt wurde bestätigt sich die Annahme, dass das Modell sich für eine solches Verfahren prinzipiell eignet. Um den gesamten Prozess zu vereinfachen wurde in einem weiterem Schritt einige Macros in der Excel Arbeitsmappe hinterlegt. Diese erleichtern wiederkehrende Aufgaben wie das kopieren der entsprechenden Messwerte in das betreffende Arbeitsblatt, die Automatisierung des Solvers und das erstmalige Befüllen der Solver Vorhersagen mit zufälligen Werten. \\
 
-%
-Zu Beginn der Woche stand das neue Kalibrierstück zur Verfügung. Es wurden die noch zur Berechnung fehlenden Größen ermittelt und mit dem Modell aus der letzten Woche wurde die Anordnung berechnet. Es konnten alle Koordinaten der einzelnen Antennen berechnet werden. Die Anschließende Verifikation mit den zur Verfügung stehenden Messmitteln zeigte eine sehr gute Übereinstimmung der Berechnung mit dem realen Aufbau. Die Ergebnisse (analytisch gefunden) sind im Anhang~{} zu finden. Der Fehler kann mit $r_0\pm\delta_r.$ mit $\delta_r=[0.26,2.01]\%$ angegeben werden.\\
-
 %- Section 2.3 --------------------------------------------------------------
-\subsection{Kalibierung}
-Das Modell der letzten Woche\footnote{Wochenbericht KW 20 Anhang B} wurde in Excel implementiert und auf mehrere Arten eine Lösung gefunden. Zum Einen wurde durch analytische Herangehensweise die, für das verwendete Gleichungssystem eindeutige, Lösung bestimmt. Zum Anderen wurde auf Grundlage der gleichen Messdaten mit dem Excel Solver das Problem numerisch behandelt. Die numerischen Ergebnisse sind zu den analytischen identisch. Die Ergebnisse sind in Anhang~\ref{sec:coordinate_Measurements} und Anhang~\ref{sec:coordinate_Measurements_Numerical} diesem Wochenbericht beigefügt.
+\subsection{Kalibrierung}
+%
+Zu Beginn der Woche stand das neue Kalibrierstück zur Verfügung. Es wurden die noch zur Berechnung fehlenden Größen ermittelt und mit dem Modell aus der letzten Woche wurde die Anordnung berechnet. Es konnten alle Koordinaten der einzelnen Antennen berechnet werden.\\
+%
+Das Modell der letzten Woche\footnote{Wochenbericht KW 20 Anhang B} wurde in Excel implementiert und auf mehrere Arten eine Lösung gefunden. Zum Einen wurde durch analytische Herangehensweise die, für das verwendete Gleichungssystem eindeutige, Lösung bestimmt. Zum Anderen wurde auf Grundlage der gleichen Messdaten mit dem Excel Solver das Problem numerisch behandelt. Die numerischen Ergebnisse sind zu den analytischen identisch. Die Ergebnisse sind in Anhang~\ref{sec:coordinate_Measurements} und Anhang~\ref{sec:coordinate_Measurements_Numerical} diesem Wochenbericht beigefügt.\\
+%
+Die anschließende Verifikation mit den zur Verfügung stehenden Messmitteln zeigte eine gute Übereinstimmung der Berechnung mit dem realen Aufbau. Der Fehler der gefundenen Lösung kann mit $r_0\pm\delta_r.$ mit $\delta_r=[0.26,2.01]\%$ angegeben werden.
 
 %- Section 3 -----------------------------------------------------------------
-\section[Probleme]{Probleme}
-Das Problem mit der Zuordnung der Messwerte zu den entsprechendem Antennen macht eine weitere Auswertung zur Zeit nicht möglich. Eine Lösung für dieses Problem wird in der nächsten Woche erwartet.
+\section{Probleme}
+\label{sec:Problems}
+In dieser Woche konnten keine korrekten und aussagekräftigen Messdaten generiert werden. Zum Einen gestaltete es sich schwierig, mehrere Positionen zu finden, an denen eine ausreichende Anzahl von Antennen den Tag ließt. Zum Anderen scheint die Zuordnung der Messwerte zu den entsprechendem Antennen nicht zu stimmen. Das macht eine weitere Auswertung zur Zeit nicht möglich. Eine Lösung für diese Probleme wird in der nächsten Woche erarbeitet.
 
 %- Appendix ------------------------------------------------------------------
 \input{append/appendix_w5.tex}
@@ -126,6 +128,6 @@ Das Problem mit der Zuordnung der Messwerte zu den entsprechendem Antennen macht
 \newpage
 %- Bibliography --------------------------------------------------------------
 \bibliographystyle{ieeetr}
-\bibliography{../bib/mathesis_collection1}
+%\bibliography{../bib/mathesis_collection1}
 
 \end{document}
