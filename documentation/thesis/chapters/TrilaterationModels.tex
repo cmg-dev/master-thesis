@@ -1,0 +1,134 @@
+\documentclass[a4paper,12pt,fleqn]{book}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+
+\usepackage{booktabs }
+
+\usepackage{enumitem}
+
+%\setlist{nolistsep}
+%\usepackage{draftwatermark}
+%\SetWatermarkText{Vertraulich}
+%\SetWatermarkScale{4}
+%\SetWatermarkLightness{0.9}
+
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+
+\usepackage{tikz}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{../img/amedo2012.png}
+}
+
+\fancyhead[C]{ Überblick Evolutionäre Algorithmen}
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+\input{../../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+
+\setlength{\headheight}{36pt}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+%\begin{titlepage}
+%%
+%Lorem Ipsum
+%%
+%\end{titlepage}
+
+%----------------------------------------------------------------------------
+% Kapitel 1 -----------------------------------------------------------------
+%----------------------------------------------------------------------------
+\chapter{Trilaterationsmodelle für die Verwendung in der Optimierung}
+
+Folgende Nomenklatur und Symbole gelten für dieses Kapitel:
+\begin{itemize}[itemsep=0mm]
+	\item	$N:=$Anzahl der Antennen $N=\{1,..,8\}$
+	\item	$k$ ist der Index der Antennen, es gilt $k = \{1,2,..,N-1\}$
+	\item	$r_{k}$ := Abstand vom Tag zur Antenne $k$
+	\item	$d_{k0}$ := Abstand von Antenne $k$ zur Landmarke
+	\item	fette Großbuchstaben stehen für Matrizen (bspw. $\mathbf{A}$)
+	\item	fette Kleinbuchstaben stehen für Vektoren (bspw. $\mathbf{x}$)
+\end{itemize}
+
+% Section 1 -----------------------------------------------------------------
+\section[modA]{Grundüberlegungen und lineares Basismodell}
+\input{trilaterationModelA.tex}
+
+% Section 2 -----------------------------------------------------------------
+\section[modB]{Erweiterung um Wellenzahl und gemessene Phase}
+\input{trilaterationModelB.tex}
+
+% Section 3 -----------------------------------------------------------------
+\section[modC]{Erweiterung des Variablenvektors}
+\input{trilaterationModelC.tex}
+
+%----------------------------------------------------------------------------
+% Kapitel X -----------------------------------------------------------------
+%----------------------------------------------------------------------------
+%\chapter{}
+
+%\newpage
+%----------------------------------------------------------------------------
+% Literatur -----------------------------------------------------------------
+%----------------------------------------------------------------------------
+%\bibliographystyle{ieeetr}
+%\bibliography{../bib/mathesis_collection1}
+
+\end{document}
