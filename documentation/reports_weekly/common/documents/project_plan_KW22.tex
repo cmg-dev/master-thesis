@@ -1,0 +1,194 @@
+\begin{ganttchart}[vgrid={draw=none,*1{gray, dashed}},
+				hgrid=true,
+				today=14,
+				title height=1,
+				y unit title=0.6cm,
+				y unit chart=0.8cm,
+				group right shift=0,
+				group top shift=.3,
+				group height=.3,
+				milestone width=.8,
+				group peaks={}{}{.2},
+				incomplete/.style={fill=black!15}, %
+				bar/.style={fill=white}, %
+				today label={Heute},
+				today rule/.style={dashed, thick}]{44}
+
+
+\gantttitle{\textbf{2013}}{44} \\
+\gantttitlelist{16,...,37}{2} \\
+%-------------------------------------------------------------
+\ganttgroup{Projekt Evaluation}{3}{14} \\
+\ganttbar[progress=100, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt}]{Installation der Umgebungen}{3}{6} \\
+	
+\ganttbar[progress=100, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=rech]{Recherche}{3}{7} \\
+	
+\ganttmilestone[name=ms1]{Vorstellung der Ergebnisse}{7} \\
+	
+\ganttbar[progress=90, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=pflichten]
+	{Pflichtenheft}{5}{8} \\
+	
+\ganttmilestone[name=ms2]{Pflichtenheft fertig}{8} \\
+
+\ganttbar[progress=70, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=bNumVerf]
+	{Einarbeitung num. Verfahren}{5}{12} \\
+
+\ganttbar[progress=20, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=34pt},
+	bar label font=\normalsize\color{black},
+	name=bCMAES]
+	{speziell CMA-ES}{7}{10} \\
+
+\ganttmilestone[name=ms3]{Beurteilung num. Verfahren}{12} \\
+
+\ganttlinkedbar[progress=10, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=34pt},
+	bar label font=\normalsize\color{black}]
+	{Shark Einarbeitung}{13}{14} \\
+
+\ganttlinkedmilestone[name=ms7]{Abschluss Evaluation}{14} \\
+	
+%-------------------------------------------------------------
+\ganttgroup{Erstellung Prototyp}{15}{26} \\
+\ganttgroup{(optional)}{15}{18} \\
+\ganttbar[progress=25, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black}]
+	{(Entwurf digi. Filter)}{15}{15} \\
+
+\ganttlinkedbar[progress=10, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=bImpFPGA]
+	{(Implementation FPGA)}{16}{18} \\
+
+\ganttmilestone[name=ms4]{(Verifikation dig. Filter)}{18} \\
+	
+\ganttbar[progress=0, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=bImplAlgo]
+	{Implementation Algorithmus}{15}{26} \\
+
+\ganttlinkedmilestone[name=ms5]{Implementation Done}{26} \\
+
+%-------------------------------------------------------------
+\ganttgroup{Verifikation}{27}{34} \\
+\ganttbar[progress=0, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=bVerf]
+	{Durchf\"uhrung Verifikation}{27}{34} \\
+
+\ganttlinkedmilestone[name=ms6]{Verifikation Done}{34} \\
+
+%-------------------------------------------------------------
+\ganttgroup{Projektdokumentation}{35}{42} \\
+
+\ganttbar[progress=0, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=thesis]
+	{Thesis schreiben}{35}{42} \\
+	
+\ganttmilestone[name=msthesis,milestone label font=\color{red}, 
+	milestone/.style={fill=red}]{Abgabe}{42}
+
+%\ganttlink{ms7}{bImplAlgo}
+\ganttlink{bImpFPGA}{ms4}
+\ganttlink{bNumVerf}{ms3}
+\ganttlink{bCMAES}{ms3}
+\ganttlink{rech}{ms1}
+\ganttlink{pflichten}{ms2}
+\ganttlink{thesis}{msthesis}
+
+%
+%\gantttitle{17}{1}
+%\gantttitle{18}{1}
+%\gantttitle{19}{1}
+%\gantttitle{20}{1}
+%\gantttitle{21}{1}
+%\gantttitle{KW22}{1}
+%\gantttitle{KW23}{1}
+%\gantttitle{KW24}{1}
+%\gantttitle{2011}{12} \\
+%\ganttbar
+%[progress=100, progress label font=\small\color{black!75},
+%progress label anchor/.style={right=4pt},
+%bar label font=\normalsize\color{black},
+%name=pp]
+%{Preliminary Project}{1}{4} \\
+%\ganttset{progress label text={}, link/.style={black, -to}}
+%\ganttgroup{Objective 1}{5}{16} \\
+%\ganttbar[progress=4, name=T1A]{Task A}{5}{10} \\
+%\ganttlinkedbar[progress=0]{Task B}{11}{16} \\
+%\ganttgroup{Objective 2}{5}{16} \\
+%\ganttbar[progress=15, name=T2A]{Task A}{5}{13} \\
+%\ganttlinkedbar[progress=0]{Task B}{14}{16} \\
+%\ganttgroup{Objective 3}{9}{12} \\
+%\ganttbar[progress=0]{Task A}{9}{12}
+%\ganttset{link/.style={OliveGreen}}
+%\ganttlink[link mid=.4]{pp}{T1A}
+%\ganttlink[link mid=.159]{pp}{T2A}
+
+%	[canvas/
+%	.style={fill=none, draw=black!5, line width=.75pt},
+%		hgrid style/.style={draw=black!5, line width=.75pt},
+%		vgrid={*1{draw=black!5, line width=.75pt}},
+%		today=7.1,
+%		today rule/.style={draw=black!64,
+%		dash pattern=on 3.5pt off 4.5pt, line width=1.5pt},
+%		today label={\small\bfseries TODAY},
+%		title/.style={draw=none, fill=none},
+%		title label font=\bfseries\footnotesize,
+%		title label anchor/.style={below=7pt},
+%		include title in canvas=false,
+%		bar label font=\mdseries\small\color{black!70},
+%		bar label anchor/.style={left=2cm},
+%		bar/.style={draw=none, fill=white},
+%		bar incomplete/.style={fill=barblue},
+%		progress label font=\mdseries\footnotesize\color{black!70},
+%		group incomplete/.style={fill=groupblue},
+%		group left shift=0,
+%		group right shift=0,
+%		group height=.5,
+%		group peaks={0}{}{},
+%		group label anchor/.style={left=.6cm},
+%		link/.style={-latex, line width=1.5pt},
+%		link label font=\scriptsize\bfseries,
+%		link label anchor/.style={below left=-2pt and 0pt}
+%	]{13}
+	
+%	\gantttitle[title label anchor/.style={below left=7pt and -3pt}]%
+%	{WEEKS:\quad1}{1}
+%	\gantttitlelist{1,...,13}{1} \\
+%	\ganttgroup[progress=57, progress label font=\bfseries\small]%
+%	{WBS 1 Summary Element 1}{1}{10} \\
+%	\ganttbar[progress=75, name=WBS1A]%
+%	{\textbf{WBS 1.1} Activity A}{1}{8} \\
+%	\ganttbar[progress=67, name=WBS1B]%
+%	{\textbf{WBS 1.2} Activity B}{1}{3} \\
+%	\ganttbar[progress=50, name=WBS1C]%
+%	{\textbf{WBS 1.3} Activity C}{4}{10} \\
+%	\ganttbar[progress=0, name=WBS1D]%
+%	{\textbf{WBS 1.4} Activity D}{4}{10} \\[grid]
+%	\ganttgroup[progress=0, progress label font=\bfseries\small]%
+%	{WBS 2 Summary Element 2}{4}{10} \\
+%	\ganttbar[progress=0]{\textbf{WBS 2.1} Activity E}{4}{5} \\
+%	\ganttbar[progress=0]{\textbf{WBS 2.2} Activity F}{6}{8} \\
+%	\ganttbar[progress=0]{\textbf{WBS 2.3} Activity G}{9}{10}
+%	\ganttlink[link type=s-s]{WBS1A}{WBS1B}
+%	\ganttlink[link type=f-s]{WBS1B}{WBS1C}
+%	\ganttlink[link type=f-f, link label anchor/.style={left}]{WBS1C}{WBS1D}
+%	
+	\end{ganttchart}

@@ -1,0 +1,120 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{draftwatermark}
+\usepackage{booktabs}
+\usepackage{blindtext} 
+\usepackage{framed} 
+\usepackage{xcolor} 
+\colorlet{shadecolor}{black} 
+
+\usepackage{enumitem}
+
+\SetWatermarkText{Vertraulich}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
+
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usepackage{tikz}
+\usetikzlibrary{arrows, snakes}
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+}
+
+\fancyhead[C]{ Wochenbericht KW 22 }
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ EXTERN }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+\input{../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+
+\setlength{\headheight}{36pt}
+
+\begin{titlepage}
+
+\input{extern/title/title_w6.tex}
+
+\end{titlepage}
+
+%- Section 1 ----------------------------------------------------------------
+\section[Allgemeines]{Allgemeines}
+Der Projektplan wurde angepasst um dem aktuellen Projektverlauf besser zu entsprechen. Einige Arbeiten wurden vorgezogen und ein paar neue Pakete kommen hinzu. Der Plan ist im Anhang~\ref{sec:projectplan} zu finden.
+%
+%- Section 2 ----------------------------------------------------------------
+\section[Fortschritt]{Projektfortschritt}
+Auf Basis des in der letzten Woche entwickelten Modells konnte bereits unter Verwendung des Excel Solver eine Bestimmung der Wellenzahl durchgeführt werden. Das Ergebnis des Excel Solvers ist eine Entfernung, basierend auf den von dem PRPS-System gemessenen Phasenwerten als Eingangsparametern. Die ersten Versuche waren vielversprechend und es konnte bereits eines Abweichung von $~5\%$ erreicht werden.
+%
+%- Section 2.2 --------------------------------------------------------------
+\subsection{Matrix Konditionierung}
+Im Laufe der ersten Experimente mit dem Solver und dem Modell der letzten Woche lieferten manche Konfigurationen von Antennen wesentliche bessere Ergebnisse als andere. So war z.B. die Konfiguration aus den Antennen $\{0,2,3,4\}$ die mit dem geringsten Fehler ($\sim5\%$). Andere Konfigurationen lieferten ein schlechteres Ergebnis mit einem Fehler von $\sim20-30\%$.\\
+Es gilt nun herauszufinden, woher die Unterschiede stammen. Nach den Arbeiten dieser Woche, kann bereits eine mögliche Herkunft angegeben werden. Da die Konfiguration der Antennen in der Koeffizientenmatrix $\mathbf{A}$ des Modells eingeht, scheint es sinnvoll eine Betrachtung des Fehlerfortpflanzung zu erstellen. Das lineare Gleichungssystem ermöglicht dies relativ einfach durch die Bestimmung der Konditionszahl des Matrix (Details siehe Anhang~\ref{seq:ConditionNumber}).\\
+Wie in Anhang~\ref{seq:ConditionNumber} beschrieben ist die Berechnung nicht trivial und die Implementation wird in der nächsten Woche durchgeführt.
+%
+%- Section 3 -----------------------------------------------------------------
+\section{Probleme}
+\label{sec:Problems}
+
+%- Appendix ------------------------------------------------------------------
+\input{extern/append/appendix_w6.tex}
+
+\newpage
+%- Bibliography --------------------------------------------------------------
+\bibliographystyle{ieeetr}
+%\bibliography{../bib/mathesis_collection1}
+
+\end{document}

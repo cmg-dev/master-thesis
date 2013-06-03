@@ -9,13 +9,14 @@
       at (current page.center) {Vertraulich};
   \end{tikzpicture} 
  
-}
+} 
 %--------------------------------------------------------------
 %--------------------------------------------------------------
 %--------------------------------------------------------------
 \newcommand{\myvec}[1]{\hat{\mathbf{#1}}}% Vector notation
+
 %--------------------------------------------------------------
-%--------------------------------------------------------------
+%- This can be used for aligning equations --------------------
 %--------------------------------------------------------------
 \newcommand{\phantomeq}[2]{
 \begin{equation}
@@ -23,7 +24,21 @@
 	#2
 \end{equation}
 }% Vector notation
+
 %--------------------------------------------------------------
+%- seraches for input in the "extern" folder ------------------
+%--------------------------------------------------------------
+\newcommand{\externInput}[1]{\input{extern/#1}}
+
+%--------------------------------------------------------------
+%- seraches for input in the "intern" folder ------------------
+%--------------------------------------------------------------
+\newcommand{\internInput}[1]{\input{intern/#1}}
+
+%--------------------------------------------------------------
+%- seraches for input in the "common" folder ------------------
+%--------------------------------------------------------------
+\newcommand{\commonInput}[1]{\input{common/#1}}
 
 %\renewenvironment{itemize}[1]{\begin{compactitem}#1}{\end{compactitem}}
 %\renewenvironment{enumerate}[1]{\begin{compactenum}#1}{\end{compactenum}}
