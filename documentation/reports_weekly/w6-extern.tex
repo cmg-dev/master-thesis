@@ -29,7 +29,7 @@
 \usepackage{amsmath,amssymb,amsfonts,amstext}
 \usepackage{floatflt}
 \usepackage{tikz}
-\usetikzlibrary{arrows, snakes}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
 \usetikzlibrary{through}
 \usetikzlibrary{calc}
 
@@ -97,7 +97,7 @@ Der Projektplan wurde angepasst um dem aktuellen Projektverlauf besser zu entspr
 %
 %- Section 2 ----------------------------------------------------------------
 \section[Fortschritt]{Projektfortschritt}
-Auf Basis des in der letzten Woche entwickelten Modells konnte bereits unter Verwendung des Excel Solver eine Bestimmung der Wellenzahl durchgeführt werden. Das Ergebnis des Excel Solvers ist eine Entfernung, basierend auf den von dem PRPS-System gemessenen Phasenwerten als Eingangsparametern. Die ersten Versuche waren vielversprechend und es konnte bereits eines Abweichung von $~5\%$ erreicht werden.
+Auf Basis des in der letzten Woche entwickelten Modells konnte bereits unter Verwendung des Excel Solver eine Bestimmung der Wellenzahl durchgeführt werden. Das Ergebnis des Excel Solvers ist eine Entfernung, basierend auf den von dem PRPS-System gemessenen Phasenwerten als Eingangsparametern. Die ersten Versuche sind bereits vielversprechend und es konnte eines Abweichung vom wahren Wert von $\sim5\%$ erreicht werden. Der wahre Wert ist dabei selbst noch mit erheblichen Unsicherheiten behaftet. Er wurde mithilfe eines handelsüblichen, für den Hausgebrauch tauglichen, Abstandsmesssystems ermittelt. Die Genauigkeit der Messungen kann nicht vollständig angegeben werden, sie ist für den Stand der Entwicklung auf jeden Fall ausreichend.
 %
 %- Section 2.2 --------------------------------------------------------------
 \subsection{Matrix Konditionierung}
@@ -105,9 +105,14 @@ Im Laufe der ersten Experimente mit dem Solver und dem Modell der letzten Woche 
 Es gilt nun herauszufinden, woher die Unterschiede stammen. Nach den Arbeiten dieser Woche, kann bereits eine mögliche Herkunft angegeben werden. Da die Konfiguration der Antennen in der Koeffizientenmatrix $\mathbf{A}$ des Modells eingeht, scheint es sinnvoll eine Betrachtung des Fehlerfortpflanzung zu erstellen. Das lineare Gleichungssystem ermöglicht dies relativ einfach durch die Bestimmung der Konditionszahl des Matrix (Details siehe Anhang~\ref{seq:ConditionNumber}).\\
 Wie in Anhang~\ref{seq:ConditionNumber} beschrieben ist die Berechnung nicht trivial und die Implementation wird in der nächsten Woche durchgeführt.
 %
+\subsection{Besprechung am Mittwoch}
+Nächste Woche Mittwoch wird ein Treffen mit Fr. Susanne Winter stattfinden. Im Rahmen dieses Gespräches können Fragen bezüglich Evolutionärer Verfahren und der Library Shark erörtert werden. Zur Zeit kann man davon ausgehen, dass der Projektfortschritt dadurch beschleunigt werden kann. Für dieses Treffen wurden Fragen erarbeitet.\\
+Es wurde die Einarbeitung in die evolutionären Verfahren vertieft, um in dem Gespräch gut auf die Thematik vorbereitet zu sein. Die Erkenntnisse aus den konsultierten Quellen sind im Anhang~\ref{seq:EvolutionaryStrategies} festgehalten.
+
 %- Section 3 -----------------------------------------------------------------
 \section{Probleme}
 \label{sec:Problems}
+Auch in dieser Woche war es nicht möglich kontinuierliche Messdaten aus dem neuem System zu gewinnen. Die Phasenwerte, die für die Berechnung verwendet wurden, stammen aus einer einzigen Messreihe. Dabei stand der Tag auf einem Punkt im Raum. Aufgrund von Messrauschen (die Ursache dafür ist bereits behoben) mussten sehr viele Messdaten zu einem Mittelwert zusammengefasst werden. An dem vermessenen Punkt konnten 6 aus 8 Antennen den Tag lesen und eine Phasenlage berechnen. Das ermöglicht im Weiteren die Entfernungsberechnung über alle vorhandenen Antennen und ggf. eine Verfeinerung des verwendeten Modells.
 
 %- Appendix ------------------------------------------------------------------
 \input{extern/append/appendix_w6.tex}
@@ -115,6 +120,6 @@ Wie in Anhang~\ref{seq:ConditionNumber} beschrieben ist die Berechnung nicht tri
 \newpage
 %- Bibliography --------------------------------------------------------------
 \bibliographystyle{ieeetr}
-%\bibliography{../bib/mathesis_collection1}
+\bibliography{../bib/mathesis_collection1}
 
 \end{document}

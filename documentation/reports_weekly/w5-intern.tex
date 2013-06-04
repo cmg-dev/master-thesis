@@ -91,6 +91,7 @@
 
 %- Section 1 ----------------------------------------------------------------
 \section[Allgemeines]{Allgemeines}
+\input{common/sections/general_w5.tex}
 
 %- Section 2 ----------------------------------------------------------------
 \section[Fortschritt]{Projektfortschritt}
@@ -100,11 +101,11 @@ Bis zum Ende der Woche wurde daran gearbeitet, reale Messdaten aus dem neuen Auf
 
 %- Section 2.2 --------------------------------------------------------------
 \subsection{Modellbildung}
-Das in der letzten Woche vorgestellte Modell, basierend auf der Trilateration, wurde in dieser Woche Erweitert. Das Ergebnis steht in Anhang~\ref{sec:extended_trilateration_model}. Die Erweiterung führt zu einem Modell indem Wellenzahl und Phase enthalten sind. Die Phasenlage wird von dem Messaufbau ermittelt, die Wellenzahl, als final gesuchte Größe, durch num. Verfahren gefunden. Aus dem Modell werden in weiteren Schritten sinnvolle Randbedingungen (im Folgenden Constraints genannt) abgeleitet, die eine Berechnung effizient gestalten werden.\\
+Das in der letzten Woche vorgestellte Modell, basierend auf der Trilateration, wurde in dieser Woche Erweitert. Das Ergebnis wird in Anhang~\ref{sec:extended_trilateration_model} präsentiert. Die Erweiterung führt zu einem Modell indem Wellenzahl und Phase enthalten sind. Die Phasenlage wird von dem Messaufbau ermittelt, die Wellenzahl, als final gesuchte Größe, durch num. Verfahren gefunden. Aus dem Modell werden in weiteren Schritten sinnvolle Randbedingungen (im Folgenden Constraints genannt) abgeleitet, die eine Berechnung effizient gestalten werden.\\
 %
 Das vorgestellte Modell enthält 7 Veränderliche. Diese Menge ermöglicht es eine spätere Implementation in Shark mit den Ergebnissen des Excel Solver zu vergleichen. Die in Anhang~\ref{sec:coordinate_Measurements_Numerical} gezeigte Lösung wurde mit dem Excel Solver gefunden. \\
 %
-Anhand der Koeffizientenmatrix \textbf{A}, kann eine Fehlerabschätzung erstellt werden. Da in dieser Matrix die geometrischen Gegebenheiten eingehen, kann man im Vorfeld die Beste Antennenkonfiguration aus den möglichen Antennen im bestimmen. Es ergibt sich so der Vorteil, dass nicht alle Konfigurationen berechnet werden müssen um anschließend die Beste (:= die mit dem kleinsten Fehler) auszuwählen. Die Arbeiten daran werden in der nächsten Woche weitergeführt.\\
+Anhand der Koeffizientenmatrix \textbf{A}, kann eine Fehlerabschätzung erstellt werden. Da in dieser Matrix die geometrischen Gegebenheiten eingehen, kann man im Vorfeld die beste Antennenkonfiguration aus den möglichen Antennen im bestimmen. Es ergibt sich so der Vorteil, dass nicht alle Konfigurationen berechnet werden müssen um anschließend die Beste (:= die mit dem kleinsten Fehler) auszuwählen. Die Arbeiten daran werden in der nächsten Woche weitergeführt.\\
 %
 Das Modell wurde in Excel bereits implementiert und erwartet nun die Eingabe von Messdaten. Da dieses Ergebnis durch das Optimierungsverfahren ermittelt wurde bestätigt sich die Annahme, dass das Modell sich für eine solches Verfahren prinzipiell eignet. Um den gesamten Prozess zu vereinfachen wurde in einem weiterem Schritt einige Macros in der Excel Arbeitsmappe hinterlegt. Diese erleichtern wiederkehrende Aufgaben wie das kopieren der entsprechenden Messwerte in das betreffende Arbeitsblatt, die Automatisierung des Solvers und das erstmalige Befüllen der Solver Vorhersagen mit zufälligen Werten. \\
 

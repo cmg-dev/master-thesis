@@ -12,7 +12,7 @@
 			\tikzstyle{line} = [draw, thick, -latex',shorten >=1pt];
 			\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
 %	
-			\tikzstyle{cloud} = [ dotted, draw=green!50, thick, ellipse,,fill=green!20, minimum height=2em, text width= 10em];
+			\tikzstyle{cloud} = [ dotted, draw=green!50, thick, ellipse,,fill=green!20, minimum height=2em, text width= 10em, text badly centered];
 %	
 			\matrix [column sep=5mm,row sep=7mm]
 			{
@@ -20,9 +20,9 @@
 				& \node [block] (start) { Start }; & \\
 				% row 2
 				&\node [block] (init) {Erstelle Startpopulation $X_p^1$ bestehend aus $\mu$-Individuen }; & 
-				\node [cloud] (comment1) {Initialisierung}; \\
+				\node [cloud] (comment1) {Initialisierung, mit Zufallswerten}; \\
 				% row 4
-				& \node [block] (identify) {Erzeuge eine Menge von $\lambda$ Nachkommen $X_c^k$ aus der aktuellen Elterngeneration $X_p^k$ durch Rekombination \& Mutation}; & \\
+				& \node [block] (identify) {Erzeuge eine Menge von $\lambda$ Nachkommen $X_c^k$ aus der aktuellen Elterngeneration $X_p^k$ durch Rekombination \&\&, || Mutation}; & \\
 				% row 5
 				\node [block] (update) {Nächste Stufe der Evolution; k++}; &
 				\node [block] (evaluate) {Durch Selektion die besten $\mu$ Nachkommen für die Generation $X_p^{k+1}$ auswählen}; & \\
