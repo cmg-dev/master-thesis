@@ -1,0 +1,116 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{draftwatermark}
+\usepackage{booktabs}
+\usepackage{blindtext} 
+\usepackage{framed} 
+\usepackage{xcolor} 
+\colorlet{shadecolor}{black} 
+
+\usepackage{enumitem}
+
+\SetWatermarkText{Vertraulich}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
+
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usepackage{tikz}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+}
+
+\fancyhead[C]{ Wochenbericht KW 23 }
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ EXTERN }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+\input{../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+
+\setlength{\headheight}{36pt}
+
+\begin{titlepage}
+
+\input{extern/title/title_w7.tex}
+
+\end{titlepage}
+
+%- Section 1 ----------------------------------------------------------------
+\section[Allgemeines]{Allgemeines}
+%
+%- Section 2 ----------------------------------------------------------------
+\section[Fortschritt]{Projektfortschritt}
+%
+%- Section 2.2 --------------------------------------------------------------
+\subsection{Matrix Konditionierung}
+%
+\subsection{Besprechung am Mittwoch}
+%
+%- Section 3 -----------------------------------------------------------------
+\section{Probleme}
+%
+%- Appendix ------------------------------------------------------------------
+\input{extern/append/appendix_w7.tex}
+
+\newpage
+%- Bibliography --------------------------------------------------------------
+\bibliographystyle{ieeetr}
+\bibliography{../bib/mathesis_collection1}
+
+\end{document}
