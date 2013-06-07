@@ -1,0 +1,4 @@
+/* Version of the project */
+#define VERSION_MAJOR		@VERSION_MAJOR@
+#define VERSION_MINOR		@VERSION_MINOR@
+#define VERSION_SUB_MINOR	@VERSION_SUB_MINOR@

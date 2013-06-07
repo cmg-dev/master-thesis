@@ -1,0 +1,2 @@
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate/CMakeFiles/permutate.dir
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/CMakeFiles/test.dir
