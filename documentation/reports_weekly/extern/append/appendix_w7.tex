@@ -1,8 +1,6 @@
 %
 %
 %
-%
-
 \begin{appendix}
 
 %----------------------------------------------------------------------------
@@ -19,17 +17,46 @@
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
-\newpage
 \section{Modellumstellung}
 \input{common/documents/trilateration_final_model.tex}
 
+
+\newpage
+\section{test}
+\begin{tikzpicture}[x=0.1,y=0.04cm]
+
+  \def\xmin{3}
+  \def\xmax{9.2}
+  \def\ymin{2}
+  \def\ymax{15.5}
+
+  % grid
+  \draw[style=help lines, ystep=2, xstep=1] (\xmin,\ymin) grid
+  (\xmax,\ymax);
+
+  % axes
+  \draw[->] (\xmin,\ymin) -- (\xmax,\ymin) node[right] {$x$};
+  \draw[->] (\xmin,\ymin) -- (\xmin,\ymax) node[above] {$y$};
+
+  % xticks and yticks
+  \foreach \x in {0,1,...,280}
+    \node at (\x, \ymin) [below] {\x};
+  \foreach \y in {0,1,...,2200}
+    \node at (\xmin,\y) [left] {\y};
+
+  % plot the data from the file data.dat
+  % smooth the curve and mark the data point with a dot
+  \draw[color=blue] plot[smooth,mark=*,mark size=1pt] file {data.dat}
+   node [right] {data};
+
+\end{tikzpicture}
 
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \newpage
 \begin{landscape}
-	\section{Projektlaufplan KW 22}
+	\section{Projektlaufplan KW 23}
 	\label{sec:projectplan}
 	\scalebox{.75}{
 		\input{common/documents/project_plan_KW22.tex}
