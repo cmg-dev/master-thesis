@@ -9,13 +9,12 @@ Folgende Nomenklatur und Symbole gelten für diesen Abschnitt:
 	\item	$k$ ist der Index der Antennen einer Messung, es gilt $k = 1,2,..,|N'|-1$
 	\item	fette Großbuchstaben stehen für Matrizen (bspw. $\mathbf{A}$)
 	\item	fette Kleinbuchstaben stehen für Vektoren (bspw. $\mathbf{x}$)
-	
 \end{itemize}
 %
-Wir stellen um und erhalten:
+Das bisher verwendete Modell stellen wir um und erhalten:
 \begin{align}
 %
-\mathbf{0}&=\mathbf{A}\mathbf{x}-\mathbf{b}\nonumber\\
+\mathbf{0}&=\mathbf{A}\mathbf{x}-\mathbf{b}\\
 \mathbf{A}&=
 \left(
 	\begin{array}{ccccc}
@@ -42,10 +41,11 @@ Wir stellen um und erhalten:
 \end{align}
 %
 Dabei steht $\delta_{ij}$ für den bekannten Kronecker-Operator und bedeutet:
-$$ 
+\begin{equation*}
 \delta_{ij} = \begin{cases}1 ~\text{für}~ i=j\\ 0 ~\text{für}~ i\neq j\end{cases}
-$$
-Im Speziellen sehen die Matrix $\mathbf{A}$ und der Vektor $\mathbf{b}$, für denn Fall $N'=\{0,1,2,3\}$ und $k=3$, wie folgt aus:
+\end{equation*}
+%
+Im expliziten sehen die Matrix $\mathbf{A}$ und der Vektor $\mathbf{b}$, für denn Fall $N'=3$ und $k=\{1,2,3\}$, wie folgt aus:
 %
 \begin{equation}
 \mathbf{A}=
@@ -57,23 +57,23 @@ Im Speziellen sehen die Matrix $\mathbf{A}$ und der Vektor $\mathbf{b}$, für de
 	\end{array}
 \right)
 \end{equation}
+%
 \begin{equation}
 \mathbf{x}=
 \left(
 	\begin{array}{c}
-		x-x_0\\
-		y-y_0\\
-		z-z_0\\
-		n_0^2-n_1^2\\
-		n_0^2-n_2^2\\
-		n_0^2-n_3^2\\
-		\Theta_0n_0-\Theta_1n_1\\
-		\Theta_0n_0-\Theta_2n_2\\
-		\Theta_0n_0-\Theta_3n_3
-		
+		x-x_0	\\
+		y-y_0	\\
+		z-z_0	\\
+		n_0^2-n_1^2	\\
+		(\dots)	\\
+		n_0^2-n_k^2	\\
+		\Theta_0n_0-\Theta_1n_1	\\
+		(\dots)	\\
+		\Theta_0n_0-\Theta_kn_k	
 	\end{array}
 \right)
 \end{equation}
-Das Ergebnis ist eine $3\times9$ und eine $1\times9$ Matrix. Würde man eine Antenne zur Berechnung hinzufügen würde sich die Matrix $\mathbf{A}$ würde sich um zwei Spalten und um eine Zeile erweitern, der Vektor $\mathbf{x}$ analog um 2 Zeilen.
+Das Ergebnis ist eine $3\times9$ und eine $1\times9$ Matrix. Es ist möglich diesem Modell eine beliebige Anzahl an Antennen hinzuzufügen. Fügt man eine Antenne zur Berechnung hinzufügen würde sich die Matrix $\mathbf{A}$ um zwei Spalten und eine Zeile erweitern, der Vektor $\mathbf{x}$ analog um 2 Zeilen.
 
 }

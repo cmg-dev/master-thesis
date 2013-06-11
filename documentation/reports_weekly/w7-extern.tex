@@ -97,13 +97,51 @@
 %- Section 2 ----------------------------------------------------------------
 \section[Fortschritt]{Projektfortschritt}
 %
+Das neue FPGA-Board wurde in dieser Woche zusammen mit S. Gnip und M. Hüther in Betrieb genommen. Dabei gab es Probleme mit der Ansteuerung der neuen AD-Wandler (Details siehe \ref{Problems}). 
+%
 %- Section 2.2 --------------------------------------------------------------
 \subsection{Matrix Konditionierung}
+Um die Beurteilung der Konditionszahl der Matrizen effizient durchführen zu können, wurde in dieser Woche ein kleines Tool geschrieben. Es erstellt automatisch, auf Basis der durch die Kalibrierung bestimmten Koordinaten, alle möglichen Permutationen von Antennen. Die sich ergebenen Matrizen sind immer auf eine Referenzantenne bezogen. Es ergeben sich für eine Referenzantenne folgende Anzahl an Matrizen:
+% 
+\begin{equation}
+\frac{7!}{3!(7-3)!}=35
+\end{equation}
+%
+Das erstellte Tool soll in ein entsprechendes C++-Programm portiert werden. Diese Berechnungen werden im späteren System auf jeden Fall anfallen.\\
+Um die Konditionszahl zu bestimmen sind aufwändige Berechnungen\footnote{siehe Wochenbericht KW 22} der Eigenwerte der Matrix notwendig. Es wurde nach eine Möglichkeit gesucht diese effizient abzuschätzen. Vor Allem soll es auch möglich sein mit dem Verfahren eine nicht symmetrische, nicht quadratische.\\
+Eine Methode die diese Anforderungen erfüllt, ist die sog. Singulärwertzerlegung (im Folgenden SVD := engl. Singular Value Decomposition). Die SVD basiert auf folgender Theorie linearen Algebra: Jede $M \times N$ Matrix $\mathbf{A}$ kann als Produkt einer $M \times N$ Spalten-orthogonalen Matrix $\mathbf{U}$, einer $N \times N$ Diagonalmatrix mit $\mathbf{\Sigma}$ mit Werten $\geq 0$ und einer dritten adjungierten $N \times N$-Matrix $\mathbf{V^*}$, so ergibt sich:
+\begin{equation}
+\mathbf{A}= \mathbf{U \Sigma V^*} = \mathbf{U \Sigma V}^T
+\end{equation}
+Da $\mathbf{A}$ eine reelwertige Matrix ist gilt: $ \mathbf{V^*} = \mathbf{V}^T $. Die Matrix $\mathbf{ \Sigma }$ enthält die Singulärwerte $\sigma_r$ und hat folgende Gestalt.
+%
+\begin{equation}
+	\mathbf{\Sigma} = \left(\begin{array}{ccc|ccc}
+	\sigma_1 &          &          &        & \vdots &        \\
+	         & \ddots   &          & \cdots & 0      & \cdots \\
+	         &          & \sigma_r &        & \vdots &        \\
+	\hline
+	         &  \vdots  &          &        & \vdots &        \\
+	\cdots   &  0       & \cdots   & \cdots & 0      & \cdots \\
+	         &  \vdots  &          &        & \vdots &        \\
+	
+	\end{array}\right)\\
+\end{equation}
+\begin{equation}
+\sigma_1\geq\cdots\geq\sigma_r> 0
+\end{equation}
+%
+Aus dieser Matrix kann die Konditionszahl bestimmt werden, sie berechnet sich aus dem Verhältnis von $ max(\sigma_r) / min(\sigma_r) $. 
+Die spätere Implementation des SVD-Algorithmus wird aus \cite{press2007numerical} entnommen. 
+%\cite{zurmuehl1986matrizen} 
 %
 \subsection{Besprechung am Mittwoch}
+Am Mittwoch fand die Besprechung mit Fr. Susanne Winter statt.
 %
 %- Section 3 -----------------------------------------------------------------
 \section{Probleme}
+\label{Problems}
+Auf dem neuem FPGA-Board wird es voraussichtlich nicht möglich sein, vier AD-Wandler zu betreiben. Der Grund dafür ist, dass nicht so viele LVDS-Leitungen wie beworben bei dem verwendeten Alter-FPGA verwendet werden dürfen. Diese Probleme gefährden dieses Projekt jedoch nicht.
 %
 %- Appendix ------------------------------------------------------------------
 \input{extern/append/appendix_w7.tex}
