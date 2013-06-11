@@ -46,7 +46,7 @@ set view 50, 335, 1, 1
 
 set terminal pngcairo enhanced size 1024,768
 
-set output 'surface2.16.png'
+set output 'fenceModell3x3.png'
 
 
 splot for [i=0:col-1] 'data2.tab' every :::(2*i)::(2*i+1) u 1:(i):2:(i+2) w pm3d
