@@ -1,0 +1,157 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{draftwatermark}
+\usepackage{booktabs}
+\usepackage{blindtext} 
+\usepackage{framed} 
+\usepackage{xcolor} 
+\colorlet{shadecolor}{black} 
+
+\usepackage{enumitem}
+
+\SetWatermarkText{Vertraulich}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
+
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usepackage{tikz}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+}
+
+\fancyhead[C]{ Wochenbericht KW 24 }
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ EXTERN }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+\input{../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+
+\setlength{\headheight}{36pt}
+
+\begin{titlepage}
+
+\input{extern/title/title_w8.tex}
+
+\end{titlepage}
+
+%- Section 1 ----------------------------------------------------------------
+\section[Allgemeines]{Allgemeines}
+%
+%- Section 2 ----------------------------------------------------------------
+\section[Fortschritt]{Projektfortschritt}
+%
+Das neue FPGA-Board wurde in dieser Woche zusammen mit S. Gnip und M. Hüther in Betrieb genommen. Dabei gab es Probleme mit der Ansteuerung der neuen AD-Wandler (Details siehe \ref{Problems}). Es wurde mit der Implementation eines Algorithmus begonnen, der die Antennenpermutationen anhand der bekannten Koordinaten der einzelnen Antennen berechnet. Dieser Algorithmus konnte in dieser Woche nicht fertiggestellt werden.
+%
+%- Section 2.2 --------------------------------------------------------------
+\subsection{Matrix Konditionierung}
+Um die Beurteilung der Konditionszahl der Matrizen effizient durchführen zu können, wurde in dieser Woche ein Tool geschrieben. Es erstellt automatisch, auf Basis der durch die Kalibrierung bestimmten Koordinaten, alle möglichen Permutationen von Antennen. Die sich ergebenen Matrizen sind immer auf eine Referenzantenne bezogen. Es ergeben sich für eine Referenzantenne folgende Anzahl an Matrizen:
+% 
+\begin{equation}
+\frac{7!}{3!(7-3)!}=35
+\end{equation}
+%
+Insgesamt ergeben sich so $8\times 35 = 280$ mögliche Anordnungen. Das erstellte Tool soll in ein entsprechendes C++-Programm portiert werden. Diese Berechnungen werden im späteren System auf jeden Fall anfallen.\\
+Um die Konditionszahl zu bestimmen sind aufwändige Berechnungen\footnote{siehe Wochenbericht KW 22} der Eigenwerte der Matrix notwendig. Es wurde nach eine Möglichkeit gesucht diese effizient abzuschätzen oder zu berechnen. Vor Allem soll es auch möglich sein mit dem Verfahren eine nicht symmetrische, nicht quadratische.\\
+Eine Methode die diese Anforderungen erfüllt, ist die sog. Singulärwertzerlegung (im Folgenden SVD := engl. Singular Value Decomposition). Die SVD basiert auf folgender Theorie linearen Algebra: Jede $M \times N$ Matrix $\mathbf{A}$ kann als Produkt einer $M \times N$ Spalten-orthogonalen Matrix $\mathbf{U}$, einer $N \times N$ Diagonalmatrix mit $\mathbf{\Sigma}$ mit Werten $\geq 0$ und einer dritten adjungierten $N \times N$-Matrix $\mathbf{V^*}$, so ergibt sich:
+\begin{equation}
+\mathbf{A}= \mathbf{U \Sigma V^*} = \mathbf{U \Sigma V}^T
+\end{equation}
+Da $\mathbf{A}$ eine reelwertige Matrix ist gilt: $ \mathbf{V^*} = \mathbf{V}^T $. Die Matrix $\mathbf{ \Sigma }$ enthält die Singulärwerte $\sigma_r$ und hat folgende Gestalt.
+%
+\begin{equation}
+	\mathbf{\Sigma} = \left(\begin{array}{ccc|ccc}
+	\sigma_1 &          &          &        & \vdots &        \\
+	         & \ddots   &          & \cdots & 0      & \cdots \\
+	         &          & \sigma_r &        & \vdots &        \\
+	\hline
+	         &  \vdots  &          &        & \vdots &        \\
+	\cdots   &  0       & \cdots   & \cdots & 0      & \cdots \\
+	         &  \vdots  &          &        & \vdots &        \\
+	
+	\end{array}\right)\\
+\end{equation}
+\begin{equation}
+\sigma_1\geq\cdots\geq\sigma_r> 0
+\end{equation}
+%
+Da die $\sigma_r$ der Matrix mit den Eigenwerten in Verbindung stehen, kann aus dieser Matrix kann die Konditionszahl bestimmt werden. Sie berechnet sich aus dem Verhältnis von $ max(\sigma_r) / min(\sigma_r) $. 
+Die spätere Implementation des SVD-Algorithmus wird aus \cite{press2007numerical} entnommen. Weiter Informationen zum Verfahren sind in \cite[Kaptiel 4.6.3]{bronstejn2012taschenbuch}
+%
+\subsection{Besprechung am Mittwoch}
+Am Mittwoch fand die Besprechung mit Fr. Susanne Winter statt. Ihr wurde das Projekt in groben Zügen vorgestellt. Sie wird im Rahmen des Projektes für Detailfragen zur Implementierung und Eignung der Modelle für eine Evolutionäre Optimierung zur Verfügung stehen. Dadurch ist zu erwarten, dass die Implementationszeit verkürzt werden kann.
+%
+\subsection{Umstellung des Modells}
+%
+Ein neuer Ansatz für das Modell ist in dieser Woche entstanden. Es wurde der in der Art umgestellt, dass nun alle Variablen in dem Variablenvektor $\mathbf{x}$ enthalten sind. Im Anhang~\ref{trilateration_model_new} ist dieses Modell skizziert.
+%
+%- Section 3 -----------------------------------------------------------------
+\section{Probleme}
+\label{Problems}
+Auf dem neuem FPGA-Board wird es voraussichtlich nicht möglich sein, vier AD-Wandler zu betreiben. Der Grund dafür ist, dass nicht so viele LVDS-Leitungen wie vom Hersteller beworben verwendet werden dürfen. Die Spannungsversorgung war nicht ausreichend dimensioniert. Dieses Problem wurde von S. Gnip durch eine Anpassung der verbauten IC's behoben. Diese aufgetretenen Probleme gefährden dieses Projekt nicht.
+%
+%- Appendix ------------------------------------------------------------------
+\input{extern/append/appendix_w8.tex}
+
+\newpage
+%- Bibliography --------------------------------------------------------------
+\bibliographystyle{ieeetr}
+\bibliography{../bib/mathesis_collection1}
+
+\end{document}
