@@ -32,6 +32,8 @@
 \usetikzlibrary[arrows,snakes,backgrounds,shapes]
 \usetikzlibrary{through}
 \usetikzlibrary{calc}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % highlighting
 \usepackage{xcolor,soul}
@@ -99,17 +101,63 @@
 %
 In dieser Woche wurden die Algorithmen verifiziert. Die Permutationen und die Koeffizienten werden korrekt berechnet. Es wurde mit der Umsetzung der Excel Referenzimplementation in ein C++ Modul begonnen.
 %
-%- Section 2.2 --------------------------------------------------------------
+%- Section 2.1 --------------------------------------------------------------
 \subsection{Umsetzung Algorithmus}
-In dieser Woche wurde begonnen den Algorithmus in ein C++ Modul zu portieren. Um den Compilevorgang zu automatisieren und Plattformunabhängigkeit zu gewährleisten, wurde ein CMake-Skript erstellt. Das Skript steuert erstellt das eigentliche Makefile, das im Anschluss ausgeführt werden kann. Im CMakefile, kann auch eine Referenz auf deinen Cross-Compiler angegeben werden, sodass gegen die Architektur eines beliebigen Zielsystems compiliert werden kann. Die Umsetzung konnte in dieser Woche nicht abgeschlossen werden.
+In dieser Woche wurde begonnen den Algorithmus in ein C++ Modul zu portieren. Um den Compilevorgang zu automatisieren und Plattformunabhängigkeit zu gewährleisten, wurde ein CMake-Skript erstellt. Das Skript steuert erstellt das eigentliche Makefile, das im Anschluss ausgeführt werden kann. Im CMakefile kann auch eine Referenz auf deinen Cross-Compiler angegeben werden, sodass gegen die Architektur eines beliebigen Zielsystems compiliert werden kann. Die Umsetzung konnte in dieser Woche nicht abgeschlossen werden.
+%
+%- Section 2.2 --------------------------------------------------------------
+\subsection{Erweiterte Betrachtung der Kondition}
+In der letzten Woche wurde das Modell umgestellt, das führte im Wesentlichen zu eine Erweiterung der Matrix. Aus dieser Form ergeben sich einige Vorteile für Implementation und Verifikation, jedoch sind nun auch die Messwerte Teil der Matrix. Das macht die Konditionszahl variabel und Abhängig von den gemessenen Messwerten.\\
+Im Folgenden wurde Untersucht inwieweit, die Zerlegung in Blockmatrizen und die Untersuchung der Kondition dieser, eine Abschätzung der vollständigen Konditionszahl im allgemeinen darstellt. 
+\begin{equation}
+\mathbf{A}=\bigg( \mathbf{Z}\quad \mathbf{P}\quad \mathbf{V}\bigg)
+\end{equation}
+Dabei ist:
+\begin{equation}
+\mathbf{Z} \in \mathbb{R}^{3x3} \quad \mathbf{P} \in \mathbb{R}^{3x3} \quad \mathbf{V}\in \mathbb{R}^{4x3}
+\end{equation}
+Die Matrizen $\mathbf{Z}$ und $\mathbf{P}$ sind statisch. Hingegen enthält die Matrix $\mathbf{V}$ die gemessenen Phasenwerte $\Theta_k$ der Antennen für diese Konfiguration. \\
+%
+Zur Zeit wird nach Literatur gesucht, die diese Überlegungen stützen.\\
+%
+Die Abbildung~\ref{fig:CondNumberAnalyze} zeigt die bereits angestellte Untersuchung zu dieser Überlegung. Abbildung~\ref{fig:AnalyzeOf3x3} stellt die Konditionszahl der rein geometrischen $3\times3$-Matrix dar. In der Abbildung~\ref{fig:AnalyzeOf10x3} sehen wir die Kondition der erweiterten Matrix. Neben der geometrischen sind auch die beiden anderen Blockmatrizen in diese Konditionsbetrachtung eingeflossen. Als zusätzliche Angabe wird ist sind die Skalierungsfaktoren angegeben. Legt man beide Grafiken übereinander erkennt man:
+\begin{enumerate}
+\item Geometrisch gut konditionierte Konfigurationen (linke Grafik), bleiben im erweiterten Modell (rechte Grafik) weiterhin gut konditioniert.
+\item Die Konditionszahl der \textit{schlechteste} ist wesentlich kleiner (ca. Faktor $10$) als im rein geometrischen Modell
+\end{enumerate} 
+%
+\begin{figure}
+         \centering
+         \begin{subfigure}[h]{0.5\textwidth}
+                 \centering
+                 \includegraphics[width=\textwidth]{common/img/fenceModell3x3.png}
+                 \caption{Konditionszahl der rein geometrischen $3\times3$ Matrix normiert auf den größten vorkommenden Wert ($=2149,16                 $)}
+                 \label{fig:AnalyzeOf3x3}
+         \end{subfigure}
+%         
+         \begin{subfigure}[h]{0.5\textwidth}
+                 \centering
+                 \includegraphics[width=\textwidth]{common/img/fenceModell9x3.png}
+                 \caption{Konditionszahl der $10\times3$ Matrix normiert auf den größten vorkommenden Wert ($=257,13$); In dieser Konfiguration sind die Konstanten ($a_1$ \& $a_2$) sowie die variablen, gemessenen Phasen $\Theta_k$ enthalten}
+                 \label{fig:AnalyzeOf10x3}
+         \end{subfigure}
+%
+         \caption{Analyse der Konditionszahlen aller möglichen Matrizen für den Messaufbau; Die Konditionszahl ist für jede mögliche Permutation an Messantennen für eine Referenzantenne angegeben}\label{fig:CondNumberAnalyze}
+\end{figure}
+%
+Die Grafik zeigt weiterhin, dass es für jede Referenzantenne aus der Geometrie alleine gute Konfigurationen existieren. Aus diesen Erkenntnissen kann in späteren Aufbauten, die Position der Antennen optimiert werden. Ziel der Optimierung wäre es, die Anzahl der Antennenpermutationen mit kleiner Konditionszahl zu maximieren.
+%
+%- Section 2.3 --------------------------------------------------------------
+\subsection{Anwendung der Kondition}
+Weitere Anwendung, die sich aus der Konditionszahl der Matrix ableiten, ist denkbar. Für die FPGA-Software ist, parallel zu diesem Projekt, eine intelligente Umschaltung der Antennen in der Planung. Die Kondition der geometrische Matrix verändert sich nach dem Kalibrieren nicht mehr. Dadurch und durch die oben beschriebenen Überlegungen kann statisch eine Abschätzung für die Konditionszahl, von zwei der drei Blockmatrizen, im Vorfeld erstellt werden. Die Konditionszahl dient zum Steuern der Umschaltung. Ordner man die möglichen Konfiguration anhand ihrer Konditionszahl (niedrigste zuerst) in einer statischen Liste an so kann im FPGA eine einfache, schlaue Umschaltung implementiert werden. Diese würde immer dafür sorgen, dass Messdaten von einer Konfiguration bevorzugt werden, die eine niedrige Konditionszahl hat und somit relativ sicher zu einer guten Lösung führen.
 %
 \subsection{Besprechung am Mittwoch}
-Am Mittwoch fand die Besprechung mit Fr. Susanne Winter statt. Ihr wurde das Projekt in groben Zügen vorgestellt. Sie wird im Rahmen des Projektes für Detailfragen zur Implementierung und Eignung der Modelle für eine Evolutionäre Optimierung zur Verfügung stehen. Dadurch ist zu erwarten, dass die Implementationszeit verkürzt werden kann.
+Am Mittwoch fand eine weitere Besprechung mit Fr. Susanne Winter statt. Mit ihr wurden einige Fragen zur Messdatenaufnahme sowie zur Gestalt der Messdaten erörtert. Ein weiteres Gespräch wird voraussichtlich in der nächsten Woche stattfinden. Geplant ist bei diesem Treffen Implementationsdetails für die Shark-Library zu besprechen, da Fr. Winter Anwendungserfahrung mit dieser Library hat.
 %
 %- Section 3 -----------------------------------------------------------------
 \section{Probleme}
 \label{Problems}
-Auf dem neuem FPGA-Board wird es voraussichtlich nicht möglich sein, vier AD-Wandler zu betreiben. Der Grund dafür ist, dass nicht so viele LVDS-Leitungen wie vom Hersteller beworben verwendet werden dürfen. Die Spannungsversorgung war nicht ausreichend dimensioniert. Dieses Problem wurde von S. Gnip durch eine Anpassung der verbauten IC's behoben. Diese aufgetretenen Probleme gefährden dieses Projekt nicht.
+Es liegen immer noch keine weiteren Messdaten vor. Die Entwicklung des FPGA-Systems wird parallel vorangetrieben.
 %
 %- Appendix ------------------------------------------------------------------
 \input{extern/append/appendix_w8.tex}
