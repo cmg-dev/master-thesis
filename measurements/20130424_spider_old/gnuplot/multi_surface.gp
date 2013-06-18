@@ -2,8 +2,11 @@
 
 reset 
 
-set terminal wxt size 1000,1000 enhanced font 'Verdana,10' persist
 
+# set terminal pngcairo enhanced size 1024,768
+# set output 'multi.png'
+
+set terminal wxt size 1000,1000 enhanced font 'Verdana,10' persist
 # color definitions
 set style line  1 lc rgb '#0060ad' pt 5 ps 0.2 lt 1 lw 2    # blue
 
@@ -43,6 +46,7 @@ set xrange [-1:10]
 set yrange [-1:10]
 set zrange [-300:300]
 #set view 20,20,1.0,1.0
+
 set dgrid3d 20,20,3
 show contour
 
@@ -52,9 +56,9 @@ set contour
 
 set palette defined ( 1 0 0 0 , 2 1 1 1 , 3 0 0 0 )
 
+
 set multiplot layout 4,2 rowsfirst \
       title "Surface Plot of Antenna Data"
-
 
 # unset colorbox
 @TMARGIN; @LMARGIN
@@ -67,23 +71,23 @@ splot "gp_ready_a1_1.txt"
 # set lable 1 'A1_1' at @POS
 splot "gp_ready_a1_2.txt" 
 
-#@M1MARGIN; @LMARGIN
-#@NOXTICS; @YTICS
-## set lable 1 'A2_1' at @POS
-#splot "gp_ready_a2_1.txt" 
+@M1MARGIN; @LMARGIN
+@NOXTICS; @YTICS
+# set lable 1 'A2_1' at @POS
+splot "gp_ready_a2_1.txt"
 
-#@M1MARGIN; @RMARGIN
-#@NOXTICS; @NOYTICS
-## set lable 1 'A2_2' at @POS
-#splot "gp_ready_a2_2.txt" 
+@M1MARGIN; @RMARGIN
+@NOXTICS; @NOYTICS
+# set lable 1 'A2_2' at @POS
+splot "gp_ready_a2_2.txt"
 
-#@M2MARGIN; @LMARGIN
-#@NOXTICS; @YTICS
-#splot "gp_ready_a3_1.txt"
+@M2MARGIN; @LMARGIN
+@NOXTICS; @YTICS
+splot "gp_ready_a3_1.txt"
 
-#@M2MARGIN; @RMARGIN
-#@NOXTICS; @NOYTICS
-#splot "gp_ready_a3_2.txt" 
+@M2MARGIN; @RMARGIN
+@NOXTICS; @NOYTICS
+splot "gp_ready_a3_2.txt"
 
 @BMARGIN; @LMARGIN
 @XTICS; @YTICS

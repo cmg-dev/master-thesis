@@ -3,32 +3,27 @@
 
 #include "nr3/nr3.h"
 #include "nr3/svd.h"
-#include "prps.h"
-
+#include "coords.h"
+#include "PRPSEvolution.h"
+#include "PRPSError.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <array>
 
+using namespace PRPSEvolution;
+/*****************************************************************************/
+/*****************************************************************************/
+/*****************************************************************************/
 
 /**
  * The maximum amount of Permutations for one reference antenna
  */
 const int MAX_PERMUTATION_AMOUNT = 35;
 
-/**
- *	
- */
-template <class T>
-struct coords {
-	T x, y, z;
 
-	/* set x-y-z to the initial value */
-// 	coords( T _initVal )  {
-// 		x = y = z = _initVal;
-// 
-// 	};
-	
-};
+/*****************************************************************************/
+/*****************************************************************************/
+/*****************************************************************************/
 
 /**
  * This will collect some stuff for calculating the permutation of the antennas
@@ -37,20 +32,73 @@ struct coords {
 struct permuteAntennas {
 	int ref;
 	/* We will store the x-y-z-coords we received from the Antenna in this array */
-	std::array<coords<double>, ANTENNA_AMOUNT> antennaCoords;
+ 	Positioning::CoordContainer<ANTENNA_AMOUNT, double> AntennaCoordinates;
 	
 	/* store the reference antenna while constructing */
   	permuteAntennas( int _refAnt ) { ref = _refAnt; };
 
-
+	
 	// read in and store in antennaCoords
-// 	readCSVFile();
+	int readCSVFile();
 
-	//compute permutations
-
-	//
-// 	permut
+	/* this method will compute all the possible permutations */
+	int computePermutations();
+	
 };
+
+/**
+ * Load the csv-file containing the coordinates and store it into the container
+ *
+ */
+int permuteAntennas::readCSVFile() {
+// 		ifstream		file ( "MeasuredDistances.dat" );
+	ifstream		file ( "data/test.dat" );
+	std::string		line;
+	int				valuesRead;
+	int				linesRead;
+
+	valuesRead = linesRead = 0;
+
+	/* simply fill with 0 */
+	for( int i = 0; i < ANTENNA_AMOUNT; i++ ) {
+		AntennaCoordinates.x_[ i ] = 0.0;
+		AntennaCoordinates.y_[ i ] = 0.0;
+		AntennaCoordinates.z_[ i ] = 0.0;
+
+	}
+	
+	while( getline( file,line ) ) {
+		std::stringstream   linestream( line );
+		std::string         value;
+
+		valuesRead = 0;
+		while( getline( linestream, value, ',' ) ) {
+			std::cout <<  value << " ";
+			
+			AntennaCoordinates.x_[ valuesRead ] = ( linesRead == 0 ) ? stod(value):(AntennaCoordinates.x_[ valuesRead ]) ;
+			AntennaCoordinates.y_[ valuesRead ] = ( linesRead == 1 ) ? stod(value):(AntennaCoordinates.y_[ valuesRead ]) ;
+			AntennaCoordinates.z_[ valuesRead ] = ( linesRead == 2 ) ? stod(value):(AntennaCoordinates.z_[ valuesRead ]) ;
+			
+			valuesRead++;
+
+		}
+		/* a line is read */
+		if( valuesRead != PRPSEvolution::EXPECTED_VALUES_COORD_FILE )
+			return PRPSError::FileIO::inputmalformed;
+
+		linesRead++;
+		std::cout << std::endl;
+
+	}
+	
+	/* check the input */
+	if( linesRead != PRPSEvolution::EXPECTED_LINES_COORD_FILE )
+		return PRPSError::FileIO::inputmalformed;
+
+
+	
+	return PRPSError::okay;
+}
 
 /**
  * 
