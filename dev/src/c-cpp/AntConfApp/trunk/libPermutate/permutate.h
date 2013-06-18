@@ -51,8 +51,7 @@ struct permuteAntennas {
  *
  */
 int permuteAntennas::readCSVFile() {
-// 		ifstream		file ( "MeasuredDistances.dat" );
-	ifstream		file ( "data/test.dat" );
+	ifstream		file ( "data/MeasuredDistances.dat" );
 	std::string		line;
 	int				valuesRead;
 	int				linesRead;
@@ -66,7 +65,7 @@ int permuteAntennas::readCSVFile() {
 		AntennaCoordinates.z_[ i ] = 0.0;
 
 	}
-	
+
 	while( getline( file,line ) ) {
 		std::stringstream   linestream( line );
 		std::string         value;
@@ -74,11 +73,16 @@ int permuteAntennas::readCSVFile() {
 		valuesRead = 0;
 		while( getline( linestream, value, ',' ) ) {
 			std::cout <<  value << " ";
-			
-			AntennaCoordinates.x_[ valuesRead ] = ( linesRead == 0 ) ? stod(value):(AntennaCoordinates.x_[ valuesRead ]) ;
-			AntennaCoordinates.y_[ valuesRead ] = ( linesRead == 1 ) ? stod(value):(AntennaCoordinates.y_[ valuesRead ]) ;
-			AntennaCoordinates.z_[ valuesRead ] = ( linesRead == 2 ) ? stod(value):(AntennaCoordinates.z_[ valuesRead ]) ;
-			
+
+			try {
+// 				AntennaCoordinates.x_[ valuesRead ] = std::stod(value);
+// 				AntennaCoordinates.x_[ valuesRead ] = ( linesRead == 0 ) ? std::stod(value):(AntennaCoordinates.x_[ valuesRead ]) ;
+// 				AntennaCoordinates.y_[ valuesRead ] = ( linesRead == 1 ) ? std::stod(value):(AntennaCoordinates.y_[ valuesRead ]) ;
+// 				AntennaCoordinates.z_[ valuesRead ] = ( linesRead == 2 ) ? std::stod(value):(AntennaCoordinates.z_[ valuesRead ]) ;
+			} catch ( char * str ) {
+				cout << "Exception raised: " << str << '\n';
+
+			}
 			valuesRead++;
 
 		}
@@ -88,9 +92,8 @@ int permuteAntennas::readCSVFile() {
 
 		linesRead++;
 		std::cout << std::endl;
-
 	}
-	
+
 	/* check the input */
 	if( linesRead != PRPSEvolution::EXPECTED_LINES_COORD_FILE )
 		return PRPSError::FileIO::inputmalformed;
