@@ -1,2 +1,1 @@
-/usr/bin/ar cr liblibPermutate.a  CMakeFiles/libPermutate.dir/permutate.cpp.o
-/usr/bin/ranlib liblibPermutate.a
+/usr/bin/c++  -fPIC -std=c++0x    -shared -Wl,-soname,liblibpermutate.so -o liblibpermutate.so CMakeFiles/libpermutate.dir/permutate.cpp.o 

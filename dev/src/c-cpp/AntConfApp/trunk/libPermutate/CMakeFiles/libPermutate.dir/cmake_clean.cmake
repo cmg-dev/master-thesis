@@ -1,10 +1,10 @@
 FILE(REMOVE_RECURSE
-  "CMakeFiles/libPermutate.dir/permutate.cpp.o"
-  "liblibPermutate.pdb"
-  "liblibPermutate.a"
+  "CMakeFiles/libpermutate.dir/permutate.cpp.o"
+  "liblibpermutate.pdb"
+  "liblibpermutate.so"
 )
 
 # Per-language clean rules from dependency scanning.
 FOREACH(lang CXX)
-  INCLUDE(CMakeFiles/libPermutate.dir/cmake_clean_${lang}.cmake OPTIONAL)
+  INCLUDE(CMakeFiles/libpermutate.dir/cmake_clean_${lang}.cmake OPTIONAL)
 ENDFOREACH(lang)

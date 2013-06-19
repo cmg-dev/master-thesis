@@ -41,62 +41,63 @@ CMAKE_SOURCE_DIR = /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk
 CMAKE_BINARY_DIR = /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk
 
 # Include any dependencies generated for this target.
-include libPermutate/CMakeFiles/permutate.dir/depend.make
+include libPermutate/CMakeFiles/Permutate.dir/depend.make
 
 # Include the progress variables for this target.
-include libPermutate/CMakeFiles/permutate.dir/progress.make
+include libPermutate/CMakeFiles/Permutate.dir/progress.make
 
 # Include the compile flags for this target's objects.
-include libPermutate/CMakeFiles/permutate.dir/flags.make
+include libPermutate/CMakeFiles/Permutate.dir/flags.make
 
-libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o: libPermutate/CMakeFiles/permutate.dir/flags.make
-libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o: libPermutate/permutate.cpp
+libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o: libPermutate/CMakeFiles/Permutate.dir/flags.make
+libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o: libPermutate/permutate.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o"
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/permutate.dir/permutate.cpp.o -c /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate/permutate.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o"
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Permutate.dir/permutate.cpp.o -c /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate/permutate.cpp
 
-libPermutate/CMakeFiles/permutate.dir/permutate.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/permutate.dir/permutate.cpp.i"
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate/permutate.cpp > CMakeFiles/permutate.dir/permutate.cpp.i
+libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Permutate.dir/permutate.cpp.i"
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate/permutate.cpp > CMakeFiles/Permutate.dir/permutate.cpp.i
 
-libPermutate/CMakeFiles/permutate.dir/permutate.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/permutate.dir/permutate.cpp.s"
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate/permutate.cpp -o CMakeFiles/permutate.dir/permutate.cpp.s
+libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Permutate.dir/permutate.cpp.s"
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate/permutate.cpp -o CMakeFiles/Permutate.dir/permutate.cpp.s
 
-libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o.requires:
-.PHONY : libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o.requires
+libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o.requires:
+.PHONY : libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o.requires
 
-libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o.provides: libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o.requires
-	$(MAKE) -f libPermutate/CMakeFiles/permutate.dir/build.make libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o.provides.build
-.PHONY : libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o.provides
+libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o.provides: libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o.requires
+	$(MAKE) -f libPermutate/CMakeFiles/Permutate.dir/build.make libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o.provides.build
+.PHONY : libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o.provides
 
-libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o.provides.build: libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o
+libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o.provides.build: libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o
 
-# Object files for target permutate
-permutate_OBJECTS = \
-"CMakeFiles/permutate.dir/permutate.cpp.o"
+# Object files for target Permutate
+Permutate_OBJECTS = \
+"CMakeFiles/Permutate.dir/permutate.cpp.o"
 
-# External object files for target permutate
-permutate_EXTERNAL_OBJECTS =
+# External object files for target Permutate
+Permutate_EXTERNAL_OBJECTS =
 
-libPermutate/libpermutate.so: libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o
-libPermutate/libpermutate.so: libPermutate/CMakeFiles/permutate.dir/build.make
-libPermutate/libpermutate.so: libPermutate/CMakeFiles/permutate.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX shared library libpermutate.so"
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/permutate.dir/link.txt --verbose=$(VERBOSE)
+libPermutate/libPermutate.a: libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o
+libPermutate/libPermutate.a: libPermutate/CMakeFiles/Permutate.dir/build.make
+libPermutate/libPermutate.a: libPermutate/CMakeFiles/Permutate.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX static library libPermutate.a"
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && $(CMAKE_COMMAND) -P CMakeFiles/Permutate.dir/cmake_clean_target.cmake
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Permutate.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-libPermutate/CMakeFiles/permutate.dir/build: libPermutate/libpermutate.so
-.PHONY : libPermutate/CMakeFiles/permutate.dir/build
+libPermutate/CMakeFiles/Permutate.dir/build: libPermutate/libPermutate.a
+.PHONY : libPermutate/CMakeFiles/Permutate.dir/build
 
-libPermutate/CMakeFiles/permutate.dir/requires: libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o.requires
-.PHONY : libPermutate/CMakeFiles/permutate.dir/requires
+libPermutate/CMakeFiles/Permutate.dir/requires: libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o.requires
+.PHONY : libPermutate/CMakeFiles/Permutate.dir/requires
 
-libPermutate/CMakeFiles/permutate.dir/clean:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && $(CMAKE_COMMAND) -P CMakeFiles/permutate.dir/cmake_clean.cmake
-.PHONY : libPermutate/CMakeFiles/permutate.dir/clean
+libPermutate/CMakeFiles/Permutate.dir/clean:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate && $(CMAKE_COMMAND) -P CMakeFiles/Permutate.dir/cmake_clean.cmake
+.PHONY : libPermutate/CMakeFiles/Permutate.dir/clean
 
-libPermutate/CMakeFiles/permutate.dir/depend:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate/CMakeFiles/permutate.dir/DependInfo.cmake --color=$(COLOR)
-.PHONY : libPermutate/CMakeFiles/permutate.dir/depend
+libPermutate/CMakeFiles/Permutate.dir/depend:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate/CMakeFiles/Permutate.dir/DependInfo.cmake --color=$(COLOR)
+.PHONY : libPermutate/CMakeFiles/Permutate.dir/depend
 
