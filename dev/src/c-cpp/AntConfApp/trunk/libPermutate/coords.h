@@ -15,7 +15,6 @@ namespace PRPSEvolution {
 			T x_[N], y_[N], z_[N];
 
 			/* set x-y-z to the initial value */
-		// 	template< typename T1>
 			CoordContainer( );
 
 			typedef T value_type;
@@ -24,7 +23,6 @@ namespace PRPSEvolution {
 			CoordContainer( T1 init );
 
 			T& operator[](std::size_t i);
-// 			void setCoordinates(T _X, T _Y, T _Z );
 			
 		};
 
@@ -39,6 +37,7 @@ namespace PRPSEvolution {
 
 			}
 		}
+		
 		/**
 		 *
 		 */
@@ -49,6 +48,7 @@ namespace PRPSEvolution {
 
 			}
 		}
+		
 		/**
 		 *
 		 */

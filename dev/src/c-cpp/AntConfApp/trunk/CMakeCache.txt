@@ -158,6 +158,15 @@ CMAKE_USE_RELATIVE_PATHS:BOOL=OFF
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Dependencies for target
+Permutate_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
+libPermutate_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
+libpermutate_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
 permutate_LIB_DEPENDS:STATIC=
 
 

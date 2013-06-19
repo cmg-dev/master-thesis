@@ -99,25 +99,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-test/CMakeFiles/test.dir/rule:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/test.dir/rule
-.PHONY : test/CMakeFiles/test.dir/rule
+test/CMakeFiles/AntConfApp.dir/rule:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/AntConfApp.dir/rule
+.PHONY : test/CMakeFiles/AntConfApp.dir/rule
 
 # Convenience name for target.
-test: test/CMakeFiles/test.dir/rule
-.PHONY : test
+AntConfApp: test/CMakeFiles/AntConfApp.dir/rule
+.PHONY : AntConfApp
 
 # fast build rule for target.
-test/fast:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/build
-.PHONY : test/fast
+AntConfApp/fast:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/build
+.PHONY : AntConfApp/fast
 
 AntennaConfiguration.o: AntennaConfiguration.cpp.o
 .PHONY : AntennaConfiguration.o
 
 # target to build an object file
 AntennaConfiguration.cpp.o:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/AntennaConfiguration.cpp.o
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o
 .PHONY : AntennaConfiguration.cpp.o
 
 AntennaConfiguration.i: AntennaConfiguration.cpp.i
@@ -125,7 +125,7 @@ AntennaConfiguration.i: AntennaConfiguration.cpp.i
 
 # target to preprocess a source file
 AntennaConfiguration.cpp.i:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/AntennaConfiguration.cpp.i
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.i
 .PHONY : AntennaConfiguration.cpp.i
 
 AntennaConfiguration.s: AntennaConfiguration.cpp.s
@@ -133,7 +133,7 @@ AntennaConfiguration.s: AntennaConfiguration.cpp.s
 
 # target to generate assembly for a file
 AntennaConfiguration.cpp.s:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/AntennaConfiguration.cpp.s
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.s
 .PHONY : AntennaConfiguration.cpp.s
 
 # Help Target
@@ -142,9 +142,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... AntConfApp"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test"
 	@echo "... AntennaConfiguration.o"
 	@echo "... AntennaConfiguration.i"
 	@echo "... AntennaConfiguration.s"

@@ -1,0 +1,2 @@
+/usr/bin/ar cr liblibPermutate.a  CMakeFiles/libPermutate.dir/permutate.cpp.o
+/usr/bin/ranlib liblibPermutate.a
