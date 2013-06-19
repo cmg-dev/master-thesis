@@ -1,0 +1,115 @@
+\begin{ganttchart}[vgrid={draw=none,*1{gray, dashed}},
+				hgrid=true,
+				today=22,
+				title height=1,
+				y unit title=0.6cm,
+				y unit chart=0.8cm,
+				group right shift=0,
+				group top shift=.3,
+				group height=.3,
+				milestone width=.8,
+				group peaks={}{}{.2},
+				incomplete/.style={fill=black!15}, %
+				bar/.style={fill=white}, %
+				today label={Heute},
+				today rule/.style={dashed, thick}]{44}
+
+
+\gantttitle{\textbf{2013}}{44} \\
+\gantttitlelist{16,...,37}{2} \\
+%-------------------------------------------------------------
+\ganttgroup{Projekt Evaluation}{3}{14} \\
+\ganttbar[progress=100, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt}]{Installation der Umgebungen}{3}{6} \\
+	
+\ganttbar[progress=100, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=rech]{Recherche}{3}{7} \\
+	
+\ganttmilestone[name=ms1]{Vorstellung der Ergebnisse}{7} \\
+	
+\ganttbar[progress=90, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=pflichten]
+	{Pflichtenheft}{5}{8} \\
+	
+\ganttmilestone[name=ms2]{Pflichtenheft fertig}{8} \\
+
+\ganttbar[progress=90, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=bNumVerf]
+	{Einarbeitung num. Verfahren}{5}{16} \\
+
+\ganttbar[progress=50, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=34pt},
+	bar label font=\normalsize\color{black},
+	name=bCMAES]
+	{speziell CMA-ES}{7}{10} \\
+
+\ganttmilestone[name=ms3]{Beurteilung num. Verfahren}{16} \\
+
+\ganttlinkedbar[progress=10, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=34pt},
+	bar label font=\normalsize\color{black}]
+	{Shark Einarbeitung}{17}{18} \\
+
+\ganttlinkedmilestone[name=ms7]{Abschluss Evaluation}{18} \\
+	
+%-------------------------------------------------------------
+\ganttgroup{Erstellung Prototyp}{15}{26} \\
+\ganttgroup{(optional)}{15}{18} \\
+\ganttbar[progress=25, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black}]
+	{(Entwurf digi. Filter)}{15}{15} \\
+
+\ganttlinkedbar[progress=10, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=bImpFPGA]
+	{(Implementation FPGA)}{16}{18} \\
+
+\ganttmilestone[name=ms4]{(Verifikation dig. Filter)}{18} \\
+	
+\ganttbar[progress=40, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=bImplAlgo]
+	{Implementation Algorithmus}{15}{26} \\
+
+\ganttlinkedmilestone[name=ms5]{Implementation Done}{26} \\
+
+%-------------------------------------------------------------
+\ganttgroup{Verifikation}{27}{34} \\
+\ganttbar[progress=10, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=bVerf]
+	{Durchf\"uhrung Verifikation}{27}{34} \\
+
+\ganttlinkedmilestone[name=ms6]{Verifikation Done}{34} \\
+
+%-------------------------------------------------------------
+\ganttgroup{Projektdokumentation}{35}{42} \\
+
+\ganttbar[progress=0, progress label font=\small\color{black!75},
+	progress label anchor/.style={right=4pt},
+	bar label font=\normalsize\color{black},
+	name=thesis]
+	{Thesis schreiben}{35}{42} \\
+	
+\ganttmilestone[name=msthesis,milestone label font=\color{red}, 
+	milestone/.style={fill=red}]{Abgabe}{42}
+
+%\ganttlink{ms7}{bImplAlgo}
+\ganttlink{bImpFPGA}{ms4}
+\ganttlink{bNumVerf}{ms3}
+\ganttlink{bCMAES}{ms3}
+\ganttlink{rech}{ms1}
+\ganttlink{pflichten}{ms2}
+\ganttlink{thesis}{msthesis}
+
+	\end{ganttchart}
