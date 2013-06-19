@@ -56,11 +56,11 @@ CMAKE_BINARY_DIR = /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk
 # Directory level rules for directory libPermutate
 
 # Convenience name for "all" pass in the directory.
-libPermutate/all: libPermutate/CMakeFiles/permutate.dir/all
+libPermutate/all: libPermutate/CMakeFiles/Permutate.dir/all
 .PHONY : libPermutate/all
 
 # Convenience name for "clean" pass in the directory.
-libPermutate/clean: libPermutate/CMakeFiles/permutate.dir/clean
+libPermutate/clean: libPermutate/CMakeFiles/Permutate.dir/clean
 .PHONY : libPermutate/clean
 
 # Convenience name for "preinstall" pass in the directory.
@@ -68,49 +68,49 @@ libPermutate/preinstall:
 .PHONY : libPermutate/preinstall
 
 #=============================================================================
-# Target rules for target libPermutate/CMakeFiles/permutate.dir
+# Target rules for target libPermutate/CMakeFiles/Permutate.dir
 
 # All Build rule for target.
-libPermutate/CMakeFiles/permutate.dir/all:
-	$(MAKE) -f libPermutate/CMakeFiles/permutate.dir/build.make libPermutate/CMakeFiles/permutate.dir/depend
-	$(MAKE) -f libPermutate/CMakeFiles/permutate.dir/build.make libPermutate/CMakeFiles/permutate.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles  1
-	@echo "Built target permutate"
-.PHONY : libPermutate/CMakeFiles/permutate.dir/all
+libPermutate/CMakeFiles/Permutate.dir/all:
+	$(MAKE) -f libPermutate/CMakeFiles/Permutate.dir/build.make libPermutate/CMakeFiles/Permutate.dir/depend
+	$(MAKE) -f libPermutate/CMakeFiles/Permutate.dir/build.make libPermutate/CMakeFiles/Permutate.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles  2
+	@echo "Built target Permutate"
+.PHONY : libPermutate/CMakeFiles/Permutate.dir/all
 
 # Include target in all.
-all: libPermutate/CMakeFiles/permutate.dir/all
+all: libPermutate/CMakeFiles/Permutate.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-libPermutate/CMakeFiles/permutate.dir/rule: cmake_check_build_system
+libPermutate/CMakeFiles/Permutate.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 libPermutate/CMakeFiles/permutate.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 libPermutate/CMakeFiles/Permutate.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles 0
-.PHONY : libPermutate/CMakeFiles/permutate.dir/rule
+.PHONY : libPermutate/CMakeFiles/Permutate.dir/rule
 
 # Convenience name for target.
-permutate: libPermutate/CMakeFiles/permutate.dir/rule
-.PHONY : permutate
+Permutate: libPermutate/CMakeFiles/Permutate.dir/rule
+.PHONY : Permutate
 
 # clean rule for target.
-libPermutate/CMakeFiles/permutate.dir/clean:
-	$(MAKE) -f libPermutate/CMakeFiles/permutate.dir/build.make libPermutate/CMakeFiles/permutate.dir/clean
-.PHONY : libPermutate/CMakeFiles/permutate.dir/clean
+libPermutate/CMakeFiles/Permutate.dir/clean:
+	$(MAKE) -f libPermutate/CMakeFiles/Permutate.dir/build.make libPermutate/CMakeFiles/Permutate.dir/clean
+.PHONY : libPermutate/CMakeFiles/Permutate.dir/clean
 
 # clean rule for target.
-clean: libPermutate/CMakeFiles/permutate.dir/clean
+clean: libPermutate/CMakeFiles/Permutate.dir/clean
 .PHONY : clean
 
 #=============================================================================
 # Directory level rules for directory test
 
 # Convenience name for "all" pass in the directory.
-test/all: test/CMakeFiles/test.dir/all
+test/all: test/CMakeFiles/AntConfApp.dir/all
 .PHONY : test/all
 
 # Convenience name for "clean" pass in the directory.
-test/clean: test/CMakeFiles/test.dir/clean
+test/clean: test/CMakeFiles/AntConfApp.dir/clean
 .PHONY : test/clean
 
 # Convenience name for "preinstall" pass in the directory.
@@ -118,38 +118,38 @@ test/preinstall:
 .PHONY : test/preinstall
 
 #=============================================================================
-# Target rules for target test/CMakeFiles/test.dir
+# Target rules for target test/CMakeFiles/AntConfApp.dir
 
 # All Build rule for target.
-test/CMakeFiles/test.dir/all:
-	$(MAKE) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/depend
-	$(MAKE) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles  2
-	@echo "Built target test"
-.PHONY : test/CMakeFiles/test.dir/all
+test/CMakeFiles/AntConfApp.dir/all: libPermutate/CMakeFiles/Permutate.dir/all
+	$(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/depend
+	$(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles  1
+	@echo "Built target AntConfApp"
+.PHONY : test/CMakeFiles/AntConfApp.dir/all
 
 # Include target in all.
-all: test/CMakeFiles/test.dir/all
+all: test/CMakeFiles/AntConfApp.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-test/CMakeFiles/test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/test.dir/all
+test/CMakeFiles/AntConfApp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/AntConfApp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles 0
-.PHONY : test/CMakeFiles/test.dir/rule
+.PHONY : test/CMakeFiles/AntConfApp.dir/rule
 
 # Convenience name for target.
-test: test/CMakeFiles/test.dir/rule
-.PHONY : test
+AntConfApp: test/CMakeFiles/AntConfApp.dir/rule
+.PHONY : AntConfApp
 
 # clean rule for target.
-test/CMakeFiles/test.dir/clean:
-	$(MAKE) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/clean
-.PHONY : test/CMakeFiles/test.dir/clean
+test/CMakeFiles/AntConfApp.dir/clean:
+	$(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/clean
+.PHONY : test/CMakeFiles/AntConfApp.dir/clean
 
 # clean rule for target.
-clean: test/CMakeFiles/test.dir/clean
+clean: test/CMakeFiles/AntConfApp.dir/clean
 .PHONY : clean
 
 #=============================================================================

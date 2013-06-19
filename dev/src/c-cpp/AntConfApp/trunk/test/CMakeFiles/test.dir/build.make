@@ -80,6 +80,7 @@ test_OBJECTS = \
 test_EXTERNAL_OBJECTS =
 
 test/test: test/CMakeFiles/test.dir/AntennaConfiguration.cpp.o
+test/test: libPermutate/liblibPermutate.so
 test/test: test/CMakeFiles/test.dir/build.make
 test/test: test/CMakeFiles/test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable test"

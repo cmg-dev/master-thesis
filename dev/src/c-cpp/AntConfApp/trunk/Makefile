@@ -99,30 +99,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named permutate
+# Target rules for targets named Permutate
 
 # Build rule for target.
-permutate: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 permutate
-.PHONY : permutate
+Permutate: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Permutate
+.PHONY : Permutate
 
 # fast build rule for target.
-permutate/fast:
-	$(MAKE) -f libPermutate/CMakeFiles/permutate.dir/build.make libPermutate/CMakeFiles/permutate.dir/build
-.PHONY : permutate/fast
+Permutate/fast:
+	$(MAKE) -f libPermutate/CMakeFiles/Permutate.dir/build.make libPermutate/CMakeFiles/Permutate.dir/build
+.PHONY : Permutate/fast
 
 #=============================================================================
-# Target rules for targets named test
+# Target rules for targets named AntConfApp
 
 # Build rule for target.
-test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test
-.PHONY : test
+AntConfApp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 AntConfApp
+.PHONY : AntConfApp
 
 # fast build rule for target.
-test/fast:
-	$(MAKE) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/build
-.PHONY : test/fast
+AntConfApp/fast:
+	$(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/build
+.PHONY : AntConfApp/fast
 
 # Help Target
 help:
@@ -132,8 +132,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... permutate"
-	@echo "... test"
+	@echo "... Permutate"
+	@echo "... AntConfApp"
 .PHONY : help
 
 

@@ -99,25 +99,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-libPermutate/CMakeFiles/permutate.dir/rule:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f CMakeFiles/Makefile2 libPermutate/CMakeFiles/permutate.dir/rule
-.PHONY : libPermutate/CMakeFiles/permutate.dir/rule
+libPermutate/CMakeFiles/Permutate.dir/rule:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f CMakeFiles/Makefile2 libPermutate/CMakeFiles/Permutate.dir/rule
+.PHONY : libPermutate/CMakeFiles/Permutate.dir/rule
 
 # Convenience name for target.
-permutate: libPermutate/CMakeFiles/permutate.dir/rule
-.PHONY : permutate
+Permutate: libPermutate/CMakeFiles/Permutate.dir/rule
+.PHONY : Permutate
 
 # fast build rule for target.
-permutate/fast:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPermutate/CMakeFiles/permutate.dir/build.make libPermutate/CMakeFiles/permutate.dir/build
-.PHONY : permutate/fast
+Permutate/fast:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPermutate/CMakeFiles/Permutate.dir/build.make libPermutate/CMakeFiles/Permutate.dir/build
+.PHONY : Permutate/fast
 
 permutate.o: permutate.cpp.o
 .PHONY : permutate.o
 
 # target to build an object file
 permutate.cpp.o:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPermutate/CMakeFiles/permutate.dir/build.make libPermutate/CMakeFiles/permutate.dir/permutate.cpp.o
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPermutate/CMakeFiles/Permutate.dir/build.make libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.o
 .PHONY : permutate.cpp.o
 
 permutate.i: permutate.cpp.i
@@ -125,7 +125,7 @@ permutate.i: permutate.cpp.i
 
 # target to preprocess a source file
 permutate.cpp.i:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPermutate/CMakeFiles/permutate.dir/build.make libPermutate/CMakeFiles/permutate.dir/permutate.cpp.i
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPermutate/CMakeFiles/Permutate.dir/build.make libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.i
 .PHONY : permutate.cpp.i
 
 permutate.s: permutate.cpp.s
@@ -133,7 +133,7 @@ permutate.s: permutate.cpp.s
 
 # target to generate assembly for a file
 permutate.cpp.s:
-	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPermutate/CMakeFiles/permutate.dir/build.make libPermutate/CMakeFiles/permutate.dir/permutate.cpp.s
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPermutate/CMakeFiles/Permutate.dir/build.make libPermutate/CMakeFiles/Permutate.dir/permutate.cpp.s
 .PHONY : permutate.cpp.s
 
 # Help Target
@@ -142,8 +142,8 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... Permutate"
 	@echo "... edit_cache"
-	@echo "... permutate"
 	@echo "... rebuild_cache"
 	@echo "... permutate.o"
 	@echo "... permutate.i"

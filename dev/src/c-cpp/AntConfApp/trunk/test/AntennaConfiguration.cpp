@@ -1,11 +1,10 @@
-// A simple program that computes the square root of a number
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <array>
 #include "AntennaConfiguration.h"
 #include "../libPermutate/permutate.h"
-#include "nr3/nr3.h"
 
 const int MAX_PERMUATION_AMOUNT = 35;
 const int ROWS = 3;
@@ -13,9 +12,11 @@ const int COLS = 3;
 
 int main ( int argc, char *argv[ ] ) {
 	
-		permuteAntennas PA( 3 );
-		PA.readCSVFile();
-		
+	permuteAntennas<ANTENNA_AMOUNT,MAX_PERMUTATION_AMOUNT, double> PA;
+	PA.rCoordFile( );
+	
+	PA.computePermutations();
+
 // 	if (argc < 2) {
 // 		fprintf(stdout,"%s Version %d.%d.%x\n",
 // 			argv[0],
