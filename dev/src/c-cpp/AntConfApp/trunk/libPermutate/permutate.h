@@ -46,7 +46,7 @@ struct AntennaPermutations {
 	/* the condition number of a matrix */
 	std::array< Doub, ANTENNA_AMOUNT > conditionNumbers;
 
-	void dumb_matrix( NRmatrix< T > mat, int n, int m ) {
+	static void dumb_matrix( NRmatrix< T > mat, int n, int m ) {
 		std::cout << "** Begin matrix dump: *****" << std::endl;
 		for( int i = 0; i < n; i++ ){
 			for( int j = 0; j < m; j++ ){
@@ -57,11 +57,28 @@ struct AntennaPermutations {
 		std::cout << '\n';
 		std::cout << "** End matrix dump: *****" << std::endl;
 	}
+
+	static void dumb_matrix_2_file( ofstream f, NRmatrix< T > mat, int n, int m ) {
+// 		ofstream myfile;
+// 		myfile.open ("matdump.dat");
+		if( !f ) return;
+		
+		for( int i = 0; i < n; i++ ){
+			for( int j = 0; j < m; j++ ){
+				f << mat[i][j] << ',';
+				
+			}
+			f << '\n';
+		}
+		f << '\n';
+		f.close();
+	}
 	
 	AntennaPermutations( void ) {
 		/* init all of the matrices */
 		for(auto& m: mat) {
 			m.assign( 3, 10, (T)0.0);
+
 		}
 
 // 		for(auto& m: mat)
@@ -78,9 +95,9 @@ template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
 struct permuteAntennas {
 	int ref;
 	/* We will store the x-y-z-coords we received from the antenna in this array */
- 	Positioning::CoordContainer<N_ANTA, T> AntennaCoordinates;
+ 	Positioning::CoordContainer< N_ANTA, T > AntennaCoordinates;
 	/* this array will store all possible matrices of the system */
-	std::array< AntennaPermutations< N_ANTPERM, Doub>, N_ANTA> configurations;
+	std::array< AntennaPermutations< N_ANTPERM, Doub >, N_ANTA> configurations;
 	
 	/* store the reference antenna while constructing */
   	permuteAntennas( const int _refAnt = 0 );
@@ -91,13 +108,10 @@ struct permuteAntennas {
 	int computePermutations( );
 
 	/**/
-	int computeMatrix( const int ref, const int a1, const int a2, const int a3 );
+	const NRmatrix<T> computeMatrix( const int ref, const int a1, const int a2, const int a3 );
 
-
-	/**********************************************************************/
-//  	private:
-
-// 	int computePermutations( const int ref );
+	/**/
+	void dumpConfigurationsToFile( );
 
 };
 
@@ -185,30 +199,77 @@ template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
 int permuteAntennas< N_ANTA, N_ANTPERM, T >::computePermutations( )
 {
 	int Ant = 0;
-
-	std::cout << "** Matrix " <<  std::endl;
-
-	int r,i,j,k;
 	int x,y;
 
-	x = y = k = j = i = r = 0;
-	/* run through all configurations */
+	auto i_goal = N_ANTA;
+	auto j_goal = N_ANTA-1;
+	auto k_goal = N_ANTA-1;
+
+	auto i_start = 0;
+	auto j_start = 0;
+	auto k_start = 0;
+
 	
- 	for( auto& c : configurations ) 
-	{
-		i=0;
- 		for( auto& m : c.mat ) {
-			std::cout << "** Matrix " << i++ << std::endl;
-			c.dumb_matrix( m, 3, 10 );
-// 			/* assign the new matrix */
-// // 			m[x] = computeMatrix(r,i,j,k );
-// 			m[x].assign(3,10, (T) 42.0 );
-// 			x++;
-//
-		}
-		std::cout << "******" << j << std::endl;
-		j++;
+ 	x = y = 0;
+
+	auto& c = configurations;
+
+	for( int r = 0; r < N_ANTA + 1; r++ ) {
+		i_start = 0;
+		/* run through all configurations *************************************/
+		for( int i = i_start; i < i_goal; i++  ) {
+			if( i == r ) { i_start++; continue; }
+			/* get the matrices for one configuration */
+			auto& m = c[i].mat;
+
+			j_start = i_start + 1;
+
+// 			std::cout << "* j_start " << j_start << std::endl;
+
+			/* for every Matrix in this configuration */
+			for( int j = j_start; j < j_goal; j++ ) {
+				/* skip the reference antenna */
+				if( j == r ) { continue; }
+
+				k_start = j + 1;
+// 				std::cout << "** k_start " << k_start << std::endl;
+
+				for( int k = k_start; k < k_goal; k++ ) {
+					if( k == r ) continue;
+					/* assign the new matrix */
+					m[k] = computeMatrix( r, i, j, k );
+
+					if( r == 7 )
+						AntennaPermutations< N_ANTPERM, Doub >::dumb_matrix( m[k], 3, 10 );
+					
+					x++;
+				}
+				j_start++;
+				
+			}
+			i_start++;
+			
+		} 
 	}
+	std::cout << "processed " << x << '\n';
+// 	std::cout << "starting with " << i_goal << " " << j_goal << " " << k_goal << std::endl;
+	int i, j;
+	i = j = 0;
+	
+	/* run through all configurations *************************************/
+// 	for( auto& c : configurations )
+// 	{
+// 		i=0;
+// 		/* for every Matrix in this configuration */
+// 		for( auto& m : c.mat ) {
+// 			std::cout << "** Matrix " << i++ << std::endl;
+// 			c.dumb_matrix( m, 3, 10 );
+// 
+// 		}
+// 		std::cout << "******" << j << std::endl;
+// 		j++;
+// 
+// 	}
 }
 
 /**
@@ -220,11 +281,44 @@ int permuteAntennas< N_ANTA, N_ANTPERM, T >::computePermutations( )
  *
  */
 template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
-int permuteAntennas< N_ANTA, N_ANTPERM, T >::computeMatrix( const int ref, const int a1, const int a2, const int a3 )
+const NRmatrix<T> permuteAntennas< N_ANTA, N_ANTPERM, T >::computeMatrix( const int ref, const int a1, const int a2, const int a3 )
 {
+	NRmatrix<T> m;
+	m.assign( 3, 10, ( T ) 0.0 );
+
+	/* latch in the coordinates, makes code more readable */
+	T x[4] = {
+			AntennaCoordinates.x_[ ref ],
+			AntennaCoordinates.x_[ a1 ],
+			AntennaCoordinates.x_[ a2 ],
+			AntennaCoordinates.x_[ a3 ]
+			};
+
+	T y[4] = {
+			AntennaCoordinates.y_[ ref ],
+			AntennaCoordinates.y_[ a1 ],
+			AntennaCoordinates.y_[ a2 ],
+			AntennaCoordinates.y_[ a3 ]
+			};
+
+	T z[4] = {
+			AntennaCoordinates.z_[ ref ],
+			AntennaCoordinates.z_[ a1 ],
+			AntennaCoordinates.z_[ a2 ],
+			AntennaCoordinates.z_[ a3 ]
+			};
+
+	/* fill the geometrical matrix */
+	for( int i = 0; i 	< 3; i++ ) {
+		m[i][0] = x[i+1]-x[0];
+		m[i][1] = y[i+1]-y[0];
+		m[i][2] = z[i+1]-z[0];
 		
+	}
 	
+	return m;
 }
+
 /**
  * This method will compute all the possible permutations for the given reference antenna ref
  * @param[in] ref The reference antenna

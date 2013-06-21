@@ -12,7 +12,7 @@ const int COLS = 3;
 
 int main ( int argc, char *argv[ ] ) {
 	
-	permuteAntennas<ANTENNA_AMOUNT,MAX_PERMUTATION_AMOUNT, double> PA;
+	permuteAntennas< ANTENNA_AMOUNT,MAX_PERMUTATION_AMOUNT, double > PA;
 	PA.rCoordFile( );
 	
 	PA.computePermutations();
