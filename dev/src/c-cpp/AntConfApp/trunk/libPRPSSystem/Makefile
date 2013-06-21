@@ -69,14 +69,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPRPSSystem/CMakeFiles/progress.marks
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f CMakeFiles/Makefile2 libPRPSSystem/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f CMakeFiles/Makefile2 libPRPSSystem/clean
 .PHONY : clean
 
 # The main clean target
@@ -85,70 +85,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f CMakeFiles/Makefile2 libPRPSSystem/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f CMakeFiles/Makefile2 libPRPSSystem/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named Permutate
+# Convenience name for target.
+libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/rule:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f CMakeFiles/Makefile2 libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/rule
+.PHONY : libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/rule
 
-# Build rule for target.
-Permutate: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Permutate
-.PHONY : Permutate
-
-# fast build rule for target.
-Permutate/fast:
-	$(MAKE) -f libPermutate/CMakeFiles/Permutate.dir/build.make libPermutate/CMakeFiles/Permutate.dir/build
-.PHONY : Permutate/fast
-
-#=============================================================================
-# Target rules for targets named Calibration
-
-# Build rule for target.
-Calibration: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Calibration
-.PHONY : Calibration
-
-# fast build rule for target.
-Calibration/fast:
-	$(MAKE) -f libCalibration/CMakeFiles/Calibration.dir/build.make libCalibration/CMakeFiles/Calibration.dir/build
-.PHONY : Calibration/fast
-
-#=============================================================================
-# Target rules for targets named PRPSEvolutionSystem
-
-# Build rule for target.
-PRPSEvolutionSystem: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 PRPSEvolutionSystem
+# Convenience name for target.
+PRPSEvolutionSystem: libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/rule
 .PHONY : PRPSEvolutionSystem
 
 # fast build rule for target.
 PRPSEvolutionSystem/fast:
-	$(MAKE) -f libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/build.make libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/build
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/build.make libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/build
 .PHONY : PRPSEvolutionSystem/fast
 
-#=============================================================================
-# Target rules for targets named AntConfApp
+prpsevolutionsystem.o: prpsevolutionsystem.cpp.o
+.PHONY : prpsevolutionsystem.o
 
-# Build rule for target.
-AntConfApp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 AntConfApp
-.PHONY : AntConfApp
+# target to build an object file
+prpsevolutionsystem.cpp.o:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/build.make libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/prpsevolutionsystem.cpp.o
+.PHONY : prpsevolutionsystem.cpp.o
 
-# fast build rule for target.
-AntConfApp/fast:
-	$(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/build
-.PHONY : AntConfApp/fast
+prpsevolutionsystem.i: prpsevolutionsystem.cpp.i
+.PHONY : prpsevolutionsystem.i
+
+# target to preprocess a source file
+prpsevolutionsystem.cpp.i:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/build.make libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/prpsevolutionsystem.cpp.i
+.PHONY : prpsevolutionsystem.cpp.i
+
+prpsevolutionsystem.s: prpsevolutionsystem.cpp.s
+.PHONY : prpsevolutionsystem.s
+
+# target to generate assembly for a file
+prpsevolutionsystem.cpp.s:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/build.make libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/prpsevolutionsystem.cpp.s
+.PHONY : prpsevolutionsystem.cpp.s
 
 # Help Target
 help:
@@ -156,12 +142,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... PRPSEvolutionSystem"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Permutate"
-	@echo "... Calibration"
-	@echo "... PRPSEvolutionSystem"
-	@echo "... AntConfApp"
+	@echo "... prpsevolutionsystem.o"
+	@echo "... prpsevolutionsystem.i"
+	@echo "... prpsevolutionsystem.s"
 .PHONY : help
 
 
@@ -173,6 +159,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

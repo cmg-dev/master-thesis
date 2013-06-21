@@ -1,21 +1,27 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <array>
 #include "AntennaConfiguration.h"
 #include "../libPermutate/permutate.h"
+#include "../libPRPSSystem/prpsevolutionsystem.h"
+#include "../libCalibration/calib.h"
 
 const int MAX_PERMUATION_AMOUNT = 35;
 const int ROWS = 3;
 const int COLS = 3;
 
+/* system specific stuff is stored here */
+
+
 int main ( int argc, char *argv[ ] ) {
-	
+	PRPSEvolution::System sys;
+	/**/
 	permuteAntennas< ANTENNA_AMOUNT,MAX_PERMUTATION_AMOUNT, double > PA;
+	/**/
 	PA.rCoordFile( );
-	
-	PA.computePermutations();
+	/**/
+	PA.computePermutations( sys.constants );
 
 // 	if (argc < 2) {
 // 		fprintf(stdout,"%s Version %d.%d.%x\n",
