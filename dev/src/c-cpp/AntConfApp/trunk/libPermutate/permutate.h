@@ -4,15 +4,17 @@
 #ifndef __LIB_PERMUTATE_H
 	#define __LIB_PERMUTATE_H
 
-#include "coords.h"
-#include "PRPSEvolution.h"
-#include "PRPSError.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <iterator>
 #include <iostream>
 #include <algorithm>
 #include <array>
+
+#include "../include/coords.h"
+#include "../include/PRPSEvolution.h"
+#include "../include/PRPSError.h"
+#include "../libPRPSSystem/prpsevolutionsystem.h"
 
 #include "nr3/nr3.h"
 #include "nr3/svd.h"
@@ -46,7 +48,10 @@ struct AntennaPermutations {
 	/* the condition number of a matrix */
 	std::array< Doub, ANTENNA_AMOUNT > conditionNumbers;
 
-	void dumb_matrix( NRmatrix< T > mat, int n, int m ) {
+	/**
+	 *
+	 */
+	static void dumb_matrix( NRmatrix< T > mat, int n, int m ) {
 		std::cout << "** Begin matrix dump: *****" << std::endl;
 		for( int i = 0; i < n; i++ ){
 			for( int j = 0; j < m; j++ ){
@@ -57,16 +62,34 @@ struct AntennaPermutations {
 		std::cout << '\n';
 		std::cout << "** End matrix dump: *****" << std::endl;
 	}
-	
+
+	/**
+	 * 
+	 */
+	static void dumb_matrix_2_file( std::ofstream &f, NRmatrix< T > mat, int n, int m ) {
+		if( !f ) return;
+		for( int i = 0; i < n; i++ ){
+			for( int j = 0; j < m; j++ ){
+				f << mat[i][j];
+				if( j+1 != m )	f << ',';
+				
+			}
+			f << '\n';
+			
+		}
+		f << '\n';
+		
+	}
+
+	/**
+	 *
+	 */
 	AntennaPermutations( void ) {
 		/* init all of the matrices */
 		for(auto& m: mat) {
 			m.assign( 3, 10, (T)0.0);
+
 		}
-
-// 		for(auto& m: mat)
-// 			dumb_matrix( m, 3, 10 );
-
 	}
 };
 
@@ -78,9 +101,9 @@ template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
 struct permuteAntennas {
 	int ref;
 	/* We will store the x-y-z-coords we received from the antenna in this array */
- 	Positioning::CoordContainer<N_ANTA, T> AntennaCoordinates;
+ 	Positioning::CoordContainer< N_ANTA, T > AntennaCoordinates;
 	/* this array will store all possible matrices of the system */
-	std::array< AntennaPermutations< N_ANTPERM, Doub>, N_ANTA> configurations;
+	std::array< AntennaPermutations< N_ANTPERM, Doub >, N_ANTA> configurations;
 	
 	/* store the reference antenna while constructing */
   	permuteAntennas( const int _refAnt = 0 );
@@ -88,17 +111,16 @@ struct permuteAntennas {
 	int rCoordFile();
 
 	/**/
-	int computePermutations( );
+	int computePermutations( const PRPSEvolution::Constants &co );
 
 	/**/
-	int computeMatrix( const int ref, const int a1, const int a2, const int a3 );
+	const NRmatrix<T> computeMatrix( const int ref, const int a1, const int a2, const int a3, const PRPSEvolution::Constants &co );
 
+	/**/
+	void dumpConfigurationsToFile( );
 
-	/**********************************************************************/
-//  	private:
-
-// 	int computePermutations( const int ref );
-
+	void dumb_matrices_2_file( );
+	
 };
 
 /**************************************************************************/
@@ -116,13 +138,13 @@ permuteAntennas< N_ANTA, N_ANTPERM, T >::permuteAntennas( const int _refAnt)
 
 /**************************************************************************/
 /**
- * Load the csv-file containing the coordinates and store it into the container
- *
+ *	Load the csv-file containing the coordinates and store it into the container.
+ *	
  */
 template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
 int permuteAntennas< N_ANTA, N_ANTPERM, T >::rCoordFile()
 {
-	ifstream		file ( "data/MeasuredDistances.dat" );
+	std::ifstream	file ( "data/MeasuredDistances.dat" );
 	std::string		line;
 	int				valuesRead;
 	int				linesRead;
@@ -178,41 +200,71 @@ int permuteAntennas< N_ANTA, N_ANTPERM, T >::rCoordFile()
 
 /**************************************************************************/
 /**
- *
- *
+ * This method handles the computation of the antenna permutations
+ * @param[in] co Constant structure with the system constants we need @see PRPSEvolution::Constants
+ * 
  */
 template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
-int permuteAntennas< N_ANTA, N_ANTPERM, T >::computePermutations( )
+int permuteAntennas< N_ANTA, N_ANTPERM, T >::computePermutations( const PRPSEvolution::Constants &co )
 {
 	int Ant = 0;
-
-	std::cout << "** Matrix " <<  std::endl;
-
-	int r,i,j,k;
 	int x,y;
 
-	x = y = k = j = i = r = 0;
-	/* run through all configurations */
+	auto i_goal = N_ANTA-1;
+	auto j_goal = N_ANTA;
+	auto k_goal = N_ANTA;
+
+	auto i_start = 0;
+	auto j_start = 0;
+	auto k_start = 0;
+	auto m_i = 0;
 	
- 	for( auto& c : configurations ) 
-	{
-		i=0;
- 		for( auto& m : c.mat ) {
-			std::cout << "** Matrix " << i++ << std::endl;
-			c.dumb_matrix( m, 3, 10 );
-// 			/* assign the new matrix */
-// // 			m[x] = computeMatrix(r,i,j,k );
-// 			m[x].assign(3,10, (T) 42.0 );
-// 			x++;
-//
+ 	x = y = 0;
+
+	auto& c = configurations;
+
+	for( int r = 0; r < N_ANTA; r++ ) {
+		i_start = 0;
+		/* used as matrix index */
+		m_i = 0;
+		/* get the matrices for one configuration */
+		auto& m = c[r].mat;
+		/* run through all configurations **********************************/
+		for( int i = i_start; i < i_goal; i++  ) {
+			if( i == r ) {
+				i_start++;
+				continue;
+			}
+			j_start = i_start + 1;
+
+			/* for every Matrix in this configuration */
+			for( int j = j_start; j < j_goal; j++ ) {
+				/* skip the reference antenna */
+				if( j == r ) { continue; }
+				k_start = j + 1;
+
+				for( int k = k_start; k < k_goal; k++ ) {
+					if( k == r ) { continue; }
+					
+					/* assign the new matrix */
+					m[ m_i++ ] = computeMatrix( r, i, j, k, co );
+					
+					x++;
+				}
+				j_start++;
+			}
+			i_start++;
 		}
-		std::cout << "******" << j << std::endl;
-		j++;
 	}
+	std::cout << "processed " << x << '\n';
+
+	int i, j;
+	i = j = 0;
+	
 }
 
 /**
- * This method will compute all the possible permutations for the given reference antenna ref
+ * This method will compute all the possible permutations based on the given reference antenna @see ref
  * @param[in] ref The reference antenna
  * @param[in] a1 First antenna
  * @param[in] a2 Second antenna
@@ -220,23 +272,77 @@ int permuteAntennas< N_ANTA, N_ANTPERM, T >::computePermutations( )
  *
  */
 template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
-int permuteAntennas< N_ANTA, N_ANTPERM, T >::computeMatrix( const int ref, const int a1, const int a2, const int a3 )
+const NRmatrix<T> permuteAntennas< N_ANTA, N_ANTPERM, T >::computeMatrix( const int ref, const int a1, const int a2, const int a3, const PRPSEvolution::Constants &co )
 {
-		
+	NRmatrix<T> m;
+	m.assign( 3, 10, ( T ) 0.0 );
 	
+// 	std::cout << ref << "|" << a1 << "|" << a2 << "|" << a3 << std::endl;
+
+	/* latch in the coordinates, makes code more readable */
+	T x[4] = {
+			AntennaCoordinates.x_[ ref ],
+			AntennaCoordinates.x_[ a1 ],
+			AntennaCoordinates.x_[ a2 ],
+			AntennaCoordinates.x_[ a3 ]
+			};
+
+	T y[4] = {
+			AntennaCoordinates.y_[ ref ],
+			AntennaCoordinates.y_[ a1 ],
+			AntennaCoordinates.y_[ a2 ],
+			AntennaCoordinates.y_[ a3 ]
+			};
+
+	T z[4] = {
+			AntennaCoordinates.z_[ ref ],
+			AntennaCoordinates.z_[ a1 ],
+			AntennaCoordinates.z_[ a2 ],
+			AntennaCoordinates.z_[ a3 ]
+			};
+
+	/* fill the geometrical matrix */
+	for( int i = 0; i 	< 3; i++ ) {
+		/* The matrix Z */
+		m[i][0] = x[i+1]-x[0];
+		m[i][1] = y[i+1]-y[0];
+		m[i][2] = z[i+1]-z[0];
+
+		/* The matrix P */
+		m[i][i+3] = -co.a_1;
+
+		/* prefill the matrix V */
+		m[i][6] = -co.a_2;
+
+		m[i][i+7] = co.a_2;
+		
+	}
+	
+	return m;
 }
+
 /**
- * This method will compute all the possible permutations for the given reference antenna ref
- * @param[in] ref The reference antenna
- *
+ * This method will dump all the Antennas to an output file
+ * 
  */
-// template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
-// int permuteAntennas< N_ANTA, N_ANTPERM, T >::computePermutations( const int ref )
-// {
-// 
-// 
-// 	
-// }
+template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
+void permuteAntennas< N_ANTA, N_ANTPERM, T >::dumb_matrices_2_file( )
+{
+// 	std::cout <<" dump " << std::endl;
+	
+	std::ofstream f;
+	f.open("output/matdump.dat");
+
+	if ( f.is_open() ) {
+		for( auto& c : configurations )
+			for( auto& m : c.mat ) {
+				c.dumb_matrix( m, 3, 10 );
+				c.dumb_matrix_2_file( f, m, 3, 10 );
+			}
+
+	}
+	f.close();
+}
 
 // void test2( void );
 // 
