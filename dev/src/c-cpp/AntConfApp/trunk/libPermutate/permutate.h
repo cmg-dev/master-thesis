@@ -48,6 +48,9 @@ struct AntennaPermutations {
 	/* the condition number of a matrix */
 	std::array< Doub, ANTENNA_AMOUNT > conditionNumbers;
 
+	/**
+	 *
+	 */
 	static void dumb_matrix( NRmatrix< T > mat, int n, int m ) {
 		std::cout << "** Begin matrix dump: *****" << std::endl;
 		for( int i = 0; i < n; i++ ){
@@ -60,32 +63,33 @@ struct AntennaPermutations {
 		std::cout << "** End matrix dump: *****" << std::endl;
 	}
 
-	static void dumb_matrix_2_file( ofstream f, NRmatrix< T > mat, int n, int m ) {
-// 		ofstream myfile;
-// 		myfile.open ("matdump.dat");
+	/**
+	 * 
+	 */
+	static void dumb_matrix_2_file( std::ofstream &f, NRmatrix< T > mat, int n, int m ) {
 		if( !f ) return;
-		
 		for( int i = 0; i < n; i++ ){
 			for( int j = 0; j < m; j++ ){
-				f << mat[i][j] << ',';
+				f << mat[i][j];
+				if( j+1 != m )	f << ',';
 				
 			}
 			f << '\n';
+			
 		}
 		f << '\n';
-		f.close();
+		
 	}
-	
+
+	/**
+	 *
+	 */
 	AntennaPermutations( void ) {
 		/* init all of the matrices */
 		for(auto& m: mat) {
 			m.assign( 3, 10, (T)0.0);
 
 		}
-
-// 		for(auto& m: mat)
-// 			dumb_matrix( m, 3, 10 );
-
 	}
 };
 
@@ -115,6 +119,8 @@ struct permuteAntennas {
 	/**/
 	void dumpConfigurationsToFile( );
 
+	void dumb_matrices_2_file( );
+	
 };
 
 /**************************************************************************/
@@ -267,20 +273,20 @@ int permuteAntennas< N_ANTA, N_ANTPERM, T >::computePermutations( const PRPSEvol
 	int i, j;
 	i = j = 0;
 	
-	/* run through all configurations *************************************/
-	for( auto& c : configurations )
-	{
-		i=0;
-		/* for every Matrix in this configuration */
-		for( auto& m : c.mat ) {
-			std::cout << "** Matrix " << i++ << std::endl;
-			c.dumb_matrix( m, 3, 10 );
-
-		}
-		std::cout << "******" << j << std::endl;
-		j++;
-
-	}
+// 	/* run through all configurations *************************************/
+// 	for( auto& c : configurations )
+// 	{
+// 		i=0;
+// 		/* for every Matrix in this configuration */
+// 		for( auto& m : c.mat ) {
+// 			std::cout << "** Matrix " << i++ << std::endl;
+// 			c.dumb_matrix( m, 3, 10 );
+// 
+// 		}
+// 		std::cout << "******" << j << std::endl;
+// 		j++;
+// 
+// 	}
 }
 
 /**
@@ -339,6 +345,25 @@ const NRmatrix<T> permuteAntennas< N_ANTA, N_ANTPERM, T >::computeMatrix( const 
 	}
 	
 	return m;
+}
+
+template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
+void permuteAntennas< N_ANTA, N_ANTPERM, T >::dumb_matrices_2_file( )
+{
+// 	std::cout <<" dump " << std::endl;
+	
+	std::ofstream f;
+	f.open("output/matdump.dat");
+
+	if ( f.is_open() ) {
+		for( auto& c : configurations )
+			for( auto& m : c.mat ) {
+				c.dumb_matrix( m, 3, 10 );
+				c.dumb_matrix_2_file( f, m, 3, 10 );
+			}
+
+	}
+	f.close();
 }
 
 /**

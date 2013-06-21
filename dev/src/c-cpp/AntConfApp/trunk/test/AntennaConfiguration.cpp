@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <math.h>
 #include <array>
+#include <iostream>
+#include<fstream>
+#include<sstream>
+#include<string>
 #include "AntennaConfiguration.h"
 #include "../libPermutate/permutate.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
@@ -23,6 +27,8 @@ int main ( int argc, char *argv[ ] ) {
 	/**/
 	PA.computePermutations( sys.constants );
 
+	PA.dumb_matrices_2_file( );
+	
 // 	if (argc < 2) {
 // 		fprintf(stdout,"%s Version %d.%d.%x\n",
 // 			argv[0],
