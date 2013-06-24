@@ -221,9 +221,9 @@ test/preinstall:
 # Target rules for target test/CMakeFiles/AntConfApp.dir
 
 # All Build rule for target.
-test/CMakeFiles/AntConfApp.dir/all: libCalibration/CMakeFiles/Calibration.dir/all
-test/CMakeFiles/AntConfApp.dir/all: libPermutate/CMakeFiles/Permutate.dir/all
 test/CMakeFiles/AntConfApp.dir/all: libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/all
+test/CMakeFiles/AntConfApp.dir/all: libPermutate/CMakeFiles/Permutate.dir/all
+test/CMakeFiles/AntConfApp.dir/all: libCalibration/CMakeFiles/Calibration.dir/all
 	$(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/depend
 	$(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles  1

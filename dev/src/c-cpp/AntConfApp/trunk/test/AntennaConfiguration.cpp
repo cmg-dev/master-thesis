@@ -6,6 +6,7 @@
 #include<fstream>
 #include<sstream>
 #include<string>
+
 #include "AntennaConfiguration.h"
 #include "../libPermutate/permutate.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
@@ -15,19 +16,24 @@ const int MAX_PERMUATION_AMOUNT = 35;
 const int ROWS = 3;
 const int COLS = 3;
 
-/* system specific stuff is stored here */
-
-
 int main ( int argc, char *argv[ ] ) {
 	PRPSEvolution::System sys;
+	PRPSEvolution::Calibration::performCalibration<ANTENNA_AMOUNT, 4, Doub> PC;
+	
+	/* perform calibration */
+
 	/**/
-	permuteAntennas< ANTENNA_AMOUNT,MAX_PERMUTATION_AMOUNT, double > PA;
-	/**/
-	PA.rCoordFile( );
+	permuteAntennas< ANTENNA_AMOUNT,MAX_PERMUTATION_AMOUNT, Doub > PA(0);
+	
+	/* read the coordinate file */
+	PA.rCoordFile();
+	
 	/**/
 	PA.computePermutations( sys.constants );
 
-	PA.dumb_matrices_2_file( );
+	std::cout << "Dumping Matrices... " ;
+	PA.dumb_matrices_2_file();
+	std::cout << "done" << std::endl;
 	
 // 	if (argc < 2) {
 // 		fprintf(stdout,"%s Version %d.%d.%x\n",

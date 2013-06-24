@@ -17,7 +17,7 @@
 #include "../libPRPSSystem/prpsevolutionsystem.h"
 
 #include "nr3/nr3.h"
-#include "nr3/svd.h"
+// #include "nr3/svd.h"
 
 using namespace PRPSEvolution;
 /**************************************************************************/
@@ -49,12 +49,12 @@ struct AntennaPermutations {
 	std::array< Doub, ANTENNA_AMOUNT > conditionNumbers;
 
 	/**
-	 *
+	 *	
 	 */
-	static void dumb_matrix( NRmatrix< T > mat, int n, int m ) {
+	static void dumb_matrix( NRmatrix< T > mat ) {
 		std::cout << "** Begin matrix dump: *****" << std::endl;
-		for( int i = 0; i < n; i++ ){
-			for( int j = 0; j < m; j++ ){
+		for( int i = 0; i < mat.nrows( ); i++ ){
+			for( int j = 0; j < mat.ncols( ); j++ ){
 				std::cout << mat[i][j] << '\t';
 			}
 			std::cout << '\n';
@@ -64,21 +64,19 @@ struct AntennaPermutations {
 	}
 
 	/**
-	 * 
+	 *	
 	 */
-	static void dumb_matrix_2_file( std::ofstream &f, NRmatrix< T > mat, int n, int m ) {
+	static void dumb_matrix_2_file( std::ofstream &f, NRmatrix< T > mat ) {
 		if( !f ) return;
-		for( int i = 0; i < n; i++ ){
-			for( int j = 0; j < m; j++ ){
+		for( int i = 0; i < mat.nrows( ); i++ ){
+			for( int j = 0; j < mat.ncols( ); j++ ){
 				f << mat[i][j];
-				if( j+1 != m )	f << ',';
+				if( j+1 != mat.ncols( ) )	f << ',';
 				
 			}
 			f << '\n';
-			
 		}
-		f << '\n';
-		
+		f << '\n';		
 	}
 
 	/**
@@ -86,16 +84,18 @@ struct AntennaPermutations {
 	 */
 	AntennaPermutations( void ) {
 		/* init all of the matrices */
-		for(auto& m: mat) {
-			m.assign( 3, 10, (T)0.0);
-
-		}
+// 		for(auto& m: mat) {
+// 			std::cout << "! " << NN << " " << MM<<std::endl;
+// 			m.assign( NN, MM, (T) 0. );
+// 			m.assign( 3, 10, (T) 0. );
+			
+// 		}
 	}
 };
 
 /**
  * This will collect some stuff for calculating the permutation of the antennas
- * 
+ *
  */
 template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
 struct permuteAntennas {
@@ -114,6 +114,7 @@ struct permuteAntennas {
 	int computePermutations( const PRPSEvolution::Constants &co );
 
 	/**/
+	template < std::size_t NN, std::size_t MM >
 	const NRmatrix<T> computeMatrix( const int ref, const int a1, const int a2, const int a3, const PRPSEvolution::Constants &co );
 
 	/**/
@@ -132,9 +133,8 @@ template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
 permuteAntennas< N_ANTA, N_ANTPERM, T >::permuteAntennas( const int _refAnt)
 {
 	ref = _refAnt;
-
+// 	std::cout << "ref is: " << ref << std::endl;
 }
-
 
 /**************************************************************************/
 /**
@@ -144,7 +144,8 @@ permuteAntennas< N_ANTA, N_ANTPERM, T >::permuteAntennas( const int _refAnt)
 template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
 int permuteAntennas< N_ANTA, N_ANTPERM, T >::rCoordFile()
 {
-	std::ifstream	file ( "data/MeasuredDistances.dat" );
+// 	std::ifstream	file ( "data/coordinatesPrecalculated.dat" );
+	std::ifstream	file ( "data/coorddump.dat" );
 	std::string		line;
 	int				valuesRead;
 	int				linesRead;
@@ -166,33 +167,31 @@ int permuteAntennas< N_ANTA, N_ANTPERM, T >::rCoordFile()
 
 		valuesRead = 0;
 		while( getline( linestream, value, ',' ) ) {
- 				AntennaCoordinates.x_[ valuesRead ] = ( linesRead == 0 ) ? std::stod( value ):( AntennaCoordinates.x_[ valuesRead ] ) ;
- 				AntennaCoordinates.y_[ valuesRead ] = ( linesRead == 1 ) ? std::stod( value ):( AntennaCoordinates.y_[ valuesRead ] ) ;
- 				AntennaCoordinates.z_[ valuesRead ] = ( linesRead == 2 ) ? std::stod( value ):( AntennaCoordinates.z_[ valuesRead ] ) ;
+ 				AntennaCoordinates.x_[ linesRead ] = ( valuesRead == 0 ) ? std::stod( value ):( AntennaCoordinates.x_[ linesRead ] ) ;
+ 				AntennaCoordinates.y_[ linesRead ] = ( valuesRead == 1 ) ? std::stod( value ):( AntennaCoordinates.y_[ linesRead ] ) ;
+ 				AntennaCoordinates.z_[ linesRead ] = ( valuesRead == 2 ) ? std::stod( value ):( AntennaCoordinates.z_[ linesRead ] ) ;
 
 				valuesRead++;
 		}
-
 		/* a line is read */
-		if( valuesRead != (int) N_ANTA )
+		if( valuesRead != (int) PRPSEvolution::EXPECTED_VALUES_COORD_FILE )
 			return PRPSError::FileIO::inputmalformed;
 
 		linesRead++;
 
 	}
-
 	/* check the input */
 	if( linesRead != PRPSEvolution::EXPECTED_LINES_COORD_FILE )
 		return PRPSError::FileIO::inputmalformed;
-
+/*
 	std::cout << "** I've read the following values: " << std::endl;
- 	std::cout << "x" << '\t'<< "y" << '\t' << "z" << std::endl;
+ 	std::cout << "x" << " | "<< "y" << " | " << "z" << std::endl;
 	for( int i = 0; i < N_ANTA; i++ ) {
-		std::cout << AntennaCoordinates.x_[ i ] << '\t'
-					<< AntennaCoordinates.y_[ i ] << '\t'
+		std::cout << AntennaCoordinates.x_[ i ] << " | "
+					<< AntennaCoordinates.y_[ i ] << " | "
 					<< AntennaCoordinates.z_[ i ] << std::endl;
 
-	}
+	}*/
 
 	return PRPSError::okay;
 
@@ -247,7 +246,7 @@ int permuteAntennas< N_ANTA, N_ANTPERM, T >::computePermutations( const PRPSEvol
 					if( k == r ) { continue; }
 					
 					/* assign the new matrix */
-					m[ m_i++ ] = computeMatrix( r, i, j, k, co );
+					m[ m_i++ ] = computeMatrix< MAT_ROWS, MAT_COLS >( r, i, j, k, co );
 					
 					x++;
 				}
@@ -272,10 +271,11 @@ int permuteAntennas< N_ANTA, N_ANTPERM, T >::computePermutations( const PRPSEvol
  *
  */
 template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
+template < std::size_t NN, std::size_t MM >
 const NRmatrix<T> permuteAntennas< N_ANTA, N_ANTPERM, T >::computeMatrix( const int ref, const int a1, const int a2, const int a3, const PRPSEvolution::Constants &co )
 {
 	NRmatrix<T> m;
-	m.assign( 3, 10, ( T ) 0.0 );
+	m.assign( NN, MM, ( T ) 0. );
 	
 // 	std::cout << ref << "|" << a1 << "|" << a2 << "|" << a3 << std::endl;
 
@@ -319,6 +319,7 @@ const NRmatrix<T> permuteAntennas< N_ANTA, N_ANTPERM, T >::computeMatrix( const 
 	}
 	
 	return m;
+
 }
 
 /**
@@ -328,20 +329,19 @@ const NRmatrix<T> permuteAntennas< N_ANTA, N_ANTPERM, T >::computeMatrix( const 
 template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
 void permuteAntennas< N_ANTA, N_ANTPERM, T >::dumb_matrices_2_file( )
 {
-// 	std::cout <<" dump " << std::endl;
-	
 	std::ofstream f;
 	f.open("output/matdump.dat");
 
 	if ( f.is_open() ) {
-		for( auto& c : configurations )
+		for( auto& c : configurations ) {
 			for( auto& m : c.mat ) {
-				c.dumb_matrix( m, 3, 10 );
-				c.dumb_matrix_2_file( f, m, 3, 10 );
+// 				c.dumb_matrix( m );
+				c.dumb_matrix_2_file( f, m );
 			}
-
+		}
 	}
 	f.close();
+
 }
 
 // void test2( void );
