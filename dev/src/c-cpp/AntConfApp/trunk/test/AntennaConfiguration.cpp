@@ -18,12 +18,13 @@ const int COLS = 3;
 
 int main ( int argc, char *argv[ ] ) {
 	PRPSEvolution::System sys;
-	PRPSEvolution::Calibration::performCalibration<ANTENNA_AMOUNT, 4, Doub> PC;
-	
-	/* perform calibration */
+
+	/**********************************************************************/
+	PRPSEvolution::Calibration::performCalibration< ANTENNA_AMOUNT, CALIBRATION_POINTS_AVAILIABLE, Doub > PC;
+
 
 	/**/
-	permuteAntennas< ANTENNA_AMOUNT,MAX_PERMUTATION_AMOUNT, Doub > PA(0);
+	permuteAntennas< ANTENNA_AMOUNT, MAX_PERMUTATION_AMOUNT, Doub > PA( 0 );
 	
 	/* read the coordinate file */
 	PA.rCoordFile();

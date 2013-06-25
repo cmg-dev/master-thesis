@@ -27,6 +27,7 @@ namespace PRPSEvolution {
 	const int	MAT_ROWS	=	3;
 	const int	MAT_COLS	=	10;
 
+	const int	CALIBRATION_POINTS_AVAILABLE		=	4;
 }
 
 #endif /* !__PRPSEVOLUTION_H_ */
