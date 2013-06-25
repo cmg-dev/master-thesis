@@ -1,49 +1,54 @@
-set terminal png medium size 800,600 \
-				xffffff x000000 xA0A0A0 \
-				x202020 x202020 \
-				x303030 xA0A0A0 \
-				x404040 xA0A0A0 \
-				x505050 xA0A0A0 \
-				x606060 x404040 \
-				x707070 xA0A0A0 \
-				x808080 xA0A0A0 \
-				x909090 xA0A0A0 enhanced
-				
-set output 'surface1.16.png'
-set dummy u,v
+reset
 
-set xtics 1.0
-set ytics 2.0
-set ztics 1.0
-set parametric
-set view 50, 60, 1, 1
-set samples 800, 800
-set isosamples 2, 33
-set hidden3d offset 1 trianglepattern 3 undefined 1 altdiagonal bentover
-#set ztics border in scale 1,0.5 nomirror norotate  offset character 0, 0, 0, -1.00000,0.25,1.00000
-# set title "\"fence plot\" using separate parametric surfaces"
-set xlabel "Referenzantenne"
+
+unset key
+unset colorbox
+set ytics offset 0,-1
+set ticslevel 0
+min = 0
+col = 8
+
+set xlabel "Permutation"
 set xlabel  offset character 0, 0, 0 font "" textcolor lt -1 norotate
-set xrange [ 1.00000 : 8.00000 ] noreverse nowriteback
-set ylabel "Permutation"
+set xrange [ 1.00000 : 35.00000 ] noreverse nowriteback
+set ylabel "Referenzantenne"
 set ylabel  offset character 0, 0, 0 font "" textcolor lt -1 rotate by 90
-set yrange [ 1.00000 : 35.00000 ] noreverse nowriteback
+set yrange [ 0.00000 : 7.00000 ] reverse nowriteback
 set zlabel "||Kondition||"
-set zlabel  offset character 0, 0, -10 font "" textcolor lt -1 norotate
-set zrange [ 0 : 1.10000 ] noreverse nowriteback
+set zlabel  offset character 0, 0, 0 font "" textcolor lt -0 rotate by 90
+set zrange [ -0.2 : 1.10000 ] noreverse nowriteback
 
-sinc(u,v) = sin(sqrt(u**2+v**2)) / sqrt(u**2+v**2)
-# set style function impulses
-# splot [u=0:1][v=0:4.99] x0, v, (u<0.5) ? -1 : sinc(x0,v) notitle, x1, v, (u<0.5) ? -1 : sinc(x1,v) notitle, 	x2, v, (u<0.5) ? -1 : sinc(x2,v) notitle, 	x3, v, (u<0.5) ? -1 : sinc(x3,v) notitle, 	x4, v, (u<0.5) ? -1 : sinc(x4,v) notitle, 	x5, v, (u<0.5) ? -1 : sinc(x5,v) notitle, 	x6, v, (u<0.5) ? -1 : sinc(x6,v) notitle, 	x7, v, (u<0.5) ? -1 : sinc(x7,v) notitle
-# set style func linespoints
-set grid
- splot  [u=0:9] [v=0:36]"data.dat" using 2:1:3 notitle w linespoints, \
-		"data.dat" using 4:1:5 notitle w linespoints, \
-		"data.dat" using 6:1:7 notitle w linespoints, \
-		"data.dat" using 8:1:9 notitle w linespoints, \
-		"data.dat" using 10:1:11 notitle w linespoints, \
-		"data.dat" using 12:1:13 notitle w linespoints,  \
-		"data.dat" using 14:1:15 notitle w linespoints, \
-		"data.dat" using 16:1:17 notitle w linespoints
-# set dgrid3d 10,10,3
-# pm3d
+DATA = ""
+DATA2 = ""
+PALETTE = "set palette defined ("
+
+pr(x, y) = sprintf("%f %f\n", x, y)
+zero_line(x, y) = DATA.sprintf("\n").DATA2.sprintf("\n%f %f\n", x, y)
+# zero_pal(x) = sprintf("%d %.3f %.3f %.3f", x, rand(0), rand(0), rand(0))
+zero_pal(x) = sprintf("%d %.3f %.3f %.3f", x, x, x, x)
+
+f(x, y) = ($0 == 0 ? (DATA = zero_line($1, x), DATA2 = pr($1, min), PALETTE = PALETTE.zero_pal(y).", ") : \
+        (DATA = DATA.pr($1, x), DATA2 = DATA2.pr($1, min)), x)
+
+plot for [i=2:col+1] 'data2.dat' u 1:(f(column(i), i))
+
+DATA = DATA.sprintf("\n").DATA2
+
+set print 'data2.tab'
+print DATA
+set print
+
+# eval(PALETTE.zero_pal(col).")")
+       set palette model RGB
+       set palette defined ( 0 "blue", 3 "green", 6 "yellow", 10 "red" )
+       
+set view 50, 335, 1, 1
+
+set terminal pngcairo enhanced size 1024,768
+
+set output 'fenceModell3x3.png'
+
+
+splot for [i=0:col-1] 'data2.tab' every :::(2*i)::(2*i+1) u 1:(i):2:(i+2) w pm3d
+
+# splot for[i=0:col-1] 'data2.tab' every :::(2*i)::(2*i+1) u 1:(i):2 w l lt -1
