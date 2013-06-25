@@ -32,6 +32,8 @@
 \usetikzlibrary[arrows,snakes,backgrounds,shapes]
 \usetikzlibrary{through}
 \usetikzlibrary{calc}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % highlighting
 \usepackage{xcolor,soul}
@@ -93,43 +95,49 @@
 %- Section 1 ----------------------------------------------------------------
 \section[Allgemeines]{Allgemeines}
 %
-%- Section 2 ----------------------------------------------------------------
+%- Section 2 ------s----------------------------------------------------------
 \section[Fortschritt]{Projektfortschritt}
 %
-%Das neue FPGA-Board wurde in dieser Woche zusammen mit S. Gnip und M. Hüther in Betrieb genommen. Dabei gab es Probleme mit der Ansteuerung der neuen AD-Wandler (Details siehe \ref{Problems}). Es wurde mit der Implementation eines Algorithmus begonnen, der die Antennenpermutationen anhand der bekannten Koordinaten der einzelnen Antennen berechnet. Dieser Algorithmus konnte in dieser Woche nicht fertiggestellt werden.
-%
-%- Section 2.2 --------------------------------------------------------------
-\subsection{Matrix Konditionierung}
-%Um die Beurteilung der Konditionszahl der Matrizen effizient durchführen zu können, wurde in dieser Woche ein Tool geschrieben. Es erstellt automatisch, auf Basis der durch die Kalibrierung bestimmten Koordinaten, alle möglichen Permutationen von Antennen. Die sich ergebenen Matrizen sind immer auf eine Referenzantenne bezogen. Es ergeben sich für eine Referenzantenne folgende Anzahl an Matrizen:
-% 
-\begin{equation}
-\frac{7!}{3!(7-3)!}=35
-\end{equation}
-%
-%Insgesamt ergeben sich so $8\times 35 = 280$ mögliche Anordnungen. Das erstellte Tool soll in ein entsprechendes C++-Programm portiert werden. Diese Berechnungen werden im späteren System auf jeden Fall anfallen.\\
-%Um die Konditionszahl zu bestimmen sind aufwändige Berechnungen\footnote{siehe Wochenbericht KW 22} der Eigenwerte der Matrix notwendig. Es wurde nach eine Möglichkeit gesucht diese effizient abzuschätzen oder zu berechnen. Vor Allem soll es auch möglich sein mit dem Verfahren eine nicht symmetrische, nicht quadratische.\\
-%Eine Methode die diese Anforderungen erfüllt, ist die sog. Singulärwertzerlegung (im Folgenden SVD := engl. Singular Value Decomposition). Die SVD basiert auf folgender Theorie linearen Algebra: Jede $M \times N$ Matrix $\mathbf{A}$ kann als Produkt einer $M \times N$ Spalten-orthogonalen Matrix $\mathbf{U}$, einer $N \times N$ Diagonalmatrix mit $\mathbf{\Sigma}$ mit Werten $\geq 0$ und einer dritten adjungierten $N \times N$-Matrix $\mathbf{V^*}$, so ergibt sich:
-\begin{equation}
-%\mathbf{A}= \mathbf{U \Sigma V^*} = \mathbf{U \Sigma V}^T
-\end{equation}
-%Da $\mathbf{A}$ eine reelwertige Matrix ist gilt: $ \mathbf{V^*} = \mathbf{V}^T $. Die Matrix $\mathbf{ \Sigma }$ enthält die Singulärwerte $\sigma_r$ und hat folgende Gestalt.
+In der ersten Wochenhälfte wurden weitere Untersuchungen an dem Umgestellten Modell durchgeführt. Die Normierung der Eingangsparameter wurde entsprechend gewählt und die Ergebnisse visualisiert (s. Abbildung~\ref{fig:Matplot}).
 %
 
+%- Section 2.1 --------------------------------------------------------------
+\subsection{Auswertung nach Normierung}
 %
-Da die $\sigma_r$ der Matrix mit den Eigenwerten in Verbindung stehen, kann aus dieser Matrix kann die Konditionszahl bestimmt werden. Sie berechnet sich aus dem Verhältnis von $ max(\sigma_r) / min(\sigma_r) $. 
-%Die spätere Implementation des SVD-Algorithmus wird aus \cite{press2007numerical} entnommen. Weiter Informationen zum Verfahren sind in \cite[Kaptiel 4.6.3]{bronstejn2012taschenbuch}
+Um die Eingangswerte (16 Bit Integer) auf das Intervall $[0,2\pi]$ abzubilden, muss eine geeignete Normierung gewählt werden. Hierzu wurden neuartige Ansätze mit dem von der Amedo GmbH verwendeten verglichen. \\
+Die Abbildung~\ref{fig:Matplot} zeigt die Ergebnisse einer Variante. Die verglichenen Normierungsverfahren lieferten sehr ähnliche Ergebnisse. In der Abbildung dargestellt ist die Abweichungen des Optimierungsergebnisses von dem "wahren" Wert. Die Spalten der Antenne $1$ und $6$ sind leer, da von ihnen keine Messdaten vorlagen. Daher verkleinert sich die Anzahl der möglichen Antennen-Konfigurationen auf lediglich $60$.\\ 
+In der Abbildung ist auf der horizontalen die Referenzantenne aufgetragen, auf der Vertikalen die Nummer der möglichen Konfiguration. Das Ergebnis für die Konfiguration dieser Antenne ist skaliert und eingefärbt. Bemerkenswert ist, dass die Referenzantennen $0$ und $7$ \textit{keine} verwertbaren Ergebnisse liefern. Über die Konfigurationen der verbliebenen Antennen kann gesagt werden, dass sie brauchbare Ergebnisse liefern (auch wenn die Eingangsparameter mit erheblichen Unsicherheiten behaftet sind).\\
+Nach den Arbeiten dieser Woche kann über die Normierung zusammenfassend gesagt werden, dass diese noch nicht zu 100\% verstanden ist und noch daran entwickelt werden muss. Weitere Verbesserungen werden voraussichtlich zusammen mit B. Borgwerth erarbeitet wenn eine größere Datengrundlage zur Verfügung steht.\\
+Um die Ergebnisse weiter beurteilen zu können müssen mehr Messdaten als die bisher genutzten zur Auswertung herangezogen werden. Auch konnte der Tag an dieser Stelle von zwei Antennen nicht gelesen werden, und somit sind die verwendeten Daten an dieser Stelle lückenhaft. Als Konsequenz ergibt sich, dass von 280 möglichen nur 60 Kombinationen bestimmt werden konnten. Es ist davon auszugehen, das dies in der Praxis zwar der Normalfall sein wird, für die Entwicklung wäre es besser alle Möglichkeiten berechnen zu können.
 %
-\subsection{Besprechung am Mittwoch}
-%Am Mittwoch fand die Besprechung mit Fr. Susanne Winter statt. Ihr wurde das Projekt in groben Zügen vorgestellt. Sie wird im Rahmen des Projektes für Detailfragen zur Implementierung und Eignung der Modelle für eine Evolutionäre Optimierung zur Verfügung stehen. Dadurch ist zu erwarten, dass die Implementationszeit verkürzt werden kann.
+\begin{figure}[h]
+         \centering 
+         \includegraphics[width=0.75\textwidth]{common/img/matplot.png}
+         \caption{Skalierte Ergebnisse der numerischen Lösung. Die Wert 1 steht für ein Ergebnis das zu 100\% dem wahren Wert entspricht und entsprechend zum Ende der Skala nimmt die Abweichung zu. Der Wert 0 steht bei dieser Skalierung für eine 100\%ige Abweichung. Kleinere Werte entsprechend für eine noch größere. }
+         \label{fig:Matplot}
+\end{figure}
 %
-\subsection{Umstellung des Modells}
+\subsection{Software}
 %
-%Ein neuer Ansatz für das Modell ist in dieser Woche entstanden. Es wurde der in der Art umgestellt, dass nun alle Variablen in dem Variablenvektor $\mathbf{x}$ enthalten sind. Im Anhang~\ref{trilateration_model_new} ist dieses Modell skizziert.
+Da weiterhin keine neuen Messdaten vorliegen wurde an der Umsetzung des C++-Programms weitergearbeitet. Das in C++ geschriebene Programm läuft nativ auf dem Rechner des PRPS und wird ohnehin im späteren Verlauf des Projekts benötigt.
 %
+\subsubsection{Erstellung C++-Programm}
+%
+Das Programm gliedert sich in mehrere Unterbibliotheken, sodass diese Programmteile nach ihrer Fertigstellung in anderen Programmen eingesetzt werden können. Die Schnittstellen der einzelnen Programmteile stellen einfache CSV-Datein\footnote{CSV:=Comma Seperated Values} dar. Dabei werden die Ergebnisse der Berechnung in solche Datein geschrieben und von anderen Programmteilen erneut eingelesen. Das ermöglicht spätere Analyse der Daten und liefert eine einfache Möglichkeit der Protokollierung und Beurteilung eventuellen Fehlverhaltens der Software.
+%
+\subsubsection{Automatische Dokumentation}
+%
+In dieser Arbeit wird das automatische Dokumentationswerkzeug Doxygen \cite{Dox1} eingesetzt. Wie schon früher beschrieben\footnote{Pflichtenheft} ermöglicht das Werkzeug eine einfache und automatisierte Erstellung der Dokumentation aus Quellcodekommentaren.\\
+Sobald eine aussagekräftige erste Version der Dokumentation erstellt werden kann, wird diese an den Wochenbericht angehängt.
+%
+\subsubsection{Stand des Programms}
+%
+Zum Ende der Woche ist es gelungen das Programm soweit zu entwickeln, dass alle möglichen Permutationen der Antennen und ihre zugehörigen Matrizen berechnet werden können. Die Matrizen wurden in eine separate Datei abgespeichert um sie anschließend mit den Ergebnissen der Excel Arbeitsmappe zu vergleichen. Das geschieht in der nächsten Woche.
+
 %- Section 3 -----------------------------------------------------------------
 \section{Probleme}
 \label{Problems}
-%Auf dem neuem FPGA-Board wird es voraussichtlich nicht möglich sein, vier AD-Wandler zu betreiben. Der Grund dafür ist, dass nicht so viele LVDS-Leitungen wie vom Hersteller beworben verwendet werden dürfen. Die Spannungsversorgung war nicht ausreichend dimensioniert. Dieses Problem wurde von S. Gnip durch eine Anpassung der verbauten IC's behoben. Diese aufgetretenen Probleme gefährden dieses Projekt nicht.
+Keine neuen Probleme.
 %
 %- Appendix ------------------------------------------------------------------
 \input{extern/append/appendix_w9.tex}
