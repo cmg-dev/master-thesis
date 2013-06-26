@@ -1,3 +1,10 @@
+/**
+ * @file calib.h
+ * @date 2013|Jun|25
+ *
+ *
+ *
+ */
 #ifndef _CALIB_H_
 #define _CALIB_H_
 
@@ -6,6 +13,7 @@
 
 #include "../include/coords.h"
 #include "../include/PRPSEvolution.h"
+#include "../include/PRPSEvolutionCalibrationExeptions.h"
 #include "../include/PRPSError.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
 

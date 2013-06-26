@@ -2,3 +2,4 @@
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/libCalibration/CMakeFiles/Calibration.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/libPermutate/CMakeFiles/Permutate.dir
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/libSolve/CMakeFiles/Solve.dir

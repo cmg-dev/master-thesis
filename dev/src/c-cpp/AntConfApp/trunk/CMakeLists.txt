@@ -14,12 +14,13 @@ configure_file (
    "${VERSION_TARGET_DIR}/AntennaConfiguration.h"
    )
 
-SET(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}" )
+SET(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS} -DNDEBUG")
 
 # the libraries
 add_subdirectory(libPermutate)
 add_subdirectory(libCalibration)
 add_subdirectory(libPRPSSystem)
+add_subdirectory(libSolve)
 
 add_subdirectory(test)
 
