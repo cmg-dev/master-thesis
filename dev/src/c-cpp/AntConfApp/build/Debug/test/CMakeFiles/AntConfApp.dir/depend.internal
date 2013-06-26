@@ -11,5 +11,7 @@ test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o
  /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionPermutationExeptions.h
  /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/coords.h
  /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/permutate.h
+ /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionSolveExeptions.h
+ /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/solve.h
  /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/AntennaConfiguration.cpp
  /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/AntennaConfiguration.h

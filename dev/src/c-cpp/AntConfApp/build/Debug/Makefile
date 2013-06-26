@@ -138,6 +138,19 @@ PRPSEvolutionSystem/fast:
 .PHONY : PRPSEvolutionSystem/fast
 
 #=============================================================================
+# Target rules for targets named Solve
+
+# Build rule for target.
+Solve: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Solve
+.PHONY : Solve
+
+# fast build rule for target.
+Solve/fast:
+	$(MAKE) -f libSolve/CMakeFiles/Solve.dir/build.make libSolve/CMakeFiles/Solve.dir/build
+.PHONY : Solve/fast
+
+#=============================================================================
 # Target rules for targets named AntConfApp
 
 # Build rule for target.
@@ -161,6 +174,7 @@ help:
 	@echo "... Permutate"
 	@echo "... Calibration"
 	@echo "... PRPSEvolutionSystem"
+	@echo "... Solve"
 	@echo "... AntConfApp"
 .PHONY : help
 

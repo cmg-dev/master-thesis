@@ -95,6 +95,44 @@ array
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../libPRPSSystem/prpsevolutionsystem.h
 nr3/nr3.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/nr3/nr3.h
+nr3/svd.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/nr3/svd.h
+
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionSolveExeptions.h
+iostream
+-
+exception
+-
+
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/solve.h
+stdio.h
+-
+stdlib.h
+-
+iterator
+-
+iostream
+-
+algorithm
+-
+array
+-
+../include/coords.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/coords.h
+../include/PRPSEvolution.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolution.h
+../include/PRPSEvolutionSolveExeptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionSolveExeptions.h
+../include/PRPSEvolutionFIOExeptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionFIOExeptions.h
+../include/PRPSError.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSError.h
+../libPermutate/permutate.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libPermutate/permutate.h
+../libPRPSSystem/prpsevolutionsystem.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libPRPSSystem/prpsevolutionsystem.h
+EALib/ChromosomeCMA.h
+-
 
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/AntennaConfiguration.cpp
 stdio.h
@@ -121,6 +159,8 @@ AntennaConfiguration.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPRPSSystem/prpsevolutionsystem.h
 ../libCalibration/calib.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/calib.h
+../libSolve/solve.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/solve.h
 
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/AntennaConfiguration.h
 
