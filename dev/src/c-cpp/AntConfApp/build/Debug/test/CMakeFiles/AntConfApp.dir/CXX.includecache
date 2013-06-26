@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/PRPSEvolutionCalibrationExeptions.h
+iostream
+-
+exception
+-
+
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/calib.h
 nr3/nr3.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/nr3/nr3.h
@@ -15,6 +21,8 @@ nr3/svd.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/coords.h
 ../include/PRPSEvolution.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/PRPSEvolution.h
+../include/PRPSEvolutionCalibrationExeptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/PRPSEvolutionCalibrationExeptions.h
 ../include/PRPSError.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/PRPSError.h
 ../libPRPSSystem/prpsevolutionsystem.h
@@ -44,6 +52,18 @@ array
 
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolution.h
 
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionFIOExeptions.h
+iostream
+-
+exception
+-
+
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionPermutationExeptions.h
+iostream
+-
+exception
+-
+
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/coords.h
 cstddef
 -
@@ -65,6 +85,10 @@ array
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/coords.h
 ../include/PRPSEvolution.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolution.h
+../include/PRPSEvolutionPermutationExeptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionPermutationExeptions.h
+../include/PRPSEvolutionFIOExeptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionFIOExeptions.h
 ../include/PRPSError.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSError.h
 ../libPRPSSystem/prpsevolutionsystem.h

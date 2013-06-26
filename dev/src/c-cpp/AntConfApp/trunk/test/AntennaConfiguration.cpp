@@ -20,20 +20,19 @@ int main ( int argc, char *argv[ ] ) {
 	PRPSEvolution::System sys;
 
 	/**********************************************************************/
-	PRPSEvolution::Calibration::performCalibration< ANTENNA_AMOUNT, CALIBRATION_POINTS_AVAILIABLE, Doub > PC;
+	PRPSEvolution::Calibration::performCalibration< ANTENNA_AMOUNT, CALIBRATION_POINTS_AVAILABLE, Doub > PC;
 
-
-	/**/
-	permuteAntennas< ANTENNA_AMOUNT, MAX_PERMUTATION_AMOUNT, Doub > PA( 0 );
+	/**********************************************************************/
+	permuteAntennas< ANTENNA_AMOUNT, MAX_PERMUTATION_AMOUNT, Doub > PA( sys.constants );
 	
 	/* read the coordinate file */
 	PA.rCoordFile();
 	
 	/**/
-	PA.computePermutations( sys.constants );
+// 	PA.computePermutations( sys.constants );
 
 	std::cout << "Dumping Matrices... " ;
-	PA.dumb_matrices_2_file();
+// 	PA.dumb_matrices_2_file();
 	std::cout << "done" << std::endl;
 	
 // 	if (argc < 2) {

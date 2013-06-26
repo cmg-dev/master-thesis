@@ -13,6 +13,8 @@
 
 #include "../include/coords.h"
 #include "../include/PRPSEvolution.h"
+#include "../include/PRPSEvolutionPermutationExeptions.h"
+#include "../include/PRPSEvolutionFIOExeptions.h"
 #include "../include/PRPSError.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
 
@@ -53,8 +55,8 @@ struct AntennaPermutations {
 	 */
 	static void dumb_matrix( NRmatrix< T > mat ) {
 		std::cout << "** Begin matrix dump: *****" << std::endl;
-		for( int i = 0; i < mat.nrows( ); i++ ){
-			for( int j = 0; j < mat.ncols( ); j++ ){
+		for(int i=0;i<mat.nrows();i++){
+			for(int j=0;j<mat.ncols();j++){
 				std::cout << mat[i][j] << '\t';
 			}
 			std::cout << '\n';
@@ -68,15 +70,15 @@ struct AntennaPermutations {
 	 */
 	static void dumb_matrix_2_file( std::ofstream &f, NRmatrix< T > mat ) {
 		if( !f ) return;
-		for( int i = 0; i < mat.nrows( ); i++ ){
-			for( int j = 0; j < mat.ncols( ); j++ ){
+		for(int i=0;i<mat.nrows();i++) {
+			for(int j=0;j<mat.ncols();j++) {
 				f << mat[i][j];
-				if( j+1 != mat.ncols( ) )	f << ',';
+				if(j+1!=mat.ncols())	f << ',';
 				
 			}
 			f << '\n';
 		}
-		f << '\n';		
+		f << '\n';
 	}
 
 	/**
@@ -100,13 +102,14 @@ struct AntennaPermutations {
 template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
 struct permuteAntennas {
 	int ref;
+	PRPSEvolution::Constants systemConstants;
 	/* We will store the x-y-z-coords we received from the antenna in this array */
  	Positioning::CoordContainer< N_ANTA, T > AntennaCoordinates;
 	/* this array will store all possible matrices of the system */
 	std::array< AntennaPermutations< N_ANTPERM, Doub >, N_ANTA> configurations;
 	
 	/* store the reference antenna while constructing */
-  	permuteAntennas( const int _refAnt = 0 );
+  	permuteAntennas( const PRPSEvolution::Constants c );
 
 	int rCoordFile();
 
@@ -130,10 +133,31 @@ struct permuteAntennas {
 
 /**************************************************************************/
 template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
-permuteAntennas< N_ANTA, N_ANTPERM, T >::permuteAntennas( const int _refAnt)
+permuteAntennas< N_ANTA, N_ANTPERM, T >::permuteAntennas( const PRPSEvolution::Constants c )
+: systemConstants( c )
 {
-	ref = _refAnt;
-// 	std::cout << "ref is: " << ref << std::endl;
+	std::cout << "permuteAntennas:: Init.. " ;
+
+	rCoordFile();
+	
+	std::cout << "okay" << std::endl;
+
+	std::cout << "permuteAntennas:: Doing computations.. " ;
+
+	computePermutations( systemConstants );
+
+	std::cout << "done" << std::endl;
+
+	std::cout << "permuteAntennas:: Dumping Matrices.. " ;
+
+	dumb_matrices_2_file();
+
+	std::cout << "done" << std::endl;
+
+// } else {
+// 		throw PRPSEvolution::Exeptions::Permutation::InitExeption;
+// 		
+// 	}
 }
 
 /**************************************************************************/
@@ -175,14 +199,14 @@ int permuteAntennas< N_ANTA, N_ANTPERM, T >::rCoordFile()
 		}
 		/* a line is read */
 		if( valuesRead != (int) PRPSEvolution::EXPECTED_VALUES_COORD_FILE )
-			return PRPSError::FileIO::inputmalformed;
+			throw PRPSEvolution::Exeptions::FileIO::MalformedInputExeption;
 
 		linesRead++;
 
 	}
 	/* check the input */
 	if( linesRead != PRPSEvolution::EXPECTED_LINES_COORD_FILE )
-		return PRPSError::FileIO::inputmalformed;
+		throw PRPSEvolution::Exeptions::FileIO::MalformedInputExeption;
 /*
 	std::cout << "** I've read the following values: " << std::endl;
  	std::cout << "x" << " | "<< "y" << " | " << "z" << std::endl;
@@ -339,8 +363,14 @@ void permuteAntennas< N_ANTA, N_ANTPERM, T >::dumb_matrices_2_file( )
 				c.dumb_matrix_2_file( f, m );
 			}
 		}
+		f.close();
+		
+	} else {
+		throw PRPSEvolution::Exeptions::FileIO::OutputExeption;
+		
 	}
-	f.close();
+		
+	
 
 }
 
