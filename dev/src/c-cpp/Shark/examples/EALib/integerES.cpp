@@ -82,7 +82,7 @@ int main(int argc, char **argv)
 	const int      MaxInit      = + 1000;
 	const double   StepSizeInit = 1000 / 3.;
 
-	const bool     PlusStrategy = false;
+	const bool     PlusStrategy = true;
 
 	unsigned       i, t;
 
@@ -170,6 +170,7 @@ int main(int argc, char **argv)
 			// step Size less than 1 is not sensible
 			stepSize.cutOff(1, MaxInit);
 			objvar  .mutateDiffGeom(stepSize, true);
+			
 		}
 
 		//
@@ -194,5 +195,6 @@ int main(int argc, char **argv)
 	// lines below are for self-testing this example, please ignore
 	if(parents.best().fitnessValue()==0) exit(EXIT_SUCCESS);
 	else exit(EXIT_FAILURE);
+	
 }
 
