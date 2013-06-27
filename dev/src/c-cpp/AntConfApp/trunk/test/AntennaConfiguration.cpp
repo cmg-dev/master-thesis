@@ -70,7 +70,6 @@ int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	Calibration::performCalibration< ANTENNA_AMOUNT, CALIBRATION_POINTS_AVAILABLE, Doub >
 					PC;
-
 	
 	/**********************************************************************/
 	Permutate::permuteAntennas< ANTENNA_AMOUNT, Permutate::MAX_PERMUTATION_AMOUNT, Doub >
@@ -79,7 +78,7 @@ int main ( int argc, char *argv[ ] ) {
 	std::cout << "create solution" << std::endl;
 
 	/**********************************************************************/
-	Solve::Process solution( 1 );
+	Solve::Process solution;
 	
 // 	read in measurement
 //	compute final matrix

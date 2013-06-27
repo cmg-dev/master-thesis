@@ -45,8 +45,10 @@ namespace PRPSEvolution {
 			 */
 			NRmatrix< T > A;
 
-			/*	there are N_ANTA-vectors that are calculated using:
+			/**	There are N_ANTA-vectors that are calculated using:
+			 * @f[
 			 *	c_k0 = 1/2[r_0^2-r_k^2+d_k0^2]
+			 * @f]
 			 *	The Amount of entries depends on the number of Points used for calibration
 			 *	in general the number of entries id equal to N_CALPOS -1
 			 * 
