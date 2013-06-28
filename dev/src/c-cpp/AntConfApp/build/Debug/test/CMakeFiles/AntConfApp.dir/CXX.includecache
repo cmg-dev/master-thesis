@@ -133,6 +133,10 @@ chrono
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libPermutate/permutate.h
 ../libPRPSSystem/prpsevolutionsystem.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libPRPSSystem/prpsevolutionsystem.h
+nr3/nr3.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/nr3/nr3.h
+nr3/svd.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/nr3/svd.h
 EALib/ChromosomeCMA.h
 -
 SharkDefs.h

@@ -77,8 +77,13 @@ int main ( int argc, char *argv[ ] ) {
 
 	std::cout << "create solution" << std::endl;
 
+	NRmatrix<Doub> A;
+	A.assign(3,10, 0.0);
+	NRvector<Doub> c_k0;
+	c_k0.assign(10, 0.0);
+	
 	/**********************************************************************/
-	Solve::Process solution;
+	Solve::Process solution( A, c_k0 );
 	
 // 	read in measurement
 //	compute final matrix
