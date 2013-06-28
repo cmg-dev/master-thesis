@@ -18,7 +18,9 @@
 \usepackage{framed} 
 \usepackage{xcolor} 
 \colorlet{shadecolor}{black} 
+\usepackage{latexsym}
 
+\usepackage{bbm}
 \usepackage{enumitem}
 
 \SetWatermarkText{Vertraulich}
@@ -97,6 +99,10 @@
 \section[Fortschritt]{Projektfortschritt}
 %
 Programm wurde um Kalibrierung erweitert. Die Ergebnisse stimmen mit den Berechnungen der Excel Arbeitsmappe überein.
+
+Implementation einer Solver-Klasse in dem Projekt. 
+
+Installatiion des gcc 4.8.1 um die \cpp11 Features vollständig zu unterstützen. Insbesondere wurden in dieser Woche die Funktionen aus der <chrono>-Library benötigt, die in älteren Versionen des Compilers noch nicht vollständig implementiert waren.
 
 %- Section 2.2 --------------------------------------------------------------
 \subsection{Matrix Konditionierung}
