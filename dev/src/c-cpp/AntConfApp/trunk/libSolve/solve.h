@@ -134,7 +134,7 @@ namespace PRPSEvolution {
 		/******************************************************************/
 		
 		/**
-		 * Collect possible fitness functions
+		 * Collect the fitness functions.
 		 * Make sure they are static so we can function-pointer to them.
 		 * 
 		 */
@@ -161,7 +161,8 @@ namespace PRPSEvolution {
 			Ueber9000( const NRmatrix< T > A_selected,
 					   const NRvector< T > c_k0_selected ) : A( A_selected ), c_k0( c_k0_selected ) {
 
-				evaluate = &Ueber9000<double>::WholeTomatoeApproach;
+// 				evaluate = &Ueber9000<double>::WholeTomatoeApproach;
+				evaluate = &Ueber9000<double>::fitnessSphere;
 				
 			}
 			
@@ -214,7 +215,7 @@ namespace PRPSEvolution {
 			 * Here we want to optimize the wavenumbers
 			 *
 			 */
-			static double WavenumberVariation( const ChromosomeT< double > &n )
+			double WavenumberVariation( const ChromosomeT< double > &n )
 			{
 				throw "Not implemented exeption";
 			
@@ -224,7 +225,7 @@ namespace PRPSEvolution {
 			 * Approach 3 based on the thoughts of by S. Winter
 			 * 
 			 */
-			static double PositionVariation( const ChromosomeT< double > &pos )
+			double PositionVariation( const ChromosomeT< double > &pos )
 			{
 				throw "Not implemented exeption";
 
@@ -234,7 +235,7 @@ namespace PRPSEvolution {
 			 * This ist the fitness function used in the EA algorithm
 			 *
 			 */
-			static double fitnessSphere( ChromosomeT<double> &c )
+			double fitnessSphere( const ChromosomeT<double> &c )
 			{
 				double sum = Shark::sqr(c[0]);
 				for(unsigned i=1; i<c.size(); i++) sum += Shark::sqr(c[i]);
@@ -242,7 +243,7 @@ namespace PRPSEvolution {
 
 			}
 
-			static double fitnessRosenbrock( ChromosomeT<double> &c )
+			double fitnessRosenbrock( const ChromosomeT<double> &c )
 			{
 				double sum = 0.;
 
@@ -258,7 +259,7 @@ namespace PRPSEvolution {
 
 			}
 
-			static double fitnessAckley( const std::vector< double >& x )
+			double fitnessAckley( const std::vector< double >& x )
 			{
 				const double A = 20.;
 				const double B = 0.2;
@@ -290,12 +291,13 @@ namespace PRPSEvolution {
 		public:
 
 			Ueber9000<Doub> *ueber9000;
+// 			double (Ueber9000<double>::*evaluate)( const ChromosomeT< double >& );
 			
 			Process( const NRmatrix< Doub > A_selected,
 					   const NRvector< Doub > c_k0_selected ) {
-				
-				Ueber9000<Doub> ueber = Ueber9000<Doub>( A_selected, c_k0_selected );
-				ueber9000 = &ueber;
+
+				Ueber9000<Doub> t( A_selected, c_k0_selected );
+				ueber9000 = &t;
 				
 				std::cout << "Performing (1+1)-ES" << std::endl;
 
@@ -338,15 +340,14 @@ namespace PRPSEvolution {
 				parent.init( Dimension, GlobalStepInit, MinInit, MaxInit );
 
 // 				fitnessParent=fitnessSphere( parent );
-				fitnessParent = ueber9000->*evaluate( parent );
-
+				fitnessParent = (ueber9000->*ueber9000->evaluate)( parent );
 				unsigned int t;
 				// loop over generations
 				for ( t = 0; t < Iterations; t++) {
 					offspring = parent;
 					offspring.mutate();
 
-					fitnessOffspring = ueber9000->*evaluate( offspring );
+					fitnessOffspring =  (ueber9000->*ueber9000->evaluate)( offspring );
 // 					fitnessOffspring = fitnessSphere( offspring );
 
 					bool success = ( fitnessOffspring < fitnessParent );
@@ -421,7 +422,7 @@ namespace PRPSEvolution {
 				// evaluate parents (only needed for elitist strategy)
 				if (PlusStrategy)
 					for (i = 0; i < parents.size(); ++i)
-						parents[ i ].setFitness(ueber9000->*evaluate(parents[ i ][ 0 ]));
+						parents[ i ].setFitness((ueber9000->*ueber9000->evaluate)(parents[ i ][ 0 ]));
 
 				std::vector<double> fitness;
 				fitness.reserve(10);
@@ -446,7 +447,7 @@ namespace PRPSEvolution {
 
 					// evaluate objective function (parameters in chromosome #0)
 					for (i = 0; i < offsprings.size(); ++i)
-						offsprings[ i ].setFitness(ueber9000->*evaluate(offsprings[ i ][ 0 ]));
+						offsprings[ i ].setFitness((ueber9000->*ueber9000->evaluate)(offsprings[ i ][ 0 ]));
 
 					// select (mu,lambda) or (mu+lambda)
 					parents.selectMuLambda(offsprings, numElitists);
