@@ -81,6 +81,8 @@ algorithm
 -
 array
 -
+string
+-
 ../include/coords.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/coords.h
 ../include/PRPSEvolution.h
@@ -102,6 +104,20 @@ nr3/svd.h
 iostream
 -
 exception
+-
+
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libNormalizer/normalizer.h
+stdio.h
+-
+stdlib.h
+-
+iostream
+-
+../include/PRPSEvolutionFIOExeptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libNormalizer/../include/PRPSEvolutionFIOExeptions.h
+complex
+-
+array
 -
 
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/solve.h
@@ -133,6 +149,8 @@ chrono
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libPermutate/permutate.h
 ../libPRPSSystem/prpsevolutionsystem.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libPRPSSystem/prpsevolutionsystem.h
+../libNormalizer/normalizer.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libNormalizer/normalizer.h
 nr3/nr3.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/nr3/nr3.h
 nr3/svd.h
@@ -157,11 +175,15 @@ array
 -
 iostream
 -
+exception
+-
 fstream
 -
 sstream
 -
 string
+-
+chrono
 -
 AntennaConfiguration.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/AntennaConfiguration.h

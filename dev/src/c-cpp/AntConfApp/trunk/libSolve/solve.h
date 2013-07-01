@@ -22,6 +22,7 @@
 #include "../include/PRPSError.h"
 #include "../libPermutate/permutate.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
+#include "../libNormalizer/normalizer.h"
 
 #include "nr3/nr3.h"
 #include "nr3/svd.h"
@@ -41,17 +42,200 @@ namespace PRPSEvolution {
 		using std::chrono::microseconds;
 		using std::chrono::milliseconds;
 		using std::chrono::steady_clock;
-		
+
 		/*******************************************************************/
 		/* Enums ***********************************************************/
 		/*******************************************************************/
 
 		/**
-		 * Represents a selection method for the Matrix A that will be used
-		 * in the solution
+		 * Represents the selection method for the Matrix A that will be used
+		 * for the solution
 		 */
 		enum SelectBy {
 			ConditionNumber, Random
+
+		};
+
+		/**
+		 * Represents the ES-strategy to find a solution
+		 */
+		enum ESStrategy {
+			OnePlusOne,		/**< @f[[1+1]-ES@f]*/
+			MuPlusLambda,	/**< @f[[\mu+\lambda]-ES@f]*/
+			MuCommaLambda	/**< @f[[\mu,\lambda]-ES@f]*/
+
+		};
+
+		
+		/******************************************************************/
+		/* Classes and so. ************************************************/
+		/******************************************************************/
+
+		/**
+		 * Collect the fitness functions.
+		 * Make sure they are static so we can function-pointer to them.
+		 *
+		 */
+		template < typename T >
+		struct Ueber9000
+		{
+			double (Ueber9000<double>::*evaluate)( const ChromosomeT< double >& );
+
+			/**/
+			NRmatrix< T > A;
+			/**/
+			NRvector< T > c_k0;
+
+			/**
+			 * Default constructor
+			 */
+			Ueber9000( ) : evaluate( &Ueber9000<double>::fitnessSphere ) { };
+
+			/**
+			 *
+			 */
+			Ueber9000(const Ueber9000 &me) : A(me.A), c_k0(me-c_k0) {
+				if( A || c_k0 )
+					evaluate = &WholeTomatoeApproach;
+
+			}
+
+			/**
+			 * Construct Ueber9000 to use the WholeTomatoeApproach as fitness function
+			 * @param[in] A_selected The matrix A for this Solution
+			 * @param[in] c_k0_selected The vector c_k0 for this Solution
+			 *
+			 */
+			Ueber9000( const NRmatrix< T > A_selected,
+					   const NRvector< T > c_k0_selected ) : A( A_selected ), c_k0( c_k0_selected ) {
+
+				/* the WholeTomatoeApproach is the model of choice if A_selected and c_k0_selected are given */
+				evaluate = &Ueber9000<double>::WholeTomatoeApproach;
+
+
+			}
+
+			/**
+			 * This method basically wraps around the real WholeTomatoeApproach-function.
+			 * Maps the function so that it can be used with the evaluate-method
+			 * @param[in] x The vector x
+			 * 
+			 */
+			double
+			WholeTomatoeApproach( const ChromosomeT< double > &x )
+			{
+				double res;
+
+				/* call function */
+				res = WholeTomatoeApproach( A, x, c_k0 );
+
+				return res;
+
+			}
+
+			/**
+			 * This approach will solve calculate the 10x3 matrix described
+			 * in the Master-Thesis of C.Gnip
+			 * Basically solves the linear equation @f[r=\mathbf{Ax}-\mathbf{b}@f]
+			 * @param[in] A The 10x3 Matrix that ist used in this solution
+			 * @param[in] x The vector containing the variables
+			 * @param[in] c_k0 Representing the vector b
+			 * @return The residuum of the equation system representing the "Fitness" of the given Solution in @see x
+			 *
+			 */
+			inline double WholeTomatoeApproach( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &c_k0 )
+			{
+				double res;
+				double prod_Ax[3];
+
+				for( int i = 0; i < A.nrows(); i++ )
+					for( int j = 0; j < A.ncols(); j++ )
+						prod_Ax[i] += A[i][j]*x[j];
+
+				/* multiply the matrix with the vector */
+				/* sum up */
+				res = (prod_Ax[0] - c_k0[0]) * (prod_Ax[0] - c_k0[0]);
+				res += (prod_Ax[1] - c_k0[1]) * (prod_Ax[1] - c_k0[1]);
+				res += (prod_Ax[2] - c_k0[2]) * (prod_Ax[2] - c_k0[2]);
+
+				return res;
+
+			}
+
+			/***************************************************************/
+			/***************************************************************/
+			/***************************************************************/
+			/**
+			 * Approach 2 based on the thoughts of S. Winter.
+			 * Here we want to optimize the wavenumbers
+			 *
+			 */
+			double WavenumberVariation( const ChromosomeT< double > &n )
+			{
+				throw "Not implemented exeption";
+
+			}
+
+			/**
+			 * Approach 3 based on the thoughts of by S. Winter
+			 *
+			 */
+			double PositionVariation( const ChromosomeT< double > &pos )
+			{
+				throw "Not implemented exeption";
+
+			}
+
+			/**
+			 * This ist the fitness function used in the EA algorithm
+			 *
+			 */
+			double fitnessSphere( const ChromosomeT<double> &c )
+			{
+				double sum = Shark::sqr(c[0]);
+				for(unsigned i=1; i<c.size(); i++) sum += Shark::sqr(c[i]);
+				return sum;
+
+			}
+
+			/**
+			 * The Rosenbrock implementation
+			 *
+			 */
+			double fitnessRosenbrock( const ChromosomeT<double> &c )
+			{
+				double sum = 0.;
+
+				for(unsigned i=0; i<c.size(); i++) {
+					sum += ( 100 * Shark::sqr( c[i+1] - Shark::sqr(c[i]) )
+								+ Shark::sqr(c[i]-1));
+
+				}
+
+				return sum;
+
+			}
+
+			/**
+			 * The infamous Ackley-function
+			 *
+			 */
+			double fitnessAckley( const std::vector< double >& x )
+			{
+				const double A = 20.;
+				const double B = 0.2;
+				const double C = M_2PI;
+
+				unsigned i, n;
+				double   a, b;
+
+				for (a = b = 0., i = 0, n = x.size(); i < n; ++i) {
+					a += x[ i ] * x[ i ];
+					b += cos(C * x[ i ]);
+				}
+
+				return -A * exp(-B * sqrt(a / n)) - exp(b / n) + A + M_E;
+			}
 
 		};
 
@@ -86,11 +270,11 @@ namespace PRPSEvolution {
 			std::array<T_Measure,N_ANTA> measuredAmp;
 			
 			/** the container for the normailzed data */
-			std::array<T_Measure,N_ANTA> normThetas;
+// 			std::array<T_Measure,N_ANTA> normThetas;
 			
 			/** the container for the selected matrices */
-			std::array<AntennaPermutations< N_ANTA, T >,nConfigsForProcessing>
-				selectedConfs;
+// 			std::array<AntennaPermutations< N_ANTA, T >,nConfigsForProcessing>
+// 				selectedConfs;
 
 			/***************************************************************/
 			/***************************************************************/
@@ -102,7 +286,7 @@ namespace PRPSEvolution {
 
 			/**
 			 */
-			std::array<T, N_ANTA> normalizeThetas( );
+			std::array<T, N_ANTA> normalizeThetas( const std::array<T_Measure,N_ANTA> &, const std::array<T_Measure,N_ANTA> & );
 
 			/**
 			 */
@@ -113,170 +297,204 @@ namespace PRPSEvolution {
 			 * @param[in] method The selection Method
 			 * 
 			 */
-			std::array<AntennaPermutations< N_ANTA, T >,nConfigsForProcessing>
+			std::array<AntennaPermutations< N_ANTA, T >,N_Configs>
 				selectMatsForProcessing( PRPSEvolution::Solve::SelectBy method );
 
+			/***/
+			std::array<AntennaPermutations< N_ANTA, T >,N_Configs>
+				fillSelectMats( std::array<T_Measure,N_ANTA> &, std::array<AntennaPermutations< N_ANTA, T >, N_Configs> & );
+
+			/***/
+			std::array<NRvector<T>, N_Configs>
+				calcVectors( std::array<T_Measure,N_ANTA> & );
+		
 		};
 
+		/**
+		 * Construct the object an perform neccessary PreProcessing steps.
+		 * -# Read out the measurements from the given interface (e.g. a file)
+		 * -# Normalize everything
+		 * -# Select the matrices for further processing
+		 * -# Fill the matrices with the information
+		 * -# Precalculate the @f[c_{k0}@f]-Vector
+		 * -# Store matrices to make them availiable in the next steps
+		 *
+		 */		
 		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
 		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::PreProcessing() {
+
+			/***************************************************************/
+			std::cout << "PreProcessing::Entering Construct()" << std::endl;
+
+			std::cout << "PreProcessing::Read from file.. .. ";
 			rMeasurementsFromFile( );
-
-			normThetas = normalizeThetas();
-
-			selectedConfs = selectMatsForProcessing( SelectBy::ConditionNumber );
 			
+			std::cout << " done" << std::endl;
+
+			/***************************************************************/
+			std::cout << "PreProcessing::normalization in process.. .. ";
+
+			auto normThetas = normalizeThetas( measuredPhase, measuredAmp );
+			
+			std::cout << " done" << std::endl;
+
+			/***************************************************************/
+			std::cout << "PreProcessing::Selecting matrices.. .. ";
+			auto selectedConfs = selectMatsForProcessing( SelectBy::ConditionNumber );
+			
+			std::cout << " done" << std::endl;
+
+			/***************************************************************/
+			std::cout << "PreProcessing::Filling selected matrices with remaining information.. ..";
+			selectedConfs = fillSelectMats( normThetas, selectedConfs );
+
+			std::cout << " done" << std::endl;
+
+			/***************************************************************/
+			std::cout << "PreProcessing::Calculate vectors.. ..";
+			auto vectors = calcVectors( normThetas );
+
+			std::cout << " done" << std::endl;
+
+			
+			/***************************************************************/
+			vectorsForSolution = vectors;
+			matricesForSolution = selectedConfs;
 			
 		}
-		
-		/******************************************************************/
-		/******************************************************************/
-		/******************************************************************/
-		
+
 		/**
-		 * Collect the fitness functions.
-		 * Make sure they are static so we can function-pointer to them.
+		 * Read the measurements from file
 		 * 
 		 */
-		template < typename T >
-		struct Ueber9000
+		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
+		int PreProcessing<N_ANTA,N_Configs,T,T_Measure>::rMeasurementsFromFile()
 		{
-			double (Ueber9000<double>::*evaluate)( const ChromosomeT< double >& );
-			
-			/**/
-			NRmatrix< T > A;
-			/**/
-			NRvector< T > c_k0;
+			std::ifstream	file ( "data/Measurements.dat" );
+			std::string		line;
+			int				valuesRead;
+			int				linesRead;
 
-// 			Ueber9000(){};
-// 			Ueber9000(const Ueber9000 &me) : A(me.A), c_k0(me-c_k0) {
-// 				evaluate = &WholeTomatoeApproach;
-// 				
+			valuesRead = linesRead = 0;
+
+			/* simply fill with 0 */
+			for( int i = 0; i < N_ANTA; i++ ) {
+				measuredPhase[ i ] = (T_Measure) 0.0;
+				measuredAmp[ i ] = (T_Measure) 0.0;
+			}
+
+			/* read out the file **************************************************/
+			while( getline( file,line ) ) {
+				std::stringstream   linestream( line );
+				std::string         value;
+
+				valuesRead = 0;
+				while( getline( linestream, value, ',' ) ) {
+						measuredPhase[ linesRead ] = ( valuesRead == 0 ) ? std::stod( value ):( measuredPhase[ linesRead ] ) ;
+						measuredAmp[ linesRead ] = ( valuesRead == 1 ) ? std::stod( value ):( measuredAmp[ linesRead ] ) ;
+					
+						valuesRead++;
+				}
+				/* a line is read */
+				if( valuesRead != (int) PRPSEvolution::EXPECTED_VALUES_MEASUREMENT_FILE )
+					throw PRPSEvolution::Exeptions::FileIO::MalformedInputExeption;
+
+				linesRead++;
+
+			}
+			/* check the input */
+			if( linesRead != PRPSEvolution::EXPECTED_LINES_MEASUREMENT_FILE )
+				throw PRPSEvolution::Exeptions::FileIO::MalformedInputExeption;
+			
+			/* dump everything to std::cout  */
+// 			std::cout << "** PreProcessing:: I've read the following values: " << std::endl;
+// 			std::cout << "Idx Phase" << " | "<< "Amp" << std::endl;
+// 			for( int i = 0; i < measuredPhase.size(); i++ ) {
+// 				std::cout << i
+// 					<< " " << measuredPhase[ i ]
+// 					<< " | " << measuredAmp[ i ]
+// 					<< std::endl;
+// 
 // 			}
-			
-			/**
-			 * construc Ueber 9000
-			 * @param[in]
-			 */
-			Ueber9000( const NRmatrix< T > A_selected,
-					   const NRvector< T > c_k0_selected ) : A( A_selected ), c_k0( c_k0_selected ) {
 
-// 				evaluate = &Ueber9000<double>::WholeTomatoeApproach;
-				evaluate = &Ueber9000<double>::fitnessSphere;
+			return PRPSError::okay;
+			
+		}
+
+		/**
+		 * Perform the normalization of the input data.
+		 * Scale it down to match the interval of @f[[0,2\pi]@f]
+		 * @param[in] phase The measured phase data
+		 * @param[in] amp The measured ampliture data
+		 * @return The normailzed values for @f[ \Theta_k @f]
+		 */
+		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
+		std::array<T, N_ANTA> PreProcessing<N_ANTA,N_Configs,T,T_Measure>::normalizeThetas
+		( const std::array<T_Measure,N_ANTA> &phase, const std::array<T_Measure,N_ANTA> &amp )
+		{
+			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::CMPLX );
+
+			auto ret = normalizer.normalize( phase, amp );
+
+			return ret;
+
+		}
+
+		/**
+		 * 
+		 */
+		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
+		std::array<AntennaPermutations< N_ANTA, T >,N_Configs>
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::selectMatsForProcessing
+		( PRPSEvolution::Solve::SelectBy method )
+		{
+			std::array<AntennaPermutations< N_ANTA, T >,N_Configs> ret;
+
+			/* witch antennas delivered data ? */
+			std::array<bool,N_ANTA> data;
+			for( int i = 0; i < data.size(); i++ ) {
+				data[i] = (measuredAmp[i]==(T)DATA_NV||measuredPhase[i]==(T)DATA_NV)?false:true;
 				
 			}
 			
-			double
-			WholeTomatoeApproach( const ChromosomeT< double > &x )
-			{
-				double res;
-				
-				/* call function */
-				res = WholeTomatoeApproach( A, x, c_k0 );
-
-				return res;
-				
-			}
-
-			/**
-			 * This approach will solve calculate the 10x3 matrix described
-			 * in the Master-Thesis of C.Gnip
-			 * Basically solves the linear equation @f[r=\mathbf{Ax}-\mathbf{b}@f]
-			 * @param[in] A The 10x3 Matrix that ist used in this solution
-			 * @param[in] x The vector containing the variables
-			 * @param[in] c_k0 Representing the vector b
-			 * @return The residuum of the equation system representing the "Fitness" of the given Solution in @see x
-			 * 
-			 */
-			inline double WholeTomatoeApproach( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &c_k0 )
-			{
-				double res;
-				double prod_Ax[3];
-				
-				for( int i = 0; i < A.nrows(); i++ )
-					for( int j = 0; j < A.ncols(); j++ )
-						prod_Ax[i] += A[i][j]*x[j];
-						
-				/* multiply the matrix with the vector */
-				/* sum up */
-				res = (prod_Ax[0] - c_k0[0]) * (prod_Ax[0] - c_k0[0]);
-				res += (prod_Ax[1] - c_k0[1]) * (prod_Ax[1] - c_k0[1]);
-				res += (prod_Ax[2] - c_k0[2]) * (prod_Ax[2] - c_k0[2]);
-
-				return res;
-
-			}
-
-			/***************************************************************/
-			/***************************************************************/
-			/***************************************************************/
-			/**
-			 * Approach 2 based on the thoughts of S. Winter.
-			 * Here we want to optimize the wavenumbers
-			 *
-			 */
-			double WavenumberVariation( const ChromosomeT< double > &n )
-			{
-				throw "Not implemented exeption";
+			/* possible permutations? */
 			
-			}
-
-			/**
-			 * Approach 3 based on the thoughts of by S. Winter
-			 * 
-			 */
-			double PositionVariation( const ChromosomeT< double > &pos )
-			{
-				throw "Not implemented exeption";
-
-			}
 			
-			/**
-			 * This ist the fitness function used in the EA algorithm
-			 *
-			 */
-			double fitnessSphere( const ChromosomeT<double> &c )
-			{
-				double sum = Shark::sqr(c[0]);
-				for(unsigned i=1; i<c.size(); i++) sum += Shark::sqr(c[i]);
-				return sum;
+			/* select by method */
+			
+			return ret;
+			
+		}
 
-			}
+		/**
+		 * 
+		 */
+		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
+		std::array<AntennaPermutations<N_ANTA,T>,N_Configs>
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::fillSelectMats
+		( std::array<T_Measure,N_ANTA> &normThetas,
+		  std::array<AntennaPermutations< N_ANTA, T >,N_Configs> &confs )
+		{
+			std::array<AntennaPermutations< N_ANTA, T >,N_Configs> ret;
+			
+			return ret;
+		}
 
-			double fitnessRosenbrock( const ChromosomeT<double> &c )
-			{
-				double sum = 0.;
+		/**
+		 * 
+		 */
+		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
+		std::array<NRvector<T>, N_Configs>
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::calcVectors
+		( std::array<T_Measure,N_ANTA> &normThetas )
+		{
+			std::array<NRvector<T>, N_Configs> ret;
 
-				for(unsigned i=0; i<c.size(); i++) {
-					sum += ( 100 * Shark::sqr( c[i+1] - Shark::sqr(c[i]) )
-								+ Shark::sqr(c[i]-1));
+// 			ret = 
 
-				}
-
-//
-// 				for(unsigned i=1; i<c.size(); i++) sum += Shark::sqr(c[i]);
-				return sum;
-
-			}
-
-			double fitnessAckley( const std::vector< double >& x )
-			{
-				const double A = 20.;
-				const double B = 0.2;
-				const double C = M_2PI;
-
-				unsigned i, n;
-				double   a, b;
-
-				for (a = b = 0., i = 0, n = x.size(); i < n; ++i) {
-					a += x[ i ] * x[ i ];
-					b += cos(C * x[ i ]);
-				}
-
-				return -A * exp(-B * sqrt(a / n)) - exp(b / n) + A + M_E;
-			}
-
-		};
+			return ret;
+		}
+			
 		
 		/******************************************************************/
 		/******************************************************************/
@@ -290,38 +508,67 @@ namespace PRPSEvolution {
 		{
 		public:
 
+			/** a Pointer to the object containing the fitness functions */
 			Ueber9000<Doub> *ueber9000;
-// 			double (Ueber9000<double>::*evaluate)( const ChromosomeT< double >& );
-			
-			Process( const NRmatrix< Doub > A_selected,
-					   const NRvector< Doub > c_k0_selected ) {
+			/*	the strategy to find a solution */
+			ESStrategy strategy;
 
-				Ueber9000<Doub> t( A_selected, c_k0_selected );
-				ueber9000 = &t;
-				
-				std::cout << "Performing (1+1)-ES" << std::endl;
+			/**
+			 * Constructor
 
-				steady_clock::time_point t_0 = steady_clock::now();
-				
-				OnePlusOneES();
+			 */
+			Process(  ) {
 
-				steady_clock::time_point t_1 = steady_clock::now();
-				
-				std::cout << "Performing (mu+lambda)-ES" << std::endl;
-				
-				Another();
+			}
 
-				steady_clock::time_point t_2 = steady_clock::now();
-
-				std::cout << "t_0-t_1:" << duration_cast<milliseconds>(t_1-t_0).count() << " ms" << std::endl;
-				std::cout << "t_1-t_1:" << duration_cast<milliseconds>(t_2-t_1).count() << " ms" << std::endl;
-				std::cout << "t_0-t_2:" << duration_cast<milliseconds>(t_2 -t_0).count() << " ms" << std::endl;
+			/**
+			 * Set the ES-Strategy
+			 * @param[in] Strategy The selected strategy
+			 *
+			 */
+			void setESStrategy( ESStrategy Strategy ) {
+				strategy = Strategy;
 				
 			}
-			/* latch in model */
-			/* compute solution */
+
+			/**
+			 * Find a Solution for a given pair of matrices
+			 * @param[in] A_selected The matrix A to use in this solution
+			 * @param[in] c_k0_selected The c_k0 vector for this solution
+			 * @return The solution
+			 * 
+			 */
+			ChromosomeT<double> findSolution
+			( const NRmatrix< Doub > &A_selected, const NRvector< Doub > &c_k0_selected )
+			{
+				/* create a new instance of Ueber9000 */
+				Ueber9000<Doub> t( A_selected, c_k0_selected );
+// 				Ueber9000<Doub> t;
+				ueber9000 = &t;
+
+				ChromosomeT<double> solution;
+				switch( strategy ) {
+					case (int) ESStrategy::OnePlusOne:
+						solution = OnePlusOneES();
+						break;
+						
+                   case (int) ESStrategy::MuPlusLambda :
+						solution = MuPlusLambdaES();
+						break;
+						
+					case (int) ESStrategy::MuCommaLambda:
+						solution = MuCommaLambdaES();
+						break;
+						
+				}
+				return solution;
+				
+			}
+			
 			/* dump/ display results */
 
+			/* The strategies **********************************************/
+			/** Enter description */
 			ChromosomeT<double> OnePlusOneES() {
 				// EA parameters
 				const unsigned Dimension      = 10;
@@ -330,8 +577,6 @@ namespace PRPSEvolution {
 				const double   MaxInit        = 7.;
 				const double   GlobalStepInit = 5.;
 
-// 				Rosenbrock	fitnessR( Dimension );
-				
 				ChromosomeCMA parent(Dimension),
 								offspring(Dimension);
 
@@ -339,7 +584,6 @@ namespace PRPSEvolution {
 
 				parent.init( Dimension, GlobalStepInit, MinInit, MaxInit );
 
-// 				fitnessParent=fitnessSphere( parent );
 				fitnessParent = (ueber9000->*ueber9000->evaluate)( parent );
 				unsigned int t;
 				// loop over generations
@@ -348,7 +592,6 @@ namespace PRPSEvolution {
 					offspring.mutate();
 
 					fitnessOffspring =  (ueber9000->*ueber9000->evaluate)( offspring );
-// 					fitnessOffspring = fitnessSphere( offspring );
 
 					bool success = ( fitnessOffspring < fitnessParent );
 
@@ -361,7 +604,7 @@ namespace PRPSEvolution {
 
 					if( fitnessParent < 1e-18 )
 						break;
-// 					std::cout << "Fitness: " << fitnessParent << '\r';
+
 				}
 				std::cout << t << " Done \tFinal Fitness: " << fitnessParent << endl;
 				for(unsigned i=0; i < Dimension; i++)
@@ -373,9 +616,205 @@ namespace PRPSEvolution {
 				
 			}
 
+			/** Enter description */
+			ChromosomeT<double> MuCommaLambdaES() {
+
+				const unsigned Mu           = 5;
+				const unsigned Lambda       = 10;
+				const unsigned Dimension    = 10;
+				const unsigned Iterations   = 2000;
+				const unsigned Interval     = 10;
+				const unsigned NSigma       = 1;
+
+				const double   GlobalStepInit = 5.;
+
+
+				const double   MinInit        = -3.;
+				const double   MaxInit        = 7.;
+				const double   SigmaInit    = 6;
+
+				/* activate elitist strategy */
+				const bool     PlusStrategy = true;
+
+				unsigned       i, t;
+
+				// initialize random number generator
+				Rng::seed(1234);
+
+				// define populations
+				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
+								ChromosomeT< double >(NSigma));
+				PopulationT<double> offsprings(Lambda, ChromosomeT< double >(Dimension),
+									ChromosomeT< double >(NSigma));
+
+				// minimization task
+				parents   .setMinimize();
+				offsprings.setMinimize();
+
+				// initialize parent population
+				for (i = 0; i < parents.size(); ++i) {
+					parents[ i ][ 0 ].initialize(MinInit,   MaxInit);
+					parents[ i ][ 1 ].initialize(SigmaInit, SigmaInit);
+				}
+
+				// selection parameters (number of elitists)
+				unsigned numElitists = PlusStrategy ? Mu : 0;
+
+				// standard deviations for mutation of sigma
+				double     tau0 = 1. / sqrt(2. * Dimension);
+				double     tau1 = 1. / sqrt(2. * sqrt((double)Dimension));
+
+				// evaluate parents (only needed for elitist strategy)
+				if (PlusStrategy)
+					for (i = 0; i < parents.size(); ++i)
+						parents[ i ].setFitness((ueber9000->*ueber9000->evaluate)(parents[ i ][ 0 ]));
+
+				std::vector<double> fitness;
+				fitness.reserve(10);
+
+				// iterate
+				for (t = 0; t < Iterations; ++t) {
+					// generate new offsprings
+					for (i = 0; i < offsprings.size(); ++i) {
+						// select two random parents
+						Individual& mom = parents.random();
+						Individual& dad = parents.random();
+
+						// recombine object variables discrete, step sizes intermediate
+						offsprings[ i ][ 0 ].recombineDiscrete(mom[ 0 ], dad[ 0 ]);
+						offsprings[ i ][ 1 ].recombineGenIntermediate(mom[ 1 ], dad[ 1 ]);
+
+						// mutate object variables normal distributed,
+						// step sizes log normal distributed
+						offsprings[ i ][ 1 ].mutateLogNormal(tau0,  tau1);
+						offsprings[ i ][ 0 ].mutateNormal(offsprings[ i ][ 1 ], true);
+					}
+
+					// evaluate objective function (parameters in chromosome #0)
+					for (i = 0; i < offsprings.size(); ++i)
+						offsprings[ i ].setFitness((ueber9000->*ueber9000->evaluate)(offsprings[ i ][ 0 ]));
+
+					// select (mu,lambda) or (mu+lambda)
+					parents.selectMuLambda(offsprings, numElitists);
+
+					// print out best value found so far
+					if( parents.best().fitnessValue() < 1e-18 )
+						break;
+
+				}
+
+				auto p = parents.best();
+				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
+
+				for( int i = 0; i < 10; i++ )
+					std::cout << i << " " << p[0][i] << " " ;
+				std::cout << std::endl;
+
+				return p[0];
+				
+			}
+
+			/** Enter description */
+			ChromosomeT<double> MuPlusLambdaES() {
+
+				const unsigned Mu           = 5;
+				const unsigned Lambda       = 10;
+				const unsigned Dimension    = 10;
+				const unsigned Iterations   = 2000;
+				const unsigned Interval     = 10;
+				const unsigned NSigma       = 1;
+
+				const double   GlobalStepInit = 5.;
+
+
+				const double   MinInit        = -3.;
+				const double   MaxInit        = 7.;
+				const double   SigmaInit    = 6;
+
+				/* activate elitist strategy */
+				const bool     PlusStrategy = true;
+
+				unsigned       i, t;
+
+				// initialize random number generator
+				Rng::seed(1234);
+
+				// define populations
+				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
+								ChromosomeT< double >(NSigma));
+				PopulationT<double> offsprings(Lambda, ChromosomeT< double >(Dimension),
+									ChromosomeT< double >(NSigma));
+
+				// minimization task
+				parents   .setMinimize();
+				offsprings.setMinimize();
+
+				// initialize parent population
+				for (i = 0; i < parents.size(); ++i) {
+					parents[ i ][ 0 ].initialize(MinInit,   MaxInit);
+					parents[ i ][ 1 ].initialize(SigmaInit, SigmaInit);
+				}
+
+				// selection parameters (number of elitists)
+				unsigned numElitists = PlusStrategy ? Mu : 0;
+
+				// standard deviations for mutation of sigma
+				double     tau0 = 1. / sqrt(2. * Dimension);
+				double     tau1 = 1. / sqrt(2. * sqrt((double)Dimension));
+
+				// evaluate parents (only needed for elitist strategy)
+				if (PlusStrategy)
+					for (i = 0; i < parents.size(); ++i)
+						parents[ i ].setFitness((ueber9000->*ueber9000->evaluate)(parents[ i ][ 0 ]));
+
+				std::vector<double> fitness;
+				fitness.reserve(10);
+
+				// iterate
+				for (t = 0; t < Iterations; ++t) {
+					// generate new offsprings
+					for (i = 0; i < offsprings.size(); ++i) {
+						// select two random parents
+						Individual& mom = parents.random();
+						Individual& dad = parents.random();
+
+						// recombine object variables discrete, step sizes intermediate
+						offsprings[ i ][ 0 ].recombineDiscrete(mom[ 0 ], dad[ 0 ]);
+						offsprings[ i ][ 1 ].recombineGenIntermediate(mom[ 1 ], dad[ 1 ]);
+
+						// mutate object variables normal distributed,
+						// step sizes log normal distributed
+						offsprings[ i ][ 1 ].mutateLogNormal(tau0,  tau1);
+						offsprings[ i ][ 0 ].mutateNormal(offsprings[ i ][ 1 ], true);
+					}
+
+					// evaluate objective function (parameters in chromosome #0)
+					for (i = 0; i < offsprings.size(); ++i)
+						offsprings[ i ].setFitness((ueber9000->*ueber9000->evaluate)(offsprings[ i ][ 0 ]));
+
+					// select (mu,lambda) or (mu+lambda)
+					parents.selectMuLambda(offsprings, numElitists);
+
+					// print out best value found so far
+					if( parents.best().fitnessValue() < 1e-18 )
+						break;
+				}
+
+				auto p = parents.best();
+				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
+
+				for( int i = 0; i < 10; i++ )
+					std::cout << i << " " << p[0][i] << " " ;
+				std::cout << std::endl;
+
+				return p[0];
+				
+			}
+
+			
 			void Another() {
-				const unsigned Mu           = 30;
-				const unsigned Lambda       = 100;
+				const unsigned Mu           = 5;
+				const unsigned Lambda       = 10;
 				const unsigned Dimension    = 10;
 				const unsigned Iterations   = 2000;
 				const unsigned Interval     = 10;
@@ -386,7 +825,7 @@ namespace PRPSEvolution {
 
 				const double   MinInit        = -3.;
 				const double   MaxInit        = 7.;
-				const double   SigmaInit    = 3;
+				const double   SigmaInit    = 6;
 
 				/* activate elitist strategy */
 				const bool     PlusStrategy = true;
@@ -483,6 +922,7 @@ namespace PRPSEvolution {
 				std::cout << std::endl;
 				
 			}
+
 		};
 
 		class PostProcessing

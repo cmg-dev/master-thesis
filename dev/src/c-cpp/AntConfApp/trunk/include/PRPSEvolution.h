@@ -28,6 +28,11 @@ namespace PRPSEvolution {
 	const int	MAT_COLS	=	10;
 
 	const int	CALIBRATION_POINTS_AVAILABLE		=	4;
+
+	const int	EXPECTED_LINES_MEASUREMENT_FILE	=	ANTENNA_AMOUNT;
+	const int	EXPECTED_VALUES_MEASUREMENT_FILE	=	2;
+
+	const int	DATA_NV		= 65535;
 }
 
 #endif /* !__PRPSEVOLUTION_H_ */

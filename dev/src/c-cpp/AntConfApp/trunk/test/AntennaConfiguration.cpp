@@ -9,9 +9,11 @@
 #include <math.h>
 #include <array>
 #include <iostream>
-#include<fstream>
-#include<sstream>
-#include<string>
+#include <exception>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <chrono>
 
 #include "AntennaConfiguration.h"
 #include "../libPermutate/permutate.h"
@@ -20,6 +22,11 @@
 #include "../libSolve/solve.h"
 
 using namespace PRPSEvolution;
+using std::chrono::duration_cast;
+using std::chrono::microseconds;
+using std::chrono::milliseconds;
+using std::chrono::steady_clock;
+
 
 template <typename Iterator>
 inline bool next_combination(const Iterator first, Iterator k, const Iterator last)
@@ -81,9 +88,44 @@ int main ( int argc, char *argv[ ] ) {
 	A.assign(3,10, 0.0);
 	NRvector<Doub> c_k0;
 	c_k0.assign(10, 0.0);
+
+	/**********************************************************************/
+	std::cout << "*PreProcessing..." << std::endl;
+
+	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, double> preprocess;
+
+	std::cout << std::endl;
 	
 	/**********************************************************************/
-	Solve::Process solution( A, c_k0 );
+	std::cout << "*Processing..." << std::endl;
+	/**/
+	Solve::Process process;
+
+	std::cout << "Performing (1+1)-ES" << std::endl;
+
+	process.setESStrategy(Solve::ESStrategy::OnePlusOne);
+	steady_clock::time_point t_0 = steady_clock::now();
+
+	process.findSolution( A, c_k0 );
+	
+	steady_clock::time_point t_1 = steady_clock::now();
+
+	std::cout << "Performing (mu+lambda)-ES" << std::endl;
+
+	process.setESStrategy( Solve::ESStrategy::MuPlusLambda );
+	process.findSolution( A, c_k0 );
+	
+	steady_clock::time_point t_2 = steady_clock::now();
+
+	std::cout << "t_0-t_1:"
+		<< duration_cast<milliseconds>(t_1-t_0).count() << " ms" << std::endl;
+	std::cout << "t_1-t_1:"
+		<< duration_cast<milliseconds>(t_2-t_1).count() << " ms" << std::endl;
+	std::cout << "t_0-t_2:"
+		<< duration_cast<milliseconds>(t_2 -t_0).count() << " ms" << std::endl;
+
+	/**********************************************************************/
+	
 	
 // 	read in measurement
 //	compute final matrix

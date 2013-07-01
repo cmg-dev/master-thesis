@@ -1,13 +1,13 @@
 /**
- * @file PRPSEvolutionExeptions.h
- * Contains the exeption used during permutation in the PRPSEvolution - Project
+ * @file PRPSEvolutionFIOExeptions.h
+ * Exeptions of file IO
  *
  */
 #ifndef __PRPS_EVOLUTION_FIO_EXEPTIONS_H_
 	#define __PRPS_EVOLUTION_FIO_EXEPTIONS_H_
 
-	#include <iostream>
-	#include <exception>
+#include <iostream>
+#include <exception>
 
 namespace PRPSEvolution {
 	namespace Exeptions {

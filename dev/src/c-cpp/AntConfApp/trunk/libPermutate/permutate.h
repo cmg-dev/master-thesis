@@ -14,6 +14,7 @@
 #include <iostream>
 #include <algorithm>
 #include <array>
+#include <string>
 
 #include "../include/coords.h"
 #include "../include/PRPSEvolution.h"
@@ -57,8 +58,11 @@ namespace PRPSEvolution {
 			/* the condition number of a matrix */
 			std::array< Doub, ANTENNA_AMOUNT > conditionNumbers;
 
+			/* names resembles the contributing antennas for this Matrix */
+			std::array< std::string, N_MAT > names;
+			
 			/**
-			*
+			* 
 			*/
 			static void dumb_matrix( NRmatrix< T > mat ) {
 				std::cout << "** Begin matrix dump: *****" << std::endl;
@@ -73,10 +77,11 @@ namespace PRPSEvolution {
 			}
 
 			/**
-			*
+			* 
 			*/
-			static void dumb_matrix_2_file( std::ofstream &f, NRmatrix< T > mat ) {
+			static void dumb_matrix_2_file( std::ofstream &f, NRmatrix< T > mat) {
 				if( !f ) return;
+				
 				for(int i=0;i<mat.nrows();i++) {
 					for(int j=0;j<mat.ncols();j++) {
 						f << mat[i][j];
@@ -91,15 +96,8 @@ namespace PRPSEvolution {
 			/**
 			*
 			*/
-			AntennaPermutations( void ) {
-				/* init all of the matrices */
-		// 		for(auto& m: mat) {
-		// 			std::cout << "! " << NN << " " << MM<<std::endl;
-		// 			m.assign( NN, MM, (T) 0. );
-		// 			m.assign( 3, 10, (T) 0. );
-
-		// 		}
-			}
+			AntennaPermutations( void ) { }
+			
 		};
 
 		/**
@@ -265,6 +263,8 @@ namespace PRPSEvolution {
 				m_i = 0;
 				/* get the matrices for one configuration */
 				auto& m = c[r].mat;
+				auto& names = c[r].names;
+
 				/* run through all configurations **********************************/
 				for( int i = i_start; i < i_goal; i++  ) {
 					if( i == r ) {
@@ -283,6 +283,10 @@ namespace PRPSEvolution {
 							if( k == r ) { continue; }
 
 							/* assign the new matrix */
+							ostringstream convert;
+							convert << r << i << j << k;
+							
+							names[ m_i ] = convert.str();
 							m[ m_i++ ] = computeMatrix< MAT_ROWS, MAT_COLS >( r, i, j, k, co );
 
 							x++;
@@ -371,8 +375,10 @@ namespace PRPSEvolution {
 
 			if ( f.is_open() ) {
 				for( auto& c : configurations ) {
+					int i = 0;
+					
 					for( auto& m : c.mat ) {
-		// 				c.dumb_matrix( m );
+						f << c.names[i++] << std::endl;
 						c.dumb_matrix_2_file( f, m );
 					}
 				}
