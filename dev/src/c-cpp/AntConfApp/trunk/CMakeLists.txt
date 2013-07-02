@@ -21,6 +21,7 @@ add_subdirectory(libPermutate)
 add_subdirectory(libCalibration)
 add_subdirectory(libPRPSSystem)
 add_subdirectory(libSolve)
+add_subdirectory(libNormalizer)
 
 add_subdirectory(test)
 

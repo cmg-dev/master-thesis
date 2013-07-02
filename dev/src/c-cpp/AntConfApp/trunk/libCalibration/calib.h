@@ -13,7 +13,7 @@
 
 #include "../include/coords.h"
 #include "../include/PRPSEvolution.h"
-#include "../include/PRPSEvolutionCalibrationExeptions.h"
+#include "../include/PRPSEvolutionCalibrationExceptions.h"
 #include "../include/PRPSError.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
 

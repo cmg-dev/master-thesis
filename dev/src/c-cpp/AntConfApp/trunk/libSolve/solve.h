@@ -14,11 +14,15 @@
 #include <algorithm>
 #include <array>
 #include <chrono>
+#include <iostream>
+#include <string>
 
 #include "../include/coords.h"
 #include "../include/PRPSEvolution.h"
-#include "../include/PRPSEvolutionSolveExeptions.h"
-#include "../include/PRPSEvolutionFIOExeptions.h"
+#include "../include/PRPSEvolutionSolveExceptions.h"
+#include "../include/PRPSEvolutionFIOExceptions.h"
+#include "../include/PRPSEvolutionGeneralExceptions.h"
+
 #include "../include/PRPSError.h"
 #include "../libPermutate/permutate.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
@@ -50,14 +54,16 @@ namespace PRPSEvolution {
 		/**
 		 * Represents the selection method for the Matrix A that will be used
 		 * for the solution
+		 * 
 		 */
 		enum SelectBy {
-			ConditionNumber, Random
+			ConditionNumber, Random, AllPossible
 
 		};
 
 		/**
 		 * Represents the ES-strategy to find a solution
+		 * 
 		 */
 		enum ESStrategy {
 			OnePlusOne,		/**< @f[[1+1]-ES@f]*/
@@ -260,7 +266,8 @@ namespace PRPSEvolution {
 			std::array<NRvector< T >, N_Configs>
 				vectorsForSolution;
 				
-			PreProcessing( );
+			PreProcessing
+				( const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> & );
 
 		private:
 			/** the container for the Phase data */
@@ -269,12 +276,9 @@ namespace PRPSEvolution {
 			/** the container for the Amp data */
 			std::array<T_Measure,N_ANTA> measuredAmp;
 			
-			/** the container for the normailzed data */
-// 			std::array<T_Measure,N_ANTA> normThetas;
-			
-			/** the container for the selected matrices */
-// 			std::array<AntennaPermutations< N_ANTA, T >,nConfigsForProcessing>
-// 				selectedConfs;
+			/** the container for the precalculated matrices */
+			const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA>
+					*precalculatedMat;
 
 			/***************************************************************/
 			/***************************************************************/
@@ -290,26 +294,43 @@ namespace PRPSEvolution {
 
 			/**
 			 */
-			int selectReferenceAntennaForProcessing( PRPSEvolution::Solve::SelectBy selectby );
+			int selectReferenceAntennaForProcessing( PRPSEvolution::Solve::SelectBy );
 
+			/**
+			 */
+			std::vector<NRmatrix< T >> selectAllPossible( const std::vector< std::string > & );
+		
 			/**
 			 * This will select the matrices for the Processing and will return the array filed with them
 			 * @param[in] method The selection Method
+			 *
+			 */
+			std::vector<NRmatrix<T>>
+				selectMatsForProcessing( PRPSEvolution::Solve::SelectBy, const std::vector< std::string > & );
+
+			/**
 			 * 
 			 */
-			std::array<AntennaPermutations< N_ANTA, T >,N_Configs>
-				selectMatsForProcessing( PRPSEvolution::Solve::SelectBy method );
+			std::vector<NRmatrix<T>>
+				fillSelectMats( const std::array<T_Measure,N_ANTA> &, const std::vector<NRmatrix<T>> &, const std::vector<std::string> & );
 
-			/***/
-			std::array<AntennaPermutations< N_ANTA, T >,N_Configs>
-				fillSelectMats( std::array<T_Measure,N_ANTA> &, std::array<AntennaPermutations< N_ANTA, T >, N_Configs> & );
+			/**
+			 * 
+			 */
+			std::vector<NRvector<T>>
+// std::array<NRvector<T>, N_Configs>
+				calcVectors( const std::array<T_Measure,N_ANTA> & );
 
-			/***/
-			std::array<NRvector<T>, N_Configs>
-				calcVectors( std::array<T_Measure,N_ANTA> & );
-		
+			/**
+			 * 
+			 */
+			std::vector<std::string> getPossibleNames( );
+			
 		};
 
+		/******************************************************************/
+		/* PreProcessing Function implementation **************************/
+		/******************************************************************/
 		/**
 		 * Construct the object an perform neccessary PreProcessing steps.
 		 * -# Read out the measurements from the given interface (e.g. a file)
@@ -319,13 +340,17 @@ namespace PRPSEvolution {
 		 * -# Precalculate the @f[c_{k0}@f]-Vector
 		 * -# Store matrices to make them availiable in the next steps
 		 *
-		 */		
+		 */
 		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
-		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::PreProcessing() {
-
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::PreProcessing
+		( const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &precalculatedMatrices )
+		{
 			/***************************************************************/
 			std::cout << "PreProcessing::Entering Construct()" << std::endl;
 
+			/* latch in the matrices */
+			precalculatedMat = &precalculatedMatrices;
+			
 			std::cout << "PreProcessing::Read from file.. .. ";
 			rMeasurementsFromFile( );
 			
@@ -338,15 +363,23 @@ namespace PRPSEvolution {
 			
 			std::cout << " done" << std::endl;
 
+
+			/* identify the possible matrices by their names */
+			/***************************************************************/
+			std::cout << "PreProcessing::Identifying possible matrices.. .. ";
+
+			auto Names = getPossibleNames( );
+			std::cout << "done" << std::endl;
+
 			/***************************************************************/
 			std::cout << "PreProcessing::Selecting matrices.. .. ";
-			auto selectedConfs = selectMatsForProcessing( SelectBy::ConditionNumber );
+			auto selectedConfs = selectMatsForProcessing( SelectBy::AllPossible, Names );
 			
 			std::cout << " done" << std::endl;
 
 			/***************************************************************/
-			std::cout << "PreProcessing::Filling selected matrices with remaining information.. ..";
-			selectedConfs = fillSelectMats( normThetas, selectedConfs );
+			std::cout << "PreProcessing:: Filling selected matrices with remaining information.. ..";
+			selectedConfs = fillSelectMats( normThetas, selectedConfs, Names );
 
 			std::cout << " done" << std::endl;
 
@@ -358,14 +391,14 @@ namespace PRPSEvolution {
 
 			
 			/***************************************************************/
-			vectorsForSolution = vectors;
-			matricesForSolution = selectedConfs;
+// 			vectorsForSolution = vectorsV;
+// 			matricesForSolution = selectedConfs;
 			
 		}
 
 		/**
 		 * Read the measurements from file
-		 * 
+		 *
 		 */
 		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
 		int PreProcessing<N_ANTA,N_Configs,T,T_Measure>::rMeasurementsFromFile()
@@ -397,15 +430,15 @@ namespace PRPSEvolution {
 				}
 				/* a line is read */
 				if( valuesRead != (int) PRPSEvolution::EXPECTED_VALUES_MEASUREMENT_FILE )
-					throw PRPSEvolution::Exeptions::FileIO::MalformedInputExeption;
+					throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
 
 				linesRead++;
 
 			}
 			/* check the input */
 			if( linesRead != PRPSEvolution::EXPECTED_LINES_MEASUREMENT_FILE )
-				throw PRPSEvolution::Exeptions::FileIO::MalformedInputExeption;
-			
+				throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
+
 			/* dump everything to std::cout  */
 // 			std::cout << "** PreProcessing:: I've read the following values: " << std::endl;
 // 			std::cout << "Idx Phase" << " | "<< "Amp" << std::endl;
@@ -427,6 +460,7 @@ namespace PRPSEvolution {
 		 * @param[in] phase The measured phase data
 		 * @param[in] amp The measured ampliture data
 		 * @return The normailzed values for @f[ \Theta_k @f]
+		 *
 		 */
 		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
 		std::array<T, N_ANTA> PreProcessing<N_ANTA,N_Configs,T,T_Measure>::normalizeThetas
@@ -441,68 +475,252 @@ namespace PRPSEvolution {
 		}
 
 		/**
+		 * This method will select matrices for the real processing from the
+		 * quantity of possible matrices. Possible matrices are the ones
+		 * where the participation antennas delivered valid data.
+		 * @param[in] method The selection method @see PRPSEvolution::Solve::SelectBy
+		 * @return A std::vector containing the selected Matrices
+		 *
+		 */
+		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
+		std::vector<NRmatrix< T >>
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::selectMatsForProcessing
+		( PRPSEvolution::Solve::SelectBy method, const std::vector< std::string > &names)
+		{
+			std::vector<NRmatrix< T >> SelectedMat;
+
+			switch( method ) {
+				case (int) SelectBy::ConditionNumber:
+					throw Exceptions::General::NotImplemented();
+					break;
+					
+				case (int) SelectBy::Random:
+					throw Exceptions::General::NotImplemented();
+					break;
+
+				case (int) SelectBy::AllPossible:
+// 					std::cout << " Selecting All possible Matrices for a Solution" << std::endl;
+					SelectedMat = selectAllPossible( names );
+// 					std::cout << " Selecting All possible Matrices for a Solution" << std::endl;
+					
+					break;
+				
+			}
+
+			/* send the selected ones to std::cout */
+// 			int i = 0;
+// 			for( auto mat : SelectedMat ) {
+// 				std::cout << ++i << " " << names[i] << std::endl;
+// 				Permutate::AntennaPermutations<0,Doub>::dump_matrix( mat );
+// 
+// 			}
+			
+			return SelectedMat;
+			
+		}
+
+		/**
+		 * Search through all availiable matrices and crawl out the needed ones
+		 * @param[in] names The "names" of the correect matrices
 		 * 
 		 */
 		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
-		std::array<AntennaPermutations< N_ANTA, T >,N_Configs>
-		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::selectMatsForProcessing
-		( PRPSEvolution::Solve::SelectBy method )
+		std::vector<NRmatrix< T >>
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::selectAllPossible( const std::vector< std::string > &names )
 		{
-			std::array<AntennaPermutations< N_ANTA, T >,N_Configs> ret;
+			std::vector<NRmatrix< T >> ret;
 
+			int j = 0;
+			for( auto p : *precalculatedMat ) {
+				for( int i = 0; i < p.mat.size(); i++ ) {
+					if( p.names[i] == names[j] )  {
+						
+						ret.push_back( p.mat[i] );
+						if( j++ >= names.size() )
+							break;
+						
+					}
+					if( j >= names.size() )
+							break;
+					
+				}
+			}
+
+			return ret;
+		}
+		
+		/**
+		 * Compute the names of the possible antennas
+		 * @param[in] NoAvailiable
+		 * @param[in] GroupSize
+		 *
+		 */
+		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
+		std::vector<std::string> PreProcessing<N_ANTA,N_Configs,T,T_Measure>::getPossibleNames( )
+		{
+			
 			/* witch antennas delivered data ? */
 			std::array<bool,N_ANTA> data;
 			for( int i = 0; i < data.size(); i++ ) {
 				data[i] = (measuredAmp[i]==(T)DATA_NV||measuredPhase[i]==(T)DATA_NV)?false:true;
+
+			}
+
+			int i = 0, j = 0;
+
+			ostringstream os;
+			/* possible permutations? */
+			for( auto d : data ) {
+				if( d ) { os << i++; j++; }
+				else { i++; }
+			}
+
+			const std::size_t NoAvailiable = j;
+			const std::size_t GroupSize = DEFAULT_MIN_GROUP_SIZE;
+			
+// 			std::cout << os.str() << " " << j << std::endl;
+			
+			int possiblePA = Permutate::Factorial( NoAvailiable - 1 );
+			possiblePA /=
+				(Permutate::Factorial( GroupSize-1 )
+				* Permutate::Factorial( (NoAvailiable - 1) - (GroupSize -1) ) );
+
+// 			std::cout << os.str() << " " << j << std::endl;
 				
+			int totalPossible = possiblePA * NoAvailiable;
+
+// 			std::cerr << "possible " << possiblePA << std::endl;
+// 			std::string s = os.str();
+			
+			std::vector< std::string > NamesPossible;
+
+			std::size_t k = GroupSize - 1;
+			i = 0;
+
+			for( int l = 0; l < NoAvailiable; l++ ) {
+				std::string s_ = os.str().erase( l, 1 );
+				const char ref = os.str()[l];
+// 				std::cout << s_ << std::endl;
+				do {
+					i++;
+					/* create the name */
+					ostringstream name;
+					name << ref << std::string( s_.begin(),s_.begin() + k );
+
+					NamesPossible.push_back(name.str());
+
+				} while( Permutate::next_combination( s_.begin(),s_.begin() + k,s_.end() ) );
+			}
+
+			/* print the "names" of the possible matrices */
+// 			std::cout << Names.size() << std::endl;
+// 			for( int i = 0; i < Names.size(); i++ )
+// 				std::cout << Names[i] << std::endl;
+
+			return NamesPossible;
+			
+		}
+
+		/**
+		 * Fill in the remaining information before we can process any further
+		 * @param[in] normThetas The normalized thetas from previous calculation
+		 * @param[in] matrices The matrices we selected
+		 *
+		 */
+		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
+		std::vector<NRmatrix<T>>
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::fillSelectMats
+		( const std::array<T_Measure,N_ANTA> &normThetas, const std::vector<NRmatrix<T>> &matrices, const std::vector<std::string> &names )
+		{
+			std::vector<NRmatrix<T>> mats2return( matrices );
+
+			std::array<T_Measure,4> thetas;
+			int idx = 0;
+
+			for( int j = 0; j < names[0].size(); j++ )
+				std::cout << names[0][j];
+			std::cout << std::endl;
+
+			/* for each matrix */
+			for( auto &mat: mats2return ) {
+				
+				auto name = names[idx];
+
+				/* find ref antenna */
+				std::array<int,4> antennas = { std::stoi( name.substr(0,1)),
+												std::stoi( name.substr(1,1)),
+												std::stoi( name.substr(2,1)),
+												std::stoi( name.substr(3,1))
+												};
+
+				/* get the thetas */
+				std::array<T_Measure,4> thetas = { normThetas[antennas[0]],
+													normThetas[antennas[1]],
+													normThetas[antennas[2]],
+													normThetas[antennas[3]]
+													};
+
+				/* fill in the information */
+				for( int i = 0; i < mat.nrows(); i++ ) {
+					/* col 7 * ref antennas theta */
+					mat[i][6] *= thetas[0];
+						/* col 8-10 * the other antennas thetas */
+					mat[i][7+i] *= thetas[i+1];
+
+				}
+				idx++;
+			
+			}
+
+#ifdef SOLVE_DBG
+			/* print to std::cout */
+// 			for( auto &mat: mats2return ) {
+// 				Permutate::AntennaPermutations<0,Doub>::dump_matrix( mat );
+// 				
+// 			}
+#endif
+			/*dump to file */
+			std::ofstream f;
+			f.open("output/finalmatdump.dat");
+
+			if ( f.is_open() ) {
+				int i = 0;
+				for( auto& m : mats2return ) {
+					f << names[i++] << std::endl;
+					Permutate::AntennaPermutations<0,Doub>::dump_matrix_2_file( f, m );
+				}
+				f.close();
+
+			} else {
+				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
+
 			}
 			
-			/* possible permutations? */
-			
-			
-			/* select by method */
-			
-			return ret;
-			
+			return mats2return;
 		}
 
 		/**
-		 * 
+		 *
 		 */
 		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
-		std::array<AntennaPermutations<N_ANTA,T>,N_Configs>
-		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::fillSelectMats
-		( std::array<T_Measure,N_ANTA> &normThetas,
-		  std::array<AntennaPermutations< N_ANTA, T >,N_Configs> &confs )
-		{
-			std::array<AntennaPermutations< N_ANTA, T >,N_Configs> ret;
-			
-			return ret;
-		}
-
-		/**
-		 * 
-		 */
-		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
-		std::array<NRvector<T>, N_Configs>
+		std::vector<NRvector<T>>
 		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::calcVectors
-		( std::array<T_Measure,N_ANTA> &normThetas )
+		( const std::array<T_Measure,N_ANTA> &normThetas )
 		{
-			std::array<NRvector<T>, N_Configs> ret;
+			std::vector<NRvector<T>> ret;
 
 // 			ret = 
 
 			return ret;
 		}
-			
-		
+
 		/******************************************************************/
-		/******************************************************************/
+		/* Process Class **************************************************/
 		/******************************************************************/
 		
 		/**
 		 * Find solutions for the possible matrices
-		 * 
+		 *
 		 */
 		class Process
 		{
@@ -925,6 +1143,14 @@ namespace PRPSEvolution {
 
 		};
 
+		/******************************************************************/
+		/* Process Class Function implementation **************************/
+		/******************************************************************/
+
+		/******************************************************************/
+		/* PostProcessing Class *******************************************/
+		/******************************************************************/
+		
 		class PostProcessing
 		{
 		public:
@@ -936,6 +1162,11 @@ namespace PRPSEvolution {
 			/* report success/ failure */
 			
 		};
+
+		/******************************************************************/
+		/* PostProcessing Function implementation *************************/
+		/******************************************************************/
+		
 	}
 }
 #endif

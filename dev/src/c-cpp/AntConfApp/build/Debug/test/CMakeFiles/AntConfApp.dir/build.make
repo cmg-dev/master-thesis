@@ -84,6 +84,7 @@ test/AntConfApp: libPermutate/libPermutate.a
 test/AntConfApp: libCalibration/libCalibration.a
 test/AntConfApp: libPRPSSystem/libPRPSEvolutionSystem.a
 test/AntConfApp: libSolve/libSolve.a
+test/AntConfApp: libNormalizer/libNormalizer.a
 test/AntConfApp: test/CMakeFiles/AntConfApp.dir/build.make
 test/AntConfApp: test/CMakeFiles/AntConfApp.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable AntConfApp"

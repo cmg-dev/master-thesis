@@ -6,7 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/PRPSEvolutionCalibrationExeptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../include/PRPSEvolutionGeneralExceptions.h
+iostream
+-
+exception
+-
+string
+-
+
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/PRPSEvolutionCalibrationExceptions.h
 iostream
 -
 exception
@@ -21,8 +29,8 @@ nr3/svd.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/coords.h
 ../include/PRPSEvolution.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/PRPSEvolution.h
-../include/PRPSEvolutionCalibrationExeptions.h
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/PRPSEvolutionCalibrationExeptions.h
+../include/PRPSEvolutionCalibrationExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/PRPSEvolutionCalibrationExceptions.h
 ../include/PRPSError.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/../include/PRPSError.h
 ../libPRPSSystem/prpsevolutionsystem.h
@@ -52,13 +60,13 @@ array
 
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolution.h
 
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionFIOExeptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionFIOExceptions.h
 iostream
 -
 exception
 -
 
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionPermutationExeptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionPermutationExceptions.h
 iostream
 -
 exception
@@ -87,10 +95,10 @@ string
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/coords.h
 ../include/PRPSEvolution.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolution.h
-../include/PRPSEvolutionPermutationExeptions.h
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionPermutationExeptions.h
-../include/PRPSEvolutionFIOExeptions.h
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionFIOExeptions.h
+../include/PRPSEvolutionPermutationExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionPermutationExceptions.h
+../include/PRPSEvolutionFIOExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSEvolutionFIOExceptions.h
 ../include/PRPSError.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/../include/PRPSError.h
 ../libPRPSSystem/prpsevolutionsystem.h
@@ -100,7 +108,7 @@ nr3/nr3.h
 nr3/svd.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libPermutate/nr3/svd.h
 
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionSolveExeptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionSolveExceptions.h
 iostream
 -
 exception
@@ -113,8 +121,10 @@ stdlib.h
 -
 iostream
 -
-../include/PRPSEvolutionFIOExeptions.h
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libNormalizer/../include/PRPSEvolutionFIOExeptions.h
+../include/PRPSEvolutionGeneralExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libNormalizer/../include/PRPSEvolutionGeneralExceptions.h
+../include/PRPSEvolutionFIOExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libNormalizer/../include/PRPSEvolutionFIOExceptions.h
 complex
 -
 array
@@ -137,14 +147,18 @@ chrono
 -
 iostream
 -
+string
+-
 ../include/coords.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/coords.h
 ../include/PRPSEvolution.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolution.h
-../include/PRPSEvolutionSolveExeptions.h
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionSolveExeptions.h
-../include/PRPSEvolutionFIOExeptions.h
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionFIOExeptions.h
+../include/PRPSEvolutionSolveExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionSolveExceptions.h
+../include/PRPSEvolutionFIOExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionFIOExceptions.h
+../include/PRPSEvolutionGeneralExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionGeneralExceptions.h
 ../include/PRPSError.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSError.h
 ../libPermutate/permutate.h
@@ -197,6 +211,8 @@ AntennaConfiguration.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/calib.h
 ../libSolve/solve.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/solve.h
+../include/PRPSEvolutionGeneralExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../include/PRPSEvolutionGeneralExceptions.h
 
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/AntennaConfiguration.h
 

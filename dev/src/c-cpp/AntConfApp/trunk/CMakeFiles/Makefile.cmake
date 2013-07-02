@@ -14,6 +14,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "libCalibration/CMakeLists.txt"
   "libPRPSSystem/CMakeLists.txt"
   "libPermutate/CMakeLists.txt"
+  "libSolve/CMakeLists.txt"
   "test/AntennaConfiguration.h.in"
   "test/CMakeLists.txt"
   "/usr/share/cmake-2.8/Modules/CMakeCInformation.cmake"
@@ -43,6 +44,7 @@ SET(CMAKE_MAKEFILE_PRODUCTS
   "libPermutate/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libCalibration/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libPRPSSystem/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "libSolve/CMakeFiles/CMakeDirectoryInformation.cmake"
   "test/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
@@ -51,5 +53,6 @@ SET(CMAKE_DEPEND_INFO_FILES
   "libPermutate/CMakeFiles/Permutate.dir/DependInfo.cmake"
   "libCalibration/CMakeFiles/Calibration.dir/DependInfo.cmake"
   "libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/DependInfo.cmake"
+  "libSolve/CMakeFiles/Solve.dir/DependInfo.cmake"
   "test/CMakeFiles/AntConfApp.dir/DependInfo.cmake"
   )

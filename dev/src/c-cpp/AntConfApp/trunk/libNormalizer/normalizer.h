@@ -1,7 +1,7 @@
 /**
  * @file normalizer.h
  * Collects normalizations for the input data
- * 
+ *
  */
 #ifndef __LIB_NORMALIZE_H
 	#define __LIB_NORMALIZE_H
@@ -10,8 +10,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-// #include "../include/PRPSEvolutionGeneralExeptions.h"
-#include "../include/PRPSEvolutionFIOExeptions.h"
+#include "../include/PRPSEvolutionGeneralExceptions.h"
+#include "../include/PRPSEvolutionFIOExceptions.h"
 #include <complex>
 #include <array>
 
@@ -48,8 +48,15 @@ namespace PRPSEvolution {
 
 			int i = 0;
 			for(auto & c: C ) {
-				c = complex<T> (p[i],a[i]*SCALING_FAKTOR);
-				res[i++] = arg( c );
+				if( p[i] != DATA_NV || a[i] != DATA_NV ) {
+					c = complex<T> (p[i],a[i]*SCALING_FAKTOR);
+					res[i] = arg( c );
+					
+				} else {
+					res[i]=(T) DATA_NV;
+					
+				}
+				i++;
 				/* ? scale to [0, 2\pi] ?*/
 				
 			}
@@ -84,6 +91,22 @@ namespace PRPSEvolution {
 					ret = complexNorm( phase, amp );
 					break;
 				
+			}
+
+			std::ofstream f;
+			f.open("output/normalizedThetas.dat");
+			if ( f.is_open() ) {
+				for( int i = 0; i < ret.size(); ) {
+					f << ret[i];
+					if( ++i < ret.size() ) f << std::endl;
+
+				}
+				f << std::endl;
+				f.close();
+
+			} else {
+				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
+
 			}
 			
 			return ret;

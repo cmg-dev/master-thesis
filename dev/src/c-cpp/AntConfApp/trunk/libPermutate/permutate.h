@@ -18,8 +18,8 @@
 
 #include "../include/coords.h"
 #include "../include/PRPSEvolution.h"
-#include "../include/PRPSEvolutionPermutationExeptions.h"
-#include "../include/PRPSEvolutionFIOExeptions.h"
+#include "../include/PRPSEvolutionPermutationExceptions.h"
+#include "../include/PRPSEvolutionFIOExceptions.h"
 #include "../include/PRPSError.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
 
@@ -39,6 +39,51 @@ namespace PRPSEvolution {
 		*/
 		const int MAX_PERMUTATION_AMOUNT = 35;
 
+		/******************************************************************/
+		inline int Factorial(int x) {
+			return (x == 1 ? x : x * Factorial(x - 1));
+		}
+		
+
+		/******************************************************************/
+		template <typename Iterator>
+		inline bool next_combination(const Iterator first, Iterator k, const Iterator last)
+		{
+		/* Credits: Thomas Draper */
+		if ((first == last) || (first == k) || (last == k))
+			return false;
+		Iterator itr1 = first;
+		Iterator itr2 = last;
+		++itr1;
+		if (last == itr1)
+			return false;
+		itr1 = last;
+		--itr1;
+		itr1 = k;
+		--itr2;
+		while (first != itr1)
+		{
+			if (*--itr1 < *itr2)
+			{
+				Iterator j = k;
+				while (!(*itr1 < *j)) ++j;
+				std::iter_swap(itr1,j);
+				++itr1;
+				++j;
+				itr2 = k;
+				std::rotate(itr1,j,last);
+				while (last != j)
+				{
+					++j;
+					++itr2;
+				}
+				std::rotate(k,itr2,last);
+				return true;
+			}
+		}
+		std::rotate(first,k,last);
+		return false;
+		}
 
 		/******************************************************************/
 		/* Definitions ****************************************************/
@@ -56,19 +101,19 @@ namespace PRPSEvolution {
 			std::array< NRmatrix< T >, N_MAT > mat;
 
 			/* the condition number of a matrix */
-			std::array< Doub, ANTENNA_AMOUNT > conditionNumbers;
+// 			std::array< Doub, N_MAT > conditionNumbers;
 
 			/* names resembles the contributing antennas for this Matrix */
 			std::array< std::string, N_MAT > names;
-			
+
 			/**
 			* 
 			*/
-			static void dumb_matrix( NRmatrix< T > mat ) {
+			static void dump_matrix( NRmatrix< T > mat ) {
 				std::cout << "** Begin matrix dump: *****" << std::endl;
 				for(int i=0;i<mat.nrows();i++){
 					for(int j=0;j<mat.ncols();j++){
-						std::cout << mat[i][j] << '\t';
+						std::cout << mat[i][j] << " | ";
 					}
 					std::cout << '\n';
 				}
@@ -79,7 +124,7 @@ namespace PRPSEvolution {
 			/**
 			* 
 			*/
-			static void dumb_matrix_2_file( std::ofstream &f, NRmatrix< T > mat) {
+			static void dump_matrix_2_file( std::ofstream &f, NRmatrix< T > mat) {
 				if( !f ) return;
 				
 				for(int i=0;i<mat.nrows();i++) {
@@ -115,6 +160,10 @@ namespace PRPSEvolution {
 			std::array< AntennaPermutations< N_ANTPERM, Doub >, N_ANTA>
 					configurations;
 
+			/* 8 x 8 Matrix containing the distance^2 for each */
+			NRmatrix<T> d_k0_mat;
+
+					
 			/* store the reference antenna while constructing */
 			permuteAntennas( const PRPSEvolution::Constants c );
 
@@ -132,9 +181,13 @@ namespace PRPSEvolution {
 												const PRPSEvolution::Constants &co );
 
 			/**/
+			NRmatrix<T> compute_d_k0_Mat();
+			
+			/**/
 			void dumpConfigurationsToFile( );
 
-			void dumb_matrices_2_file( );
+			/**/
+			void dump_matrices_2_file( );
 
 		};
 
@@ -161,12 +214,12 @@ namespace PRPSEvolution {
 
 			std::cout << "permuteAntennas:: Dumping Matrices.. " ;
 
-			dumb_matrices_2_file();
+			dump_matrices_2_file();
 
 			std::cout << "done" << std::endl;
 
 		// } else {
-		// 		throw PRPSEvolution::Exeptions::Permutation::InitExeption;
+		// 		throw PRPSEvolution::Exceptions::Permutation::InitExeption;
 		//
 		// 	}
 		}
@@ -210,14 +263,14 @@ namespace PRPSEvolution {
 				}
 				/* a line is read */
 				if( valuesRead != (int) PRPSEvolution::EXPECTED_VALUES_COORD_FILE )
-					throw PRPSEvolution::Exeptions::FileIO::MalformedInputExeption;
+					throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
 
 				linesRead++;
 
 			}
 			/* check the input */
 			if( linesRead != PRPSEvolution::EXPECTED_LINES_COORD_FILE )
-				throw PRPSEvolution::Exeptions::FileIO::MalformedInputExeption;
+				throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
 		/*
 			std::cout << "** I've read the following values: " << std::endl;
 			std::cout << "x" << " | "<< "y" << " | " << "z" << std::endl;
@@ -368,7 +421,7 @@ namespace PRPSEvolution {
 		*
 		*/
 		template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
-		void permuteAntennas< N_ANTA, N_ANTPERM, T >::dumb_matrices_2_file( )
+		void permuteAntennas< N_ANTA, N_ANTPERM, T >::dump_matrices_2_file( )
 		{
 			std::ofstream f;
 			f.open("output/matdump.dat");
@@ -379,13 +432,13 @@ namespace PRPSEvolution {
 					
 					for( auto& m : c.mat ) {
 						f << c.names[i++] << std::endl;
-						c.dumb_matrix_2_file( f, m );
+						c.dump_matrix_2_file( f, m );
 					}
 				}
 				f.close();
 
 			} else {
-				throw PRPSEvolution::Exeptions::FileIO::OutputExeption;
+				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
 
 			}
 

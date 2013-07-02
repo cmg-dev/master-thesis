@@ -1,0 +1,2 @@
+/usr/bin/ar cr libSolve.a  CMakeFiles/Solve.dir/solve.cpp.o
+/usr/bin/ranlib libSolve.a

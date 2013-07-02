@@ -33,6 +33,8 @@ namespace PRPSEvolution {
 	const int	EXPECTED_VALUES_MEASUREMENT_FILE	=	2;
 
 	const int	DATA_NV		= 65535;
+
+	const int	DEFAULT_MIN_GROUP_SIZE		=	4;
 }
 
 #endif /* !__PRPSEVOLUTION_H_ */

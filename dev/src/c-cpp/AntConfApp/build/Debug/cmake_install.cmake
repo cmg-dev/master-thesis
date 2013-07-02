@@ -38,6 +38,7 @@ IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   INCLUDE("/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/libCalibration/cmake_install.cmake")
   INCLUDE("/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/libPRPSSystem/cmake_install.cmake")
   INCLUDE("/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/libSolve/cmake_install.cmake")
+  INCLUDE("/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/libNormalizer/cmake_install.cmake")
   INCLUDE("/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/test/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)

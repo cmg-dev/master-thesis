@@ -20,6 +20,7 @@
 #include "../libPRPSSystem/prpsevolutionsystem.h"
 #include "../libCalibration/calib.h"
 #include "../libSolve/solve.h"
+#include "../include/PRPSEvolutionGeneralExceptions.h"
 
 using namespace PRPSEvolution;
 using std::chrono::duration_cast;
@@ -27,51 +28,8 @@ using std::chrono::microseconds;
 using std::chrono::milliseconds;
 using std::chrono::steady_clock;
 
-
-template <typename Iterator>
-inline bool next_combination(const Iterator first, Iterator k, const Iterator last)
-{
-   /* Credits: Thomas Draper */
-   if ((first == last) || (first == k) || (last == k))
-      return false;
-   Iterator itr1 = first;
-   Iterator itr2 = last;
-   ++itr1;
-   if (last == itr1)
-      return false;
-   itr1 = last;
-   --itr1;
-   itr1 = k;
-   --itr2;
-   while (first != itr1)
-   {
-      if (*--itr1 < *itr2)
-      {
-         Iterator j = k;
-         while (!(*itr1 < *j)) ++j;
-         std::iter_swap(itr1,j);
-         ++itr1;
-         ++j;
-         itr2 = k;
-         std::rotate(itr1,j,last);
-         while (last != j)
-         {
-            ++j;
-            ++itr2;
-         }
-         std::rotate(k,itr2,last);
-         return true;
-      }
-   }
-   std::rotate(first,k,last);
-   return false;
-}
-
-inline int Factorial(int x) {
-  return (x == 1 ? x : x * Factorial(x - 1));
-}
-
 int main ( int argc, char *argv[ ] ) {
+	/**********************************************************************/
 	PRPSEvolution::System sys;
 
 	/**********************************************************************/
@@ -82,8 +40,8 @@ int main ( int argc, char *argv[ ] ) {
 	Permutate::permuteAntennas< ANTENNA_AMOUNT, Permutate::MAX_PERMUTATION_AMOUNT, Doub >
 					PA( sys.constants );
 
-	std::cout << "create solution" << std::endl;
-
+	/* PA is an 8x35 array of type permutateAntennas of type Doub */
+	
 	NRmatrix<Doub> A;
 	A.assign(3,10, 0.0);
 	NRvector<Doub> c_k0;
@@ -92,13 +50,14 @@ int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	std::cout << "*PreProcessing..." << std::endl;
 
-	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, double> preprocess;
+	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations );
 
 	std::cout << std::endl;
 	
 	/**********************************************************************/
-	std::cout << "*Processing..." << std::endl;
-	/**/
+	std::cout << "*Processing.. Create Solution.." << std::endl;
+
+	/**********************************************************************/
 	Solve::Process process;
 
 	std::cout << "Performing (1+1)-ES" << std::endl;
