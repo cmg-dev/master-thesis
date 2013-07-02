@@ -200,28 +200,34 @@ namespace PRPSEvolution {
 		permuteAntennas< N_ANTA, N_ANTPERM, T >::permuteAntennas( const PRPSEvolution::Constants c )
 		: systemConstants( c )
 		{
-			std::cout << "permuteAntennas:: Init.. " ;
+			/**************************************************************/
+			std::cout << "permuteAntennas:: Reading coords from file.. " ;
 
 			rCoordFile();
 
 			std::cout << "okay" << std::endl;
 
+			/**************************************************************/
+			std::cout << "permuteAntennas:: Filling distance matrix.. " ;
+
+			d_k0_mat = compute_d_k0_Mat();
+
+			std::cout << "done" << std::endl;
+
+			/**************************************************************/
 			std::cout << "permuteAntennas:: Doing computations.. " ;
 
 			computePermutations( systemConstants );
 
 			std::cout << "done" << std::endl;
 
+			/**************************************************************/
 			std::cout << "permuteAntennas:: Dumping Matrices.. " ;
 
 			dump_matrices_2_file();
 
 			std::cout << "done" << std::endl;
 
-		// } else {
-		// 		throw PRPSEvolution::Exceptions::Permutation::InitExeption;
-		//
-		// 	}
 		}
 
 		/**************************************************************************/
@@ -446,6 +452,44 @@ namespace PRPSEvolution {
 
 		}
 
+		template < std::size_t N_ANTA, std::size_t N_ANTPERM, typename T >
+		NRmatrix<T> permuteAntennas< N_ANTA, N_ANTPERM, T >::compute_d_k0_Mat()
+		{
+			NRmatrix<T> mat;
+			mat.assign( N_ANTA, N_ANTA, 0.0 );
+			T x, y, z;
+			
+			for(int i=0;i<mat.nrows();i++) {
+				/* the upper half would be enough but its simpler to access the other one */
+				for(int j=i;j<mat.nrows();j++) {
+// 				for(int j=0;j<mat.nrows();j++) {
+					x = AntennaCoordinates.x_[i] -
+						 AntennaCoordinates.x_[j];
+						
+					y = AntennaCoordinates.y_[i] -
+						 AntennaCoordinates.y_[j];
+						 
+					z = AntennaCoordinates.z_[i] -
+						 AntennaCoordinates.z_[j];
+					
+					mat[i][j] = (x*x + y*y + z*z);
+					
+				}
+			}
+
+// #ifdef PERMUTATE_DBG
+// 			std::cout << std::endl;
+// 			for(int i=0;i<mat.nrows();i++) {
+// 				for(int j=0;j<mat.nrows();j++) {
+// 					std::cout << mat[i][j] << " ";
+// 				}
+// 				std::cout << std::endl;
+// 			}
+// #endif
+			return mat;
+			
+		}
+		
 	}
 }
 // void test2( void );

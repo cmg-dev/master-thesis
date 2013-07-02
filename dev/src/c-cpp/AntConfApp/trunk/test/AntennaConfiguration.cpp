@@ -28,6 +28,8 @@ using std::chrono::microseconds;
 using std::chrono::milliseconds;
 using std::chrono::steady_clock;
 
+const int SOLUTION_AMOUNT = 5;
+
 int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	PRPSEvolution::System sys;
@@ -41,47 +43,89 @@ int main ( int argc, char *argv[ ] ) {
 					PA( sys.constants );
 
 	/* PA is an 8x35 array of type permutateAntennas of type Doub */
-	
+/*	
 	NRmatrix<Doub> A;
 	A.assign(3,10, 0.0);
 	NRvector<Doub> c_k0;
-	c_k0.assign(10, 0.0);
+	c_k0.assign(10, 0.0);*/
 
 	/**********************************************************************/
+	std::cout << std::endl;
 	std::cout << "*PreProcessing..." << std::endl;
 
-	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations );
+	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat );
 
 	std::cout << std::endl;
+
+	std::cout << "*PreProcessing... done" << std::endl;
 	
 	/**********************************************************************/
-	std::cout << "*Processing.. Create Solution.." << std::endl;
+	std::cout << std::endl;
+	std::cout << "*Processing.. Create Solution(s).." << std::endl;
 
-	/**********************************************************************/
+	
 	Solve::Process process;
 
-	std::cout << "Performing (1+1)-ES" << std::endl;
-
-	process.setESStrategy(Solve::ESStrategy::OnePlusOne);
-	steady_clock::time_point t_0 = steady_clock::now();
-
-	process.findSolution( A, c_k0 );
+	int i = 0;
+	std::ofstream fa,fb;
+	fa.open("output/solutionA.dat");
+	fb.open("output/solutionB.dat");
 	
-	steady_clock::time_point t_1 = steady_clock::now();
+	if ( !fa.is_open() || !fb.is_open() ) { exit(EXIT_FAILURE); }
 
-	std::cout << "Performing (mu+lambda)-ES" << std::endl;
+	process.setMinSolutionFitness( 1e-23 );
 
-	process.setESStrategy( Solve::ESStrategy::MuPlusLambda );
-	process.findSolution( A, c_k0 );
+	steady_clock::time_point t_00 = steady_clock::now();
+	for( auto A: preprocess.matricesForSolution ) {
+		auto b = preprocess.vectorsForSolution[i++];
+
+		for( int Solution = 0; Solution < SOLUTION_AMOUNT; Solution++ ) {
+	// 		f << "*** Processing Solution " << i << "a" << std::endl;
+	// 		std::cout << "Performing (1+1)-ES" << std::endl;
+
+			process.setESStrategy(Solve::ESStrategy::OnePlusOne);
+
+			steady_clock::time_point t_0 = steady_clock::now();
+			auto solution = process.findSolution( A, b );
+			steady_clock::time_point t_1 = steady_clock::now();
+
+			for( auto val : solution )
+				fa << val << '\t';
+			fa << std::endl;
+	// 		f << std::endl << process.getLastSolutionFitness() << std::endl;
+
+
+	// 		f << "*** Processing Solution " << i << "b" << std::endl;
+	// 		std::cout << "Performing (mu+lambda)-ES" << std::endl;
+
+			process.setESStrategy( Solve::ESStrategy::MuPlusLambda );
+			solution = process.findSolution( A, b );
+			steady_clock::time_point t_2 = steady_clock::now();
+
+			for( auto val : solution )
+				fb << val << '\t';
+			fb << std::endl;
+	// 		f << std::endl << process.getLastSolutionFitness() << std::endl;
+
+
+// 		std::cout << "t_0-t_1:"
+// 			<< duration_cast<milliseconds>(t_1-t_0).count() << " ms" << std::endl;
+// 		std::cout << "t_1-t_1:"
+// 			<< duration_cast<milliseconds>(t_2-t_1).count() << " ms" << std::endl;
+// 		std::cout << "t_0-t_2:"
+// 			<< duration_cast<milliseconds>(t_2 -t_0).count() << " ms" << std::endl;
+		}
+
+		steady_clock::time_point t_nn = steady_clock::now();
+		std::cout << "total computation time:"
+			<< duration_cast<milliseconds>(t_nn -t_00).count() << " ms" << std::endl;
+
+	}
+
+	fa.close();
+	fb.close();
 	
-	steady_clock::time_point t_2 = steady_clock::now();
-
-	std::cout << "t_0-t_1:"
-		<< duration_cast<milliseconds>(t_1-t_0).count() << " ms" << std::endl;
-	std::cout << "t_1-t_1:"
-		<< duration_cast<milliseconds>(t_2-t_1).count() << " ms" << std::endl;
-	std::cout << "t_0-t_2:"
-		<< duration_cast<milliseconds>(t_2 -t_0).count() << " ms" << std::endl;
+	std::cout << "*Processing.. Create Solution(s).. done" << std::endl;
 
 	/**********************************************************************/
 	

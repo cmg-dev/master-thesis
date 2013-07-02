@@ -260,14 +260,12 @@ namespace PRPSEvolution {
 		public:
 			/** determines how many Configurations will solved for the Wavenumber */
 
-			std::array<AntennaPermutations< N_ANTA, T >,N_Configs>
-				matricesForSolution;
+			std::vector<NRmatrix<T>> matricesForSolution;
 
-			std::array<NRvector< T >, N_Configs>
-				vectorsForSolution;
+			std::vector<NRvector<T>> vectorsForSolution;
 				
 			PreProcessing
-				( const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> & );
+				( const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &, const NRmatrix<T> & );
 
 		private:
 			/** the container for the Phase data */
@@ -278,7 +276,7 @@ namespace PRPSEvolution {
 			
 			/** the container for the precalculated matrices */
 			const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA>
-					*precalculatedMat;
+					*precalculatedMats;
 
 			/***************************************************************/
 			/***************************************************************/
@@ -319,7 +317,7 @@ namespace PRPSEvolution {
 			 */
 			std::vector<NRvector<T>>
 // std::array<NRvector<T>, N_Configs>
-				calcVectors( const std::array<T_Measure,N_ANTA> & );
+				calcVectors( const std::vector<std::string> &, const std::array<T_Measure,N_ANTA> &, const NRmatrix<T> &, const T &);
 
 			/**
 			 * 
@@ -343,14 +341,14 @@ namespace PRPSEvolution {
 		 */
 		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
 		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::PreProcessing
-		( const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &precalculatedMatrices )
+		( const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &precalculatedMatrices, const NRmatrix<T> & d_k0s )
 		{
 			/***************************************************************/
 			std::cout << "PreProcessing::Entering Construct()" << std::endl;
 
 			/* latch in the matrices */
-			precalculatedMat = &precalculatedMatrices;
-			
+			precalculatedMats = &precalculatedMatrices;
+
 			std::cout << "PreProcessing::Read from file.. .. ";
 			rMeasurementsFromFile( );
 			
@@ -362,7 +360,6 @@ namespace PRPSEvolution {
 			auto normThetas = normalizeThetas( measuredPhase, measuredAmp );
 			
 			std::cout << " done" << std::endl;
-
 
 			/* identify the possible matrices by their names */
 			/***************************************************************/
@@ -377,6 +374,20 @@ namespace PRPSEvolution {
 			
 			std::cout << " done" << std::endl;
 
+
+			T a_1;
+			{	/*
+				 * workaround:
+				 * a_1 can be found in the matrix so we do not have to pass
+				 * it to the function seperately
+				 */
+				auto p = selectedConfs[0];
+				a_1 = p[0][3];
+
+				std::cout << "a_1" << a_1 << std::endl;
+			}/* !workaround */
+
+			
 			/***************************************************************/
 			std::cout << "PreProcessing:: Filling selected matrices with remaining information.. ..";
 			selectedConfs = fillSelectMats( normThetas, selectedConfs, Names );
@@ -385,14 +396,14 @@ namespace PRPSEvolution {
 
 			/***************************************************************/
 			std::cout << "PreProcessing::Calculate vectors.. ..";
-			auto vectors = calcVectors( normThetas );
+			auto vectors = calcVectors( Names, normThetas, d_k0s, a_1 );
 
 			std::cout << " done" << std::endl;
 
 			
 			/***************************************************************/
-// 			vectorsForSolution = vectorsV;
-// 			matricesForSolution = selectedConfs;
+			vectorsForSolution = vectors;
+			matricesForSolution = selectedConfs;
 			
 		}
 
@@ -531,7 +542,7 @@ namespace PRPSEvolution {
 			std::vector<NRmatrix< T >> ret;
 
 			int j = 0;
-			for( auto p : *precalculatedMat ) {
+			for( auto p : *precalculatedMats ) {
 				for( int i = 0; i < p.mat.size(); i++ ) {
 					if( p.names[i] == names[j] )  {
 						
@@ -705,11 +716,68 @@ namespace PRPSEvolution {
 		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
 		std::vector<NRvector<T>>
 		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::calcVectors
-		( const std::array<T_Measure,N_ANTA> &normThetas )
+		( const std::vector<std::string> &names, const std::array<T_Measure,N_ANTA> &normThetas, const NRmatrix<T> &d_k0s, const T &a_1 )
 		{
 			std::vector<NRvector<T>> ret;
 
-// 			ret = 
+			int idx = 0;
+
+			const double pi = 3.14159;
+			
+			/* for each name find */
+			for(auto name : names ) {
+				/* find antennas */
+				std::array<int,4> a = { std::stoi( name.substr(0,1) ),
+												std::stoi( name.substr(1,1) ),
+												std::stoi( name.substr(2,1) ),
+												std::stoi( name.substr(3,1) )
+												};
+
+				NRvector<T> b;
+				b.assign( 3, 0.0 );
+
+				NRvector<T> a_0k;
+				a_0k.assign( 3, 0.5 );
+
+				NRvector<T> a_3k;
+				a_3k.assign( 3, a_1 * (1/((2*pi)*(2*pi))) );
+
+				/* the matrix is an upper triangle so we need the ? here */
+				a_0k[0] *= (a[0] < a[1]) ? d_k0s[a[0]][a[1]]:d_k0s[a[1]][a[0]];
+				a_0k[1] *= (a[0] < a[2]) ? d_k0s[a[0]][a[2]]:d_k0s[a[2]][a[0]];
+				a_0k[2] *= (a[0] < a[3]) ? d_k0s[a[0]][a[3]]:d_k0s[a[3]][a[0]];
+
+				a_3k[0] *= (normThetas[a[0]])*(normThetas[a[0]])
+							- (normThetas[a[1]])*(normThetas[a[1]]);
+							
+				a_3k[1] *= (normThetas[a[0]])*(normThetas[a[0]])
+							- (normThetas[a[2]])*(normThetas[a[2]]);
+							
+				a_3k[2] *= (normThetas[a[0]])*(normThetas[a[0]])
+							- (normThetas[a[3]])*(normThetas[a[3]]);
+				
+				b[0]= a_0k[0];
+				b[1]= a_0k[1];
+				b[2]= a_0k[2];
+
+				ret.push_back(b);
+				
+			}
+
+			/***************************************************************/
+			std::ofstream f;
+			f.open("output/vector_b_dump.dat");
+			if ( f.is_open() ) {
+				for( auto b : ret )
+						f << b[0] << "," << b[1] << "," << b[2] << std::endl;
+				
+				f.close();
+
+			} else {
+				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
+
+			}
+
 
 			return ret;
 		}
@@ -731,6 +799,8 @@ namespace PRPSEvolution {
 			/*	the strategy to find a solution */
 			ESStrategy strategy;
 
+			/* */
+			
 			/**
 			 * Constructor
 
@@ -739,6 +809,8 @@ namespace PRPSEvolution {
 
 			}
 
+			double getLastSolutionFitness() { return solutionFitness; }
+			
 			/**
 			 * Set the ES-Strategy
 			 * @param[in] Strategy The selected strategy
@@ -782,9 +854,14 @@ namespace PRPSEvolution {
 				return solution;
 				
 			}
-			
-			/* dump/ display results */
 
+			void setMinSolutionFitness( double value ) { minSolutionFitness = value; }
+			
+		private:
+
+			double solutionFitness;
+			double minSolutionFitness;
+			
 			/* The strategies **********************************************/
 			/** Enter description */
 			ChromosomeT<double> OnePlusOneES() {
@@ -820,15 +897,16 @@ namespace PRPSEvolution {
 					}
 					parent.updateGlobalStepsize( success );
 
-					if( fitnessParent < 1e-18 )
+					if( fitnessParent < minSolutionFitness )
 						break;
 
 				}
-				std::cout << t << " Done \tFinal Fitness: " << fitnessParent << endl;
-				for(unsigned i=0; i < Dimension; i++)
-					std::cout << i << " " << parent[i] << " " ;
+				solutionFitness = fitnessParent;
+// 				std::cout << t << " Done \tFinal Fitness: " << fitnessParent << endl;
+// 				for(unsigned i=0; i < Dimension; i++)
+// 					std::cout << i << " " << parent[i] << " " ;
 
-				std::cout << std::endl;
+// 				std::cout << std::endl;
 
 				return parent;
 				
@@ -866,7 +944,7 @@ namespace PRPSEvolution {
 									ChromosomeT< double >(NSigma));
 
 				// minimization task
-				parents   .setMinimize();
+				parents.setMinimize();
 				offsprings.setMinimize();
 
 				// initialize parent population
@@ -916,17 +994,19 @@ namespace PRPSEvolution {
 					parents.selectMuLambda(offsprings, numElitists);
 
 					// print out best value found so far
-					if( parents.best().fitnessValue() < 1e-18 )
+					if( parents.best().fitnessValue() < minSolutionFitness )
 						break;
 
 				}
 
 				auto p = parents.best();
-				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
 
+				solutionFitness = parents.best().fitnessValue();
+// 				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
+/*
 				for( int i = 0; i < 10; i++ )
 					std::cout << i << " " << p[0][i] << " " ;
-				std::cout << std::endl;
+				std::cout << std::endl;*/
 
 				return p[0];
 				
@@ -1014,16 +1094,16 @@ namespace PRPSEvolution {
 					parents.selectMuLambda(offsprings, numElitists);
 
 					// print out best value found so far
-					if( parents.best().fitnessValue() < 1e-18 )
+					if( parents.best().fitnessValue() < minSolutionFitness )
 						break;
 				}
 
 				auto p = parents.best();
-				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
+				solutionFitness = parents.best().fitnessValue();
 
-				for( int i = 0; i < 10; i++ )
-					std::cout << i << " " << p[0][i] << " " ;
-				std::cout << std::endl;
+// 				for( int i = 0; i < 10; i++ )
+// 					std::cout << i << " " << p[0][i] << " " ;
+// 				std::cout << std::endl;
 
 				return p[0];
 				
