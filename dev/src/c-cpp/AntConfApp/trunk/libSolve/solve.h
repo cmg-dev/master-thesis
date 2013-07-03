@@ -16,6 +16,7 @@
 #include <chrono>
 #include <iostream>
 #include <string>
+#include <random>
 
 #include "../include/coords.h"
 #include "../include/PRPSEvolution.h"
@@ -101,7 +102,7 @@ namespace PRPSEvolution {
 			 *
 			 */
 			Ueber9000(const Ueber9000 &me) : A(me.A), c_k0(me-c_k0) {
-				if( A || c_k0 )
+				if( A && c_k0 )
 					evaluate = &WholeTomatoeApproach;
 
 			}
@@ -117,7 +118,6 @@ namespace PRPSEvolution {
 
 				/* the WholeTomatoeApproach is the model of choice if A_selected and c_k0_selected are given */
 				evaluate = &Ueber9000<double>::WholeTomatoeApproach;
-
 
 			}
 
@@ -384,7 +384,7 @@ namespace PRPSEvolution {
 				auto p = selectedConfs[0];
 				a_1 = p[0][3];
 
-				std::cout << "a_1" << a_1 << std::endl;
+// 				std::cout << "a_1" << a_1 << std::endl;
 			}/* !workaround */
 
 			
@@ -648,9 +648,9 @@ namespace PRPSEvolution {
 			std::array<T_Measure,4> thetas;
 			int idx = 0;
 
-			for( int j = 0; j < names[0].size(); j++ )
-				std::cout << names[0][j];
-			std::cout << std::endl;
+// 			for( int j = 0; j < names[0].size(); j++ )
+// 				std::cout << names[0][j];
+// 			std::cout << std::endl;
 
 			/* for each matrix */
 			for( auto &mat: mats2return ) {
@@ -795,7 +795,7 @@ namespace PRPSEvolution {
 		public:
 
 			/** a Pointer to the object containing the fitness functions */
-			Ueber9000<Doub> *ueber9000;
+// 			Ueber9000<Doub> *ueber9000;
 			/*	the strategy to find a solution */
 			ESStrategy strategy;
 
@@ -809,6 +809,11 @@ namespace PRPSEvolution {
 
 			}
 
+			Process(const Process &p) : strategy( p.strategy ), solutionFitness( p.solutionFitness ), minSolutionFitness( p.minSolutionFitness ) {
+				
+				
+			}
+			
 			double getLastSolutionFitness() { return solutionFitness; }
 			
 			/**
@@ -824,30 +829,31 @@ namespace PRPSEvolution {
 			/**
 			 * Find a Solution for a given pair of matrices
 			 * @param[in] A_selected The matrix A to use in this solution
-			 * @param[in] c_k0_selected The c_k0 vector for this solution
+			 * @param[in] b_selected The c_k0' vector for this solution
 			 * @return The solution
 			 * 
 			 */
 			ChromosomeT<double> findSolution
-			( const NRmatrix< Doub > &A_selected, const NRvector< Doub > &c_k0_selected )
+			( const NRmatrix< Doub > &A_selected, const NRvector< Doub > &b_selected )
 			{
 				/* create a new instance of Ueber9000 */
-				Ueber9000<Doub> t( A_selected, c_k0_selected );
+				Ueber9000<Doub> ueber( A_selected, b_selected );
 // 				Ueber9000<Doub> t;
-				ueber9000 = &t;
+// 				ueber9000 = &t;
 
 				ChromosomeT<double> solution;
+				
 				switch( strategy ) {
 					case (int) ESStrategy::OnePlusOne:
-						solution = OnePlusOneES();
+						solution = OnePlusOneES( &ueber );
 						break;
 						
                    case (int) ESStrategy::MuPlusLambda :
-						solution = MuPlusLambdaES();
+						solution = MuPlusLambdaES( &ueber );
 						break;
 						
 					case (int) ESStrategy::MuCommaLambda:
-						solution = MuCommaLambdaES();
+						solution = MuCommaLambdaES( &ueber );
 						break;
 						
 				}
@@ -855,7 +861,19 @@ namespace PRPSEvolution {
 				
 			}
 
+			int sq( int i ) {return i*i; }
+			
+			/**
+			 * Sets the min. solution fitness we want to achieve.
+			 * @param[in] value The new value for the solution fitness
+			 * 
+			 */
 			void setMinSolutionFitness( double value ) { minSolutionFitness = value; }
+
+			/**
+			 * 
+			 */
+			void setSeed( unsigned int value ) { Rng::seed(value); }
 			
 		private:
 
@@ -864,10 +882,10 @@ namespace PRPSEvolution {
 			
 			/* The strategies **********************************************/
 			/** Enter description */
-			ChromosomeT<double> OnePlusOneES() {
+			ChromosomeT<double> OnePlusOneES( Ueber9000<double> *ueber9000 ) {
 				// EA parameters
 				const unsigned Dimension      = 10;
-				const unsigned Iterations     = 20000;
+				const unsigned Iterations     = 3000;
 				const double   MinInit        = -3.;
 				const double   MaxInit        = 7.;
 				const double   GlobalStepInit = 5.;
@@ -913,10 +931,10 @@ namespace PRPSEvolution {
 			}
 
 			/** Enter description */
-			ChromosomeT<double> MuCommaLambdaES() {
+			ChromosomeT<double> MuCommaLambdaES( Ueber9000<double> *ueber9000 ) {
 
-				const unsigned Mu           = 5;
-				const unsigned Lambda       = 10;
+				const unsigned Mu           = 20;
+				const unsigned Lambda       = 40;
 				const unsigned Dimension    = 10;
 				const unsigned Iterations   = 2000;
 				const unsigned Interval     = 10;
@@ -924,18 +942,20 @@ namespace PRPSEvolution {
 
 				const double   GlobalStepInit = 5.;
 
-
 				const double   MinInit        = -3.;
 				const double   MaxInit        = 7.;
-				const double   SigmaInit    = 6;
+				const double   SigmaInit    = 3;
 
 				/* activate elitist strategy */
 				const bool     PlusStrategy = true;
 
 				unsigned       i, t;
 
-				// initialize random number generator
-				Rng::seed(1234);
+				// linear congruential generator
+// 				std::mt19937 gen;
+
+				// initialize the generator
+// 				gen.seed((unsigned int)time(NULL));
 
 				// define populations
 				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
@@ -1013,7 +1033,7 @@ namespace PRPSEvolution {
 			}
 
 			/** Enter description */
-			ChromosomeT<double> MuPlusLambdaES() {
+			ChromosomeT<double> MuPlusLambdaES( Ueber9000<double> *ueber9000 ) {
 
 				const unsigned Mu           = 5;
 				const unsigned Lambda       = 10;
@@ -1035,7 +1055,7 @@ namespace PRPSEvolution {
 				unsigned       i, t;
 
 				// initialize random number generator
-				Rng::seed(1234);
+// 				Rng::seed((unsigned int)time(NULL));
 
 				// define populations
 				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
@@ -1100,6 +1120,8 @@ namespace PRPSEvolution {
 
 				auto p = parents.best();
 				solutionFitness = parents.best().fitnessValue();
+				
+// 				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
 
 // 				for( int i = 0; i < 10; i++ )
 // 					std::cout << i << " " << p[0][i] << " " ;
@@ -1110,116 +1132,116 @@ namespace PRPSEvolution {
 			}
 
 			
-			void Another() {
-				const unsigned Mu           = 5;
-				const unsigned Lambda       = 10;
-				const unsigned Dimension    = 10;
-				const unsigned Iterations   = 2000;
-				const unsigned Interval     = 10;
-				const unsigned NSigma       = 1;
-
-				const double   GlobalStepInit = 5.;
-				
-
-				const double   MinInit        = -3.;
-				const double   MaxInit        = 7.;
-				const double   SigmaInit    = 6;
-
-				/* activate elitist strategy */
-				const bool     PlusStrategy = true;
-
-				unsigned       i, t;
-
-				// initialize random number generator
-				Rng::seed(1234);
-
-				// define populations
-				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
-								ChromosomeT< double >(NSigma));
-				PopulationT<double> offsprings(Lambda, ChromosomeT< double >(Dimension),
-									ChromosomeT< double >(NSigma));
-
-				// minimization task
-				parents   .setMinimize();
-				offsprings.setMinimize();
-
-				// initialize parent population
-				for (i = 0; i < parents.size(); ++i) {
-					parents[ i ][ 0 ].initialize(MinInit,   MaxInit);
-					parents[ i ][ 1 ].initialize(SigmaInit, SigmaInit);
-				}
-
-				// selection parameters (number of elitists)
-				unsigned numElitists = PlusStrategy ? Mu : 0;
-
-				// standard deviations for mutation of sigma
-				double     tau0 = 1. / sqrt(2. * Dimension);
-				double     tau1 = 1. / sqrt(2. * sqrt((double)Dimension));
-
-				// evaluate parents (only needed for elitist strategy)
-				if (PlusStrategy)
-					for (i = 0; i < parents.size(); ++i)
-						parents[ i ].setFitness((ueber9000->*ueber9000->evaluate)(parents[ i ][ 0 ]));
-
-				std::vector<double> fitness;
-				fitness.reserve(10);
-				
-				// iterate
-				for (t = 0; t < Iterations; ++t) {
-					// generate new offsprings
-					for (i = 0; i < offsprings.size(); ++i) {
-						// select two random parents
-						Individual& mom = parents.random();
-						Individual& dad = parents.random();
-
-						// recombine object variables discrete, step sizes intermediate
-						offsprings[ i ][ 0 ].recombineDiscrete(mom[ 0 ], dad[ 0 ]);
-						offsprings[ i ][ 1 ].recombineGenIntermediate(mom[ 1 ], dad[ 1 ]);
-
-						// mutate object variables normal distributed,
-						// step sizes log normal distributed
-						offsprings[ i ][ 1 ].mutateLogNormal(tau0,  tau1);
-						offsprings[ i ][ 0 ].mutateNormal(offsprings[ i ][ 1 ], true);
-					}
-
-					// evaluate objective function (parameters in chromosome #0)
-					for (i = 0; i < offsprings.size(); ++i)
-						offsprings[ i ].setFitness((ueber9000->*ueber9000->evaluate)(offsprings[ i ][ 0 ]));
-
-					// select (mu,lambda) or (mu+lambda)
-					parents.selectMuLambda(offsprings, numElitists);
-
-					// print out best value found so far
-					if( parents.best().fitnessValue() < 1e-18 )
-						break;
-
-// 					/* convergenzkriterium */
-// 					if( t > 10 ) {
-// 						double sum = 0.;
-// 						for( auto i : fitness ) {
-// 							sum += i;
-// // 						
-// 						}						
-// 						sum -= fitness.size()*fitness[0];
-// 						sum = abs( sum );
+// 			void Another( &ueber ) {
+// 				const unsigned Mu           = 5;
+// 				const unsigned Lambda       = 10;
+// 				const unsigned Dimension    = 10;
+// 				const unsigned Iterations   = 2000;
+// 				const unsigned Interval     = 10;
+// 				const unsigned NSigma       = 1;
 // 
-// 						if( sum < .1) break;
-// 						fitness.erase( fitness.begin(), fitness.begin() + 1 );
+// 				const double   GlobalStepInit = 5.;
+// 				
 // 
+// 				const double   MinInit        = -3.;
+// 				const double   MaxInit        = 7.;
+// 				const double   SigmaInit    = 6;
+// 
+// 				/* activate elitist strategy */
+// 				const bool     PlusStrategy = true;
+// 
+// 				unsigned       i, t;
+// 
+// 				// initialize random number generator
+// 				Rng::seed(1234);
+// 
+// 				// define populations
+// 				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
+// 								ChromosomeT< double >(NSigma));
+// 				PopulationT<double> offsprings(Lambda, ChromosomeT< double >(Dimension),
+// 									ChromosomeT< double >(NSigma));
+// 
+// 				// minimization task
+// 				parents   .setMinimize();
+// 				offsprings.setMinimize();
+// 
+// 				// initialize parent population
+// 				for (i = 0; i < parents.size(); ++i) {
+// 					parents[ i ][ 0 ].initialize(MinInit,   MaxInit);
+// 					parents[ i ][ 1 ].initialize(SigmaInit, SigmaInit);
+// 				}
+// 
+// 				// selection parameters (number of elitists)
+// 				unsigned numElitists = PlusStrategy ? Mu : 0;
+// 
+// 				// standard deviations for mutation of sigma
+// 				double     tau0 = 1. / sqrt(2. * Dimension);
+// 				double     tau1 = 1. / sqrt(2. * sqrt((double)Dimension));
+// 
+// 				// evaluate parents (only needed for elitist strategy)
+// 				if (PlusStrategy)
+// 					for (i = 0; i < parents.size(); ++i)
+// 						parents[ i ].setFitness((ueber9000->*ueber9000->evaluate)(parents[ i ][ 0 ]));
+// 
+// 				std::vector<double> fitness;
+// 				fitness.reserve(10);
+// 				
+// 				// iterate
+// 				for (t = 0; t < Iterations; ++t) {
+// 					// generate new offsprings
+// 					for (i = 0; i < offsprings.size(); ++i) {
+// 						// select two random parents
+// 						Individual& mom = parents.random();
+// 						Individual& dad = parents.random();
+// 
+// 						// recombine object variables discrete, step sizes intermediate
+// 						offsprings[ i ][ 0 ].recombineDiscrete(mom[ 0 ], dad[ 0 ]);
+// 						offsprings[ i ][ 1 ].recombineGenIntermediate(mom[ 1 ], dad[ 1 ]);
+// 
+// 						// mutate object variables normal distributed,
+// 						// step sizes log normal distributed
+// 						offsprings[ i ][ 1 ].mutateLogNormal(tau0,  tau1);
+// 						offsprings[ i ][ 0 ].mutateNormal(offsprings[ i ][ 1 ], true);
 // 					}
-// // 					fitness.resize(9);
-// 					fitness.push_back( parents.best().fitnessValue() );
-					
-				}
-				
-				auto p = parents.best();
-				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
-				
-				for( int i = 0; i < 10; i++ )
-					std::cout << i << " " << p[0][i] << " " ;
-				std::cout << std::endl;
-				
-			}
+// 
+// 					// evaluate objective function (parameters in chromosome #0)
+// 					for (i = 0; i < offsprings.size(); ++i)
+// 						offsprings[ i ].setFitness((ueber9000->*ueber9000->evaluate)(offsprings[ i ][ 0 ]));
+// 
+// 					// select (mu,lambda) or (mu+lambda)
+// 					parents.selectMuLambda(offsprings, numElitists);
+// 
+// 					// print out best value found so far
+// 					if( parents.best().fitnessValue() < 1e-18 )
+// 						break;
+// 
+// // 					/* convergenzkriterium */
+// // 					if( t > 10 ) {
+// // 						double sum = 0.;
+// // 						for( auto i : fitness ) {
+// // 							sum += i;
+// // // 						
+// // 						}						
+// // 						sum -= fitness.size()*fitness[0];
+// // 						sum = abs( sum );
+// // 
+// // 						if( sum < .1) break;
+// // 						fitness.erase( fitness.begin(), fitness.begin() + 1 );
+// // 
+// // 					}
+// // // 					fitness.resize(9);
+// // 					fitness.push_back( parents.best().fitnessValue() );
+// 					
+// 				}
+// 				
+// 				auto p = parents.best();
+// 				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
+// 				
+// 				for( int i = 0; i < 10; i++ )
+// 					std::cout << i << " " << p[0][i] << " " ;
+// 				std::cout << std::endl;
+// 				
+// 			}
 
 		};
 
