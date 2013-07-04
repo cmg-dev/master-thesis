@@ -73,6 +73,13 @@ namespace PRPSEvolution {
 
 		};
 
+		struct ProblemDimensions {
+			static const int WholeTomatoeApproach = 7;
+			static const int Sphere = 15;
+			static const int Rosenbrock = 15;
+
+			
+		};
 		
 		/******************************************************************/
 		/* Classes and so. ************************************************/
@@ -87,7 +94,8 @@ namespace PRPSEvolution {
 		struct Ueber9000
 		{
 			double (Ueber9000<double>::*evaluate)( const ChromosomeT< double >& );
-
+			int Dimension;
+			
 			/**/
 			NRmatrix< T > A;
 			/**/
@@ -96,12 +104,13 @@ namespace PRPSEvolution {
 			/**
 			 * Default constructor
 			 */
-			Ueber9000( ) : evaluate( &Ueber9000<double>::fitnessSphere ) { };
+			Ueber9000( ) : evaluate( &Ueber9000<double>::fitnessSphere ),
+								Dimension( ProblemDimensions::Sphere ) { };
 
 			/**
 			 *
 			 */
-			Ueber9000(const Ueber9000 &me) : A(me.A), c_k0(me-c_k0) {
+			Ueber9000(const Ueber9000 &me) : A(me.A), c_k0(me-c_k0), Dimension( ProblemDimensions::WholeTomatoeApproach ) {
 				if( A && c_k0 )
 					evaluate = &WholeTomatoeApproach;
 
@@ -115,7 +124,8 @@ namespace PRPSEvolution {
 			 */
 			Ueber9000( const NRmatrix< T > A_selected,
 					   const NRvector< T > c_k0_selected ) : A( A_selected ), c_k0( c_k0_selected ) {
-
+				Dimension = 7;
+				
 				/* the WholeTomatoeApproach is the model of choice if A_selected and c_k0_selected are given */
 				evaluate = &Ueber9000<double>::WholeTomatoeApproach;
 
@@ -152,11 +162,24 @@ namespace PRPSEvolution {
 			inline double WholeTomatoeApproach( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &c_k0 )
 			{
 				double res;
-				double prod_Ax[3];
+				double prod_Ax[3] = {0.,0.,0.};
 
+				double x_[10];
+				
+				x_[0]=x[0];
+				x_[1]=x[1];
+				x_[2]=x[2];
+				x_[3]=(x[5]-x[0])*(x[5]-x[0]);
+				x_[4]=(x[6]-x[0])*(x[6]-x[0]);
+				x_[5]=(x[7]-x[0])*(x[7]-x[0]);
+				x_[6]=x[4];
+				x_[7]=x[5];
+				x_[8]=x[6];
+				x_[9]=x[7];
+				
 				for( int i = 0; i < A.nrows(); i++ )
 					for( int j = 0; j < A.ncols(); j++ )
-						prod_Ax[i] += A[i][j]*x[j];
+						prod_Ax[i] += A[i][j]*x_[j];
 
 				/* multiply the matrix with the vector */
 				/* sum up */
@@ -344,18 +367,18 @@ namespace PRPSEvolution {
 		( const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &precalculatedMatrices, const NRmatrix<T> & d_k0s )
 		{
 			/***************************************************************/
-			std::cout << "PreProcessing::Entering Construct()" << std::endl;
+			std::cout << "PreProcessing:: Entering Construct()" << std::endl;
 
 			/* latch in the matrices */
 			precalculatedMats = &precalculatedMatrices;
 
-			std::cout << "PreProcessing::Read from file.. .. ";
+			std::cout << "PreProcessing:: Read from file.. .. ";
 			rMeasurementsFromFile( );
 			
 			std::cout << " done" << std::endl;
 
 			/***************************************************************/
-			std::cout << "PreProcessing::normalization in process.. .. ";
+			std::cout << "PreProcessing:: normalization in process.. .. ";
 
 			auto normThetas = normalizeThetas( measuredPhase, measuredAmp );
 			
@@ -363,13 +386,13 @@ namespace PRPSEvolution {
 
 			/* identify the possible matrices by their names */
 			/***************************************************************/
-			std::cout << "PreProcessing::Identifying possible matrices.. .. ";
+			std::cout << "PreProcessing:: Identifying possible matrices.. .. ";
 
 			auto Names = getPossibleNames( );
 			std::cout << "done" << std::endl;
 
 			/***************************************************************/
-			std::cout << "PreProcessing::Selecting matrices.. .. ";
+			std::cout << "PreProcessing:: Selecting matrices.. .. ";
 			auto selectedConfs = selectMatsForProcessing( SelectBy::AllPossible, Names );
 			
 			std::cout << " done" << std::endl;
@@ -395,7 +418,7 @@ namespace PRPSEvolution {
 			std::cout << " done" << std::endl;
 
 			/***************************************************************/
-			std::cout << "PreProcessing::Calculate vectors.. ..";
+			std::cout << "PreProcessing:: Calculate vectors.. ..";
 			auto vectors = calcVectors( Names, normThetas, d_k0s, a_1 );
 
 			std::cout << " done" << std::endl;
@@ -478,6 +501,7 @@ namespace PRPSEvolution {
 		( const std::array<T_Measure,N_ANTA> &phase, const std::array<T_Measure,N_ANTA> &amp )
 		{
 			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::CMPLX );
+// 			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::RND );
 
 			auto ret = normalizer.normalize( phase, amp );
 
@@ -838,7 +862,7 @@ namespace PRPSEvolution {
 			{
 				/* create a new instance of Ueber9000 */
 				Ueber9000<Doub> ueber( A_selected, b_selected );
-// 				Ueber9000<Doub> t;
+// 				Ueber9000<Doub> ueber;
 // 				ueber9000 = &t;
 
 				ChromosomeT<double> solution;
@@ -884,7 +908,7 @@ namespace PRPSEvolution {
 			/** Enter description */
 			ChromosomeT<double> OnePlusOneES( Ueber9000<double> *ueber9000 ) {
 				// EA parameters
-				const unsigned Dimension      = 10;
+				const unsigned Dimension      = ueber9000->Dimension;
 				const unsigned Iterations     = 3000;
 				const double   MinInit        = -3.;
 				const double   MaxInit        = 7.;
@@ -920,6 +944,9 @@ namespace PRPSEvolution {
 
 				}
 				solutionFitness = fitnessParent;
+
+				if( t >= Iterations )
+					std::cout << t << " 1+1 Done " << std::endl;
 // 				std::cout << t << " Done \tFinal Fitness: " << fitnessParent << endl;
 // 				for(unsigned i=0; i < Dimension; i++)
 // 					std::cout << i << " " << parent[i] << " " ;
@@ -935,10 +962,10 @@ namespace PRPSEvolution {
 
 				const unsigned Mu           = 20;
 				const unsigned Lambda       = 40;
-				const unsigned Dimension    = 10;
+				const unsigned Dimension    = ueber9000->Dimension;
 				const unsigned Iterations   = 2000;
 				const unsigned Interval     = 10;
-				const unsigned NSigma       = 1;
+				const unsigned NSigma       = 3;
 
 				const double   GlobalStepInit = 5.;
 
@@ -1022,6 +1049,10 @@ namespace PRPSEvolution {
 				auto p = parents.best();
 
 				solutionFitness = parents.best().fitnessValue();
+
+				if( t >= Iterations )
+					std::cout << t << " mu,lambda Done  " << std::endl;
+				
 // 				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
 /*
 				for( int i = 0; i < 10; i++ )
@@ -1116,12 +1147,31 @@ namespace PRPSEvolution {
 					// print out best value found so far
 					if( parents.best().fitnessValue() < minSolutionFitness )
 						break;
+
+					/* convergenzkriterium */
+					if( t > 10 ) {
+						double sum = 0.;
+						for( auto i : fitness ) {
+							sum += i;
+//
+						}
+						sum -= fitness.size()*fitness[0];
+						sum = abs( sum );
+
+						if( sum < .1) break;
+						fitness.erase( fitness.begin(), fitness.begin() + 1 );
+
+					}
+// 					fitness.resize(9);
+					fitness.push_back( parents.best().fitnessValue() );
+
 				}
 
 				auto p = parents.best();
 				solutionFitness = parents.best().fitnessValue();
-				
-// 				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
+
+				if( t >= Iterations )
+					std::cout << t << " mu+lambda Done " << std::endl;
 
 // 				for( int i = 0; i < 10; i++ )
 // 					std::cout << i << " " << p[0][i] << " " ;

@@ -93,45 +93,38 @@ int main ( int argc, char *argv[ ] ) {
 		auto b = preprocess.vectorsForSolution[i++];
 
 		for( int Solution = 0; Solution < SOLUTION_AMOUNT; Solution++ ) {
-	// 		f << "*** Processing Solution " << i << "a" << std::endl;
-	// 		std::cout << "Performing (1+1)-ES" << std::endl;
-
+			
 			process.setSeed(duration_cast<microseconds>(t_0-t_00).count());
 			process.setESStrategy(Solve::ESStrategy::OnePlusOne);
 
 			t_0 = steady_clock::now();
 
 			resultsA.push_back( std::async( std::launch::async, &Solve::Process::findSolution, &process, A, b ));
-// 			std::async(std::launch::async, &Solve::Process::findSolution, &process, A, b  );
+// 			resultsA.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b ));
 
-// 			while( duration_cast<milliseconds>(t_1 -t_0).count() < 200 )
 			t_1 = steady_clock::now();
 
 			process.setSeed(duration_cast<microseconds>(t_1-t_00).count());
 			process.setESStrategy( Solve::ESStrategy::MuPlusLambda );
 			
 			resultsB.push_back( std::async( std::launch::async, &Solve::Process::findSolution, &process, A, b  ));
+// 			resultsB.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b  ));
 			
 		}
 	}
 
 	std::cerr << "done "<<std::endl;
-	steady_clock::time_point t_nn = steady_clock::now();
-	std::cout << "total computation time: "
-		<< duration_cast<milliseconds>(t_nn -t_00).count() << " ms" << std::endl;
-
-	std::cout << "*Processing.. Create Solution(s).. done" << std::endl;
-	
-	std::cout << "*writing results to file.. " << std::endl;
-
 
 	std::ofstream fa, fb;
 	fa.open("output/solutionA.dat");
 
 	if ( !fa.is_open() ) { exit(EXIT_FAILURE); }
 	t_0 = steady_clock::now();
+	
+	std::cout << "*writing results to file.. " << std::endl;
 
 	for( auto res = resultsA.begin(); res != resultsA.end(); ++res ) {
+		while(res->wait_for(chrono::seconds(0)) != future_status::ready );
 		for( auto r : res->get() ) {
 			fa << r << "\t";
 		}
@@ -150,6 +143,8 @@ int main ( int argc, char *argv[ ] ) {
 
 	t_0 = steady_clock::now();
 
+// 	;
+	
 	for( auto res = resultsB.begin(); res != resultsB.end(); ++res ) {
 		for( auto r : res->get() ) {
 			fb << r << "\t";
@@ -163,7 +158,11 @@ int main ( int argc, char *argv[ ] ) {
 
 		
 	fb.close();
-		
+
+	steady_clock::time_point t_nn = steady_clock::now();
+	std::cout << "total computation time: "
+		<< (duration_cast<milliseconds>(t_nn -t_00).count() / 1000)/ 60 << " m" << std::endl;
+
 	std::cout << " done" << std::endl;
 	
 

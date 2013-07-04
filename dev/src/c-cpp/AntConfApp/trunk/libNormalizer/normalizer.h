@@ -14,13 +14,15 @@
 #include "../include/PRPSEvolutionFIOExceptions.h"
 #include <complex>
 #include <array>
+#include <random>
+// #include <algorithm>
 
 namespace PRPSEvolution {
 	/**
 	 * 
 	 */
 	enum NormalizatioMethodes {
-		A, B, CMPLX
+		A, B, CMPLX, RND
 		
 	};
 
@@ -44,14 +46,18 @@ namespace PRPSEvolution {
 			std::array<complex<T>, N>  C;
 			std::array<T, N> res;
 
-			T SCALING_FAKTOR = 2.7;
-
+			const T SCALING_FAKTOR = 2.7;
+			const double pi = 3.14159;
+			
 			int i = 0;
 			for(auto & c: C ) {
 				if( p[i] != DATA_NV || a[i] != DATA_NV ) {
 					c = complex<T> (p[i],a[i]*SCALING_FAKTOR);
 					res[i] = arg( c );
-					
+
+// 					if(( p[i] < 0 && a[i] < 0 ) || ( p[i] > 0 && a[i] < 0 ))
+// 						res[i] += 2*pi;
+						
 				} else {
 					res[i]=(T) DATA_NV;
 					
@@ -68,6 +74,24 @@ namespace PRPSEvolution {
 
 			return res;
 		}
+
+		/**
+		 */
+		std::array<T, N> randNorm( )
+		{
+			std::array<T, N> ret;
+			
+			std::default_random_engine dre;
+			std::uniform_real_distribution<double> dr(-10.0,10);
+
+			for( auto &r: ret )
+				r = dr(dre);
+
+			ret[1] = 65535;
+			ret[6] = 65535;
+			return ret;
+			
+		}
 		
 		/**
 		 * Calculates the normalizations
@@ -80,6 +104,7 @@ namespace PRPSEvolution {
 
 			std::array<T, N> ret;
 
+
 			switch( Method ) {
 				case (int) NormalizatioMethodes::A:
 					break;
@@ -90,7 +115,11 @@ namespace PRPSEvolution {
 				case (int) NormalizatioMethodes::CMPLX:
 					ret = complexNorm( phase, amp );
 					break;
-				
+
+				case (int) NormalizatioMethodes::RND:
+					ret = randNorm( );
+					break;
+
 			}
 
 			std::ofstream f;
