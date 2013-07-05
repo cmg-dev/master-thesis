@@ -183,6 +183,10 @@ EALib/PopulationT.h
 -
 EALib/ObjectiveFunction.h
 -
+solveresult.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/solveresult.h
+
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/solveresult.h
 
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/AntennaConfiguration.cpp
 stdio.h
@@ -219,6 +223,8 @@ AntennaConfiguration.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libCalibration/calib.h
 ../libSolve/solve.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/solve.h
+../libSolve/solveresult.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/solveresult.h
 ../include/PRPSEvolutionGeneralExceptions.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../include/PRPSEvolutionGeneralExceptions.h
 EALib/ChromosomeCMA.h

@@ -37,6 +37,8 @@
 #include <EALib/PopulationT.h>
 #include <EALib/ObjectiveFunction.h>
 
+#include "solveresult.h"
+
 namespace PRPSEvolution {
 	namespace Solve {
 
@@ -75,7 +77,7 @@ namespace PRPSEvolution {
 
 		struct ProblemDimensions {
 			static const int WholeTomatoeApproach = 7;
-			static const int Sphere = 15;
+			static const int Sphere = 10;
 			static const int Rosenbrock = 15;
 
 			
@@ -124,7 +126,7 @@ namespace PRPSEvolution {
 			 */
 			Ueber9000( const NRmatrix< T > A_selected,
 					   const NRvector< T > c_k0_selected ) : A( A_selected ), c_k0( c_k0_selected ) {
-				Dimension = 7;
+				Dimension = ProblemDimensions::WholeTomatoeApproach;
 				
 				/* the WholeTomatoeApproach is the model of choice if A_selected and c_k0_selected are given */
 				evaluate = &Ueber9000<double>::WholeTomatoeApproach;
@@ -155,37 +157,36 @@ namespace PRPSEvolution {
 			 * Basically solves the linear equation @f[r=\mathbf{Ax}-\mathbf{b}@f]
 			 * @param[in] A The 10x3 Matrix that ist used in this solution
 			 * @param[in] x The vector containing the variables
-			 * @param[in] c_k0 Representing the vector b
+			 * @param[in] b Representing the vector b
 			 * @return The residuum of the equation system representing the "Fitness" of the given Solution in @see x
 			 *
 			 */
-			inline double WholeTomatoeApproach( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &c_k0 )
+			inline double WholeTomatoeApproach( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &b )
 			{
 				double res;
 				double prod_Ax[3] = {0.,0.,0.};
-
 				double x_[10];
 				
 				x_[0]=x[0];
 				x_[1]=x[1];
 				x_[2]=x[2];
-				x_[3]=(x[5]-x[0])*(x[5]-x[0]);
-				x_[4]=(x[6]-x[0])*(x[6]-x[0]);
-				x_[5]=(x[7]-x[0])*(x[7]-x[0]);
-				x_[6]=x[4];
-				x_[7]=x[5];
-				x_[8]=x[6];
-				x_[9]=x[7];
-				
+				x_[3]=(x[3]*x[3])-(x[4]*x[4]);
+				x_[4]=(x[3]*x[3])-(x[5]*x[5]);
+				x_[5]=(x[3]*x[3])-(x[6]*x[6]);
+				x_[6]=x[3];
+				x_[7]=x[4];
+				x_[8]=x[5];
+				x_[9]=x[6];
+
+				/* multiply the matrix with the vector */
 				for( int i = 0; i < A.nrows(); i++ )
 					for( int j = 0; j < A.ncols(); j++ )
 						prod_Ax[i] += A[i][j]*x_[j];
 
-				/* multiply the matrix with the vector */
 				/* sum up */
-				res = (prod_Ax[0] - c_k0[0]) * (prod_Ax[0] - c_k0[0]);
-				res += (prod_Ax[1] - c_k0[1]) * (prod_Ax[1] - c_k0[1]);
-				res += (prod_Ax[2] - c_k0[2]) * (prod_Ax[2] - c_k0[2]);
+				res = (prod_Ax[0] - b[0]) * (prod_Ax[0] - b[0]);
+				res += (prod_Ax[1] - b[1]) * (prod_Ax[1] - b[1]);
+				res += (prod_Ax[2] - b[2]) * (prod_Ax[2] - b[2]);
 
 				return res;
 
@@ -286,10 +287,12 @@ namespace PRPSEvolution {
 			std::vector<NRmatrix<T>> matricesForSolution;
 
 			std::vector<NRvector<T>> vectorsForSolution;
+
+			std::vector<std::string> ConfigurationNames;
 				
 			PreProcessing
 				( const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &, const NRmatrix<T> & );
-
+				
 		private:
 			/** the container for the Phase data */
 			std::array<T_Measure,N_ANTA> measuredPhase;
@@ -427,6 +430,7 @@ namespace PRPSEvolution {
 			/***************************************************************/
 			vectorsForSolution = vectors;
 			matricesForSolution = selectedConfs;
+			ConfigurationNames = Names;
 			
 		}
 
@@ -500,8 +504,9 @@ namespace PRPSEvolution {
 		std::array<T, N_ANTA> PreProcessing<N_ANTA,N_Configs,T,T_Measure>::normalizeThetas
 		( const std::array<T_Measure,N_ANTA> &phase, const std::array<T_Measure,N_ANTA> &amp )
 		{
-			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::CMPLX );
+// 			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::CMPLX );
 // 			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::RND );
+			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::Native );
 
 			auto ret = normalizer.normalize( phase, amp );
 
@@ -821,7 +826,7 @@ namespace PRPSEvolution {
 			/** a Pointer to the object containing the fitness functions */
 // 			Ueber9000<Doub> *ueber9000;
 			/*	the strategy to find a solution */
-			ESStrategy strategy;
+// 			ESStrategy strategy;
 
 			/* */
 			
@@ -833,7 +838,7 @@ namespace PRPSEvolution {
 
 			}
 
-			Process(const Process &p) : strategy( p.strategy ), solutionFitness( p.solutionFitness ), minSolutionFitness( p.minSolutionFitness ) {
+			Process(const Process &p) :solutionFitness( p.solutionFitness ), minSolutionFitness( p.minSolutionFitness ) {
 				
 				
 			}
@@ -845,10 +850,10 @@ namespace PRPSEvolution {
 			 * @param[in] Strategy The selected strategy
 			 *
 			 */
-			void setESStrategy( ESStrategy Strategy ) {
-				strategy = Strategy;
-				
-			}
+// 			void setESStrategy( ESStrategy Strategy ) {
+// 				strategy = Strategy;
+// 				
+// 			}
 
 			/**
 			 * Find a Solution for a given pair of matrices
@@ -857,15 +862,17 @@ namespace PRPSEvolution {
 			 * @return The solution
 			 * 
 			 */
-			ChromosomeT<double> findSolution
-			( const NRmatrix< Doub > &A_selected, const NRvector< Doub > &b_selected )
+			template<typename T>
+			T
+			findSolution
+			( const NRmatrix< Doub > &A_selected, const NRvector< Doub > &b_selected, ESStrategy strategy, int seed )
 			{
 				/* create a new instance of Ueber9000 */
 				Ueber9000<Doub> ueber( A_selected, b_selected );
 // 				Ueber9000<Doub> ueber;
 // 				ueber9000 = &t;
 
-				ChromosomeT<double> solution;
+				T solution;
 				
 				switch( strategy ) {
 					case (int) ESStrategy::OnePlusOne:
@@ -873,11 +880,11 @@ namespace PRPSEvolution {
 						break;
 						
                    case (int) ESStrategy::MuPlusLambda :
-						solution = MuPlusLambdaES( &ueber );
+						solution = MuPlusLambdaES( &ueber, seed );
 						break;
 						
 					case (int) ESStrategy::MuCommaLambda:
-						solution = MuCommaLambdaES( &ueber );
+						solution = MuCommaLambdaES( &ueber, seed );
 						break;
 						
 				}
@@ -906,7 +913,9 @@ namespace PRPSEvolution {
 			
 			/* The strategies **********************************************/
 			/** Enter description */
-			ChromosomeT<double> OnePlusOneES( Ueber9000<double> *ueber9000 ) {
+			solveresult_t<ChromosomeT<double>, Doub>
+			OnePlusOneES( Ueber9000<double> *ueber9000 ) {
+				steady_clock::time_point t_0 = steady_clock::now();
 				// EA parameters
 				const unsigned Dimension      = ueber9000->Dimension;
 				const unsigned Iterations     = 3000;
@@ -918,6 +927,7 @@ namespace PRPSEvolution {
 								offspring(Dimension);
 
 				double fitnessParent, fitnessOffspring;
+				bool			Convergence = false;
 
 				parent.init( Dimension, GlobalStepInit, MinInit, MaxInit );
 
@@ -943,22 +953,32 @@ namespace PRPSEvolution {
 						break;
 
 				}
-				solutionFitness = fitnessParent;
+// 				solutionFitness = fitnessParent;
 
-				if( t >= Iterations )
-					std::cout << t << " 1+1 Done " << std::endl;
+// 				if( t >= Iterations )
+// 					std::cout << t << " 1+1 Done " << std::endl;
 // 				std::cout << t << " Done \tFinal Fitness: " << fitnessParent << endl;
 // 				for(unsigned i=0; i < Dimension; i++)
 // 					std::cout << i << " " << parent[i] << " " ;
 
 // 				std::cout << std::endl;
+				steady_clock::time_point t_1 = steady_clock::now();
 
-				return parent;
+				solveresult_t<ChromosomeT<double>, Doub> res;
+				res.values = parent;
+				res.fitness = fitnessParent;
+				res.duration = duration_cast<microseconds>(t_1-t_0).count();
+				res.iterations = t;
+				res.converged = Convergence;
+
+				return res;
 				
 			}
 
 			/** Enter description */
-			ChromosomeT<double> MuCommaLambdaES( Ueber9000<double> *ueber9000 ) {
+			solveresult_t<ChromosomeT<double>, Doub>
+			MuCommaLambdaES( Ueber9000<double> *ueber9000, double seed ) {
+				steady_clock::time_point t_0 = steady_clock::now();
 
 				const unsigned Mu           = 20;
 				const unsigned Lambda       = 40;
@@ -974,7 +994,8 @@ namespace PRPSEvolution {
 				const double   SigmaInit    = 3;
 
 				/* activate elitist strategy */
-				const bool     PlusStrategy = true;
+				const bool     PlusStrategy = false;
+				bool			Convergence = false;
 
 				unsigned       i, t;
 
@@ -984,6 +1005,8 @@ namespace PRPSEvolution {
 				// initialize the generator
 // 				gen.seed((unsigned int)time(NULL));
 
+				Rng::seed(seed);
+				
 				// define populations
 				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
 								ChromosomeT< double >(NSigma));
@@ -1050,26 +1073,36 @@ namespace PRPSEvolution {
 
 				solutionFitness = parents.best().fitnessValue();
 
-				if( t >= Iterations )
-					std::cout << t << " mu,lambda Done  " << std::endl;
+// 				if( t >= Iterations )
+// 					std::cout << t << " mu,lambda Done  " << std::endl;
 				
 // 				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
 /*
 				for( int i = 0; i < 10; i++ )
 					std::cout << i << " " << p[0][i] << " " ;
 				std::cout << std::endl;*/
+				steady_clock::time_point t_1 = steady_clock::now();
 
-				return p[0];
+				solveresult_t<ChromosomeT<double>, Doub> res;
+				res.values = p[0];
+				res.fitness = p.fitnessValue();
+				res.iterations = t;
+				res.duration = duration_cast<microseconds>(t_1-t_0).count();
+				res.converged = Convergence;
+
+				return res;
 				
 			}
 
 			/** Enter description */
-			ChromosomeT<double> MuPlusLambdaES( Ueber9000<double> *ueber9000 ) {
-
+			solveresult_t<ChromosomeT<double>, Doub>
+			MuPlusLambdaES( Ueber9000<double> *ueber9000, double seed ) {
+				steady_clock::time_point t_0 = steady_clock::now();
+	
 				const unsigned Mu           = 5;
-				const unsigned Lambda       = 10;
-				const unsigned Dimension    = 10;
-				const unsigned Iterations   = 2000;
+				const unsigned Lambda       = 25;
+				const unsigned Dimension    = ueber9000->Dimension;
+				const unsigned Iterations   = 3000;
 				const unsigned Interval     = 10;
 				const unsigned NSigma       = 1;
 
@@ -1078,19 +1111,21 @@ namespace PRPSEvolution {
 
 				const double   MinInit        = -3.;
 				const double   MaxInit        = 7.;
-				const double   SigmaInit    = 6;
+				const double   SigmaInit    = 3;
 
 				/* activate elitist strategy */
 				const bool     PlusStrategy = true;
-
+				bool			Convergence = false;
+				
 				unsigned       i, t;
-
+				
 				// initialize random number generator
-// 				Rng::seed((unsigned int)time(NULL));
+				Rng::seed(seed);
 
 				// define populations
 				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
 								ChromosomeT< double >(NSigma));
+
 				PopulationT<double> offsprings(Lambda, ChromosomeT< double >(Dimension),
 									ChromosomeT< double >(NSigma));
 
@@ -1149,35 +1184,40 @@ namespace PRPSEvolution {
 						break;
 
 					/* convergenzkriterium */
-					if( t > 10 ) {
+					if( t > 20 ) {
 						double sum = 0.;
 						for( auto i : fitness ) {
 							sum += i;
-//
-						}
-						sum -= fitness.size()*fitness[0];
-						sum = abs( sum );
 
-						if( sum < .1) break;
+						}
+						sum /= fitness[fitness.size()-1];
+						sum = abs( sum );
+// 						std::cout << sum <<std::endl;
+						if( sum == fitness.size() ) { Convergence = true; break; }
 						fitness.erase( fitness.begin(), fitness.begin() + 1 );
 
 					}
-// 					fitness.resize(9);
 					fitness.push_back( parents.best().fitnessValue() );
 
 				}
 
+				steady_clock::time_point t_1 = steady_clock::now();
+				
 				auto p = parents.best();
 				solutionFitness = parents.best().fitnessValue();
 
-				if( t >= Iterations )
-					std::cout << t << " mu+lambda Done " << std::endl;
+// 				if( t >= Iterations )
+// 					std::cout << t << " mu+lambda Done " << p.fitnessValue() << std::endl;
 
-// 				for( int i = 0; i < 10; i++ )
-// 					std::cout << i << " " << p[0][i] << " " ;
-// 				std::cout << std::endl;
+				/* create result statistic */
+				solveresult_t<ChromosomeT<double>, Doub> res;
+				res.values = p[0];
+				res.fitness = p.fitnessValue();
+				res.iterations = t;
+				res.duration = duration_cast<microseconds>(t_1-t_0).count();
+				res.converged = Convergence;
 
-				return p[0];
+				return res;
 				
 			}
 

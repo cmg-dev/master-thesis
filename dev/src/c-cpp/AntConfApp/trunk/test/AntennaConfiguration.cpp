@@ -22,6 +22,8 @@
 #include "../libPRPSSystem/prpsevolutionsystem.h"
 #include "../libCalibration/calib.h"
 #include "../libSolve/solve.h"
+#include "../libSolve/solveresult.h"
+
 #include "../include/PRPSEvolutionGeneralExceptions.h"
 
 #include <EALib/ChromosomeCMA.h>
@@ -78,36 +80,48 @@ int main ( int argc, char *argv[ ] ) {
 
 	int i = 0;
 
-	process.setMinSolutionFitness( 1e-24 );
-
+	const double fitness = 1e-18;
+	process.setMinSolutionFitness( fitness );
+	
 	steady_clock::time_point t_00 = steady_clock::now();
 	steady_clock::time_point t_0 = steady_clock::now();
 	steady_clock::time_point t_1 = steady_clock::now();
 
-	std::vector<std::future<ChromosomeT<double>>> resultsA;
-	std::vector<std::future<ChromosomeT<double>>> resultsB;
+	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,Doub>>> resultsA;
+	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,Doub>>> resultsB;
 
 	std::vector<std::future<int>> resultsI;
-	
+
 	for( auto A: preprocess.matricesForSolution ) {
 		auto b = preprocess.vectorsForSolution[i++];
 
 		for( int Solution = 0; Solution < SOLUTION_AMOUNT; Solution++ ) {
 			
 			process.setSeed(duration_cast<microseconds>(t_0-t_00).count());
-			process.setESStrategy(Solve::ESStrategy::OnePlusOne);
 
 			t_0 = steady_clock::now();
 
-			resultsA.push_back( std::async( std::launch::async, &Solve::Process::findSolution, &process, A, b ));
+			resultsA.push_back( std::async( std::launch::async,
+											&Solve::Process::findSolution<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
+											&process,
+											A,
+											b,
+											Solve::ESStrategy::OnePlusOne,
+											duration_cast<microseconds>(t_1-t_00).count() ));
 // 			resultsA.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b ));
 
 			t_1 = steady_clock::now();
 
-			process.setSeed(duration_cast<microseconds>(t_1-t_00).count());
-			process.setESStrategy( Solve::ESStrategy::MuPlusLambda );
-			
-			resultsB.push_back( std::async( std::launch::async, &Solve::Process::findSolution, &process, A, b  ));
+// 			process.setSeed(duration_cast<microseconds>(t_1-t_00).count());
+// 			process.setESStrategy( Solve::ESStrategy::MuPlusLambda );
+
+			resultsB.push_back( std::async( std::launch::async,
+											&Solve::Process::findSolution<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
+											&process,
+											A,
+											b,
+											Solve::ESStrategy::MuPlusLambda,
+											duration_cast<microseconds>(t_1-t_00).count() ));
 // 			resultsB.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b  ));
 			
 		}
@@ -115,41 +129,52 @@ int main ( int argc, char *argv[ ] ) {
 
 	std::cerr << "done "<<std::endl;
 
-	std::ofstream fa, fb;
-	fa.open("output/solutionA.dat");
+	std::ofstream f, f_fitness;
+	f.open("output/solutionA.dat");
+	f_fitness.open("output/solutionA_FitnessValues.dat");
 
-	if ( !fa.is_open() ) { exit(EXIT_FAILURE); }
+	if ( !f.is_open() ) { exit(EXIT_FAILURE); }
 	t_0 = steady_clock::now();
 	
 	std::cout << "*writing results to file.. " << std::endl;
 
 	for( auto res = resultsA.begin(); res != resultsA.end(); ++res ) {
 		while(res->wait_for(chrono::seconds(0)) != future_status::ready );
-		for( auto r : res->get() ) {
-			fa << r << "\t";
-		}
-		fa << std::endl;
+
+		auto r = res->get();
+		f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (ms)" << " " << r.converged <<std::endl;
+		for( auto values : r.values )
+			f << values << "\t";
+			
+
+		f << std::endl;
 	}
 	t_1 = steady_clock::now();
 
 	std::cout << "file a written in: "
 		<< duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
 		
-	fa.close();
+	f.close();
+	f_fitness.close();
 	
-	fb.open("output/solutionB.dat");
-
-	if ( !fb.is_open() ) { exit(EXIT_FAILURE); }
+	f.open("output/solutionB.dat");
+	f_fitness.open("output/solutionB_FitnessValues.dat");
+	
+	if ( !f.is_open() ) { exit(EXIT_FAILURE); }
 
 	t_0 = steady_clock::now();
-
-// 	;
 	
 	for( auto res = resultsB.begin(); res != resultsB.end(); ++res ) {
-		for( auto r : res->get() ) {
-			fb << r << "\t";
-		}
-		fb << std::endl;
+		while(res->wait_for(chrono::seconds(0)) != future_status::ready );
+
+		auto r = res->get();
+		f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (ms)" << " " << r.converged <<std::endl;
+
+		for( auto values : r.values )
+			f << values << "\t";
+
+
+		f << std::endl;
 	}
 	t_1 = steady_clock::now();
 
@@ -157,15 +182,14 @@ int main ( int argc, char *argv[ ] ) {
 		<< duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
 
 		
-	fb.close();
+	f.close();
+	f_fitness.close();
 
 	steady_clock::time_point t_nn = steady_clock::now();
 	std::cout << "total computation time: "
 		<< (duration_cast<milliseconds>(t_nn -t_00).count() / 1000)/ 60 << " m" << std::endl;
 
 	std::cout << " done" << std::endl;
-	
-
 
 	/**********************************************************************/
 

@@ -22,7 +22,7 @@ namespace PRPSEvolution {
 	 * 
 	 */
 	enum NormalizatioMethodes {
-		A, B, CMPLX, RND
+		Native, B, CMPLX, RND
 		
 	};
 
@@ -55,8 +55,8 @@ namespace PRPSEvolution {
 					c = complex<T> (p[i],a[i]*SCALING_FAKTOR);
 					res[i] = arg( c );
 
-// 					if(( p[i] < 0 && a[i] < 0 ) || ( p[i] > 0 && a[i] < 0 ))
-// 						res[i] += 2*pi;
+					if(( p[i] < 0 && a[i] < 0 ) || ( p[i] > 0 && a[i] < 0 ))
+						res[i] += 2*pi;
 						
 				} else {
 					res[i]=(T) DATA_NV;
@@ -106,7 +106,9 @@ namespace PRPSEvolution {
 
 
 			switch( Method ) {
-				case (int) NormalizatioMethodes::A:
+				case (int) NormalizatioMethodes::Native:
+					ret = phase;
+					
 					break;
 
 				case (int) NormalizatioMethodes::B:
