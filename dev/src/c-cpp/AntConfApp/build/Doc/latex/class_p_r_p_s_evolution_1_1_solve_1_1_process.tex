@@ -1,0 +1,83 @@
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process}{\section{P\-R\-P\-S\-Evolution\-:\-:Solve\-:\-:Process Class Reference}
+\label{class_p_r_p_s_evolution_1_1_solve_1_1_process}\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+}
+
+
+{\ttfamily \#include $<$solve.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9b7073851d90e13d0604a39b7b2e87a1}{Process} ()
+\item 
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a5474f974eef2e2045a91d00bff5c61a5}{{\bfseries Process} (const \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process}{Process} \&p)}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a5474f974eef2e2045a91d00bff5c61a5}
+
+\item 
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_abaa98d7246af85e8ccbede1fcdf70006}{double {\bfseries get\-Last\-Solution\-Fitness} ()}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_abaa98d7246af85e8ccbede1fcdf70006}
+
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a76b92308db7ff54ea49cf1ab4c501bf9}{find\-Solution} (const N\-Rmatrix$<$ Doub $>$ \&A\-\_\-selected, const N\-Rvector$<$ Doub $>$ \&b\-\_\-selected, E\-S\-Strategy strategy, int seed)
+\item 
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_ab18cfd7cdb1054f6a14694881305b090}{int {\bfseries sq} (int i)}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_ab18cfd7cdb1054f6a14694881305b090}
+
+\item 
+void \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a60af419059e757412da4de63d6b408fd}{set\-Min\-Solution\-Fitness} (double value)
+\item 
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a0e1c054150e4b7c1ebdc407f57101053}{void {\bfseries set\-Seed} (unsigned int value)}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a0e1c054150e4b7c1ebdc407f57101053}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Find solutions for the possible matrices 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9b7073851d90e13d0604a39b7b2e87a1}{\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!Process@{Process}}
+\index{Process@{Process}!PRPSEvolution::Solve::Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{Process}]{\setlength{\rightskip}{0pt plus 5cm}P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::\-Process (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9b7073851d90e13d0604a39b7b2e87a1}
+a Pointer to the object containing the fitness functions Constructor 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a76b92308db7ff54ea49cf1ab4c501bf9}{\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!find\-Solution@{find\-Solution}}
+\index{find\-Solution@{find\-Solution}!PRPSEvolution::Solve::Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{find\-Solution}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ T P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::find\-Solution (
+\begin{DoxyParamCaption}
+\item[{const N\-Rmatrix$<$ Doub $>$ \&}]{A\-\_\-selected, }
+\item[{const N\-Rvector$<$ Doub $>$ \&}]{b\-\_\-selected, }
+\item[{E\-S\-Strategy}]{strategy, }
+\item[{int}]{seed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a76b92308db7ff54ea49cf1ab4c501bf9}
+Set the E\-S-\/\-Strategy 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Strategy} & The selected strategy Find a Solution for a given pair of matrices \\
+\hline
+\mbox{\tt in}  & {\em A\-\_\-selected} & The matrix A to use in this solution \\
+\hline
+\mbox{\tt in}  & {\em b\-\_\-selected} & The c\-\_\-k0' vector for this solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The solution 
+\end{DoxyReturn}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a60af419059e757412da4de63d6b408fd}{\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!set\-Min\-Solution\-Fitness@{set\-Min\-Solution\-Fitness}}
+\index{set\-Min\-Solution\-Fitness@{set\-Min\-Solution\-Fitness}!PRPSEvolution::Solve::Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{set\-Min\-Solution\-Fitness}]{\setlength{\rightskip}{0pt plus 5cm}void P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::set\-Min\-Solution\-Fitness (
+\begin{DoxyParamCaption}
+\item[{double}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a60af419059e757412da4de63d6b408fd}
+Sets the min. solution fitness we want to achieve. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & The new value for the solution fitness \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+trunk/lib\-Solve/\hyperlink{solve_8h}{solve.\-h}\end{DoxyCompactItemize}

@@ -1,0 +1,49 @@
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing}{\section{P\-R\-P\-S\-Evolution\-:\-:Solve\-:\-:Pre\-Processing$<$ N\-\_\-\-A\-N\-T\-A, N\-\_\-\-Configs, T, T\-\_\-\-Measure $>$ Class Template Reference}
+\label{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing}\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing$<$ N\-\_\-\-A\-N\-T\-A, N\-\_\-\-Configs, T, T\-\_\-\-Measure $>$@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing$<$ N\-\_\-\-A\-N\-T\-A, N\-\_\-\-Configs, T, T\-\_\-\-Measure $>$}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing_a693459b1a0d621ac4eac4005388b33e8}{Pre\-Processing} (const std\-::array$<$ \hyperlink{struct_p_r_p_s_evolution_1_1_permutate_1_1_antenna_permutations}{Antenna\-Permutations}$<$ Permutate\-::\-M\-A\-X\-\_\-\-P\-E\-R\-M\-U\-T\-A\-T\-I\-O\-N\-\_\-\-A\-M\-O\-U\-N\-T, Doub $>$, N\-\_\-\-A\-N\-T\-A $>$ \&, const N\-Rmatrix$<$ T $>$ \&)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\-::vector$<$ N\-Rmatrix$<$ T $>$ $>$ \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing_a4e9469f9c8f85349c269b90ff6d435be}{matrices\-For\-Solution}
+\item 
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing_a3490003ccdf990489f09fc995eb7b69e}{std\-::vector$<$ N\-Rvector$<$ T $>$ $>$ {\bfseries vectors\-For\-Solution}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing_a3490003ccdf990489f09fc995eb7b69e}
+
+\item 
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing_a5668b7f1d8e4cdb3c4772ea216cdcdc8}{std\-::vector$<$ std\-::string $>$ {\bfseries Configuration\-Names}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing_a5668b7f1d8e4cdb3c4772ea216cdcdc8}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing_a693459b1a0d621ac4eac4005388b33e8}{\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing}!Pre\-Processing@{Pre\-Processing}}
+\index{Pre\-Processing@{Pre\-Processing}!PRPSEvolution::Solve::PreProcessing@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing}}
+\subsubsection[{Pre\-Processing}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\-::size\-\_\-t N\-\_\-\-A\-N\-T\-A, std\-::size\-\_\-t N\-\_\-\-Configs, typename T , typename T\-\_\-\-Measure $>$ {\bf P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing}$<$ N\-\_\-\-A\-N\-T\-A, N\-\_\-\-Configs, T, T\-\_\-\-Measure $>$\-::{\bf Pre\-Processing} (
+\begin{DoxyParamCaption}
+\item[{const std\-::array$<$ {\bf Antenna\-Permutations}$<$ Permutate\-::\-M\-A\-X\-\_\-\-P\-E\-R\-M\-U\-T\-A\-T\-I\-O\-N\-\_\-\-A\-M\-O\-U\-N\-T, Doub $>$, N\-\_\-\-A\-N\-T\-A $>$ \&}]{precalculated\-Matrices, }
+\item[{const N\-Rmatrix$<$ T $>$ \&}]{d\-\_\-k0s}
+\end{DoxyParamCaption}
+)}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing_a693459b1a0d621ac4eac4005388b33e8}
+Construct the object an perform neccessary \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing}{Pre\-Processing} steps.
+\begin{DoxyEnumerate}
+\item Read out the measurements from the given interface (e.\-g. a file)
+\item Normalize everything
+\item Select the matrices for further processing
+\item Fill the matrices with the information
+\item Precalculate the \[c_{k0}\]-\/\-Vector
+\item Store matrices to make them availiable in the next steps 
+\end{DoxyEnumerate}
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing_a4e9469f9c8f85349c269b90ff6d435be}{\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing}!matrices\-For\-Solution@{matrices\-For\-Solution}}
+\index{matrices\-For\-Solution@{matrices\-For\-Solution}!PRPSEvolution::Solve::PreProcessing@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing}}
+\subsubsection[{matrices\-For\-Solution}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\-::size\-\_\-t N\-\_\-\-A\-N\-T\-A, std\-::size\-\_\-t N\-\_\-\-Configs, typename T, typename T\-\_\-\-Measure$>$ std\-::vector$<$N\-Rmatrix$<$T$>$ $>$ {\bf P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing}$<$ N\-\_\-\-A\-N\-T\-A, N\-\_\-\-Configs, T, T\-\_\-\-Measure $>$\-::matrices\-For\-Solution}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing_a4e9469f9c8f85349c269b90ff6d435be}
+determines how many Configurations will solved for the Wavenumber 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+trunk/lib\-Solve/\hyperlink{solve_8h}{solve.\-h}\end{DoxyCompactItemize}
