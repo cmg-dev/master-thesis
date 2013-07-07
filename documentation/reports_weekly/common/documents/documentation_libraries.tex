@@ -1,0 +1,34 @@
+\begin{enumerate}
+%
+\item libCalibration
+	\begin{enumerate}
+	\item Enthält die Calibration-Klasse
+	\item Bestimmt aus den Entfernungsmessungen von dem Kalibrierphantom die Position der Antennen.
+	\end{enumerate}
+%	
+\item libNormalizer
+	\begin{enumerate}
+	\item Sammelt verschiedene Methoden für die Normierung der gemessenen Werte
+	\end{enumerate}
+%	
+\item libPermutate
+	\begin{enumerate}
+	\item Erstellt alle möglichen Permutationen die für den Antennenaufbau möglich sind
+	\item Stellt diese Permutationen für spätere Berechnungen komfortabel zur Verfügung
+	\end{enumerate}
+%
+\item libPRPSSystem
+	\begin{enumerate}
+	\item Ließt die Systemkenndaten (z.B. Messfrequenz etc.) aus der entsprechenden Eingabedatei und berechnet die sich daraus ableitenden Faktoren (z.B. Wellenlänge etc.)
+	\end{enumerate}
+%
+\item libSolve
+	\begin{enumerate}
+	\item Das eigentliche Herzstück des Projekts
+	\item Ermöglicht das Lösen mehrerer unterschiedlicher Modelle
+	\item Implementiert unterschiedliche Lösungsstrategien, wie z.B. (1+1)-ES, ($\mu+\lambda$)-ES etc.
+	\item Ist Threadsicher um die Performance erheblich zu verbessern
+	\item Die Dimension des Problem lässt sich leicht anpassen
+	\end{enumerate}
+%
+\end{enumerate}
