@@ -23,6 +23,9 @@
 #include "../libCalibration/calib.h"
 #include "../libSolve/solve.h"
 #include "../libSolve/solveresult.h"
+#include "../libSolve/process.h"
+#include "../libSolve/preprocessing.h"
+#include "../libSolve/postprocessing.h"
 
 #include "../include/PRPSEvolutionGeneralExceptions.h"
 
@@ -37,6 +40,8 @@ using std::chrono::steady_clock;
 const int SOLUTION_AMOUNT = 100;
 
 
+/**
+ */
 int main ( int argc, char *argv[ ] ) {
 	fprintf(stdout,"%s Version %d.%d.%x\n",
 			argv[0],
@@ -56,11 +61,6 @@ int main ( int argc, char *argv[ ] ) {
 					PA( sys.constants );
 
 	/* PA is an 8x35 array of type permutateAntennas of type Doub */
-/*	
-	NRmatrix<Doub> A;
-	A.assign(3,10, 0.0);
-	NRvector<Doub> c_k0;
-	c_k0.assign(10, 0.0);*/
 
 	/**********************************************************************/
 	std::cout << std::endl;
@@ -78,11 +78,12 @@ int main ( int argc, char *argv[ ] ) {
 
 	Solve::Process process;
 
+
 	int i = 0;
 
 	const double fitness = 1e-18;
 	process.setMinSolutionFitness( fitness );
-	
+
 	steady_clock::time_point t_00 = steady_clock::now();
 	steady_clock::time_point t_0 = steady_clock::now();
 	steady_clock::time_point t_1 = steady_clock::now();
@@ -90,13 +91,12 @@ int main ( int argc, char *argv[ ] ) {
 	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,Doub>>> resultsA;
 	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,Doub>>> resultsB;
 
-	std::vector<std::future<int>> resultsI;
-
+#ifdef VARIANTE_A
 	for( auto A: preprocess.matricesForSolution ) {
 		auto b = preprocess.vectorsForSolution[i++];
 
 		for( int Solution = 0; Solution < SOLUTION_AMOUNT; Solution++ ) {
-			
+
 			process.setSeed(duration_cast<microseconds>(t_0-t_00).count());
 
 			t_0 = steady_clock::now();
@@ -123,9 +123,14 @@ int main ( int argc, char *argv[ ] ) {
 											Solve::ESStrategy::MuPlusLambda,
 											duration_cast<microseconds>(t_1-t_00).count() ));
 // 			resultsB.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b  ));
-			
+
 		}
 	}
+#endif	/* VARIANTE_A */
+
+#ifdef VARIANTE_B
+	
+#endif	/* VARIANTE_B */
 
 	std::cerr << "done "<<std::endl;
 
@@ -135,7 +140,7 @@ int main ( int argc, char *argv[ ] ) {
 
 	if ( !f.is_open() ) { exit(EXIT_FAILURE); }
 	t_0 = steady_clock::now();
-	
+
 	std::cout << "*writing results to file.. " << std::endl;
 
 	for( auto res = resultsA.begin(); res != resultsA.end(); ++res ) {
@@ -145,7 +150,7 @@ int main ( int argc, char *argv[ ] ) {
 		f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (ms)" << " " << r.converged <<std::endl;
 		for( auto values : r.values )
 			f << values << "\t";
-			
+
 
 		f << std::endl;
 	}
@@ -153,17 +158,17 @@ int main ( int argc, char *argv[ ] ) {
 
 	std::cout << "file a written in: "
 		<< duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
-		
+
 	f.close();
 	f_fitness.close();
-	
+
 	f.open("output/solutionB.dat");
 	f_fitness.open("output/solutionB_FitnessValues.dat");
-	
+
 	if ( !f.is_open() ) { exit(EXIT_FAILURE); }
 
 	t_0 = steady_clock::now();
-	
+
 	for( auto res = resultsB.begin(); res != resultsB.end(); ++res ) {
 		while(res->wait_for(chrono::seconds(0)) != future_status::ready );
 
@@ -181,7 +186,7 @@ int main ( int argc, char *argv[ ] ) {
 	std::cout << "file b written in: "
 		<< duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
 
-		
+
 	f.close();
 	f_fitness.close();
 

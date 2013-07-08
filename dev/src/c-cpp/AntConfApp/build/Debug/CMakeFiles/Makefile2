@@ -224,7 +224,7 @@ libSolve/preinstall:
 libSolve/CMakeFiles/Solve.dir/all:
 	$(MAKE) -f libSolve/CMakeFiles/Solve.dir/build.make libSolve/CMakeFiles/Solve.dir/depend
 	$(MAKE) -f libSolve/CMakeFiles/Solve.dir/build.make libSolve/CMakeFiles/Solve.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/CMakeFiles  6
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/CMakeFiles  6 7 8 9 10
 	@echo "Built target Solve"
 .PHONY : libSolve/CMakeFiles/Solve.dir/all
 
@@ -234,7 +234,7 @@ all: libSolve/CMakeFiles/Solve.dir/all
 
 # Build rule for subdir invocation for target.
 libSolve/CMakeFiles/Solve.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 libSolve/CMakeFiles/Solve.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/CMakeFiles 0
 .PHONY : libSolve/CMakeFiles/Solve.dir/rule
@@ -321,11 +321,11 @@ test/preinstall:
 # Target rules for target test/CMakeFiles/AntConfApp.dir
 
 # All Build rule for target.
-test/CMakeFiles/AntConfApp.dir/all: libPermutate/CMakeFiles/Permutate.dir/all
 test/CMakeFiles/AntConfApp.dir/all: libCalibration/CMakeFiles/Calibration.dir/all
 test/CMakeFiles/AntConfApp.dir/all: libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir/all
 test/CMakeFiles/AntConfApp.dir/all: libSolve/CMakeFiles/Solve.dir/all
 test/CMakeFiles/AntConfApp.dir/all: libNormalizer/CMakeFiles/Normalizer.dir/all
+test/CMakeFiles/AntConfApp.dir/all: libPermutate/CMakeFiles/Permutate.dir/all
 	$(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/depend
 	$(MAKE) -f test/CMakeFiles/AntConfApp.dir/build.make test/CMakeFiles/AntConfApp.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/CMakeFiles  1
@@ -338,7 +338,7 @@ all: test/CMakeFiles/AntConfApp.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/AntConfApp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/AntConfApp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/build/Debug/CMakeFiles 0
 .PHONY : test/CMakeFiles/AntConfApp.dir/rule
