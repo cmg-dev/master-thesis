@@ -4,6 +4,7 @@
 
 // #include <chrono>
 #include <iostream>
+#include <sstream>
 #include <string>
 // #include <random>
 #include <stdio.h>
@@ -37,18 +38,26 @@ namespace PRPSEvolution {
 		/*******************************************************************/
 		/*******************************************************************/
 		public:
-			/** determines how many Configurations will solved for the Wavenumber */
+			/** The precalcultated matrices for a solution */
+			std::vector<NRmatrix<T>>	matrices;
 
-			std::vector<NRmatrix<T>> matricesForSolution;
+			/** The b-vectors for the solution */
+			std::vector<NRvector<T>>	vectors;
 
-			std::vector<NRvector<T>> vectorsForSolution;
+			/** The "Names" of the matrices for a solution */
+			std::vector<std::string>	names;
 
-			std::vector<std::string> ConfigurationNames;
-
+			/** Amount of antennas for the solution */
+			int antennas;
+			
 			PreProcessing
 				( const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &, const NRmatrix<T> & );
 
 		private:
+
+			/** stores a bitmask which indicates the antennas contains valid data */
+			std::array<bool,N_ANTA> dataValid;
+
 			/** the container for the Phase data */
 			std::array<T_Measure,N_ANTA> measuredPhase;
 
@@ -113,7 +122,7 @@ namespace PRPSEvolution {
 			 */
 			std::vector< std::string >
 			selectNamesForProcessing
-			( const std::vector< std::string > &, const std::vector< int > & );
+			( const std::vector< std::string > &, const std::vector< int > &, const int & );
 			
 		};
 
@@ -135,43 +144,64 @@ namespace PRPSEvolution {
 		( const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &precalculatedMatrices, const NRmatrix<T> & d_k0s )
 		{
 			/***************************************************************/
-			std::cout << "PreProcessing:: Entering Construct()" << std::endl;
 
 			/* latch in the matrices */
 			precalculatedMats = &precalculatedMatrices;
-
+#ifdef OUTPUT
 			std::cout << "PreProcessing:: Read from file.. .. ";
+#endif
 			rMeasurementsFromFile( );
 
+#ifdef OUTPUT
 			std::cout << " done" << std::endl;
+#endif
 
 			/***************************************************************/
+#ifdef OUTPUT
 			std::cout << "PreProcessing:: normalization in process.. .. ";
+#endif
 
 			auto normThetas = normalizeThetas( measuredPhase, measuredAmp );
 
+#ifdef OUTPUT
 			std::cout << " done" << std::endl;
+#endif
 
 			/* identify the possible matrices by their names */
 			/***************************************************************/
-			std::cout << "PreProcessing:: Identifying possible matrices.. .. ";
-
+#ifdef OUTPUT
+			std::cout << "PreProcessing:: Identifying all possible matrices.. .. ";
+#endif
+			
 			auto Names = getPossibleNames( );
+
+#ifdef OUTPUT
 			std::cout << "done" << std::endl;
+#endif
 
 			/***************************************************************/
+#ifdef OUTPUT
 			std::cout << "PreProcessing:: Selecting names.. .. ";
+#endif
 
 			std::vector<int> idxs = {1,2,3,4};
-			auto selectedNames = selectNamesForProcessing( Names, idxs );
-			std::cout << "done" << std::endl;
-			
-			/***************************************************************/
-			std::cout << "PreProcessing:: Selecting matrices.. .. ";
-// 			auto selectedConfs = selectMatsForProcessing( SelectBy::AllPossible, Names );
-			auto selectedConfs = selectMatsForProcessing( SelectBy::AllFrom4Ant, Names );
+			int quantity = 4;
+			auto selectedNames = selectNamesForProcessing( Names, idxs, quantity );
 
+#ifdef OUTPUT
+			std::cout << "done" << std::endl;
+#endif
+
+			/***************************************************************/
+#ifdef OUTPUT
+			std::cout << "PreProcessing:: Selecting matrices.. .. ";
+#endif
+
+			auto selectedConfs = selectMatsForProcessing( SelectBy::AllPossible, selectedNames );
+
+#ifdef OUTPUT
 			std::cout << " done" << std::endl;
+#endif
 
 
 			T a_1;
@@ -182,28 +212,38 @@ namespace PRPSEvolution {
 				 */
 				auto p = selectedConfs[0];
 				a_1 = p[0][3];
-
-// 				std::cout << "a_1" << a_1 << std::endl;
+#ifdef OUTPUT
+				std::cout << "a_1 = " << a_1 << std::endl;
+#endif
 			} /* !workaround */
 
 
 			/***************************************************************/
+#ifdef OUTPUT
 			std::cout << "PreProcessing:: Filling selected matrices with remaining information.. ..";
-			selectedConfs = fillSelectMats( normThetas, selectedConfs, Names );
+#endif
 
+			selectedConfs = fillSelectMats( normThetas, selectedConfs, selectedNames );
+
+#ifdef OUTPUT
 			std::cout << " done" << std::endl;
+#endif
 
 			/***************************************************************/
+#ifdef OUTPUT
 			std::cout << "PreProcessing:: Calculate vectors.. ..";
-			auto vectors = calcVectors( Names, normThetas, d_k0s, a_1 );
+#endif
 
+			auto finalVectors = calcVectors( selectedNames, normThetas, d_k0s, a_1 );
+
+#ifdef OUTPUT
 			std::cout << " done" << std::endl;
-
+#endif
 
 			/***************************************************************/
-			vectorsForSolution = vectors;
-			matricesForSolution = selectedConfs;
-			ConfigurationNames = Names;
+			vectors		= finalVectors;
+			matrices	= selectedConfs;
+			names		= selectedNames;
 
 		}
 
@@ -277,9 +317,9 @@ namespace PRPSEvolution {
 		std::array<T, N_ANTA> PreProcessing<N_ANTA,N_Configs,T,T_Measure>::normalizeThetas
 		( const std::array<T_Measure,N_ANTA> &phase, const std::array<T_Measure,N_ANTA> &amp )
 		{
-// 			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::CMPLX );
+			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::CMPLX );
 // 			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::RND );
-			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::Native );
+// 			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::Native );
 
 			auto ret = normalizer.normalize( phase, amp );
 
@@ -287,25 +327,70 @@ namespace PRPSEvolution {
 
 		}
 
+		/**
+		 * @param[in] names Contains the possible matrix names
+		 * @param[in] indices Indices of the antennas we want to choose
+		 * @param[in] quantity Group size or the k-parameter
+		 * 
+		 */
 		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
 		std::vector< std::string >
 		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::selectNamesForProcessing
-		( const std::vector< std::string > &names, const std::vector< int > &indices )
+		( const std::vector< std::string > &names, const std::vector< int > &indices, const int &quantity )
 		{
 			std::vector< std::string > ret;
 			int found;
+
+#ifdef OUTPUT
+			std::cout << std::endl;
+#endif
 			
+ 			ostringstream os;
+			/* possible permutations? */
+			int i = 0;
+			for( auto d: dataValid ) {
+				if( d )
+					os << std::to_string(i);
+				i++;
+				
+			}
+#ifdef OUTPUT
+			std::cout << "Selecting "<< quantity << " from " << indices.size() << std::endl;
+#endif
+			
+			/**/
+			std::vector< std::string > select;
+
+			std::size_t k = quantity;
+			std::string s_ = os.str();
+
+			/* determine the unique permutations */
+			do {
+				/* create the name */
+				ostringstream name;
+				name << std::string( s_.begin(),s_.begin() + k );
+				
+				select.push_back(name.str());
+
+			} while( Permutate::next_combination( s_.begin(),s_.begin() + k,s_.end() ) );
+
+			/* recheck if the poermutation exists in possible names, it should! */
+			i = 0;
 			for( auto name: names ) {
-				found = 0;
-				for( auto idx: indices ) {
-					if( name.find( std::to_string( idx ) ) )
-						found++;
+				if( name == select[i] ) {
+					ret.push_back( name );
+					i++;
+					
 				}
-				if( found == indices.size() ) ret.push_back( name );
+				if( i >= select.size() )
+					break;
+				
 			}
 
-			for( auto name: names )
+#ifdef OUTPUT
+			for( auto name: select )
 				std::cout << name << std::endl;
+#endif
 			
 			return ret;
 			
@@ -346,20 +431,21 @@ namespace PRPSEvolution {
 			}
 
 			/* send the selected ones to std::cout */
-// 			int i = 0;
-// 			for( auto mat : SelectedMat ) {
-// 				std::cout << ++i << " " << names[i] << std::endl;
-// 				Permutate::AntennaPermutations<0,Doub>::dump_matrix( mat );
-//
-// 			}
+#ifdef OUTPUT
+			int i = 0;
+			for( auto mat : SelectedMat ) {
+				std::cout << ++i << " " << names[i] << std::endl;
+				Permutate::AntennaPermutations<0,Doub>::dump_matrix( mat );
 
+			}
+#endif
 			return SelectedMat;
 
 		}
 
 		/**
 		 * Search through all availiable matrices and crawl out the needed ones
-		 * @param[in] names The "names" of the correect matrices
+		 * @param[in] names The "names" of the correct matrices
 		 *
 		 */
 		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
@@ -367,10 +453,20 @@ namespace PRPSEvolution {
 		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::selectAllPossible( const std::vector< std::string > &names )
 		{
 			std::vector<NRmatrix< T >> ret;
-
+	
 			int j = 0;
-			for( auto p : *precalculatedMats ) {
-				for( int i = 0; i < p.mat.size(); i++ ) {
+			for( auto name : names ) {
+				for( auto p : *precalculatedMats ) {
+					int i = 0;
+					for( auto mat : p.mat ) {
+						if( p.names[i++] == name )
+							ret.push_back( mat );
+					}
+				}
+			}
+/*
+			for( int i = 0; i < p.mat.size(); i++ ) {
+				for( auto p : *precalculatedMats ) {
 					if( p.names[i] == names[j] )  {
 
 						ret.push_back( p.mat[i] );
@@ -379,10 +475,12 @@ namespace PRPSEvolution {
 
 					}
 					if( j >= names.size() )
-							break;
+						break;
 
 				}
-			}
+				if( j >= names.size() )
+						break;
+			}*/
 
 			return ret;
 		}
@@ -399,17 +497,22 @@ namespace PRPSEvolution {
 		{
 
 			/* witch antennas delivered data ? */
-			std::array<bool,N_ANTA> data;
-			for( int i = 0; i < data.size(); i++ ) {
-				data[i] = (measuredAmp[i]==(T)DATA_NV||measuredPhase[i]==(T)DATA_NV)?false:true;
-
+			std::array<bool,N_ANTA> data_;
+			int c=0;
+			for( int i = 0; i < data_.size(); i++ ) {
+				data_[i] = (measuredAmp[i]==(T)DATA_NV||measuredPhase[i]==(T)DATA_NV)?false:true;
+				c = (data_[i]) ? (c+1) : (c);
 			}
 
+			/* prpagate to global var */
+			dataValid = data_;
+			antennas = c;
+			
 			int i = 0, j = 0;
 
 			ostringstream os;
 			/* possible permutations? */
-			for( auto d : data ) {
+			for( auto d : data_ ) {
 				if( d ) { os << i++; j++; }
 				else { i++; }
 			}
@@ -419,6 +522,7 @@ namespace PRPSEvolution {
 
 // 			std::cout << os.str() << " " << j << std::endl;
 
+			/* n!/k!(n-k)! */
 			int possiblePA = Permutate::Factorial( NoAvailiable - 1 );
 			possiblePA /=
 				(Permutate::Factorial( GroupSize-1 )
@@ -475,10 +579,6 @@ namespace PRPSEvolution {
 
 			std::array<T_Measure,4> thetas;
 			int idx = 0;
-
-// 			for( int j = 0; j < names[0].size(); j++ )
-// 				std::cout << names[0][j];
-// 			std::cout << std::endl;
 
 			/* for each matrix */
 			for( auto &mat: mats2return ) {
@@ -555,12 +655,14 @@ namespace PRPSEvolution {
 			/* for each name find */
 			for(auto name : names ) {
 				/* find antennas */
-				std::array<int,4> a = { std::stoi( name.substr(0,1) ),
-												std::stoi( name.substr(1,1) ),
-												std::stoi( name.substr(2,1) ),
-												std::stoi( name.substr(3,1) )
-												};
+				std::array<int,4> a = {
+										std::stoi( name.substr(0,1) ),
+										std::stoi( name.substr(1,1) ),
+										std::stoi( name.substr(2,1) ),
+										std::stoi( name.substr(3,1) )
+									};
 
+				/* init the vectors */
 				NRvector<T> b;
 				b.assign( 3, 0.0 );
 

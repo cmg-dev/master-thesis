@@ -139,6 +139,8 @@ solve.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/preprocessing.h
 iostream
 -
+sstream
+-
 string
 -
 stdio.h
@@ -195,6 +197,12 @@ EALib/PopulationT.h
 -
 EALib/ObjectiveFunction.h
 -
+../include/PRPSEvolutionSolveExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionSolveExceptions.h
+../include/PRPSEvolutionFIOExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionFIOExceptions.h
+../include/PRPSEvolutionGeneralExceptions.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionGeneralExceptions.h
 solveresult.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/solveresult.h
 solve.h
