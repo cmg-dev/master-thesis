@@ -19,14 +19,23 @@ namespace PRPSEvolution {
 		template < typename T >
 		struct Ueber9000
 		{
+			/** */
 			double (Ueber9000<double>::*evaluate)( const ChromosomeT< double >& );
+
+			/** The Dimension of the Problem */
 			int Dimension;
 
-			/** */
+			/** The Matrices we need to solve the Problem */
 			std::vector<NRmatrix< T >> A;
-			/** */
+			
+			/** The b-vector needed to find a Solution */
 			std::vector<NRvector< T >> b;
 
+			/** The names for the Solution (contains the contributing antennas )*/
+			std::vector<std::string> names;
+
+			std::vector<std::vector<int>> idxs;
+			
 			/**
 			 * Default constructor
 			 */
@@ -74,21 +83,64 @@ namespace PRPSEvolution {
 			 *
 			 */
 			Ueber9000( const std::vector<NRmatrix< T >> As,
-					   const std::vector<NRvector< T >> bs ) {
+						const std::vector<NRvector< T >> bs,
+						const std::vector<std::string> namess,
+						const int numOAnts
+ 					) {
 
 				if( As.size() != bs.size())
 					return;
-
-				Dimension = ProblemDimensions::WholeTomatoeApproachMkII;
+				
+				std::vector<std::vector<int>> idx = parseIdxFromNames( namess );
+				
 				/* latch in the configurations */
 				A = As;
 				b = bs;
+				names = namess;
+				idxs = idx;
 
+
+				/* determine the amount of participating antennas */
+				Dimension = ProblemDimensions::WholeTomatoeApproachMkII;
+				Dimension += numOAnts;
+				
+// 				std::cout << "Mark II: " << Dimension << std::endl;
 				/* the WholeTomatoeApproach is the model of choice if A_selected and c_k0_selected are given */
 				evaluate = &Ueber9000<double>::WholeTomatoeApproachMkII;
 
 			}
 
+			/**
+			 * This function will parse the indeces used for a solution
+			 * @param[in] namess Contains the "Name" of each matrix we want to use in this solution
+			 * @return A two dimensional vector with the indeces of each antenna for each matrix
+			 * 
+			 */
+			std::vector<std::vector<int>>
+			parseIdxFromNames
+			( const std::vector<std::string> &namess ) {
+				std::vector<std::vector<int>> res;
+				
+				for( auto names: namess ) {
+					std::vector<int> idxs;
+					for( int i = 0; i < names.size(); i++ ) {
+						idxs.push_back( std::stoi( names.substr(i,1)) );
+						
+					}
+					res.push_back( idxs );
+				}
+
+#ifdef OUTPUT
+				for( auto idx: res ) {
+					for( auto i: idx ) {
+						std::cout << i << " ";
+					}
+					std::cout << std::endl;
+				}
+#endif
+				return res;
+			}
+			
 			/**
 			 * This method basically wraps around the real WholeTomatoeApproach-function.
 			 * Maps the function so that it can be used with the evaluate-method
@@ -105,7 +157,7 @@ namespace PRPSEvolution {
 				if( A.size() <= 0 || b.size() <= 0 )
 					return -1;
 				
-				/* call function */
+				/* call function, always solve the first matrix */
 				res = WholeTomatoeApproach( A[0], x, b[0] );
 
 				return res;
@@ -113,25 +165,53 @@ namespace PRPSEvolution {
 			}
 
 			/**
-			 *
+			 * @todo document
 			 * @param[in] x The vector x containing the
 			 *
 			 */
 			double
 			WholeTomatoeApproachMkII( const ChromosomeT< double > &x )
 			{
-				double res;
+				/* the result */
+				std::vector<double> res;
+				
+				ChromosomeCMA x_( 7 );
 
-				/* call function */
-				res = WholeTomatoeApproach( A, x, b );
+				x_[0] = x[0];
+				x_[1] = x[1];
+				x_[2] = x[2];
 
-				return res;
+				for( int i = 0; i < A.size(); i++ ) {
+					auto idx = idxs[i];
+					/* get the indeces for the solution */
+					int j,k;
+					j = k = 0;
+					/* recompile chromosome x */
+					x_[ 3 ] = x[3+idx[0]];
+					x_[ 4 ] = x[3+idx[1]];
+					x_[ 5 ] = x[3+idx[2]];
+					x_[ 6 ] = x[3+idx[3]];
+
+// 					for( auto & c : x_ ) {
+// 						std::cout << c << " ";
+// 
+// 					}
+// 					std::cout << "" << std::endl;
+
+					res.push_back( WholeTomatoeApproachMkII( A[i], x_, b[i] ) );
+				}
+
+// 				std::sort( res.begin(), res.end() );
+				
+// 				return res[res.size()-1];
+				return meanFromVector( res );
+//  				return res[0];
 
 			}
 
 			/**
-			 * This approach will solve calculate the 10x3 matrix described
-			 * in the Master-Thesis of C.Gnip
+			 * This approach will solve the scene defined by the 10x3 matrix
+			 * The approach is described in the Master-Thesis of C.Gnip
 			 * Basically solves the linear equation @f[r=\mathbf{Ax}-\mathbf{b}@f]
 			 * @param[in] A The 10x3 Matrix that ist used in this solution
 			 * @param[in] x The vector containing the variables
@@ -162,14 +242,83 @@ namespace PRPSEvolution {
 						prod_Ax[i] += A[i][j]*x_[j];
 
 				/* sum up */
-				res = (prod_Ax[0] - b[0]) * (prod_Ax[0] - b[0]);
-				res += (prod_Ax[1] - b[1]) * (prod_Ax[1] - b[1]);
-				res += (prod_Ax[2] - b[2]) * (prod_Ax[2] - b[2]);
+				res =	(prod_Ax[0] - b[0]) * (prod_Ax[0] - b[0]);
+				res +=	(prod_Ax[1] - b[1]) * (prod_Ax[1] - b[1]);
+				res +=	(prod_Ax[2] - b[2]) * (prod_Ax[2] - b[2]);
 
 				return res;
 
 			}
 
+			/**
+			 * @todo documentation
+			 * @param[in] A The 10x3 Matrix that ist used in this solution
+			 * @param[in] x The vector containing the variables
+			 * @param[in] b Representing the vector b
+			 * @return The residuum of the equation system representing the "Fitness" of the given Solution in @see x
+			 *
+			 */
+			inline double WholeTomatoeApproachMkI( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &b )
+			{
+				double res;
+				double prod_Ax[3] = {0.,0.,0.};
+				
+				/* multiply the matrix with the vector */
+				for( int i = 0; i < A.nrows(); i++ )
+					for( int j = 0; j < A.ncols(); j++ )
+						prod_Ax[i] += A[i][j]*x[j];
+
+				/* sum up */
+				res =	(prod_Ax[0] - b[0]) * (prod_Ax[0] - b[0]);
+				res +=	(prod_Ax[1] - b[1]) * (prod_Ax[1] - b[1]);
+				res +=	(prod_Ax[2] - b[2]) * (prod_Ax[2] - b[2]);
+
+				return res;
+
+			}
+			
+			/**
+			 * @todo documentation
+			 * This approach will solve calculate the 10x3 matrix described
+			 * in the Master-Thesis of C.Gnip
+			 * Basically solves the linear equation @f[r=\mathbf{Ax}-\mathbf{b}@f]
+			 * @param[in] A The 10x3 Matrix that ist used in this solution
+			 * @param[in] x The vector containing the variables
+			 * @param[in] b Representing the vector b
+			 * @return The residuum of the equation system representing the "Fitness" of the given Solution in @see x
+			 *
+			 */
+			inline double WholeTomatoeApproachMkII( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &b )
+			{l
+				double res;
+				double prod_Ax[3] = {0.,0.,0.};
+				double x_[10];
+
+				x_[0]=x[0];
+				x_[1]=x[1];
+				x_[2]=x[2];
+				x_[3]=(x[3]*x[3])-(x[4]*x[4]);
+				x_[4]=(x[3]*x[3])-(x[5]*x[5]);
+				x_[5]=(x[3]*x[3])-(x[6]*x[6]);
+				x_[6]=x[3];
+				x_[7]=x[4];
+				x_[8]=x[5];
+				x_[9]=x[6];
+
+				/* multiply the matrix with the vector */
+				for( int i = 0; i < A.nrows(); i++ )
+					for( int j = 0; j < A.ncols(); j++ )
+						prod_Ax[i] += A[i][j]*x_[j];
+
+				/* sum up */
+				res =	(prod_Ax[0] - b[0]) * (prod_Ax[0] - b[0]);
+				res +=	(prod_Ax[1] - b[1]) * (prod_Ax[1] - b[1]);
+				res +=	(prod_Ax[2] - b[2]) * (prod_Ax[2] - b[2]);
+
+				return res;
+
+			}
+			
 			/***************************************************************/
 			/***************************************************************/
 			/***************************************************************/

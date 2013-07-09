@@ -69,17 +69,32 @@ namespace PRPSEvolution {
 
 		};
 
+		/**
+		 * This gathers the problemdimensions of the defined fitness functions
+		 * 
+		 */
 		struct ProblemDimensions {
+
 			static const int WholeTomatoeApproach = 7;
-			static const int WholeTomatoeApproachMkII = 7;
+
+			/**
+			 * The minimal dimension for this problem, depending on the
+			 * amount of antennas used this number will increase
+			 */
+			static const int WholeTomatoeApproachMkII = 3;
+
 			static const int Sphere = 10;
+
 			static const int Rosenbrock = 15;
 
 			
 		};
 
-		struct FitnessFunctions {
-			
+		inline double meanFromVector( std::vector<double> &res ) {
+			if(res.size()<=0) return 0;
+			double ret = 0.;
+			for( auto val: res ) ret+=val;
+			return (ret/=res.size());
 			
 		};
 		

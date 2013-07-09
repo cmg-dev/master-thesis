@@ -37,8 +37,10 @@ using std::chrono::microseconds;
 using std::chrono::milliseconds;
 using std::chrono::steady_clock;
 
-const int SOLUTION_AMOUNT = 100;
+const int SOLUTION_AMOUNT = 1;
 
+int VARIANT_SW;
+int NO_OF_SOLUTIONS;
 
 /**
  */
@@ -49,6 +51,14 @@ int main ( int argc, char *argv[ ] ) {
 			VERSION_MINOR,
 			VERSION_SUB_MINOR
 			);
+
+	if( argc > 1 )
+		VARIANT_SW = atoi( argv[1] );
+	if( argc > 2 )
+		NO_OF_SOLUTIONS = atoi( argv[2] );
+	
+	std::cout << "NO_OF_SOLUTIONS: " << NO_OF_SOLUTIONS << std::endl;
+	
 	/**********************************************************************/
 	PRPSEvolution::System sys;
 
@@ -91,46 +101,88 @@ int main ( int argc, char *argv[ ] ) {
 	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,Doub>>> resultsA;
 	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,Doub>>> resultsB;
 
-#ifdef VARIANTE_A
-	for( auto A: preprocess.matricesForSolution ) {
-		auto b = preprocess.vectorsForSolution[i++];
+// 	if( VARIANT_SW == 0 ) {
+// 	for( auto A: preprocess.matrices ) {
+// 		auto b = preprocess.vectors[i++];
+// 
+// 		for( int Solution = 0; Solution < NO_OF_SOLUTIONS; Solution++ ) {
+// 
+// 			process.setSeed(duration_cast<microseconds>(t_0-t_00).count());
+// 
+// 			t_0 = steady_clock::now();
+// 
+// 			resultsA.push_back( std::async( std::launch::async,
+// 											&Solve::Process::findSolutionA<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
+// 											&process,
+// 											A,
+// 											b,
+// 											Solve::ESStrategy::OnePlusOne,
+// 											duration_cast<microseconds>(t_1-t_00).count() ));
+// // 			resultsA.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b ));
+// 
+// 			t_1 = steady_clock::now();
+// 
+// // 			process.setSeed(duration_cast<microseconds>(t_1-t_00).count());
+// // 			process.setESStrategy( Solve::ESStrategy::MuPlusLambda );
+// 
+// 			resultsB.push_back( std::async( std::launch::async,
+// 											&Solve::Process::findSolutionA<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
+// 											&process,
+// 											A,
+// 											b,
+// 											Solve::ESStrategy::MuPlusLambda,
+// 											duration_cast<microseconds>(t_1-t_00).count() ));
+// // 			resultsB.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b  ));
+// 
+// 		}
+// 	}
+// 	}
 
-		for( int Solution = 0; Solution < SOLUTION_AMOUNT; Solution++ ) {
 
-			process.setSeed(duration_cast<microseconds>(t_0-t_00).count());
+// 	for( auto A: preprocess.matricesForSolution ) {
+// 		auto b = preprocess.vectorsForSolution[i++];
+	if( VARIANT_SW == 1 ) {
+	auto A			= preprocess.matrices;
+	auto b			= preprocess.vectors;
+	auto names		= preprocess.names;
+	auto numOAnts	= preprocess.antennas;
+	
+	for( int Solution = 0; Solution < NO_OF_SOLUTIONS; Solution++ ) {
 
-			t_0 = steady_clock::now();
+		process.setSeed(duration_cast<microseconds>(t_0-t_00).count());
 
-			resultsA.push_back( std::async( std::launch::async,
-											&Solve::Process::findSolution<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
-											&process,
-											A,
-											b,
-											Solve::ESStrategy::OnePlusOne,
-											duration_cast<microseconds>(t_1-t_00).count() ));
+		t_0 = steady_clock::now();
+
+		resultsA.push_back( std::async( std::launch::async,
+										&Solve::Process::findSolution<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
+										&process,
+										A,
+										b,
+										names,
+										numOAnts,
+										Solve::ESStrategy::OnePlusOne,
+										duration_cast<microseconds>(t_1-t_00).count() ));
 // 			resultsA.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b ));
 
-			t_1 = steady_clock::now();
+		t_1 = steady_clock::now();
 
 // 			process.setSeed(duration_cast<microseconds>(t_1-t_00).count());
 // 			process.setESStrategy( Solve::ESStrategy::MuPlusLambda );
 
-			resultsB.push_back( std::async( std::launch::async,
-											&Solve::Process::findSolution<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
-											&process,
-											A,
-											b,
-											Solve::ESStrategy::MuPlusLambda,
-											duration_cast<microseconds>(t_1-t_00).count() ));
+		resultsB.push_back( std::async( std::launch::async,
+										&Solve::Process::findSolution<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
+										&process,
+										A,
+										b,
+										names,
+										numOAnts,
+										Solve::ESStrategy::MuPlusLambda,
+										duration_cast<microseconds>(t_1-t_00).count() ));
 // 			resultsB.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b  ));
 
-		}
 	}
-#endif	/* VARIANTE_A */
-
-#ifdef VARIANTE_B
-	
-#endif	/* VARIANTE_B */
+	}
+// 	}
 
 	std::cerr << "done "<<std::endl;
 

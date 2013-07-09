@@ -22,6 +22,10 @@
 // #include "../libPRPSSystem/prpsevolutionsystem.h"
 // #include "../libNormalizer/normalizer.h"
 
+#include "../include/PRPSEvolutionSolveExceptions.h"
+#include "../include/PRPSEvolutionFIOExceptions.h"
+#include "../include/PRPSEvolutionGeneralExceptions.h"
+
 #include "solveresult.h"
 #include "solve.h"
 #include "ueber9000.h"
@@ -83,8 +87,8 @@ namespace PRPSEvolution {
 			 */
 			template<typename T>
 			T
-			findSolution
-			( const NRmatrix< Doub > &A_selected, const NRvector< Doub > &b_selected, PRPSEvolution::Solve::ESStrategy strategy, int seed )
+			findSolutionA
+			( const NRmatrix< Doub > &A_selected, const NRvector< Doub > &b_selected, const PRPSEvolution::Solve::ESStrategy strategy, const int seed )
 			{
 				/* create a new instance of Ueber9000 */
 				Ueber9000<Doub> ueber( A_selected, b_selected );
@@ -111,6 +115,42 @@ namespace PRPSEvolution {
 
 			}
 
+			/**
+			 * Find a Solution for a given pair of matrices
+			 * @param[in] A_selected The matrix A to use in this solution
+			 * @param[in] b_selected The c_k0' vector for this solution
+			 * @return The solution
+			 *
+			 */
+			template<typename T>
+			T
+			findSolution
+			(
+				const std::vector<NRmatrix< Doub >> &A_selected,
+				const std::vector<NRvector< Doub >> &b_selected,
+				const std::vector<std::string> &names_selected,
+				const int ants,
+				const PRPSEvolution::Solve::ESStrategy strategy,
+				const int seed
+			)
+			{
+// 				std::cout << A_selected.size() <<" "
+// 							<< b_selected.size() <<" "
+// 							<< names_selected.size() <<" "
+// 							<< ants <<" "
+// 							<< std::endl;
+				T solution;
+				/* create a new instance of Ueber9000 */
+				Ueber9000<Doub> ueber( A_selected, b_selected, names_selected, ants );
+// 				Ueber9000<Doub> ueber;
+// 				ueber9000 = &t;
+
+// 				throw Exceptions::General::NotImplemented();
+
+				return solve<T>( &ueber, strategy, seed );
+
+			}
+			
 			int sq( int i ) {return i*i; }
 
 			/**
@@ -130,20 +170,45 @@ namespace PRPSEvolution {
 			double solutionFitness;
 			double minSolutionFitness;
 
+			template<typename T>
+			inline
+			T solve
+			(  Ueber9000<double> *ueber, const PRPSEvolution::Solve::ESStrategy &strategy, const int seed )
+			{
+				T solution;
+
+				switch( strategy ) {
+					case (int) PRPSEvolution::Solve::ESStrategy::OnePlusOne:
+						solution = OnePlusOneES( ueber );
+						break;
+
+					case (int) PRPSEvolution::Solve::ESStrategy::MuPlusLambda :
+						solution = MuPlusLambdaES( ueber, seed );
+						break;
+
+					case (int) PRPSEvolution::Solve::ESStrategy::MuCommaLambda:
+						solution = MuCommaLambdaES( ueber, seed );
+						break;
+
+				}
+				return solution;
+			}
+			
 			/* The strategies **********************************************/
+
+
 			/** Enter description */
 			solveresult_t<ChromosomeT<double>, Doub>
 			OnePlusOneES( Ueber9000<double> *ueber9000 ) {
 				steady_clock::time_point t_0 = steady_clock::now();
 				// EA parameters
 				const unsigned Dimension      = ueber9000->Dimension;
-				const unsigned Iterations     = 3000;
-				const double   MinInit        = -3.;
+				const unsigned Iterations     = 30000;
+				const double   MinInit        = -7.;
 				const double   MaxInit        = 7.;
 				const double   GlobalStepInit = 5.;
 
-				ChromosomeCMA parent(Dimension),
-								offspring(Dimension);
+				ChromosomeCMA parent(Dimension), offspring(Dimension);
 
 				double fitnessParent, fitnessOffspring;
 				bool			Convergence = false;
@@ -327,8 +392,7 @@ namespace PRPSEvolution {
 
 				const double   GlobalStepInit = 5.;
 
-
-				const double   MinInit        = -3.;
+				const double   MinInit        = -7.;
 				const double   MaxInit        = 7.;
 				const double   SigmaInit    = 3;
 
