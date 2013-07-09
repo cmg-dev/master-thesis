@@ -1,0 +1,261 @@
+\begin{thebibliography}{10}
+
+\bibitem{Asoh:94}
+Asoh and M{\"u}hlenbein.
+\newblock Parallel problem solving from nature -- ppsn iii.
+\newblock In Davidor et~al. \cite{PPSN94}.
+\newblock International Conference on Evolutionary Computation, The Third
+  Conference on Parallel Problem Solving from Nature, Jerusalem, Israel,
+  October 9-14, 1994, Proceedings.
+
+\bibitem{Baeck:94}
+T.~B{\"a}ck.
+\newblock {\em Evolutionary Algorithms in Theory and Practice}.
+\newblock Doctoral dissertation, University of Dortmund, Department of Computer
+  Science, Germany, Feb. 1994.
+
+\bibitem{Baeck:96}
+T.~B{\"a}ck.
+\newblock {\em Evolutionary Algorithms in Theory and Practice}.
+\newblock Oxford University Press, 1996.
+
+\bibitem{Baeck:91}
+T.~B{\"a}ck and F.~Hoffmeister.
+\newblock Extended selection mechanisms in genetic algorithms.
+\newblock In R.~K. Belew and L.~B. Booker, editors, {\em Proceedings of the
+  Fourth International Conference on Genetic Algorithms (ICGA'91)}, pages
+  92--99, University of California, San Diego, CA, USA, July 13--16 1991.
+  Morgan Kaufmann Publishers (San Mateo, CA, 1991).
+
+\bibitem{Baker:85}
+J.~E. Baker.
+\newblock Adaptive selection methods for genetic algorithms.
+\newblock In J.~J. Grefenstette, editor, {\em Proceedings of the First
+  International Conference on Genetic Algorithms and Their Applications
+  (ICGA'85)}, pages 101--111, Pittsburgh, PA, July 24--26 1985.
+  Carnegie--Mellon University, Lawrence Erlbaum Associates (Hillsdale, NJ,
+  1988).
+
+\bibitem{Baker:87}
+J.~E. Baker.
+\newblock Reducing bias and inefficiency in the selection algorithm.
+\newblock In J.~J. Grefenstette, editor, {\em Proceedings of the Second
+  International Conference on Genetic Algorithms and Their Applications
+  (ICGA'87)}, pages 14--21, Cambridge, MA, July 28--31 1987. Massachusetts
+  Institute of Technology, Lawrence Erlbaum Associates (Hillsdale, NJ, 1987).
+
+\bibitem{beyer:02b}
+H.-G. Beyer and H.-P. Schwefel.
+\newblock Evolution strategies: {A} comprehensive introduction.
+\newblock {\em Natural Computing}, 1(1):3--52, 2002.
+
+\bibitem{Booker:82}
+L.~B. Booker.
+\newblock {\em Intelligent Behavior as an Adaptation to the Task Environment}.
+\newblock Doctoral dissertation and technical report no. 243, University of
+  Michigan, Logic of Computer Groups, Ann Arbor, 1982.
+\newblock Dissertation Abstracts International, 43(2), 469B. University
+  Microfilms No. 8214966.
+
+\bibitem{PPSN94}
+Y.~Davidor, H.-P. Schwefel, and R.~M{\"{a}}nner, editors.
+\newblock {\em Parallel Problem Solving from Nature -- PPSN III}, Berlin, 1994.
+  Springer-Verlag.
+\newblock International Conference on Evolutionary Computation, The Third
+  Conference on Parallel Problem Solving from Nature, Jerusalem, Israel,
+  October 9-14, 1994, Proceedings.
+
+\bibitem{Davis:91}
+L.~Davis, editor.
+\newblock {\em Handbook of Genetic Algorithms}.
+\newblock Van Nostrand Reinhold, New York, 1991.
+
+\bibitem{Eiben:94}
+A.~E. Eiben.
+\newblock Parallel problem solving from nature -- ppsn iii.
+\newblock In Davidor et~al. \cite{PPSN94}.
+\newblock International Conference on Evolutionary Computation, The Third
+  Conference on Parallel Problem Solving from Nature, Jerusalem, Israel,
+  October 9-14, 1994, Proceedings.
+
+\bibitem{fogel:95}
+D.~B. Fogel.
+\newblock {\em Evolutionary Computation: Toward a New Philosophy of Machine I
+  ntelligence}.
+\newblock IEEE Press, 1995.
+
+\bibitem{Goldberg:89}
+D.~E. Goldberg.
+\newblock {\em Genetic Algorithms in Search, Optimization, and Machine
+  Learning}.
+\newblock Addison--Wesley Publishing Company, Inc., Reading, MA, 1989.
+
+\bibitem{Goldberg:91}
+D.~E. Goldberg and K.~Deb.
+\newblock A comparative analysis of selection schemes used in genetic
+  algorithms.
+\newblock In Rawlins \cite{FOGA91}, pages 69--93.
+\newblock The first workshop on the foundations of genetic algorithms and
+  classifier systems (FOGA/CS-90) was held July 15-18, 1990 on the Bloomington
+  campus of Indiana University.
+
+\bibitem{Grefenstette:87}
+J.~J. Grefenstette.
+\newblock A user's guide to {\em genesis\/}.
+\newblock Technical report, Navy Center for Applied Research in Artificial
+  Intelligence, Washington, D. C., 1987.
+
+\bibitem{Grefenstette:89}
+J.~J. Grefenstette and J.~E. Baker.
+\newblock How genetic algorithms work: A critical look at implicit parallelism.
+\newblock In Schaffer \cite{ICGA89}, pages 20--27.
+
+\bibitem{Hansen2006}
+N.~Hansen.
+\newblock The {CMA} evolution strategy: {A} comparing review.
+\newblock In {\em Towards a new evolutionary computation. Advances on
+  estimation of distribution algorithms.} Springer-Verlag, 2006.
+
+\bibitem{hansen2003rtc}
+N.~Hansen, S.~M\"uller, and P.~Koumoutsakos.
+\newblock {Reducing the time complexity of the derandomized evolution strategy
+  with covariance matrix adaptation (CMA-ES)}.
+\newblock {\em Evolutionary Computation}, 11(1):1--18, 2003.
+
+\bibitem{Hansen:96}
+N.~Hansen and A.~Ostermeier.
+\newblock Adapting arbitrary normal mutation distributions in evolution
+  strategies: The covariance matrix adaption.
+\newblock In {\em Proceedings of the 1996 IEEE Intern. Conf. on Evolutionary
+  Computation (ICEC '96)}, pages 312--317. IEEE Press, 1996.
+
+\bibitem{hansen:01}
+N.~Hansen and A.~Ostermeier.
+\newblock Completely derandomized self-adaptation in evolution strategies.
+\newblock {\em Evolutionary Computation}, 9(2):159--195, 2001.
+
+\bibitem{Holland:75}
+J.~H. Holland.
+\newblock {\em Adaptation in Natural and Artificial Systems}.
+\newblock University of Michigan Press, Ann Arbor, 1975.
+
+\bibitem{Jong:75}
+K.~A.~D. Jong.
+\newblock {\em An Analysis of the Behaviour of a Class of Genetic Adaptive
+  Systems}.
+\newblock Ph.d. dissertation, Dept. Computer and Communication Sciences,
+  University of Michigan, 1975.
+\newblock Diss. Abstr. Int. 36(10), 5140B, University Microfilms No. 76--9381.
+
+\bibitem{kern:04}
+S.~Kern, S.~M{\"u}ller, N.~Hansen, D.~B{\"u}che, J.~Ocenasek, and
+  P.~Koumoutsakos.
+\newblock Learning probability distributions in continuous evolutionary
+  algorithms -- {A} comparative review.
+\newblock {\em Natural Computing}, 3:77--112, 2004.
+
+\bibitem{PPSN92}
+R.~M{\"{a}}nner and B.~Manderick, editors.
+\newblock {\em Parallel Problem Solving from Nature, 2}, Amsterdam, 1992.
+  North-Holland, (c) Elsevier Science Publishers.
+\newblock Proceedings of the Second Conference on Parallel Problem Solving from
+  Nature (PPSN-92), Brussels, Belgium, 28-30 September 1992.
+
+\bibitem{Musser:96}
+D.~Musser and A.~Saini.
+\newblock {\em STL tutorial and reference guide}.
+\newblock Addison-Wesley Professional Computing Series. Addison-Wesley
+  Publishing Company, New York, USA, 1996.
+
+\bibitem{Ostermeier:92}
+A.~Ostermeier.
+\newblock An evolution strategy with momentum adaptation of the random number
+  distribution.
+\newblock In M{\"{a}}nner and Manderick \cite{PPSN92}, pages 197--206.
+\newblock Proceedings of the Second Conference on Parallel Problem Solving from
+  Nature (PPSN-92), Brussels, Belgium, 28-30 September 1992.
+
+\bibitem{Ostermeier:94}
+A.~Ostermeier.
+\newblock A derandomized approach to self adaptation of evolution strategies.
+\newblock {\em Evolutionary Computation}, 2(4):369--380, 1994.
+
+\bibitem{FOGA91}
+G.~J.~E. Rawlins, editor.
+\newblock {\em Foundations of Genetic Algorithms}.
+\newblock Morgan Kaufmann Publishers, San Mateo, CA, 1991.
+\newblock The first workshop on the foundations of genetic algorithms and
+  classifier systems (FOGA/CS-90) was held July 15-18, 1990 on the Bloomington
+  campus of Indiana University.
+
+\bibitem{Rechenberg:94}
+I.~Rechenberg.
+\newblock {\em Evolutionsstrategie '94}.
+\newblock Friedrich Frommann Holzboog Verlag, 1994.
+
+\bibitem{Rudolph:92}
+G.~Rudolph.
+\newblock On correlated mutations in evolution strategies.
+\newblock In M{\"{a}}nner and Manderick \cite{PPSN92}, pages 105--114.
+\newblock Proceedings of the Second Conference on Parallel Problem Solving from
+  Nature (PPSN-92), Brussels, Belgium, 28-30 September 1992.
+
+\bibitem{Rudolph:94}
+G.~Rudolph.
+\newblock Convergence analysis of canonical genetic algorithms.
+\newblock {\em IEEE Trans. Neural Networks}, 5(1):96--101, 1994.
+
+\bibitem{ICGA89}
+J.~D. Schaffer, editor.
+\newblock {\em Proceedings of the Third International Conference on Genetic
+  Algorithms (ICGA'89), Jul 4--7}, San Mateo, CA, 1989. George Mason
+  University, Morgan Kaufmann Publishers, Inc.
+
+\bibitem{Schwefel:95}
+H.~Schwefel.
+\newblock {\em Evolution and Optimum Seeking}.
+\newblock John Wiley \& sons, New York, 1995.
+
+\bibitem{Schwefel:77}
+H.-P. Schwefel.
+\newblock {\em Numerische Optimierung von Computer--Modellen mittels der
+  Evolutionsstrategie}, volume~26 of {\em Interdisciplinary Systems Research}.
+\newblock Birkh{\"a}user, Basel, Germany, 1977.
+
+\bibitem{Spears:91b}
+W.~M. Spears and K.~A.~D. Jong.
+\newblock An analysis of multi--point crossover.
+\newblock In Rawlins \cite{FOGA91}, pages 301--315.
+\newblock The first workshop on the foundations of genetic algorithms and
+  classifier systems (FOGA/CS-90) was held July 15-18, 1990 on the Bloomington
+  campus of Indiana University.
+
+\bibitem{Syswerda:89}
+G.~Syswerda.
+\newblock Uniform crossover in genetic algorithms.
+\newblock In Schaffer \cite{ICGA89}, pages 2--9.
+
+\bibitem{Syswerda:91}
+G.~Syswerda.
+\newblock A study of reproduction in generational and steady state genetic
+  algorithms.
+\newblock In Rawlins \cite{FOGA91}, pages 94--101.
+\newblock The first workshop on the foundations of genetic algorithms and
+  classifier systems (FOGA/CS-90) was held July 15-18, 1990 on the Bloomington
+  campus of Indiana University.
+
+\bibitem{Whitley:89}
+L.~D. Whitley.
+\newblock The {\sf genitor} algorithm and selection pressure: Why rank--based
+  allocation of reproductive trials is best.
+\newblock In Schaffer \cite{ICGA89}, pages 116--121.
+
+\bibitem{Wienholt:93}
+W.~Wienholt.
+\newblock A refined genetic algorithm for paramter optimization problems.
+\newblock In S.~Forrest, editor, {\em Proceedings of the Fifth International
+  Conference on Genetic Algorithms (ICGA'93)}, pages 589--596, Illinois, July
+  17--21 1993. University of Illinois at Urbana Champaign, Morgan Kaufmann
+  Publishers (San Mateo, CA, 1993).
+
+\end{thebibliography}

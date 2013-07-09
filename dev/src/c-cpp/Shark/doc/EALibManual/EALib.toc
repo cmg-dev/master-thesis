@@ -1,0 +1,61 @@
+\contentsline {chapter}{\numberline {1}Evolutionary Algorithms -- Class Library}{1}
+\contentsline {section}{\numberline {1.1}Introduction}{1}
+\contentsline {section}{\numberline {1.2}Mainstream Paradigms}{2}
+\contentsline {subsection}{\numberline {1.2.1}Genetic Algorithms}{2}
+\contentsline {subsection}{\numberline {1.2.2}Evolution Strategies}{2}
+\contentsline {section}{\numberline {1.3}Data Structures}{2}
+\contentsline {subsection}{\numberline {1.3.1}Basic Data Types}{3}
+\contentsline {subsection}{\numberline {1.3.2}Genes and Chromosomes}{3}
+\contentsline {subsubsection}{\numberline {1.3.2.1}Binary Valued Alleles}{4}
+\contentsline {subsubsection}{\numberline {1.3.2.2}Integer Valued Alleles}{4}
+\contentsline {subsubsection}{\numberline {1.3.2.3}Continuous Valued Alleles}{4}
+\contentsline {subsection}{\numberline {1.3.3}Individuals}{4}
+\contentsline {subsection}{\numberline {1.3.4}Populations}{6}
+\contentsline {section}{\numberline {1.4}Genetic Operators}{7}
+\contentsline {subsection}{\numberline {1.4.1}Selection}{7}
+\contentsline {subsubsection}{\numberline {1.4.1.1}General Schemes}{8}
+\contentsline {paragraph}{Extinctiveness}{8}
+\contentsline {paragraph}{Elitism}{9}
+\contentsline {subsubsection}{\numberline {1.4.1.2}Deterministic Selection}{9}
+\contentsline {paragraph}{($\mu $,$\lambda $)-Selection}{9}
+\contentsline {paragraph}{($\mu $+$\lambda $)-Selection}{9}
+\contentsline {subsubsection}{\numberline {1.4.1.3}Stochastic Selection}{10}
+\contentsline {paragraph}{Roulette Wheel}{11}
+\contentsline {paragraph}{Proportional Selection}{13}
+\contentsline {subparagraph}{Scaling}{13}
+\contentsline {paragraph}{Ranking Selection}{13}
+\contentsline {subparagraph}{Linear Ranking}{13}
+\contentsline {subparagraph}{Whitley's Linear Ranking}{15}
+\contentsline {subparagraph}{Uniform Ranking}{15}
+\contentsline {paragraph}{Tournament Selection}{15}
+\contentsline {paragraph}{EP-Style Tournament Selection}{16}
+\contentsline {subsection}{\numberline {1.4.2}Replacement}{16}
+\contentsline {subsubsection}{\numberline {1.4.2.1}Generational Replacement}{16}
+\contentsline {subsubsection}{\numberline {1.4.2.2}Steady-State Replacement}{17}
+\contentsline {subsection}{\numberline {1.4.3}Recombination}{17}
+\contentsline {subsubsection}{\numberline {1.4.3.1}Crossover of Strings}{17}
+\contentsline {paragraph}{$m$-Point Crossover}{17}
+\contentsline {paragraph}{Uniform Crossover}{17}
+\contentsline {paragraph}{Multi-Parent Crossover}{18}
+\contentsline {subsubsection}{\numberline {1.4.3.2}Recombination of Continuous Values}{18}
+\contentsline {paragraph}{Discrete Recombination}{18}
+\contentsline {paragraph}{Intermediate Recombination}{18}
+\contentsline {paragraph}{Panmictic Recombination}{18}
+\contentsline {subsection}{\numberline {1.4.4}Mutation}{19}
+\contentsline {subsubsection}{\numberline {1.4.4.1}Discrete Mutations}{19}
+\contentsline {paragraph}{Adaptive/Variable Mutation Rates}{19}
+\contentsline {subsubsection}{\numberline {1.4.4.2}Continuous Mutations}{19}
+\contentsline {paragraph}{Correlated Mutations}{19}
+\contentsline {subsubsection}{\numberline {1.4.4.3}Inversion}{19}
+\contentsline {subsection}{\numberline {1.4.5}Self-adaptation in Evolution Strategies}{19}
+\contentsline {subsubsection}{\numberline {1.4.5.1}Standard adaptation}{20}
+\contentsline {subsubsection}{\numberline {1.4.5.2}Rotation matrix adaptation}{20}
+\contentsline {subsubsection}{\numberline {1.4.5.3}The $(\mu _{\mathbf {w}},\lambda )$-CMA Evolution Strategy}{22}
+\contentsline {paragraph}{Basic Principles}{22}
+\contentsline {paragraph}{Details}{22}
+\contentsline {section}{\numberline {1.5}Examples}{27}
+\contentsline {subsection}{\numberline {1.5.1}Canonical Genetic Algorithm}{27}
+\contentsline {subsection}{\numberline {1.5.2}Steady-State Genetic Algorithm}{33}
+\contentsline {subsection}{\numberline {1.5.3}Canonical Evolution Strategy}{36}
+\contentsline {subsection}{\numberline {1.5.4}Covariance Matrix Adaptation Evolution Strategy}{40}
+\contentsline {chapter}{Bibliography}{43}
