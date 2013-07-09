@@ -108,19 +108,30 @@ Das Programm ermöglicht es nun automatisiert alle Antennenkonfigurationen mit a
 \subsection{Programmierung}
 %
 Das Programm wurde in mehrere Libraries aufgeteilt. Zum Einen erhöhen sich Wartbarkeit und Wiederverwendbarkeit und zum Anderen können diese vor-compiliert werden und reduzieren die Compilezeit erheblich. Einen Überblick über die wesentlichsten Merkmale gibt der Anhang~\ref{documentation_libs}.\\
-Die Verwendung von \cpp11 erleichtert eine Menge der Entwicklung. Die anfängliche Einarbeitung in diesen Standard hat sich bereits mehr als ausgezahlt. Im Besonderen sind zur Zeit die Möglichkeiten für Thread-Programmierung und Verwaltung großer Datenmengen zu nennen. Diese sind anderen aktuellen Programmiersprachen, wie Java oder C$\sharp$, überlegen und beschleunigen die Entwicklung.\\
+Die Verwendung von \cpp11 erleichtert eine Menge der Entwicklung. Die anfängliche Einarbeitung in diesen Standard hat sich bereits mehr als ausgezahlt. Im Besonderen sind zur Zeit die Möglichkeiten für Thread-Programmierung und Verwaltung großer Datenmengen zu nennen. Diese sind anderen aktuellen Programmiersprachen, wie Java oder C$\sharp$, überlegen und beschleunigen die Entwicklung.
 %
 %- Section 2.2 --------------------------------------------------------------
+\subsection{Performance}
+%
+Das Programm läuft in der Entwicklungsumgebung in etwas 2 Minuten durch. Dabei werden alle Permutationen, die Kalibrierung und 12k Lösungen berechnet. Die Ausgabe des Programms ist im Anhang~\ref{output_program} zu finden. Das Programm erstellt für jede Lösung einen eigenen Task, der asynchron und auf unterschiedlichen Prozessorkernen ausgeführt werden kann. Dadurch verbessert sich die Ausführungszeit erheblich. Das Programm nutzt für die Parallelisierung die neuen Methoden des \cpp11 Standards. Insbesondere std::future und std::async sind in diesem Zusammenhang von großem Nutzen und erleichtern die Verwaltung und die Erstellung von Parallel ausführbaren Code erheblich. Die Entwicklungszeit des aktuellen Stands wäre ohne diese Funktionalitäten erst in einer Woche erreicht worden.
+%
+%- Section 2.3 --------------------------------------------------------------
 \subsection{Neue Modelle von Susanne Winter}
 %
-In der KW 26 hat Frau S. Winter ihre Ergebnisse vorgestellt und eine Dokumentation übergeben, mit der es möglich ist ihre Ansätze nachzuvollziehen und zu implementieren. Ihre Ansätze unterscheiden sich von denen im Rahmen dieser Arbeit entwickelten grundsätzlich.\\
+In der KW 26 hat Frau S. Winter ihre Ergebnisse vorgestellt und eine Dokumentation \cite{WinAmed13} übergeben, mit der es möglich ist ihre Ansätze nachzuvollziehen und zu implementieren. Ihre Ansätze unterscheiden sich von denen im Rahmen dieser Arbeit entwickelten grundsätzlich.\\
 Ihre Ansätze werden in jedem Fall umgesetzt und sollte es der Rahmen dieser Arbeit es Zeitlich erlauben wird die Performance gegen diese Modelle gebenchmarkt werden.
+%
+%- Section 2.4 --------------------------------------------------------------
+\subsection{Berechnungsergebnisse nach Normierung}
+%
+Die im Wochenbericht der KW 25 vorgestellte Visualisierung der Ergebnisse wurde gegen die Kondition der zur Lösung verwendeten Matrix gestellt. Im Anhang~\ref{cond_vs_results} zeigt die Abbildung~\ref{fig:Cond_VS_Results} diese Gegenüberstellung. Eine genauere Betrachtung der Abbildung~\ref{fig:Results} zeigt, dass die alle Konfigurationen der Antennen 0 und 7 keine sinnvollen Ergebnisse (trotz guter Kondition vgl. \ref{fig:ConditionMatrix}) liefern. Das legt den Schluss nahe dass es noch einen systematischen Fehler in der Messdatenaufnahme und/oder anschließender Berechnungsschritte gibt. Dieser wird in weiteren Schritten untersucht.
 %
 %- Section 3 -----------------------------------------------------------------
 \section{Probleme}
 \label{Problems}
 %
 
+%
 %- Appendix ------------------------------------------------------------------
 \input{extern/append/appendix_w10-11.tex}
 
