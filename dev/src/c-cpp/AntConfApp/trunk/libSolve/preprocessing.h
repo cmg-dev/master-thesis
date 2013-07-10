@@ -374,21 +374,31 @@ namespace PRPSEvolution {
 
 			} while( Permutate::next_combination( s_.begin(),s_.begin() + k,s_.end() ) );
 
+// 			int select_size = select.size();
+			ret.push_back( names[0] );
+			ret.push_back( names[1] );
+			
+// 			ret.push_back( names[7] );
+// 			ret.push_back( names[select.size()-1] );
+			
+// 			int select_size = 10;
 			/* recheck if the poermutation exists in possible names, it should! */
-			i = 0;
-			for( auto name: names ) {
-				if( name == select[i] ) {
-					ret.push_back( name );
-					i++;
-					
-				}
-				if( i >= select.size() )
-					break;
-				
-			}
+// 			i = 9;
+// 			for( auto name: names ) {
+// 				if( name == select[i] ) {
+// 					ret.push_back( name );
+// 					i++;
+// 					
+// 				}
+// 				if( i >= select_size )
+// 					break;
+// 				
+// 			}
 
 #ifdef OUTPUT
-			for( auto name: select )
+			std::cout << i << std::endl;
+
+			for( auto name: ret )
 				std::cout << name << std::endl;
 #endif
 			

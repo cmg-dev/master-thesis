@@ -39,8 +39,9 @@ using std::chrono::steady_clock;
 
 const int SOLUTION_AMOUNT = 1;
 
-int VARIANT_SW;
-int NO_OF_SOLUTIONS;
+int		VARIANT_SW;
+int		NO_OF_SOLUTIONS;
+bool	DROPBAD = false;
 
 /**
  */
@@ -56,8 +57,9 @@ int main ( int argc, char *argv[ ] ) {
 		VARIANT_SW = atoi( argv[1] );
 	if( argc > 2 )
 		NO_OF_SOLUTIONS = atoi( argv[2] );
-	
-	std::cout << "NO_OF_SOLUTIONS: " << NO_OF_SOLUTIONS << std::endl;
+	if( argc > 3 )
+		if(atoi( argv[3] ) > 0)
+			DROPBAD = true;
 	
 	/**********************************************************************/
 	PRPSEvolution::System sys;
@@ -74,13 +76,13 @@ int main ( int argc, char *argv[ ] ) {
 
 	/**********************************************************************/
 	std::cout << std::endl;
-	std::cout << "*PreProcessing..." << std::endl;
+	std::cout << "*PreProcessing.." << std::endl;
 
 	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat );
 
 	std::cout << std::endl;
 
-	std::cout << "*PreProcessing... done" << std::endl;
+	std::cout << "*PreProcessing.. done" << std::endl;
 	
 	/**********************************************************************/
 	std::cout << std::endl;
@@ -107,12 +109,12 @@ int main ( int argc, char *argv[ ] ) {
 // 
 // 		for( int Solution = 0; Solution < NO_OF_SOLUTIONS; Solution++ ) {
 // 
-// 			process.setSeed(duration_cast<microseconds>(t_0-t_00).count());
+// // 			process.setSeed(duration_cast<microseconds>(t_0-t_00).count());
 // 
 // 			t_0 = steady_clock::now();
 // 
 // 			resultsA.push_back( std::async( std::launch::async,
-// 											&Solve::Process::findSolutionA<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
+// 											&Solve::Process::findSolution<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
 // 											&process,
 // 											A,
 // 											b,
@@ -126,7 +128,7 @@ int main ( int argc, char *argv[ ] ) {
 // // 			process.setESStrategy( Solve::ESStrategy::MuPlusLambda );
 // 
 // 			resultsB.push_back( std::async( std::launch::async,
-// 											&Solve::Process::findSolutionA<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
+// 											&Solve::Process::findSolution<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
 // 											&process,
 // 											A,
 // 											b,
@@ -138,9 +140,6 @@ int main ( int argc, char *argv[ ] ) {
 // 	}
 // 	}
 
-
-// 	for( auto A: preprocess.matricesForSolution ) {
-// 		auto b = preprocess.vectorsForSolution[i++];
 	if( VARIANT_SW == 1 ) {
 	auto A			= preprocess.matrices;
 	auto b			= preprocess.vectors;
@@ -149,7 +148,7 @@ int main ( int argc, char *argv[ ] ) {
 	
 	for( int Solution = 0; Solution < NO_OF_SOLUTIONS; Solution++ ) {
 
-		process.setSeed(duration_cast<microseconds>(t_0-t_00).count());
+// 		process.setSeed(duration_cast<microseconds>(t_0-t_00).count());
 
 		t_0 = steady_clock::now();
 
@@ -162,12 +161,8 @@ int main ( int argc, char *argv[ ] ) {
 										numOAnts,
 										Solve::ESStrategy::OnePlusOne,
 										duration_cast<microseconds>(t_1-t_00).count() ));
-// 			resultsA.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b ));
 
 		t_1 = steady_clock::now();
-
-// 			process.setSeed(duration_cast<microseconds>(t_1-t_00).count());
-// 			process.setESStrategy( Solve::ESStrategy::MuPlusLambda );
 
 		resultsB.push_back( std::async( std::launch::async,
 										&Solve::Process::findSolution<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
@@ -178,7 +173,6 @@ int main ( int argc, char *argv[ ] ) {
 										numOAnts,
 										Solve::ESStrategy::MuPlusLambda,
 										duration_cast<microseconds>(t_1-t_00).count() ));
-// 			resultsB.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b  ));
 
 	}
 	}
@@ -195,22 +189,28 @@ int main ( int argc, char *argv[ ] ) {
 
 	std::cout << "*writing results to file.. " << std::endl;
 
+	int droppedResults = 0;
 	for( auto res = resultsA.begin(); res != resultsA.end(); ++res ) {
 		while(res->wait_for(chrono::seconds(0)) != future_status::ready );
 
 		auto r = res->get();
-		f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (ms)" << " " << r.converged <<std::endl;
+		f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (µs)" << " " << r.converged <<std::endl;
+		
+// 		if( DROPBAD && !r.converged ) { droppedResults++; continue; }
+		
 		for( auto values : r.values )
 			f << values << "\t";
 
-
 		f << std::endl;
+		
 	}
 	t_1 = steady_clock::now();
 
 	std::cout << "file a written in: "
 		<< duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
 
+	std::cout << "Dropped: " << droppedResults << " results"<< std::endl;
+	
 	f.close();
 	f_fitness.close();
 
@@ -221,23 +221,28 @@ int main ( int argc, char *argv[ ] ) {
 
 	t_0 = steady_clock::now();
 
+	droppedResults = 0;
 	for( auto res = resultsB.begin(); res != resultsB.end(); ++res ) {
 		while(res->wait_for(chrono::seconds(0)) != future_status::ready );
 
 		auto r = res->get();
-		f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (ms)" << " " << r.converged <<std::endl;
+
+		f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (µs)" << " " << r.converged <<std::endl;
+		
+// 		if( DROPBAD && !r.converged ) { droppedResults++; continue; }
 
 		for( auto values : r.values )
 			f << values << "\t";
 
-
 		f << std::endl;
+		
 	}
 	t_1 = steady_clock::now();
 
 	std::cout << "file b written in: "
 		<< duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
 
+	std::cout << "Dropped: " << droppedResults << " results"<< std::endl;
 
 	f.close();
 	f_fitness.close();

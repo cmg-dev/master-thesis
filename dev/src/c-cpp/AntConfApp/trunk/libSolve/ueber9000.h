@@ -11,6 +11,9 @@
 
 namespace PRPSEvolution {
 	namespace Solve {
+
+		std::mutex wMutex;
+						
 		/**
 		 * Collect the fitness functions.
 		 * Make sure they are static so we can function-pointer to them.
@@ -19,9 +22,13 @@ namespace PRPSEvolution {
 		template < typename T >
 		struct Ueber9000
 		{
+			void (*functionPointer1)(int);
+			void (*functionPointer2)(int, char);
 			/** */
 			double (Ueber9000<double>::*evaluate)( const ChromosomeT< double >& );
+			double (Ueber9000<double>::*evaluateMKIII)( const ChromosomeT< double >&, const ChromosomeT< int >& );
 
+			
 			/** The Dimension of the Problem */
 			int Dimension;
 
@@ -85,7 +92,8 @@ namespace PRPSEvolution {
 			Ueber9000( const std::vector<NRmatrix< T >> As,
 						const std::vector<NRvector< T >> bs,
 						const std::vector<std::string> namess,
-						const int numOAnts
+						const int numOAnts,
+						const int select
  					) {
 
 				if( As.size() != bs.size())
@@ -105,8 +113,15 @@ namespace PRPSEvolution {
 				Dimension += numOAnts;
 				
 // 				std::cout << "Mark II: " << Dimension << std::endl;
+
+				if( select == 1 ) {
 				/* the WholeTomatoeApproach is the model of choice if A_selected and c_k0_selected are given */
-				evaluate = &Ueber9000<double>::WholeTomatoeApproachMkII;
+					evaluate = &Ueber9000<double>::WholeTomatoeApproachMkII;
+				
+				} else {
+					evaluateMKIII = &Ueber9000<double>::WholeTomatoeApproachMkII;
+					
+				}
 
 			}
 
@@ -201,14 +216,71 @@ namespace PRPSEvolution {
 					res.push_back( WholeTomatoeApproachMkII( A[i], x_, b[i] ) );
 				}
 
-// 				std::sort( res.begin(), res.end() );
 				
+				
+// 				wMutex.lock();
+// 				std::ofstream f;
+// 				f.open( "output/whole_fitness.dat", ios::app );
+// 				for( auto r: res )
+// 					f << r << " ";
+// 				f<< std::endl;
+// 				
+// 				f.close();
+// 				wMutex.unlock();
+
+				std::sort( res.begin(), res.end() );
 // 				return res[res.size()-1];
 				return meanFromVector( res );
 //  				return res[0];
+//  				return res[7];
 
 			}
 
+			/**
+			 * @todo document
+			 * @param[in] x The vector x containing the
+			 *
+			 */
+			double
+			WholeTomatoeApproachMkII( const ChromosomeT< double > &x, const ChromosomeT< int > &n )
+			{
+				/* the result */
+				std::vector<double> res;
+
+				ChromosomeCMA x_( 7 );
+
+				x_[0] = x[0];
+				x_[1] = x[1];
+				x_[2] = x[2];
+
+				for( int i = 0; i < A.size(); i++ ) {
+					auto idx = idxs[i];
+					/* get the indeces for the solution */
+					int j,k;
+					j = k = 0;
+					/* recompile chromosome x */
+					x_[ 3 ] = (double)n[3+idx[0]];
+					x_[ 4 ] = (double)n[3+idx[1]];
+					x_[ 5 ] = (double)n[3+idx[2]];
+					x_[ 6 ] = (double)n[3+idx[3]];
+
+// 					for( auto & c : x_ ) {
+// 						std::cout << c << " ";
+//
+// 					}
+// 					std::cout << "" << std::endl;
+
+					res.push_back( WholeTomatoeApproachMkII( A[i], x_, b[i] ) );
+				}
+
+				std::sort( res.begin(), res.end() );
+// 				return res[res.size()-1];
+				return meanFromVector( res );
+//  				return res[0];
+//  				return res[7];
+
+			}
+			
 			/**
 			 * This approach will solve the scene defined by the 10x3 matrix
 			 * The approach is described in the Master-Thesis of C.Gnip
@@ -289,7 +361,7 @@ namespace PRPSEvolution {
 			 *
 			 */
 			inline double WholeTomatoeApproachMkII( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &b )
-			{l
+			{
 				double res;
 				double prod_Ax[3] = {0.,0.,0.};
 				double x_[10];

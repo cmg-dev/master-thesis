@@ -16,6 +16,7 @@
 #include <SharkDefs.h>
 #include <EALib/PopulationT.h>
 #include <EALib/ObjectiveFunction.h>
+#include <EALib/Population.h>
 
 // #include "../include/PRPSError.h"
 // #include "../libPermutate/permutate.h"
@@ -141,7 +142,7 @@ namespace PRPSEvolution {
 // 							<< std::endl;
 				T solution;
 				/* create a new instance of Ueber9000 */
-				Ueber9000<Doub> ueber( A_selected, b_selected, names_selected, ants );
+				Ueber9000<Doub> ueber( A_selected, b_selected, names_selected, ants, 1 );
 // 				Ueber9000<Doub> ueber;
 // 				ueber9000 = &t;
 
@@ -192,11 +193,10 @@ namespace PRPSEvolution {
 
 				}
 				return solution;
+				
 			}
 			
 			/* The strategies **********************************************/
-
-
 			/** Enter description */
 			solveresult_t<ChromosomeT<double>, Doub>
 			OnePlusOneES( Ueber9000<double> *ueber9000 ) {
@@ -267,7 +267,7 @@ namespace PRPSEvolution {
 				const unsigned Mu           = 20;
 				const unsigned Lambda       = 40;
 				const unsigned Dimension    = ueber9000->Dimension;
-				const unsigned Iterations   = 2000;
+				const unsigned Iterations   = 20000;
 				const unsigned Interval     = 10;
 				const unsigned NSigma       = 3;
 
@@ -378,6 +378,172 @@ namespace PRPSEvolution {
 
 			}
 
+			/** Enter description */
+			solveresult_t<ChromosomeT<double>, Doub>
+			MuCommaLambdaES_ContPlusDisc( Ueber9000<double> *ueber9000, double seed ) {
+				steady_clock::time_point t_0 = steady_clock::now();
+
+				const unsigned Mu           = 20;
+				const unsigned Lambda       = 40;
+				const unsigned Dimension    = ueber9000->Dimension;
+				const unsigned Iterations   = 20000;
+				const unsigned Interval     = 10;
+				const unsigned NSigma       = 3;
+
+				const double   GlobalStepInit = 5.;
+
+				const double   MinInit        = -3.;
+				const double   MaxInit        = 7.;
+				const double   SigmaInit    = 3;
+
+				/* activate elitist strategy */
+				const bool     PlusStrategy = false;
+				bool			Convergence = false;
+
+				unsigned       i, t;
+
+				// linear congruential generator
+// 				std::mt19937 gen;
+
+				// initialize the generator
+// 				gen.seed((unsigned int)time(NULL));
+
+				Rng::seed(seed);
+
+				// define populations
+				Population parents(
+									Mu,
+									ChromosomeT<double>(3),
+									ChromosomeT<int>(Dimension-3),
+									ChromosomeT<double>(NSigma)
+									);
+				
+				Population offsprings(
+									Lambda,
+									ChromosomeT<double>(3),
+									ChromosomeT<int>(Dimension-3),
+									ChromosomeT<double>(NSigma)
+									);
+// 				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
+// 								ChromosomeT< double >(NSigma));
+// 				PopulationT<double> offsprings(Lambda, ChromosomeT< double >(Dimension),
+// 									ChromosomeT< double >(NSigma));
+
+				// minimization task
+				parents.setMinimize();
+				offsprings.setMinimize();
+
+				// initialize parent population
+				for (i = 0; i < parents.size(); ++i) {
+					dynamic_cast< ChromosomeT< double >& >
+						( parents[ i ][ 0 ] ).initialize( MinInit,   MaxInit ) ;
+					dynamic_cast< ChromosomeT< int >& >
+						( parents[ i ][ 1 ] ).initialize( -10, 10 );
+					dynamic_cast< ChromosomeT< double >& >
+						( parents[ i ][ 2 ] ).initialize( SigmaInit, SigmaInit );
+						
+				}
+
+// 				for (i = 0; i < children.size(); ++i) {
+// 					dynamic cast( ChromosomeT< double >& >
+// 						( children[ i ][ 0 ] ).initialize( MinInit,   MaxInit) );
+// 					dynamic cast( ChromosomeT< int >& >
+// 						( children[ i ][ 1 ] ).initialize( -10, 10 );
+// 					dynamic cast( ChromosomeT< double >& >
+// 						( children[ i ][ 2 ] ).initialize( SigmaInit, SigmaInit) );
+// 
+// 				}
+				// selection parameters (number of elitists)
+				unsigned numElitists = PlusStrategy ? Mu : 0;
+
+				// standard deviations for mutation of sigma
+				double     tau0 = 1. / sqrt(2. * Dimension);
+				double     tau1 = 1. / sqrt(2. * sqrt((double)Dimension));
+
+				// evaluate parents (only needed for elitist strategy)
+				if (PlusStrategy)
+					for (i = 0; i < parents.size(); ++i)
+						parents[ i ].setFitness(
+							(ueber9000->*ueber9000->evaluateMKIII)
+								(
+									dynamic_cast< ChromosomeT< double >& >( parents[ i ][ 0 ] ),
+									dynamic_cast< ChromosomeT< int >& >( parents[ i ][ 1 ] )
+								)
+							);
+
+				std::vector<double> fitness;
+				fitness.reserve(10);
+
+				// iterate
+				for (t = 0; t < Iterations; ++t) {
+					// generate new offsprings
+					for (i = 0; i < offsprings.size(); ++i) {
+						// select two random parents
+						Individual& mom = parents.random();
+						Individual& dad = parents.random();
+
+						// recombine object variables discrete, step sizes intermediate
+						offsprings[ i ][ 0 ].recombineDiscrete(mom[ 0 ], dad[ 0 ] );
+						offsprings[ i ][ 1 ].recombineDiscrete(mom[ 0 ], dad[ 0 ] );
+						dynamic_cast< ChromosomeT< double >& >
+							( offsprings[ i ][ 2 ]) .recombineGenIntermediate(mom[ 1 ], dad[ 1 ] );
+						
+						// mutate object variables normal distributed,
+						// step sizes log normal distributed
+						dynamic_cast< ChromosomeT< double >& >
+							( offsprings[ i ][ 2 ] ).mutateLogNormal(tau0,  tau1);
+						dynamic_cast< ChromosomeT< double >& >
+							( offsprings[ i ][ 1 ] ).mutateNormal(offsprings[ i ][ 1 ], true);
+// 						dynamic_cast< ChromosomeT< double >& >(offsprings[ i ][ 2 ].recombineGenIntermediate(mom[ 1 ], dad[ 1 ] ) );
+						dynamic_cast< ChromosomeT< double >& >
+							( offsprings[ i ][ 0 ] ).mutateNormal(offsprings[ i ][ 1 ], true);
+					}
+
+					// evaluate objective function (parameters in chromosome #0)
+					for (i = 0; i < offsprings.size(); ++i)
+						offsprings[ i ].setFitness(
+							(ueber9000->*ueber9000->evaluateMKIII)
+								(
+									dynamic_cast< ChromosomeT< double >& >( offsprings[ i ][ 0 ] ),
+									dynamic_cast< ChromosomeT< int >& >( offsprings[ i ][ 1 ] )
+								)
+							);
+// 						(ueber9000->*ueber9000->evaluateMKIII)(offsprings[ i ][ 0 ],offsprings[ i ][ 1 ]));
+
+					// select (mu,lambda) or (mu+lambda)
+					parents.selectMuLambda(offsprings, numElitists);
+
+					// print out best value found so far
+					if( parents.best().fitnessValue() < minSolutionFitness )
+						break;
+
+				}
+
+				auto p = parents.best();
+
+				solutionFitness = parents.best().fitnessValue();
+
+// 				if( t >= Iterations )
+// 					std::cout << t << " mu,lambda Done  " << std::endl;
+
+// 				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
+/*
+				for( int i = 0; i < 10; i++ )
+					std::cout << i << " " << p[0][i] << " " ;
+				std::cout << std::endl;*/
+				steady_clock::time_point t_1 = steady_clock::now();
+
+				solveresult_t<ChromosomeT<double>, Doub> res;
+// 				res.values = p[0];
+				res.fitness = p.fitnessValue();
+				res.iterations = t;
+				res.duration = duration_cast<microseconds>(t_1-t_0).count();
+				res.converged = Convergence;
+
+				return res;
+
+			}
+			
 			/** Enter description */
 			solveresult_t<ChromosomeT<double>, Doub>
 			MuPlusLambdaES( Ueber9000<double> *ueber9000, double seed ) {
