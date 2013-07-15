@@ -374,9 +374,9 @@ namespace PRPSEvolution {
 
 			} while( Permutate::next_combination( s_.begin(),s_.begin() + k,s_.end() ) );
 
-// 			int select_size = select.size();
+			int select_size = select.size();
 			ret.push_back( names[0] );
-			ret.push_back( names[1] );
+// 			ret.push_back( names[1] );
 			
 // 			ret.push_back( names[7] );
 // 			ret.push_back( names[select.size()-1] );

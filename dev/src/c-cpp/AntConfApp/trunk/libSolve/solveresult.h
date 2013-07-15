@@ -9,7 +9,6 @@
 
 namespace PRPSEvolution {
 	namespace Solve {
-
 		/**
 		 * Stores the final state of a solution
 		 * 
@@ -28,7 +27,6 @@ namespace PRPSEvolution {
 			bool converged;
 			
 		};
-
 	}
 }
 

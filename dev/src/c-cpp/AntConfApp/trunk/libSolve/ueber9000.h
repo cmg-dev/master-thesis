@@ -22,10 +22,9 @@ namespace PRPSEvolution {
 		template < typename T >
 		struct Ueber9000
 		{
-			void (*functionPointer1)(int);
-			void (*functionPointer2)(int, char);
-			/** */
+			/** @todo document */
 			double (Ueber9000<double>::*evaluate)( const ChromosomeT< double >& );
+			/** @todo document */
 			double (Ueber9000<double>::*evaluateMKIII)( const ChromosomeT< double >&, const ChromosomeT< int >& );
 
 			
@@ -52,14 +51,14 @@ namespace PRPSEvolution {
 			/**
 			 *
 			 */
-			Ueber9000(const Ueber9000 &me) : A(me.A), b(me.b), Dimension( ProblemDimensions::WholeTomatoeApproach ) {
+			Ueber9000(const Ueber9000 &me) : A(me.A), b(me.b), Dimension( ProblemDimensions::WholeTomato ) {
 				if( A && b )
-					evaluate = &WholeTomatoeApproach;
+					evaluate = &WholeTomato;
 
 			}
 
 			/**
-			 * Construct Ueber9000 to use the WholeTomatoeApproach as fitness function
+			 * Construct Ueber9000 to use the WholeTomato as fitness function
 			 * @param[in] A_selected The matrix A for this Solution
 			 * @param[in] c_k0_selected The vector b for this Solution
 			 *
@@ -76,17 +75,20 @@ namespace PRPSEvolution {
 				A = a;
 				b = B;
 
-				Dimension = ProblemDimensions::WholeTomatoeApproach;
+				Dimension = ProblemDimensions::WholeTomato;
 
-				/* the WholeTomatoeApproach is the model of choice if A_selected and c_k0_selected are given */
-				evaluate = &Ueber9000<double>::WholeTomatoeApproach;
+				/* the WholeTomato is the model of choice if A_selected and c_k0_selected are given */
+				evaluate = &Ueber9000<double>::WholeTomato;
 
 			}
 
 			/**
-			 * Construct Ueber9000 to use the WholeTomatoeApproach as fitness function
+			 * Construct Ueber9000 to use the WholeTomato as fitness function
 			 * @param[in] As The matrices A to get a solution from
 			 * @param[in] bs The vectors b
+			 * @param[in] namess The Names of the matrices in As
+			 * @param[in] numOAnts The number of antennas used in the matrices in As
+			 * @param[in] select Selects the WholeTomato-Version
 			 *
 			 */
 			Ueber9000( const std::vector<NRmatrix< T >> As,
@@ -109,17 +111,18 @@ namespace PRPSEvolution {
 
 
 				/* determine the amount of participating antennas */
-				Dimension = ProblemDimensions::WholeTomatoeApproachMkII;
+				Dimension = ProblemDimensions::WholeTomatoMkII;
 				Dimension += numOAnts;
 				
 // 				std::cout << "Mark II: " << Dimension << std::endl;
 
-				if( select == 1 ) {
-				/* the WholeTomatoeApproach is the model of choice if A_selected and c_k0_selected are given */
-					evaluate = &Ueber9000<double>::WholeTomatoeApproachMkII;
+				if( select == 0 ) {
+				/* the WholeTomato is the model of choice if A_selected and c_k0_selected are given */
+					evaluate = &Ueber9000<double>::WholeTomatoMkII;
 				
-				} else {
-					evaluateMKIII = &Ueber9000<double>::WholeTomatoeApproachMkII;
+				} else if( select == 1 ) {
+// 					std::cout << "Evaluating MKIII" << std::endl;
+					evaluateMKIII = &Ueber9000<double>::WholeTomatoMkII;
 					
 				}
 
@@ -157,13 +160,13 @@ namespace PRPSEvolution {
 			}
 			
 			/**
-			 * This method basically wraps around the real WholeTomatoeApproach-function.
+			 * This method basically wraps around the real WholeTomato-function.
 			 * Maps the function so that it can be used with the evaluate-method
 			 * @param[in] x The vector x
 			 *
 			 */
 			double
-			WholeTomatoeApproach( const ChromosomeT< double > &x )
+			WholeTomato( const ChromosomeT< double > &x )
 			{
 				double res;
 
@@ -173,7 +176,7 @@ namespace PRPSEvolution {
 					return -1;
 				
 				/* call function, always solve the first matrix */
-				res = WholeTomatoeApproach( A[0], x, b[0] );
+				res = WholeTomato( A[0], x, b[0] );
 
 				return res;
 
@@ -185,7 +188,7 @@ namespace PRPSEvolution {
 			 *
 			 */
 			double
-			WholeTomatoeApproachMkII( const ChromosomeT< double > &x )
+			WholeTomatoMkII( const ChromosomeT< double > &x )
 			{
 				/* the result */
 				std::vector<double> res;
@@ -213,7 +216,7 @@ namespace PRPSEvolution {
 // 					}
 // 					std::cout << "" << std::endl;
 
-					res.push_back( WholeTomatoeApproachMkII( A[i], x_, b[i] ) );
+					res.push_back( WholeTomatoMkII( A[i], x_, b[i] ) );
 				}
 
 				
@@ -242,12 +245,12 @@ namespace PRPSEvolution {
 			 *
 			 */
 			double
-			WholeTomatoeApproachMkII( const ChromosomeT< double > &x, const ChromosomeT< int > &n )
+			WholeTomatoMkII( const ChromosomeT< double > &x, const ChromosomeT< int > &n )
 			{
 				/* the result */
 				std::vector<double> res;
 
-				ChromosomeCMA x_( 7 );
+				ChromosomeT< double > x_( 7 );
 
 				x_[0] = x[0];
 				x_[1] = x[1];
@@ -259,23 +262,26 @@ namespace PRPSEvolution {
 					int j,k;
 					j = k = 0;
 					/* recompile chromosome x */
-					x_[ 3 ] = (double)n[3+idx[0]];
-					x_[ 4 ] = (double)n[3+idx[1]];
-					x_[ 5 ] = (double)n[3+idx[2]];
-					x_[ 6 ] = (double)n[3+idx[3]];
+					x_[ 3 ] = (double)n[idx[0]];
+					x_[ 4 ] = (double)n[idx[1]];
+					x_[ 5 ] = (double)n[idx[2]];
+					x_[ 6 ] = (double)n[idx[3]];
 
 // 					for( auto & c : x_ ) {
 // 						std::cout << c << " ";
-//
+// 
 // 					}
 // 					std::cout << "" << std::endl;
 
-					res.push_back( WholeTomatoeApproachMkII( A[i], x_, b[i] ) );
+					res.push_back( WholeTomatoMkII( A[i], x_, b[i] ) );
+// 					std::cout << i << " " << res[i] << std::endl;
 				}
 
+				double ret = meanFromVector( res );
+// 				std::cout << ret << std::endl;
 				std::sort( res.begin(), res.end() );
-// 				return res[res.size()-1];
-				return meanFromVector( res );
+				return res[res.size()-1];
+// 				return ret;
 //  				return res[0];
 //  				return res[7];
 
@@ -291,7 +297,7 @@ namespace PRPSEvolution {
 			 * @return The residuum of the equation system representing the "Fitness" of the given Solution in @see x
 			 *
 			 */
-			inline double WholeTomatoeApproach( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &b )
+			inline double WholeTomato( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &b )
 			{
 				double res;
 				double prod_Ax[3] = {0.,0.,0.};
@@ -330,7 +336,7 @@ namespace PRPSEvolution {
 			 * @return The residuum of the equation system representing the "Fitness" of the given Solution in @see x
 			 *
 			 */
-			inline double WholeTomatoeApproachMkI( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &b )
+			inline double WholeTomatoMkI( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &b )
 			{
 				double res;
 				double prod_Ax[3] = {0.,0.,0.};
@@ -360,7 +366,7 @@ namespace PRPSEvolution {
 			 * @return The residuum of the equation system representing the "Fitness" of the given Solution in @see x
 			 *
 			 */
-			inline double WholeTomatoeApproachMkII( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &b )
+			inline double WholeTomatoMkII( const NRmatrix<T> &A, const ChromosomeT< double > &x, const NRvector<T> &b )
 			{
 				double res;
 				double prod_Ax[3] = {0.,0.,0.};

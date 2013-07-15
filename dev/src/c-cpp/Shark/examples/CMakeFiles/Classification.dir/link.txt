@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3 -DNDEBUG    CMakeFiles/Classification.dir/ReClaM/QT/classification.cpp.o CMakeFiles/Classification.dir/ReClaM/QT/moc_classification.cxx.o  -o Classification -rdynamic ../libshark.so.2.3.0 -lQtCore -lQtGui -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 

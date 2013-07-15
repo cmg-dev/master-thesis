@@ -88,31 +88,43 @@ namespace PRPSEvolution {
 			 */
 			template<typename T>
 			T
-			findSolutionA
-			( const NRmatrix< Doub > &A_selected, const NRvector< Doub > &b_selected, const PRPSEvolution::Solve::ESStrategy strategy, const int seed )
+			findSolutionSolveSingle
+			(
+				const NRmatrix< Doub > &A_selected,
+				const NRvector< Doub > &b_selected,
+				const std::vector<std::string> &names_selected,
+				const int ants,
+				const PRPSEvolution::Solve::ESStrategy strategy,
+				const int seed
+			)
 			{
+				std::vector<NRmatrix< Doub >> A_;
+				std::vector<NRvector< Doub >> b_;
+				A_.push_back(A_selected);
+				b_.push_back(b_selected);
+				
 				/* create a new instance of Ueber9000 */
-				Ueber9000<Doub> ueber( A_selected, b_selected );
+				Ueber9000<Doub> ueber( A_, b_, names_selected, ants, 1 );
 // 				Ueber9000<Doub> ueber;
 // 				ueber9000 = &t;
 
-				T solution;
+// 				T solution;
 
-				switch( strategy ) {
-					case (int) PRPSEvolution::Solve::ESStrategy::OnePlusOne:
-						solution = OnePlusOneES( &ueber );
-						break;
-
-					case (int) PRPSEvolution::Solve::ESStrategy::MuPlusLambda :
-						solution = MuPlusLambdaES( &ueber, seed );
-						break;
-
-					case (int) PRPSEvolution::Solve::ESStrategy::MuCommaLambda:
-						solution = MuCommaLambdaES( &ueber, seed );
-						break;
-
-				}
-				return solution;
+// 				switch( strategy ) {
+// 					case (int) PRPSEvolution::Solve::ESStrategy::OnePlusOne:
+// 						solution = OnePlusOneES( &ueber );
+// 						break;
+// 
+// 					case (int) PRPSEvolution::Solve::ESStrategy::MuPlusLambda :
+// 						solution = MuPlusLambdaES( &ueber, seed );
+// 						break;
+// 
+// 					case (int) PRPSEvolution::Solve::ESStrategy::MuCommaLambda:
+// 						solution = MuCommaLambdaES( &ueber, seed );
+// 						break;
+// 
+// 				}
+				return solve<T>( &ueber, strategy, seed );
 
 			}
 
@@ -135,13 +147,8 @@ namespace PRPSEvolution {
 				const int seed
 			)
 			{
-// 				std::cout << A_selected.size() <<" "
-// 							<< b_selected.size() <<" "
-// 							<< names_selected.size() <<" "
-// 							<< ants <<" "
-// 							<< std::endl;
-				T solution;
-				/* create a new instance of Ueber9000 */
+
+				/* Setup the Problem */
 				Ueber9000<Doub> ueber( A_selected, b_selected, names_selected, ants, 1 );
 // 				Ueber9000<Doub> ueber;
 // 				ueber9000 = &t;
@@ -180,17 +187,25 @@ namespace PRPSEvolution {
 
 				switch( strategy ) {
 					case (int) PRPSEvolution::Solve::ESStrategy::OnePlusOne:
-						solution = OnePlusOneES( ueber );
+						solution = OnePlusOneES<T>( ueber );
 						break;
 
 					case (int) PRPSEvolution::Solve::ESStrategy::MuPlusLambda :
-						solution = MuPlusLambdaES( ueber, seed );
+						solution = MuPlusLambdaES<T>( ueber, seed );
 						break;
 
 					case (int) PRPSEvolution::Solve::ESStrategy::MuCommaLambda:
-						solution = MuCommaLambdaES( ueber, seed );
+						solution = MuCommaLambdaES<T>( ueber, seed );
 						break;
 
+					case (int) PRPSEvolution::Solve::ESStrategy::MuCommaLambda_MKII:
+						solution = MKIII<T>( ueber, seed );
+						
+						break;
+					case (int) PRPSEvolution::Solve::ESStrategy::MuPlusLambda_MKII:
+						solution = MKIII<T>( ueber, seed, true );
+						break;
+						
 				}
 				return solution;
 				
@@ -198,7 +213,8 @@ namespace PRPSEvolution {
 			
 			/* The strategies **********************************************/
 			/** Enter description */
-			solveresult_t<ChromosomeT<double>, Doub>
+			template<typename T>
+			T
 			OnePlusOneES( Ueber9000<double> *ueber9000 ) {
 				steady_clock::time_point t_0 = steady_clock::now();
 				// EA parameters
@@ -248,8 +264,8 @@ namespace PRPSEvolution {
 // 				std::cout << std::endl;
 				steady_clock::time_point t_1 = steady_clock::now();
 
-				solveresult_t<ChromosomeT<double>, Doub> res;
-				res.values = parent;
+				T res;
+// 				res.values.push_back( parent );
 				res.fitness = fitnessParent;
 				res.duration = duration_cast<microseconds>(t_1-t_0).count();
 				res.iterations = t;
@@ -260,7 +276,8 @@ namespace PRPSEvolution {
 			}
 
 			/** Enter description */
-			solveresult_t<ChromosomeT<double>, Doub>
+			template<typename T>
+			T
 			MuCommaLambdaES( Ueber9000<double> *ueber9000, double seed ) {
 				steady_clock::time_point t_0 = steady_clock::now();
 
@@ -367,8 +384,8 @@ namespace PRPSEvolution {
 				std::cout << std::endl;*/
 				steady_clock::time_point t_1 = steady_clock::now();
 
-				solveresult_t<ChromosomeT<double>, Doub> res;
-				res.values = p[0];
+				T res;
+// 				res.values.push_back( p[0] );
 				res.fitness = p.fitnessValue();
 				res.iterations = t;
 				res.duration = duration_cast<microseconds>(t_1-t_0).count();
@@ -379,16 +396,23 @@ namespace PRPSEvolution {
 			}
 
 			/** Enter description */
-			solveresult_t<ChromosomeT<double>, Doub>
-			MuCommaLambdaES_ContPlusDisc( Ueber9000<double> *ueber9000, double seed ) {
+			template<typename T>
+			T
+			MKIII( Ueber9000<double> *ueber9000, double seed, const bool PlusStrategy = false ) {
+				/* t_0 */
 				steady_clock::time_point t_0 = steady_clock::now();
 
 				const unsigned Mu           = 20;
 				const unsigned Lambda       = 40;
+
+				/* determine the problem dimensions */
 				const unsigned Dimension    = ueber9000->Dimension;
+				const unsigned DimensionCont	= 3;
+				const unsigned DimensionDisc	= Dimension - 3;
+				
 				const unsigned Iterations   = 20000;
 				const unsigned Interval     = 10;
-				const unsigned NSigma       = 3;
+				const unsigned NSigma       = 2;
 
 				const double   GlobalStepInit = 5.;
 
@@ -397,7 +421,6 @@ namespace PRPSEvolution {
 				const double   SigmaInit    = 3;
 
 				/* activate elitist strategy */
-				const bool     PlusStrategy = false;
 				bool			Convergence = false;
 
 				unsigned       i, t;
@@ -409,26 +432,27 @@ namespace PRPSEvolution {
 // 				gen.seed((unsigned int)time(NULL));
 
 				Rng::seed(seed);
-
+// 				std::cerr << "1" << std::endl;
 				// define populations
 				Population parents(
 									Mu,
-									ChromosomeT<double>(3),
-									ChromosomeT<int>(Dimension-3),
+									ChromosomeT<double>(DimensionCont),
+									ChromosomeT<int>(DimensionDisc),
 									ChromosomeT<double>(NSigma)
 									);
 				
 				Population offsprings(
 									Lambda,
-									ChromosomeT<double>(3),
-									ChromosomeT<int>(Dimension-3),
+									ChromosomeT<double>(DimensionCont),
+									ChromosomeT<int>(DimensionDisc),
 									ChromosomeT<double>(NSigma)
 									);
 // 				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
 // 								ChromosomeT< double >(NSigma));
 // 				PopulationT<double> offsprings(Lambda, ChromosomeT< double >(Dimension),
 // 									ChromosomeT< double >(NSigma));
-
+// 
+// 				std::cerr << "2" << std::endl;
 				// minimization task
 				parents.setMinimize();
 				offsprings.setMinimize();
@@ -441,9 +465,10 @@ namespace PRPSEvolution {
 						( parents[ i ][ 1 ] ).initialize( -10, 10 );
 					dynamic_cast< ChromosomeT< double >& >
 						( parents[ i ][ 2 ] ).initialize( SigmaInit, SigmaInit );
-						
+
 				}
 
+// 				std::cerr << "3" << std::endl;
 // 				for (i = 0; i < children.size(); ++i) {
 // 					dynamic cast( ChromosomeT< double >& >
 // 						( children[ i ][ 0 ] ).initialize( MinInit,   MaxInit) );
@@ -460,16 +485,19 @@ namespace PRPSEvolution {
 				double     tau0 = 1. / sqrt(2. * Dimension);
 				double     tau1 = 1. / sqrt(2. * sqrt((double)Dimension));
 
+// std::cerr << "4" << std::endl;
 				// evaluate parents (only needed for elitist strategy)
 				if (PlusStrategy)
 					for (i = 0; i < parents.size(); ++i)
 						parents[ i ].setFitness(
-							(ueber9000->*ueber9000->evaluateMKIII)
+							( ueber9000->*ueber9000->evaluateMKIII )
 								(
 									dynamic_cast< ChromosomeT< double >& >( parents[ i ][ 0 ] ),
 									dynamic_cast< ChromosomeT< int >& >( parents[ i ][ 1 ] )
 								)
 							);
+
+// std::cerr << "5" << std::endl;
 
 				std::vector<double> fitness;
 				fitness.reserve(10);
@@ -482,33 +510,61 @@ namespace PRPSEvolution {
 						Individual& mom = parents.random();
 						Individual& dad = parents.random();
 
+						/* make it more convinient */
+						ChromosomeT< double >& objvarContinuous =
+							dynamic_cast< ChromosomeT< double >& >(offsprings[ i ][ 0 ]);
+							
+						ChromosomeT< int >& objvarDiscrete =
+							dynamic_cast< ChromosomeT< int >& >(offsprings[ i ][ 1 ]);
+							
+						ChromosomeT< double >& stepSize =
+							dynamic_cast< ChromosomeT< double >& >(offsprings[ i ][ 2 ]);
+
+// std::cerr << "6" << std::endl;
 						// recombine object variables discrete, step sizes intermediate
-						offsprings[ i ][ 0 ].recombineDiscrete(mom[ 0 ], dad[ 0 ] );
-						offsprings[ i ][ 1 ].recombineDiscrete(mom[ 0 ], dad[ 0 ] );
-						dynamic_cast< ChromosomeT< double >& >
-							( offsprings[ i ][ 2 ]) .recombineGenIntermediate(mom[ 1 ], dad[ 1 ] );
-						
+						objvarContinuous	.recombineDiscrete( mom[ 0 ], dad[ 0 ] );
+// std::cerr << "6.1" << std::endl;
+						objvarDiscrete		.recombineDiscrete( mom[ 1 ], dad[ 1 ] );
+// std::cerr << "6.2" << std::endl;
+						stepSize			.recombineGenIntermediate(mom[ 2 ], dad[ 2 ] );
+
+// std::cerr << "7" << std::endl;
+
 						// mutate object variables normal distributed,
 						// step sizes log normal distributed
-						dynamic_cast< ChromosomeT< double >& >
-							( offsprings[ i ][ 2 ] ).mutateLogNormal(tau0,  tau1);
-						dynamic_cast< ChromosomeT< double >& >
-							( offsprings[ i ][ 1 ] ).mutateNormal(offsprings[ i ][ 1 ], true);
+						stepSize			.mutateLogNormal(tau0,  tau1);
+						
+// std::cerr << "9" << std::endl;
+// 						int j;
+// 						std::cout << "before" << std::endl;
+// 						for( j = 0; j < objvarContinuous.size(); j++ )
+// 							std::cout << objvarContinuous[j] << " ";
+// 						std::cout << "" << std::endl;
+
+												
+						objvarContinuous	.mutateNormal(stepSize, true);
+
+// 						std::cout << "after" << std::endl;
+// 						for( j = 0; j < objvarContinuous.size(); j++ )
+// 							std::cout << objvarContinuous[j] << " ";
+// 						std::cout << "" << std::endl;
+// 						exit(0);
+						
+						stepSize			.cutOff(1, MaxInit);
+// std::cerr << "8" << std::endl;
+						objvarDiscrete		.mutateDiffGeom(stepSize, true);
+
 // 						dynamic_cast< ChromosomeT< double >& >(offsprings[ i ][ 2 ].recombineGenIntermediate(mom[ 1 ], dad[ 1 ] ) );
-						dynamic_cast< ChromosomeT< double >& >
-							( offsprings[ i ][ 0 ] ).mutateNormal(offsprings[ i ][ 1 ], true);
 					}
 
-					// evaluate objective function (parameters in chromosome #0)
-					for (i = 0; i < offsprings.size(); ++i)
+					for ( i = 0; i < offsprings.size(); ++i )
 						offsprings[ i ].setFitness(
-							(ueber9000->*ueber9000->evaluateMKIII)
+							( ueber9000->*ueber9000->evaluateMKIII )
 								(
 									dynamic_cast< ChromosomeT< double >& >( offsprings[ i ][ 0 ] ),
 									dynamic_cast< ChromosomeT< int >& >( offsprings[ i ][ 1 ] )
 								)
 							);
-// 						(ueber9000->*ueber9000->evaluateMKIII)(offsprings[ i ][ 0 ],offsprings[ i ][ 1 ]));
 
 					// select (mu,lambda) or (mu+lambda)
 					parents.selectMuLambda(offsprings, numElitists);
@@ -519,25 +575,29 @@ namespace PRPSEvolution {
 
 				}
 
-				auto p = parents.best();
+				Individual& best = parents.best();
 
 				solutionFitness = parents.best().fitnessValue();
 
 // 				if( t >= Iterations )
 // 					std::cout << t << " mu,lambda Done  " << std::endl;
 
-// 				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
-/*
-				for( int i = 0; i < 10; i++ )
-					std::cout << i << " " << p[0][i] << " " ;
-				std::cout << std::endl;*/
+				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
+
+				for( int i = 0; i < 3; i++ )
+					std::cout << i << " " << best << " " ;
+				for( int i = 0; i < 4; i++ )
+					std::cout << i << " " << best << " " ;
+				std::cout << std::endl;
+
 				steady_clock::time_point t_1 = steady_clock::now();
 
-				solveresult_t<ChromosomeT<double>, Doub> res;
-// 				res.values = p[0];
-				res.fitness = p.fitnessValue();
+				T res;
+				res.values[0] = (ChromosomeT<double>)( best[0] );
+				res.values[1] = ( best[1] );
+				res.fitness = best.fitnessValue();
 				res.iterations = t;
-				res.duration = duration_cast<microseconds>(t_1-t_0).count();
+				res.duration = duration_cast<microseconds>( t_1 - t_0 ).count();
 				res.converged = Convergence;
 
 				return res;
@@ -545,7 +605,8 @@ namespace PRPSEvolution {
 			}
 			
 			/** Enter description */
-			solveresult_t<ChromosomeT<double>, Doub>
+			template<typename T>
+			T
 			MuPlusLambdaES( Ueber9000<double> *ueber9000, double seed ) {
 				steady_clock::time_point t_0 = steady_clock::now();
 
@@ -659,8 +720,8 @@ namespace PRPSEvolution {
 // 					std::cout << t << " mu+lambda Done " << p.fitnessValue() << std::endl;
 
 				/* create result statistic */
-				solveresult_t<ChromosomeT<double>, Doub> res;
-				res.values = p[0];
+				T res;
+// 				res.values.push_back( p[0] );
 				res.fitness = p.fitnessValue();
 				res.iterations = t;
 				res.duration = duration_cast<microseconds>(t_1-t_0).count();
