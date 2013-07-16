@@ -35,15 +35,6 @@
 
 namespace PRPSEvolution {
 	namespace Solve {
-/*
-		using namespace PRPSEvolution::Permutate;
-		using namespace std;
-		
-		using std::chrono::duration_cast;
-		using std::chrono::microseconds;
-		using std::chrono::milliseconds;
-		using std::chrono::steady_clock;*/
-
 		/*******************************************************************/
 		/* Enums ***********************************************************/
 		/*******************************************************************/
@@ -65,8 +56,11 @@ namespace PRPSEvolution {
 		enum ESStrategy {
 			OnePlusOne,		/**< @f[[1+1]-ES@f]*/
 			MuPlusLambda,	/**< @f[[\mu+\lambda]-ES@f]*/
-			MuCommaLambda	/**< @f[[\mu,\lambda]-ES@f]*/
-
+			MuCommaLambda,	/**< @f[[\mu,\lambda]-ES@f]*/
+			MuCommaLambda_MKII,
+			MuPlusLambda_MKII,
+			CMA_ES_MKI
+			
 		};
 
 		/**
@@ -75,13 +69,13 @@ namespace PRPSEvolution {
 		 */
 		struct ProblemDimensions {
 
-			static const int WholeTomatoeApproach = 7;
+			static const int WholeTomato = 7;
 
 			/**
 			 * The minimal dimension for this problem, depending on the
 			 * amount of antennas used this number will increase
 			 */
-			static const int WholeTomatoeApproachMkII = 3;
+			static const int WholeTomatoMkII = 3;
 
 			static const int Sphere = 10;
 
