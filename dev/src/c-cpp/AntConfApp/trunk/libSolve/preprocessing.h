@@ -374,27 +374,50 @@ namespace PRPSEvolution {
 
 			} while( Permutate::next_combination( s_.begin(),s_.begin() + k,s_.end() ) );
 
-			int select_size = select.size();
-			ret.push_back( names[0] );
+// 			int select_size = select.size();
+// 			ret.push_back( names[0] );
 // 			ret.push_back( names[1] );
 			
 // 			ret.push_back( names[7] );
 // 			ret.push_back( names[select.size()-1] );
 			
-// 			int select_size = 10;
+			int select_size = 1;
 			/* recheck if the poermutation exists in possible names, it should! */
-// 			i = 9;
-// 			for( auto name: names ) {
-// 				if( name == select[i] ) {
-// 					ret.push_back( name );
-// 					i++;
-// 					
-// 				}
-// 				if( i >= select_size )
-// 					break;
-// 				
-// 			}
+			i = 0;
+			for( auto name: names ) {
+				if( name == select[i] ) {
+					ret.push_back( name );
+					i++;
 
+				}
+				if( i >= select_size )
+					break;
+
+			}
+
+			ostringstream os1;
+			os1 << "01234567";
+			
+			int c = 0;
+// 			string s = "01234567";
+			for( int i = 0; i < 8; i++ ) {
+				for( auto name: ret ) {
+					if( string::npos != name.find(os1.str()[i] ) ) {
+						c++;
+						break;
+					}
+				}
+			}
+
+			std::cout << c << std::endl;
+			if( c < 4 || c > 8 ) {
+				exit(0);
+				/** @todo throw exception */
+
+			}
+			
+			antennas = c;
+			
 #ifdef OUTPUT
 			std::cout << i << std::endl;
 
@@ -516,7 +539,6 @@ namespace PRPSEvolution {
 
 			/* prpagate to global var */
 			dataValid = data_;
-			antennas = c;
 			
 			int i = 0, j = 0;
 

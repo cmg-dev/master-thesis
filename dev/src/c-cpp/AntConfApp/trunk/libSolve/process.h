@@ -17,6 +17,7 @@
 #include <EALib/PopulationT.h>
 #include <EALib/ObjectiveFunction.h>
 #include <EALib/Population.h>
+#include <EALib/CMA.h>
 
 // #include "../include/PRPSError.h"
 // #include "../libPermutate/permutate.h"
@@ -79,6 +80,20 @@ namespace PRPSEvolution {
 //
 // 			}
 
+			/**
+			 * Find a Solution for a given pair of matrices
+			 * @return The solution
+			 *
+			 */
+			template<typename T>
+			T
+			findSolutionCMA_ES_MKI()
+			{
+				Ueber9000<Doub> ueber(1);
+				return solve<T>( &ueber, Solve::ESStrategy::CMA_ES_MKI, 12345 );
+
+				
+			}
 			/**
 			 * Find a Solution for a given pair of matrices
 			 * @param[in] A_selected The matrix A to use in this solution
@@ -203,7 +218,11 @@ namespace PRPSEvolution {
 						
 						break;
 					case (int) PRPSEvolution::Solve::ESStrategy::MuPlusLambda_MKII:
-						solution = MKIII<T>( ueber, seed, true );
+						solution = MKIII<T>( ueber, seed, false );
+						break;
+
+					case (int) PRPSEvolution::Solve::ESStrategy::CMA_ES_MKI:
+						solution = CMA_ES_MKI<T>( ueber, seed );
 						break;
 						
 				}
@@ -306,7 +325,7 @@ namespace PRPSEvolution {
 				// initialize the generator
 // 				gen.seed((unsigned int)time(NULL));
 
-				Rng::seed(seed);
+// 				Rng::seed(seed);
 
 				// define populations
 				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
@@ -402,8 +421,8 @@ namespace PRPSEvolution {
 				/* t_0 */
 				steady_clock::time_point t_0 = steady_clock::now();
 
-				const unsigned Mu           = 20;
-				const unsigned Lambda       = 40;
+				const unsigned Mu           = 5;
+				const unsigned Lambda       = 10;
 
 				/* determine the problem dimensions */
 				const unsigned Dimension    = ueber9000->Dimension;
@@ -412,12 +431,15 @@ namespace PRPSEvolution {
 				
 				const unsigned Iterations   = 20000;
 				const unsigned Interval     = 10;
-				const unsigned NSigma       = 2;
+				const unsigned NSigma       = 1;
 
 				const double   GlobalStepInit = 5.;
 
-				const double   MinInit        = -3.;
-				const double   MaxInit        = 7.;
+				const int		MinInitDis		= 0;
+				const int		MaxInitDis		= 20;
+				const double	MinInitCont		= -3.;
+				const double	MaxInitCont		= 3;
+				
 				const double   SigmaInit    = 3;
 
 				/* activate elitist strategy */
@@ -431,20 +453,20 @@ namespace PRPSEvolution {
 				// initialize the generator
 // 				gen.seed((unsigned int)time(NULL));
 
-				Rng::seed(seed);
+// 				Rng::seed(seed);
 // 				std::cerr << "1" << std::endl;
 				// define populations
 				Population parents(
 									Mu,
 									ChromosomeT<double>(DimensionCont),
-									ChromosomeT<int>(DimensionDisc),
+									ChromosomeT< int >(DimensionDisc),
 									ChromosomeT<double>(NSigma)
 									);
 				
 				Population offsprings(
 									Lambda,
 									ChromosomeT<double>(DimensionCont),
-									ChromosomeT<int>(DimensionDisc),
+									ChromosomeT< int >(DimensionDisc),
 									ChromosomeT<double>(NSigma)
 									);
 // 				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
@@ -460,12 +482,11 @@ namespace PRPSEvolution {
 				// initialize parent population
 				for (i = 0; i < parents.size(); ++i) {
 					dynamic_cast< ChromosomeT< double >& >
-						( parents[ i ][ 0 ] ).initialize( MinInit,   MaxInit ) ;
+						( parents[ i ][ 0 ] ).initialize( MinInitCont,   MaxInitCont ) ;
 					dynamic_cast< ChromosomeT< int >& >
-						( parents[ i ][ 1 ] ).initialize( -10, 10 );
+						( parents[ i ][ 1 ] ).initialize( MinInitDis, MaxInitDis );
 					dynamic_cast< ChromosomeT< double >& >
 						( parents[ i ][ 2 ] ).initialize( SigmaInit, SigmaInit );
-
 				}
 
 // 				std::cerr << "3" << std::endl;
@@ -500,7 +521,7 @@ namespace PRPSEvolution {
 // std::cerr << "5" << std::endl;
 
 				std::vector<double> fitness;
-				fitness.reserve(10);
+// 				fitness.reserve(20);
 
 				// iterate
 				for (t = 0; t < Iterations; ++t) {
@@ -512,28 +533,31 @@ namespace PRPSEvolution {
 
 						/* make it more convinient */
 						ChromosomeT< double >& objvarContinuous =
-							dynamic_cast< ChromosomeT< double >& >(offsprings[ i ][ 0 ]);
+							dynamic_cast< ChromosomeT< double >& >( offsprings[ i ][ 0 ] );
 							
 						ChromosomeT< int >& objvarDiscrete =
-							dynamic_cast< ChromosomeT< int >& >(offsprings[ i ][ 1 ]);
+							dynamic_cast< ChromosomeT< int >& >( offsprings[ i ][ 1 ] );
 							
 						ChromosomeT< double >& stepSize =
-							dynamic_cast< ChromosomeT< double >& >(offsprings[ i ][ 2 ]);
+							dynamic_cast< ChromosomeT< double >& >( offsprings[ i ][ 2 ] );
+							
 
-// std::cerr << "6" << std::endl;
+						/**/
 						// recombine object variables discrete, step sizes intermediate
 						objvarContinuous	.recombineDiscrete( mom[ 0 ], dad[ 0 ] );
-// std::cerr << "6.1" << std::endl;
 						objvarDiscrete		.recombineDiscrete( mom[ 1 ], dad[ 1 ] );
-// std::cerr << "6.2" << std::endl;
-						stepSize			.recombineGenIntermediate(mom[ 2 ], dad[ 2 ] );
-
-// std::cerr << "7" << std::endl;
+						stepSize			.recombineGenIntermediate( mom[ 2 ], dad[ 2 ] );
+// 						stepSize[1]	.recombineGenIntermediate( mom[ 2 ], dad[ 2 ] );
+// 						stepSizeContinuous	.recombineGenIntermediate( mom[ 2 ], dad[ 2 ] );
+// 						stepSizeDiscrete	.recombineGenIntermediate( mom[ 3 ], dad[ 3 ] );
 
 						// mutate object variables normal distributed,
 						// step sizes log normal distributed
+// 						stepSizeContinuous			.mutateLogNormal(tau0,  tau1);
+// 						stepSizeDiscrete			.mutateLogNormal(tau0,  tau1);
 						stepSize			.mutateLogNormal(tau0,  tau1);
-						
+// 						std::cerr << "sS " << stepSize << std::endl;
+
 // std::cerr << "9" << std::endl;
 // 						int j;
 // 						std::cout << "before" << std::endl;
@@ -541,60 +565,66 @@ namespace PRPSEvolution {
 // 							std::cout << objvarContinuous[j] << " ";
 // 						std::cout << "" << std::endl;
 
-												
-						objvarContinuous	.mutateNormal(stepSize, true);
+						/* mutate */
+						stepSize			.cutOff( 1, MaxInitCont );
+// 						stepSizeContinuous		.cutOff( 1, MaxInitCont );
+// 						stepSizeDiscrete		.cutOff( 1, MaxInitDis );
+						objvarContinuous		.mutateNormal( stepSize, true );
+						objvarDiscrete			.mutateDiffGeom( stepSize, true );
 
-// 						std::cout << "after" << std::endl;
-// 						for( j = 0; j < objvarContinuous.size(); j++ )
-// 							std::cout << objvarContinuous[j] << " ";
-// 						std::cout << "" << std::endl;
-// 						exit(0);
-						
-						stepSize			.cutOff(1, MaxInit);
-// std::cerr << "8" << std::endl;
-						objvarDiscrete		.mutateDiffGeom(stepSize, true);
-
-// 						dynamic_cast< ChromosomeT< double >& >(offsprings[ i ][ 2 ].recombineGenIntermediate(mom[ 1 ], dad[ 1 ] ) );
 					}
 
+					/* set the fitness */
 					for ( i = 0; i < offsprings.size(); ++i )
 						offsprings[ i ].setFitness(
 							( ueber9000->*ueber9000->evaluateMKIII )
 								(
-									dynamic_cast< ChromosomeT< double >& >( offsprings[ i ][ 0 ] ),
-									dynamic_cast< ChromosomeT< int >& >( offsprings[ i ][ 1 ] )
+									dynamic_cast< ChromosomeT< double >& > ( offsprings[ i ][ 0 ] ),
+									dynamic_cast< ChromosomeT< int >& > ( offsprings[ i ][ 1 ] )
 								)
 							);
 
 					// select (mu,lambda) or (mu+lambda)
 					parents.selectMuLambda(offsprings, numElitists);
-
-					// print out best value found so far
+					
 					if( parents.best().fitnessValue() < minSolutionFitness )
 						break;
+
+					/* convergenzkriterium */
+					if( t > 20 ) {
+						double sum = 0.;
+						for( auto i : fitness ) {
+							sum += i;
+
+						}
+						sum /= fitness[ fitness.size() - 1 ];
+						sum = abs( sum );
+// 						std::cout << sum <<std::endl;
+						if( sum == fitness.size() ) { Convergence = true; break; }
+						fitness.erase( fitness.begin(), fitness.begin() + 1 );
+
+					}
+// 					if( parents.best().fitnessValue() == 1000 )
+					for( int j = 0; j < parents.size(); j++ )
+						std::cout << parents[j].fitnessValue() << "\t";
+					std::cout << "" << std::endl;
+					std::cout << parents.best().fitnessValue() << std::endl;
+					
+					std::cout << "" << std::endl;
+					
+					fitness.push_back( parents.best().fitnessValue() );
 
 				}
 
 				Individual& best = parents.best();
-
-				solutionFitness = parents.best().fitnessValue();
-
-// 				if( t >= Iterations )
-// 					std::cout << t << " mu,lambda Done  " << std::endl;
-
-				std::cout << t << " Done \tFinal Fitness: " << parents.best().fitnessValue() << endl;
-
-				for( int i = 0; i < 3; i++ )
-					std::cout << i << " " << best << " " ;
-				for( int i = 0; i < 4; i++ )
-					std::cout << i << " " << best << " " ;
-				std::cout << std::endl;
-
+				
 				steady_clock::time_point t_1 = steady_clock::now();
 
+				/* prepare result */
 				T res;
-				res.values[0] = (ChromosomeT<double>)( best[0] );
-				res.values[1] = ( best[1] );
+				
+				res.valCont		= static_cast< ChromosomeT< double >& >( best[0] );
+				res.valDis		= static_cast< ChromosomeT< int >& >( best[1] );
 				res.fitness = best.fitnessValue();
 				res.iterations = t;
 				res.duration = duration_cast<microseconds>( t_1 - t_0 ).count();
@@ -621,7 +651,7 @@ namespace PRPSEvolution {
 
 				const double   MinInit        = -7.;
 				const double   MaxInit        = 7.;
-				const double   SigmaInit    = 3;
+				const double   SigmaInit    = 6;
 
 				/* activate elitist strategy */
 				const bool     PlusStrategy = true;
@@ -630,7 +660,7 @@ namespace PRPSEvolution {
 				unsigned       i, t;
 
 				// initialize random number generator
-				Rng::seed(seed);
+// 				Rng::seed(seed);
 
 				// define populations
 				PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
@@ -731,7 +761,88 @@ namespace PRPSEvolution {
 
 			}
 
+			template<typename T>
+			T
+			CMA_ES_MKI( Ueber9000<double> *ueber9000, double seed, const bool PlusStrategy = false ) {
+				// EA parameters
+				CMA cma;
+				steady_clock::time_point t_0 = steady_clock::now();
+				
+				const unsigned Iterations = 1000;
+				const double MinInit = 1.;
+				const double MaxInit = 1.;
+				const double GlobalStepInit = 1.;
+				const int Dimension = ueber9000->Dimension;
+				unsigned Lambda = cma.suggestLambda(Dimension);
+				unsigned Mu = cma.suggestMu(Lambda);
+				
+				// define populations for minimization task
+				Population parents (Mu,
+									ChromosomeT< double >( Dimension ),
+									ChromosomeT< double >( Dimension ));
+				Population offsprings (Lambda,
+									ChromosomeT< double >( Dimension ),
+									ChromosomeT< double >( Dimension ));
+				
+				offsprings		.setMinimize( );
+				parents			.setMinimize( );
+				
+				// initialize parent populations center of gravity
+				for( int i = 0; i < parents.size( ); ++i )
+					static_cast< ChromosomeT< double >& >( parents[i][0] ).
+						initialize(MinInit, MaxInit);
 
+				for( int j = 1; j < parents.size( ); ++j )
+					static_cast< ChromosomeT< double >& >( parents[j][0] ) =
+						static_cast< ChromosomeT< double >& >( parents[0][0] );
+
+				// strategy parameters
+				vector< double > variance( Dimension );
+
+				for(int i = 0; i < Dimension; i++) variance[i] = 1.;
+				
+				cma.init(Dimension, variance, GlobalStepInit, parents,
+							CMA::superlinear, CMA::rankmu);
+
+				//
+				// iterate
+				//
+				unsigned t ;
+				for( t = 0; t < Iterations; ++t ) {
+					for(unsigned k = 0; k < offsprings.size( ); k++ ) {
+						cma.create(offsprings[k]);
+						offsprings[k].setFitness(
+								(ueber9000->*ueber9000->evaluate)(
+// 									static_cast<ChromosomeT<double>>(offsprings[k])
+									static_cast<ChromosomeT<double> &>(offsprings[k][0])
+								)
+						);
+
+					}
+					// select (mu,lambda) or (mu+lambda)
+					parents.selectMuLambda(offsprings, 0u);
+					// update strategy parameters
+					cma.updateStrategyParameters(parents);
+
+				
+				}
+				steady_clock::time_point t_1 = steady_clock::now();
+
+				T res;
+
+				Individual& best = parents.best();
+				
+// 				res.values.push_back( p[0] );
+				res.fitness = best.fitnessValue();
+				res.iterations = t;
+				res.valCont		= static_cast< ChromosomeT< double >& >( best[0] );
+				res.duration = duration_cast<microseconds>(t_1-t_0).count();
+// 				res.converged = Convergence;
+				return res;
+			}
+
+
+			
 // 			void Another( &ueber ) {
 // 				const unsigned Mu           = 5;
 // 				const unsigned Lambda       = 10;

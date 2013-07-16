@@ -58,7 +58,8 @@ namespace PRPSEvolution {
 			MuPlusLambda,	/**< @f[[\mu+\lambda]-ES@f]*/
 			MuCommaLambda,	/**< @f[[\mu,\lambda]-ES@f]*/
 			MuCommaLambda_MKII,
-			MuPlusLambda_MKII
+			MuPlusLambda_MKII,
+			CMA_ES_MKI
 			
 		};
 

@@ -199,6 +199,8 @@ EALib/ObjectiveFunction.h
 -
 EALib/Population.h
 -
+EALib/CMA.h
+-
 ../include/PRPSEvolutionSolveExceptions.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionSolveExceptions.h
 ../include/PRPSEvolutionFIOExceptions.h

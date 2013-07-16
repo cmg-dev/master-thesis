@@ -13,7 +13,8 @@ namespace PRPSEvolution {
 	namespace Solve {
 
 		std::mutex wMutex;
-						
+		int _i_ = 0;
+		
 		/**
 		 * Collect the fitness functions.
 		 * Make sure they are static so we can function-pointer to them.
@@ -46,6 +47,9 @@ namespace PRPSEvolution {
 			 * Default constructor
 			 */
 			Ueber9000( ) : evaluate( &Ueber9000<double>::fitnessSphere ),
+								Dimension( ProblemDimensions::Sphere ) { };
+
+			Ueber9000( int i ) : evaluate( &Ueber9000<double>::fitnessSphere ),
 								Dimension( ProblemDimensions::Sphere ) { };
 
 			/**
@@ -219,15 +223,13 @@ namespace PRPSEvolution {
 					res.push_back( WholeTomatoMkII( A[i], x_, b[i] ) );
 				}
 
-				
-				
 // 				wMutex.lock();
 // 				std::ofstream f;
 // 				f.open( "output/whole_fitness.dat", ios::app );
 // 				for( auto r: res )
 // 					f << r << " ";
 // 				f<< std::endl;
-// 				
+// 
 // 				f.close();
 // 				wMutex.unlock();
 
@@ -250,37 +252,63 @@ namespace PRPSEvolution {
 				/* the result */
 				std::vector<double> res;
 
+				int I = 0;
+
 				ChromosomeT< double > x_( 7 );
 
 				x_[0] = x[0];
 				x_[1] = x[1];
 				x_[2] = x[2];
 
+				for( auto v : n )
+					if( v < 0 )
+						return 10000;
+
+				if( x_[1] < 0 )
+					return 10000;
+				
 				for( int i = 0; i < A.size(); i++ ) {
 					auto idx = idxs[i];
 					/* get the indeces for the solution */
 					int j,k;
 					j = k = 0;
 					/* recompile chromosome x */
-					x_[ 3 ] = (double)n[idx[0]];
-					x_[ 4 ] = (double)n[idx[1]];
-					x_[ 5 ] = (double)n[idx[2]];
-					x_[ 6 ] = (double)n[idx[3]];
+					x_[ 3 ] = (double)n[ idx[ 0 ] ];
+					x_[ 4 ] = (double)n[ idx[ 1 ] ];
+					x_[ 5 ] = (double)n[ idx[ 2 ] ];
+					x_[ 6 ] = (double)n[ idx[ 3 ] ];
 
-// 					for( auto & c : x_ ) {
+// 					for( auto & c : idx ) {
 // 						std::cout << c << " ";
 // 
 // 					}
 // 					std::cout << "" << std::endl;
+// 					std::cout << "" << std::endl;
 
 					res.push_back( WholeTomatoMkII( A[i], x_, b[i] ) );
 // 					std::cout << i << " " << res[i] << std::endl;
+
 				}
 
 				double ret = meanFromVector( res );
 // 				std::cout << ret << std::endl;
 				std::sort( res.begin(), res.end() );
-				return res[res.size()-1];
+
+
+				wMutex.lock();
+				std::ofstream f;
+				f.open( "output/whole_fitness.dat", ios::app );
+				f << _i_++ << '\t';
+				for( auto r: res )
+					f << r << " ";
+				f << '\t' << ret << '\t' << res[res.size()-1] << '\t' << res[0];
+				
+				f<< std::endl;
+
+				f.close();
+				wMutex.unlock();
+				
+				return res[0];
 // 				return ret;
 //  				return res[0];
 //  				return res[7];

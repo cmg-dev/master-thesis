@@ -13,10 +13,11 @@ namespace PRPSEvolution {
 		 * Stores the final state of a solution
 		 * 
 		 */
-		template <typename T_Store, typename T_Return>
+		template <typename T_Store1, typename T_Store2, typename T_Return>
 		struct solveresult_t {
+			T_Store1 valCont;
+			T_Store2 valDis;
 			/** Whrere the result is stored */
-			T_Store values;
 			/** The fitness value */
 			T_Return fitness;
 			/** The amount of iterations needed for this result */
