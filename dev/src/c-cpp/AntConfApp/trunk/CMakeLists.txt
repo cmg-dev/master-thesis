@@ -14,7 +14,7 @@ configure_file (
    "${VERSION_TARGET_DIR}/AntennaConfiguration.h"
    )
 
-SET(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS} -DNDEBUG")
+SET(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS} -DNDEBUG -I/usr/local/include -I/usr/local/include/Shark2.3")
 
 # the libraries
 add_subdirectory(libPermutate)
@@ -22,7 +22,6 @@ add_subdirectory(libCalibration)
 add_subdirectory(libPRPSSystem)
 add_subdirectory(libSolve)
 add_subdirectory(libNormalizer)
-add_subdirectory(/usr/local/include)
 
 add_subdirectory(test)
 
