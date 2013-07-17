@@ -100,7 +100,7 @@ int main ( int argc, char *argv[ ] ) {
 	steady_clock::time_point t_0 = steady_clock::now();
 	steady_clock::time_point t_1 = steady_clock::now();
 
-	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<int>,Doub>>> resultsA;
+	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<double>,Doub>>> resultsA;
 	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<int>,Doub>>> resultsB;
 // 	std::vector<std::future<Solve::solveresult_t<std::array<ChromosomeT<double>,2>,Doub>>> resultsA;
 // 	std::vector<std::future<Solve::solveresult_t<std::array<ChromosomeT<double>,2>,Doub>>> resultsB;
@@ -140,7 +140,7 @@ int main ( int argc, char *argv[ ] ) {
 // 											b,
 // 											names,
 // 											numOAnts,
-// 											Solve::ESStrategy::MuPlusLambda_MKII,
+// 											Solve::ESStrategy::MuPlusLambda_MkII,
 // 											duration_cast<microseconds>(t_1-t_00).count() ));
 // 			resultsB.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b  ));
 
@@ -165,7 +165,7 @@ int main ( int argc, char *argv[ ] ) {
 		t_0 = steady_clock::now();
 
 		resultsA.push_back( std::async( std::launch::async,
-										&Solve::Process::findSolutionCMA_ES_MKI<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<int>,Doub>>,
+										&Solve::Process::findSolutionCMA_ES_MkII<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<double>,Doub>>,
 										&process ));
 
 		t_1 = steady_clock::now();
@@ -177,7 +177,7 @@ int main ( int argc, char *argv[ ] ) {
 // 										b,
 // 										names,
 // 										numOAnts,
-// 										Solve::ESStrategy::MuCommaLambda_MKII,
+// 										Solve::ESStrategy::MuCommaLambda_MkII,
 // 										duration_cast<microseconds>(t_1-t_00).count() ));
 
 	}

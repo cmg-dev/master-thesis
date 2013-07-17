@@ -57,9 +57,10 @@ namespace PRPSEvolution {
 			OnePlusOne,		/**< @f[[1+1]-ES@f]*/
 			MuPlusLambda,	/**< @f[[\mu+\lambda]-ES@f]*/
 			MuCommaLambda,	/**< @f[[\mu,\lambda]-ES@f]*/
-			MuCommaLambda_MKII,
-			MuPlusLambda_MKII,
-			CMA_ES_MKI
+			MuCommaLambda_MkII,
+			MuPlusLambda_MkII,
+			CMA_ES_MkI,
+			CMA_ES_MkII,
 			
 		};
 
@@ -68,7 +69,6 @@ namespace PRPSEvolution {
 		 * 
 		 */
 		struct ProblemDimensions {
-
 			static const int WholeTomato = 7;
 
 			/**

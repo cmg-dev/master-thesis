@@ -12,17 +12,22 @@
 #include <algorithm>
 #include <array>
 
-#include <EALib/ChromosomeCMA.h>
-#include <SharkDefs.h>
-#include <EALib/PopulationT.h>
-#include <EALib/ObjectiveFunction.h>
-#include <EALib/Population.h>
-#include <EALib/CMA.h>
+#include "nr3/nr3.h"
 
+#include <Shark2.3/EALib/ChromosomeCMA.h>
+#include <Shark2.3/SharkDefs.h>
+#include <Shark2.3/EALib/PopulationT.h>
+#include <Shark2.3/EALib/ObjectiveFunction.h>
+#include <Shark2.3/EALib/Population.h>
+#include <Shark2.3/EALib/CMA.h>
+// #include <shark/Algorithms/DirectSearch/CMA.h>
+// #include <shark/ObjectiveFunctions/Benchmarks/Benchmarks.h>
+   
 // #include "../include/PRPSError.h"
 // #include "../libPermutate/permutate.h"
 // #include "../libPRPSSystem/prpsevolutionsystem.h"
 // #include "../libNormalizer/normalizer.h"
+
 
 #include "../include/PRPSEvolutionSolveExceptions.h"
 #include "../include/PRPSEvolutionFIOExceptions.h"
@@ -31,6 +36,7 @@
 #include "solveresult.h"
 #include "solve.h"
 #include "ueber9000.h"
+#include "ObjectFunctions.h"
 
 namespace PRPSEvolution {
 	namespace Solve {
@@ -57,14 +63,13 @@ namespace PRPSEvolution {
 
 			/**
 			 * Constructor
-
+			 *
 			 */
 			Process(  ) {
 
 			}
 
-			Process(const Process &p) :solutionFitness( p.solutionFitness ), minSolutionFitness( p.minSolutionFitness ) {
-
+			Process( const Process &p ) : solutionFitness( p.solutionFitness ), minSolutionFitness( p.minSolutionFitness ) {
 
 			}
 
@@ -81,19 +86,35 @@ namespace PRPSEvolution {
 // 			}
 
 			/**
-			 * Find a Solution for a given pair of matrices
+			 * @todo document
 			 * @return The solution
 			 *
 			 */
 			template<typename T>
 			T
-			findSolutionCMA_ES_MKI()
+			findSolutionCMA_ES_MkI()
 			{
 				Ueber9000<Doub> ueber(1);
-				return solve<T>( &ueber, Solve::ESStrategy::CMA_ES_MKI, 12345 );
+				return solve<T>( &ueber, Solve::ESStrategy::CMA_ES_MkI, 12345 );
 
 				
 			}
+
+			/**
+			 * @todo document
+			 * @return The solution
+			 *
+			 */
+			template<typename T>
+			T
+			findSolutionCMA_ES_MkII()
+			{
+				Ueber9000<Doub> ueber(1);
+				return solve<T>( &ueber, Solve::ESStrategy::CMA_ES_MkII, 12345 );
+
+
+			}
+
 			/**
 			 * Find a Solution for a given pair of matrices
 			 * @param[in] A_selected The matrix A to use in this solution
@@ -213,18 +234,21 @@ namespace PRPSEvolution {
 						solution = MuCommaLambdaES<T>( ueber, seed );
 						break;
 
-					case (int) PRPSEvolution::Solve::ESStrategy::MuCommaLambda_MKII:
-						solution = MKIII<T>( ueber, seed );
+					case (int) PRPSEvolution::Solve::ESStrategy::MuCommaLambda_MkII:
+						solution = MkIII<T>( ueber, seed );
 						
 						break;
-					case (int) PRPSEvolution::Solve::ESStrategy::MuPlusLambda_MKII:
-						solution = MKIII<T>( ueber, seed, false );
+					case (int) PRPSEvolution::Solve::ESStrategy::MuPlusLambda_MkII:
+						solution = MkIII<T>( ueber, seed, false );
 						break;
 
-					case (int) PRPSEvolution::Solve::ESStrategy::CMA_ES_MKI:
-						solution = CMA_ES_MKI<T>( ueber, seed );
+					case (int) PRPSEvolution::Solve::ESStrategy::CMA_ES_MkI:
+						solution = CMA_ES_MkI<T>( ueber, seed );
 						break;
-						
+
+					case (int) PRPSEvolution::Solve::ESStrategy::CMA_ES_MkII:
+						solution = CMA_ES_MkII<T>( ueber, seed );
+						break;
 				}
 				return solution;
 				
@@ -417,7 +441,7 @@ namespace PRPSEvolution {
 			/** Enter description */
 			template<typename T>
 			T
-			MKIII( Ueber9000<double> *ueber9000, double seed, const bool PlusStrategy = false ) {
+			MkIII( Ueber9000<double> *ueber9000, double seed, const bool PlusStrategy = false ) {
 				/* t_0 */
 				steady_clock::time_point t_0 = steady_clock::now();
 
@@ -511,7 +535,7 @@ namespace PRPSEvolution {
 				if (PlusStrategy)
 					for (i = 0; i < parents.size(); ++i)
 						parents[ i ].setFitness(
-							( ueber9000->*ueber9000->evaluateMKIII )
+							( ueber9000->*ueber9000->evaluateMkIII )
 								(
 									dynamic_cast< ChromosomeT< double >& >( parents[ i ][ 0 ] ),
 									dynamic_cast< ChromosomeT< int >& >( parents[ i ][ 1 ] )
@@ -577,7 +601,7 @@ namespace PRPSEvolution {
 					/* set the fitness */
 					for ( i = 0; i < offsprings.size(); ++i )
 						offsprings[ i ].setFitness(
-							( ueber9000->*ueber9000->evaluateMKIII )
+							( ueber9000->*ueber9000->evaluateMkIII )
 								(
 									dynamic_cast< ChromosomeT< double >& > ( offsprings[ i ][ 0 ] ),
 									dynamic_cast< ChromosomeT< int >& > ( offsprings[ i ][ 1 ] )
@@ -624,7 +648,7 @@ namespace PRPSEvolution {
 				T res;
 				
 				res.valCont		= static_cast< ChromosomeT< double >& >( best[0] );
-				res.valDis		= static_cast< ChromosomeT< int >& >( best[1] );
+				res.valDis		= static_cast< ChromosomeT< double >& >( best[1] );
 				res.fitness = best.fitnessValue();
 				res.iterations = t;
 				res.duration = duration_cast<microseconds>( t_1 - t_0 ).count();
@@ -763,7 +787,7 @@ namespace PRPSEvolution {
 
 			template<typename T>
 			T
-			CMA_ES_MKI( Ueber9000<double> *ueber9000, double seed, const bool PlusStrategy = false ) {
+			CMA_ES_MkI( Ueber9000<double> *ueber9000, double seed, const bool PlusStrategy = false ) {
 				// EA parameters
 				CMA cma;
 				steady_clock::time_point t_0 = steady_clock::now();
@@ -841,8 +865,178 @@ namespace PRPSEvolution {
 				return res;
 			}
 
+			template<typename T>
+			T
+			CMA_ES_MkII( Ueber9000<double> *ueber9000, double seed, const bool PlusStrategy = false ) {
+				// EA parameters
+				CMA cma;
+				steady_clock::time_point t_0 = steady_clock::now();
 
-			
+				const unsigned Iterations = 1000;
+				const double MinInit = 1.;
+				const double MaxInit = 1.;
+				const double GlobalStepInit = 1.;
+				const int Dimension = ueber9000->Dimension;
+				unsigned Lambda = cma.suggestLambda(Dimension);
+				unsigned Mu = cma.suggestMu(Lambda);
+
+				// define populations for minimization task
+				Population parents (Mu,
+									ChromosomeT< double >( 5 ),
+									ChromosomeT< double >( 5 ),
+									ChromosomeT< double >( 5 ));
+				
+				Population offsprings (Lambda,
+									ChromosomeT< double >( 5 ),
+									ChromosomeT< double >( 5 ),
+									ChromosomeT< double >( 5 ));
+
+				offsprings		.setMinimize( );
+				parents			.setMinimize( );
+
+std::cout << "0" << std::endl;
+				// initialize parent populations center of gravity
+				for( int i = 0; i < 5; i++ )
+					static_cast< ChromosomeT< double >& >( parents[i][0] ).
+						initialize(MinInit, MaxInit);
+						
+std::cout << "0.1" << std::endl;
+
+				for( int i = 0; i < (Dimension-5); i++ ) {
+					std::cout << i << " " << std::endl;
+
+					static_cast< ChromosomeT< double >& >( parents[i][1] ).
+						initialize(MinInit, MaxInit);
+				}
+						
+std::cout << "0.2" << std::endl;
+
+				for( int j = 1; j < 5; ++j )
+					static_cast< ChromosomeT< double >& >( parents[j][0] ) =
+						static_cast< ChromosomeT< double >& >( parents[0][0] );
+std::cout << "0.3" << std::endl;
+
+				for( int j = 1; j < Dimension-5; ++j )
+					static_cast< ChromosomeT< double >& >( parents[j][1] ) =
+						static_cast< ChromosomeT< double >& >( parents[0][1] );
+
+				// strategy parameters
+				std::vector< double > variance( Dimension );
+
+				for(int i = 0; i < Dimension; i++) variance[i] = 1.;
+
+std::cout << "1" << std::endl;
+				cma.init(Dimension, variance, GlobalStepInit, parents,
+							CMA::superlinear, CMA::rankmu);
+std::cout << "1.1" << std::endl;
+
+				//
+				// iterate
+				//
+				unsigned t ;
+				for( t = 0; t < Iterations; ++t ) {
+					for(unsigned k = 0; k < offsprings.size( ); k++ ) {
+						std::cout << "1.1.0" << std::endl;
+						
+						cma.create(offsprings[k]);
+						std::cout << "1.1.1" << std::endl;
+
+						offsprings[k].setFitness(
+								(ueber9000->*ueber9000->evaluateMkII)(
+									static_cast<ChromosomeT<double> &>(offsprings[k][0]),
+									static_cast<ChromosomeT<double> &>(offsprings[k][1])
+								)
+						);
+
+					}
+					// select (mu,lambda) or (mu+lambda)
+					parents.selectMuLambda(offsprings, 0u);
+std::cout << "1.2" << std::endl;
+					// update strategy parameters
+					cma.updateStrategyParameters(parents);
+std::cout << "1.3" << std::endl;
+
+
+				}
+				steady_clock::time_point t_1 = steady_clock::now();
+
+				T res;
+
+				Individual& best = parents.best();
+
+// 				res.values.push_back( p[0] );
+				res.fitness = best.fitnessValue();
+				res.iterations = t;
+				res.valCont		= static_cast< ChromosomeT< double >& >( best[0] );
+				res.duration = duration_cast<microseconds>(t_1-t_0).count();
+// 				res.converged = Convergence;
+				return res;
+			}
+
+			template<typename T>
+			T
+			CMA_ES_MkII_A( Ueber9000<double> *ueber9000, double seed, const bool PlusStrategy = false )
+			{
+// 				// Adjust the floating-point format to scientific and increase output precision.
+// 				std::cout.setf( std::ios_base::scientific );
+// 				std::cout.precision( 10 );
+// 
+// 				// Instantiate both the problem and the optimizer.
+// 				shark::Sphere sphere( 2 );
+// 				sphere.setNumberOfVariables( 2 );
+// 				shark::CMA cma;
+// 
+// 				// Initialize the optimizer for the objective function instance.
+// 				cma.init( sphere );
+// 
+// 				// Iterate the optimizer until a solution of sufficient quality is found.
+// 				do {
+// 
+// 					cma.step( sphere );
+// 
+// 					// Report information on the optimizer state and the current solution to the console.
+// 					std::cout << sphere.evaluationCounter() << " "
+// 						<< cma.solution().value << " "
+// 						<< cma.solution().point << " "
+// 						<< cma.sigma() << std::endl;
+// 				} while ( cma.solution().value > 1E-20 );
+
+/***************************************************************************/
+   
+// 				//
+// 				// EA parameters
+// 				//
+// 				const unsigned Dimension      = 10;
+// 				const unsigned Iterations     = 2000;
+// 				const double   MinInit        = -3.;
+// 				const double   MaxInit        = 7.;
+// 				const double   GlobalStepInit = 1.;
+// 
+// 				ChromosomeCMA parent   (Dimension), offspring(Dimension);
+// 				double fitnessParent, fitnessOffspring;
+// 
+// 				parent.init(Dimension, GlobalStepInit, MinInit, MaxInit);
+// 				fitnessParent=fitness(parent);
+// 
+// 				// loop over generations
+// 				for (unsigned t = 0; t < Iterations; t++) {
+// 					offspring = parent;
+// 					offspring.mutate();
+// 					fitnessOffspring = fitness(offspring);
+// 
+// 					bool success = (fitnessOffspring < fitnessParent);
+// 
+// 					if(success) {
+// 						offspring.updateCovariance();
+// 						parent = offspring;
+// 						fitnessParent = fitnessOffspring;
+// 					}
+// 					parent.updateGlobalStepsize(success);
+// 
+// 					cout << t << " " 	<< fitnessParent << endl;
+// 				}
+			}
+
 // 			void Another( &ueber ) {
 // 				const unsigned Mu           = 5;
 // 				const unsigned Lambda       = 10;
