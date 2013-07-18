@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/atlas
+END
+gemm.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/atlas/gemm.h
+END
+trsm.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/atlas/trsm.h
+END
+potrs.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/atlas/potrs.h
+END
+syrk.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/atlas/syrk.h
+END
+potrf.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/atlas/potrf.h
+END
+cblas_inc.h
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/atlas/cblas_inc.h
+END
+potri.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/atlas/potri.h
+END
+gemv.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/atlas/gemv.h
+END
+trsv.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/atlas/trsv.h
+END

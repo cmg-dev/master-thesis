@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/p/shark-project/code/!svn/ver/2668/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection
+END
+MuKommaLambdaSelection.h
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/p/shark-project/code/!svn/ver/2668/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/MuKommaLambdaSelection.h
+END
+RouletteWheelSelection.h
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/p/shark-project/code/!svn/ver/2668/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/RouletteWheelSelection.h
+END
+IndicatorBasedSelection.h
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/p/shark-project/code/!svn/ver/2668/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/IndicatorBasedSelection.h
+END
+TournamentSelection.h
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/TournamentSelection.h
+END
+ApproximatedHypervolumeSelection.h
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/ApproximatedHypervolumeSelection.h
+END
+LinearRanking.h
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/p/shark-project/code/!svn/ver/2668/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/LinearRanking.h
+END
+BinaryTournamentSelection.h
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/p/shark-project/code/!svn/ver/2668/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/BinaryTournamentSelection.h
+END
+EPTournamentSelection.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/EPTournamentSelection.h
+END
+UniformRanking.h
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/UniformRanking.h
+END
+MuPlusLambdaSelection.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/MuPlusLambdaSelection.h
+END
+SteadyStateIndicatorBasedSelection.h
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Selection/SteadyStateIndicatorBasedSelection.h
+END

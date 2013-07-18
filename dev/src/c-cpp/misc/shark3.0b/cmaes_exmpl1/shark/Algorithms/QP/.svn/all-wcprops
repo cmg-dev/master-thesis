@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2781/trunk/Shark/include/shark/Algorithms/QP
+END
+QpBoxLinear.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/Algorithms/QP/QpBoxLinear.h
+END
+QuadraticProgram.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2761/trunk/Shark/include/shark/Algorithms/QP/QuadraticProgram.h
+END
+BoxConstrainedProblems.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2781/trunk/Shark/include/shark/Algorithms/QP/BoxConstrainedProblems.h
+END
+LRUCache.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2720/trunk/Shark/include/shark/Algorithms/QP/LRUCache.h
+END
+QpMcDecomp.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/p/shark-project/code/!svn/ver/2750/trunk/Shark/include/shark/Algorithms/QP/QpMcDecomp.h
+END
+SvmProblems.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/p/shark-project/code/!svn/ver/2781/trunk/Shark/include/shark/Algorithms/QP/SvmProblems.h
+END
+QpMcLinear.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/p/shark-project/code/!svn/ver/2695/trunk/Shark/include/shark/Algorithms/QP/QpMcLinear.h
+END
+QpSolver.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2762/trunk/Shark/include/shark/Algorithms/QP/QpSolver.h
+END
+QpSparseArray.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/QP/QpSparseArray.h
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/p/shark-project/code/!svn/ver/2668/trunk/Shark/include/shark/Core/Traits
+END
+MultiObjectiveFunctionTraits.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Traits/MultiObjectiveFunctionTraits.h
+END
+ProxyReferenceTraits.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2650/trunk/Shark/include/shark/Core/Traits/ProxyReferenceTraits.h
+END
+OptimizerTraits.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Traits/OptimizerTraits.h
+END
+IsVector.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Traits/IsVector.h
+END

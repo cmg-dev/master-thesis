@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Experiments
+END
+Experiment.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Experiments/Experiment.h
+END
+FrontStore.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Experiments/FrontStore.h
+END
+EvaluationCountStoppingCondition.h
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Experiments/EvaluationCountStoppingCondition.h
+END

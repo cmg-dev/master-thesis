@@ -1,0 +1,191 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/p/shark-project/code/!svn/ver/2782/trunk/Shark/include/shark/Algorithms/Trainers
+END
+OneClassSvmTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/p/shark-project/code/!svn/ver/2710/trunk/Shark/include/shark/Algorithms/Trainers/OneClassSvmTrainer.h
+END
+McSvmATSTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/McSvmATSTrainer.h
+END
+NBClassifierTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/p/shark-project/code/!svn/ver/2782/trunk/Shark/include/shark/Algorithms/Trainers/NBClassifierTrainer.h
+END
+CSvmTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2777/trunk/Shark/include/shark/Algorithms/Trainers/CSvmTrainer.h
+END
+RegularizationNetworkTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/RegularizationNetworkTrainer.h
+END
+McSvmCSTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/McSvmCSTrainer.h
+END
+MissingFeatureSvmTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/MissingFeatureSvmTrainer.h
+END
+LDA.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/LDA.h
+END
+FisherLDA.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/FisherLDA.h
+END
+NormalizeKernelUnitVariance.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/NormalizeKernelUnitVariance.h
+END
+OptimizationTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/p/shark-project/code/!svn/ver/2727/trunk/Shark/include/shark/Algorithms/Trainers/OptimizationTrainer.h
+END
+LinearRegression.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/LinearRegression.h
+END
+AbstractSvmTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/p/shark-project/code/!svn/ver/2734/trunk/Shark/include/shark/Algorithms/Trainers/AbstractSvmTrainer.h
+END
+CARTTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2728/trunk/Shark/include/shark/Algorithms/Trainers/CARTTrainer.h
+END
+NormalizeComponentsUnitVariance.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/Algorithms/Trainers/NormalizeComponentsUnitVariance.h
+END
+Perceptron.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/Perceptron.h
+END
+LassoRegression.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/LassoRegression.h
+END
+NormalizeComponentsWhitening.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/NormalizeComponentsWhitening.h
+END
+EpsilonSvmTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/EpsilonSvmTrainer.h
+END
+McSvmMMRTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/McSvmMMRTrainer.h
+END
+KernelMeanClassifier.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/KernelMeanClassifier.h
+END
+McSvmWWTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/McSvmWWTrainer.h
+END
+AbstractTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/AbstractTrainer.h
+END
+McSvmLLWTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/McSvmLLWTrainer.h
+END
+RFTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/RFTrainer.h
+END
+McSvmADMTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/McSvmADMTrainer.h
+END
+SigmoidFit.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/SigmoidFit.h
+END
+PCA.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/Trainers/PCA.h
+END
+NormalizeComponentsUnitInterval.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/Algorithms/Trainers/NormalizeComponentsUnitInterval.h
+END
+McSvmATMTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/McSvmATMTrainer.h
+END
+McSvmOVATrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2733/trunk/Shark/include/shark/Algorithms/Trainers/McSvmOVATrainer.h
+END

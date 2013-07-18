@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2765/trunk/Shark/include/shark/Core/utility
+END
+ScopedHandle.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/utility/ScopedHandle.h
+END
+Iterators.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2677/trunk/Shark/include/shark/Core/utility/Iterators.h
+END
+Range.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/p/shark-project/code/!svn/ver/2606/trunk/Shark/include/shark/Core/utility/Range.h
+END
+CanBeCalled.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/p/shark-project/code/!svn/ver/2634/trunk/Shark/include/shark/Core/utility/CanBeCalled.h
+END
+ZipPair.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/p/shark-project/code/!svn/ver/2765/trunk/Shark/include/shark/Core/utility/ZipPair.h
+END
+CopyConst.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/utility/CopyConst.h
+END
+KeyValuePair.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/p/shark-project/code/!svn/ver/2712/trunk/Shark/include/shark/Core/utility/KeyValuePair.h
+END
+functional.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/Core/utility/functional.h
+END

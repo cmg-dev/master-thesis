@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/p/shark-project/code/!svn/ver/2761/trunk/Shark/include/shark/LinAlg
+END
+arrayoptimize.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/arrayoptimize.h
+END
+fft.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/fft.h
+END
+Cholesky.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/Cholesky.h
+END
+solveTriangular.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/solveTriangular.h
+END
+RQ.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/RQ.h
+END
+rotations.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/rotations.h
+END
+eigenvalues.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/p/shark-project/code/!svn/ver/2710/trunk/Shark/include/shark/LinAlg/eigenvalues.h
+END
+Base.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/Base.h
+END
+Inverse.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/Inverse.h
+END
+svd.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/svd.h
+END
+VectorStatistics.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2606/trunk/Shark/include/shark/LinAlg/VectorStatistics.h
+END
+solveSystem.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/p/shark-project/code/!svn/ver/2606/trunk/Shark/include/shark/LinAlg/solveSystem.h
+END

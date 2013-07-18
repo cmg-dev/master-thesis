@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Traits
+END
+FitnessTraits.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Traits/FitnessTraits.h
+END
+QualityIndicatorTraits.h
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Traits/QualityIndicatorTraits.h
+END

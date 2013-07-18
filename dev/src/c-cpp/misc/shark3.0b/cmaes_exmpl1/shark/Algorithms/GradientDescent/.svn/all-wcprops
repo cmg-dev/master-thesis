@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/p/shark-project/code/!svn/ver/2772/trunk/Shark/include/shark/Algorithms/GradientDescent
+END
+LBFGS.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2764/trunk/Shark/include/shark/Algorithms/GradientDescent/LBFGS.h
+END
+LineSearch.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2764/trunk/Shark/include/shark/Algorithms/GradientDescent/LineSearch.h
+END
+Quickprop.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/GradientDescent/Quickprop.h
+END
+BFGS.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/GradientDescent/BFGS.h
+END
+Rprop.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/GradientDescent/Rprop.h
+END
+SteepestDescent.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/GradientDescent/SteepestDescent.h
+END
+NoisyRprop.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/GradientDescent/NoisyRprop.h
+END
+CG.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/GradientDescent/CG.h
+END
+IRLS.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/GradientDescent/IRLS.h
+END

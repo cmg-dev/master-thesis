@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2783/trunk/Shark/include/shark/Unsupervised/RBM/Problems
+END
+BarsAndStripes.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/p/shark-project/code/!svn/ver/2634/trunk/Shark/include/shark/Unsupervised/RBM/Problems/BarsAndStripes.h
+END
+Shifter.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/p/shark-project/code/!svn/ver/2634/trunk/Shark/include/shark/Unsupervised/RBM/Problems/Shifter.h
+END
+MNIST.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2705/trunk/Shark/include/shark/Unsupervised/RBM/Problems/MNIST.h
+END
+DistantModes.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/p/shark-project/code/!svn/ver/2783/trunk/Shark/include/shark/Unsupervised/RBM/Problems/DistantModes.h
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2772/trunk/Shark/include/shark/Algorithms/GradientDescent/Impl
+END
+wolfecubic.inl
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2772/trunk/Shark/include/shark/Algorithms/GradientDescent/Impl/wolfecubic.inl
+END
+ObjectiveFunctionWrapper.h
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/p/shark-project/code/!svn/ver/2692/trunk/Shark/include/shark/Algorithms/GradientDescent/Impl/ObjectiveFunctionWrapper.h
+END

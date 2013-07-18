@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/p/shark-project/code/!svn/ver/2717/trunk/Shark/include/shark/Algorithms/NearestNeighbors
+END
+SimpleNearestNeighbors.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/p/shark-project/code/!svn/ver/2717/trunk/Shark/include/shark/Algorithms/NearestNeighbors/SimpleNearestNeighbors.h
+END
+TreeNearestNeighbors.h
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/p/shark-project/code/!svn/ver/2713/trunk/Shark/include/shark/Algorithms/NearestNeighbors/TreeNearestNeighbors.h
+END
+AbstractNearestNeighbors.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/p/shark-project/code/!svn/ver/2712/trunk/Shark/include/shark/Algorithms/NearestNeighbors/AbstractNearestNeighbors.h
+END

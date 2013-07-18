@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Clustering
+END
+AbstractClustering.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Clustering/AbstractClustering.h
+END
+Centroids.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Clustering/Centroids.h
+END
+SoftClusteringModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Clustering/SoftClusteringModel.h
+END
+HierarchicalClustering.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Clustering/HierarchicalClustering.h
+END
+HardClusteringModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Clustering/HardClusteringModel.h
+END
+ClusteringModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Clustering/ClusteringModel.h
+END

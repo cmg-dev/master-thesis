@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/ObjectiveFunctions/Loss
+END
+ZeroOneLoss.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/ObjectiveFunctions/Loss/ZeroOneLoss.h
+END
+DiscreteLoss.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/Loss/DiscreteLoss.h
+END
+AbstractLoss.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/ObjectiveFunctions/Loss/AbstractLoss.h
+END
+NegativeClassificationLogLikelihood.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/Loss/NegativeClassificationLogLikelihood.h
+END
+SquaredLoss.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/ObjectiveFunctions/Loss/SquaredLoss.h
+END
+CrossEntropyIndependent.h
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/Loss/CrossEntropyIndependent.h
+END
+CrossEntropy.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/Loss/CrossEntropy.h
+END
+AbsoluteLoss.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/ObjectiveFunctions/Loss/AbsoluteLoss.h
+END

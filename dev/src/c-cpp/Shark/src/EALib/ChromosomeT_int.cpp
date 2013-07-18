@@ -78,7 +78,6 @@ void ChromosomeT< int >::mutateDiffGeom(const ChromosomeT< double >& s,
 
 void ChromosomeT< int >::mutateDiffGeom(const Chromosome& s, bool cycle)
 {
-	std::cout << "test" << std::endl;
 	mutateDiffGeom(dynamic_cast< const std::vector< double >& >(s), cycle);
 }
 

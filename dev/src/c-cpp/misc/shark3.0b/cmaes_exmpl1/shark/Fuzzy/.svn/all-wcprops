@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy
+END
+Rule.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/Rule.h
+END
+Implication.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/Implication.h
+END
+RuleBaseGenerator.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/RuleBaseGenerator.h
+END
+Operators.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/Operators.h
+END
+LinguisticVariable.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/LinguisticVariable.h
+END
+InferenceMachine.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/InferenceMachine.h
+END
+FuzzyRelation.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzyRelation.h
+END
+SugenoIM.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/SugenoIM.h
+END
+Fuzzy.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/Fuzzy.h
+END
+SugenoRule.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/SugenoRule.h
+END
+MamdaniIM.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/MamdaniIM.h
+END
+CustomIM.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/CustomIM.h
+END
+RuleBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/RuleBase.h
+END
+LinguisticTerm.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/LinguisticTerm.h
+END
+FuzzySet.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySet.h
+END

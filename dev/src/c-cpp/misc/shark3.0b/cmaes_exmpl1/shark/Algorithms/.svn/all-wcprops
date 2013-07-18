@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/p/shark-project/code/!svn/ver/2782/trunk/Shark/include/shark/Algorithms
+END
+Pegasos.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/Pegasos.h
+END
+AbstractSingleObjectiveOptimizer.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/AbstractSingleObjectiveOptimizer.h
+END
+AbstractOptimizer.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/AbstractOptimizer.h
+END
+AbstractMultiObjectiveOptimizer.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/AbstractMultiObjectiveOptimizer.h
+END
+JaakkolaHeuristic.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/p/shark-project/code/!svn/ver/2774/trunk/Shark/include/shark/Algorithms/JaakkolaHeuristic.h
+END
+KMeans.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/KMeans.h
+END

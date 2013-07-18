@@ -3,6 +3,7 @@
 set( solve_SRCS
 	solve.cpp
 	process.cpp
+	processMkII.cpp
 	postprocessing.cpp
 	preprocessing.cpp
 	ueber9000.cpp

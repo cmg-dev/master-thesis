@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets
+END
+CustomizedFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/CustomizedFS.h
+END
+NDimFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/NDimFS.h
+END
+GeneralizedBellFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/GeneralizedBellFS.h
+END
+SigmoidalFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/SigmoidalFS.h
+END
+TriangularFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/TriangularFS.h
+END
+ComposedFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/ComposedFS.h
+END
+ConstantFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/ConstantFS.h
+END
+InfinityFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/InfinityFS.h
+END
+HomogenousNDimFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/HomogenousNDimFS.h
+END
+BellFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/BellFS.h
+END
+ComposedNDimFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/ComposedNDimFS.h
+END
+TrapezoidFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/TrapezoidFS.h
+END
+SingletonFS.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Fuzzy/FuzzySets/SingletonFS.h
+END

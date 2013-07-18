@@ -18,18 +18,32 @@
 #include <thread>
 
 #include "AntennaConfiguration.h"
+/*
 #include "../libPermutate/permutate.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
 #include "../libCalibration/calib.h"
+
 #include "../libSolve/solve.h"
 #include "../libSolve/solveresult.h"
-#include "../libSolve/process.h"
+*/
+
+#define _USE_SHARK_3_0_
+
+#ifndef _USE_SHARK_3_0_
+	#include "../libSolve/process.h"
+#endif
+
+#ifdef _USE_SHARK_3_0_
+	#include "../libSolve/processMkII.h"
+
+#endif
+/*
 #include "../libSolve/preprocessing.h"
 #include "../libSolve/postprocessing.h"
 
-#include "../include/PRPSEvolutionGeneralExceptions.h"
+#include "../include/PRPSEvolutionGeneralExceptions.h"*/
 
-#include <EALib/ChromosomeCMA.h>
+// #include <EALib/ChromosomeCMA.h>
 
 using namespace PRPSEvolution;
 using std::chrono::duration_cast;
@@ -53,43 +67,48 @@ int main ( int argc, char *argv[ ] ) {
 			VERSION_SUB_MINOR
 			);
 
-	if( argc > 1 )
-		VARIANT_SW = atoi( argv[1] );
-	if( argc > 2 )
-		NO_OF_SOLUTIONS = atoi( argv[2] );
-	if( argc > 3 )
-		if(atoi( argv[3] ) > 0)
-			DROPBAD = true;
+// 	if( argc > 1 )
+// 		VARIANT_SW = atoi( argv[1] );
+// 	if( argc > 2 )
+// 		NO_OF_SOLUTIONS = atoi( argv[2] );
+// 	if( argc > 3 )
+// 		if(atoi( argv[3] ) > 0)
+// 			DROPBAD = true;
+// 	
+// 	/**********************************************************************/
+// 	PRPSEvolution::System sys;
+// 
+// 	/**********************************************************************/
+// 	Calibration::performCalibration< ANTENNA_AMOUNT, CALIBRATION_POINTS_AVAILABLE, Doub >
+// 					PC;
+// 	
+// 	/**********************************************************************/
+// 	Permutate::permuteAntennas< ANTENNA_AMOUNT, Permutate::MAX_PERMUTATION_AMOUNT, Doub >
+// 					PA( sys.constants );
+// 
+// 	/* PA is an 8x35 array of type permutateAntennas of type Doub */
+// 
+// 	/**********************************************************************/
+// 	std::cout << std::endl;
+// 	std::cout << "*PreProcessing.." << std::endl;
+// 
+// 	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat );
+// 
+// 	std::cout << std::endl;
+// 
+// 	std::cout << "*PreProcessing.. done" << std::endl;
+// 	
+// 	/**********************************************************************/
+// 	std::cout << std::endl;
+// 	std::cout << "*Processing.. Create Solution(s).." << std::endl;
+
+#ifdef _USE_SHARK_3_0_
+// 	ProcessMkII::mkII::ProcessMkIItest();
 	
-	/**********************************************************************/
-	PRPSEvolution::System sys;
+#endif
 
-	/**********************************************************************/
-	Calibration::performCalibration< ANTENNA_AMOUNT, CALIBRATION_POINTS_AVAILABLE, Doub >
-					PC;
-	
-	/**********************************************************************/
-	Permutate::permuteAntennas< ANTENNA_AMOUNT, Permutate::MAX_PERMUTATION_AMOUNT, Doub >
-					PA( sys.constants );
-
-	/* PA is an 8x35 array of type permutateAntennas of type Doub */
-
-	/**********************************************************************/
-	std::cout << std::endl;
-	std::cout << "*PreProcessing.." << std::endl;
-
-	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat );
-
-	std::cout << std::endl;
-
-	std::cout << "*PreProcessing.. done" << std::endl;
-	
-	/**********************************************************************/
-	std::cout << std::endl;
-	std::cout << "*Processing.. Create Solution(s).." << std::endl;
-
+#ifndef _USE_SHARK_3_0_
 	Solve::Process process;
-
 
 	int i = 0;
 
@@ -263,6 +282,8 @@ int main ( int argc, char *argv[ ] ) {
 
 	std::cout << " done" << std::endl;
 
+#endif /* _USE_SHARK_2_3_ */
+	
 	/**********************************************************************/
 
 	return 0;

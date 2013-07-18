@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2783/trunk/Shark/include/shark/Unsupervised/RBM/Sampling
+END
+GibbsOperator.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/p/shark-project/code/!svn/ver/2783/trunk/Shark/include/shark/Unsupervised/RBM/Sampling/GibbsOperator.h
+END
+MarkovChain.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/Sampling/MarkovChain.h
+END
+TemperedMarkovChain.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/p/shark-project/code/!svn/ver/2783/trunk/Shark/include/shark/Unsupervised/RBM/Sampling/TemperedMarkovChain.h
+END

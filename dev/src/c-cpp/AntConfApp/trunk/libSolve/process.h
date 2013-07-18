@@ -2,6 +2,8 @@
 #ifndef _PROCESS_H_
 	#define _PROCESS_H_
 
+	#ifndef  _USE_SHARK_3_0_
+
 #include <iostream>
 #include <string>
 #include <random>
@@ -14,14 +16,15 @@
 
 #include "nr3/nr3.h"
 
+// #include <shark/Algorithms/DirectSearch/CMA.h>
+// #include <shark/ObjectiveFunctions/Benchmarks/Benchmarks.h>
+
 #include <Shark2.3/EALib/ChromosomeCMA.h>
 #include <Shark2.3/SharkDefs.h>
 #include <Shark2.3/EALib/PopulationT.h>
 #include <Shark2.3/EALib/ObjectiveFunction.h>
 #include <Shark2.3/EALib/Population.h>
 #include <Shark2.3/EALib/CMA.h>
-// #include <shark/Algorithms/DirectSearch/CMA.h>
-// #include <shark/ObjectiveFunctions/Benchmarks/Benchmarks.h>
    
 // #include "../include/PRPSError.h"
 // #include "../libPermutate/permutate.h"
@@ -1156,4 +1159,6 @@ std::cout << "1.3" << std::endl;
 
 	}
 }
+
+	#endif /* !_USE_SHARK_3_0_ */
 #endif /* _PROCESS_H_ */ 

@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng
+END
+Geometric.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Geometric.h
+END
+Uniform.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Uniform.h
+END
+NegExponential.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/NegExponential.h
+END
+Gamma.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Gamma.h
+END
+HyperGeometric.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/HyperGeometric.h
+END
+Rng.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Rng.h
+END
+Normal.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Normal.h
+END
+LogNormal.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/LogNormal.h
+END
+Binomial.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Binomial.h
+END
+Poisson.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Poisson.h
+END
+Bernoulli.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Bernoulli.h
+END
+Entropy.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Entropy.h
+END
+TruncatedExponential.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/TruncatedExponential.h
+END
+DiscreteUniform.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/DiscreteUniform.h
+END
+AbstractDistribution.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/AbstractDistribution.h
+END
+Weibull.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Weibull.h
+END
+KullbackLeiberDivergence.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/KullbackLeiberDivergence.h
+END
+GlobalRng.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/GlobalRng.h
+END
+Dirichlet.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Dirichlet.h
+END
+DiffGeometric.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/DiffGeometric.h
+END
+Erlang.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Erlang.h
+END
+Cauchy.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Rng/Cauchy.h
+END

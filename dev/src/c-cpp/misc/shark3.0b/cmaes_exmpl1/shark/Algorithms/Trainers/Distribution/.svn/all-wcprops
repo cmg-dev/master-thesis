@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/Trainers/Distribution
+END
+GenericDistTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/Trainers/Distribution/GenericDistTrainer.h
+END
+DistTrainerContainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/Trainers/Distribution/DistTrainerContainer.h
+END
+NormalTrainer.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/Trainers/Distribution/NormalTrainer.h
+END

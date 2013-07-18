@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/p/shark-project/code/!svn/ver/2765/trunk/Shark/include/shark/Core
+END
+Math.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Math.h
+END
+SharedVector.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/SharedVector.h
+END
+Flags.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Flags.h
+END
+OpenMP.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2750/trunk/Shark/include/shark/Core/OpenMP.h
+END
+Exception.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Exception.h
+END
+Chart.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Chart.h
+END
+Derivative.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Derivative.h
+END
+AbstractFeasibleRegion.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/AbstractFeasibleRegion.h
+END
+Singleton.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Singleton.h
+END
+SignalTrap.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/SignalTrap.h
+END
+Probe.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/Core/Probe.h
+END
+Factory.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Factory.h
+END
+IConfigurable.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Core/IConfigurable.h
+END
+Shark.h.in
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Shark.h.in
+END
+ResultSets.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/ResultSets.h
+END
+INameable.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2745/trunk/Shark/include/shark/Core/INameable.h
+END
+Logger.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Logger.h
+END
+ISerializable.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Core/ISerializable.h
+END
+IParameterizable.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Core/IParameterizable.h
+END
+State.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2672/trunk/Shark/include/shark/Core/State.h
+END
+Timer.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Core/Timer.h
+END
