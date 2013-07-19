@@ -182,6 +182,877 @@ shark/fast:
 	$(MAKE) -f CMakeFiles/shark.dir/build.make CMakeFiles/shark.dir/build
 .PHONY : shark/fast
 
+#=============================================================================
+# Target rules for targets named CrossValidation
+
+# Build rule for target.
+CrossValidation: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CrossValidation
+.PHONY : CrossValidation
+
+# fast build rule for target.
+CrossValidation/fast:
+	$(MAKE) -f examples/CMakeFiles/CrossValidation.dir/build.make examples/CMakeFiles/CrossValidation.dir/build
+.PHONY : CrossValidation/fast
+
+#=============================================================================
+# Target rules for targets named FileUtilClass
+
+# Build rule for target.
+FileUtilClass: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 FileUtilClass
+.PHONY : FileUtilClass
+
+# fast build rule for target.
+FileUtilClass/fast:
+	$(MAKE) -f examples/CMakeFiles/FileUtilClass.dir/build.make examples/CMakeFiles/FileUtilClass.dir/build
+.PHONY : FileUtilClass/fast
+
+#=============================================================================
+# Target rules for targets named FileUtilSimple
+
+# Build rule for target.
+FileUtilSimple: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 FileUtilSimple
+.PHONY : FileUtilSimple
+
+# fast build rule for target.
+FileUtilSimple/fast:
+	$(MAKE) -f examples/CMakeFiles/FileUtilSimple.dir/build.make examples/CMakeFiles/FileUtilSimple.dir/build
+.PHONY : FileUtilSimple/fast
+
+#=============================================================================
+# Target rules for targets named FisherLDA
+
+# Build rule for target.
+FisherLDA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 FisherLDA
+.PHONY : FisherLDA
+
+# fast build rule for target.
+FisherLDA/fast:
+	$(MAKE) -f examples/CMakeFiles/FisherLDA.dir/build.make examples/CMakeFiles/FisherLDA.dir/build
+.PHONY : FisherLDA/fast
+
+#=============================================================================
+# Target rules for targets named HypervolumeBenchmark
+
+# Build rule for target.
+HypervolumeBenchmark: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 HypervolumeBenchmark
+.PHONY : HypervolumeBenchmark
+
+# fast build rule for target.
+HypervolumeBenchmark/fast:
+	$(MAKE) -f examples/CMakeFiles/HypervolumeBenchmark.dir/build.make examples/CMakeFiles/HypervolumeBenchmark.dir/build
+.PHONY : HypervolumeBenchmark/fast
+
+#=============================================================================
+# Target rules for targets named KM
+
+# Build rule for target.
+KM: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 KM
+.PHONY : KM
+
+# fast build rule for target.
+KM/fast:
+	$(MAKE) -f examples/CMakeFiles/KM.dir/build.make examples/CMakeFiles/KM.dir/build
+.PHONY : KM/fast
+
+#=============================================================================
+# Target rules for targets named KNN
+
+# Build rule for target.
+KNN: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 KNN
+.PHONY : KNN
+
+# fast build rule for target.
+KNN/fast:
+	$(MAKE) -f examples/CMakeFiles/KNN.dir/build.make examples/CMakeFiles/KNN.dir/build
+.PHONY : KNN/fast
+
+#=============================================================================
+# Target rules for targets named KalmanFilterTest
+
+# Build rule for target.
+KalmanFilterTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 KalmanFilterTest
+.PHONY : KalmanFilterTest
+
+# fast build rule for target.
+KalmanFilterTest/fast:
+	$(MAKE) -f examples/CMakeFiles/KalmanFilterTest.dir/build.make examples/CMakeFiles/KalmanFilterTest.dir/build
+.PHONY : KalmanFilterTest/fast
+
+#=============================================================================
+# Target rules for targets named KernelOptimization
+
+# Build rule for target.
+KernelOptimization: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 KernelOptimization
+.PHONY : KernelOptimization
+
+# fast build rule for target.
+KernelOptimization/fast:
+	$(MAKE) -f examples/CMakeFiles/KernelOptimization.dir/build.make examples/CMakeFiles/KernelOptimization.dir/build
+.PHONY : KernelOptimization/fast
+
+#=============================================================================
+# Target rules for targets named LinearClassifierTest
+
+# Build rule for target.
+LinearClassifierTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 LinearClassifierTest
+.PHONY : LinearClassifierTest
+
+# fast build rule for target.
+LinearClassifierTest/fast:
+	$(MAKE) -f examples/CMakeFiles/LinearClassifierTest.dir/build.make examples/CMakeFiles/LinearClassifierTest.dir/build
+.PHONY : LinearClassifierTest/fast
+
+#=============================================================================
+# Target rules for targets named LinearRegressionTest
+
+# Build rule for target.
+LinearRegressionTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 LinearRegressionTest
+.PHONY : LinearRegressionTest
+
+# fast build rule for target.
+LinearRegressionTest/fast:
+	$(MAKE) -f examples/CMakeFiles/LinearRegressionTest.dir/build.make examples/CMakeFiles/LinearRegressionTest.dir/build
+.PHONY : LinearRegressionTest/fast
+
+#=============================================================================
+# Target rules for targets named MOGA
+
+# Build rule for target.
+MOGA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 MOGA
+.PHONY : MOGA
+
+# fast build rule for target.
+MOGA/fast:
+	$(MAKE) -f examples/CMakeFiles/MOGA.dir/build.make examples/CMakeFiles/MOGA.dir/build
+.PHONY : MOGA/fast
+
+#=============================================================================
+# Target rules for targets named McSvm
+
+# Build rule for target.
+McSvm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 McSvm
+.PHONY : McSvm
+
+# fast build rule for target.
+McSvm/fast:
+	$(MAKE) -f examples/CMakeFiles/McSvm.dir/build.make examples/CMakeFiles/McSvm.dir/build
+.PHONY : McSvm/fast
+
+#=============================================================================
+# Target rules for targets named NSGA2
+
+# Build rule for target.
+NSGA2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 NSGA2
+.PHONY : NSGA2
+
+# fast build rule for target.
+NSGA2/fast:
+	$(MAKE) -f examples/CMakeFiles/NSGA2.dir/build.make examples/CMakeFiles/NSGA2.dir/build
+.PHONY : NSGA2/fast
+
+#=============================================================================
+# Target rules for targets named NSGA2example
+
+# Build rule for target.
+NSGA2example: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 NSGA2example
+.PHONY : NSGA2example
+
+# fast build rule for target.
+NSGA2example/fast:
+	$(MAKE) -f examples/CMakeFiles/NSGA2example.dir/build.make examples/CMakeFiles/NSGA2example.dir/build
+.PHONY : NSGA2example/fast
+
+#=============================================================================
+# Target rules for targets named PAES
+
+# Build rule for target.
+PAES: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PAES
+.PHONY : PAES
+
+# fast build rule for target.
+PAES/fast:
+	$(MAKE) -f examples/CMakeFiles/PAES.dir/build.make examples/CMakeFiles/PAES.dir/build
+.PHONY : PAES/fast
+
+#=============================================================================
+# Target rules for targets named PCAtest
+
+# Build rule for target.
+PCAtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 PCAtest
+.PHONY : PCAtest
+
+# fast build rule for target.
+PCAtest/fast:
+	$(MAKE) -f examples/CMakeFiles/PCAtest.dir/build.make examples/CMakeFiles/PCAtest.dir/build
+.PHONY : PCAtest/fast
+
+#=============================================================================
+# Target rules for targets named RMMEDAtest
+
+# Build rule for target.
+RMMEDAtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 RMMEDAtest
+.PHONY : RMMEDAtest
+
+# fast build rule for target.
+RMMEDAtest/fast:
+	$(MAKE) -f examples/CMakeFiles/RMMEDAtest.dir/build.make examples/CMakeFiles/RMMEDAtest.dir/build
+.PHONY : RMMEDAtest/fast
+
+#=============================================================================
+# Target rules for targets named RngTest
+
+# Build rule for target.
+RngTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 RngTest
+.PHONY : RngTest
+
+# fast build rule for target.
+RngTest/fast:
+	$(MAKE) -f examples/CMakeFiles/RngTest.dir/build.make examples/CMakeFiles/RngTest.dir/build
+.PHONY : RngTest/fast
+
+#=============================================================================
+# Target rules for targets named RngTest2
+
+# Build rule for target.
+RngTest2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 RngTest2
+.PHONY : RngTest2
+
+# fast build rule for target.
+RngTest2/fast:
+	$(MAKE) -f examples/CMakeFiles/RngTest2.dir/build.make examples/CMakeFiles/RngTest2.dir/build
+.PHONY : RngTest2/fast
+
+#=============================================================================
+# Target rules for targets named RngTestSimple
+
+# Build rule for target.
+RngTestSimple: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 RngTestSimple
+.PHONY : RngTestSimple
+
+# fast build rule for target.
+RngTestSimple/fast:
+	$(MAKE) -f examples/CMakeFiles/RngTestSimple.dir/build.make examples/CMakeFiles/RngTestSimple.dir/build
+.PHONY : RngTestSimple/fast
+
+#=============================================================================
+# Target rules for targets named SVMclassification
+
+# Build rule for target.
+SVMclassification: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SVMclassification
+.PHONY : SVMclassification
+
+# fast build rule for target.
+SVMclassification/fast:
+	$(MAKE) -f examples/CMakeFiles/SVMclassification.dir/build.make examples/CMakeFiles/SVMclassification.dir/build
+.PHONY : SVMclassification/fast
+
+#=============================================================================
+# Target rules for targets named SVMregression
+
+# Build rule for target.
+SVMregression: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SVMregression
+.PHONY : SVMregression
+
+# fast build rule for target.
+SVMregression/fast:
+	$(MAKE) -f examples/CMakeFiles/SVMregression.dir/build.make examples/CMakeFiles/SVMregression.dir/build
+.PHONY : SVMregression/fast
+
+#=============================================================================
+# Target rules for targets named SchwefelEllipsoidCMSA
+
+# Build rule for target.
+SchwefelEllipsoidCMSA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SchwefelEllipsoidCMSA
+.PHONY : SchwefelEllipsoidCMSA
+
+# fast build rule for target.
+SchwefelEllipsoidCMSA/fast:
+	$(MAKE) -f examples/CMakeFiles/SchwefelEllipsoidCMSA.dir/build.make examples/CMakeFiles/SchwefelEllipsoidCMSA.dir/build
+.PHONY : SchwefelEllipsoidCMSA/fast
+
+#=============================================================================
+# Target rules for targets named SvmApproximationExample
+
+# Build rule for target.
+SvmApproximationExample: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SvmApproximationExample
+.PHONY : SvmApproximationExample
+
+# fast build rule for target.
+SvmApproximationExample/fast:
+	$(MAKE) -f examples/CMakeFiles/SvmApproximationExample.dir/build.make examples/CMakeFiles/SvmApproximationExample.dir/build
+.PHONY : SvmApproximationExample/fast
+
+#=============================================================================
+# Target rules for targets named TSP_GA
+
+# Build rule for target.
+TSP_GA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 TSP_GA
+.PHONY : TSP_GA
+
+# fast build rule for target.
+TSP_GA/fast:
+	$(MAKE) -f examples/CMakeFiles/TSP_GA.dir/build.make examples/CMakeFiles/TSP_GA.dir/build
+.PHONY : TSP_GA/fast
+
+#=============================================================================
+# Target rules for targets named VEGA
+
+# Build rule for target.
+VEGA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 VEGA
+.PHONY : VEGA
+
+# fast build rule for target.
+VEGA/fast:
+	$(MAKE) -f examples/CMakeFiles/VEGA.dir/build.make examples/CMakeFiles/VEGA.dir/build
+.PHONY : VEGA/fast
+
+#=============================================================================
+# Target rules for targets named ackleyES
+
+# Build rule for target.
+ackleyES: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ackleyES
+.PHONY : ackleyES
+
+# fast build rule for target.
+ackleyES/fast:
+	$(MAKE) -f examples/CMakeFiles/ackleyES.dir/build.make examples/CMakeFiles/ackleyES.dir/build
+.PHONY : ackleyES/fast
+
+#=============================================================================
+# Target rules for targets named cblnsrch_test
+
+# Build rule for target.
+cblnsrch_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 cblnsrch_test
+.PHONY : cblnsrch_test
+
+# fast build rule for target.
+cblnsrch_test/fast:
+	$(MAKE) -f examples/CMakeFiles/cblnsrch_test.dir/build.make examples/CMakeFiles/cblnsrch_test.dir/build
+.PHONY : cblnsrch_test/fast
+
+#=============================================================================
+# Target rules for targets named countingOnes
+
+# Build rule for target.
+countingOnes: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 countingOnes
+.PHONY : countingOnes
+
+# fast build rule for target.
+countingOnes/fast:
+	$(MAKE) -f examples/CMakeFiles/countingOnes.dir/build.make examples/CMakeFiles/countingOnes.dir/build
+.PHONY : countingOnes/fast
+
+#=============================================================================
+# Target rules for targets named covar_corrcoef_test
+
+# Build rule for target.
+covar_corrcoef_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 covar_corrcoef_test
+.PHONY : covar_corrcoef_test
+
+# fast build rule for target.
+covar_corrcoef_test/fast:
+	$(MAKE) -f examples/CMakeFiles/covar_corrcoef_test.dir/build.make examples/CMakeFiles/covar_corrcoef_test.dir/build
+.PHONY : covar_corrcoef_test/fast
+
+#=============================================================================
+# Target rules for targets named detsymm_test
+
+# Build rule for target.
+detsymm_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 detsymm_test
+.PHONY : detsymm_test
+
+# fast build rule for target.
+detsymm_test/fast:
+	$(MAKE) -f examples/CMakeFiles/detsymm_test.dir/build.make examples/CMakeFiles/detsymm_test.dir/build
+.PHONY : detsymm_test/fast
+
+#=============================================================================
+# Target rules for targets named dlinmin_test
+
+# Build rule for target.
+dlinmin_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dlinmin_test
+.PHONY : dlinmin_test
+
+# fast build rule for target.
+dlinmin_test/fast:
+	$(MAKE) -f examples/CMakeFiles/dlinmin_test.dir/build.make examples/CMakeFiles/dlinmin_test.dir/build
+.PHONY : dlinmin_test/fast
+
+#=============================================================================
+# Target rules for targets named eigenerr_test
+
+# Build rule for target.
+eigenerr_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 eigenerr_test
+.PHONY : eigenerr_test
+
+# fast build rule for target.
+eigenerr_test/fast:
+	$(MAKE) -f examples/CMakeFiles/eigenerr_test.dir/build.make examples/CMakeFiles/eigenerr_test.dir/build
+.PHONY : eigenerr_test/fast
+
+#=============================================================================
+# Target rules for targets named eigensort_test
+
+# Build rule for target.
+eigensort_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 eigensort_test
+.PHONY : eigensort_test
+
+# fast build rule for target.
+eigensort_test/fast:
+	$(MAKE) -f examples/CMakeFiles/eigensort_test.dir/build.make examples/CMakeFiles/eigensort_test.dir/build
+.PHONY : eigensort_test/fast
+
+#=============================================================================
+# Target rules for targets named eigensymmJacobi2_test
+
+# Build rule for target.
+eigensymmJacobi2_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 eigensymmJacobi2_test
+.PHONY : eigensymmJacobi2_test
+
+# fast build rule for target.
+eigensymmJacobi2_test/fast:
+	$(MAKE) -f examples/CMakeFiles/eigensymmJacobi2_test.dir/build.make examples/CMakeFiles/eigensymmJacobi2_test.dir/build
+.PHONY : eigensymmJacobi2_test/fast
+
+#=============================================================================
+# Target rules for targets named eigensymmJacobi_test
+
+# Build rule for target.
+eigensymmJacobi_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 eigensymmJacobi_test
+.PHONY : eigensymmJacobi_test
+
+# fast build rule for target.
+eigensymmJacobi_test/fast:
+	$(MAKE) -f examples/CMakeFiles/eigensymmJacobi_test.dir/build.make examples/CMakeFiles/eigensymmJacobi_test.dir/build
+.PHONY : eigensymmJacobi_test/fast
+
+#=============================================================================
+# Target rules for targets named eigensymm_test
+
+# Build rule for target.
+eigensymm_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 eigensymm_test
+.PHONY : eigensymm_test
+
+# fast build rule for target.
+eigensymm_test/fast:
+	$(MAKE) -f examples/CMakeFiles/eigensymm_test.dir/build.make examples/CMakeFiles/eigensymm_test.dir/build
+.PHONY : eigensymm_test/fast
+
+#=============================================================================
+# Target rules for targets named embeddingTest
+
+# Build rule for target.
+embeddingTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 embeddingTest
+.PHONY : embeddingTest
+
+# fast build rule for target.
+embeddingTest/fast:
+	$(MAKE) -f examples/CMakeFiles/embeddingTest.dir/build.make examples/CMakeFiles/embeddingTest.dir/build
+.PHONY : embeddingTest/fast
+
+#=============================================================================
+# Target rules for targets named fft_test
+
+# Build rule for target.
+fft_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 fft_test
+.PHONY : fft_test
+
+# fast build rule for target.
+fft_test/fast:
+	$(MAKE) -f examples/CMakeFiles/fft_test.dir/build.make examples/CMakeFiles/fft_test.dir/build
+.PHONY : fft_test/fast
+
+#=============================================================================
+# Target rules for targets named fonMO-CMA
+
+# Build rule for target.
+fonMO-CMA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 fonMO-CMA
+.PHONY : fonMO-CMA
+
+# fast build rule for target.
+fonMO-CMA/fast:
+	$(MAKE) -f examples/CMakeFiles/fonMO-CMA.dir/build.make examples/CMakeFiles/fonMO-CMA.dir/build
+.PHONY : fonMO-CMA/fast
+
+#=============================================================================
+# Target rules for targets named fonSteadyStateMO-CMA
+
+# Build rule for target.
+fonSteadyStateMO-CMA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 fonSteadyStateMO-CMA
+.PHONY : fonSteadyStateMO-CMA
+
+# fast build rule for target.
+fonSteadyStateMO-CMA/fast:
+	$(MAKE) -f examples/CMakeFiles/fonSteadyStateMO-CMA.dir/build.make examples/CMakeFiles/fonSteadyStateMO-CMA.dir/build
+.PHONY : fonSteadyStateMO-CMA/fast
+
+#=============================================================================
+# Target rules for targets named g_inverse_matrix
+
+# Build rule for target.
+g_inverse_matrix: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 g_inverse_matrix
+.PHONY : g_inverse_matrix
+
+# fast build rule for target.
+g_inverse_matrix/fast:
+	$(MAKE) -f examples/CMakeFiles/g_inverse_matrix.dir/build.make examples/CMakeFiles/g_inverse_matrix.dir/build
+.PHONY : g_inverse_matrix/fast
+
+#=============================================================================
+# Target rules for targets named integerES
+
+# Build rule for target.
+integerES: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 integerES
+.PHONY : integerES
+
+# fast build rule for target.
+integerES/fast:
+	$(MAKE) -f examples/CMakeFiles/integerES.dir/build.make examples/CMakeFiles/integerES.dir/build
+.PHONY : integerES/fast
+
+#=============================================================================
+# Target rules for targets named linalg_simple_test
+
+# Build rule for target.
+linalg_simple_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 linalg_simple_test
+.PHONY : linalg_simple_test
+
+# fast build rule for target.
+linalg_simple_test/fast:
+	$(MAKE) -f examples/CMakeFiles/linalg_simple_test.dir/build.make examples/CMakeFiles/linalg_simple_test.dir/build
+.PHONY : linalg_simple_test/fast
+
+#=============================================================================
+# Target rules for targets named linmin_test
+
+# Build rule for target.
+linmin_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 linmin_test
+.PHONY : linmin_test
+
+# fast build rule for target.
+linmin_test/fast:
+	$(MAKE) -f examples/CMakeFiles/linmin_test.dir/build.make examples/CMakeFiles/linmin_test.dir/build
+.PHONY : linmin_test/fast
+
+#=============================================================================
+# Target rules for targets named lnsrch_test
+
+# Build rule for target.
+lnsrch_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lnsrch_test
+.PHONY : lnsrch_test
+
+# fast build rule for target.
+lnsrch_test/fast:
+	$(MAKE) -f examples/CMakeFiles/lnsrch_test.dir/build.make examples/CMakeFiles/lnsrch_test.dir/build
+.PHONY : lnsrch_test/fast
+
+#=============================================================================
+# Target rules for targets named lorenz84
+
+# Build rule for target.
+lorenz84: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lorenz84
+.PHONY : lorenz84
+
+# fast build rule for target.
+lorenz84/fast:
+	$(MAKE) -f examples/CMakeFiles/lorenz84.dir/build.make examples/CMakeFiles/lorenz84.dir/build
+.PHONY : lorenz84/fast
+
+#=============================================================================
+# Target rules for targets named mg-example
+
+# Build rule for target.
+mg-example: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mg-example
+.PHONY : mg-example
+
+# fast build rule for target.
+mg-example/fast:
+	$(MAKE) -f examples/CMakeFiles/mg-example.dir/build.make examples/CMakeFiles/mg-example.dir/build
+.PHONY : mg-example/fast
+
+#=============================================================================
+# Target rules for targets named paraboloidCMA
+
+# Build rule for target.
+paraboloidCMA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 paraboloidCMA
+.PHONY : paraboloidCMA
+
+# fast build rule for target.
+paraboloidCMA/fast:
+	$(MAKE) -f examples/CMakeFiles/paraboloidCMA.dir/build.make examples/CMakeFiles/paraboloidCMA.dir/build
+.PHONY : paraboloidCMA/fast
+
+#=============================================================================
+# Target rules for targets named paraboloidElitistCMA
+
+# Build rule for target.
+paraboloidElitistCMA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 paraboloidElitistCMA
+.PHONY : paraboloidElitistCMA
+
+# fast build rule for target.
+paraboloidElitistCMA/fast:
+	$(MAKE) -f examples/CMakeFiles/paraboloidElitistCMA.dir/build.make examples/CMakeFiles/paraboloidElitistCMA.dir/build
+.PHONY : paraboloidElitistCMA/fast
+
+#=============================================================================
+# Target rules for targets named pvmSphereGA
+
+# Build rule for target.
+pvmSphereGA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pvmSphereGA
+.PHONY : pvmSphereGA
+
+# fast build rule for target.
+pvmSphereGA/fast:
+	$(MAKE) -f examples/CMakeFiles/pvmSphereGA.dir/build.make examples/CMakeFiles/pvmSphereGA.dir/build
+.PHONY : pvmSphereGA/fast
+
+#=============================================================================
+# Target rules for targets named rank_decomp_test
+
+# Build rule for target.
+rank_decomp_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rank_decomp_test
+.PHONY : rank_decomp_test
+
+# fast build rule for target.
+rank_decomp_test/fast:
+	$(MAKE) -f examples/CMakeFiles/rank_decomp_test.dir/build.make examples/CMakeFiles/rank_decomp_test.dir/build
+.PHONY : rank_decomp_test/fast
+
+#=============================================================================
+# Target rules for targets named rank_test
+
+# Build rule for target.
+rank_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rank_test
+.PHONY : rank_test
+
+# fast build rule for target.
+rank_test/fast:
+	$(MAKE) -f examples/CMakeFiles/rank_test.dir/build.make examples/CMakeFiles/rank_test.dir/build
+.PHONY : rank_test/fast
+
+#=============================================================================
+# Target rules for targets named rbfn-example
+
+# Build rule for target.
+rbfn-example: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rbfn-example
+.PHONY : rbfn-example
+
+# fast build rule for target.
+rbfn-example/fast:
+	$(MAKE) -f examples/CMakeFiles/rbfn-example.dir/build.make examples/CMakeFiles/rbfn-example.dir/build
+.PHONY : rbfn-example/fast
+
+#=============================================================================
+# Target rules for targets named realcoded-NSGA2
+
+# Build rule for target.
+realcoded-NSGA2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 realcoded-NSGA2
+.PHONY : realcoded-NSGA2
+
+# fast build rule for target.
+realcoded-NSGA2/fast:
+	$(MAKE) -f examples/CMakeFiles/realcoded-NSGA2.dir/build.make examples/CMakeFiles/realcoded-NSGA2.dir/build
+.PHONY : realcoded-NSGA2/fast
+
+#=============================================================================
+# Target rules for targets named simpleFFNet
+
+# Build rule for target.
+simpleFFNet: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 simpleFFNet
+.PHONY : simpleFFNet
+
+# fast build rule for target.
+simpleFFNet/fast:
+	$(MAKE) -f examples/CMakeFiles/simpleFFNet.dir/build.make examples/CMakeFiles/simpleFFNet.dir/build
+.PHONY : simpleFFNet/fast
+
+#=============================================================================
+# Target rules for targets named simpleFFNetSource
+
+# Build rule for target.
+simpleFFNetSource: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 simpleFFNetSource
+.PHONY : simpleFFNetSource
+
+# fast build rule for target.
+simpleFFNetSource/fast:
+	$(MAKE) -f examples/CMakeFiles/simpleFFNetSource.dir/build.make examples/CMakeFiles/simpleFFNetSource.dir/build
+.PHONY : simpleFFNetSource/fast
+
+#=============================================================================
+# Target rules for targets named simpleMSERNNet
+
+# Build rule for target.
+simpleMSERNNet: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 simpleMSERNNet
+.PHONY : simpleMSERNNet
+
+# fast build rule for target.
+simpleMSERNNet/fast:
+	$(MAKE) -f examples/CMakeFiles/simpleMSERNNet.dir/build.make examples/CMakeFiles/simpleMSERNNet.dir/build
+.PHONY : simpleMSERNNet/fast
+
+#=============================================================================
+# Target rules for targets named simpleRBFNet
+
+# Build rule for target.
+simpleRBFNet: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 simpleRBFNet
+.PHONY : simpleRBFNet
+
+# fast build rule for target.
+simpleRBFNet/fast:
+	$(MAKE) -f examples/CMakeFiles/simpleRBFNet.dir/build.make examples/CMakeFiles/simpleRBFNet.dir/build
+.PHONY : simpleRBFNet/fast
+
+#=============================================================================
+# Target rules for targets named simpleRNNet
+
+# Build rule for target.
+simpleRNNet: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 simpleRNNet
+.PHONY : simpleRNNet
+
+# fast build rule for target.
+simpleRNNet/fast:
+	$(MAKE) -f examples/CMakeFiles/simpleRNNet.dir/build.make examples/CMakeFiles/simpleRNNet.dir/build
+.PHONY : simpleRNNet/fast
+
+#=============================================================================
+# Target rules for targets named sphereGA
+
+# Build rule for target.
+sphereGA: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sphereGA
+.PHONY : sphereGA
+
+# fast build rule for target.
+sphereGA/fast:
+	$(MAKE) -f examples/CMakeFiles/sphereGA.dir/build.make examples/CMakeFiles/sphereGA.dir/build
+.PHONY : sphereGA/fast
+
+#=============================================================================
+# Target rules for targets named steadyState
+
+# Build rule for target.
+steadyState: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 steadyState
+.PHONY : steadyState
+
+# fast build rule for target.
+steadyState/fast:
+	$(MAKE) -f examples/CMakeFiles/steadyState.dir/build.make examples/CMakeFiles/steadyState.dir/build
+.PHONY : steadyState/fast
+
+#=============================================================================
+# Target rules for targets named sugeno
+
+# Build rule for target.
+sugeno: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sugeno
+.PHONY : sugeno
+
+# fast build rule for target.
+sugeno/fast:
+	$(MAKE) -f examples/CMakeFiles/sugeno.dir/build.make examples/CMakeFiles/sugeno.dir/build
+.PHONY : sugeno/fast
+
+#=============================================================================
+# Target rules for targets named svd_test
+
+# Build rule for target.
+svd_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 svd_test
+.PHONY : svd_test
+
+# fast build rule for target.
+svd_test/fast:
+	$(MAKE) -f examples/CMakeFiles/svd_test.dir/build.make examples/CMakeFiles/svd_test.dir/build
+.PHONY : svd_test/fast
+
+#=============================================================================
+# Target rules for targets named svdrank_test
+
+# Build rule for target.
+svdrank_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 svdrank_test
+.PHONY : svdrank_test
+
+# fast build rule for target.
+svdrank_test/fast:
+	$(MAKE) -f examples/CMakeFiles/svdrank_test.dir/build.make examples/CMakeFiles/svdrank_test.dir/build
+.PHONY : svdrank_test/fast
+
+#=============================================================================
+# Target rules for targets named svdsort_test
+
+# Build rule for target.
+svdsort_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 svdsort_test
+.PHONY : svdsort_test
+
+# fast build rule for target.
+svdsort_test/fast:
+	$(MAKE) -f examples/CMakeFiles/svdsort_test.dir/build.make examples/CMakeFiles/svdsort_test.dir/build
+.PHONY : svdsort_test/fast
+
 src/Array/ReadArray.o: src/Array/ReadArray.cpp.o
 .PHONY : src/Array/ReadArray.o
 
@@ -4542,6 +5413,73 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... shark"
 	@echo "... test"
+	@echo "... CrossValidation"
+	@echo "... FileUtilClass"
+	@echo "... FileUtilSimple"
+	@echo "... FisherLDA"
+	@echo "... HypervolumeBenchmark"
+	@echo "... KM"
+	@echo "... KNN"
+	@echo "... KalmanFilterTest"
+	@echo "... KernelOptimization"
+	@echo "... LinearClassifierTest"
+	@echo "... LinearRegressionTest"
+	@echo "... MOGA"
+	@echo "... McSvm"
+	@echo "... NSGA2"
+	@echo "... NSGA2example"
+	@echo "... PAES"
+	@echo "... PCAtest"
+	@echo "... RMMEDAtest"
+	@echo "... RngTest"
+	@echo "... RngTest2"
+	@echo "... RngTestSimple"
+	@echo "... SVMclassification"
+	@echo "... SVMregression"
+	@echo "... SchwefelEllipsoidCMSA"
+	@echo "... SvmApproximationExample"
+	@echo "... TSP_GA"
+	@echo "... VEGA"
+	@echo "... ackleyES"
+	@echo "... cblnsrch_test"
+	@echo "... countingOnes"
+	@echo "... covar_corrcoef_test"
+	@echo "... detsymm_test"
+	@echo "... dlinmin_test"
+	@echo "... eigenerr_test"
+	@echo "... eigensort_test"
+	@echo "... eigensymmJacobi2_test"
+	@echo "... eigensymmJacobi_test"
+	@echo "... eigensymm_test"
+	@echo "... embeddingTest"
+	@echo "... fft_test"
+	@echo "... fonMO-CMA"
+	@echo "... fonSteadyStateMO-CMA"
+	@echo "... g_inverse_matrix"
+	@echo "... integerES"
+	@echo "... linalg_simple_test"
+	@echo "... linmin_test"
+	@echo "... lnsrch_test"
+	@echo "... lorenz84"
+	@echo "... mg-example"
+	@echo "... paraboloidCMA"
+	@echo "... paraboloidElitistCMA"
+	@echo "... pvmSphereGA"
+	@echo "... rank_decomp_test"
+	@echo "... rank_test"
+	@echo "... rbfn-example"
+	@echo "... realcoded-NSGA2"
+	@echo "... simpleFFNet"
+	@echo "... simpleFFNetSource"
+	@echo "... simpleMSERNNet"
+	@echo "... simpleRBFNet"
+	@echo "... simpleRNNet"
+	@echo "... sphereGA"
+	@echo "... steadyState"
+	@echo "... sugeno"
+	@echo "... svd_test"
+	@echo "... svdrank_test"
+	@echo "... svdsort_test"
 	@echo "... src/Array/ReadArray.o"
 	@echo "... src/Array/ReadArray.i"
 	@echo "... src/Array/ReadArray.s"

@@ -19,7 +19,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None(CMAKE_CXX_FLAGS or
 // CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel.
-CMAKE_BUILD_TYPE:STRING=Release
+CMAKE_BUILD_TYPE:STRING=
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -194,18 +194,18 @@ OpenMP_C_FLAGS:STRING=-fopenmp
 SHARK_OPT_COMPILE_DOCUMENTATION:BOOL=OFF
 
 //Compile example programs.
-SHARK_OPT_COMPILE_EXAMPLES:BOOL=OFF
+SHARK_OPT_COMPILE_EXAMPLES:BOOL=ON
 
 SHARK_OPT_ENABLE_QT_EXAMPLES:BOOL=OFF
 
 //Value Computed by CMake
-shark_BINARY_DIR:STATIC=/home/cg/dev/master-thesis/dev/src/c-cpp/Shark
+shark_BINARY_DIR:STATIC=/home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples
 
 //Dependencies for the target
 shark_LIB_DEPENDS:STATIC=general;rt;
 
 //Value Computed by CMake
-shark_SOURCE_DIR:STATIC=/home/cg/dev/master-thesis/dev/src/c-cpp/Shark
+shark_SOURCE_DIR:STATIC=/home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples
 
 
 ########################
@@ -218,8 +218,6 @@ CMAKE_AR-ADVANCED:INTERNAL=1
 CMAKE_BUILD_TOOL-ADVANCED:INTERNAL=1
 //What is the target build tool cmake is generating for.
 CMAKE_BUILD_TOOL:INTERNAL=/usr/bin/make
-//MODIFIED property for variable: CMAKE_BUILD_TYPE
-CMAKE_BUILD_TYPE-MODIFIED:INTERNAL=ON
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=/home/cg/dev/master-thesis/dev/src/c-cpp/Shark
 //Major version of cmake used to create the current loaded cache
@@ -306,7 +304,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=1
+CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=2
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -363,6 +361,4 @@ OpenMP_CXX_FLAGS-ADVANCED:INTERNAL=1
 OpenMP_C_FLAGS-ADVANCED:INTERNAL=1
 //Test OpenMP_FLAG_DETECTED
 OpenMP_FLAG_DETECTED:INTERNAL=1
-//MODIFIED property for variable: SHARK_OPT_COMPILE_EXAMPLES
-SHARK_OPT_COMPILE_EXAMPLES-MODIFIED:INTERNAL=ON
 

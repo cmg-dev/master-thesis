@@ -1,1 +1,1 @@
-/usr/bin/c++   -O3 -DNDEBUG    CMakeFiles/countingOnes.dir/EALib/countingOnes.cpp.o  -o countingOnes -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 
+/usr/bin/c++       CMakeFiles/countingOnes.dir/EALib/countingOnes.cpp.o  -o countingOnes -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 
