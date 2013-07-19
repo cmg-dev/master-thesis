@@ -19,7 +19,7 @@ set(test_LIBS
 	PRPSEvolutionSystem
 	Solve
 	Normalizer
-# 	shark
+	shark
 	shark3.0b
 	pthread
 	boost_system
@@ -32,8 +32,8 @@ set(test_LIBS
 add_executable( AntConfApp ${test_SRCS})
 
 
+
 target_link_libraries (AntConfApp ${test_LIBS})
 
 
-
-
+# 	-lpthread -lboost_system -lboost_filesystem -lboost_program_options -lboost_signals -lboost_serialization
