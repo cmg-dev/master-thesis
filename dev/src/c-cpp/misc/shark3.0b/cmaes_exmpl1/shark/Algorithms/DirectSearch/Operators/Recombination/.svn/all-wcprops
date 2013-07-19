@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/p/shark-project/code/!svn/ver/2668/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Recombination
+END
+OnePointCrossover.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Recombination/OnePointCrossover.h
+END
+SimulatedBinaryCrossover.h
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/p/shark-project/code/!svn/ver/2668/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Recombination/SimulatedBinaryCrossover.h
+END
+GlobalIntermediateRecombination.h
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Recombination/GlobalIntermediateRecombination.h
+END
+UniformCrossover.h
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/DirectSearch/Operators/Recombination/UniformCrossover.h
+END

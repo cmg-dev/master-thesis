@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2761/trunk/Shark/include/shark/LinAlg/BLAS/Impl
+END
+BlockMatrixVectorOperation.inl
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/BlockMatrixVectorOperation.inl
+END
+fast_prod_vector.inl
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/fast_prod_vector.inl
+END
+fast_prod_matrix.inl
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2721/trunk/Shark/include/shark/LinAlg/BLAS/Impl/fast_prod_matrix.inl
+END
+Initialize.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/LinAlg/BLAS/Impl/Initialize.h
+END
+sumMatrix.inl
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/sumMatrix.inl
+END
+repmat.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2761/trunk/Shark/include/shark/LinAlg/BLAS/Impl/repmat.h
+END
+symmRankKUpdate.inl
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/symmRankKUpdate.inl
+END

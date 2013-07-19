@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Unsupervised/RBM/StateSpaces
+END
+RealSpace.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Unsupervised/RBM/StateSpaces/RealSpace.h
+END
+TwoStateSpace.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Unsupervised/RBM/StateSpaces/TwoStateSpace.h
+END

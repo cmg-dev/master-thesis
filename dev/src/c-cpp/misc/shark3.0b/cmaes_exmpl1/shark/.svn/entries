@@ -1,0 +1,98 @@
+10
+
+dir
+2783
+https://svn.code.sf.net/p/shark-project/code/trunk/Shark/include/shark
+https://svn.code.sf.net/p/shark-project/code
+
+
+
+2013-07-15T13:00:35.720769Z
+2783
+leninga
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+f06a09e3-3943-0410-8714-a4bb87ba143f
+
+Algorithms
+dir
+
+Data
+dir
+
+Network
+dir
+
+Statistics
+dir
+
+Unsupervised
+dir
+
+SharkDefs.h
+file
+
+
+
+
+2013-07-17T12:44:40.366920Z
+50ce5639045c7df5cafa9323b0ad62b4
+2013-04-03T15:19:32.120511Z
+2707
+christian_igel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1875
+
+TestHelpers
+dir
+
+Models
+dir
+
+ObjectiveFunctions
+dir
+
+LinAlg
+dir
+
+Rng
+dir
+
+Fuzzy
+dir
+
+Core
+dir
+

@@ -1,1 +1,1 @@
-/usr/bin/c++   -O3 -DNDEBUG    CMakeFiles/rank_test.dir/LinAlg/rank_test.cpp.o  -o rank_test -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 
+/usr/bin/c++       CMakeFiles/rank_test.dir/LinAlg/rank_test.cpp.o  -o rank_test -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 

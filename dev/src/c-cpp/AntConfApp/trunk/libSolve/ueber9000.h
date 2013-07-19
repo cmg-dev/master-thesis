@@ -1,4 +1,3 @@
-
 #ifndef _UEBER_9000_H_
 	#define _UEBER_9000_H_
 
@@ -25,8 +24,15 @@ namespace PRPSEvolution {
 		{
 			/** @todo document */
 			double (Ueber9000<double>::*evaluate)( const ChromosomeT< double >& );
+			
 			/** @todo document */
-			double (Ueber9000<double>::*evaluateMKIII)( const ChromosomeT< double >&, const ChromosomeT< int >& );
+			double (Ueber9000<double>::*evaluateMkI)( const ChromosomeT< double >& );
+			
+			/** @todo document */
+			double (Ueber9000<double>::*evaluateMkII)( const ChromosomeT< double >&, const ChromosomeT< double >& );
+			
+			/** @todo document */
+			double (Ueber9000<double>::*evaluateMkIII)( const ChromosomeT< double >&, const ChromosomeT< int >& );
 
 			
 			/** The Dimension of the Problem */
@@ -49,7 +55,7 @@ namespace PRPSEvolution {
 			Ueber9000( ) : evaluate( &Ueber9000<double>::fitnessSphere ),
 								Dimension( ProblemDimensions::Sphere ) { };
 
-			Ueber9000( int i ) : evaluate( &Ueber9000<double>::fitnessSphere ),
+			Ueber9000( int i ) : evaluateMkII( &Ueber9000<double>::fitnessSphereMkII ),
 								Dimension( ProblemDimensions::Sphere ) { };
 
 			/**
@@ -125,8 +131,8 @@ namespace PRPSEvolution {
 					evaluate = &Ueber9000<double>::WholeTomatoMkII;
 				
 				} else if( select == 1 ) {
-// 					std::cout << "Evaluating MKIII" << std::endl;
-					evaluateMKIII = &Ueber9000<double>::WholeTomatoMkII;
+// 					std::cout << "Evaluating MkIII" << std::endl;
+					evaluateMkIII = &Ueber9000<double>::WholeTomatoMkII;
 					
 				}
 
@@ -241,6 +247,62 @@ namespace PRPSEvolution {
 
 			}
 
+			/**
+			 * @todo document
+			 * @param[in] x The vector x containing the
+			 *
+			 */
+			double
+			WholeTomatoMkII( const ChromosomeT< double > &x1, const ChromosomeT< double > &x2 )
+			{
+				/* the result */
+				std::vector<double> res;
+
+				ChromosomeCMA x_( 7 );
+
+				x_[0] = x1[0];
+				x_[1] = x1[1];
+				x_[2] = x1[2];
+
+				for( int i = 0; i < A.size(); i++ ) {
+					auto idx = idxs[i];
+					/* get the indeces for the solution */
+					int j,k;
+					j = k = 0;
+					/* recompile chromosome x */
+					x_[ 3 ] = x2[idx[0]];
+					x_[ 4 ] = x2[idx[1]];
+					x_[ 5 ] = x2[idx[2]];
+					x_[ 6 ] = x2[idx[3]];
+
+// 					for( auto & c : x_ ) {
+// 						std::cout << c << " ";
+//
+// 					}
+// 					std::cout << "" << std::endl;
+
+					res.push_back( WholeTomatoMkII( A[i], x_, b[i] ) );
+
+				}
+
+// 				wMutex.lock();
+// 				std::ofstream f;
+// 				f.open( "output/whole_fitness.dat", ios::app );
+// 				for( auto r: res )
+// 					f << r << " ";
+// 				f<< std::endl;
+//
+// 				f.close();
+// 				wMutex.unlock();
+
+				std::sort( res.begin(), res.end() );
+// 				return res[res.size()-1];
+				return meanFromVector( res );
+//  				return res[0];
+//  				return res[7];
+
+			}
+			
 			/**
 			 * @todo document
 			 * @param[in] x The vector x containing the
@@ -384,7 +446,7 @@ namespace PRPSEvolution {
 			}
 			
 			/**
-			 * @todo documentation
+			 * This function contains the implementation of the whole model.
 			 * This approach will solve calculate the 10x3 matrix described
 			 * in the Master-Thesis of C.Gnip
 			 * Basically solves the linear equation @f[r=\mathbf{Ax}-\mathbf{b}@f]
@@ -416,7 +478,7 @@ namespace PRPSEvolution {
 					for( int j = 0; j < A.ncols(); j++ )
 						prod_Ax[i] += A[i][j]*x_[j];
 
-				/* sum up */
+				/* sum up error sqaures */
 				res =	(prod_Ax[0] - b[0]) * (prod_Ax[0] - b[0]);
 				res +=	(prod_Ax[1] - b[1]) * (prod_Ax[1] - b[1]);
 				res +=	(prod_Ax[2] - b[2]) * (prod_Ax[2] - b[2]);
@@ -433,7 +495,7 @@ namespace PRPSEvolution {
 			 * Here we want to optimize the wavenumbers
 			 *
 			 */
-			double WavenumberVariation( const ChromosomeT< double > &n )
+			double SuWi_WavenumberVariation( const ChromosomeT< double > &n )
 			{
 				throw "Not implemented exeption";
 
@@ -443,7 +505,7 @@ namespace PRPSEvolution {
 			 * Approach 3 based on the thoughts of by S. Winter
 			 *
 			 */
-			double PositionVariation( const ChromosomeT< double > &pos )
+			double SuWi_PositionVariation( const ChromosomeT< double > &pos )
 			{
 				throw "Not implemented exeption";
 
@@ -461,6 +523,22 @@ namespace PRPSEvolution {
 
 			}
 
+			/**
+			 * This ist the fitness function used in the EA algorithm.
+			 * This implementation uses two input vectors of the same datatype
+			 * for test purpose of multi chromosome optimization
+			 * 
+			 */
+			double fitnessSphereMkII( const ChromosomeT<double> &c1, const ChromosomeT<double> &c2 )
+			{
+				double sum = Shark::sqr(c1[0]);
+				for(unsigned i=1; i<c1.size(); i++) sum += Shark::sqr(c1[i]);
+				for(unsigned i=0; i<c2.size(); i++) sum += Shark::sqr(c2[i]);
+				
+				return sum;
+
+			}
+			
 			/**
 			 * The Rosenbrock implementation
 			 *

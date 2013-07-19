@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/p/shark-project/code/!svn/ver/2775/trunk/Shark/include/shark/Data
+END
+BatchInterface.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/Data/BatchInterface.h
+END
+DataView.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/p/shark-project/code/!svn/ver/2606/trunk/Shark/include/shark/Data/DataView.h
+END
+MKLBatchInterface.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Data/MKLBatchInterface.h
+END
+DataDistribution.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/p/shark-project/code/!svn/ver/2659/trunk/Shark/include/shark/Data/DataDistribution.h
+END
+json_spirit_writer_options.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Data/json_spirit_writer_options.h
+END
+PrecomputedMatrix.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2616/trunk/Shark/include/shark/Data/PrecomputedMatrix.h
+END
+json_spirit_reader_template.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Data/json_spirit_reader_template.h
+END
+BatchInterfaceAdaptStruct.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2645/trunk/Shark/include/shark/Data/BatchInterfaceAdaptStruct.h
+END
+Pgm.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/p/shark-project/code/!svn/ver/2693/trunk/Shark/include/shark/Data/Pgm.h
+END
+json_spirit_utils.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Data/json_spirit_utils.h
+END
+Dataset.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/p/shark-project/code/!svn/ver/2775/trunk/Shark/include/shark/Data/Dataset.h
+END
+HDF5.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/p/shark-project/code/!svn/ver/2662/trunk/Shark/include/shark/Data/HDF5.h
+END
+json_spirit_writer_template.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2739/trunk/Shark/include/shark/Data/json_spirit_writer_template.h
+END
+Csv.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/p/shark-project/code/!svn/ver/2634/trunk/Shark/include/shark/Data/Csv.h
+END
+Libsvm.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2694/trunk/Shark/include/shark/Data/Libsvm.h
+END
+CVDatasetTools.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/p/shark-project/code/!svn/ver/2762/trunk/Shark/include/shark/Data/CVDatasetTools.h
+END
+json_spirit_value.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Data/json_spirit_value.h
+END
+json_spirit_stream_reader.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Data/json_spirit_stream_reader.h
+END
+json_spirit_error_position.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Data/json_spirit_error_position.h
+END

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/p/shark-project/code/!svn/ver/2742/trunk/Shark/include/shark/LinAlg/BLAS/traits
+END
+vector_raw.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/traits/vector_raw.hpp
+END
+vectorContainerMeta.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/LinAlg/BLAS/traits/vectorContainerMeta.h
+END
+matrix_raw.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/traits/matrix_raw.hpp
+END
+sparse.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/traits/sparse.hpp
+END
+matrixContainerMeta.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/LinAlg/BLAS/traits/matrixContainerMeta.h
+END
+metafunctions.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2742/trunk/Shark/include/shark/LinAlg/BLAS/traits/metafunctions.h
+END

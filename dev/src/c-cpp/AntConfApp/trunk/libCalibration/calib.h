@@ -6,16 +6,16 @@
  *
  */
 #ifndef _CALIB_H_
-#define _CALIB_H_
+	#define _CALIB_H_
 
-#include "nr3/nr3.h"
-#include "nr3/svd.h"
+#include <nr3/nr3.h>
+#include <nr3/svd.h>
 
 #include "../include/coords.h"
-#include "../include/PRPSEvolution.h"
+// #include "../include/PRPSEvolution.h"
 #include "../include/PRPSEvolutionCalibrationExceptions.h"
-#include "../include/PRPSError.h"
-#include "../libPRPSSystem/prpsevolutionsystem.h"
+// #include "../include/PRPSError.h"
+// #include "../libPRPSSystem/prpsevolutionsystem.h"
 
 namespace PRPSEvolution {
 	namespace Calibration {

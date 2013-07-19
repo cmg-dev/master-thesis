@@ -16,20 +16,39 @@
 #include <chrono>
 #include <future>
 #include <thread>
+#include <vector>
+
+#define _USE_SHARK_3_0_
+
+#ifdef _USE_SHARK_3_0_
+	#include "../libSolve/processMkII.h"
+
+#endif
+
+#include "../include/PRPSEvolution.h"
+#include "../include/PRPSError.h"
+#include "../include/PRPSEvolutionGeneralExceptions.h"
 
 #include "AntennaConfiguration.h"
+
 #include "../libPermutate/permutate.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
 #include "../libCalibration/calib.h"
+
 #include "../libSolve/solve.h"
 #include "../libSolve/solveresult.h"
-#include "../libSolve/process.h"
+
+
+
+#ifndef _USE_SHARK_3_0_
+	/* workaround, we need to include the stuff from Shark 3.0b first to avoid compiler crashes*/
+	#include "../libSolve/process.h"
+#endif
+
 #include "../libSolve/preprocessing.h"
 #include "../libSolve/postprocessing.h"
 
-#include "../include/PRPSEvolutionGeneralExceptions.h"
-
-#include <EALib/ChromosomeCMA.h>
+// #include <EALib/ChromosomeCMA.h>
 
 using namespace PRPSEvolution;
 using std::chrono::duration_cast;
@@ -60,14 +79,14 @@ int main ( int argc, char *argv[ ] ) {
 	if( argc > 3 )
 		if(atoi( argv[3] ) > 0)
 			DROPBAD = true;
-	
+
 	/**********************************************************************/
 	PRPSEvolution::System sys;
 
 	/**********************************************************************/
 	Calibration::performCalibration< ANTENNA_AMOUNT, CALIBRATION_POINTS_AVAILABLE, Doub >
 					PC;
-	
+
 	/**********************************************************************/
 	Permutate::permuteAntennas< ANTENNA_AMOUNT, Permutate::MAX_PERMUTATION_AMOUNT, Doub >
 					PA( sys.constants );
@@ -83,13 +102,16 @@ int main ( int argc, char *argv[ ] ) {
 	std::cout << std::endl;
 
 	std::cout << "*PreProcessing.. done" << std::endl;
-	
+
 	/**********************************************************************/
 	std::cout << std::endl;
 	std::cout << "*Processing.. Create Solution(s).." << std::endl;
 
+#ifdef _USE_SHARK_3_0_
+	ProcessMkII::mkII::ProcessMkIItest();
+	
+#else
 	Solve::Process process;
-
 
 	int i = 0;
 
@@ -100,7 +122,7 @@ int main ( int argc, char *argv[ ] ) {
 	steady_clock::time_point t_0 = steady_clock::now();
 	steady_clock::time_point t_1 = steady_clock::now();
 
-	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<int>,Doub>>> resultsA;
+	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<double>,Doub>>> resultsA;
 	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<int>,Doub>>> resultsB;
 // 	std::vector<std::future<Solve::solveresult_t<std::array<ChromosomeT<double>,2>,Doub>>> resultsA;
 // 	std::vector<std::future<Solve::solveresult_t<std::array<ChromosomeT<double>,2>,Doub>>> resultsB;
@@ -140,7 +162,7 @@ int main ( int argc, char *argv[ ] ) {
 // 											b,
 // 											names,
 // 											numOAnts,
-// 											Solve::ESStrategy::MuPlusLambda_MKII,
+// 											Solve::ESStrategy::MuPlusLambda_MkII,
 // 											duration_cast<microseconds>(t_1-t_00).count() ));
 // 			resultsB.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b  ));
 
@@ -165,7 +187,7 @@ int main ( int argc, char *argv[ ] ) {
 		t_0 = steady_clock::now();
 
 		resultsA.push_back( std::async( std::launch::async,
-										&Solve::Process::findSolutionCMA_ES_MKI<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<int>,Doub>>,
+										&Solve::Process::findSolutionCMA_ES_MkII<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<double>,Doub>>,
 										&process ));
 
 		t_1 = steady_clock::now();
@@ -177,7 +199,7 @@ int main ( int argc, char *argv[ ] ) {
 // 										b,
 // 										names,
 // 										numOAnts,
-// 										Solve::ESStrategy::MuCommaLambda_MKII,
+// 										Solve::ESStrategy::MuCommaLambda_MkII,
 // 										duration_cast<microseconds>(t_1-t_00).count() ));
 
 	}
@@ -263,6 +285,8 @@ int main ( int argc, char *argv[ ] ) {
 
 	std::cout << " done" << std::endl;
 
+#endif /* _USE_SHARK_2_3_ */
+	
 	/**********************************************************************/
 
 	return 0;

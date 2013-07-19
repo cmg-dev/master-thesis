@@ -14,7 +14,7 @@ configure_file (
    "${VERSION_TARGET_DIR}/AntennaConfiguration.h"
    )
 
-SET(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS} -DNDEBUG")
+SET(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS} -DNDEBUG -DBOOST_SIGNALS_NO_DEPRECATION_WARNING -I/usr/local/include -I/usr/local/include/Shark2.3")
 
 # the libraries
 add_subdirectory(libPermutate)

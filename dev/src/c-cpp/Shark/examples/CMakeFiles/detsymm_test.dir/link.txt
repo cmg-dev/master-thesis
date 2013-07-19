@@ -1,1 +1,1 @@
-/usr/bin/c++   -O3 -DNDEBUG    CMakeFiles/detsymm_test.dir/LinAlg/detsymm_test.cpp.o  -o detsymm_test -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 
+/usr/bin/c++       CMakeFiles/detsymm_test.dir/LinAlg/detsymm_test.cpp.o  -o detsymm_test -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 

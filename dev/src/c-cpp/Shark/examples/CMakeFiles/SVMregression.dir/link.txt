@@ -1,1 +1,1 @@
-/usr/bin/c++   -O3 -DNDEBUG    CMakeFiles/SVMregression.dir/ReClaM/SVMregression.cpp.o  -o SVMregression -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 
+/usr/bin/c++       CMakeFiles/SVMregression.dir/ReClaM/SVMregression.cpp.o  -o SVMregression -rdynamic ../libshark.so.2.3.0 -lrt -Wl,-rpath,/home/cg/dev/master-thesis/dev/src/c-cpp/Shark: 

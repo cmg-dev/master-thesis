@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/Neuronlayers
+END
+BinaryLayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/Neuronlayers/BinaryLayer.h
+END
+GaussianLayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/Neuronlayers/GaussianLayer.h
+END
+TruncatedExponentialLayer.h
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/Neuronlayers/TruncatedExponentialLayer.h
+END

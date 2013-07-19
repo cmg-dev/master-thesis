@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/p/shark-project/code/!svn/ver/2662/trunk/Shark/include/shark/Data/Impl
+END
+CVDatasetTools.inl
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Data/Impl/CVDatasetTools.inl
+END
+Dataset.inl
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/p/shark-project/code/!svn/ver/2662/trunk/Shark/include/shark/Data/Impl/Dataset.inl
+END
+BoostFusion151DefineStructInl.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Data/Impl/BoostFusion151DefineStructInl.hpp
+END
+BoostFusionCopy.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Data/Impl/BoostFusionCopy.hpp
+END

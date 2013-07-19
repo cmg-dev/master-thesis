@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/GradientApproximations
+END
+SingleChainApproximator.h
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/GradientApproximations/SingleChainApproximator.h
+END
+ContrastiveDivergence.h
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/GradientApproximations/ContrastiveDivergence.h
+END
+ExactGradient.h
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/GradientApproximations/ExactGradient.h
+END
+MultiChainApproximator.h
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/GradientApproximations/MultiChainApproximator.h
+END

@@ -7,31 +7,6 @@
 #ifndef __LIB_SOLVE_H
 	#define __LIB_SOLVE_H
 
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <iterator>
-// #include <iostream>
-// #include <algorithm>
-// #include <array>
-// #include <chrono>
-// #include <iostream>
-// #include <string>
-// #include <random>
-
-// #include "../include/coords.h"
-// #include "../include/PRPSEvolution.h"
-// #include "../include/PRPSEvolutionSolveExceptions.h"
-// #include "../include/PRPSEvolutionFIOExceptions.h"
-// #include "../include/PRPSEvolutionGeneralExceptions.h"
-
-// #include "../include/PRPSError.h"
-// #include "../libPermutate/permutate.h"
-// #include "../libPRPSSystem/prpsevolutionsystem.h"
-// #include "../libNormalizer/normalizer.h"
-/*
-#include "nr3/nr3.h"
-#include "nr3/svd.h"*/
-
 
 namespace PRPSEvolution {
 	namespace Solve {
@@ -57,9 +32,10 @@ namespace PRPSEvolution {
 			OnePlusOne,		/**< @f[[1+1]-ES@f]*/
 			MuPlusLambda,	/**< @f[[\mu+\lambda]-ES@f]*/
 			MuCommaLambda,	/**< @f[[\mu,\lambda]-ES@f]*/
-			MuCommaLambda_MKII,
-			MuPlusLambda_MKII,
-			CMA_ES_MKI
+			MuCommaLambda_MkII,
+			MuPlusLambda_MkII,
+			CMA_ES_MkI,
+			CMA_ES_MkII,
 			
 		};
 
@@ -68,7 +44,6 @@ namespace PRPSEvolution {
 		 * 
 		 */
 		struct ProblemDimensions {
-
 			static const int WholeTomato = 7;
 
 			/**

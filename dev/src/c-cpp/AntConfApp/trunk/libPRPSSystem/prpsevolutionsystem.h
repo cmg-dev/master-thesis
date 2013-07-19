@@ -6,15 +6,15 @@
 #ifndef _PRPS_SYSTEM_H_
 	#define _PRPS_SYSTEM_H_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <iterator>
-#include<fstream>
-#include<sstream>
-#include<string>
-#include <iostream>
-#include <algorithm>
-#include <array>
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <iterator>
+// #include<fstream>
+// #include<sstream>
+// #include<string>
+// #include <iostream>
+// #include <algorithm>
+// #include <array>
 
 namespace PRPSEvolution {
 

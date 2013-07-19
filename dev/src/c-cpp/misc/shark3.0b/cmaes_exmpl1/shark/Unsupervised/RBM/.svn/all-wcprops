@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2783/trunk/Shark/include/shark/Unsupervised/RBM
+END
+GaussianBinaryRBM.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/GaussianBinaryRBM.h
+END
+RBM.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/p/shark-project/code/!svn/ver/2783/trunk/Shark/include/shark/Unsupervised/RBM/RBM.h
+END
+BinaryRBM.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/BinaryRBM.h
+END
+analytics.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/analytics.h
+END
+Energy.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/Energy.h
+END
+Tags.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Unsupervised/RBM/Tags.h
+END
+TruncExpBinaryRBM.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/p/shark-project/code/!svn/ver/2751/trunk/Shark/include/shark/Unsupervised/RBM/TruncExpBinaryRBM.h
+END

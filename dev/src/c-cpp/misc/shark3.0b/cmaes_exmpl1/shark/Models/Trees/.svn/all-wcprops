@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/p/shark-project/code/!svn/ver/2758/trunk/Shark/include/shark/Models/Trees
+END
+RFClassifier.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Trees/RFClassifier.h
+END
+CARTClassifier.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2758/trunk/Shark/include/shark/Models/Trees/CARTClassifier.h
+END
+KDTree.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/p/shark-project/code/!svn/ver/2713/trunk/Shark/include/shark/Models/Trees/KDTree.h
+END
+LCTree.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/p/shark-project/code/!svn/ver/2713/trunk/Shark/include/shark/Models/Trees/LCTree.h
+END
+BinaryTree.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2712/trunk/Shark/include/shark/Models/Trees/BinaryTree.h
+END
+KHCTree.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Models/Trees/KHCTree.h
+END

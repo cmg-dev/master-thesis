@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/p/shark-project/code/!svn/ver/2742/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/default
+END
+gemm.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/default/gemm.h
+END
+trsm.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/default/trsm.h
+END
+ublasTags.h
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/default/ublasTags.h
+END
+syrk.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/p/shark-project/code/!svn/ver/2742/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/default/syrk.h
+END
+gemv.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/default/gemv.h
+END
+trsv.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/LinAlg/BLAS/Impl/numeric_bindings/default/trsv.h
+END

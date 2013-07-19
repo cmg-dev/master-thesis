@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/Impl
+END
+FunctionWrapperBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/Impl/FunctionWrapperBase.h
+END
+SparseFFNetError.inl
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/Impl/SparseFFNetError.inl
+END
+ErrorFunction.inl
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/Impl/ErrorFunction.inl
+END
+NoisyErrorFunction.inl
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/Impl/NoisyErrorFunction.inl
+END

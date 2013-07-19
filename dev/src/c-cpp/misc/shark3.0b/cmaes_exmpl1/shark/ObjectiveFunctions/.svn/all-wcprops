@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/p/shark-project/code/!svn/ver/2780/trunk/Shark/include/shark/ObjectiveFunctions
+END
+CombinedObjectiveFunction.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/CombinedObjectiveFunction.h
+END
+NoisyErrorFunction.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/NoisyErrorFunction.h
+END
+DenoisingAutoencoderError.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/DenoisingAutoencoderError.h
+END
+SpanBoundCSvm.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/SpanBoundCSvm.h
+END
+ROC.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2739/trunk/Shark/include/shark/ObjectiveFunctions/ROC.h
+END
+KernelTargetAlignment.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/KernelTargetAlignment.h
+END
+SparseFFNetError.h
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/p/shark-project/code/!svn/ver/2764/trunk/Shark/include/shark/ObjectiveFunctions/SparseFFNetError.h
+END
+NegativeAUC.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/NegativeAUC.h
+END
+BoxConstraintHandler.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/p/shark-project/code/!svn/ver/2692/trunk/Shark/include/shark/ObjectiveFunctions/BoxConstraintHandler.h
+END
+Regularizer.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/ObjectiveFunctions/Regularizer.h
+END
+SvmLogisticInterpretation.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/SvmLogisticInterpretation.h
+END
+LooErrorCSvm.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2780/trunk/Shark/include/shark/ObjectiveFunctions/LooErrorCSvm.h
+END
+AbstractCost.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/AbstractCost.h
+END
+ErrorFunction.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/ErrorFunction.h
+END
+NegativeGaussianProcessEvidence.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/ObjectiveFunctions/NegativeGaussianProcessEvidence.h
+END
+LooError.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/LooError.h
+END
+AbstractObjectiveFunction.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2755/trunk/Shark/include/shark/ObjectiveFunctions/AbstractObjectiveFunction.h
+END
+AbstractConstraintHandler.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2668/trunk/Shark/include/shark/ObjectiveFunctions/AbstractConstraintHandler.h
+END
+DataObjectiveFunction.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/ObjectiveFunctions/DataObjectiveFunction.h
+END
+RadiusMarginQuotient.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/p/shark-project/code/!svn/ver/2735/trunk/Shark/include/shark/ObjectiveFunctions/RadiusMarginQuotient.h
+END
+CrossValidationError.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/ObjectiveFunctions/CrossValidationError.h
+END

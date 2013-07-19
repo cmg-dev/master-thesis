@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/p/shark-project/code/!svn/ver/2750/trunk/Shark/include/shark/LinAlg/BLAS/ublas
+END
+operation_sparse.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2730/trunk/Shark/include/shark/LinAlg/BLAS/ublas/operation_sparse.hpp
+END
+vector_sparse.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/p/shark-project/code/!svn/ver/2730/trunk/Shark/include/shark/LinAlg/BLAS/ublas/vector_sparse.hpp
+END
+lu.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/ublas/lu.hpp
+END
+fwd.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2750/trunk/Shark/include/shark/LinAlg/BLAS/ublas/fwd.hpp
+END
+matrix_sparse.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/ublas/matrix_sparse.hpp
+END
+vector_expression.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2750/trunk/Shark/include/shark/LinAlg/BLAS/ublas/vector_expression.hpp
+END
+matrix_expression.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2742/trunk/Shark/include/shark/LinAlg/BLAS/ublas/matrix_expression.hpp
+END
+expression_types.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/ublas/expression_types.hpp
+END
+exception.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2730/trunk/Shark/include/shark/LinAlg/BLAS/ublas/exception.hpp
+END
+operation.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/ublas/operation.hpp
+END
+functional.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/ublas/functional.hpp
+END
+vector.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/ublas/vector.hpp
+END
+vector_proxy.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2730/trunk/Shark/include/shark/LinAlg/BLAS/ublas/vector_proxy.hpp
+END
+storage.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2730/trunk/Shark/include/shark/LinAlg/BLAS/ublas/storage.hpp
+END
+matrix.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/LinAlg/BLAS/ublas/matrix.hpp
+END
+matrix_proxy.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2742/trunk/Shark/include/shark/LinAlg/BLAS/ublas/matrix_proxy.hpp
+END
+traits.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/ublas/traits.hpp
+END
+io.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/p/shark-project/code/!svn/ver/2730/trunk/Shark/include/shark/LinAlg/BLAS/ublas/io.hpp
+END
+triangular.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2741/trunk/Shark/include/shark/LinAlg/BLAS/ublas/triangular.hpp
+END

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/StoppingCriteria
+END
+GeneralizationLoss.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/StoppingCriteria/GeneralizationLoss.h
+END
+TrainingProgress.h
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/StoppingCriteria/TrainingProgress.h
+END
+ValidatedStoppingCriterion.h
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/StoppingCriteria/ValidatedStoppingCriterion.h
+END
+GeneralizationQuotient.h
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/StoppingCriteria/GeneralizationQuotient.h
+END
+TrainingError.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/StoppingCriteria/TrainingError.h
+END
+AbstractStoppingCriterion.h
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Algorithms/StoppingCriteria/AbstractStoppingCriterion.h
+END
+MaxIterations.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Algorithms/StoppingCriteria/MaxIterations.h
+END

@@ -1,6 +1,4 @@
-/home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/Classification.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/CrossValidation.dir
-/home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/EA.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/FileUtilClass.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/FileUtilSimple.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/FisherLDA.dir
@@ -18,7 +16,6 @@
 /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/PAES.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/PCAtest.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/RMMEDAtest.dir
-/home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/Regression.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/RngTest.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/RngTest2.dir
 /home/cg/dev/master-thesis/dev/src/c-cpp/Shark/examples/CMakeFiles/RngTestSimple.dir

@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/p/shark-project/code/!svn/ver/2773/trunk/Shark/include/shark/Models
+END
+FFNet.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/FFNet.h
+END
+CMAC.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/CMAC.h
+END
+NBClassifier.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/p/shark-project/code/!svn/ver/2773/trunk/Shark/include/shark/Models/NBClassifier.h
+END
+LinearNorm.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/LinearNorm.h
+END
+Converter.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Converter.h
+END
+KalmanFilter.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/KalmanFilter.h
+END
+ConcatenatedModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/ConcatenatedModel.h
+END
+SigmoidModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/SigmoidModel.h
+END
+LinearClassifier.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/LinearClassifier.h
+END
+RBFNet.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/RBFNet.h
+END
+NearestNeighborRegression.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/NearestNeighborRegression.h
+END
+SoftNearestNeighborClassifier.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/SoftNearestNeighborClassifier.h
+END
+Softmax.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Softmax.h
+END
+Normalizer.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/Models/Normalizer.h
+END
+NearestNeighborClassifier.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2713/trunk/Shark/include/shark/Models/NearestNeighborClassifier.h
+END
+AbstractModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/p/shark-project/code/!svn/ver/2749/trunk/Shark/include/shark/Models/AbstractModel.h
+END
+RNNet.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/RNNet.h
+END
+Neurons.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/Models/Neurons.h
+END
+RecurrentStructure.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/p/shark-project/code/!svn/ver/2584/trunk/Shark/include/shark/Models/RecurrentStructure.h
+END
+LinearModel.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/LinearModel.h
+END
+OnlineRNNet.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/OnlineRNNet.h
+END
+OneVersusOneClassifier.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/OneVersusOneClassifier.h
+END

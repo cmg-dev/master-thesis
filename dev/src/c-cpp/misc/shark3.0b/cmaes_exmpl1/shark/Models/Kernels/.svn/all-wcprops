@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/Models/Kernels
+END
+MultiTaskKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/MultiTaskKernel.h
+END
+ProductKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/ProductKernel.h
+END
+PolynomialKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/PolynomialKernel.h
+END
+MklKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/MklKernel.h
+END
+WeightedSumKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/WeightedSumKernel.h
+END
+CSvmDerivative.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2735/trunk/Shark/include/shark/Models/Kernels/CSvmDerivative.h
+END
+ScaledKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/ScaledKernel.h
+END
+MissingFeaturesKernelExpansion.h
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/p/shark-project/code/!svn/ver/2748/trunk/Shark/include/shark/Models/Kernels/MissingFeaturesKernelExpansion.h
+END
+KernelHelpers.h
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/p/shark-project/code/!svn/ver/2606/trunk/Shark/include/shark/Models/Kernels/KernelHelpers.h
+END
+DiscreteKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/DiscreteKernel.h
+END
+NormalizedKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/NormalizedKernel.h
+END
+KernelExpansion.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/p/shark-project/code/!svn/ver/2710/trunk/Shark/include/shark/Models/Kernels/KernelExpansion.h
+END
+GaussianRbfKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/GaussianRbfKernel.h
+END
+EvalSkipMissingFeatures.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/p/shark-project/code/!svn/ver/2606/trunk/Shark/include/shark/Models/Kernels/EvalSkipMissingFeatures.h
+END
+ArdKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/p/shark-project/code/!svn/ver/2729/trunk/Shark/include/shark/Models/Kernels/ArdKernel.h
+END
+SubrangeKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/SubrangeKernel.h
+END
+AbstractKernelFunction.h
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/AbstractKernelFunction.h
+END
+LinearKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/LinearKernel.h
+END
+MonomialKernel.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/p/shark-project/code/!svn/ver/2703/trunk/Shark/include/shark/Models/Kernels/MonomialKernel.h
+END
