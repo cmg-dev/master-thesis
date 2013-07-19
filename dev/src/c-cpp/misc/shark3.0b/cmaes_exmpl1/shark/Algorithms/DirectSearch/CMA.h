@@ -50,7 +50,6 @@
 #include <shark/Statistics/Distributions/MultiVariateNormalDistribution.h>
 #include <shark/Algorithms/DirectSearch/TypedIndividual.h>
 
-
 namespace shark {
 	namespace cma {
 		/**
