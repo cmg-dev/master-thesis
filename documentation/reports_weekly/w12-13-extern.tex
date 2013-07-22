@@ -1,0 +1,145 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{draftwatermark}
+\usepackage{booktabs}
+\usepackage{blindtext} 
+\usepackage{framed} 
+\usepackage{xcolor} 
+\colorlet{shadecolor}{black} 
+\usepackage{latexsym}
+
+\usepackage{bbm}
+\usepackage{enumitem}
+
+\SetWatermarkText{Vertraulich}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
+
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usepackage{tikz}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+}
+
+\fancyhead[C]{ Wochenbericht KW 28/29 }
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ EXTERN }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+\input{../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+
+\setlength{\headheight}{36pt}
+
+\begin{titlepage}
+
+\input{extern/title/title_w12-13.tex}
+
+\end{titlepage}
+
+%- Section 1 ----------------------------------------------------------------
+\section[Allgemeines]{Allgemeines}
+%
+Dieser Wochenbericht fasst die Projektwochen 12 und 13 zusammen. Die Ergebnisse dieses Zeitraums können so besser dargestellt werden.
+%
+%- Section 2 ----------------------------------------------------------------
+\section[Fortschritt]{Projektfortschritt}
+%
+Diese Woche wurde eine Tiefpassfilterung für den FPGA-entworfen und mittels Matlab/ Simulink getestet. Die Entwicklung an der Software wurde weitergeführt. So kann nun eine diskret-/kontinuierliche Optimierung durchgeführt werden. Die Software wurde auf Shark 3.0b umgestellt.
+
+
+%- Section 2.1 --------------------------------------------------------------
+\subsection{Programmierung}
+%
+Das Programm wurde in mehrere Libraries aufgeteilt. Zum Einen erhöhen sich Wartbarkeit und Wiederverwendbarkeit und zum Anderen können diese vor-compiliert werden und reduzieren die Compilezeit erheblich. Einen Überblick über die wesentlichsten Merkmale gibt der Anhang~\ref{documentation_libs}.\\
+Die Verwendung von \cpp11 erleichtert eine Menge der Entwicklung. Die anfängliche Einarbeitung in diesen Standard hat sich bereits mehr als ausgezahlt. Im Besonderen sind zur Zeit die Möglichkeiten für Thread-Programmierung und Verwaltung großer Datenmengen zu nennen. Diese sind anderen aktuellen Programmiersprachen, wie Java oder C$\sharp$, überlegen und beschleunigen die Entwicklung.
+%
+%- Section 2.2 --------------------------------------------------------------
+\subsection{Umstellung auf Shark 3.0b}
+%
+Die Motivation für die Umstellung auf Shark 3.0b ist ein erheblich einfacheres Interface für die Definition verwendeter Zielfunktionen. Das Beispielprogramm\footnote{\url{http://image.diku.dk/shark/sphinx_pages/build/html/rest_sources/tutorials/algorithms/cma.html}} für den CMA-ES Algorithmus zeigt den erheblich reduzierten Aufwand für die Implementation der Fitnessfunktion.
+
+%
+%- Section 2.3 --------------------------------------------------------------
+\subsection{Neue Modelle von Susanne Winter}
+%
+Mit der Implementation wurde begonnen, es wurden jedoch noch keine Ergebnisse generiert und ausgewertet. Diese liegen innerhalb der nächsten zwei Wochen vor.
+%
+%- Section 2.4 --------------------------------------------------------------
+\subsection{Auslegung der FIR-Filter}
+%
+In Absprache mit M.Hüther wurden in dieser Woche zwei Entwürfe für FIR-Filter gemacht. Diese werden im FPGA implementiert und realisieren eine Tiefpassfilterung der Daten. Der Entwurf wurde mittels Matlab erstellt, das verwendete Simulink Modell und sie Ergebnisse sind in Anhang~\ref{FirFilterResult} gezeigt.
+
+%
+%- Section 3 -----------------------------------------------------------------
+\section{Probleme}
+\label{Problems}
+%
+Es kam bei der Umstellung auf die neue Shark Version 3.0 (beta) zu erheblichen Problemen. Die Bibliothek ließ sich zunächst nicht compilieren und der Vorgang brach mit mehreren hundert Fehlermeldungen ab. Die Fehler gingen von einer veralteten Version der boost Library zum Einen und der Verwendung der Verwendeten Compiler-Version (gcc 4.8) zum Anderen aus. Eine Deinstallation der veralteten Boost-Library und anschließender Rekompilierung der neuesten Version (boost 1.54) mit dem gcc 4.8 hat das Problem behoben.
+%
+%- Appendix ------------------------------------------------------------------
+\input{extern/append/appendix_w12-13.tex}
+
+\newpage
+%- Bibliography --------------------------------------------------------------
+\bibliographystyle{ieeetr}
+\bibliography{../bib/mathesis_collection1}
+
+\end{document}
