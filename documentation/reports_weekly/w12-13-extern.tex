@@ -102,37 +102,28 @@ Dieser Wochenbericht fasst die Projektwochen 12 und 13 zusammen. Die Ergebnisse 
 %- Section 2 ----------------------------------------------------------------
 \section[Fortschritt]{Projektfortschritt}
 %
-Diese Woche wurde eine Tiefpassfilterung für den FPGA-entworfen und mittels Matlab/ Simulink getestet. Die Entwicklung an der Software wurde weitergeführt. So kann nun eine diskret-/kontinuierliche Optimierung durchgeführt werden. Die Software wurde auf Shark 3.0b umgestellt.
-
-
+Diese Woche wurde eine Tiefpassfilterung für den FPGA-entworfen und mittels Matlab/ Simulink getestet. Die Entwicklung an der Software wurde weitergeführt. So kann nun eine diskret~-~kontinuierliche Optimierung durchgeführt werden. Die Software wurde auf Shark 3.0b umgestellt.
+%
 %- Section 2.1 --------------------------------------------------------------
 \subsection{Programmierung}
 %
-Das Programm wurde in mehrere Libraries aufgeteilt. Zum Einen erhöhen sich Wartbarkeit und Wiederverwendbarkeit und zum Anderen können diese vor-compiliert werden und reduzieren die Compilezeit erheblich. Einen Überblick über die wesentlichsten Merkmale gibt der Anhang~\ref{documentation_libs}.\\
-Die Verwendung von \cpp11 erleichtert eine Menge der Entwicklung. Die anfängliche Einarbeitung in diesen Standard hat sich bereits mehr als ausgezahlt. Im Besonderen sind zur Zeit die Möglichkeiten für Thread-Programmierung und Verwaltung großer Datenmengen zu nennen. Diese sind anderen aktuellen Programmiersprachen, wie Java oder C$\sharp$, überlegen und beschleunigen die Entwicklung.
+Es wurden mehrere Modellvariationen erstellt, die in der Optimierung eingesetzt werden. Es wurden Versuche mit unterschiedlichen Variablenvektoren angestellt, die dafür erstellten Modellvarianten können kontinuierliche sowie diskrete Variablen verarbeiten.
 %
 %- Section 2.2 --------------------------------------------------------------
 \subsection{Umstellung auf Shark 3.0b}
 %
-Die Motivation für die Umstellung auf Shark 3.0b ist ein erheblich einfacheres Interface für die Definition verwendeter Zielfunktionen. Das Beispielprogramm\footnote{\url{http://image.diku.dk/shark/sphinx_pages/build/html/rest_sources/tutorials/algorithms/cma.html}} für den CMA-ES Algorithmus zeigt den erheblich reduzierten Aufwand für die Implementation der Fitnessfunktion.
-
+Die Motivation für die Umstellung auf Shark 3.0b ist ein erheblich einfacheres Interface für die Definition verwendeter Zielfunktionen. Das Beispielprogramm\footnote{\url{http://image.diku.dk/shark/sphinx_pages/build/html/rest_sources/tutorials/algorithms/cma.html}} für den CMA-ES Algorithmus zeigt den erheblich reduzierten Aufwand für die Implementation der Fitnessfunktion. Der reduzierte Aufwand führt im Weiteren zu einer vergrößerten Wart-~und~Wiederverwendbarkeit der implementierten Funktion.
 %
 %- Section 2.3 --------------------------------------------------------------
-\subsection{Neue Modelle von Susanne Winter}
-%
-Mit der Implementation wurde begonnen, es wurden jedoch noch keine Ergebnisse generiert und ausgewertet. Diese liegen innerhalb der nächsten zwei Wochen vor.
-%
-%- Section 2.4 --------------------------------------------------------------
 \subsection{Auslegung der FIR-Filter}
 %
-In Absprache mit M.Hüther wurden in dieser Woche zwei Entwürfe für FIR-Filter gemacht. Diese werden im FPGA implementiert und realisieren eine Tiefpassfilterung der Daten. Der Entwurf wurde mittels Matlab erstellt, das verwendete Simulink Modell und sie Ergebnisse sind in Anhang~\ref{FirFilterResult} gezeigt.
-
+In Absprache mit M.~Hüther wurden in dieser Woche zwei Entwürfe für FIR-Filter gemacht. Diese werden im FPGA implementiert und realisieren eine Tiefpassfilterung der Daten. Der Entwurf wurde mittels Matlab erstellt, das verwendete Simulink Modell und sie Ergebnisse sind in Anhang~\ref{FirFilterResult} gezeigt. Die Implementation wurde nach einer ersten Abschätzung des Aufwands nach hinten verschoben. Es fehlen für die Synthese notwendige (mathematische) Libraries von Altera, die in der eingesetzten Version von Quartus nicht enthalten sind. Es gibt analog dazu verwendbare, freie Lösungen jedoch ist der Implementationsaufwand größer. Für die von M.~Hüther gefundene Lösung benötigt Ganzzahlige Koeffizienten, die bisher mit Matlab ermittelten müssen entsprechend transformiert werden.
 %
 %- Section 3 -----------------------------------------------------------------
 \section{Probleme}
 \label{Problems}
 %
-Es kam bei der Umstellung auf die neue Shark Version 3.0 (beta) zu erheblichen Problemen. Die Bibliothek ließ sich zunächst nicht compilieren und der Vorgang brach mit mehreren hundert Fehlermeldungen ab. Die Fehler gingen von einer veralteten Version der boost Library zum Einen und der Verwendung der Verwendeten Compiler-Version (gcc 4.8) zum Anderen aus. Eine Deinstallation der veralteten Boost-Library und anschließender Rekompilierung der neuesten Version (boost 1.54) mit dem gcc 4.8 hat das Problem behoben.
+Es kam bei der Umstellung auf die neue Shark Version 3.0 (beta) zu erheblichen Problemen. Die Bibliothek ließ sich zunächst nicht compilieren und der Vorgang brach mit mehreren hundert Fehlermeldungen ab. Die Fehler gingen von einer veralteten Version der Boost-Library zum Einen und der Verwendung der Verwendeten Compiler-Version (gcc 4.8) zum Anderen aus. Eine Deinstallation der veralteten Boost-Library und anschließender Rekompilierung der neuesten Version (Boost 1.54) mit dem gcc 4.8 hat das Problem behoben.
 %
 %- Appendix ------------------------------------------------------------------
 \input{extern/append/appendix_w12-13.tex}
