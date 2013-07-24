@@ -1,11 +1,24 @@
-set terminal pngcairo enhanced font "arial,10" size 500, 350 
-set output 'img/objectVar.0.png'
+if( i == 0 ) 
+	set terminal pngcairo enhanced font "arial,10" size 500, 350 
 
-set key outside right top vertical Right noreverse enhanced nobox 
+set key outside center bottom horizontal Right noreverse enhanced nobox 
 
 set grid
 
-plot "data0.dat" u 1:4 w lines title "0", \
+inputfile = "data".i.".dat"
+outFitness = "img/fitness".i.".png"
+outObject = "img/objectVar".i.".png"
+outSigma = "img/sigma".i.".png"
+
+#print filename." ".plotfile
+
+set output outObject
+
+unset logscale y
+ 
+set yrange [-10:10]
+
+plot inputfile u 1:4 w lines title "0", \
 		"" u 1:5 w lines title "1", \
 		"" u 1:6 w lines title "2", \
 		"" u 1:7 w lines title "3", \
@@ -15,7 +28,17 @@ plot "data0.dat" u 1:4 w lines title "0", \
 		"" u 1:11 w lines title "7", \
 		"" u 1:12 w lines title "8"
 
-set output 'img/sigma.0.png'
+set output outFitness
 
-plot "data0.dat" u 1:2 w lines title "$\sigma$"
+set autoscale
+set logscale y
 
+plot inputfile u 1:2 w lines title "fitness"
+
+set output outSigma
+
+plot inputfile u 1:13 w lines title "$\sigma$"
+
+i=i+1
+
+if (i < n) reread
