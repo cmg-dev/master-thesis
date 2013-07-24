@@ -48,6 +48,8 @@ namespace PRPSEvolution {
 			std::vector<std::string> names;
 
 			std::vector<std::vector<int>> idxs;
+
+			int evaluations = 0;
 			
 			/**
 			 * Default constructor
@@ -371,10 +373,6 @@ namespace PRPSEvolution {
 				wMutex.unlock();
 				
 				return res[0];
-// 				return ret;
-//  				return res[0];
-//  				return res[7];
-
 			}
 			
 			/**
@@ -393,6 +391,8 @@ namespace PRPSEvolution {
 				double prod_Ax[3] = {0.,0.,0.};
 				double x_[10];
 
+				evaluations++;
+				
 				x_[0]=x[0];
 				x_[1]=x[1];
 				x_[2]=x[2];
@@ -430,6 +430,8 @@ namespace PRPSEvolution {
 			{
 				double res;
 				double prod_Ax[3] = {0.,0.,0.};
+
+				evaluations++;
 				
 				/* multiply the matrix with the vector */
 				for( int i = 0; i < A.nrows(); i++ )
@@ -462,6 +464,8 @@ namespace PRPSEvolution {
 				double prod_Ax[3] = {0.,0.,0.};
 				double x_[10];
 
+				evaluations++;
+				
 				x_[0]=x[0];
 				x_[1]=x[1];
 				x_[2]=x[2];
@@ -497,6 +501,7 @@ namespace PRPSEvolution {
 			 */
 			double SuWi_WavenumberVariation( const ChromosomeT< double > &n )
 			{
+				evaluations++;
 				throw "Not implemented exeption";
 
 			}
@@ -507,6 +512,7 @@ namespace PRPSEvolution {
 			 */
 			double SuWi_PositionVariation( const ChromosomeT< double > &pos )
 			{
+				evaluations++;
 				throw "Not implemented exeption";
 
 			}
@@ -517,6 +523,7 @@ namespace PRPSEvolution {
 			 */
 			double fitnessSphere( const ChromosomeT<double> &c )
 			{
+				evaluations++;
 				double sum = Shark::sqr(c[0]);
 				for(unsigned i=1; i<c.size(); i++) sum += Shark::sqr(c[i]);
 				return sum;
@@ -531,6 +538,7 @@ namespace PRPSEvolution {
 			 */
 			double fitnessSphereMkII( const ChromosomeT<double> &c1, const ChromosomeT<double> &c2 )
 			{
+				evaluations++;
 				double sum = Shark::sqr(c1[0]);
 				for(unsigned i=1; i<c1.size(); i++) sum += Shark::sqr(c1[i]);
 				for(unsigned i=0; i<c2.size(); i++) sum += Shark::sqr(c2[i]);
@@ -546,7 +554,8 @@ namespace PRPSEvolution {
 			double fitnessRosenbrock( const ChromosomeT<double> &c )
 			{
 				double sum = 0.;
-
+				evaluations++;
+				
 				for(unsigned i=0; i<c.size(); i++) {
 					sum += ( 100 * Shark::sqr( c[i+1] - Shark::sqr(c[i]) )
 								+ Shark::sqr(c[i]-1));
@@ -567,6 +576,8 @@ namespace PRPSEvolution {
 				const double B = 0.2;
 				const double C = M_2PI;
 
+				evaluations++;
+				
 				unsigned i, n;
 				double   a, b;
 

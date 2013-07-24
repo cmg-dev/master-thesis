@@ -13,23 +13,23 @@ namespace PRPSEvolution {
 	namespace Exceptions {
 		namespace Permutation {
 
-			class Init: public std::exception
-			{
-				virtual const char* what() const throw()
-				{
-					return "Expetion during initialization of Permutation class";
-
-				}
-			} InitExeption;
-
-			class Calculation: public std::exception
-			{
-				virtual const char* what() const throw()
-				{
-					return "Something went wrong during calculation";
-
-				}
-			} CalculationExeption;
+// 			class Init: public std::exception
+// 			{
+// 				virtual const char* what() const throw()
+// 				{
+// 					return "Expetion during initialization of Permutation class";
+// 
+// 				}
+// 			} InitExeption;
+// 
+// 			class Calculation: public std::exception
+// 			{
+// 				virtual const char* what() const throw()
+// 				{
+// 					return "Something went wrong during calculation";
+// 
+// 				}
+// 			} CalculationExeption;
 
 		}
 	}

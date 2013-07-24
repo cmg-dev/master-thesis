@@ -13,32 +13,32 @@ namespace PRPSEvolution {
 	namespace Exceptions {
 		namespace FileIO {
 
-			class FileNotFound: public std::exception
-			{
-				virtual const char* what() const throw()
-				{
-					return "File not Found";
-
-				}
-			} FNFExeption;
-
-			class MalformedInput: public std::exception
-			{
-				virtual const char* what() const throw()
-				{
-					return "Input is not formed properly";
-
-				}
-			} MalformedInputExeption;
-
-			class Output: public std::exception
-			{
-				virtual const char* what() const throw()
-				{
-					return "Output Expetion";
-
-				}
-			} OutputExeption;
+// 			class FileNotFound: public std::exception
+// 			{
+// 				virtual const char* what() const throw()
+// 				{
+// 					return "File not Found";
+// 
+// 				}
+// 			} FNFExeption;
+// 
+// 			class MalformedInput: public std::exception
+// 			{
+// 				virtual const char* what() const throw()
+// 				{
+// 					return "Input is not formed properly";
+// 
+// 				}
+// 			} MalformedInputExeption;
+// 
+// 			class Output: public std::exception
+// 			{
+// 				virtual const char* what() const throw()
+// 				{
+// 					return "Output Expetion";
+// 
+// 				}
+// 			} OutputExeption;
 			
 		}
 	}

@@ -269,14 +269,16 @@ namespace PRPSEvolution {
 				}
 				/* a line is read */
 				if( valuesRead != (int) PRPSEvolution::EXPECTED_VALUES_COORD_FILE )
-					throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
+					return -1;
+// 					throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
 
 				linesRead++;
 
 			}
 			/* check the input */
 			if( linesRead != PRPSEvolution::EXPECTED_LINES_COORD_FILE )
-				throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
+				return -1;
+// 				throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
 		/*
 			std::cout << "** I've read the following values: " << std::endl;
 			std::cout << "x" << " | "<< "y" << " | " << "z" << std::endl;
@@ -444,7 +446,8 @@ namespace PRPSEvolution {
 				f.close();
 
 			} else {
-				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
+				return;
+// 				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
 
 			}
 

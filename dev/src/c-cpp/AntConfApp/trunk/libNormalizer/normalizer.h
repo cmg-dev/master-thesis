@@ -136,7 +136,8 @@ namespace PRPSEvolution {
 				f.close();
 
 			} else {
-				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
+// 				return -1;
+// 				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
 
 			}
 			

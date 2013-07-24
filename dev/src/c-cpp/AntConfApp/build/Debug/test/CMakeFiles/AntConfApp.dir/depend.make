@@ -14,8 +14,9 @@ test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-t
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../include/PRPSEvolutionSolveExceptions.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libNormalizer/normalizer.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/ObjectFunctions.h
-test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/Objectivefunctions/WholeTomatoMkI.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/Objectivefunctions/WholeTomatoMkII.h
+test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/Objectivefunctions/WholeTomatoMkI_A.h
+test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/Objectivefunctions/WholeTomatoMkI_B.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/postprocessing.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/preprocessing.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/process.h

@@ -2,7 +2,7 @@
 #ifndef _PROCESS_H_
 	#define _PROCESS_H_
 
-	#ifndef  _USE_SHARK_3_0_
+// 	#ifndef  _USE_SHARK_3_0_
 
 #include <iostream>
 #include <string>
@@ -38,7 +38,6 @@
 #include "solveresult.h"
 #include "solve.h"
 #include "ueber9000.h"
-#include "ObjectFunctions.h"
 
 namespace PRPSEvolution {
 	namespace Solve {
@@ -87,6 +86,21 @@ namespace PRPSEvolution {
 //
 // 			}
 
+			/**
+			 * @todo document
+			 * @return The solution
+			 *
+			 */
+			template<typename T>
+			T
+			findSolutionSphere( Solve::ESStrategy strategy )
+			{
+				Ueber9000<Doub> ueber;
+				return solve<T>( &ueber, strategy, 12345 );
+
+
+			}
+			
 			/**
 			 * @todo document
 			 * @return The solution
@@ -211,6 +225,11 @@ namespace PRPSEvolution {
 			 */
 			void setSeed( unsigned int value ) { Rng::seed(value); }
 
+			int f_count = 0;
+			void incrementFileCounter() { f_count++; }
+
+			void resetFileCounter() { f_count = 0; }
+
 		private:
 
 			double solutionFitness;
@@ -269,6 +288,18 @@ namespace PRPSEvolution {
 				const double   MaxInit        = 7.;
 				const double   GlobalStepInit = 5.;
 
+				T res;
+				
+#ifdef _Write_Result
+				std::ofstream f;
+				std::ostringstream s;
+				s << "output/mkI/OnePlusOne" << "_" << f_count << ".dat";
+				f.open( s.str() );
+				
+				if( !f.is_open() )
+					return res;
+#endif
+					
 				ChromosomeCMA parent(Dimension), offspring(Dimension);
 
 				double fitnessParent, fitnessOffspring;
@@ -294,10 +325,17 @@ namespace PRPSEvolution {
 					}
 					parent.updateGlobalStepsize( success );
 
+#ifdef _Write_Result
+					// Report information on the optimizer state and the current solution to the console.
+					f << ueber9000->evaluations << " "
+						<< fitnessParent << std::endl;
+#endif
+					
 					if( fitnessParent < minSolutionFitness )
 						break;
 
 				}
+				
 // 				solutionFitness = fitnessParent;
 
 // 				if( t >= Iterations )
@@ -309,7 +347,6 @@ namespace PRPSEvolution {
 // 				std::cout << std::endl;
 				steady_clock::time_point t_1 = steady_clock::now();
 
-				T res;
 // 				res.values.push_back( parent );
 				res.fitness = fitnessParent;
 				res.duration = duration_cast<microseconds>(t_1-t_0).count();
@@ -326,18 +363,18 @@ namespace PRPSEvolution {
 			MuCommaLambdaES( Ueber9000<double> *ueber9000, double seed ) {
 				steady_clock::time_point t_0 = steady_clock::now();
 
-				const unsigned Mu           = 20;
-				const unsigned Lambda       = 40;
+				const unsigned Mu           = 5;
+				const unsigned Lambda       = 25;
 				const unsigned Dimension    = ueber9000->Dimension;
 				const unsigned Iterations   = 20000;
 				const unsigned Interval     = 10;
-				const unsigned NSigma       = 3;
+				const unsigned NSigma       = 1;
 
 				const double   GlobalStepInit = 5.;
 
-				const double   MinInit        = -3.;
+				const double   MinInit        = -7.;
 				const double   MaxInit        = 7.;
-				const double   SigmaInit    = 3;
+				const double   SigmaInit    = 6;
 
 				/* activate elitist strategy */
 				const bool     PlusStrategy = false;
@@ -345,6 +382,17 @@ namespace PRPSEvolution {
 
 				unsigned       i, t;
 
+				T res;
+				
+#ifdef _Write_Result
+				std::ofstream f;
+				std::ostringstream s;
+				s << "output/mkI/MuCommaLambda" << "_" << f_count << ".dat";
+				f.open( s.str() );
+
+				if( !f.is_open() )
+					return res;
+#endif
 				// linear congruential generator
 // 				std::mt19937 gen;
 
@@ -409,6 +457,12 @@ namespace PRPSEvolution {
 					// select (mu,lambda) or (mu+lambda)
 					parents.selectMuLambda(offsprings, numElitists);
 
+#ifdef _Write_Result
+					// Report information on the optimizer state and the current solution to the console.
+					f << ueber9000->evaluations << " "
+						<< parents.best().fitnessValue() << std::endl;
+#endif
+						
 					// print out best value found so far
 					if( parents.best().fitnessValue() < minSolutionFitness )
 						break;
@@ -429,7 +483,6 @@ namespace PRPSEvolution {
 				std::cout << std::endl;*/
 				steady_clock::time_point t_1 = steady_clock::now();
 
-				T res;
 // 				res.values.push_back( p[0] );
 				res.fitness = p.fitnessValue();
 				res.iterations = t;
@@ -473,8 +526,15 @@ namespace PRPSEvolution {
 
 				unsigned       i, t;
 
-				// linear congruential generator
-// 				std::mt19937 gen;
+				T res;
+				
+#ifdef _Write_Result
+				std::ofstream f;
+				f.open( "output/mkI/MkIII.dat" );
+
+				if( !f.is_open() )
+					return res;
+#endif
 
 				// initialize the generator
 // 				gen.seed((unsigned int)time(NULL));
@@ -645,9 +705,6 @@ namespace PRPSEvolution {
 				Individual& best = parents.best();
 				
 				steady_clock::time_point t_1 = steady_clock::now();
-
-				/* prepare result */
-				T res;
 				
 				res.valCont		= static_cast< ChromosomeT< double >& >( best[0] );
 				res.valDis		= static_cast< ChromosomeT< double >& >( best[1] );
@@ -685,6 +742,18 @@ namespace PRPSEvolution {
 
 				unsigned       i, t;
 
+				T res;
+#ifdef _Write_Result
+				std::ofstream f;
+				std::ostringstream s;
+				s << "output/mkI/MuPlusLambdaES" << "_" << f_count << ".dat";
+				f.open( s.str() );
+
+				if( !f.is_open() )
+					return res;
+				
+#endif
+					
 				// initialize random number generator
 // 				Rng::seed(seed);
 
@@ -745,6 +814,12 @@ namespace PRPSEvolution {
 					// select (mu,lambda) or (mu+lambda)
 					parents.selectMuLambda(offsprings, numElitists);
 
+#ifdef _Write_Result
+					// Report information on the optimizer state and the current solution to the console.
+					f << ueber9000->evaluations << " "
+						<< parents.best().fitnessValue() << std::endl;
+#endif
+					
 					// print out best value found so far
 					if( parents.best().fitnessValue() < minSolutionFitness )
 						break;
@@ -776,7 +851,6 @@ namespace PRPSEvolution {
 // 					std::cout << t << " mu+lambda Done " << p.fitnessValue() << std::endl;
 
 				/* create result statistic */
-				T res;
 // 				res.values.push_back( p[0] );
 				res.fitness = p.fitnessValue();
 				res.iterations = t;
@@ -801,7 +875,18 @@ namespace PRPSEvolution {
 				const int Dimension = ueber9000->Dimension;
 				unsigned Lambda = cma.suggestLambda(Dimension);
 				unsigned Mu = cma.suggestMu(Lambda);
+
+				T res;
 				
+#ifdef _Write_Result
+				std::ofstream f;
+				std::ostringstream s;
+				s << "output/mkI/CMA_ES" << "_" << f_count << ".dat";
+				f.open( s.str() );
+				
+				if( !f.is_open() )
+					return res;
+#endif
 				// define populations for minimization task
 				Population parents (Mu,
 									ChromosomeT< double >( Dimension ),
@@ -850,11 +935,16 @@ namespace PRPSEvolution {
 					// update strategy parameters
 					cma.updateStrategyParameters(parents);
 
-				
+#ifdef _Write_Result
+					// Report information on the optimizer state and the current solution to the console.
+					f << ueber9000->evaluations << " "
+						<< parents.best().fitnessValue() << std::endl;
+#endif
+					
+					if( parents.best().fitnessValue() < minSolutionFitness ) break;
+					
 				}
 				steady_clock::time_point t_1 = steady_clock::now();
-
-				T res;
 
 				Individual& best = parents.best();
 				
@@ -1149,7 +1239,7 @@ std::cout << "1.3" << std::endl;
 // 				std::cout << std::endl;
 //
 // 			}
-
+				
 		};
 
 		/******************************************************************/
@@ -1159,5 +1249,5 @@ std::cout << "1.3" << std::endl;
 	}
 }
 
-	#endif /* !_USE_SHARK_3_0_ */
+// 	#endif /* !_USE_SHARK_3_0_ */
 #endif /* _PROCESS_H_ */ 

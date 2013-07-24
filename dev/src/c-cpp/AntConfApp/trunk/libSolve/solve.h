@@ -7,7 +7,6 @@
 #ifndef __LIB_SOLVE_H
 	#define __LIB_SOLVE_H
 
-
 namespace PRPSEvolution {
 	namespace Solve {
 		/*******************************************************************/
@@ -35,16 +34,30 @@ namespace PRPSEvolution {
 			MuCommaLambda_MkII,
 			MuPlusLambda_MkII,
 			CMA_ES_MkI,
-			CMA_ES_MkII,
+			CMA_ES_MkII
 			
 		};
 
+		/**
+		 * Models are defined here
+		 * 
+		 */
+		enum Models {
+			WholeTomatoMkI,
+			WholeTomatoMkII,
+			TestSphere
+
+		};
+		
 		/**
 		 * This gathers the problemdimensions of the defined fitness functions
 		 * 
 		 */
 		struct ProblemDimensions {
 			static const int WholeTomato = 7;
+			static const int WholeTomatoMkI = 10;
+			static const int WholeTomatoMkI_A = 10;
+			static const int WholeTomatoMkI_B = 7;
 
 			/**
 			 * The minimal dimension for this problem, depending on the
