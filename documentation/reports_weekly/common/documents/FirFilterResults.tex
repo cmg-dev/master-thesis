@@ -1,10 +1,11 @@
 \begin{figure} [h]
          \centering
-         \caption{ lorem ipsum }
+         \caption{ Ergebnisse des Filterentwurfs }
          \label{fig:1}
          \centering
-         \includegraphics[width=.8\textwidth]{common/img/AmpGefiltert_small.png}
-
+         \includegraphics[width=.8\textwidth]{common/img/AmpGefiltert_small.png}\\
+\vspace{0.5cm}
+Die obere Kurve visualisiert die Rohdaten. Die mittlere Kurve ist das Ergebnis der Tiefpassfilterung für einen der vorgestellten Filter. Die untere Darstellung dient zum Vergleich mit der bisher eingesetzten Filterungsmethode (Median). Es wurden 4096 Messwerte für diese Analyse gesampelt.
 \end{figure}
 %---------------------------------------------------------------------------------------
 \vspace{.5cm}
@@ -24,7 +25,7 @@ Die Grafik zeigt das Spektrum des Messsignals der Amplitude. Im linken Bild ist 
 %---------------------------------------------------------------------------------------
 \begin{figure} [h]
          \centering
-         \caption{ Frequenzgänge der entworfenen Filter. Beide ähneln sich in den Parametern, verfügen jedoch über etwas unterschiedliche Eckfrequenzen. Als Entwurfsmethode wurde die sog. "Least-squares"-Methode verwendet. Diese Methode liefert gute Ergebnisse im Hinblick auf aöglichst kleine Sidelobes und eine geringe Anzahl an Taps. }
+         \caption{ Frequenzgänge der entworfenen Filter. Beide ähneln sich in den Parametern, verfügen jedoch über etwas unterschiedliche Eckfrequenzen. Als Entwurfsmethode wurde die sog. "Least-squares"-Methode verwendet. Diese Methode liefert gute Ergebnisse im Hinblick auf möglichst kleine Sidelobes und eine geringe Anzahl an Koeffizienten. }
          \label{fig:3}
 %         
          \begin{subfigure}[t]{0.5\textwidth}
@@ -40,7 +41,7 @@ Die Grafik zeigt das Spektrum des Messsignals der Amplitude. Im linken Bild ist 
                  \centering
                  \includegraphics[width=\textwidth]{common/img/filter2.png}
                  \vspace{.1cm}
-                 \caption{ Zweites Filter mit den Parametern wpass~=~0.1 und wstop~=~0.2. Der Durchlas bereich ist etwas breit, dafür sind die Sidelobes besser gedämpft }
+                 \caption{ Zweites Filter mit den Parametern wpass~=~0.1 und wstop~=~0.2. Der Durchlas bereich ist etwas breiter, dafür sind die Sidelobes stärker gedämpft }
                  \label{fig:Filter2_B}
          \end{subfigure}
 %
