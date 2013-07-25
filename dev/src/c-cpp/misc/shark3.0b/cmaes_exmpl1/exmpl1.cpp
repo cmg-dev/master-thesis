@@ -3,8 +3,9 @@
 #define BOOST_SIGNALS_NO_DEPRECATION_WARNING
 
 #include <shark/Algorithms/DirectSearch/CMA.h>
-// #include <nr3/nr3.h>
 #include <shark/ObjectiveFunctions/Benchmarks/Benchmarks.h>
+
+#include <nr3/nr3.h>
 
 int main( int argc, char ** argv ) {
 
