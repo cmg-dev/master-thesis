@@ -61,6 +61,7 @@ const int SOLUTION_AMOUNT = 1;
 int		VARIANT_SW;
 int		NO_OF_SOLUTIONS;
 bool	DROPBAD = false;
+std::string		FILENAME ="";
 
 /**
  */
@@ -79,7 +80,10 @@ int main ( int argc, char *argv[ ] ) {
 	if( argc > 3 )
 		if(atoi( argv[3] ) > 0)
 			DROPBAD = true;
+	if( argc > 4 )
+		FILENAME = argv[4];
 
+// 	std::cout << FILENAME << std::endl;
 	/**********************************************************************/
 	PRPSEvolution::System sys;
 
@@ -97,7 +101,7 @@ int main ( int argc, char *argv[ ] ) {
 	std::cout << std::endl;
 	std::cout << "*PreProcessing.." << std::endl;
 
-	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat );
+	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat, 1 );
 
 	std::cout << std::endl;
 
@@ -125,7 +129,7 @@ int main ( int argc, char *argv[ ] ) {
 		std::cout << "Mark II :: Solving for WholeTomato Mark II" << std::endl;
 
 		std::ostringstream s;
-		s << "output/mkII/CMA-ES_wt_mkII_B";
+		s << "output/mkII/" << FILENAME;
 		for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
 
 			process.setOutputFilePathBase( s.str() );
