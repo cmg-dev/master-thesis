@@ -1,83 +1,291 @@
-\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process}{\section{P\-R\-P\-S\-Evolution\-:\-:Solve\-:\-:Process Class Reference}
-\label{class_p_r_p_s_evolution_1_1_solve_1_1_process}\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process}{\section{\-P\-R\-P\-S\-Evolution\-:\-:\-Solve\-:\-:\-Process \-Class \-Reference}
+\label{class_p_r_p_s_evolution_1_1_solve_1_1_process}\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
 }
 
 
-{\ttfamily \#include $<$solve.\-h$>$}
+{\ttfamily \#include $<$process.\-h$>$}
 
-\subsection*{Public Member Functions}
+\subsection*{\-Public \-Member \-Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9b7073851d90e13d0604a39b7b2e87a1}{Process} ()
+\hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9b7073851d90e13d0604a39b7b2e87a1}{\-Process} ()
 \item 
-\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a5474f974eef2e2045a91d00bff5c61a5}{{\bfseries Process} (const \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process}{Process} \&p)}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a5474f974eef2e2045a91d00bff5c61a5}
-
+\hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a5474f974eef2e2045a91d00bff5c61a5}{\-Process} (const \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process}{\-Process} \&p)
 \item 
-\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_abaa98d7246af85e8ccbede1fcdf70006}{double {\bfseries get\-Last\-Solution\-Fitness} ()}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_abaa98d7246af85e8ccbede1fcdf70006}
-
+double \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_abaa98d7246af85e8ccbede1fcdf70006}{get\-Last\-Solution\-Fitness} ()
 \item 
-{\footnotesize template$<$typename T $>$ }\\T \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a76b92308db7ff54ea49cf1ab4c501bf9}{find\-Solution} (const N\-Rmatrix$<$ Doub $>$ \&A\-\_\-selected, const N\-Rvector$<$ Doub $>$ \&b\-\_\-selected, E\-S\-Strategy strategy, int seed)
+{\footnotesize template$<$typename T $>$ }\\\-T \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a15a1cab78ef84a79c1109e26d3219925}{find\-Solution\-Sphere} (\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685}{\-Solve\-::\-E\-S\-Strategy} strategy)
 \item 
-\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_ab18cfd7cdb1054f6a14694881305b090}{int {\bfseries sq} (int i)}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_ab18cfd7cdb1054f6a14694881305b090}
-
+{\footnotesize template$<$typename T $>$ }\\\-T \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9ceac0490f2754b754ad3b9208db396d}{find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\\-T \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a6561dd707c4c8234202138fac1d3f60b}{find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I\-I} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\\-T \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a84516d63684783e520e760c13095cf18}{find\-Solution\-Solve\-Single} (const \-N\-Rmatrix$<$ \-Doub $>$ \&\-A\-\_\-selected, const \-N\-Rvector$<$ \-Doub $>$ \&b\-\_\-selected, const std\-::vector$<$ std\-::string $>$ \&names\-\_\-selected, const int ants, const \hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-E\-S\-Strategy} strategy, const int seed)
+\item 
+{\footnotesize template$<$typename T $>$ }\\\-T \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_aadf153388afd35aaf8bf39c1284bad9b}{find\-Solution} (const std\-::vector$<$ \-N\-Rmatrix$<$ \-Doub $>$$>$ \&\-A\-\_\-selected, const std\-::vector$<$ \-N\-Rvector$<$ \-Doub $>$$>$ \&b\-\_\-selected, const std\-::vector$<$ std\-::string $>$ \&names\-\_\-selected, const int ants, const \hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-E\-S\-Strategy} strategy, const int seed)
+\item 
+int \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_ab18cfd7cdb1054f6a14694881305b090}{sq} (int i)
 \item 
 void \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a60af419059e757412da4de63d6b408fd}{set\-Min\-Solution\-Fitness} (double value)
 \item 
-\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a0e1c054150e4b7c1ebdc407f57101053}{void {\bfseries set\-Seed} (unsigned int value)}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a0e1c054150e4b7c1ebdc407f57101053}
-
+void \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a0e1c054150e4b7c1ebdc407f57101053}{set\-Seed} (unsigned int value)
+\item 
+void \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a21a0e74b02bf7f5a1f18fbdf8eaef6b0}{increment\-File\-Counter} ()
+\item 
+void \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_ae27b232f0fa44867a14f0aa32ab0c790}{reset\-File\-Counter} ()
+\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process_a8827a5fb7aa8209c5c8b6d16bbffb26d}{f\-\_\-count} = 0
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-Find solutions for the possible matrices 
+\subsection{\-Detailed \-Description}
+\-Find solutions for the possible matrices 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9b7073851d90e13d0604a39b7b2e87a1}{\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!Process@{Process}}
-\index{Process@{Process}!PRPSEvolution::Solve::Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
-\subsubsection[{Process}]{\setlength{\rightskip}{0pt plus 5cm}P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::\-Process (
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9b7073851d90e13d0604a39b7b2e87a1}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!\-Process@{\-Process}}
+\index{\-Process@{\-Process}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{\-Process}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::\-Process} (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9b7073851d90e13d0604a39b7b2e87a1}
-a Pointer to the object containing the fitness functions Constructor 
-
-\subsection{Member Function Documentation}
-\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a76b92308db7ff54ea49cf1ab4c501bf9}{\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!find\-Solution@{find\-Solution}}
-\index{find\-Solution@{find\-Solution}!PRPSEvolution::Solve::Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
-\subsubsection[{find\-Solution}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ T P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::find\-Solution (
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9b7073851d90e13d0604a39b7b2e87a1}
+\-Constructor \hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a5474f974eef2e2045a91d00bff5c61a5}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!\-Process@{\-Process}}
+\index{\-Process@{\-Process}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{\-Process}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::\-Process} (
 \begin{DoxyParamCaption}
-\item[{const N\-Rmatrix$<$ Doub $>$ \&}]{A\-\_\-selected, }
-\item[{const N\-Rvector$<$ Doub $>$ \&}]{b\-\_\-selected, }
-\item[{E\-S\-Strategy}]{strategy, }
-\item[{int}]{seed}
+\item[{const {\bf \-Process} \&}]{p}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a76b92308db7ff54ea49cf1ab4c501bf9}
-Set the E\-S-\/\-Strategy 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em Strategy} & The selected strategy Find a Solution for a given pair of matrices \\
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a5474f974eef2e2045a91d00bff5c61a5}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_aadf153388afd35aaf8bf39c1284bad9b}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!find\-Solution@{find\-Solution}}
+\index{find\-Solution@{find\-Solution}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{find\-Solution}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ \-T {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::find\-Solution} (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ \-N\-Rmatrix$<$ \-Doub $>$$>$ \&}]{\-A\-\_\-selected, }
+\item[{const std\-::vector$<$ \-N\-Rvector$<$ \-Doub $>$$>$ \&}]{b\-\_\-selected, }
+\item[{const std\-::vector$<$ std\-::string $>$ \&}]{names\-\_\-selected, }
+\item[{const int}]{ants, }
+\item[{const {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-E\-S\-Strategy}}]{strategy, }
+\item[{const int}]{seed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_aadf153388afd35aaf8bf39c1284bad9b}
+\-Find a \-Solution for a given pair of matrices 
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em \-A\-\_\-selected} & \-The matrix \-A to use in this solution \\
 \hline
-\mbox{\tt in}  & {\em A\-\_\-selected} & The matrix A to use in this solution \\
-\hline
-\mbox{\tt in}  & {\em b\-\_\-selected} & The c\-\_\-k0' vector for this solution \\
+\mbox{\tt in}  & {\em b\-\_\-selected} & \-The c\-\_\-k0' vector for this solution \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The solution 
+\begin{DoxyReturn}{\-Returns}
+\-The solution 
 \end{DoxyReturn}
-\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a60af419059e757412da4de63d6b408fd}{\index{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!set\-Min\-Solution\-Fitness@{set\-Min\-Solution\-Fitness}}
-\index{set\-Min\-Solution\-Fitness@{set\-Min\-Solution\-Fitness}!PRPSEvolution::Solve::Process@{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
-\subsubsection[{set\-Min\-Solution\-Fitness}]{\setlength{\rightskip}{0pt plus 5cm}void P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::set\-Min\-Solution\-Fitness (
+
+
+\-Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_p_r_p_s_evolution_1_1_solve_1_1_process_aadf153388afd35aaf8bf39c1284bad9b_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9ceac0490f2754b754ad3b9208db396d}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I@{find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I}}
+\index{find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I@{find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ \-T {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a9ceac0490f2754b754ad3b9208db396d}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000005}{\-Todo}]document \end{DoxyRefDesc}
+\begin{DoxyReturn}{\-Returns}
+\-The solution 
+\end{DoxyReturn}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a6561dd707c4c8234202138fac1d3f60b}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I\-I@{find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I\-I}}
+\index{find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I\-I@{find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I\-I}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I\-I}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ \-T {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::find\-Solution\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I\-I} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a6561dd707c4c8234202138fac1d3f60b}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000006}{\-Todo}]document \end{DoxyRefDesc}
+\begin{DoxyReturn}{\-Returns}
+\-The solution 
+\end{DoxyReturn}
+
+
+\-Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_p_r_p_s_evolution_1_1_solve_1_1_process_a6561dd707c4c8234202138fac1d3f60b_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a84516d63684783e520e760c13095cf18}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!find\-Solution\-Solve\-Single@{find\-Solution\-Solve\-Single}}
+\index{find\-Solution\-Solve\-Single@{find\-Solution\-Solve\-Single}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{find\-Solution\-Solve\-Single}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ \-T {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::find\-Solution\-Solve\-Single} (
+\begin{DoxyParamCaption}
+\item[{const \-N\-Rmatrix$<$ \-Doub $>$ \&}]{\-A\-\_\-selected, }
+\item[{const \-N\-Rvector$<$ \-Doub $>$ \&}]{b\-\_\-selected, }
+\item[{const std\-::vector$<$ std\-::string $>$ \&}]{names\-\_\-selected, }
+\item[{const int}]{ants, }
+\item[{const {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-E\-S\-Strategy}}]{strategy, }
+\item[{const int}]{seed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a84516d63684783e520e760c13095cf18}
+\-Find a \-Solution for a given pair of matrices 
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em \-A\-\_\-selected} & \-The matrix \-A to use in this solution \\
+\hline
+\mbox{\tt in}  & {\em b\-\_\-selected} & \-The c\-\_\-k0' vector for this solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+\-The solution 
+\end{DoxyReturn}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a15a1cab78ef84a79c1109e26d3219925}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!find\-Solution\-Sphere@{find\-Solution\-Sphere}}
+\index{find\-Solution\-Sphere@{find\-Solution\-Sphere}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{find\-Solution\-Sphere}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ \-T {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::find\-Solution\-Sphere} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Solve\-::\-E\-S\-Strategy}}]{strategy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a15a1cab78ef84a79c1109e26d3219925}
+\-Set the \-E\-S-\/\-Strategy 
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em \-Strategy} & \-The selected strategy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{\-Todo}
+\item[\hyperlink{todo__todo000004}{\-Todo}]document \end{DoxyRefDesc}
+\begin{DoxyReturn}{\-Returns}
+\-The solution 
+\end{DoxyReturn}
+
+
+\-Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_p_r_p_s_evolution_1_1_solve_1_1_process_a15a1cab78ef84a79c1109e26d3219925_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_abaa98d7246af85e8ccbede1fcdf70006}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!get\-Last\-Solution\-Fitness@{get\-Last\-Solution\-Fitness}}
+\index{get\-Last\-Solution\-Fitness@{get\-Last\-Solution\-Fitness}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{get\-Last\-Solution\-Fitness}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::get\-Last\-Solution\-Fitness} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_abaa98d7246af85e8ccbede1fcdf70006}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a21a0e74b02bf7f5a1f18fbdf8eaef6b0}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!increment\-File\-Counter@{increment\-File\-Counter}}
+\index{increment\-File\-Counter@{increment\-File\-Counter}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{increment\-File\-Counter}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::increment\-File\-Counter} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a21a0e74b02bf7f5a1f18fbdf8eaef6b0}
+
+
+\-Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_p_r_p_s_evolution_1_1_solve_1_1_process_a21a0e74b02bf7f5a1f18fbdf8eaef6b0_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_ae27b232f0fa44867a14f0aa32ab0c790}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!reset\-File\-Counter@{reset\-File\-Counter}}
+\index{reset\-File\-Counter@{reset\-File\-Counter}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{reset\-File\-Counter}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::reset\-File\-Counter} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_ae27b232f0fa44867a14f0aa32ab0c790}
+
+
+\-Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_p_r_p_s_evolution_1_1_solve_1_1_process_ae27b232f0fa44867a14f0aa32ab0c790_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a60af419059e757412da4de63d6b408fd}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!set\-Min\-Solution\-Fitness@{set\-Min\-Solution\-Fitness}}
+\index{set\-Min\-Solution\-Fitness@{set\-Min\-Solution\-Fitness}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{set\-Min\-Solution\-Fitness}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::set\-Min\-Solution\-Fitness} (
 \begin{DoxyParamCaption}
 \item[{double}]{value}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a60af419059e757412da4de63d6b408fd}
-Sets the min. solution fitness we want to achieve. 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em value} & The new value for the solution fitness \\
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a60af419059e757412da4de63d6b408fd}
+\-Sets the min. solution fitness we want to achieve. 
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em value} & \-The new value for the solution fitness \\
 \hline
 \end{DoxyParams}
 
 
-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\-Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_p_r_p_s_evolution_1_1_solve_1_1_process_a60af419059e757412da4de63d6b408fd_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a0e1c054150e4b7c1ebdc407f57101053}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!set\-Seed@{set\-Seed}}
+\index{set\-Seed@{set\-Seed}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{set\-Seed}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::set\-Seed} (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a0e1c054150e4b7c1ebdc407f57101053}
+
+
+\-Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_p_r_p_s_evolution_1_1_solve_1_1_process_a0e1c054150e4b7c1ebdc407f57101053_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_ab18cfd7cdb1054f6a14694881305b090}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!sq@{sq}}
+\index{sq@{sq}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{sq}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::sq} (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_ab18cfd7cdb1054f6a14694881305b090}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{class_p_r_p_s_evolution_1_1_solve_1_1_process_a8827a5fb7aa8209c5c8b6d16bbffb26d}{\index{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}!f\-\_\-count@{f\-\_\-count}}
+\index{f\-\_\-count@{f\-\_\-count}!PRPSEvolution::Solve::Process@{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}}
+\subsubsection[{f\-\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-::f\-\_\-count} = 0}}\label{class_p_r_p_s_evolution_1_1_solve_1_1_process_a8827a5fb7aa8209c5c8b6d16bbffb26d}
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-trunk/lib\-Solve/\hyperlink{solve_8h}{solve.\-h}\end{DoxyCompactItemize}
+trunk/lib\-Solve/\hyperlink{process_8h}{process.\-h}\end{DoxyCompactItemize}

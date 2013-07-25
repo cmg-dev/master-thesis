@@ -1,78 +1,67 @@
-\hypertarget{solve_8h}{\section{trunk/lib\-Solve/solve.h File Reference}
+\hypertarget{solve_8h}{\section{trunk/lib\-Solve/solve.h \-File \-Reference}
 \label{solve_8h}\index{trunk/lib\-Solve/solve.\-h@{trunk/lib\-Solve/solve.\-h}}
 }
-{\ttfamily \#include $<$stdio.\-h$>$}\\*
-{\ttfamily \#include $<$stdlib.\-h$>$}\\*
-{\ttfamily \#include $<$iterator$>$}\\*
-{\ttfamily \#include $<$iostream$>$}\\*
-{\ttfamily \#include $<$algorithm$>$}\\*
-{\ttfamily \#include $<$array$>$}\\*
-{\ttfamily \#include $<$chrono$>$}\\*
-{\ttfamily \#include $<$string$>$}\\*
-{\ttfamily \#include $<$random$>$}\\*
-{\ttfamily \#include \char`\"{}../include/coords.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../include/\-P\-R\-P\-S\-Evolution.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../include/\-P\-R\-P\-S\-Evolution\-Solve\-Exceptions.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../include/\-P\-R\-P\-S\-Evolution\-F\-I\-O\-Exceptions.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../include/\-P\-R\-P\-S\-Evolution\-General\-Exceptions.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../include/\-P\-R\-P\-S\-Error.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../lib\-Permutate/permutate.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../lib\-P\-R\-P\-S\-System/prpsevolutionsystem.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../lib\-Normalizer/normalizer.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nr3/nr3.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}nr3/svd.\-h\char`\"{}}\\*
-{\ttfamily \#include $<$E\-A\-Lib/\-Chromosome\-C\-M\-A.\-h$>$}\\*
-{\ttfamily \#include $<$Shark\-Defs.\-h$>$}\\*
-{\ttfamily \#include $<$E\-A\-Lib/\-Population\-T.\-h$>$}\\*
-{\ttfamily \#include $<$E\-A\-Lib/\-Objective\-Function.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}solveresult.\-h\char`\"{}}\\*
-Include dependency graph for solve.\-h\-:
-This graph shows which files directly or indirectly include this file\-:
-\subsection*{Classes}
+\-This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{solve_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{\-Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{struct_p_r_p_s_evolution_1_1_solve_1_1_problem_dimensions}{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Problem\-Dimensions}
-\item 
-struct \hyperlink{struct_p_r_p_s_evolution_1_1_solve_1_1_ueber9000}{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Ueber9000$<$ T $>$}
-\item 
-class \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_pre_processing}{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Pre\-Processing$<$ N\-\_\-\-A\-N\-T\-A, N\-\_\-\-Configs, T, T\-\_\-\-Measure $>$}
-\item 
-class \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process}{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process}
-\item 
-class \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_post_processing}{P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Post\-Processing}
+struct \hyperlink{struct_p_r_p_s_evolution_1_1_solve_1_1_problem_dimensions}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Problem\-Dimensions}
 \end{DoxyCompactItemize}
-\subsection*{Namespaces}
+\subsection*{\-Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{namespace_p_r_p_s_evolution}{P\-R\-P\-S\-Evolution}
+namespace \hyperlink{namespace_p_r_p_s_evolution}{\-P\-R\-P\-S\-Evolution}
+\item 
+namespace \hyperlink{namespace_p_r_p_s_evolution_1_1_solve}{\-P\-R\-P\-S\-Evolution\-::\-Solve}
 \end{DoxyCompactItemize}
-\subsection*{Constant Groups}
+\subsection*{\-Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{namespace_p_r_p_s_evolution}{P\-R\-P\-S\-Evolution}
-\end{DoxyCompactItemize}
-\subsection*{Enumerations}
-\begin{DoxyCompactItemize}
-\item 
-enum {\bfseries Select\-By} \{ {\bfseries Condition\-Number}, 
-{\bfseries Random}, 
-{\bfseries All\-Possible}
+enum \hyperlink{namespace_p_r_p_s_evolution_1_1_solve_afe1dcba5442fb6f972f11b85d0a4daaf}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Select\-By} \{ \*
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_afe1dcba5442fb6f972f11b85d0a4daafaca84277482564ac3ba00d06655eefcb6}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Condition\-Number}, 
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_afe1dcba5442fb6f972f11b85d0a4daafa02634593f96d010000fbf4b2dae6795b}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Random}, 
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_afe1dcba5442fb6f972f11b85d0a4daafa063e477c34d68a7e481b1a65aa156a99}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-All\-Possible}, 
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_afe1dcba5442fb6f972f11b85d0a4daafa3806d0e07669a1b53ac8b8a43a66849d}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Best10\-By\-C\-N}, 
+\*
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_afe1dcba5442fb6f972f11b85d0a4daafa60813b87ee057f32a238bcf1fb18d87c}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-All\-From4\-Ant}
  \}
 \item 
-enum {\bfseries E\-S\-Strategy} \{ {\bfseries P\-R\-P\-S\-Evolution\-::\-Solve\-::\-One\-Plus\-One}, 
-{\bfseries P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Mu\-Plus\-Lambda}, 
-{\bfseries P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Mu\-Comma\-Lambda}
+enum \hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-E\-S\-Strategy} \{ \*
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685a5f97eeb0c04a6a954fe817d2a8c1b99c}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-One\-Plus\-One}, 
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685a68adb57faea83306a6cc6e9edaacbcf6}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Mu\-Plus\-Lambda}, 
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685a6f43ef8be979de4addb0898dcc9671c2}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Mu\-Comma\-Lambda}, 
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685a2fbf2bb1324d56a8ca18c38e62203278}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Mu\-Comma\-Lambda\-\_\-\-Mk\-I\-I}, 
+\*
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685a4fb25a762f795be69c9d727a2fe42ddb}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Mu\-Plus\-Lambda\-\_\-\-Mk\-I\-I}, 
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685a822613ef54efba9d958960e3cd965f33}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I}, 
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_abab6c89dae9caa790d8f2bcb1ef45685a407f9e3b23f91247ac526b59e7b437f3}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-C\-M\-A\-\_\-\-E\-S\-\_\-\-Mk\-I\-I}
+ \}
+\item 
+enum \hyperlink{namespace_p_r_p_s_evolution_1_1_solve_a3a3858a7da00f88bb01e261b95e7df0d}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Models} \{ \hyperlink{namespace_p_r_p_s_evolution_1_1_solve_a3a3858a7da00f88bb01e261b95e7df0da4b9381dae3ab54cfec7aff01c6876ab1}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Whole\-Tomato\-Mk\-I}, 
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_a3a3858a7da00f88bb01e261b95e7df0da0436a097b5aec647951946d34e146901}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Whole\-Tomato\-Mk\-I\-I}, 
+\hyperlink{namespace_p_r_p_s_evolution_1_1_solve_a3a3858a7da00f88bb01e261b95e7df0daf9122c632856dedd5d82b9f3c27c598a}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Test\-Sphere}
  \}
 \end{DoxyCompactItemize}
-\subsection*{Variables}
+\subsection*{\-Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{namespace_p_r_p_s_evolution_1_1_solve_a0a0db6d4ef7ce0baa2b7e184b20873f8}{const int {\bfseries P\-R\-P\-S\-Evolution\-::\-Solve\-::n\-Configs\-For\-Processing} = 1}\label{namespace_p_r_p_s_evolution_1_1_solve_a0a0db6d4ef7ce0baa2b7e184b20873f8}
-
+double \hyperlink{namespace_p_r_p_s_evolution_1_1_solve_a8ad4a49ba2ce81d1cf0aa09d0061b0ac}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::mean\-From\-Vector} (std\-::vector$<$ double $>$ \&res)
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \hyperlink{namespace_p_r_p_s_evolution_1_1_solve_a0a0db6d4ef7ce0baa2b7e184b20873f8}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::n\-Configs\-For\-Processing} = 1
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-\begin{DoxyDate}{Date}
+\subsection{\-Detailed \-Description}
+\begin{DoxyDate}{\-Date}
 2013$|$\-Jun$|$25 
 \end{DoxyDate}

@@ -1,0 +1,120 @@
+\hypertarget{process_mk_i_i_8h}{\section{trunk/lib\-Solve/process\-Mk\-I\-I.h \-File \-Reference}
+\label{process_mk_i_i_8h}\index{trunk/lib\-Solve/process\-Mk\-I\-I.\-h@{trunk/lib\-Solve/process\-Mk\-I\-I.\-h}}
+}
+{\ttfamily \#include $<$chrono$>$}\*
+{\ttfamily \#include $<$shark/\-Algorithms/\-Direct\-Search/\-C\-M\-A.\-h$>$}\*
+{\ttfamily \#include $<$shark/\-Algorithms/\-Abstract\-Optimizer.\-h$>$}\*
+{\ttfamily \#include $<$shark/\-Objective\-Functions/\-Benchmarks/\-Benchmarks.\-h$>$}\*
+{\ttfamily \#include $<$shark/\-Objective\-Functions/\-Abstract\-Objective\-Function.\-h$>$}\*
+{\ttfamily \#include \char`\"{}solve.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}\-Object\-Functions.\-h\char`\"{}}\*
+{\ttfamily \#include $<$nr3/nr3.\-h$>$}\*
+\-Include dependency graph for process\-Mk\-I\-I.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{process_mk_i_i_8h__incl}
+\end{center}
+\end{figure}
+\-This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{process_mk_i_i_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{\-Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_p_r_p_s_evolution_1_1_solve_1_1_process___mk_i_i}{\-P\-R\-P\-S\-Evolution\-::\-Solve\-::\-Process\-\_\-\-Mk\-I\-I}
+\end{DoxyCompactItemize}
+\subsection*{\-Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespace_p_r_p_s_evolution}{\-P\-R\-P\-S\-Evolution}
+\item 
+namespace \hyperlink{namespace_p_r_p_s_evolution_1_1_solve}{\-P\-R\-P\-S\-Evolution\-::\-Solve}
+\end{DoxyCompactItemize}
+\subsection*{\-Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{process_mk_i_i_8h_af08fdc45724e14ef5eb1efeb2aac10e6}{\-S\-T\-U\-F\-F}(\-Function, \-Vars)
+\item 
+\#define \hyperlink{process_mk_i_i_8h_a94671accb2e57f26f9a25d69fe932943}{\-S\-O\-L\-V\-E}(\-M\-O\-D\-E\-L)
+\item 
+\#define \hyperlink{process_mk_i_i_8h_ae40062430dc33c5a7f3a0d373118aefc}{\-S\-O\-L\-V\-E\-\_\-\-A\-N\-D\-\_\-\-W\-R\-I\-T\-E}(\-M\-O\-D\-E\-L)
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Define \-Documentation}
+\hypertarget{process_mk_i_i_8h_a94671accb2e57f26f9a25d69fe932943}{\index{process\-Mk\-I\-I.\-h@{process\-Mk\-I\-I.\-h}!\-S\-O\-L\-V\-E@{\-S\-O\-L\-V\-E}}
+\index{\-S\-O\-L\-V\-E@{\-S\-O\-L\-V\-E}!processMkII.h@{process\-Mk\-I\-I.\-h}}
+\subsubsection[{\-S\-O\-L\-V\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-S\-O\-L\-V\-E}(
+\begin{DoxyParamCaption}
+\item[{}]{\-M\-O\-D\-E\-L}
+\end{DoxyParamCaption}
+)}}\label{process_mk_i_i_8h_a94671accb2e57f26f9a25d69fe932943}
+{\bfseries \-Value\-:}
+\begin{DoxyCode}
+shark::CMA cma;                                                                                                                 
+      \
+        cma.init( MODEL );                                                                                                              
+      \
+        do { cma.step( MODEL ); } while(cma.solution().value > epsilon );       
+      \
+\end{DoxyCode}
+\hypertarget{process_mk_i_i_8h_ae40062430dc33c5a7f3a0d373118aefc}{\index{process\-Mk\-I\-I.\-h@{process\-Mk\-I\-I.\-h}!\-S\-O\-L\-V\-E\-\_\-\-A\-N\-D\-\_\-\-W\-R\-I\-T\-E@{\-S\-O\-L\-V\-E\-\_\-\-A\-N\-D\-\_\-\-W\-R\-I\-T\-E}}
+\index{\-S\-O\-L\-V\-E\-\_\-\-A\-N\-D\-\_\-\-W\-R\-I\-T\-E@{\-S\-O\-L\-V\-E\-\_\-\-A\-N\-D\-\_\-\-W\-R\-I\-T\-E}!processMkII.h@{process\-Mk\-I\-I.\-h}}
+\subsubsection[{\-S\-O\-L\-V\-E\-\_\-\-A\-N\-D\-\_\-\-W\-R\-I\-T\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-S\-O\-L\-V\-E\-\_\-\-A\-N\-D\-\_\-\-W\-R\-I\-T\-E}(
+\begin{DoxyParamCaption}
+\item[{}]{\-M\-O\-D\-E\-L}
+\end{DoxyParamCaption}
+)}}\label{process_mk_i_i_8h_ae40062430dc33c5a7f3a0d373118aefc}
+{\bfseries \-Value\-:}
+\begin{DoxyCode}
+shark::CMA cma;                                                                                                                 
+      \
+        cma.init( MODEL );                                                                                                              
+      \
+        do {                                                                                                                                    
+      \
+                cma.step( MODEL );                                                                                                      
+      \
+                f << model.evaluationCounter() << " "                                                           
+      \
+                                                << cma.solution().value << " "                                          
+      \
+                                                << cma.solution().point << " "                                          
+      \
+                                                << cma.sigma()                                                                          
+      \
+                                                << std::endl;                                                                           
+      \
+        } while(cma.solution().value > epsilon                                                                  
+      \
+                && model.evaluationCounter() < maxEvaluations);                                 
+      \
+\end{DoxyCode}
+\hypertarget{process_mk_i_i_8h_af08fdc45724e14ef5eb1efeb2aac10e6}{\index{process\-Mk\-I\-I.\-h@{process\-Mk\-I\-I.\-h}!\-S\-T\-U\-F\-F@{\-S\-T\-U\-F\-F}}
+\index{\-S\-T\-U\-F\-F@{\-S\-T\-U\-F\-F}!processMkII.h@{process\-Mk\-I\-I.\-h}}
+\subsubsection[{\-S\-T\-U\-F\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-S\-T\-U\-F\-F}(
+\begin{DoxyParamCaption}
+\item[{}]{\-Function, }
+\item[{}]{\-Vars}
+\end{DoxyParamCaption}
+)}}\label{process_mk_i_i_8h_af08fdc45724e14ef5eb1efeb2aac10e6}
+{\bfseries \-Value\-:}
+\begin{DoxyCode}
+Function model(Vars);                                                                                                   
+      \
+        model.setNumberOfVariables(Vars);                                                                               
+      \
+        shark::CMA cma;                                                                                                                 
+      \
+        cma.init( model );                                                                                                              
+      \
+        do { cma.step( model ); } while(cma.solution().value > epsilon );       
+      \
+\end{DoxyCode}

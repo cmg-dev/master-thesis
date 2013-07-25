@@ -1,40 +1,119 @@
-\hypertarget{_antenna_configuration_8cpp}{\section{trunk/test/\-Antenna\-Configuration.cpp File Reference}
+\hypertarget{_antenna_configuration_8cpp}{\section{trunk/test/\-Antenna\-Configuration.cpp \-File \-Reference}
 \label{_antenna_configuration_8cpp}\index{trunk/test/\-Antenna\-Configuration.\-cpp@{trunk/test/\-Antenna\-Configuration.\-cpp}}
 }
-{\ttfamily \#include $<$stdio.\-h$>$}\\*
-{\ttfamily \#include $<$stdlib.\-h$>$}\\*
-{\ttfamily \#include $<$math.\-h$>$}\\*
-{\ttfamily \#include $<$array$>$}\\*
-{\ttfamily \#include $<$iostream$>$}\\*
-{\ttfamily \#include $<$exception$>$}\\*
-{\ttfamily \#include $<$fstream$>$}\\*
-{\ttfamily \#include $<$sstream$>$}\\*
-{\ttfamily \#include $<$string$>$}\\*
-{\ttfamily \#include $<$chrono$>$}\\*
-{\ttfamily \#include $<$future$>$}\\*
-{\ttfamily \#include $<$thread$>$}\\*
-{\ttfamily \#include \char`\"{}Antenna\-Configuration.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../lib\-Permutate/permutate.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../lib\-P\-R\-P\-S\-System/prpsevolutionsystem.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../lib\-Calibration/calib.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../lib\-Solve/solve.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../lib\-Solve/solveresult.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}../include/\-P\-R\-P\-S\-Evolution\-General\-Exceptions.\-h\char`\"{}}\\*
-{\ttfamily \#include $<$E\-A\-Lib/\-Chromosome\-C\-M\-A.\-h$>$}\\*
-Include dependency graph for Antenna\-Configuration.\-cpp\-:
-\subsection*{Functions}
+{\ttfamily \#include $<$stdio.\-h$>$}\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\*
+{\ttfamily \#include $<$math.\-h$>$}\*
+{\ttfamily \#include $<$array$>$}\*
+{\ttfamily \#include $<$iostream$>$}\*
+{\ttfamily \#include $<$exception$>$}\*
+{\ttfamily \#include $<$fstream$>$}\*
+{\ttfamily \#include $<$sstream$>$}\*
+{\ttfamily \#include $<$string$>$}\*
+{\ttfamily \#include $<$chrono$>$}\*
+{\ttfamily \#include $<$future$>$}\*
+{\ttfamily \#include $<$thread$>$}\*
+{\ttfamily \#include $<$vector$>$}\*
+{\ttfamily \#include \char`\"{}../lib\-Solve/process\-Mk\-I\-I.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}../include/\-P\-R\-P\-S\-Evolution.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}../include/\-P\-R\-P\-S\-Error.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}../include/\-P\-R\-P\-S\-Evolution\-General\-Exceptions.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}\-Antenna\-Configuration.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}../lib\-Permutate/permutate.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}../lib\-P\-R\-P\-S\-System/prpsevolutionsystem.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}../lib\-Calibration/calib.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}../lib\-Solve/solve.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}../lib\-Solve/solveresult.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}../lib\-Solve/preprocessing.\-h\char`\"{}}\*
+{\ttfamily \#include \char`\"{}../lib\-Solve/postprocessing.\-h\char`\"{}}\*
+\-Include dependency graph for \-Antenna\-Configuration.\-cpp\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_antenna_configuration_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{\-Defines}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{_antenna_configuration_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{int {\bfseries main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})}\label{_antenna_configuration_8cpp_a0ddf1224851353fc92bfbff6f499fa97}
-
+\#define \hyperlink{_antenna_configuration_8cpp_aa61d82ba35c7882bb23ac0c433b9e7c6}{\-\_\-\-U\-S\-E\-\_\-\-S\-H\-A\-R\-K\-\_\-3\-\_\-0\-\_\-}
+\item 
+\#define \hyperlink{_antenna_configuration_8cpp_a7680b8763735472070b98333fc45075f}{\-\_\-\-Write\-\_\-\-Result}
+\item 
+\#define \hyperlink{_antenna_configuration_8cpp_a46ead1ebe2be2c5430e01f8421e2a6d1}{\-\_\-\-D\-R\-O\-P\-\_\-\-B\-A\-D\-\_\-}
 \end{DoxyCompactItemize}
-\subsection*{Variables}
+\subsection*{\-Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{_antenna_configuration_8cpp_a1b18addf78200ff8a6f0d314f46b8a34}{const int {\bfseries S\-O\-L\-U\-T\-I\-O\-N\-\_\-\-A\-M\-O\-U\-N\-T} = 100}\label{_antenna_configuration_8cpp_a1b18addf78200ff8a6f0d314f46b8a34}
-
+int \hyperlink{_antenna_configuration_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \hyperlink{_antenna_configuration_8cpp_a1b18addf78200ff8a6f0d314f46b8a34}{\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-\-A\-M\-O\-U\-N\-T} = 1
+\item 
+int \hyperlink{_antenna_configuration_8cpp_a435381d2d625b09762c8e552110a9f95}{\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-W}
+\item 
+int \hyperlink{_antenna_configuration_8cpp_aa3032e28916aef8beae41a75b42c2f85}{\-N\-O\-\_\-\-O\-F\-\_\-\-S\-O\-L\-U\-T\-I\-O\-N\-S}
+\item 
+bool \hyperlink{_antenna_configuration_8cpp_a1a659a9b052589ce155d2bd802b2e8d8}{\-D\-R\-O\-P\-B\-A\-D} = false
+\item 
+std\-::string \hyperlink{_antenna_configuration_8cpp_ae3b371b116926599d8bbacdef464534a}{\-F\-I\-L\-E\-N\-A\-M\-E} = \char`\"{}\char`\"{}
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-This File contains the main() of the Antenna\-App-\/\-Project 
+\subsection{\-Detailed \-Description}
+\-This \-File contains the \hyperlink{_c_make_c_compiler_id_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()} of the \-Antenna\-App-\/\-Project 
+
+\subsection{\-Define \-Documentation}
+\hypertarget{_antenna_configuration_8cpp_a46ead1ebe2be2c5430e01f8421e2a6d1}{\index{\-Antenna\-Configuration.\-cpp@{\-Antenna\-Configuration.\-cpp}!\-\_\-\-D\-R\-O\-P\-\_\-\-B\-A\-D\-\_\-@{\-\_\-\-D\-R\-O\-P\-\_\-\-B\-A\-D\-\_\-}}
+\index{\-\_\-\-D\-R\-O\-P\-\_\-\-B\-A\-D\-\_\-@{\-\_\-\-D\-R\-O\-P\-\_\-\-B\-A\-D\-\_\-}!AntennaConfiguration.cpp@{\-Antenna\-Configuration.\-cpp}}
+\subsubsection[{\-\_\-\-D\-R\-O\-P\-\_\-\-B\-A\-D\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-\_\-\-D\-R\-O\-P\-\_\-\-B\-A\-D\-\_\-}}}\label{_antenna_configuration_8cpp_a46ead1ebe2be2c5430e01f8421e2a6d1}
+\hypertarget{_antenna_configuration_8cpp_aa61d82ba35c7882bb23ac0c433b9e7c6}{\index{\-Antenna\-Configuration.\-cpp@{\-Antenna\-Configuration.\-cpp}!\-\_\-\-U\-S\-E\-\_\-\-S\-H\-A\-R\-K\-\_\-3\-\_\-0\-\_\-@{\-\_\-\-U\-S\-E\-\_\-\-S\-H\-A\-R\-K\-\_\-3\-\_\-0\-\_\-}}
+\index{\-\_\-\-U\-S\-E\-\_\-\-S\-H\-A\-R\-K\-\_\-3\-\_\-0\-\_\-@{\-\_\-\-U\-S\-E\-\_\-\-S\-H\-A\-R\-K\-\_\-3\-\_\-0\-\_\-}!AntennaConfiguration.cpp@{\-Antenna\-Configuration.\-cpp}}
+\subsubsection[{\-\_\-\-U\-S\-E\-\_\-\-S\-H\-A\-R\-K\-\_\-3\-\_\-0\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-\_\-\-U\-S\-E\-\_\-\-S\-H\-A\-R\-K\-\_\-3\-\_\-0\-\_\-}}}\label{_antenna_configuration_8cpp_aa61d82ba35c7882bb23ac0c433b9e7c6}
+\hypertarget{_antenna_configuration_8cpp_a7680b8763735472070b98333fc45075f}{\index{\-Antenna\-Configuration.\-cpp@{\-Antenna\-Configuration.\-cpp}!\-\_\-\-Write\-\_\-\-Result@{\-\_\-\-Write\-\_\-\-Result}}
+\index{\-\_\-\-Write\-\_\-\-Result@{\-\_\-\-Write\-\_\-\-Result}!AntennaConfiguration.cpp@{\-Antenna\-Configuration.\-cpp}}
+\subsubsection[{\-\_\-\-Write\-\_\-\-Result}]{\setlength{\rightskip}{0pt plus 5cm}\#define {\bf \-\_\-\-Write\-\_\-\-Result}}}\label{_antenna_configuration_8cpp_a7680b8763735472070b98333fc45075f}
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{_antenna_configuration_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{\index{\-Antenna\-Configuration.\-cpp@{\-Antenna\-Configuration.\-cpp}!main@{main}}
+\index{main@{main}!AntennaConfiguration.cpp@{\-Antenna\-Configuration.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf main} (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{_antenna_configuration_8cpp_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+\-Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_antenna_configuration_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{\-Variable \-Documentation}
+\hypertarget{_antenna_configuration_8cpp_a1a659a9b052589ce155d2bd802b2e8d8}{\index{\-Antenna\-Configuration.\-cpp@{\-Antenna\-Configuration.\-cpp}!\-D\-R\-O\-P\-B\-A\-D@{\-D\-R\-O\-P\-B\-A\-D}}
+\index{\-D\-R\-O\-P\-B\-A\-D@{\-D\-R\-O\-P\-B\-A\-D}!AntennaConfiguration.cpp@{\-Antenna\-Configuration.\-cpp}}
+\subsubsection[{\-D\-R\-O\-P\-B\-A\-D}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-D\-R\-O\-P\-B\-A\-D} = false}}\label{_antenna_configuration_8cpp_a1a659a9b052589ce155d2bd802b2e8d8}
+\hypertarget{_antenna_configuration_8cpp_ae3b371b116926599d8bbacdef464534a}{\index{\-Antenna\-Configuration.\-cpp@{\-Antenna\-Configuration.\-cpp}!\-F\-I\-L\-E\-N\-A\-M\-E@{\-F\-I\-L\-E\-N\-A\-M\-E}}
+\index{\-F\-I\-L\-E\-N\-A\-M\-E@{\-F\-I\-L\-E\-N\-A\-M\-E}!AntennaConfiguration.cpp@{\-Antenna\-Configuration.\-cpp}}
+\subsubsection[{\-F\-I\-L\-E\-N\-A\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-F\-I\-L\-E\-N\-A\-M\-E} = \char`\"{}\char`\"{}}}\label{_antenna_configuration_8cpp_ae3b371b116926599d8bbacdef464534a}
+\hypertarget{_antenna_configuration_8cpp_aa3032e28916aef8beae41a75b42c2f85}{\index{\-Antenna\-Configuration.\-cpp@{\-Antenna\-Configuration.\-cpp}!\-N\-O\-\_\-\-O\-F\-\_\-\-S\-O\-L\-U\-T\-I\-O\-N\-S@{\-N\-O\-\_\-\-O\-F\-\_\-\-S\-O\-L\-U\-T\-I\-O\-N\-S}}
+\index{\-N\-O\-\_\-\-O\-F\-\_\-\-S\-O\-L\-U\-T\-I\-O\-N\-S@{\-N\-O\-\_\-\-O\-F\-\_\-\-S\-O\-L\-U\-T\-I\-O\-N\-S}!AntennaConfiguration.cpp@{\-Antenna\-Configuration.\-cpp}}
+\subsubsection[{\-N\-O\-\_\-\-O\-F\-\_\-\-S\-O\-L\-U\-T\-I\-O\-N\-S}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-N\-O\-\_\-\-O\-F\-\_\-\-S\-O\-L\-U\-T\-I\-O\-N\-S}}}\label{_antenna_configuration_8cpp_aa3032e28916aef8beae41a75b42c2f85}
+\hypertarget{_antenna_configuration_8cpp_a1b18addf78200ff8a6f0d314f46b8a34}{\index{\-Antenna\-Configuration.\-cpp@{\-Antenna\-Configuration.\-cpp}!\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-\-A\-M\-O\-U\-N\-T@{\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-\-A\-M\-O\-U\-N\-T}}
+\index{\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-\-A\-M\-O\-U\-N\-T@{\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-\-A\-M\-O\-U\-N\-T}!AntennaConfiguration.cpp@{\-Antenna\-Configuration.\-cpp}}
+\subsubsection[{\-S\-O\-L\-U\-T\-I\-O\-N\-\_\-\-A\-M\-O\-U\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf \-S\-O\-L\-U\-T\-I\-O\-N\-\_\-\-A\-M\-O\-U\-N\-T} = 1}}\label{_antenna_configuration_8cpp_a1b18addf78200ff8a6f0d314f46b8a34}
+\hypertarget{_antenna_configuration_8cpp_a435381d2d625b09762c8e552110a9f95}{\index{\-Antenna\-Configuration.\-cpp@{\-Antenna\-Configuration.\-cpp}!\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-W@{\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-W}}
+\index{\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-W@{\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-W}!AntennaConfiguration.cpp@{\-Antenna\-Configuration.\-cpp}}
+\subsubsection[{\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-W}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-W}}}\label{_antenna_configuration_8cpp_a435381d2d625b09762c8e552110a9f95}
