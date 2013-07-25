@@ -1,0 +1,12 @@
+This file documents the experiments done with shark to evaluate the different algorithms
+
+Explanation of the symbols
+t_mean      means the mean execution time for one solution [ms]
+dropped     how many solutions where dropped
+
+No.	Name.   Trails.	Algorithm.	Model.			Description.		                        Output.             t_mean  dropped OKAY?
+1 	E1	    50	CMA-ES-3.0b	WholeTomatoMkII		First Matrix only                           plot/E1_output      n.A.    4       n
+2 	E2	    25	CMA-ES-3.0b	WholeTomatoMkI_A	First Matrix only; Negative values for n   	plot/E2_output      n.A.    0       n
+3 	E3	    25	CMA-ES-3.0b	WholeTomatoMkI_B	First Matrix only; Negative values for n   	plot/E3_output      n.A.    0       n
+4 	E4	    25	CMA-ES-3.0b	WholeTomatoMkI_A	First Matrix only; No Negative values for n plot/E2_output      143     0       y
+5 	E5	    25	CMA-ES-3.0b	WholeTomatoMkI_B	First Matrix only; No negative values for n	plot/E3_output      73      0       y
