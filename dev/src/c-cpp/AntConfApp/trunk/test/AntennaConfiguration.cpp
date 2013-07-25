@@ -19,6 +19,8 @@
 #include <vector>
 
 #define _USE_SHARK_3_0_
+#define _Write_Result
+#define _DROP_BAD_
 
 #ifdef _USE_SHARK_3_0_
 	#include "../libSolve/processMkII.h"
@@ -37,8 +39,6 @@
 
 #include "../libSolve/solve.h"
 #include "../libSolve/solveresult.h"
-
-
 
 #ifndef _USE_SHARK_3_0_
 	/* workaround, we need to include the stuff from Shark 3.0b first to avoid compiler crashes*/
@@ -108,28 +108,171 @@ int main ( int argc, char *argv[ ] ) {
 	std::cout << "*Processing.. Create Solution(s).." << std::endl;
 
 #ifdef _USE_SHARK_3_0_
-	ProcessMkII::mkII::ProcessMkIItest();
+
+	steady_clock::time_point t_000 = steady_clock::now();
+	steady_clock::time_point t_00 = steady_clock::now();
+	steady_clock::time_point t_0 = steady_clock::now();
+	steady_clock::time_point t_1 = steady_clock::now();
+
+	/**********************************************************************/
+	if( VARIANT_SW == 0 ) {
+		auto A 			= preprocess.matrices;
+		t_00			= steady_clock::now();
+		auto v			= preprocess.vectors;
+		auto name		= preprocess.names;
+
+		Solve::Process_MkII		process( A, v, name );
+		std::cout << "Mark II :: Solving for WholeTomato Mark II" << std::endl;
+
+		std::ostringstream s;
+		s << "output/mkII/CMA-ES_wt_mkII_B";
+		for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+
+			process.setOutputFilePathBase( s.str() );
+
+			t_0 = steady_clock::now();
+			process.WholeTomatoMkII( preprocess.antennas );
+
+			process.incrementFileCounter();
+			t_1 = steady_clock::now();
+			std::cout << "Mark II :: "
+					<< i
+					<< " "
+					<< duration_cast<milliseconds>(t_1 -t_0).count()
+					<< " ms"
+					<< std::endl;
+
+		}
+		std::cout << "Mark II :: "
+				<< duration_cast<milliseconds>(t_1 -t_00).count()
+				<< " ms for "
+				<< NO_OF_SOLUTIONS
+				<< " Solutions"
+				<< std::endl;
+
+
+		t_1 = steady_clock::now();
+
+		std::cout << "Mark II :: total " << duration_cast<milliseconds>(t_1 -t_000).count() << " ms" << std::endl;
+
+		return 0;
+
+	}
+
+	/**********************************************************************/
+	if( VARIANT_SW == 1 ) {
+		int l = 0;
+		std::cout << "Mark II :: Solving Variant A" << std::endl;
+		for( auto A: preprocess.matrices ) {
+			t_00					= steady_clock::now();
+			auto v					= preprocess.vectors [ l ];
+			auto name				= preprocess.names[ l++ ];
+
+			Solve::Process_MkII		process( A, v, name );
+			std::cout << "Mark II :: Solving for WholeTomato Mark I" << std::endl;
+
+			std::ostringstream s;
+			s << "output/mkII/CMA-ES_wt_mkI-A-" << l;
+			process.setOutputFilePathBase( s.str() );
+			
+			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+
+				t_0 = steady_clock::now();
+				process.WholeTomatoMkI_A();
+
+				process.incrementFileCounter();
+				t_1 = steady_clock::now();
+				std::cout << "Mark II :: " << i << " " << duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
+
+			}
+			std::cout << "Mark II :: " << duration_cast<milliseconds>(t_1 -t_00).count() << " ms" << " for " << NO_OF_SOLUTIONS << " Solutions"<< std::endl;
+
+		}
+		
+		t_1 = steady_clock::now();
+
+		std::cout << "Mark II :: total " << duration_cast<milliseconds>(t_1 -t_000).count() << " ms" << std::endl;
+
+	}
+
+	/**********************************************************************/
+	if( VARIANT_SW == 1 ) {
+		int l = 0;
+		std::cout << "Mark II :: Solving Variant B" << std::endl;
+		for( auto A: preprocess.matrices ) {
+			t_00					= steady_clock::now();
+			auto v					= preprocess.vectors [ l ];
+			auto name				= preprocess.names[ l++ ];
+
+			Solve::Process_MkII		process( A, v, name );
+			std::cout << "Mark II :: Solving for WholeTomato Mark I" << std::endl;
+
+			std::ostringstream s;
+			s << "output/mkII/CMA-ES_wt_mkI-B-" << l;
+			process.setOutputFilePathBase( s.str() );
+				
+			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+				t_0 = steady_clock::now();
+				process.WholeTomatoMkI_B();
+
+				process.incrementFileCounter();
+				t_1 = steady_clock::now();
+				std::cout << "Mark II :: " << i << " " << duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
+
+			}
+			std::cout << "Mark II :: " << duration_cast<milliseconds>(t_1 -t_00).count() << " ms" << " for " << NO_OF_SOLUTIONS << " Solutions"<< std::endl;
+
+		}
+
+		t_1 = steady_clock::now();
+
+		std::cout << "Mark II :: total " << duration_cast<milliseconds>(t_1 -t_000).count() << " ms" << std::endl;
+
+	} 
+
+	/**********************************************************************/
+	if( VARIANT_SW == 2 ) {
+		Solve::Process_MkII process;
+
+		process.setOutputFilePathBase("output/mkII/CMA-ES_test");
+
+		std::cout << "Mark II :: Solving for Test Sphere" << std::endl;
+		for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+			process.Process_MkII_test();
+
+			process.incrementFileCounter();
+
+		}
+		steady_clock::time_point t_1 = steady_clock::now();
+
+		std::cout << "Mark II :: " << duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
+		
+		return 0;
+		
+	}
 	
 #else
 	Solve::Process process;
 
 	int i = 0;
 
-	const double fitness = 1e-18;
+	const double fitness = 1e-20;
 	process.setMinSolutionFitness( fitness );
 
 	steady_clock::time_point t_00 = steady_clock::now();
 	steady_clock::time_point t_0 = steady_clock::now();
 	steady_clock::time_point t_1 = steady_clock::now();
-
+	
 	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<double>,Doub>>> resultsA;
 	std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<int>,Doub>>> resultsB;
-// 	std::vector<std::future<Solve::solveresult_t<std::array<ChromosomeT<double>,2>,Doub>>> resultsA;
+	
+// 	std::vector<std::future<Solve::solveresult_t<std::array<ChromosomeT<double>,2>,Doub>>> results1A;
 // 	std::vector<std::future<Solve::solveresult_t<std::array<ChromosomeT<double>,2>,Doub>>> resultsB;
 
+	/**********************************************************************/
 	if( VARIANT_SW == 0 ) {
 		std::cout << "Solving single matrices" << std::endl;
-		
+
 	for( auto A: preprocess.matrices ) {
 		auto names		= preprocess.names;
 		auto numOAnts	= preprocess.antennas;
@@ -148,7 +291,8 @@ int main ( int argc, char *argv[ ] ) {
 // 											b,
 // 											Solve::ESStrategy::OnePlusOne,
 // 											duration_cast<microseconds>(t_1-t_00).count() ));
-// 			resultsA.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b ));
+			
+			resultsA.push_back( std::async( std::launch::deferred, &Solve::Process::findSolution, &process, A, b ));
 
 			t_1 = steady_clock::now();
 
@@ -170,6 +314,7 @@ int main ( int argc, char *argv[ ] ) {
 	}
 	}
 
+	/**********************************************************************/
 	if( VARIANT_SW == 1 ) {
 		std::cout << "Solving all matrices" << std::endl;
 
@@ -177,9 +322,9 @@ int main ( int argc, char *argv[ ] ) {
 	auto b			= preprocess.vectors;
 	auto names		= preprocess.names;
 	auto numOAnts	= preprocess.antennas;
-	
+
 		std::cout << "num o Ants " << numOAnts << std::endl;
-	
+
 	for( int Solution = 0; Solution < NO_OF_SOLUTIONS; Solution++ ) {
 
 		process.setSeed(duration_cast<microseconds>(t_1-t_00).count());
@@ -204,6 +349,60 @@ int main ( int argc, char *argv[ ] ) {
 
 	}
 	}
+
+	/**********************************************************************/
+	/* This will test the performance of the different algorithms */
+	if( VARIANT_SW == 2 ) {
+		steady_clock::time_point t_0 = steady_clock::now();
+		steady_clock::time_point t_00 = steady_clock::now();
+		std::cout << "MKI :: Solving for Test Sphere" << std::endl;
+		for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+			process.findSolutionSphere<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<double>,Doub>>( Solve::ESStrategy::OnePlusOne );
+			process.incrementFileCounter();
+		}
+		process.resetFileCounter();
+		
+		steady_clock::time_point t_1 = steady_clock::now();
+		std::cout << "MKI :: 1 " << duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
+
+		t_0 = steady_clock::now();
+		
+		for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+			process.findSolutionSphere<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<double>,Doub>>( Solve::ESStrategy::MuCommaLambda );
+			process.incrementFileCounter();
+		}
+		process.resetFileCounter();
+
+		t_1 = steady_clock::now();
+		std::cout << "MKI :: 2 " << duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
+
+		t_0 = steady_clock::now();
+		
+		for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+			process.findSolutionSphere<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<double>,Doub>>( Solve::ESStrategy::MuPlusLambda );
+			process.incrementFileCounter();
+		}
+		process.resetFileCounter();
+
+		t_1 = steady_clock::now();
+		std::cout << "MKI :: 3 " << duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
+
+		t_0 = steady_clock::now();
+		
+		for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+			process.findSolutionSphere<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<double>,Doub>>( Solve::ESStrategy::CMA_ES_MkI );
+			process.incrementFileCounter();
+		}
+		process.resetFileCounter();
+
+		t_1 = steady_clock::now();
+		std::cout << "MKI :: 4 " << duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
+
+		t_1 = steady_clock::now();
+		std::cout << "MKI :: total " << duration_cast<milliseconds>(t_1 -t_00).count() << " ms" << std::endl;
+		
+		return 0;
+	}
 // 	}
 
 	std::cerr << "done "<<std::endl;
@@ -223,16 +422,16 @@ int main ( int argc, char *argv[ ] ) {
 
 		auto r = res->get();
 		f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (µs)" << " " << r.converged <<std::endl;
-		
+
 // 		if( DROPBAD && !r.converged ) { droppedResults++; continue; }
-		
+
 		for( auto values : r.valCont )
 			f << values << "\t";
 		for( auto values : r.valDis )
 			f << values << "\t";
 
 		f << std::endl;
-		
+
 	}
 	t_1 = steady_clock::now();
 
@@ -240,7 +439,7 @@ int main ( int argc, char *argv[ ] ) {
 		<< duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
 
 	std::cout << "Dropped: " << droppedResults << " results"<< std::endl;
-	
+
 	f.close();
 	f_fitness.close();
 
@@ -258,7 +457,7 @@ int main ( int argc, char *argv[ ] ) {
 		auto r = res->get();
 
 		f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (µs)" << " " << r.converged <<std::endl;
-		
+
 // 		if( DROPBAD && !r.converged ) { droppedResults++; continue; }
 
 		for( auto values : r.valCont )
@@ -267,7 +466,7 @@ int main ( int argc, char *argv[ ] ) {
 			f << values << "\t";
 
 		f << std::endl;
-		
+
 	}
 	t_1 = steady_clock::now();
 

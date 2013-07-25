@@ -8,7 +8,7 @@ set( solve_SRCS
 	preprocessing.cpp
 	ueber9000.cpp
 	ObjectFunctions.h
-# 	ObjectFunctions.cpp
+	ObjectFunctions.cpp
 	)
 
 add_library( Solve ${solve_SRCS})

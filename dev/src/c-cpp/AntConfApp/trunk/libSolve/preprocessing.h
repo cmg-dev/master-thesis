@@ -147,59 +147,68 @@ namespace PRPSEvolution {
 
 			/* latch in the matrices */
 			precalculatedMats = &precalculatedMatrices;
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << "PreProcessing:: Read from file.. .. ";
 #endif
 			rMeasurementsFromFile( );
 
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << " done" << std::endl;
 #endif
 
 			/***************************************************************/
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << "PreProcessing:: normalization in process.. .. ";
 #endif
 
 			auto normThetas = normalizeThetas( measuredPhase, measuredAmp );
 
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << " done" << std::endl;
 #endif
 
 			/* identify the possible matrices by their names */
 			/***************************************************************/
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << "PreProcessing:: Identifying all possible matrices.. .. ";
 #endif
 			
-			auto Names = getPossibleNames( );
+			auto allPossibleNames = getPossibleNames( );
 
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << "done" << std::endl;
 #endif
 
 			/***************************************************************/
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << "PreProcessing:: Selecting names.. .. ";
 #endif
 
-			std::vector<int> idxs = {1,2,3,4};
+// #ifdef _REFINE_SELECTION
+			std::vector<int> idxs = {0,2,3,4};
 			int quantity = 4;
-			auto selectedNames = selectNamesForProcessing( Names, idxs, quantity );
+			auto selectedNames = selectNamesForProcessing( allPossibleNames, idxs, quantity );
 
-#ifdef OUTPUT
+// #else
+// 			auto selectedNames = allPossibleNames;
+
+// #endif /* _REFINE_SELECTION */
+			
+			
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << "done" << std::endl;
 #endif
+			
 
+			
 			/***************************************************************/
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << "PreProcessing:: Selecting matrices.. .. ";
 #endif
 
 			auto selectedConfs = selectMatsForProcessing( SelectBy::AllPossible, selectedNames );
 
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << " done" << std::endl;
 #endif
 
@@ -212,31 +221,31 @@ namespace PRPSEvolution {
 				 */
 				auto p = selectedConfs[0];
 				a_1 = p[0][3];
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 				std::cout << "a_1 = " << a_1 << std::endl;
 #endif
 			} /* !workaround */
 
 
 			/***************************************************************/
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << "PreProcessing:: Filling selected matrices with remaining information.. ..";
 #endif
 
 			selectedConfs = fillSelectMats( normThetas, selectedConfs, selectedNames );
 
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << " done" << std::endl;
 #endif
 
 			/***************************************************************/
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << "PreProcessing:: Calculate vectors.. ..";
 #endif
 
 			auto finalVectors = calcVectors( selectedNames, normThetas, d_k0s, a_1 );
 
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << " done" << std::endl;
 #endif
 
@@ -281,14 +290,16 @@ namespace PRPSEvolution {
 				}
 				/* a line is read */
 				if( valuesRead != (int) PRPSEvolution::EXPECTED_VALUES_MEASUREMENT_FILE )
-					throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
+					return -1;
+// 					throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
 
 				linesRead++;
 
 			}
 			/* check the input */
 			if( linesRead != PRPSEvolution::EXPECTED_LINES_MEASUREMENT_FILE )
-				throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
+				return -1;
+// 				throw PRPSEvolution::Exceptions::FileIO::MalformedInputExeption;
 
 			/* dump everything to std::cout  */
 // 			std::cout << "** PreProcessing:: I've read the following values: " << std::endl;
@@ -328,6 +339,7 @@ namespace PRPSEvolution {
 		}
 
 		/**
+		 * Refinese the selected matrices so that only unique ones are left over
 		 * @param[in] names Contains the possible matrix names
 		 * @param[in] indices Indices of the antennas we want to choose
 		 * @param[in] quantity Group size or the k-parameter
@@ -341,7 +353,7 @@ namespace PRPSEvolution {
 			std::vector< std::string > ret;
 			int found;
 
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << std::endl;
 #endif
 			
@@ -354,7 +366,7 @@ namespace PRPSEvolution {
 				i++;
 				
 			}
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << "Selecting "<< quantity << " from " << indices.size() << std::endl;
 #endif
 			
@@ -381,7 +393,8 @@ namespace PRPSEvolution {
 // 			ret.push_back( names[7] );
 // 			ret.push_back( names[select.size()-1] );
 			
-			int select_size = 1;
+			int select_size = 2;
+// 			int 
 			/* recheck if the poermutation exists in possible names, it should! */
 			i = 0;
 			for( auto name: names ) {
@@ -409,7 +422,7 @@ namespace PRPSEvolution {
 				}
 			}
 
-			std::cout << c << std::endl;
+// 			std::cout << c << std::endl;
 			if( c < 4 || c > 8 ) {
 				exit(0);
 				/** @todo throw exception */
@@ -418,12 +431,11 @@ namespace PRPSEvolution {
 			
 			antennas = c;
 			
-#ifdef OUTPUT
-			std::cout << i << std::endl;
-
+// #ifdef _PREPROCESS_OUTPUT
+			std::cout << c << std::endl;
 			for( auto name: ret )
 				std::cout << name << std::endl;
-#endif
+// #endif
 			
 			return ret;
 			
@@ -464,7 +476,7 @@ namespace PRPSEvolution {
 			}
 
 			/* send the selected ones to std::cout */
-#ifdef OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			int i = 0;
 			for( auto mat : SelectedMat ) {
 				std::cout << ++i << " " << names[i] << std::endl;
@@ -663,7 +675,9 @@ namespace PRPSEvolution {
 				f.close();
 
 			} else {
-				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
+// 				return mats2return;
+
+// 				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
 
 			}
 
@@ -736,7 +750,8 @@ namespace PRPSEvolution {
 				f.close();
 
 			} else {
-				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
+// 				return -1;
+// 				throw PRPSEvolution::Exceptions::FileIO::OutputExeption;
 
 			}
 
