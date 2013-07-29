@@ -71,13 +71,31 @@ namespace PRPSEvolution {
 
 			/*=============================================================*/
 			/**
-			 * 
+			 *
 			 */
 			Process_MkII(
 				NRmatrix< Doub > Mat,
 				NRvector< Doub > Vect,
 				std::string Name
 			)
+			{
+				A.push_back( Mat );
+				b.push_back( Vect );
+				names.push_back( Name );
+				Process_MkII();
+			}
+			
+			/*=============================================================*/
+			/**
+			 * 
+			 */
+			Process_MkII(
+				NRmatrix< Doub > Mat,
+				NRvector< Doub > Vect,
+				std::string Name,
+				const int mu,
+				const int lambda
+			): Mu( mu ), Lambda( lambda )
 			{
 				A.push_back( Mat );
 				b.push_back( Vect );
@@ -97,7 +115,22 @@ namespace PRPSEvolution {
 			{
 				Process_MkII();
 			}
-
+			
+			/*=============================================================*/
+			/**
+			 *
+			 */
+			Process_MkII(
+				std::vector<NRmatrix< Doub >> Mats,
+				std::vector<NRvector< Doub >> Vects,
+				std::vector<std::string> Names,
+				const int mu,
+				const int lambda
+			) : A( Mats ), b( Vects ), names( Names ), Mu( mu ), Lambda( lambda )
+			{
+				Process_MkII();
+			}
+			
 			/*=============================================================*/
 			/**
 			 * 
@@ -143,9 +176,21 @@ namespace PRPSEvolution {
 
 				model.setParams( A, b, names );
 
+
+				std::cout << "Mu:" << Mu << " Lambda: " << Lambda << std::endl;
 #ifdef _Write_Result
 				shark::CMA cma;
-				cma.init( model );
+				if( Mu != 0 && Lambda != 0) {
+					RealVector p;
+					model.proposeStartingPoint( p );
+					cma.init(p.size(), Lambda, Mu, p, 1.0 );
+					
+				} else {
+					cma.init( model );
+
+					
+				}
+				
 				do {
 					cma.step( model );
 					f << model.evaluationCounter() << " "
@@ -285,8 +330,8 @@ namespace PRPSEvolution {
 
 				// Initialize the optimizer for the objective function instance.
 				cma.init( model );
-				// Iterate the optimizer until a solution of sufficient quality is found.
 
+				// Iterate the optimizer until a solution of sufficient quality is found.
 				do {
 					cma.step( model );
 
@@ -361,7 +406,10 @@ namespace PRPSEvolution {
 			int maxEvaluations = 30000;
 
 			int VariantA = true;
+
+			int Lambda = 0;
 			
+			int Mu = 0;
 		};
 
 

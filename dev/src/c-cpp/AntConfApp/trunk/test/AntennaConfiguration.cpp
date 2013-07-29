@@ -58,10 +58,13 @@ using std::chrono::steady_clock;
 
 const int SOLUTION_AMOUNT = 1;
 
-int		VARIANT_SW;
-int		NO_OF_SOLUTIONS;
-bool	DROPBAD = false;
-std::string		FILENAME ="";
+int			VARIANT_SW;
+int			NO_OF_SOLUTIONS;
+int			MU					= 0;
+int			LAMBDA				= 0;
+bool		DROPBAD				= false;
+
+std::string	FILENAME			="";
 
 /**
  */
@@ -75,15 +78,24 @@ int main ( int argc, char *argv[ ] ) {
 
 	if( argc > 1 )
 		VARIANT_SW = atoi( argv[1] );
+
 	if( argc > 2 )
 		NO_OF_SOLUTIONS = atoi( argv[2] );
+	
 	if( argc > 3 )
 		if(atoi( argv[3] ) > 0)
 			DROPBAD = true;
+
 	if( argc > 4 )
 		FILENAME = argv[4];
 
-// 	std::cout << FILENAME << std::endl;
+	if( argc > 5 )
+		MU = atoi(argv[5]);
+
+	if( argc > 6 )
+		LAMBDA = atoi(argv[6]);
+
+	std::cout << "Mu: " << MU << " Lambda " << LAMBDA << std::endl;
 	/**********************************************************************/
 	PRPSEvolution::System sys;
 
@@ -101,7 +113,7 @@ int main ( int argc, char *argv[ ] ) {
 	std::cout << std::endl;
 	std::cout << "*PreProcessing.." << std::endl;
 
-	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat, 1 );
+	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat, 1, 0 );
 
 	std::cout << std::endl;
 
@@ -125,7 +137,7 @@ int main ( int argc, char *argv[ ] ) {
 		auto v			= preprocess.vectors;
 		auto name		= preprocess.names;
 
-		Solve::Process_MkII		process( A, v, name );
+		Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
 		std::cout << "Mark II :: Solving for WholeTomato Mark II" << std::endl;
 
 		std::ostringstream s;
@@ -166,6 +178,7 @@ int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	if( VARIANT_SW == 1 ) {
 		int l = 0;
+		int meanTime = 0;
 		std::cout << "Mark II :: Solving Variant A" << std::endl;
 		for( auto A: preprocess.matrices ) {
 			t_00					= steady_clock::now();
@@ -188,9 +201,11 @@ int main ( int argc, char *argv[ ] ) {
 				t_1 = steady_clock::now();
 				std::cout << "Mark II :: " << i << " " << duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
 
+				meanTime += duration_cast<milliseconds>(t_1 -t_0).count();
+				
 			}
 			std::cout << "Mark II :: " << duration_cast<milliseconds>(t_1 -t_00).count() << " ms" << " for " << NO_OF_SOLUTIONS << " Solutions"<< std::endl;
-
+			std::cout << "Mark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
 		}
 		
 		t_1 = steady_clock::now();
@@ -202,6 +217,8 @@ int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	if( VARIANT_SW == 1 ) {
 		int l = 0;
+		int meanTime = 0;
+
 		std::cout << "Mark II :: Solving Variant B" << std::endl;
 		for( auto A: preprocess.matrices ) {
 			t_00					= steady_clock::now();
@@ -223,9 +240,12 @@ int main ( int argc, char *argv[ ] ) {
 				t_1 = steady_clock::now();
 				std::cout << "Mark II :: " << i << " " << duration_cast<milliseconds>(t_1 -t_0).count() << " ms" << std::endl;
 
+				meanTime += duration_cast<milliseconds>(t_1 -t_0).count();
+
 			}
 			std::cout << "Mark II :: " << duration_cast<milliseconds>(t_1 -t_00).count() << " ms" << " for " << NO_OF_SOLUTIONS << " Solutions"<< std::endl;
-
+			std::cout << "Mark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
+			
 		}
 
 		t_1 = steady_clock::now();

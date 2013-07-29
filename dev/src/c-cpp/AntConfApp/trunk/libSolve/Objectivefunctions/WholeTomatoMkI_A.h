@@ -113,8 +113,8 @@ namespace PRPSEvolution {
 #ifdef _DROP_BAD_
 			for(int i = 3; i < A.nrows(); i++ )
 				if( x[i] < 0 )
-					return -1.;
-				
+					return 10000;
+
 #endif
 			/* multiply the matrix with the vector */
 			for( int i = 0; i < A.nrows(); i++ )

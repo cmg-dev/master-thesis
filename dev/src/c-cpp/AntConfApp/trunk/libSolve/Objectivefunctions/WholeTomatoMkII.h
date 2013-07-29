@@ -44,8 +44,11 @@ namespace PRPSEvolution {
 		void proposeStartingPoint(SearchPointType &x) const {
 			x.resize(numberOfVariables());
 
-			for (unsigned int i = 0; i < x.size(); i++) {
-				x(i) = Rng::uni(0, 1);
+			for (unsigned int i = 0; i < 3; i++) {
+				x(i) = Rng::uni(-10, 10);
+			}
+			for (unsigned int i = 3; i < x.size(); i++) {
+				x(i) = Rng::uni(2, 20);
 			}
 		}
 
