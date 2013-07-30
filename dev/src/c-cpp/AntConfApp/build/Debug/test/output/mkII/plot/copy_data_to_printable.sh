@@ -12,12 +12,12 @@ echo -n "Last index [ENTER]:"
 read last
 
 echo "removing ALL old data"
-rm *.dat
+rm data/*.dat
 
 for((i=$first;i<$last;i++))
 do
 	echo "Processing: '../"$filenamebase$i".dat'" 
-	cat ../$filenamebase$i.dat | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> data.$i.dat
+	cat ../$filenamebase$i.dat | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> data/$i.dat
 done
 
 #cat ../CMA-ES_wt_mkII_A_1.dat | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> data1.dat

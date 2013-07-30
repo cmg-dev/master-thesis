@@ -75,13 +75,13 @@ namespace PRPSEvolution {
 					*precalculatedMats;
 
 			/** The precalcultated matrices for a solution */
-			std::vector<NRmatrix<T>>	Pmatrices;
+			std::vector<NRmatrix<T>>	Preprocessedmatrices;
 
 			/** The b-vectors for the solution */
-			std::vector<NRvector<T>>	vectors;
+			std::vector<NRvector<T>>	PreprocessedPossiblevectors;
 
 			/** The "Names" of the matrices for a solution */
-			std::vector<std::string>	names;
+			std::vector<std::string>	PreprocessedNames;
 			
 			/***************************************************************/
 			/***************************************************************/
@@ -225,7 +225,8 @@ namespace PRPSEvolution {
 															allPossibleNames,
 															idxs,
 															quantity,
-															finalAntAmount
+															finalAntAmount,
+															offset
 															);
 
 // #else
