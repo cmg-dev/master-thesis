@@ -1,0 +1,69 @@
+%
+%
+%
+\begin{appendix}
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\newpage
+
+\begin{center}
+	\huge{Anhänge}
+\end{center}
+
+\normalsize
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{landscape}
+\section{Beispiel Plots}
+\label{lst:plots}
+\input{common/documents/plots_w14.tex}
+\end{landscape}
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{landscape}
+\section{Gnuplot Skript}
+\label{lst:gnuplot_script}
+\input{../macros/matlab_highlighting_lst.tex}
+\lstinputlisting[language=Gnuplot,
+		numbers=left,
+		frameround=fttt,
+		frame=trbl,
+		xleftmargin=1cm]{common/src/generate_cma_plot.gp}
+
+\end{landscape}
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{landscape}
+\section{Bash Kopier-Skript}
+\label{lst:cp_script}
+\input{../macros/matlab_highlighting_lst.tex}
+\lstinputlisting[language=bash,
+		numbers=left,
+		frame=trbl,
+		xleftmargin=1cm]{common/src/copy_data_to_printable.sh}
+
+\end{landscape}
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\newpage
+\begin{landscape}
+	\section{Projektlaufplan KW 30}
+	\label{sec:projectplan}
+	\scalebox{.75}{
+		\input{common/documents/project_plan_KW30.tex}
+		}
+\end{landscape}
+
+%----------------------------------------------------------------------------
+
+\end{appendix}

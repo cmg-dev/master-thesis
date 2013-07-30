@@ -1,0 +1,133 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{draftwatermark}
+\usepackage{booktabs}
+\usepackage{blindtext} 
+\usepackage{framed} 
+\usepackage{xcolor} 
+\colorlet{shadecolor}{black} 
+\usepackage{latexsym}
+
+\usepackage{bbm}
+\usepackage{enumitem}
+
+\SetWatermarkText{Vertraulich}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
+
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usepackage{tikz}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+}
+
+\fancyhead[C]{ Wochenbericht KW 30 }
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ EXTERN }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+\input{../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+
+\setlength{\headheight}{36pt}
+
+\begin{titlepage}
+
+\input{extern/title/title_w14.tex}
+
+\end{titlepage}
+
+%- Section 1 ----------------------------------------------------------------
+\section[Allgemeines]{Allgemeines}
+%
+%- Section 2 ----------------------------------------------------------------
+\section[Fortschritt]{Projektfortschritt}
+%
+In dieser Woche wurden die Arbeiten an der Visualisierung und intensiviert. Es gelang eine gut Darstellungsmethode für die Ergebnisse des Optimierung zu erarbeiten. Die Darstellung ist von den vorgeschlagenen in \cite{Hansen:2,Hansen:3} inspiriert und ermöglicht eine Vergleichbarkeit verschiedener Algorithmen, Parameter und Ergebnisse.
+%
+%- Section 2.1 --------------------------------------------------------------
+\subsection{Programmierung}
+%
+Das Programm wurde um weitere Optionen und Übergabeparameter erweitert. Es ermöglicht eine automatische Generierung der Ausgabedateien mehrere Lösungen, die bereits für eine Weiterverarbeitung und Darstellung Konfektioniert sind. Im Weiteren kann nun dynamisch Einfluss auf die CMA-ES-Parameter $\mu$ und $\lambda$ genommen werden. Diese sind als Übergabeparameter realisiert und werden an die entsprechen Funktionen weitergegeben. 
+%
+%- Section 2.2 --------------------------------------------------------------
+\subsection{Visualisierung}
+%
+Für die Visualisierung der Daten wurden die in Anhang~\ref{lst:gnuplot_script} und Anhang~\ref{lst:cp_script} gezeigten Skripte erstellt. Das Skript aus Anhang~\ref{lst:cp_script} dient der einfachen Kopierung der Daten. Zusätzlich wird via \textit{sed} die erste Zeile entfernt. In dieser Zeile steht die verwendete Antennenkonfiguration, diese kann verworfen werden. Das Gnuplot-Skript in Anhang~\ref{lst:gnuplot_script} erstellt aus den Eingabedaten im Anschluss die entsprechenden Plots. Die Plots sind in Anhang~\ref{lst:plots} gezeigt.
+%- Section 2.3 --------------------------------------------------------------
+\subsection{Shark 3.0b}
+%
+Es wird im Zusammenhang mit der Optimierung ein Fehlverhalten beobachtet, es konnte zum jetzigen Zeitpunkt noch nicht eindeutig lokalisiert werden. Es zeigt sich, dass einige Funktionen in der Library nicht den erwarteten Rückgabewert liefern. Voraussichtlich in der nächsten Woche können diese Fehler behoben werden. Dort wird Zeit zur Verfügung stehen um die Funktionen der Library genauer zu untersuchen.
+%
+%- Section 3 -----------------------------------------------------------------
+\section{Probleme}
+\label{Problems}
+%
+Die Erstellung des gnuplot Skriptes hat längere Zeit in Anspruch genommen als erwartet. Aufgrund dieser Tatsache konnten die geplanten Experimente mit den Algorithmus und den Auswirkungen verschiedener Parameter nicht mehr durchgeführt werden und werden auf nächste Woche verschoben. Es ist immer noch nicht gelungen eine gute Beschriftung für den Plot der freien Parameter (Abbildung~\ref{fig:ResA20}) einzuführen.
+%
+%- Appendix ------------------------------------------------------------------
+\input{extern/append/appendix_w14.tex}
+
+\newpage
+%- Bibliography --------------------------------------------------------------
+\bibliographystyle{ieeetr}
+\bibliography{../bib/mathesis_collection1}
+
+\end{document}
