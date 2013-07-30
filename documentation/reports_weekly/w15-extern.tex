@@ -1,0 +1,141 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{draftwatermark}
+\usepackage{booktabs}
+\usepackage{blindtext} 
+\usepackage{framed} 
+\usepackage{xcolor} 
+\colorlet{shadecolor}{black} 
+\usepackage{latexsym}
+
+\usepackage{bbm}
+\usepackage{enumitem}
+
+\SetWatermarkText{Vertraulich}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
+
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usepackage{tikz}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+}
+
+\fancyhead[C]{ Wochenbericht KW 31 }
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ EXTERN }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+\input{../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+
+\setlength{\headheight}{36pt}
+
+\begin{titlepage}
+
+\input{extern/title/title_w15.tex}
+
+\end{titlepage}
+
+%- Section 1 ----------------------------------------------------------------
+\section[Allgemeines]{Allgemeines}
+%
+%Dieser Wochenbericht fasst die Projektwochen 12 und 13 zusammen. Die Ergebnisse dieses Zeitraums können so besser dargestellt werden.
+%
+%- Section 2 ----------------------------------------------------------------
+\section[Fortschritt]{Projektfortschritt}
+%
+Bug in Shark 3.0b behoben. Er betraf die Ausgabe der Ergebnisse.
+%Diese Woche wurde eine Tiefpassfilterung für den FPGA-entworfen und mittels Matlab/ Simulink getestet. Die Entwicklung an der Software wurde weitergeführt. So kann nun eine diskret~-~kontinuierliche Optimierung durchgeführt werden. Die Software wurde auf Shark 3.0b umgestellt.
+%
+%- Section 2.1 --------------------------------------------------------------
+\subsection{Programmierung}
+%
+In dieser Woche wurden die vorgeschlagenen Modelle von Frau S. Winter implementiert. Sie sind als eigenständige Klassen eingeführt worden. Analog zu den in \cite{WinAmed13} beschriebenen Modellen wurde die Benennung der Klassen durchgeführt. Folgende Klassen wurden dem Namespace \textit{PRPSEvolution::Solve::Models} hinzugefügt:
+\begin{enumerate}
+\item SuWi_Appraoch_I
+\item SuWi_Appraoch_II
+\item SuWi_Appraoch_III
+\end{enumerate}
+
+%Es wurden mehrere Modellvariationen erstellt, die in der Optimierung eingesetzt werden. Es wurden Versuche mit unterschiedlichen Variablenvektoren angestellt, die dafür erstellten Modellvarianten können kontinuierliche sowie diskrete Variablen verarbeiten.
+%
+%- Section 2.2 --------------------------------------------------------------
+%
+%- Section 2.3 --------------------------------------------------------------
+\subsection{Auslegung der FIR-Filter}
+%
+%In Absprache mit M.~Hüther wurden in dieser Woche zwei Entwürfe für FIR-Filter gemacht. Diese werden im FPGA implementiert und realisieren eine Tiefpassfilterung der Daten. Der Entwurf wurde mittels Matlab erstellt, das verwendete Simulink Modell und sie Ergebnisse sind in Anhang~\ref{FirFilterResult} gezeigt. Die Implementation wurde nach einer ersten Abschätzung des Aufwands nach hinten verschoben. Es fehlen für die Synthese notwendige (mathematische) Libraries von Altera, die in der eingesetzten Version von Quartus nicht enthalten sind. Es gibt analog dazu verwendbare, freie Lösungen jedoch ist der Implementationsaufwand größer. Für die von M.~Hüther gefundene Lösung benötigt Ganzzahlige Koeffizienten, die bisher mit Matlab ermittelten müssen entsprechend transformiert werden.
+%
+%- Section 3 -----------------------------------------------------------------
+\section{Probleme}
+\label{Problems}
+%
+%Es kam bei der Umstellung auf die neue Shark Version 3.0 (beta) zu erheblichen Problemen. Die Bibliothek ließ sich zunächst nicht compilieren und der Vorgang brach mit mehreren hundert Fehlermeldungen ab. Die Fehler gingen von einer veralteten Version der Boost-Library zum Einen und der Verwendung der Verwendeten Compiler-Version (gcc 4.8) zum Anderen aus. Eine Deinstallation der veralteten Boost-Library und anschließender Rekompilierung der neuesten Version (Boost 1.54) mit dem gcc 4.8 hat das Problem behoben.
+%
+%- Appendix ------------------------------------------------------------------
+\input{extern/append/appendix_w15.tex}
+
+\newpage
+%- Bibliography --------------------------------------------------------------
+\bibliographystyle{ieeetr}
+\bibliography{../bib/mathesis_collection1}
+
+\end{document}
