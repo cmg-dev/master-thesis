@@ -11,11 +11,24 @@ read first
 echo -n "Last index [ENTER]:"
 read last
 
-echo "removing ALL old data"
-rm data/*.dat
+echo -n "trial amount [ENTER]:"
+read trials
 
-for((i=$first;i<$last;i++))
+echo "removing ALL old data"
+
+for (( j=0 ; j < $trials ; j++ ))
 do
-	echo "Processing: '../"$filenamebase$i".dat'" 
-	cat ../$filenamebase$i.dat | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> data/$i.dat
+
+    fn_out_single="data/"$j.dat
+    for (( i=$first ; i < $last ; i++ ))
+    do
+        fn=../$filenamebase.$j"_"$i.dat
+        fn_out="data/"$j"_"$i.dat
+        rm $fn_out
+	    cat $fn | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> $fn_out
+         
+	    cat $fn | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> $fn_out_single
+        echo "" >> $fn_out_single
+    done
+	    echo "Trial "$j" done" 
 done
