@@ -2,11 +2,39 @@ This file documents the experiments done with shark to evaluate the different al
 
 Explanation of the symbols
 t_mean      means the mean execution time for one solution [ms]
-dropped     how many solutions where dropped
+dropped     how many solutions where dropped; i.e. because the overall fitness was not reached or the amount of evaluations got too big
 
-No.	Name.   Trails.	Algorithm.	Model.			Description.		                        Output.             t_mean  dropped OKAY?
-1 	E1	    50	CMA-ES-3.0b	WholeTomatoMkII		First Matrix only                           plot/E1_output      n.A.    4       n
-2 	E2	    25	CMA-ES-3.0b	WholeTomatoMkI_A	First Matrix only; Negative values for n   	plot/E2_output      n.A.    0       n
-3 	E3	    25	CMA-ES-3.0b	WholeTomatoMkI_B	First Matrix only; Negative values for n   	plot/E3_output      n.A.    0       n
-4 	E4	    25	CMA-ES-3.0b	WholeTomatoMkI_A	First Matrix only; No Negative values for n plot/E2_output      143     0       y
-5 	E5	    25	CMA-ES-3.0b	WholeTomatoMkI_B	First Matrix only; No negative values for n	plot/E3_output      73      0       y
+Why?
+In this series of experiments we want to evaluate the overall solving quality of the different models. All solutions were found via
+CMA-ES-Algorithm from the Shark 3.0b library.
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+1 	E1	    50	    CMA-ES-3.0b WholeTomatoMkII		First Matrix only                           plot/E1_output      n.A.    4       n
+2 	E2	    25	    CMA-ES-3.0b	WholeTomatoMkI_A	First Matrix only; Negative values for n   	plot/E2_output      n.A.    0       n
+3 	E3	    25	    CMA-ES-3.0b	WholeTomatoMkI_B	First Matrix only; Negative values for n   	plot/E3_output      n.A.    0       n
+4 	E4	    25	    CMA-ES-3.0b	WholeTomatoMkI_A	First Matrix only; No Negative values for n plot/E4_output      143     0       y
+5 	E5	    25	    CMA-ES-3.0b	WholeTomatoMkI_B	First Matrix only; No negative values for n	plot/E5_output      73      0       y
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Why?
+In this series we want to analyze the influence of the population size. Only one antenna combination was used in the model
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+6   E6	    25	    CMA-ES-3.0b	WholeTomatoMkII     Mu=20,Lambda=25                             plot/E6_output      95      0       y
+7   E7	    25	    CMA-ES-3.0b	WholeTomatoMkII     Mu=25,Lambda=50                             plot/E7_output      128     0       y      
+8   E8	    25	    CMA-ES-3.0b	WholeTomatoMkII     Mu=25,Lambda=100                            plot/E8_output      202     0       y
+9   E9	    25	    CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=100                            plot/E9_output      265     0       y
+10  E10	    25	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size)        plot/E10_output     82      0       y 
+
+Observation:
+No Combination of mu+lambda leads to satisfying results. Local minima are likely to appear.
+The suggested size for mu and lambda yields to the fastes computation result, with the smallest final value for sigma.
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Why?
+In this series we want to analyze the influence of the population size. In this experiment 25 trails for each antenna combination (60 
+possible) where found. That brings 60x25 Solutions.
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+11  E11	    25	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size)        plot/E11_output     81      0       y 
