@@ -51,7 +51,7 @@ namespace PRPSEvolution {
 
 			/*=============================================================*/
 			/**
-			 * 
+			 * Set up basic stuff...
 			 */
 			Process_MkII( )
 			{
@@ -176,9 +176,8 @@ namespace PRPSEvolution {
 
 				model.setParams( A, b, names );
 
-
-				std::cout << "Mu:" << Mu << " Lambda: " << Lambda << std::endl;
 #ifdef _Write_Result
+				/* init the algorithm */
 				shark::CMA cma;
 				if( Mu != 0 && Lambda != 0) {
 					RealVector p;
@@ -190,11 +189,14 @@ namespace PRPSEvolution {
 
 					
 				}
-				
+				/* print out selection of mu and lambda */
+// 				std::cout << "Mu:" << cma.mu() << " Lambda: " << cma.lambda() << std::endl;
+
+				/* solve.. */
 				do {
 					cma.step( model );
 					f << model.evaluationCounter() << " "
-									<< cma.solution().value << " "
+									<< cma.solution().value / epsilon << " "
 									<< cma.solution().point << " "
 									<< cma.sigma()
 									<< std::endl;

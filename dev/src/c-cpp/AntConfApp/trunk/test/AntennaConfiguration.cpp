@@ -62,6 +62,7 @@ int			VARIANT_SW;
 int			NO_OF_SOLUTIONS;
 int			MU					= 0;
 int			LAMBDA				= 0;
+int			UseNMats			= 1;
 bool		DROPBAD				= false;
 
 std::string	FILENAME			="";
@@ -95,7 +96,10 @@ int main ( int argc, char *argv[ ] ) {
 	if( argc > 6 )
 		LAMBDA = atoi(argv[6]);
 
-	std::cout << "Mu: " << MU << " Lambda " << LAMBDA << std::endl;
+	if( argc > 7 )
+		UseNMats = atoi(argv[7]);
+	
+
 	/**********************************************************************/
 	PRPSEvolution::System sys;
 
@@ -113,7 +117,7 @@ int main ( int argc, char *argv[ ] ) {
 	std::cout << std::endl;
 	std::cout << "*PreProcessing.." << std::endl;
 
-	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat, 1, 0 );
+	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat, UseNMats , 0 );
 
 	std::cout << std::endl;
 
@@ -130,10 +134,12 @@ int main ( int argc, char *argv[ ] ) {
 	steady_clock::time_point t_0 = steady_clock::now();
 	steady_clock::time_point t_1 = steady_clock::now();
 
+	int meanTime = 0;
+
 	/**********************************************************************/
 	if( VARIANT_SW == 0 ) {
-		auto A 			= preprocess.matrices;
 		t_00			= steady_clock::now();
+		auto A 			= preprocess.matrices;
 		auto v			= preprocess.vectors;
 		auto name		= preprocess.names;
 
@@ -151,25 +157,27 @@ int main ( int argc, char *argv[ ] ) {
 
 			process.incrementFileCounter();
 			t_1 = steady_clock::now();
-			std::cout << "Mark II :: "
-					<< i
-					<< " "
-					<< duration_cast<milliseconds>(t_1 -t_0).count()
-					<< " ms"
-					<< std::endl;
+// 			std::cout << "Mark II :: "
+// 					<< i
+// 					<< " "
+// 					<< duration_cast<milliseconds>(t_1-t_0).count()
+// 					<< " ms"
+// 					<< std::endl;
+					
+			meanTime += duration_cast<milliseconds>(t_1-t_0).count();
 
 		}
 		std::cout << "Mark II :: "
-				<< duration_cast<milliseconds>(t_1 -t_00).count()
+				<< duration_cast<milliseconds>(t_1-t_00).count()
 				<< " ms for "
 				<< NO_OF_SOLUTIONS
 				<< " Solutions"
 				<< std::endl;
 
-
 		t_1 = steady_clock::now();
 
-		std::cout << "Mark II :: total " << duration_cast<milliseconds>(t_1 -t_000).count() << " ms" << std::endl;
+		std::cout << "Mark II :: total " << duration_cast<milliseconds>(t_1-t_000).count() << " ms" << std::endl;
+		std::cout << "Mark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
 
 		return 0;
 
@@ -178,7 +186,6 @@ int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	if( VARIANT_SW == 1 ) {
 		int l = 0;
-		int meanTime = 0;
 		std::cout << "Mark II :: Solving Variant A" << std::endl;
 		for( auto A: preprocess.matrices ) {
 			t_00					= steady_clock::now();
@@ -274,7 +281,63 @@ int main ( int argc, char *argv[ ] ) {
 		return 0;
 		
 	}
-	
+
+	/**********************************************************************/
+	/* This will only solve for one matrix at a time 						 */
+	if( VARIANT_SW == 3 ) {
+		t_00			= steady_clock::now();
+		
+		auto As 		= preprocess.matrices;
+		auto vs			= preprocess.vectors;
+		auto names		= preprocess.names;
+
+		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 4" << std::endl;
+		for( int j = 0; j < As.size(); j++ ) {
+			auto A		= As[j];
+			auto v		= vs[j];
+			auto name	= names[j];
+
+			meanTime = 0; 
+
+			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+			std::ostringstream s;
+			s << "output/mkII/" << FILENAME << "." << j;
+			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+
+				process.setOutputFilePathBase( s.str() );
+
+				t_0 = steady_clock::now();
+				process.WholeTomatoMkII( 4 );
+
+				process.incrementFileCounter();
+				t_1 = steady_clock::now();
+// 				std::cout << j <<"\tMark II :: "
+// 						<< i
+// 						<< " "
+// 						<< duration_cast<milliseconds>(t_1-t_0).count()
+// 						<< " ms"
+// 						<< std::endl;
+
+				meanTime += duration_cast<milliseconds>(t_1-t_0).count();
+
+			}
+			std::cout << j << "\tMark II :: "
+					<< duration_cast<milliseconds>(t_1-t_00).count()
+					<< " ms for "
+					<< NO_OF_SOLUTIONS
+					<< " Solutions"
+					<< std::endl;
+
+			t_1 = steady_clock::now();
+
+			std::cout << j <<"\tMark II :: total " << duration_cast<milliseconds>(t_1-t_000).count() << " ms" << std::endl;
+			std::cout << j <<"\tMark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
+			
+		}
+		
+		return 0;
+
+	}
 #else
 	Solve::Process process;
 
@@ -347,7 +410,7 @@ int main ( int argc, char *argv[ ] ) {
 	auto names		= preprocess.names;
 	auto numOAnts	= preprocess.antennas;
 
-		std::cout << "num o Ants " << numOAnts << std::endl;
+	std::cout << "num o Ants " << numOAnts << std::endl;
 
 	for( int Solution = 0; Solution < NO_OF_SOLUTIONS; Solution++ ) {
 

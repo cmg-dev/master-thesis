@@ -64,9 +64,13 @@ namespace PRPSEvolution {
 
 			double x[ 7 ];
 
-			x[0] = p[0];
-			x[1] = p[1];
-			x[2] = p[2];
+			x[ 0 ] = p[ 0 ];
+			x[ 1 ] = p[ 1 ];
+			x[ 2 ] = p[ 2 ];
+			x[ 3 ] = p[ 3 ];
+			x[ 4 ] = p[ 4 ];
+			x[ 5 ] = p[ 5 ];
+			x[ 6 ] = p[ 6 ];
 
 // 			std::cout << "2" << std::endl;
 
@@ -75,6 +79,10 @@ namespace PRPSEvolution {
 					return 10000;
 // 			std::cout << "2.1" << std::endl;
 
+			bool doRecombination = true;
+			if( As.size() == 1 )
+				doRecombination = false;
+			
 			for( int i = 0; i < As.size(); i++ ) {
 				auto idx = idxs[i];
 // 				std::cout << "2.2" << std::endl;
@@ -86,12 +94,17 @@ namespace PRPSEvolution {
 				/* get the indeces for the solution */
 				int j,k;
 				j = k = 0;
-				/* recompile chromosome x */
-				x[ 3 ] = (double) p[ idx[ 0 ] ];
-				x[ 4 ] = (double) p[ idx[ 1 ] ];
-				x[ 5 ] = (double) p[ idx[ 2 ] ];
-				x[ 6 ] = (double) p[ idx[ 3 ] ];
 
+				if( doRecombination ) {
+					std::cout << "Do Recombine" << std::endl;
+				/* recompile chromosome x */
+					x[ 3 ] = (double) p[ idx[ 0 ] ];
+					x[ 4 ] = (double) p[ idx[ 1 ] ];
+					x[ 5 ] = (double) p[ idx[ 2 ] ];
+					x[ 6 ] = (double) p[ idx[ 3 ] ];
+					
+				}
+				
 // 				std::cout << "2.3" << std::endl;
 
 							

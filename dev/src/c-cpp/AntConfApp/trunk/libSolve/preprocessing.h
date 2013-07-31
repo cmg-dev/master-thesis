@@ -218,7 +218,7 @@ namespace PRPSEvolution {
 			std::cout << "PreProcessing:: Selecting names.. .. ";
 #endif
 
-// #ifdef _REFINE_SELECTION
+#ifdef _REFINE_SELECTION
 			std::vector<int> idxs = {0,2,3,4};
 			int quantity = 4;
 			auto selectedNames = selectNamesForProcessing(
@@ -229,10 +229,10 @@ namespace PRPSEvolution {
 															offset
 															);
 
-// #else
-// 			auto selectedNames = allPossibleNames;
+#else
+			auto selectedNames = allPossibleNames;
 
-// #endif /* _REFINE_SELECTION */
+#endif /* _REFINE_SELECTION */
 			
 			
 #ifdef _PREPROCESS_OUTPUT
@@ -423,8 +423,9 @@ namespace PRPSEvolution {
 				
 				select.push_back(name.str());
 
-			} while( Permutate::next_combination( s_.begin(),s_.begin() + k,s_.end() ) );
+			} while( Permutate::next_combination( s_.begin(), s_.begin() + k, s_.end() ) );
 
+			std::cout << finalAntAmount << std::endl;
 			/* finalAntAmount == 0 means Select all antenna */
 			int select_size = ( finalAntAmount == 0 ) ? select.size() : finalAntAmount;
 // 			int select_size = select.size();
@@ -434,14 +435,14 @@ namespace PRPSEvolution {
 // 			ret.push_back( names[7] );
 // 			ret.push_back( names[select.size()-1] );
 			
-			/* recheck if the poermutation exists in possible names, it should! */
-			i = 0;
+			/* recheck if the permutation exists in possible names, it should exist thou! */
+			i = offset;
 			for( auto name: names ) {
 				if( name == select[i] ) {
 					ret.push_back( name );
 					i++;
 				}
-				if( i >= select_size )
+				if( (i-offset) >= select_size )
 					break;
 
 			}
