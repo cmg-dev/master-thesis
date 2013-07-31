@@ -14,13 +14,13 @@ set key opaque
 set grid
 
 lastDataCol = 3+a+1
-inputfile = "data/".j."_".i.".dat"
-outFitness = "img/fitness.".j."_".i.".png"
-outObject = "img/objectVar.".j."_".i.".png"
-outSigma = "img/sigma.".j."_".i.".png"
-outMultiplot = "img/AllInOne.".j."_".i.".png"
+inputfile = "data/".i.".dat"
+#outFitness = "img/fitness.".j."_".i.".png"
+#outObject = "img/objectVar.".j."_".i.".png"
+#outSigma = "img/sigma.".j."_".i.".png"
+outMultiplot = "img/AllInOne.".i.".png"
 
-print "Processing: '".inputfile."' >> ".outFitness." + ".outObject." + ".outSigma 
+#print "Processing: '".inputfile."' >> ".outFitness." + ".outObject." + ".outSigma 
 
 file=inputfile ; row=2 ; col=2
 
@@ -102,7 +102,4 @@ unset multiplot
 
 if (i < n) reread
 i=0
-j=j+1
 
-if(j < m ) reread
-j=0
