@@ -39,6 +39,8 @@ unset logscale
 set autoscale
 
 #-------------------------------------------------------------------------
+#- Gather relevant information via stats ---------------------------------
+#-------------------------------------------------------------------------
 stats inputfile u 2 name "Counts" nooutput
 
 # notice: The fitness may be normalized to be shown correctly. Values below e-14 can no be processed correctly
@@ -49,15 +51,17 @@ stats inputfile u 6 name "Ys" nooutput
 stats inputfile u 7 name "Zs" nooutput
 stats inputfile u 8 name "N0s" nooutput
 stats inputfile u 9 name "N1s" nooutput
-stats inputfile u 11 name "N2s" nooutput
+stats inputfile u 10 name "N2s" nooutput
 stats inputfile u 11 name "N3s" nooutput
-if(a==8) stats inputfile u 12 name "N4s" nooutput
-if(a==9) stats inputfile u 13 name "N5s" nooutput
-if(a==10) stats inputfile u 14 name "N6s" nooutput
-if(a==11) stats inputfile u 15 name "N7s" nooutput
+if(a==8) stats inputfile u 13 name "N4s" nooutput
+if(a==9) stats inputfile u 14 name "N5s" nooutput
+if(a==10) stats inputfile u 15 name "N6s" nooutput
+if(a==11) stats inputfile u 16 name "N7s" nooutput
 
 stats inputfile u lastDataCol name "Sigmas" nooutput
 
+
+#-------------------------------------------------------------------------
 #-------------------------------------------------------------------------
 #1
 EvalOut = "EvaluationStats.dat"
@@ -120,14 +124,24 @@ set xlabel "Objective"
 set ylabel "Final Value"
 set size 1, .6
 set origin .0,.4
-set xrange [0:Objective_records+1]
-set yrange [-10:30]
+set autoscale
+set xrange [.2:Objective_records+1]
+#set yrange [-10:30]
+
+
 set ytics format "%.0f"
 
 plot ObjectiveOut using 1:3:2:6:5 with candlesticks lt 1 lw 1 title 'Quartiles' whiskerbars, \
     ''        using 1:4:4:4:4 with candlesticks lt -1 lw 1 notitle
 
-set autoscale
+unset label 1
+unset label 2
+unset label 3
+unset label 4
+unset label 5
+unset label 6
+unset label 7
+
 
 #-------------------------------------------------------------------------
 #setup the 2. plot
@@ -167,55 +181,9 @@ unset xtics
 plot SigmaOut using 1:3:2:6:5 with candlesticks lt 1 lw 1 title 'Quartiles' whiskerbars, \
     ''        using 1:4:4:4:4 with candlesticks lt -1 lw 1 notitle
 
-#if( a==10 ) plot inputfile u 1:4 w lines title "x", \
-#		"" u 1:5 w lines title "y", \
-#		"" u 1:6 w lines title "z", \
-#		"" u 1:7 w lines title "n0", \
-#		"" u 1:8 w lines title "n1", \
-#		"" u 1:9 w lines title "n2", \
-#		"" u 1:10 w lines title "n3", \
-#		"" u 1:11 w lines title "n4", \
-#		"" u 1:12 w lines title "n5", \
-#		"" u 1:13 w lines title "n6"
-
-#if( a==7 ) plot inputfile u 1:4 w lines title "x = ".at(file,Stat_records,4) ls 1 , \
-#		"" u 1:5 w lines title "y = ".at(file,Stat_records,5) ls 2, \
-#		"" u 1:6 w lines title "z = ".at(file,Stat_records,6) ls 3, \
-#		"" u 1:7 w lines title "n0 = ".at(file,Stat_records,7) ls 4, \
-#		"" u 1:8 w lines title "n1 = ".at(file,Stat_records,8) ls 4, \
-#		"" u 1:9 w lines title "n2 = ".at(file,Stat_records,9) ls 4, \
-#		"" u 1:10 w lines title "n3 = ".at(file,Stat_records,10) ls 4
-
-#set output outFitness
-
-
-stats inputfile u 5 name "Xs" nooutput
-set xrange [ 0 : Counts_records ] noreverse nowriteback
-#set yrange [ -178.000 : 86.0000 ] noreverse nowriteback
-
-set logscale y
-set xlabel ""
-set ylabel "Fitness"
-
-set size .5, .4
-set yrange [1e-25:20000]
-set origin .0,.0
-
-#set arrow 1 from minmin_x, minmin_y-0.2 to minmin_x, minmin_y-0.02 lw 0.5
-
-#plot inputfile u 1:2 w lines title "fitness"
-
-#set output outSigma
-
-set size .5, .4
-set origin .5,.0
-set yrange [1e-10:2]
-set ylabel "Sigma"
-
-
 i=i+1
 
 unset multiplot
 
-if (i < n) reread
+if (i < m) reread
 i=0
