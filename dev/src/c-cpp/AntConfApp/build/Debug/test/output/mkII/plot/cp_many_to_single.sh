@@ -6,22 +6,30 @@ read filenamebase
 echo -n "Please enter the output filename [ENTER]:"
 read outfilename
 
-rm data/$outfilename;
+echo -n "Please enter total trial amount [ENTER]:"
+read trials
 
-#copy all last lines to one single file
-find $filenamebase* -exec tail -n1 {} >> data/$outfilename \;
+for(( i=0; i <= $trials;i++ )) {
+    searchfor=$filenamebase"."$i"_"
+    out=data/$outfilename"_"$i."dat"
+    outtemp=data/$outfilename"_"$i."tmp"
 
-echo "Processing: '../"$filenamebase$i".dat'"
+    rm $out;
 
-#process the data stream, remove all (),-tokens
-cat data/$outfilename | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' >> data/outfilename_processed.tmp
+    #copy all last lines to one single file
+    find $searchfor* -type f -exec tail -n1 {} >> $out \;
+    
+    #process the data stream, remove all (),-tokens
+    cat $out | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' >> $outtemp 
 
-#mv temp file to its real name
-mv data/outfilename_processed.tmp data/$outfilename
+    #mv temp file to its real name
+    mv $outtemp $out 
 
-#add line numbers
-sed '/./=' data/$outfilename | sed '/./N; s/\n/ /' >> data/outfilename_processed.tmp
+    #add line numbers
+    sed '/./=' $out | sed '/./N; s/\n/ /' >> $outtemp 
 
-mv data/outfilename_processed.tmp data/$outfilename
+    mv $outtemp $out 
 
-echo "done see results in: data/"$outfilename
+    echo "done see results in: "$out
+
+}
