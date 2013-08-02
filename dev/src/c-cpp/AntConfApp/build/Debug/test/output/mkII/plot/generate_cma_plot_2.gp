@@ -18,7 +18,7 @@ inputfile = "data/".i.".dat"
 #outFitness = "img/fitness.".j."_".i.".png"
 #outObject = "img/objectVar.".j."_".i.".png"
 #outSigma = "img/sigma.".j."_".i.".png"
-outMultiplot = "img/AllInOne.".i.".png"
+outMultiplot = "img/linien/kondensiert/".i.".png"
 
 #print "Processing: '".inputfile."' >> ".outFitness." + ".outObject." + ".outSigma 
 
@@ -46,15 +46,16 @@ set ylabel "Objective Values"
 set size 1., .6
 set origin .0,.4
 
-if( a==9 ) plot inputfile u 1:4 w lines title "x", \
-		"" u 1:5 w lines title "($5-STATS_records)=y", \
-		"" u 1:6 w lines title "z", \
-		"" u 1:7 w lines title "n0", \
-		"" u 1:8 w lines title "n1", \
-		"" u 1:9 w lines title "n2", \
-		"" u 1:10 w lines title "n3", \
-		"" u 1:11 w lines title "n4", \
-		"" u 1:12 w lines title "n5"
+if( a==9 ) plot inputfile u 1:7 w lines title "n0 = ".at(file,Stat_records,7) ls 4, \
+		"" u 1:8 w lines title "n1 = ".at(file,Stat_records,8) ls 4, \
+		"" u 1:9 w lines title "n2 = ".at(file,Stat_records,9) ls 4, \
+		"" u 1:10 w lines title "n3 = ".at(file,Stat_records,10) ls 4, \
+		"" u 1:11 w lines title "n4 = ".at(file,Stat_records,11) ls 4, \
+		"" u 1:12 w lines title "n5 = ".at(file,Stat_records,12) ls 4, \
+        ""u 1:4 w lines title "x = ".at(file,Stat_records,4) ls 1, \
+		"" u 1:5 w lines title "y = ".at(file,Stat_records,5) ls 2, \
+		"" u 1:6 w lines title "z = ".at(file,Stat_records,6) ls 3
+		 
 
 if( a==10 ) plot inputfile u 1:4 w lines title "x", \
 		"" u 1:5 w lines title "y", \
@@ -91,7 +92,8 @@ plot inputfile u 1:2 w lines title "fitness"
 
 set size .5, .4
 set origin .5,.0
-set yrange [1e-10:2]
+set autoscale
+#set yrange [1e-10:2]
 set ylabel "Sigma"
 
 plot inputfile u 1:lastDataCol w lines title "{/Symbol s}"
@@ -100,6 +102,6 @@ i=i+1
 
 unset multiplot
 
-if (i < n) reread
+if (i < m) reread
 i=0
 

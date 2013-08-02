@@ -1,16 +1,19 @@
 #!/bin/bash
 
-echo -n "Please enter the base-filename you want to copy [ENTER]:"
-read filenamebase
+#echo -n "Please enter the base-filename you want to copy [ENTER]:"
+#read filenamebase
+filenamebase=$1
 
-echo -n "Please enter the output filename [ENTER]:"
-read outfilename
+#echo -n "Please enter the output filename [ENTER]:"
+#read outfilename
+outfilename="single"
 
-echo -n "Please enter total trial amount [ENTER]:"
-read trials
+#echo -n "Please enter total trial amount [ENTER]:"
+#read trials
+trials=$2
 
 for(( i=0; i <= $trials;i++ )) {
-    searchfor=$filenamebase"."$i"_"
+    searchfor=../$filenamebase"."$i"_"
     out=data/$outfilename"_"$i."dat"
     outtemp=data/$outfilename"_"$i."tmp"
 

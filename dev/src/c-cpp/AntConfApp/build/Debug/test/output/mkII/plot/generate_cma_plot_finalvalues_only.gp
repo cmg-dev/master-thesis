@@ -26,7 +26,7 @@ set grid
 
 lastDataCol = 3+a+2
 inputfile = "data/single_".i.".dat"
-outMultiplot = "img/SingleSolution_".i.".png"
+outMultiplot = "img/kerzen/kondensiert/".i.".png"
 
 print "Processing: Start" 
 
@@ -53,10 +53,10 @@ stats inputfile u 8 name "N0s" nooutput
 stats inputfile u 9 name "N1s" nooutput
 stats inputfile u 10 name "N2s" nooutput
 stats inputfile u 11 name "N3s" nooutput
-if(a==8) stats inputfile u 13 name "N4s" nooutput
-if(a==9) stats inputfile u 14 name "N5s" nooutput
-if(a==10) stats inputfile u 15 name "N6s" nooutput
-if(a==11) stats inputfile u 16 name "N7s" nooutput
+if(a>=8) stats inputfile u 12 name "N4s" nooutput
+if(a>=9) stats inputfile u 13 name "N5s" 
+if(a==10) stats inputfile u 14 name "N6s" nooutput
+if(a==11) stats inputfile u 15 name "N7s" nooutput
 
 stats inputfile u lastDataCol name "Sigmas" nooutput
 
@@ -87,6 +87,9 @@ print "  *".to( ObjectiveOut, N1s_min, N1s_lo_quartile, N1s_mean, N1s_up_quartil
 print "  *".to( ObjectiveOut, N2s_min, N2s_lo_quartile, N2s_mean, N2s_up_quartile, N2s_max, 6)
 print "  *".to( ObjectiveOut, N3s_min, N3s_lo_quartile, N3s_mean, N3s_up_quartile, N3s_max, 7)
 
+if(a>=8) print "  *".to( ObjectiveOut, N4s_min, N4s_lo_quartile, N4s_mean, N4s_up_quartile, N4s_max, 8)
+if(a>=9) print "  *".to( ObjectiveOut, N5s_min, N5s_lo_quartile, N5s_mean, N5s_up_quartile, N5s_max, 9)
+
 stats ObjectiveOut u 5 name "Objective" nooutput
 
 #4
@@ -98,26 +101,32 @@ print "wr".to( SigmaOut, Sigmas_min, Sigmas_lo_quartile, Sigmas_mean, Sigmas_up_
 #-------------------------------------------------------------------------
 #setup the 1. plot
 
-LABEL1 = sprintf("mean =\t%.3f \nmin =\t%.3f \nmax =\t%.3f \nmedian =\t%.3f ",Xs_mean, Xs_max, Xs_min, Xs_median )
+LABEL1 = sprintf("mean =\t%.3f \nmax =\t%.3f \nmin =\t%.3f \nmedian =\t%.3f ",Xs_mean, Xs_max, Xs_min, Xs_median )
 set label 1 at 1.1,Xs_mean LABEL1 front left font "Arial,8" 
 
-LABEL2 = sprintf("mean =\t%.3f \nmin =\t%.3f \nmax =\t%.3f \nmedian =\t%.3f ",Ys_mean, Ys_max, Ys_min, Ys_median )
+LABEL2 = sprintf("mean =\t%.3f \nmax =\t%.3f \nmin =\t%.3f \nmedian =\t%.3f ",Ys_mean, Ys_max, Ys_min, Ys_median )
 set label 2 at 2.1,Ys_mean LABEL2 front left font "Arial,8" 
 
-LABEL3 = sprintf("mean =\t%.3f \nmin =\t%.3f \nmax =\t%.3f \nmedian =\t%.3f" ,Zs_mean, Zs_max, Zs_min, Zs_median )
+LABEL3 = sprintf("mean =\t%.3f \nmax =\t%.3f \nmin =\t%.3f \nmedian =\t%.3f" ,Zs_mean, Zs_max, Zs_min, Zs_median )
 set label 3 at 3.1,Zs_mean LABEL3 front left font "Arial,8" 
 
-LABEL4 = sprintf("mean =\t%.3f \nmin =\t%.3f \nmax =\t%.3f \nmedian =\t%.3f ",N0s_mean, N0s_max, N0s_min, N0s_median )
+LABEL4 = sprintf("mean =\t%.3f \nmax =\t%.3f \nmin =\t%.3f \nmedian =\t%.3f ",N0s_mean, N0s_max, N0s_min, N0s_median )
 set label 4 at 4.1,N0s_mean LABEL4 front left font "Arial,8" 
 
-LABEL5 = sprintf("mean =\t%.3f \nmin =\t%.3f \nmax =\t%.3f \nmedian =\t%.3f ",N1s_mean, N1s_max, N1s_min, N1s_median )
+LABEL5 = sprintf("mean =\t%.3f \nmax =\t%.3f \nmin =\t%.3f \nmedian =\t%.3f ",N1s_mean, N1s_max, N1s_min, N1s_median )
 set label 5 at 5.1,N1s_mean LABEL5 front left font "Arial,8" 
 
-LABEL6 = sprintf("mean =\t%.3f \nmin =\t%.3f \nmax =\t%.3f \nmedian =\t%.3f ",N2s_mean, N2s_max, N2s_min, N2s_median  )
+LABEL6 = sprintf("mean =\t%.3f \nmax =\t%.3f \nmin =\t%.3f \nmedian =\t%.3f ",N2s_mean, N2s_max, N2s_min, N2s_median  )
 set label 6 at 6.1,N2s_mean LABEL6 front left font "Arial,8" 
 
-LABEL7 = sprintf("mean =\t%.3f \nmin =\t%.3f \nmax =\t%.3f \nmedian =\t%.3f ",N3s_mean, N3s_max, N3s_min, N3s_median )
+LABEL7 = sprintf("mean =\t%.3f \nmax =\t%.3f \nmin =\t%.3f \nmedian =\t%.3f ",N3s_mean, N3s_max, N3s_min, N3s_median )
 set label 7 at 7.1,N3s_mean LABEL7 front left font "Arial,8" 
+
+
+if(a>=8)LABEL8 = sprintf("mean =\t%.3f \nmax =\t%.3f \nmin =\t%.3f \nmedian =\t%.3f ",N4s_mean, N4s_max, N4s_min, N4s_median )
+if(a>=8)set label 8 at 8.1,N4s_mean LABEL8 front left font "Arial,8" 
+if(a>=9)LABEL9 = sprintf("mean =\t%.3f \nmax =\t%.3f \nmin =\t%.3f \nmedian =\t%.3f ",N5s_mean, N5s_max, N5s_min, N5s_median )
+if(a>=9)set label 9 at 9.1,N5s_mean LABEL9 front left font "Arial,8" 
 
 set boxwidth 0.1 absolute 
 set xlabel "Objective"
@@ -126,6 +135,7 @@ set size 1, .6
 set origin .0,.4
 set autoscale
 set xrange [.2:Objective_records+1]
+set xtics
 #set yrange [-10:30]
 
 
