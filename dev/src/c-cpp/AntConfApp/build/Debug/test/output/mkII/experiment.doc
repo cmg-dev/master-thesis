@@ -38,3 +38,37 @@ possible) where found. That brings 60x25 Solutions.
 
 No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
 11  E11	    25	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size)        plot/E11_output     81      0       y 
+
+Observation:
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Why?
+Experjments with antanna grouping; The resulting dimension is 9 
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+12  E12	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);       plot/E12_output     170     0       y
+                                                    All combinations of one reference grouped;  
+                                                    Mean from vector used to calculate fitness
+13  E13	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);       plot/E13_output     211
+                                                    All combinations of one reference grouped;  
+                                                    Max from vector used to calculate fitness
+14  E14	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);       plot/E14_output     183 
+                                                    All combinations of one reference grouped;  
+                                                    Min from vector used to calculate fitness
+15  E15	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);       plot/E15_output     186
+                                                    All combinations of one reference grouped;  
+                                                    Median from vector used to calculate fitness
+
+Observation:
+The grouping of all antennas helped to constrain the deviation of the values; The final values for epsilon where reached; The sigma
+was always poor (meaning large)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Why?
+Verify against random data
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+XX  EXX	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);       plot/EXX_output     181
+                                                    All combinations of one reference grouped;  
+                                                    Mean from vector used to calculate fitness
