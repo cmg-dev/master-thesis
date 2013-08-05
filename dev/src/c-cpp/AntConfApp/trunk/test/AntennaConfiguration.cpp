@@ -21,6 +21,8 @@
 #define _USE_SHARK_3_0_
 #define _Write_Result
 #define _DROP_BAD_
+// #define _PREPROCESS_OUTPUT
+#define _REFINE_SELECTION
 
 #ifdef _USE_SHARK_3_0_
 	#include "../libSolve/processMkII.h"
@@ -48,7 +50,15 @@
 #include "../libSolve/preprocessing.h"
 #include "../libSolve/postprocessing.h"
 
+#define USAGE_AND_EXIT \
+	{																		\
+	std::cout << "USAGE: " << std::endl << "\t " << argv[0] 				\
+	<< " [VARIANT_SW] [NO_OF_SOLUTIONS] [DROPBAD] [FILENAME] [MU] [Lambda] [UseNMats]"<< std::endl; \
+	exit(-1); 																\
+	}
 // #include <EALib/ChromosomeCMA.h>
+
+const int EXPECTED = 8;
 
 using namespace PRPSEvolution;
 using std::chrono::duration_cast;
@@ -77,6 +87,9 @@ int main ( int argc, char *argv[ ] ) {
 			VERSION_SUB_MINOR
 			);
 
+	if( argc < EXPECTED )
+		USAGE_AND_EXIT;
+	
 	if( argc > 1 )
 		VARIANT_SW = atoi( argv[1] );
 
@@ -157,13 +170,14 @@ int main ( int argc, char *argv[ ] ) {
 
 			process.incrementFileCounter();
 			t_1 = steady_clock::now();
+
 // 			std::cout << "Mark II :: "
 // 					<< i
 // 					<< " "
 // 					<< duration_cast<milliseconds>(t_1-t_0).count()
 // 					<< " ms"
 // 					<< std::endl;
-					
+
 			meanTime += duration_cast<milliseconds>(t_1-t_0).count();
 
 		}
@@ -291,7 +305,7 @@ int main ( int argc, char *argv[ ] ) {
 		auto vs			= preprocess.vectors;
 		auto names		= preprocess.names;
 
-		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 4" << std::endl;
+		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 3" << std::endl;
 		for( int j = 0; j < As.size(); j++ ) {
 			auto A		= As[j];
 			auto v		= vs[j];
@@ -307,7 +321,69 @@ int main ( int argc, char *argv[ ] ) {
 				process.setOutputFilePathBase( s.str() );
 
 				t_0 = steady_clock::now();
+				
+				/* get a solution */
 				process.WholeTomatoMkII( 4 );
+
+				process.incrementFileCounter();
+				t_1 = steady_clock::now();
+// 				std::cout << j <<"\tMark II :: "
+// 						<< i
+// 						<< " "
+// 						<< duration_cast<milliseconds>(t_1-t_0).count()
+// 						<< " ms"
+// 						<< std::endl;
+
+				meanTime += duration_cast<milliseconds>(t_1-t_0).count();
+
+			}
+			std::cout << j << "\tMark II :: "
+					<< duration_cast<milliseconds>(t_1-t_00).count()
+					<< " ms for "
+					<< NO_OF_SOLUTIONS
+					<< " Solutions"
+					<< std::endl;
+
+			t_1 = steady_clock::now();
+
+			std::cout << j <<"\tMark II :: total " << duration_cast<milliseconds>(t_1-t_000).count() << " ms" << std::endl;
+			std::cout << j <<"\tMark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
+			
+		}
+		
+		return 0;
+
+	}
+	/**********************************************************************/
+	/* This will only solve for one matrix at a time 						 */
+	if( VARIANT_SW == 4 ) {
+		t_00			= steady_clock::now();
+		
+		auto As 		= preprocess.matGroups;
+		auto vs			= preprocess.vectorGroups;
+		auto names		= preprocess.nameGroups;
+
+		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 4" << std::endl;
+		for( int j = 0; j < As.size(); j++ ) {
+			auto A		= As[ j ];
+			auto v		= vs[ j ];
+			auto name	= names[ j ];
+
+			meanTime = 0; 
+
+			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+			std::ostringstream s;
+			s << "output/mkII/" << FILENAME << "." << j;
+
+			int dimension = preprocess.antennasPerGroup;
+
+			std::cout << " dimension " << dimension << std::endl;
+			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+
+				process.setOutputFilePathBase( s.str() );
+
+				t_0 = steady_clock::now();
+				process.WholeTomatoMkII( dimension );
 
 				process.incrementFileCounter();
 				t_1 = steady_clock::now();

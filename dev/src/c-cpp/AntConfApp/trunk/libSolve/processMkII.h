@@ -166,7 +166,10 @@ namespace PRPSEvolution {
 					return -1;
 
 				f_path = "";
-				f << names[0] << " " << 	dimension << std::endl;
+				
+				for( auto name : names )
+					f << name << " ";
+				f << dimension << std::endl;
 
 #endif
 				auto dim = Solve::ProblemDimensions::WholeTomatoMkII;
@@ -196,9 +199,12 @@ namespace PRPSEvolution {
 				do {
 					cma.step( model );
 					f << model.evaluationCounter() << " "
-									<< cma.solution().value / epsilon << " "
+									<< cma.solution().value << " "
 									<< cma.solution().point << " "
-									<< cma.sigma()
+									<< cma.sigma() << " "
+									<< cma.solution().value * 1e10 << " "
+									<< cma.solution().value / epsilon << " "
+									<< (1e-20) * epsilon / cma.solution().value 
 									<< std::endl;
 
 // 					if( cma.solution().value == 10000 );
@@ -382,7 +388,7 @@ namespace PRPSEvolution {
 			void resetFileCounter() { f_count = 0; }
 
 			void toggleVariant() { VariantA = !VariantA; }
-			
+
 		private:
 			/** The Matrices we need to solve the Problem */
 			std::vector<NRmatrix< Doub >> A;
@@ -412,9 +418,8 @@ namespace PRPSEvolution {
 			int Lambda = 0;
 			
 			int Mu = 0;
+
 		};
-
-
 	}
 }
 

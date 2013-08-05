@@ -39,16 +39,28 @@ namespace PRPSEvolution {
 		/*******************************************************************/
 		public:
 			/** The precalcultated matrices for a solution */
-			std::vector<NRmatrix<T>>	matrices;
+			std::vector<NRmatrix<T>>					matrices;
 
 			/** The b-vectors for the solution */
-			std::vector<NRvector<T>>	vectors;
+			std::vector<NRvector<T>>					vectors;
 
 			/** The "Names" of the matrices for a solution */
-			std::vector<std::string>	names;
+			std::vector<std::string>					names;
 
 			/** Amount of antennas for the solution */
-			int antennas;
+			int 										antennas;
+
+			/** Will contain the groups of a matrix */
+			std::vector<std::vector<NRmatrix<T>>>		matGroups;
+
+			/** Contains a group of the b-vectors */
+			std::vector<std::vector<NRvector<T>>>		vectorGroups;
+
+			/** Contains the names of a group */
+			std::vector<std::vector<std::string>>		nameGroups;
+			
+			/** Amount of antennas for the solution */
+			int 										antennasPerGroup;
 
 			PreProcessing
 				(
@@ -58,9 +70,20 @@ namespace PRPSEvolution {
 				const int
 				);
 
-		private:
-
+			/**
+			 * Returns the possible group size for one antenna
+			 * The group size depends on the amount of antennas that provided
+			 * a decent measurement and can be calculated by:
+			 * @f[\frac{n!}{k!(n-k)!}@f]
+			 * Where n is the amount of availiable-1 and k is the size of the group
+			 * 
+			 */
+			int possibleGroupSize() { return gGroupSize; };
 			
+		private:
+			/* stores the group size */
+			int gGroupSize = DEFAULT_MIN_GROUP_SIZE;
+
 			/** stores a bitmask which indicates the antennas contains valid data */
 			std::array<bool,N_ANTA> dataValid;
 
@@ -86,19 +109,19 @@ namespace PRPSEvolution {
 			/***************************************************************/
 			/***************************************************************/
 			/***************************************************************/
-			/*
+			/**
 			 * Read in the measurements from a file
 			 */
 			int rMeasurementsFromFile( );
 
-			/*
+			/**
 			 * 
 			 */
 			std::array<T, N_ANTA>
 			normalizeThetas
 			( const std::array<T_Measure,N_ANTA> &, const std::array<T_Measure,N_ANTA> & );
 
-			/*
+			/**
 			 * 
 			 */
 			int selectReferenceAntennaForProcessing( PRPSEvolution::Solve::SelectBy );
@@ -116,25 +139,25 @@ namespace PRPSEvolution {
 			std::vector<NRmatrix<T>>
 				selectMatsForProcessing( PRPSEvolution::Solve::SelectBy, const std::vector< std::string > & );
 
-			/*
+			/**
 			 *
 			 */
 			std::vector<NRmatrix<T>>
 				fillSelectMats( const std::array<T_Measure,N_ANTA> &, const std::vector<NRmatrix<T>> &, const std::vector<std::string> & );
 
-			/*
+			/**
 			 *
 			 */
 			std::vector<NRvector<T>>
 // std::array<NRvector<T>, N_Configs>
 				calcVectors( const std::vector<std::string> &, const std::array<T_Measure,N_ANTA> &, const NRmatrix<T> &, const T &);
 
-			/*
+			/**
 			 *
 			 */
 			std::vector<std::string> getPossibleNames( );
 
-			/*
+			/**
 			 * 
 			 */
 			std::vector< std::string >
@@ -146,7 +169,101 @@ namespace PRPSEvolution {
 			  const int &,
 			  const int &
 			);
-			
+
+			/*
+			 */
+			std::vector<std::vector<NRvector<T>>>
+				generateVectorGroups( std::vector<NRvector<T>> );
+
+			/*
+			 */
+			std::vector<std::vector<NRmatrix<T>>>
+				generateMatrixGroups( std::vector<NRmatrix<T>> );
+
+			/*
+			 */
+			std::vector<std::vector<std::string>>
+				generateNamesGroups( std::vector<std::string> );
+
+			/*
+			 */
+			void
+			dump_selected_mat_groups()
+			{
+				/*dump to file */
+				std::ofstream f;
+				f.open("output/selected_mats.dat");
+
+				if ( f.is_open() ) {
+					int i = 0;
+					for( auto& g : matGroups ) {
+						f << "++ Group " << i++ << " +++++++++" << std::endl;
+						for( auto &m : g) {
+							Permutate::AntennaPermutations<0,Doub>::dump_matrix_2_file( f, m );
+							
+						}
+					}
+					f.close();
+
+				} else {
+					throw PRPSEvolution::Exceptions::FileIO::OutputFailure();
+
+				}
+			}
+
+			/*
+			 */
+			void
+			dump_selected_vectors()
+			{
+				/*dump to file */
+				std::ofstream f;
+				f.open("output/selected_vecs.dat");
+
+				if ( f.is_open() ) {
+					int i = 0;
+					for( auto& g : vectorGroups ) {
+						for( auto &m : g) {
+// 							Permutate::AntennaPermutations<0,Doub>::dump_matrix_2_file( f, m );
+
+						}
+					}
+					f.close();
+
+				} else {
+					throw PRPSEvolution::Exceptions::FileIO::OutputFailure();
+
+				}
+			}
+
+			/*
+			 */
+			void
+			dump_selected_names()
+			{
+				/*dump to file */
+				std::ofstream f;
+				f.open("output/selected_names.dat");
+
+				if ( f.is_open() ) {
+					int i = 0;
+					for( auto& g : nameGroups ) {
+						f << "++ Group " << i++ << " +++++++++" << std::endl;
+
+						for( auto &n : g) {
+							f << n << std::endl;
+// 							f << names[i++] << std::endl;
+// 							Permutate::AntennaPermutations<0,Doub>::dump_matrix_2_file( f, m );
+
+						}
+					}
+					f.close();
+
+				} else {
+					throw PRPSEvolution::Exceptions::FileIO::OutputFailure();
+
+				}
+			}
 		};
 
 		/******************************************************************/
@@ -234,13 +351,10 @@ namespace PRPSEvolution {
 
 #endif /* _REFINE_SELECTION */
 			
-			
 #ifdef _PREPROCESS_OUTPUT
 			std::cout << "done" << std::endl;
 #endif
-			
 
-			
 			/***************************************************************/
 #ifdef _PREPROCESS_OUTPUT
 			std::cout << "PreProcessing:: Selecting matrices.. .. ";
@@ -259,8 +373,8 @@ namespace PRPSEvolution {
 				 * a_1 can be found in the matrix so we do not have to pass
 				 * it to the function seperately
 				 */
-				auto p = selectedConfs[0];
-				a_1 = p[0][3];
+				auto p = selectedConfs[ 0 ];
+				a_1 = p[ 0 ][ 3 ];
 #ifdef _PREPROCESS_OUTPUT
 				std::cout << "a_1 = " << a_1 << std::endl;
 #endif
@@ -289,6 +403,21 @@ namespace PRPSEvolution {
 			std::cout << " done" << std::endl;
 #endif
 
+#ifdef _PREPROCESS_OUTPUT
+			std::cout << "PreProcessing:: Creating Antanna Groups.. .. ";
+#endif
+			vectorGroups	= generateVectorGroups( finalVectors );
+			matGroups		= generateMatrixGroups( selectedConfs );
+			nameGroups		= generateNamesGroups( selectedNames );
+
+			dump_selected_mat_groups();
+			dump_selected_vectors();
+			dump_selected_names();
+			
+			
+#ifdef _PREPROCESS_OUTPUT
+			std::cout << "done" << std::endl;
+#endif
 			/***************************************************************/
 			vectors		= finalVectors;
 			matrices	= selectedConfs;
@@ -296,6 +425,82 @@ namespace PRPSEvolution {
 
 		}
 
+		/**
+		 * Create all possible groups according to @see possibleGroupSize
+		 * @param[in] finalVectors the precalculated final vectors
+		 * 
+		 */
+		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
+		std::vector<std::vector<NRvector<T>>>
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::generateVectorGroups( std::vector<NRvector<T>> finalVectors)
+		{
+			std::vector<std::vector<NRvector<T>>> ret;
+
+			int i = 0, j = 0;
+			for( int i = 0; i < finalVectors.size(); i+=gGroupSize ) {
+				std::vector<NRvector<T>> vec;
+				
+				for( int j = 0; j < gGroupSize; j++ ) {
+// 					std::cout << j << " " << i << std::endl;
+					auto v = finalVectors[ j + i ];
+					vec.push_back( v );
+
+				}
+				ret.push_back( vec );
+			}
+			return ret;
+		}
+
+		/**
+		 * Create all possible groups of matrices according to @see possibleGroupSize
+		 * @param[in] selectedConfs Vector containing the precalculated matrices
+		 * 
+		 */
+		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
+		std::vector<std::vector<NRmatrix<T>>>
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::generateMatrixGroups( std::vector<NRmatrix<T>> selectedConfs)
+		{
+			std::vector<std::vector<NRmatrix<T>>> ret;
+
+			for( int i = 0; i < selectedConfs.size(); i+=gGroupSize ) {
+				std::vector<NRmatrix<T>> vec;
+
+				for( int j = 0; j < gGroupSize; j++ ) {
+// 					std::cout << j << " " << i << std::endl;
+					auto v = selectedConfs[ j + i ];
+					vec.push_back( v );
+
+				}
+				ret.push_back( vec );
+			}
+			return ret;
+		}
+		
+		/**
+		 * Create all possible groups of selected names according to @see possibleGroupSize
+		 * @param[in] selectedNames Vector containing the names
+		 *
+		 */
+		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
+		std::vector<std::vector<std::string>>
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::generateNamesGroups( std::vector<std::string> selectedNames )
+		{
+			std::vector<std::vector<std::string>> ret;
+
+			for( int i = 0; i < selectedNames.size(); i+=gGroupSize ) {
+				std::vector<std::string> vec;
+
+				for( int j = 0; j < gGroupSize; j++ ) {
+// 					std::cout << j << " " << i << std::endl;
+					auto v = selectedNames[ j + i ];
+					vec.push_back( v );
+
+				}
+				ret.push_back( vec );
+			}
+			return ret;
+		}
+		
 		/**
 		 * Read the measurements from file
 		 *
@@ -425,9 +630,11 @@ namespace PRPSEvolution {
 
 			} while( Permutate::next_combination( s_.begin(), s_.begin() + k, s_.end() ) );
 
-			std::cout << finalAntAmount << std::endl;
 			/* finalAntAmount == 0 means Select all antenna */
 			int select_size = ( finalAntAmount == 0 ) ? select.size() : finalAntAmount;
+
+			std::cout << "select_size " << select_size << std::endl;
+			
 // 			int select_size = select.size();
 // 			ret.push_back( names[0] );
 // 			ret.push_back( names[1] );
@@ -447,6 +654,7 @@ namespace PRPSEvolution {
 
 			}
 
+			/* we need to determine the amount of antennas finally used */
 			ostringstream os1;
 			os1 << "01234567";
 			
@@ -469,6 +677,9 @@ namespace PRPSEvolution {
 			}
 			
 			antennas = c;
+
+			gGroupSize			= select_size;
+			antennasPerGroup	= c;
 			
 // #ifdef _PREPROCESS_OUTPUT
 			std::cout << c << std::endl;
@@ -588,11 +799,12 @@ namespace PRPSEvolution {
 				c = (data_[i]) ? (c+1) : (c);
 			}
 
-			/* prpagate to global var */
+			/* propagate to global var */
 			dataValid = data_;
 			
 			int i = 0, j = 0;
 
+			/* create string with all names of the antennas */
 			ostringstream os;
 			/* possible permutations? */
 			for( auto d : data_ ) {
@@ -603,16 +815,19 @@ namespace PRPSEvolution {
 			const std::size_t NoAvailiable = j;
 			const std::size_t GroupSize = DEFAULT_MIN_GROUP_SIZE;
 
-// 			std::cout << os.str() << " " << j << std::endl;
+			/* n!/k!(n-k)! per antanna */
+			int
+			possiblePA	=
+						Permutate::Factorial( NoAvailiable - 1 );
+			possiblePA	/=
+						(Permutate::Factorial( GroupSize-1 )
+						* Permutate::Factorial( (NoAvailiable - 1) - (GroupSize -1) ) );
 
-			/* n!/k!(n-k)! */
-			int possiblePA = Permutate::Factorial( NoAvailiable - 1 );
-			possiblePA /=
-				(Permutate::Factorial( GroupSize-1 )
-				* Permutate::Factorial( (NoAvailiable - 1) - (GroupSize -1) ) );
-
-// 			std::cout << os.str() << " " << j << std::endl;
-
+			/* propagate to global var for later use */
+			gGroupSize			= possiblePA;
+			antennasPerGroup	= NoAvailiable;
+			
+			/* total possible combinations */
 			int totalPossible = possiblePA * NoAvailiable;
 
 // 			std::cerr << "possible " << possiblePA << std::endl;

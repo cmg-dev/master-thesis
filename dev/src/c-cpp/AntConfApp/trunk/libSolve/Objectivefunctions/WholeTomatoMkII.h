@@ -96,7 +96,12 @@ namespace PRPSEvolution {
 				j = k = 0;
 
 				if( doRecombination ) {
-					std::cout << "Do Recombine" << std::endl;
+// 					std::cout << "Do Recombine "
+// 					<< idx[ 0 ]
+// 					<< idx[ 1 ]
+// 					<< idx[ 2 ]
+// 					<< idx[ 3 ]
+// 					<< std::endl;
 				/* recompile chromosome x */
 					x[ 3 ] = (double) p[ idx[ 0 ] ];
 					x[ 4 ] = (double) p[ idx[ 1 ] ];
@@ -112,10 +117,21 @@ namespace PRPSEvolution {
 
 			}
 
+			/* calc mean */
 			double ret = Solve::meanFromVector( res );
 
+			/* sort */
 // 			std::sort( res.begin(), res.end() );
-				
+
+			/* return highest value */
+// 			auto ret = res[0];
+
+			/* return lowest value */
+//  			auto ret = res[ res.size() - 1 ];
+
+			/* return median value */
+//  			auto ret = res[ (int)res.size()/2 ];
+			
 			return ret;
 			
 		}
