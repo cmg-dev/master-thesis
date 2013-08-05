@@ -44,7 +44,7 @@ Observation:
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 Why?
-Experjments with antanna grouping; The resulting dimension is 9 
+Experiments with antanna grouping; The resulting dimension is 9 
 
 No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
 12  E12	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);       plot/E12_output     170     0       y
@@ -61,8 +61,41 @@ No.	Name.   Trails.	Algorithm.	Model.			    Description.		                      
                                                     Median from vector used to calculate fitness
 
 Observation:
-The grouping of all antennas helped to constrain the deviation of the values; The final values for epsilon where reached; The sigma
-was always poor (meaning large)
+The grouping of all antennas helped to constrain the deviation of the values; The candleplots indicate, that the values for x, y and z
+where much closer together then in previuos experiments; The final values for epsilon where reached; The sigma was also quite good
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Why?
+Experiments with antenna grouping continued... This time different amounts of participating combinations are tried 
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+16  E16	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           98
+                                                    2 Groups; 5 Antennas  
+                                                    Mean from vector used to calculate fitness
+17  E17	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           130
+                                                    3 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                         
+18  E18	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           132
+                                                    4 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+19  E18	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           142
+                                                    5 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                       
+20  E20	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           147
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                        
+21  E21	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           151
+                                                    7 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                         
+22  E22	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           160
+                                                    8 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+23  E23	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           156 
+                                                    9 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+
+Observation:
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -72,3 +105,5 @@ No.	Name.   Trails.	Algorithm.	Model.			    Description.		                      
 XX  EXX	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);       plot/EXX_output     181
                                                     All combinations of one reference grouped;  
                                                     Mean from vector used to calculate fitness
+X1  EX1	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);       plot/EX1_output    
+                                                    One Permutation
