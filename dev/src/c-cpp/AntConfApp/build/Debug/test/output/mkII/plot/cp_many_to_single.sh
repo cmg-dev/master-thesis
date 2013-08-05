@@ -12,7 +12,7 @@ outfilename="single"
 #read trials
 trials=$2
 
-for(( i=0; i <= $trials;i++ )) {
+for(( i=0; i < $trials;i++ )) {
     searchfor=../$filenamebase"."$i"_"
     out=data/$outfilename"_"$i."dat"
     outtemp=data/$outfilename"_"$i."tmp"

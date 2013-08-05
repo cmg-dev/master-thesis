@@ -14,4 +14,4 @@ print ""
 load "kondensierte_punkte.gp"
 load "kondensierte_linien.gp"
 load "kondensierte_kerzen.gp"
-load "linien.gp"
+

@@ -18,10 +18,12 @@ last=$3
 #read trials
 trials=$4
 
-echo "removing ALL old data"
-rm data/*.dat
+#echo $1" "$2" "$3" "$4
 
-for (( j=0 ; j <= $trials ; j++ ))
+echo "removing ALL old data"
+rm data/*.dat*
+
+for (( j=0 ; j < $trials ; j++ ))
 do
 
     fn_out_single="data/"$j.dat
