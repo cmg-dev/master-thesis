@@ -70,33 +70,65 @@ Why?
 Experiments with antenna grouping continued... This time different amounts of participating combinations are tried 
 
 No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
-16  E16	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           98
+16  E16	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           98
                                                     2 Groups; 5 Antennas  
                                                     Mean from vector used to calculate fitness
-17  E17	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           130
+17  E17	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           130
                                                     3 Groups; 6 Antennas  
                                                     Mean from vector used to calculate fitness                         
-18  E18	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           132
+18  E18	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           132
                                                     4 Groups; 6 Antennas  
                                                     Mean from vector used to calculate fitness                      
-19  E18	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           142
+19  E18	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           142
                                                     5 Groups; 6 Antennas  
                                                     Mean from vector used to calculate fitness                       
-20  E20	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           147
+20  E20	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           147
                                                     6 Groups; 6 Antennas  
                                                     Mean from vector used to calculate fitness                        
-21  E21	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           151
+21  E21	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           151
                                                     7 Groups; 6 Antennas  
                                                     Mean from vector used to calculate fitness                         
-22  E22	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           160
+22  E22	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           160
                                                     8 Groups; 6 Antennas  
                                                     Mean from vector used to calculate fitness
-23  E23	    20	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           156 
+23  E23	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           156 
                                                     9 Groups; 6 Antennas  
                                                     Mean from vector used to calculate fitness
 
 Observation:
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Why?
+Experiments with antenna grouping continued... This time different amounts of participating combinations are tried 
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+24  E24	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           97      0       y
+                                                    2 Groups; 5 Antennas  
+                                                    Mean from vector used to calculate fitness
+25  E25	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           127     0       y
+                                                    3 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+26  E26	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           129     0       y
+                                                    4 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+27  E27	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           135     0       y
+                                                    5 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                       
+28  E28	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           138     0       y
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                        
+29  E29	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           142     0       y
+                                                    7 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                         
+30  E30	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           146     0       y
+                                                    8 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+31  E31	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           153     0       y
+                                                    9 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+
+Observation:
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 Why?
