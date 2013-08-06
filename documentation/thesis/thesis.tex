@@ -1,0 +1,161 @@
+\documentclass[a4paper,12pt,fleqn]{scrbook}
+
+\usepackage[T1]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage{lastpage}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{listings}
+\usepackage{pdflscape}
+\usepackage{longtable}
+
+\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+
+\usepackage{fancyhdr}
+\usepackage{url}
+
+\usepackage{booktabs}
+\usepackage{blindtext} 
+\usepackage{lipsum}
+
+\usepackage{framed} 
+\usepackage{xcolor} 
+\colorlet{shadecolor}{black} 
+\usepackage{latexsym}
+
+\usepackage{bbm}
+\usepackage{enumitem}
+
+\usepackage{draftwatermark}
+\SetWatermarkText{Entwurf}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.9}
+
+\usepackage{pgfgantt}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usepackage{tikz}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{makeidx}
+
+% highlighting
+\usepackage{xcolor,soul}
+
+%---- PageLayout
+\pagestyle{fancy}
+
+\setlength{\headsep}{10mm}
+
+\usepackage{eso-pic}
+
+%----------------------------------------------------------------------------
+% HEADER --------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyhead[R]{
+  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+}
+
+\fancyhead[C]{ }
+
+\fancyhead[L]{
+  \begin{tabular}[b]{l}
+  Christoph Gnip\\
+  Projekt: PRPS-Evolution
+  \end{tabular}
+}
+
+%Linie oben
+\renewcommand{\headrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\fancyfoot[L]{Stand: \today}
+\fancyfoot[C]{ Entwurf }
+\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+
+% Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
+%----------------------------------------------------------------------------
+
+% Import Macros  ------------------------------------------------------------
+\input{../macros/cmgMacros.tex}
+
+%----------------------------------------------------------------------------
+% Start the Document --------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{document}
+\frontmatter 
+
+\setlength{\headheight}{36pt}
+
+%----------------------------------------------------------------------------
+% Titlepage -----------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{titlepage}
+
+\input{title/title.tex}
+
+\end{titlepage}
+
+\pagenumbering{roman} 
+
+%
+\tableofcontents 
+%
+\input{tables/TableOfAbbreviations.tex}
+%
+\input{tables/TableOfSymbols.tex}
+
+%\begin{abstract} 
+%This is the abstract. 
+%\end{abstract} 
+
+%\pagenumbering{arabic} 
+\mainmatter 
+%----------------------------------------------------------------------------
+% Chapters ------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%
+% 1. ------------------------------------------------------------------------
+\chapter{Einleitung}
+\lipsum[1]
+\input{chapters/Einleitung.tex}
+
+% 2. ------------------------------------------------------------------------
+\chapter{Hauptteil}
+\lipsum[1]
+\input{chapters/Hauptteil.tex}
+
+\chapter{Ergebnisse und Erkenntnisse}
+\lipsum[1]
+\input{chapters/Ergebnisse+Erkenntnisse.tex}
+
+% 3. ------------------------------------------------------------------------
+\chapter{Schluss}
+\lipsum[1]
+\input{chapters/Schluss.tex}
+
+%----------------------------------------------------------------------------
+% Appendix ------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\input{append/appendix.tex}
+
+\newpage
+%----------------------------------------------------------------------------
+% Bibliography --------------------------------------------------------------
+%----------------------------------------------------------------------------
+
+
+\bibliographystyle{ieeetr}
+\bibliography{../bib/mathesis_collection1}
+
+\end{document}
