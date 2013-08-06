@@ -28,4 +28,5 @@ tar -czf store/$experiment.tar.gz data/$Experiment* img *Stats.dat
 
 rm $f1
 rm $f2
-
+echo "removing *Stats.dat"
+rm *Stats.dat

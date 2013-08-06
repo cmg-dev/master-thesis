@@ -71,7 +71,7 @@ done
 
 #echo $FILE" "$START" "$STOP" "$TRIALS" "$PLOTSINGLE" "$CREATEARCH
 
-if [ -z $FILE ] || [ -z $START ] || [ -z $STOP ] || [ -z $TRIALS ] || [ -z $VARAMOUNT ]
+if [ -z $FILE ] || [ -z $START ] || [ -z $STOP ] || [ -z $TRIALS ] || [ -z $VARAMOUNT ] || [ -z $PLOTSINGLE ]
 then
     echo "Arguments not satisfied:"
     usage
@@ -83,7 +83,7 @@ fi
     echo "****"
     echo "1st copy process "
     echo "****"
-    ./cp_data_to_printable.sh $FILE $START $STOP $TRIALS
+    ./cp_data_to_printable.sh $FILE $START $STOP $TRIALS $PLOTSINGLE
 
     echo "****"
     echo "2nd copy process "
