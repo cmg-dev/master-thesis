@@ -20,6 +20,11 @@ trials=$4
 
 #echo $1" "$2" "$3" "$4
 
+if [ $5 == "yes" ]
+then
+    echo "generating single files"
+fi
+
 echo "removing ALL old data"
 rm data/*.dat*
 
@@ -30,11 +35,15 @@ do
     for (( i=$first ; i < $last ; i++ ))
     do
         fn=../$filenamebase.$j"_"$i.dat
-        fn_out="data/"$j"_"$i.dat
 
-        cat $fn | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> $fn_out
-         
+        if [ $5 == "yes" ]
+        then
+            fn_out="data/"$j"_"$i.dat
+            cat $fn | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> $fn_out
+        fi
+
         cat $fn | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> $fn_out_single
+        
         echo "" >> $fn_out_single
     done
            echo "Trial "$j" done" 
