@@ -389,6 +389,12 @@ namespace PRPSEvolution {
 
 			void toggleVariant() { VariantA = !VariantA; }
 
+			/**
+			 * @param[in] evaluations The new value for the evaluations
+			 * 
+			 */
+			void setMaxEvauations( const int evaluations) { maxEvaluations = evaluations; }
+
 		private:
 			/** The Matrices we need to solve the Problem */
 			std::vector<NRmatrix< Doub >> A;

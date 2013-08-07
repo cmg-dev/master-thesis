@@ -600,23 +600,28 @@ namespace PRPSEvolution {
 #ifdef _PREPROCESS_OUTPUT
 			std::cout << std::endl;
 #endif
+			int possibleGroups = 0;
 			
  			ostringstream os;
 			/* possible permutations? */
 			int i = 0;
 			for( auto d: dataValid ) {
-				if( d )
+				if( d ) {
 					os << std::to_string(i);
+					possibleGroups++;
+				}
 				i++;
 				
 			}
-#ifdef _PREPROCESS_OUTPUT
-			std::cout << "Selecting "<< quantity << " from " << indices.size() << std::endl;
-#endif
-			
+// #ifdef _PREPROCESS_OUTPUT
+// 			std::cout << "Selecting "<< quantity << " from " << indices.size() << std::endl;
+// 			std::cout << "string "<< os.str() << std::endl;
+// #endif
+
 			/**/
 			std::vector< std::string > select;
 
+			/* k is the n over k, k */
 			std::size_t k = quantity;
 			std::string s_ = os.str();
 
@@ -625,7 +630,8 @@ namespace PRPSEvolution {
 				/* create the name */
 				ostringstream name;
 				name << std::string( s_.begin(),s_.begin() + k );
-				
+
+// 				std::cout << " name " << name.str() << std::endl;
 				select.push_back(name.str());
 
 			} while( Permutate::next_combination( s_.begin(), s_.begin() + k, s_.end() ) );
@@ -633,15 +639,31 @@ namespace PRPSEvolution {
 			/* finalAntAmount == 0 means Select all antenna */
 			int select_size = ( finalAntAmount == 0 ) ? select.size() : finalAntAmount;
 
-			std::cout << "select_size " << select_size << std::endl;
+// 			std::cout << "select_size " << select_size << " " << select.size() << std::endl;
 			
 // 			int select_size = select.size();
 // 			ret.push_back( names[0] );
 // 			ret.push_back( names[1] );
-			
+
 // 			ret.push_back( names[7] );
 // 			ret.push_back( names[select.size()-1] );
-			
+
+			/* decide whether we want to group or not */
+#ifdef _PP_FORM_GROUPS
+			int AvailiablePerGroup = names.size()/ antennasPerGroup;
+
+			for( int j = 0; j < possibleGroups; j++ ) {
+				for( int i = 0; i < select_size; i++ ) {
+						ret.push_back( names[ (AvailiablePerGroup*j) + i] );
+// 					}
+// 					if( (i-offset) >= select_size )
+// 						break;
+
+				}
+			}
+// 			for( auto a : ret )
+// 				std::cout << " *" << a << std::endl;
+#else
 			/* recheck if the permutation exists in possible names, it should exist thou! */
 			i = offset;
 			for( auto name: names ) {
@@ -653,6 +675,7 @@ namespace PRPSEvolution {
 					break;
 
 			}
+#endif /* _PP_FORM_GROUPS */
 
 			/* we need to determine the amount of antennas finally used */
 			ostringstream os1;
@@ -681,11 +704,11 @@ namespace PRPSEvolution {
 			gGroupSize			= select_size;
 			antennasPerGroup	= c;
 			
-// #ifdef _PREPROCESS_OUTPUT
+#ifdef _PREPROCESS_OUTPUT
 			std::cout << c << std::endl;
 			for( auto name: ret )
 				std::cout << name << std::endl;
-// #endif
+#endif
 			
 			return ret;
 			
@@ -801,7 +824,7 @@ namespace PRPSEvolution {
 
 			/* propagate to global var */
 			dataValid = data_;
-			
+
 			int i = 0, j = 0;
 
 			/* create string with all names of the antennas */

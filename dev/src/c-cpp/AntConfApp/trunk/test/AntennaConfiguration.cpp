@@ -23,6 +23,7 @@
 #define _DROP_BAD_
 // #define _PREPROCESS_OUTPUT
 #define _REFINE_SELECTION
+#define _PP_FORM_GROUPS
 
 #ifdef _USE_SHARK_3_0_
 	#include "../libSolve/processMkII.h"
@@ -53,12 +54,12 @@
 #define USAGE_AND_EXIT \
 	{																		\
 	std::cout << "USAGE: " << std::endl << "\t " << argv[0] 				\
-	<< " [VARIANT_SW] [NO_OF_SOLUTIONS] [DROPBAD] [FILENAME] [MU] [Lambda] [UseNMats]"<< std::endl; \
+	<< " [VARIANT_SW] [NO_OF_SOLUTIONS] [DROPBAD] [FILENAME] [MU] [Lambda] [UseNMats] [DEFAULT_MAX_EVALUATIONS]"<< std::endl; \
 	exit(-1); 																\
 	}
 // #include <EALib/ChromosomeCMA.h>
 
-const int EXPECTED = 8;
+const int EXPECTED = 9;
 
 using namespace PRPSEvolution;
 using std::chrono::duration_cast;
@@ -67,12 +68,15 @@ using std::chrono::milliseconds;
 using std::chrono::steady_clock;
 
 const int SOLUTION_AMOUNT = 1;
+const int DEFAULT_MAX_EVALUATIONS = 4500;
 
 int			VARIANT_SW;
 int			NO_OF_SOLUTIONS;
 int			MU					= 0;
 int			LAMBDA				= 0;
 int			UseNMats			= 1;
+int			EVALUATIONS			= DEFAULT_MAX_EVALUATIONS;
+
 bool		DROPBAD				= false;
 
 std::string	FILENAME			="";
@@ -112,6 +116,9 @@ int main ( int argc, char *argv[ ] ) {
 	if( argc > 7 )
 		UseNMats = atoi(argv[7]);
 	
+	if( argc > 8 )
+		if(atoi( argv[8] ) > 0)
+			EVALUATIONS = atoi(argv[8]);
 
 	/**********************************************************************/
 	PRPSEvolution::System sys;
@@ -372,6 +379,8 @@ int main ( int argc, char *argv[ ] ) {
 			meanTime = 0; 
 
 			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+			process.setMaxEvauations( EVALUATIONS );
+			
 			std::ostringstream s;
 			s << "output/mkII/" << FILENAME << "." << j;
 
