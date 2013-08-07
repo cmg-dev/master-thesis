@@ -78,54 +78,45 @@ then
     exit 1
 fi
 
-#if [ $# -eq 6 ]
-#then
-    echo "****"
-    echo "1st copy process "
-    echo "****"
-    ./cp_data_to_printable.sh $FILE $START $STOP $TRIALS $PLOTSINGLE
+echo "****"
+echo "1st copy process "
+echo "****"
+./cp_data_to_printable.sh $FILE $START $STOP $TRIALS $PLOTSINGLE
 
-    echo "****"
-    echo "2nd copy process "
-    echo "****"
-    ./cp_many_to_single.sh $FILE $TRIALS
+echo "****"
+echo "2nd copy process "
+echo "****"
+./cp_many_to_single.sh $FILE $TRIALS
 
-    echo "****"
-    echo "Generating plots "
-    echo "****"
-    if [ $PLOTSINGLE == "yes" ]
-    then
-        gnuplot gen_plots_all.gp
-    else
-        gnuplot gen_plots.gp
-    fi
+rm init.gp
+echo "i="$START >> init.gp
+echo "j="$START >> init.gp
+echo "a="$VARAMOUNT >> init.gp
+echo "n="$STOP >> init.gp
+echo "m="$TRIALS >> init.gp
+echo "h=707" >> init.gp
+echo "w=1000" >> init.gp
+ 
+echo "****"
+echo "Generating plots "
+echo "****"
+if [ $PLOTSINGLE == "yes" ]
+then
+    gnuplot gen_plots_all.gp
+else
+    gnuplot gen_plots.gp
+fi
 
-    #prepare the gnuplot
-    rm init.gp
-    echo "i="$START >> init.gp
-    echo "j="$START >> init.gp
-    echo "a="$VARAMOUNT >> init.gp
-    echo "n="$STOP >> init.gp
-    echo "m="$TRIALS >> init.gp
-    #j=0
-    #a=9
-    #m=5
-    #n=20
-
-    if [ $CREATEARCH == "yes" ]
-    then
-        echo "****"
-        echo "Creating Archiv"
-        echo "****"
-        ./create_arch.sh $FILE
+if [ $CREATEARCH == "yes" ]
+then
+    echo "****"
+    echo "Creating Archiv"
+    echo "****"
+    ./create_arch.sh $FILE
     
-        echo "****"
-        echo "Init new image repository"
-        echo "****"
-        ./init_new.sh
-    fi
-    echo "done"
-#else
-    #echo "Parameter unsatisfied"
-    #echo "Usage: <Name> <Start Idx> <Stop Idx> <Trials>"
-#fi
+    echo "****"
+    echo "Init new image repository"
+    echo "****"
+    ./init_new.sh
+fi
+echo "done"

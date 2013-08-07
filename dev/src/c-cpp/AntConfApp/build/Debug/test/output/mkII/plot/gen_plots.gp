@@ -6,12 +6,11 @@
 
 load "init.gp"
 
-print "Generating plots " 
 print "** " , m , " Trails with " , n , " runs"
 print "** " , a  , " Objectives/plot "
 print ""
 
-load "kondensierte_punkte.gp"
+#load "kondensierte_punkte.gp"
 load "kondensierte_linien.gp"
 load "kondensierte_kerzen.gp"
 

@@ -97,6 +97,9 @@ No.	Name.   Trails.	Algorithm.	Model.			    Description.		                      
 
 Observation:
 
+Concllusions:
+After amalysing the data we set the maximum iterations for the algorithm to 4500. Thats considered to be a good value, because the upper
+quantile of nearly all experiments is beneath this value.
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 Why?
@@ -129,8 +132,74 @@ No.	Name.   Trails.	Algorithm.	Model.			    Description.		                      
                                                     Mean from vector used to calculate fitness
 
 Observation:
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 
+Why?
+Experiments with antenna grouping continued... This time different amounts of participating combinations are tried 
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+32  E32	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                        
+                                                    2 Groups; 5 Antennas  
+                                                    Mean from vector used to calculate fitness
+33  E33	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                         
+                                                    3 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+34  E34	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                          
+                                                    4 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+35  E35	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                       
+                                                    5 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                       
+36  E36     200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                        
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                        
+37  E37	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                         
+                                                    7 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                         
+38  E38	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                          
+                                                    8 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+39  E39	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           
+                                                    9 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+
+Observation:
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Why?
+Experiments with antenna grouping continued... This time different amounts of participating combinations are tried 
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+40  E40	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                        
+                                                    6 Groups; 5 Antennas  
+                                                    Mean from vector used to calculate fitness
+41  E41	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                         
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+42  E42	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                          
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+43  E43	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                       
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                       
+44  E44     200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                        
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                        
+45  E45	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                         
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                         
+46  E48	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                          
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+47  E47	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+
+Observation:
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 Why?
 Verify against random data
 No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
