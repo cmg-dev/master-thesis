@@ -692,17 +692,27 @@ namespace PRPSEvolution {
 				}
 			}
 
-// 			std::cout << c << std::endl;
+			std::cout << c << std::endl;
 			if( c < 4 || c > 8 ) {
 				exit(0);
 				/** @todo throw exception */
 
 			}
-			
-			antennas = c;
+#ifdef _PP_FORM_GROUPS
+			gGroupSize			= select_size;
+			antennasPerGroup	= 6;
+			antennasPerGroup	+= select_size;
+			/* limit */
+			antennasPerGroup	= (antennasPerGroup > 9) ? 9 : antennasPerGroup;
+// 			std::cout << " ++" << antennasPerGroup << std::endl;
 
+#else
 			gGroupSize			= select_size;
 			antennasPerGroup	= c;
+				antennas = c;
+#endif			
+
+			
 			
 #ifdef _PREPROCESS_OUTPUT
 			std::cout << c << std::endl;
