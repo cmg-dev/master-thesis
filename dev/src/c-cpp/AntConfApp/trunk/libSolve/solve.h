@@ -69,6 +69,9 @@ namespace PRPSEvolution {
 
 			static const int Rosenbrock = 15;
 
+			static const int Calibration = 3;
+			
+
 			
 		};
 

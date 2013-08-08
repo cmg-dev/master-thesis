@@ -361,8 +361,9 @@ int main ( int argc, char *argv[ ] ) {
 		return 0;
 
 	}
+
 	/**********************************************************************/
-	/* This will only solve for one matrix at a time 						 */
+	/* This will solve for groups of matrices								 */
 	if( VARIANT_SW == 4 ) {
 		t_00			= steady_clock::now();
 		
@@ -420,6 +421,60 @@ int main ( int argc, char *argv[ ] ) {
 			
 		}
 		
+		return 0;
+
+	}
+
+	/**********************************************************************/
+	if( VARIANT_SW == 10 ) {
+		t_00			= steady_clock::now();
+
+		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 4" << std::endl;
+
+		meanTime = 0;
+
+		int j = 0;
+		
+		for( auto b : PC.c_k0 ) {
+	
+			std::ostringstream s;
+			s << "output/mkII/" << FILENAME << "." << j++;
+
+			Solve::Process_MkII		process(PC.A, b, "1");
+			
+			process.setMaxEvauations( EVALUATIONS );
+			
+			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+
+				process.setOutputFilePathBase( s.str() );
+
+				t_0 = steady_clock::now();
+				process.EvolutionaryCalibration( );
+
+				process.incrementFileCounter();
+				t_1 = steady_clock::now();
+	// 				std::cout << j <<"\tMark II :: "
+	// 						<< i
+	// 						<< " "
+	// 						<< duration_cast<milliseconds>(t_1-t_0).count()
+	// 						<< " ms"
+	// 						<< std::endl;
+
+				meanTime += duration_cast<milliseconds>(t_1-t_0).count();
+
+			}
+			std::cout << j << "\tMark II :: "
+					<< duration_cast<milliseconds>(t_1-t_00).count()
+					<< " ms for "
+					<< NO_OF_SOLUTIONS
+					<< " Solutions"
+					<< std::endl;
+		}
+		t_1 = steady_clock::now();
+
+		std::cout << j <<"\tMark II :: total " << duration_cast<milliseconds>(t_1-t_000).count() << " ms" << std::endl;
+		std::cout << j <<"\tMark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
+
 		return 0;
 
 	}

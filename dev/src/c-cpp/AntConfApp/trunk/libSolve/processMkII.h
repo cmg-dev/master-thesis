@@ -6,7 +6,9 @@
 #include <shark/Algorithms/AbstractOptimizer.h>
 #include <shark/ObjectiveFunctions/Benchmarks/Benchmarks.h>
 #include <shark/ObjectiveFunctions/AbstractObjectiveFunction.h>
+#include <nr3/nr3.h>
 #include "solve.h"
+#include "../libCalibration/calib.h"
 #include "ObjectFunctions.h"
 
 #include <nr3/nr3.h>
@@ -182,6 +184,7 @@ namespace PRPSEvolution {
 #ifdef _Write_Result
 				/* init the algorithm */
 				shark::CMA cma;
+				/* if we specify the Mu and Lamdba ourself */
 				if( Mu != 0 && Lambda != 0) {
 					RealVector p;
 					model.proposeStartingPoint( p );
@@ -366,6 +369,72 @@ namespace PRPSEvolution {
 			/**
 			 * 
 			 */
+			int EvolutionaryCalibration(  ) {
+
+#ifdef _Write_Result
+				std::ofstream f;
+				std::ostringstream s;
+				if( f_path == "")
+					s << f_pathBase << "_" << f_count << ".dat";
+
+				f_path = s.str();
+
+				if( f_path != "" )
+					f.open( f_path );
+
+				if( !f.is_open() )
+					return -1;
+
+				f_path = "";
+#endif
+				// Adjust the floating-point format to scientific and increase output precision.
+				std::cout.setf( std::ios_base::scientific );
+				std::cout.precision( 10 );
+
+				std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+
+				auto duration = now.time_since_epoch();
+				auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
+
+				Rng::seed(millis);
+
+				// Instantiate both the problem and the optimizer.
+				PRPSEvolution::Models::EvolutionaryCalibration model;
+
+				model.setParams( A[0], b[0] );
+				
+				shark::CMA cma;
+
+				// Initialize the optimizer for the objective function instance.
+				cma.init( model );
+
+				// Iterate the optimizer until a solution of sufficient quality is found.
+				do {
+					cma.step( model );
+
+					if( !printLastSolutionOnly ) {
+					// Report information on the optimizer state and the current solution to the console.
+						f << model.evaluationCounter() << " "
+							<< cma.solution().value << " "
+							<< cma.solution().point << " "
+							<< cma.sigma() << std::endl;
+					}
+				} while(cma.solution().value > epsilon );
+
+				if( printLastSolutionOnly ) {
+					f << model.evaluationCounter() << " "
+						<< cma.solution().value << " "
+						<< cma.solution().point << " "
+						<< cma.sigma() << std::endl;
+				}
+
+				f.close();
+
+			}
+			
+			/**
+			 * 
+			 */
 			void setEpsilon( double Value) { epsilon = Value; }
 
 			/**
@@ -391,7 +460,7 @@ namespace PRPSEvolution {
 
 			/**
 			 * @param[in] evaluations The new value for the evaluations
-			 * 
+			 * @todo remove typo
 			 */
 			void setMaxEvauations( const int evaluations) { maxEvaluations = evaluations; }
 

@@ -700,7 +700,7 @@ namespace PRPSEvolution {
 			}
 #ifdef _PP_FORM_GROUPS
 			gGroupSize			= select_size;
-			antennasPerGroup	= 6;
+			antennasPerGroup	= 3;
 			antennasPerGroup	+= select_size;
 			/* limit */
 			antennasPerGroup	= (antennasPerGroup > 9) ? 9 : antennasPerGroup;

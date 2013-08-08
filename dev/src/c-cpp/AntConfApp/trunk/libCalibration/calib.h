@@ -12,9 +12,9 @@
 #include <nr3/svd.h>
 
 #include "../include/coords.h"
-// #include "../include/PRPSEvolution.h"
+#include "../include/PRPSEvolution.h"
 #include "../include/PRPSEvolutionCalibrationExceptions.h"
-// #include "../include/PRPSError.h"
+#include "../include/PRPSError.h"
 // #include "../libPRPSSystem/prpsevolutionsystem.h"
 
 namespace PRPSEvolution {
@@ -25,8 +25,7 @@ namespace PRPSEvolution {
 		*/
 		template < std::size_t N_ANTA, std::size_t N_CALPOS, typename T >
 		struct performCalibration {
-		private:
-
+		public:
 			/* Temp data container *****************************************/
 
 			/**
@@ -39,7 +38,8 @@ namespace PRPSEvolution {
 			std::array< std::array< T , N_ANTA >, N_CALPOS >		distances;
 
 			/* Used for the calculation ************************************/
-			/*	A represents the matrix of the geometrical relation of the
+			/**
+			 * 	The matrix A represents the geometrical relation of the
 			 *	calibration points
 			 *
 			 */
@@ -55,6 +55,7 @@ namespace PRPSEvolution {
 			 */
 			std::array< NRvector< T >, N_ANTA > c_k0;
 
+		private:
 			/* functions ***************************************************/
 			int rMeasuredDistances();
 
@@ -130,7 +131,11 @@ namespace PRPSEvolution {
 
 			return c;
 		}
-		
+
+		/**
+		 * @todo comment
+		 * @todo clean up
+		 */
 		template < std::size_t N_ANTA, std::size_t N_CALPOS, typename T >
 		std::array< NRvector< T >, N_ANTA > performCalibration<N_ANTA,N_CALPOS,T>::SolveCalibration()
 		{

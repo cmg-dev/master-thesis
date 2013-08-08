@@ -3,12 +3,14 @@
 set( solve_SRCS
 	solve.cpp
 	process.cpp
+	Objectivefunctions/WholeTomatoMkII.cpp
+	Objectivefunctions/EvolutionaryCalibration.cpp
 	processMkII.cpp
 	postprocessing.cpp
 	preprocessing.cpp
 	ueber9000.cpp
 	ObjectFunctions.h
-	ObjectFunctions.cpp
+# 	ObjectFunctions.cpp
 	)
 
 add_library( Solve ${solve_SRCS})
