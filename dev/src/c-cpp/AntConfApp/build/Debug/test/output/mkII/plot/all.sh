@@ -1,4 +1,7 @@
-./plot.sh -f E40 -s 0 -e 50 -a 8 -t 6 -p no -c yes 
+./plot.sh -f Test -s 0 -e 20 -a 3 -t 8 -p no -c no 
+
+exit 0 
+
 ./plot.sh -f E41 -s 0 -e 50 -a 9 -t 6 -p no -c yes 
 ./plot.sh -f E42 -s 0 -e 50 -a 9 -t 6 -p no -c yes 
 ./plot.sh -f E43 -s 0 -e 50 -a 9 -t 6 -p no -c yes 
@@ -6,6 +9,8 @@
 ./plot.sh -f E45 -s 0 -e 50 -a 9 -t 6 -p no -c yes 
 ./plot.sh -f E46 -s 0 -e 50 -a 9 -t 6 -p no -c yes 
 ./plot.sh -f E47 -s 0 -e 50 -a 9 -t 6 -p no -c yes
+
+exit 0 
 
 ./plot.sh -f E16 -s 0 -e 50 -a 8 -t 1 -p no -c yes 
 ./plot.sh -f E17 -s 0 -e 50 -a 9 -t 1 -p no -c yes 
