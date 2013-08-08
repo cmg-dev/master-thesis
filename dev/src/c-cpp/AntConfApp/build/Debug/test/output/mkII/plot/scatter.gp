@@ -11,10 +11,10 @@ remove(file) = system( sprintf( "rm %s", file ) )
 to2(file, value) = system( sprintf("echo 1 2 3 %s %s", value, file) )
 echoStats( min, first, mean, third, max) = system( sprintf("echo %e %e %e %e %e ", min, first, mean, third, max) )
 
-set style line 1 linetype 1 linecolor rgb "#708090"  linewidth 1.5
+set style line 1 linetype 1 linecolor rgb "#708090"  linewidth 1 pointtype 7 pointsize .5
 set style line 2 linetype -1 linecolor rgb "#2f4f4f"  linewidth 1.2
 
-set style line 3 linetype 1 linecolor rgb "#ee2f4f4f"  linewidth 1.000 pointtype 7 pointsize 1 pointinterval 1
+set style line 3 linetype 1 linecolor rgb "#ee708090"  linewidth 1.000 pointtype 7 pointsize .5 pointinterval 1
 #set style line 3 linetype 1 linecolor rgb "red"  linewidth 1.000 pointtype 7 pointsize 1 pointinterval 5
 #set style line 4 linetype 1 linecolor rgb "gray"  linewidth 1 pointtype 2 pointsize default pointinterval 0
 
@@ -173,7 +173,30 @@ set autoscale
         #'' u (6.4):10 ls 3 notitle, \
         #'' u (7.4):11 ls 3 notitle
 
-plot inputfile using 5:5 ls 1 notitle 
+unset ytics
+unset xtics
+
+LABELX = sprintf("x" )
+LABELY = sprintf("y" )
+LABELZ = sprintf("z" )
+LABELN0 = sprintf("n0" )
+LABELN1 = sprintf("n1" )
+LABELN2 = sprintf("n2" )
+LABELN3 = sprintf("n3" )
+LABELN4 = sprintf("n4" )
+LABELN5 = sprintf("n5" )
+LABELN6 = sprintf("n6" )
+
+unset key
+
+labelxpos = .1
+labelypos = .5
+
+############################################################################################
+set label at graph labelxpos,labelypos center LABELX front left font "Arial,24" textcolor rgb "#4f2f2f" 
+plot inputfile using 5:5 ls 3 notitle 
+unset label
+
 plot inputfile using 5:6 ls 1 notitle 
 plot inputfile using 5:7 ls 1 notitle 
 plot inputfile using 5:8 ls 1 notitle 
@@ -185,109 +208,141 @@ if(a>=9)plot inputfile using 5:13 ls 1 notitle
 if(a>=10)plot inputfile using 5:14 ls 1 notitle 
 if(a>=11)plot inputfile using 5:15 ls 1 notitle 
 
+############################################################################################
 plot inputfile using 6:5 ls 1 notitle 
-plot inputfile using 6:6 ls 1 notitle 
+
+set label at graph labelxpos,labelypos center LABELY front left font "Arial,24" textcolor rgb "#4f2f2f" 
+plot inputfile using 6:6 ls 3 notitle 
+unset label
+
 plot inputfile using 6:7 ls 1 notitle 
 plot inputfile using 6:8 ls 1 notitle 
 plot inputfile using 6:9 ls 1 notitle 
 plot inputfile using 6:10 ls 1 notitle 
 plot inputfile using 6:11 ls 1 notitle 
-plot inputfile using 6:12 ls 1 notitle 
-if(a>=8)plot inputfile using 6:13 ls 1 notitle 
-if(a>=9)plot inputfile using 6:14 ls 1 notitle 
-if(a>=10)plot inputfile using 6:15 ls 1 notitle 
-if(a>=11)plot inputfile using 6:16 ls 1 notitle 
+if(a>=8)plot inputfile using 6:12 ls 1 notitle 
+if(a>=9)plot inputfile using 6:13 ls 1 notitle 
+if(a>=10)plot inputfile using 6:14 ls 1 notitle 
+if(a>=11)plot inputfile using 6:15 ls 1 notitle 
 
+############################################################################################
 plot inputfile using 7:5 ls 1 notitle 
 plot inputfile using 7:6 ls 1 notitle 
-plot inputfile using 7:7 ls 1 notitle 
+
+set label at graph labelxpos,labelypos center LABELZ front left font "Arial,24" textcolor rgb "#4f2f2f" 
+plot inputfile using 7:7 ls 3 notitle 
+unset label
+
 plot inputfile using 7:8 ls 1 notitle 
 plot inputfile using 7:9 ls 1 notitle 
 plot inputfile using 7:10 ls 1 notitle 
 plot inputfile using 7:11 ls 1 notitle 
-plot inputfile using 7:12 ls 1 notitle 
-if(a>=8)plot inputfile using 7:13 ls 1 notitle 
-if(a>=9)plot inputfile using 7:14 ls 1 notitle 
-if(a>=10)plot inputfile using 7:15 ls 1 notitle 
-if(a>=11)plot inputfile using 7:16 ls 1 notitle 
+if(a>=8)plot inputfile using 7:12 ls 1 notitle 
+if(a>=9)plot inputfile using 7:13 ls 1 notitle 
+if(a>=10)plot inputfile using 7:14 ls 1 notitle 
+if(a>=11)plot inputfile using 7:15 ls 1 notitle 
 
+############################################################################################
 plot inputfile using 8:5 ls 1 notitle 
 plot inputfile using 8:6 ls 1 notitle 
 plot inputfile using 8:7 ls 1 notitle 
-plot inputfile using 8:8 ls 1 notitle 
+
+set label at graph labelxpos,labelypos center LABELN0 front left font "Arial,24" textcolor rgb "#4f2f2f"
+plot inputfile using 8:8 ls 3 notitle 
+unset label
+
 plot inputfile using 8:9 ls 1 notitle 
 plot inputfile using 8:10 ls 1 notitle 
 plot inputfile using 8:11 ls 1 notitle 
-plot inputfile using 8:12 ls 1 notitle 
-if(a>=8)plot inputfile using 8:13 ls 1 notitle 
-if(a>=9)plot inputfile using 8:14 ls 1 notitle 
-if(a>=10)plot inputfile using 8:15 ls 1 notitle 
-if(a>=11)plot inputfile using 8:16 ls 1 notitle 
+if(a>=8)plot inputfile using 8:12 ls 1 notitle 
+if(a>=9)plot inputfile using 8:13 ls 1 notitle 
+if(a>=10)plot inputfile using 8:14 ls 1 notitle 
+if(a>=11)plot inputfile using 8:15 ls 1 notitle 
 
+############################################################################################
 plot inputfile using 9:5 ls 1 notitle 
 plot inputfile using 9:6 ls 1 notitle 
 plot inputfile using 9:7 ls 1 notitle 
 plot inputfile using 9:8 ls 1 notitle 
-plot inputfile using 9:9 ls 1 notitle 
+
+set label at graph labelxpos,labelypos center LABELN1 front left font "Arial,24" textcolor rgb "#4f2f2f"
+plot inputfile using 9:9 ls 3 notitle 
+unset label
+
 plot inputfile using 9:10 ls 1 notitle 
 plot inputfile using 9:11 ls 1 notitle 
-plot inputfile using 9:12 ls 1 notitle 
-if(a>=8)plot inputfile using 9:13 ls 1 notitle 
-if(a>=9)plot inputfile using 9:14 ls 1 notitle 
-if(a>=10)plot inputfile using 9:15 ls 1 notitle 
-if(a>=11)plot inputfile using 9:16 ls 1 notitle 
+if(a>=8)plot inputfile using 9:12 ls 1 notitle 
+if(a>=9)plot inputfile using 9:13 ls 1 notitle 
+if(a>=10)plot inputfile using 9:14 ls 1 notitle 
+if(a>=11)plot inputfile using 9:15 ls 1 notitle 
 
+############################################################################################
 plot inputfile using 10:5 ls 1 notitle 
 plot inputfile using 10:6 ls 1 notitle 
 plot inputfile using 10:7 ls 1 notitle 
 plot inputfile using 10:8 ls 1 notitle 
 plot inputfile using 10:9 ls 1 notitle 
-plot inputfile using 10:10 ls 1 notitle 
-plot inputfile using 10:11 ls 1 notitle 
-plot inputfile using 10:12 ls 1 notitle 
-if(a>=8)plot inputfile using 10:13 ls 1 notitle 
-if(a>=9)plot inputfile using 10:14 ls 1 notitle 
-if(a>=10)plot inputfile using 10:15 ls 1 notitle 
-if(a>=11)plot inputfile using 10:16 ls 1 notitle 
 
+set label at graph labelxpos,labelypos center LABELN2 front left font "Arial,24" textcolor rgb "#4f2f2f"
+plot inputfile using 10:10 ls 3 notitle 
+unset label
+
+plot inputfile using 10:11 ls 1 notitle 
+if(a>=8)plot inputfile using 10:12 ls 1 notitle 
+if(a>=9)plot inputfile using 10:13 ls 1 notitle 
+if(a>=10)plot inputfile using 10:14 ls 1 notitle 
+if(a>=11)plot inputfile using 10:15 ls 1 notitle 
+
+############################################################################################
 plot inputfile using 11:5 ls 1 notitle 
-plot inputfile using 11:11 ls 1 notitle 
+plot inputfile using 11:6 ls 1 notitle 
 plot inputfile using 11:7 ls 1 notitle 
 plot inputfile using 11:8 ls 1 notitle 
 plot inputfile using 11:9 ls 1 notitle 
 plot inputfile using 11:10 ls 1 notitle 
-plot inputfile using 11:11 ls 1 notitle 
-plot inputfile using 11:12 ls 1 notitle 
-if(a>=8)plot inputfile using 11:13 ls 1 notitle 
-if(a>=9)plot inputfile using 11:14 ls 1 notitle 
-if(a>=10)plot inputfile using 11:15 ls 1 notitle 
-if(a>=11)plot inputfile using 11:16 ls 1 notitle 
 
-plot inputfile using 12:5 ls 1 notitle 
-plot inputfile using 12:6 ls 1 notitle 
-plot inputfile using 12:7 ls 1 notitle 
-plot inputfile using 12:8 ls 1 notitle 
-plot inputfile using 12:9 ls 1 notitle 
-plot inputfile using 12:10 ls 1 notitle 
-plot inputfile using 12:11 ls 1 notitle 
-plot inputfile using 12:12 ls 1 notitle 
-if(a>=8)plot inputfile using 12:13 ls 1 notitle 
-if(a>=9)plot inputfile using 12:14 ls 1 notitle 
-if(a>=10)plot inputfile using 12:15 ls 1 notitle 
-if(a>=11)plot inputfile using 12:16 ls 1 notitle 
+set label at graph labelxpos,labelypos center LABELN3 front left font "Arial,24" textcolor rgb "#4f2f2f"
+plot inputfile using 11:11 ls 3 notitle 
+unset label
 
-plot inputfile using 13:5 ls 1 notitle 
-plot inputfile using 13:11 ls 1 notitle 
-plot inputfile using 13:7 ls 1 notitle 
-plot inputfile using 13:8 ls 1 notitle 
-plot inputfile using 13:9 ls 1 notitle 
-plot inputfile using 13:10 ls 1 notitle 
-plot inputfile using 13:11 ls 1 notitle 
-plot inputfile using 13:12 ls 1 notitle 
-if(a>=8)plot inputfile using 13:13 ls 1 notitle 
-if(a>=9)plot inputfile using 13:14 ls 1 notitle 
-if(a>=10)plot inputfile using 13:15 ls 1 notitle 
-if(a>=11)plot inputfile using 13:16 ls 1 notitle 
+if(a>=8)plot inputfile using 11:12 ls 1 notitle 
+if(a>=9)plot inputfile using 11:13 ls 1 notitle 
+if(a>=10)plot inputfile using 11:14 ls 1 notitle 
+if(a>=11)plot inputfile using 11:15 ls 1 notitle 
+
+############################################################################################
+if(a>=8)    plot inputfile using 12:5 ls 1 notitle 
+if(a>=8)    plot inputfile using 12:6 ls 1 notitle 
+if(a>=8)    plot inputfile using 12:7 ls 1 notitle 
+if(a>=8)    plot inputfile using 12:8 ls 1 notitle 
+if(a>=8)    plot inputfile using 12:9 ls 1 notitle 
+if(a>=8)    plot inputfile using 12:10 ls 1 notitle 
+if(a>=8)    plot inputfile using 12:11 ls 1 notitle
+
+if(a>=8)    set label at graph labelxpos,labelypos center LABELN4 front left font "Arial,24" textcolor rgb "#4f2f2f"
+if(a>=8)    plot inputfile using 12:12 ls 3 notitle 
+if(a>=8)    unset label
+
+if(a>=9)    plot inputfile using 12:13 ls 1 notitle 
+if(a>=10)   plot inputfile using 12:14 ls 1 notitle 
+if(a>=11)   plot inputfile using 12:15 ls 1 notitle 
+
+############################################################################################
+if(a>=9)    plot inputfile using 13:5 ls 1 notitle 
+if(a>=9)    plot inputfile using 13:6 ls 1 notitle 
+if(a>=9)    plot inputfile using 13:7 ls 1 notitle 
+if(a>=9)    plot inputfile using 13:8 ls 1 notitle 
+if(a>=9)    plot inputfile using 13:9 ls 1 notitle 
+if(a>=9)    plot inputfile using 13:10 ls 1 notitle 
+if(a>=9)    plot inputfile using 13:11 ls 1 notitle 
+if(a>=9)    plot inputfile using 13:12 ls 1 notitle 
+
+if(a>=9)    set label at graph labelxpos,labelypos center LABELN5 front left font "Arial,24" textcolor rgb "#4f2f2f"
+if(a>=9)    plot inputfile using 13:13 ls 3 notitle 
+if(a>=9)    unset label
+
+if(a>=10)   plot inputfile using 13:14 ls 1 notitle 
+if(a>=11)   plot inputfile using 13:15 ls 1 notitle 
 
 i=i+1
 
