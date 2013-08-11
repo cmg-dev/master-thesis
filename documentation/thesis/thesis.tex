@@ -54,6 +54,7 @@
 \setlength{\headsep}{10mm}
 
 \usepackage{eso-pic}
+%\usepackage[numbers,round]{natbib}
 
 %----------------------------------------------------------------------------
 % HEADER --------------------------------------------------------------------
@@ -100,11 +101,9 @@
 %----------------------------------------------------------------------------
 % Titlepage -----------------------------------------------------------------
 %----------------------------------------------------------------------------
-\begin{titlepage}
 
 \input{title/title.tex}
 
-\end{titlepage}
 
 \pagenumbering{roman} 
 
@@ -154,8 +153,8 @@
 % Bibliography --------------------------------------------------------------
 %----------------------------------------------------------------------------
 
-
-\bibliographystyle{ieeetr}
+\nocite{*} % Show all Bib-entries
+\bibliographystyle{plaindin}
 \bibliography{../bib/mathesis_collection1}
 
 \end{document}
