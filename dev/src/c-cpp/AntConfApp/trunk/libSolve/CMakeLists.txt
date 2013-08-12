@@ -1,9 +1,11 @@
 # cmake_minimum_required (VERSION 2.6)
 
-set( solve_SRCS
+set(
+	solve_SRCS
 	solve.cpp
 	process.cpp
 	Objectivefunctions/WholeTomatoMkII.cpp
+	Objectivefunctions/WholeTomatoMkII_B.cpp
 	Objectivefunctions/EvolutionaryCalibration.cpp
 	processMkII.cpp
 	postprocessing.cpp
