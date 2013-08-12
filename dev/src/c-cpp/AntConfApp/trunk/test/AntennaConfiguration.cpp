@@ -397,12 +397,6 @@ int main ( int argc, char *argv[ ] ) {
 
 				process.incrementFileCounter();
 				t_1 = steady_clock::now();
-// 				std::cout << j <<"\tMark II :: "
-// 						<< i
-// 						<< " "
-// 						<< duration_cast<milliseconds>(t_1-t_0).count()
-// 						<< " ms"
-// 						<< std::endl;
 
 				meanTime += duration_cast<milliseconds>(t_1-t_0).count();
 
@@ -426,10 +420,72 @@ int main ( int argc, char *argv[ ] ) {
 	}
 
 	/**********************************************************************/
+	/*
+	 * This will solve for groups of matrices, while using the rounding
+	 * Model
+	 * 
+	 */
+	if( VARIANT_SW == 5 ) {
+		t_00			= steady_clock::now();
+
+		auto As 		= preprocess.matGroups;
+		auto vs			= preprocess.vectorGroups;
+		auto names		= preprocess.nameGroups;
+
+		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 5" << std::endl;
+		for( int j = 0; j < As.size(); j++ ) {
+			auto A		= As[ j ];
+			auto v		= vs[ j ];
+			auto name	= names[ j ];
+
+			meanTime = 0;
+
+			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+			process.setMaxEvauations( EVALUATIONS );
+
+			std::ostringstream s;
+			s << "output/mkII/" << FILENAME << "." << j;
+
+			int dimension = preprocess.antennasPerGroup;
+
+			std::cout << " dimension " << dimension << std::endl;
+			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+
+				process.setOutputFilePathBase( s.str() );
+
+				t_0 = steady_clock::now();
+				process.WholeTomatoMkII_B( dimension );
+
+				process.incrementFileCounter();
+				t_1 = steady_clock::now();
+
+				meanTime += duration_cast<milliseconds>(t_1-t_0).count();
+
+			}
+			std::cout << j << "\tMark II :: "
+					<< duration_cast<milliseconds>(t_1-t_00).count()
+					<< " ms for "
+					<< NO_OF_SOLUTIONS
+					<< " Solutions"
+					<< std::endl;
+
+			t_1 = steady_clock::now();
+
+			std::cout << j <<"\tMark II :: total " << duration_cast<milliseconds>(t_1-t_000).count() << " ms" << std::endl;
+			std::cout << j <<"\tMark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
+
+		}
+
+		return 0;
+
+	}
+	
+	/**********************************************************************/
+	/* the calibration variant */
 	if( VARIANT_SW == 10 ) {
 		t_00			= steady_clock::now();
 
-		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 4" << std::endl;
+		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 10" << std::endl;
 
 		meanTime = 0;
 
