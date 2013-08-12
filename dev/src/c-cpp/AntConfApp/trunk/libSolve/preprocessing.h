@@ -583,7 +583,13 @@ namespace PRPSEvolution {
 		}
 
 		/**
-		 * Refinese the selected matrices so that only unique ones are left over
+		 * This functions purpose is to select the 'names' (the permutations)
+		 * for further processing. It's behaviour is controlled by the
+		 * '_PP_FORM_GROUPS' macro. The default behaviour is to find the
+		 * possible, unique names and return @see finalAntAmount of them.
+		 * If the macro is set 
+		 * 
+		 * Refine the selected matrices so that only unique ones are left over
 		 * @param[in] names Contains the possible matrix names
 		 * @param[in] indices Indices of the antennas we want to choose
 		 * @param[in] quantity Group size or the k-parameter
@@ -987,7 +993,7 @@ namespace PRPSEvolution {
 
 			/* for each name find */
 			for(auto name : names ) {
-				/* find antennas */
+				/* find antennas in name */
 				std::array<int,4> a = {
 										std::stoi( name.substr(0,1) ),
 										std::stoi( name.substr(1,1) ),
@@ -1006,22 +1012,32 @@ namespace PRPSEvolution {
 				a_3k.assign( 3, a_1 * (1/((2*pi)*(2*pi))) );
 
 				/* the matrix is an upper triangle so we need the ? here */
-				a_0k[0] *= (a[0] < a[1]) ? d_k0s[a[0]][a[1]]:d_k0s[a[1]][a[0]];
-				a_0k[1] *= (a[0] < a[2]) ? d_k0s[a[0]][a[2]]:d_k0s[a[2]][a[0]];
-				a_0k[2] *= (a[0] < a[3]) ? d_k0s[a[0]][a[3]]:d_k0s[a[3]][a[0]];
+// 				a_0k[0] *= (a[0] < a[1]) ? d_k0s[a[0]][a[1]]:d_k0s[a[1]][a[0]];
+// 				a_0k[1] *= (a[0] < a[2]) ? d_k0s[a[0]][a[2]]:d_k0s[a[2]][a[0]];
+// 				a_0k[2] *= (a[0] < a[3]) ? d_k0s[a[0]][a[3]]:d_k0s[a[3]][a[0]];
 
-				a_3k[0] *= (normThetas[a[0]])*(normThetas[a[0]])
-							- (normThetas[a[1]])*(normThetas[a[1]]);
+				for( int i = 0; i < 3; i++ ) {
+					a_0k[i] *= (a[0] < a[i+1]) ? d_k0s[a[0]][a[i+1]]:d_k0s[a[i+1]][a[0]];
 
-				a_3k[1] *= (normThetas[a[0]])*(normThetas[a[0]])
-							- (normThetas[a[2]])*(normThetas[a[2]]);
+					a_3k[i] *= (normThetas[a[0]])*(normThetas[a[0]])
+							- (normThetas[a[i+1]])*(normThetas[a[i+1]]);
 
-				a_3k[2] *= (normThetas[a[0]])*(normThetas[a[0]])
-							- (normThetas[a[3]])*(normThetas[a[3]]);
+					b[i]= a_0k[i]-a_3k[i];
+							
+				}
+							
+// 				a_3k[0] *= (normThetas[a[0]])*(normThetas[a[0]])
+// 							- (normThetas[a[1]])*(normThetas[a[1]]);
 
-				b[0]= a_0k[0];
-				b[1]= a_0k[1];
-				b[2]= a_0k[2];
+// 				a_3k[1] *= (normThetas[a[0]])*(normThetas[a[0]])
+// 							- (normThetas[a[2]])*(normThetas[a[2]]);
+
+// 				a_3k[2] *= (normThetas[a[0]])*(normThetas[a[0]])
+// 							- (normThetas[a[3]])*(normThetas[a[3]]);
+
+// 				b[0]= a_0k[0];
+// 				b[1]= a_0k[1];
+// 				b[2]= a_0k[2];
 
 				ret.push_back(b);
 
@@ -1031,8 +1047,9 @@ namespace PRPSEvolution {
 			std::ofstream f;
 			f.open("output/vector_b_dump.dat");
 			if ( f.is_open() ) {
-				for( auto b : ret )
-						f << b[0] << "," << b[1] << "," << b[2] << std::endl;
+				int i = 0;
+				for( auto b : ret )	
+						f << names[i++] << " " << b[0] << " " << b[1] << " " << b[2] << std::endl;
 
 				f.close();
 
