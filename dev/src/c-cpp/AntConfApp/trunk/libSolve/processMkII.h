@@ -176,7 +176,7 @@ namespace PRPSEvolution {
 #endif
 				auto dim = Solve::ProblemDimensions::WholeTomatoMkII;
 				dim += dimension;
-				PRPSEvolution::WholeTomatoMkII model( dim );
+				PRPSEvolution::Models::WholeTomatoMkII model( dim );
 				model.setNumberOfVariables( dim );
 
 				model.setParams( A, b, names );
@@ -221,6 +221,73 @@ namespace PRPSEvolution {
 
 			}
 
+			/*=============================================================*/
+			/**
+			 *
+			 */
+			int WholeTomatoMkII_B( int dimension ) {
+#ifdef _Write_Result
+				std::ofstream f;
+				std::ostringstream s;
+				if( f_path == "")
+					s << f_pathBase << "_" << f_count << ".dat";
+
+				f_path = s.str();
+
+				if( f_path != "" )
+					f.open( f_path );
+
+				if( !f.is_open() )
+					return -1;
+
+				f_path = "";
+
+				for( auto name : names )
+					f << name << " ";
+				f << dimension << std::endl;
+
+#endif
+				auto dim = Solve::ProblemDimensions::WholeTomatoMkII;
+				dim += dimension;
+				PRPSEvolution::Models::WholeTomatoMkII_B model( dim );
+				model.setNumberOfVariables( dim );
+
+				model.setParams( A, b, names );
+
+#ifdef _Write_Result
+				/* init the algorithm */
+				shark::CMA cma;
+				/* if we specify the Mu and Lamdba ourself */
+				if( Mu != 0 && Lambda != 0) {
+					RealVector p;
+					model.proposeStartingPoint( p );
+					cma.init(p.size(), Lambda, Mu, p, 1.0 );
+
+				} else {
+					cma.init( model );
+
+				}
+				
+				/* solve.. */
+				do {
+					cma.step( model );
+					f << model.evaluationCounter() << " "
+									<< cma.solution().value << " "
+									<< cma.solution().point << " "
+									<< cma.sigma() << " "
+// 									<< cma.solution().value * 1e10 << " "
+// 									<< cma.solution().value / epsilon << " "
+// 									<< (1e-20) * epsilon / cma.solution().value
+									<< std::endl;
+
+				} while(cma.solution().value > epsilon
+					&& model.evaluationCounter() < maxEvaluations);
+#else
+				SOLVE(model);
+#endif
+
+			}
+			
 			/*=============================================================*/
 			/**
 			 * 
