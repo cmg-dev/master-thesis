@@ -87,7 +87,7 @@ LAMBDA=0
 GROUPSIZE=2
 INCGROUPSIZE=yes
 
-EVALUATIONS=30000
+EVALUATIONS=6000
 
 if [ -z $SET ] 
 then
@@ -130,10 +130,24 @@ else
     if (( $SET == 2 ))
     then
         VARIANT=5
-        TRIALS=200
-        START=49
+        TRIALS=20
+        START=48
         STOP=56
         GROUPSIZE=2
+        INCGROUPSIZE="yes"
+        action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+
+    fi
+
+    if (( $SET == 3 ))
+    then
+        VARIANT=5
+        TRIALS=20
+        START=48
+        STOP=56
+        GROUPSIZE=2
+        MU=10
+        LAMBDA=20
         INCGROUPSIZE="yes"
         action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
 
