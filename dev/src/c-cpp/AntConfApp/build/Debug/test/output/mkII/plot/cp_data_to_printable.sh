@@ -24,6 +24,10 @@ if [ $5 == "yes" ]
 then
     echo "generating single files"
 fi
+if [ $6 == "yes" ]
+then
+    echo "Apply sed"
+fi
 
 echo "removing ALL old data"
 rm data/*.dat*
@@ -42,9 +46,17 @@ do
             cat $fn | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> $fn_out
         fi
 
-        cat $fn | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> $fn_out_single
-        
+        if [ $6 == "yes" ]
+        then
+            cat $fn | sed 's/(/ /g' | sed 's/,/ /g' | sed 's/)/ /g' | sed '1d' >> $fn_out_single
+
+        else
+            cat $fn | sed '1d' >> $fn_out_single
+
+        fi
+
         echo "" >> $fn_out_single
     done
-           echo "Trial "$j" done" 
+    echo "Trial "$j" done" 
 done
+
