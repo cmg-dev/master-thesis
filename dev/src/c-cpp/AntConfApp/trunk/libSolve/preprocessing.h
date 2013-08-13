@@ -474,6 +474,7 @@ namespace PRPSEvolution {
 				ret.push_back( vec );
 			}
 			return ret;
+			
 		}
 		
 		/**
@@ -499,6 +500,7 @@ namespace PRPSEvolution {
 				ret.push_back( vec );
 			}
 			return ret;
+			
 		}
 		
 		/**
@@ -709,13 +711,13 @@ namespace PRPSEvolution {
 			antennasPerGroup	= 3;
 			antennasPerGroup	+= select_size;
 			/* limit */
-			antennasPerGroup	= (antennasPerGroup > 9) ? 9 : antennasPerGroup;
+			antennasPerGroup	= (antennasPerGroup > 6) ? 6 : antennasPerGroup;
 // 			std::cout << " ++" << antennasPerGroup << std::endl;
 
 #else
 			gGroupSize			= select_size;
 			antennasPerGroup	= c;
-				antennas = c;
+			antennas = c;
 #endif			
 
 			
@@ -929,18 +931,18 @@ namespace PRPSEvolution {
 												std::stoi( name.substr(3,1))
 												};
 
-				/* get the thetas */
+				/* get the corresponding thetas */
 				std::array<T_Measure,4> thetas = { normThetas[antennas[0]],
 													normThetas[antennas[1]],
 													normThetas[antennas[2]],
 													normThetas[antennas[3]]
-													};
+													};		
 
 				/* fill in the information */
 				for( int i = 0; i < mat.nrows(); i++ ) {
 					/* col 7 * ref antennas theta */
 					mat[i][6] *= thetas[0];
-						/* col 8-10 * the other antennas thetas */
+					/* col 8-10 * the other antennas thetas */
 					mat[i][7+i] *= thetas[i+1];
 
 				}

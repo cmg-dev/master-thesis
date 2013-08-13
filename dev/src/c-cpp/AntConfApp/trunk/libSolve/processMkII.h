@@ -201,15 +201,27 @@ namespace PRPSEvolution {
 				/* solve.. */
 				do {
 					cma.step( model );
+					auto p = cma.solution().point;
+					auto v = p[0]*p[0] + p[1]*p[1] + p[2]*p[2];
+					v = std::sqrt(v);
+					
 					f << model.evaluationCounter() << " "
 									<< cma.solution().value << " "
 									<< cma.solution().point << " "
 									<< cma.sigma() << " "
-									<< cma.solution().value * 1e10 << " "
-									<< cma.solution().value / epsilon << " "
-									<< (1e-20) * epsilon / cma.solution().value 
+									<<  v
+// 									<< cma.solution().value * 1e10 << " "
+// 									<< cma.solution().value / epsilon << " "
+// 									<< (1e-20) * epsilon / cma.solution().value << "" 
+									
 									<< std::endl;
-
+/*
+					for( auto p: cma.solution().point ) {
+						std::cout << p << " " ;
+					}
+					
+					std::cout << std::endl;*/
+					
 // 					if( cma.solution().value == 10000 );
 // 						break;
 					

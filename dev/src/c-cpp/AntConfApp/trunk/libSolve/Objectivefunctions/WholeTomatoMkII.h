@@ -63,13 +63,22 @@ namespace PRPSEvolution {
 			* @param[in] A	The Matrix A. for this Solution
 			* @param[in] x	The x vector, contains the free parameter
 			* @param[in] b	The b vector for this solution
-			*
+			* @return
+			* 
 			*/
 			inline double mkII( const NRmatrix<Doub> &A, const double* x, const NRvector<Doub> &b ) const;
 
 			/**
-			*
-			*/
+			 * Collects the constrains for this model
+			 * @param[in] x The vector containing the variables
+			 * @return
+			 *
+			 */
+			inline bool constrains(const double* x) const;
+			
+			/**
+			 *
+			 */
 			void setParams( const std::vector<NRmatrix< Doub >> &M,
 							const std::vector<NRvector< Doub >> &v,
 							const std::vector<std::string> &n
@@ -83,8 +92,8 @@ namespace PRPSEvolution {
 			}
 
 			/**
-			*
-			*/
+			 *
+			 */
 			void setParams( const std::vector<NRmatrix< Doub >> &M,
 							const std::vector<NRvector< Doub >> &v,
 							const std::vector<std::vector<int>> &i
@@ -96,8 +105,8 @@ namespace PRPSEvolution {
 			}
 
 			/**
-			*
-			*/
+			 *
+			 */
 			void setMats( const std::vector<NRmatrix< Doub >> &M ) {
 				As = M;
 				A_isSet = true;
@@ -105,24 +114,24 @@ namespace PRPSEvolution {
 			}
 
 			/**
-			*
-			*/
+			 *
+			 */
 			void setVecs( const std::vector<NRvector< Doub >> &v ) {
 				bs = v;
 				b_isSet = true;
 			}
 
 			/**
-			*
-			*/
+			 *
+			 */
 			void setNames( const std::vector<std::string> &n ) {
 				Names = n;
 				Names_isSet = true;
 			}
 
 			/**
-			*
-			*/
+			 *
+			 */
 			void setIdx( const std::vector<std::vector<int>> &i ) {
 				idxs = i;
 				Idx_isSet = true;

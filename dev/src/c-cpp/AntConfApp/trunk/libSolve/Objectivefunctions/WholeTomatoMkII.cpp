@@ -28,11 +28,12 @@ namespace PRPSEvolution {
 			x[ 5 ] = p[ 5 ];
 			x[ 6 ] = p[ 6 ];
 
-		// 	std::cout << m_numberOfVariables << std::endl;
-
 			for( int i = 3; i < m_numberOfVariables; i++)
-				if( p[i] < 0 )
+				if( x[i] < 0. )
 					return 10000;
+				
+// 			if( !constrains(x) )
+// 				return 10000;
 
 			bool doRecombination = true;
 			if( As.size() == 1 )
@@ -96,25 +97,17 @@ namespace PRPSEvolution {
 			double prod_Ax[3] = {0.,0.,0.};
 			double x_[10];
 
-		// 	std::cout << "tsetset" << std::endl;
-
-		#ifdef _DROP_BAD_
-
-		#endif
 			x_[0]=x[0];
 			x_[1]=x[1];
 			x_[2]=x[2];
-			x_[3]=(x[3]*x[3])-(x[4]*x[4]);
-			x_[4]=(x[3]*x[3])-(x[5]*x[5]);
-			x_[5]=(x[3]*x[3])-(x[6]*x[6]);
+			x_[3]= (x[3]*x[3])-(x[4]*x[4]);
+			x_[4]= (x[3]*x[3])-(x[5]*x[5]);
+			x_[5]= (x[3]*x[3])-(x[6]*x[6]);
 			x_[6]=x[3];
 			x_[7]=x[4];
 			x_[8]=x[5];
 			x_[9]=x[6];
-
-		// 	for( int i = 0; i < 10; i++)
-		// 		std::cout << "	" << x_[i] << std::endl;
-
+			
 			/* multiply the matrix with the vector */
 			for( int i = 0; i < A.nrows(); i++ )
 				for( int j = 0; j < A.ncols(); j++ )
@@ -124,6 +117,14 @@ namespace PRPSEvolution {
 		// 		std::cout << prod_Ax[i] << "	" << b[i] << std::endl;
 
 			/* sum up */
+// 			double sum_Axb[3];
+// 			res = 0;
+// 			for( int i = 0; i < A.nrows(); i++ ) {
+// // 				stDd::cout << "i	" << i << std::endl;
+// 				sum_Axb[i]=(prod_Ax[i] - b[i]) * (prod_Ax[i] - b[i]);
+// 				res += sum_Axb[i]*sum_Axb[i];
+// 
+// 			}
 			res =	(prod_Ax[0] - b[0]) * (prod_Ax[0] - b[0]);
 			res +=	(prod_Ax[1] - b[1]) * (prod_Ax[1] - b[1]);
 			res +=	(prod_Ax[2] - b[2]) * (prod_Ax[2] - b[2]);
@@ -131,6 +132,20 @@ namespace PRPSEvolution {
 		// 	std::cout << "	" << res << std::endl;
 			return res;
 
+		}
+
+		inline bool WholeTomatoMkII::constrains(const double* x) const
+		{
+			for( int i = 3; i < m_numberOfVariables; i++)
+				if( x[i] < 0. )
+					return false;
+
+// 			auto v = std::sqrt( x[0]*x[0] + x[1]*x[1] + x[2]*x[2] );
+// 			if( (double) v > 6. )
+// 				return false;
+			
+			return true;
+			
 		}
 	}
 }
