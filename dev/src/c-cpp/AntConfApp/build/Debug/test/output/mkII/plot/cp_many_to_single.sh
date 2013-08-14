@@ -12,6 +12,7 @@ outfilename="single"
 #read trials
 trials=$2
 
+outAllInOne="data/allSingle.dat"
 for(( i=0; i < $trials;i++ )) {
     searchfor=../$filenamebase"."$i"_"
     out=data/$outfilename"_"$i."dat"
@@ -32,6 +33,10 @@ for(( i=0; i < $trials;i++ )) {
     sed '/./=' $out | sed '/./N; s/\n/ /' >> $outtemp 
 
     mv $outtemp $out 
+
+
+    cat $out >> $outAllInOne
+    echo "" >> $outAllInOne
 
     echo "done see results in: "$out
 

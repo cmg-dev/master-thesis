@@ -10,6 +10,7 @@ print "** " , m , " Trails with " , n , " runs"
 print "** " , a  , " Objectives/plot "
 print ""
 
+load "kondensierte_boxen.gp"
 load "scatter.gp"
 #load "kondensierte_punkte.gp"
 load "kondensierte_linien.gp"

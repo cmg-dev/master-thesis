@@ -1,12 +1,19 @@
-./plot.sh -f E57 -s 0 -e 10 -a 8 -t 6 -p no -c no -x no 
-exit 0 
-./plot.sh -f E57 -s 0 -e 400 -a 8 -t 6 -p no -c yes -x no 
-./plot.sh -f E58 -s 0 -e 400 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E59 -s 0 -e 400 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E60 -s 0 -e 400 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E61 -s 0 -e 400 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E62 -s 0 -e 400 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E63 -s 0 -e 400 -a 9 -t 6 -p no -c yes -x no 
+#./plot.sh -f E100 -s 0 -e 20 -a 3 -t 8 -p no -c no -x no 
+#exit 0 
+
+#./plot.sh -f E57 -s 0 -e 20 -a 8 -t 6 -p no -c no -x no 
+#exit 0 
+
+./plot.sh -f E57 -s 0 -e 200 -a 7 -t 6 -p no -c yes -x no 
+./plot.sh -f E58 -s 0 -e 200 -a 8 -t 6 -p no -c yes -x no 
+./plot.sh -f E59 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E60 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E61 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E62 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E63 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E64 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E65 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E66 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
 
 exit 0 
 
