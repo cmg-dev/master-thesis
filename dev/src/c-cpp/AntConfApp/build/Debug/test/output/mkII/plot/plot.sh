@@ -35,7 +35,8 @@ TRIALS=
 START=
 STOP=
 VARAMOUNT=
-while getopts "hf:s:e:t:p:c:a:" OPTION
+SED=
+while getopts "hf:s:e:t:p:c:a:x:" OPTION
 do
     case $OPTION in
         h)
@@ -63,6 +64,9 @@ do
         a)
             VARAMOUNT=$OPTARG
             ;;
+        x)
+            SED=$OPTARG
+            ;;
         ?)
             usage
             ;;
@@ -81,7 +85,7 @@ fi
 echo "****"
 echo "1st copy process "
 echo "****"
-./cp_data_to_printable.sh $FILE $START $STOP $TRIALS $PLOTSINGLE
+./cp_data_to_printable.sh $FILE $START $STOP $TRIALS $PLOTSINGLE $SED
 
 echo "****"
 echo "2nd copy process "
