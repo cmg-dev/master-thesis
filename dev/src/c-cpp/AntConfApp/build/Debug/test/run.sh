@@ -153,4 +153,29 @@ else
 
     fi
 
+    if (( $SET == 4 ))
+    then
+        TRIALS=200
+        START=57
+        STOP=67
+        GROUPSIZE=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=8000
+        action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+
+    fi
+
+    if (( $SET == 10 ))
+    then
+        TRIALS=20
+        VARIANT=10
+        START=100
+        STOP=101
+        GROUPSIZE=1
+        INCGROUPSIZE="no"
+        EVALUATIONS=3000
+        action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+
+    fi
+
 fi
