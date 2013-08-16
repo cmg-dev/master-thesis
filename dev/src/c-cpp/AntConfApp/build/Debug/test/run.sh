@@ -4,7 +4,7 @@
 #
 
 ##################################################################################
-# [Start] [Stop] [Variant] [Trials] [Evaluations] [DropBad] [Mu] [Lambda] [StartGroupSize] [{IncrementGroupSize]
+# [Start] [Stop] [Variant] [Trials] [Evaluations] [DropBad] [Mu] [Lambda] [StartGroupSize] [IncrementGroupSize]
 function action {
 
 GROUPSIZE=$9
@@ -20,13 +20,16 @@ do
     echo "  Name          '"$NAME"'"
     echo "  Groupsize     "$GROUPSIZE
     echo "  Evaluations   "$5
+    echo "  Mu            "$5
+    echo "  Lambda        "$5
     echo ""
 
     ./AntConfApp $3 $4 $7 $NAME $7 $8 $GROUPSIZE $5
    
-    if (( ${10} == "yes" ))
+    if [ ${10} == "yes" ]
     then
         GROUPSIZE=$(($GROUPSIZE+1))
+        echo " New Group size "$GROUPSIZE
     fi
 
     echo "# DONE ##################################################################"
@@ -116,6 +119,7 @@ then
 
 
 else
+ #=================================================================================================#  
     if (( $SET == 1 ))
     then
         TRIALS=200
@@ -126,7 +130,7 @@ else
         action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
 
     fi
-    
+ #=================================================================================================#      
     if (( $SET == 2 ))
     then
         VARIANT=5
@@ -138,7 +142,7 @@ else
         action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
 
     fi
-
+#=================================================================================================#   
     if (( $SET == 3 ))
     then
         VARIANT=5
@@ -156,15 +160,73 @@ else
     if (( $SET == 4 ))
     then
         TRIALS=200
-        START=57
-        STOP=67
+        START=56
+        STOP=66
         GROUPSIZE=1
         INCGROUPSIZE="yes"
         EVALUATIONS=8000
         action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
 
     fi
+#=================================================================================================#   
+    if (( $SET == 5 ))
+    then
+        TRIALS=50
+        VARIANT=4
+        START=66
+        STOP=67
+        GROUPSIZE=1
+        INCGROUPSIZE="no"
+        EVALUATIONS=50000
+        MU=10
+        LAMBDA=20
+       
+        a=0
+        b=10
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
 
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            MU=$((MU+10))
+            LAMBDA=$((LAMBDA+10))
+        
+            START=$((START+1))
+            STOP=$((STOP+1))
+
+        done
+
+    fi
+#=================================================================================================#   
+    if (( $SET == 6 ))
+    then
+        TRIALS=50
+        VARIANT=4
+        START=76
+        STOP=77
+        GROUPSIZE=1
+        INCGROUPSIZE="no"
+        EVALUATIONS=50000
+        MU=10
+        LAMBDA=20
+       
+        a=0
+        b=10
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            #MU=$((MU+10))
+            LAMBDA=$((LAMBDA+10))
+        
+            START=$((START+1))
+            STOP=$((STOP+1))
+
+        done
+
+    fi
+#=================================================================================================#
     if (( $SET == 10 ))
     then
         TRIALS=20

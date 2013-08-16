@@ -233,6 +233,133 @@ No.	Name.   Trails.	Algorithm.	Model.			    Description.		                      
 Observation:
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+
+Why?
+Testing correlation of completely unconstraint solution. The Constraint
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+56  E56	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           100
+                                                    1 Group; 5 Antennas  
+                                                    Mean from vector used to calculate fitness
+57  E57	    200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           130
+                                                    2 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+58  E58     200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           156
+                                                    3 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+59  E59     200     CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           198             
+                                                    4 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                       
+60  E60     200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           242  
+                                                    5 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                        
+61  E61	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           248
+                                                    6 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness                         
+62  E62	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           255
+                                                    7 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+63  E63	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           260 
+                                                    8 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+64  E64	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           260 
+                                                    9 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+65  E65	    200	    CMA-ES-3.0b	WholeTomatoMkII     Mu=3,Lambda=7 (using suggested size);                           260 
+                                                    10 Groups; 6 Antennas  
+                                                    Mean from vector used to calculate fitness
+
+Observation:
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Why?
+Testing for effect of different mu an lamndas on the solution accuracy
+init Sigma 3.0
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+66  E56	    50     CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=20 (using suggested size);                         
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness
+67  E57	    50     CMA-ES-3.0b	WholeTomatoMkII     Mu=20,Lambda=30 (using suggested size);                           
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+68  E58     50     CMA-ES-3.0b	WholeTomatoMkII     Mu=30,Lambda=40 (using suggested size);                           
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+69  E59     50     CMA-ES-3.0b	WholeTomatoMkII     Mu=40,Lambda=50 (using suggested size);                                        
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness                       
+70  E60     50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=50,Lambda=60 (using suggested size);                             
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness                        
+71  E61	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=60,Lambda=70 (using suggested size);                           
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness                         
+72  E62	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=70,Lambda=80 (using suggested size);                           
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness
+73  E63	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=80,Lambda=90 (using suggested size);                            
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness
+74  E64	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=90,Lambda=100 (using suggested size);                            
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness
+75  E65	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=100,Lambda=110 (using suggested size);                            
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness
+
+Observation:
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Why?
+Testing for effect of different mu an lamndas on the solution accuracy
+
+No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
+76  E76	    50     CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=20 (using suggested size);                         
+                                                    init Sigma 6.0
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness
+77  E77	    50     CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=30 (using suggested size); 
+                                                    init Sigma 6.0
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+78  E78     50     CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=40 (using suggested size);                           
+                                                    init Sigma 6.0
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness                      
+79  E79     50     CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=50 (using suggested size);                                        
+                                                    init Sigma 6.0
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness                       
+80  E80     50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=60 (using suggested size);                             
+                                                    init Sigma 6.0
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness                        
+81  E81	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=70 (using suggested size);                           
+                                                    init Sigma 6.0
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness                         
+82  E82	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=80 (using suggested size);                           
+                                                    init Sigma 6.0
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness
+83  E83	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=90 (using suggested size);                            
+                                                    init Sigma 6.0
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness
+84  E84	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=100 (using suggested size);                            
+                                                    init Sigma 6.0
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness
+85  E85	    50	    CMA-ES-3.0b	WholeTomatoMkII     Mu=10,Lambda=110 (using suggested size);                            
+                                                    init Sigma 6.0
+                                                    1 Group; 4 Antennas  
+                                                    Mean from vector used to calculate fitness
+
+Observation:
+-----------------------------------------------------------------------------------------------------------------------------------------
+
 Why?
 Verify against random data
 No.	Name.   Trails.	Algorithm.	Model.			    Description.		                        Output.             t_mean  dropped OKAY?
