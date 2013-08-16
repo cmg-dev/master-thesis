@@ -35,7 +35,7 @@ input_one = "data/".i.".dat"
 
 outMultiplot = "img/linien/kondensiert/scatter".i.".png"
 
-print "Processing: Start" 
+#print "Processing: Start" 
 
 set output outMultiplot
 
@@ -86,7 +86,7 @@ if(a>=10)plot inputfile u ($2 < 8000 ? $5: 1/0):14 ls 1 notitle
 if(a>=11)plot inputfile u ($2 < 8000 ? $5: 1/0):15 ls 1 notitle 
 
 ############################################################################################
-plot inputfile u 6:5 ls 1 notitle 
+plot inputfile u ($2 < 8000 ? $6: 1/0):5 ls 1 notitle 
 
 set label at graph labelxpos,labelypos center LABELY front left font "Arial,24" textcolor rgb "#4f2f2f" 
 plot inputfile u ($2 < 8000 ? $6: 1/0):6 ls 3 notitle 

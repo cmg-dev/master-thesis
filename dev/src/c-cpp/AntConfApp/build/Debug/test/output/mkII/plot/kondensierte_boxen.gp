@@ -41,7 +41,7 @@ vectorCol = 3+a+3
 inputfile = "data/single_".i.".dat"
 outMultiplot = "img/boxen/kondensiert/".i.".png"
 
-print "Processing: Start" 
+#print "Processing: Start" 
 
 set output outMultiplot
 
@@ -90,7 +90,7 @@ set ylabel "Final Value"
 set size 1, .6
 set origin .0,.4
 set autoscale
-#set xrange [.8:Objective_records+1]
+set xrange [.5:a+1]
 set xtics 
 
 set ytics format "%.2e"
@@ -107,38 +107,39 @@ if(a==6) plot inputfile u (1):5 ls 1 notitle, \
         '' u (5):9 ls 4 notitle, \
         '' u (6):10 ls 4 notitle
 
-if(a==7) plot ObjectiveOut using 1:3:2:6:5 with candlesticks ls 1 title 'Quartiles' whiskerbars, \
-        '' using 1:4:4:4:4 with candlesticks ls 2 notitle, \
-        inputfile u (1.4):5 ls 1 notitle, \
-        '' u (2.4):6 ls 1 notitle, \
-        '' u (3.4):7 ls 1 notitle, \
-        '' u (4.4):8 ls 1 notitle, \
-        '' u (5.4):9 ls 1 notitle, \
-        '' u (6.4):10 ls 1 notitle, \
-        '' u (7.4):11 ls 1 notitle
+if(a==7) set xtics ("x" 1, "y" 2, "z" 3, "n0" 4,"n1" 5,"n2" 6,"n3" 7) scale 0.0
+
+if(a==7) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 notitle, \
+        '' u ($2 < limit ? (2): 1/0):6 ls 2 notitle, \
+        '' u ($2 < limit ? (3): 1/0):7 ls 3 notitle, \
+        '' u ($2 < limit ? (4): 1/0):8 ls 4 notitle, \
+        '' u ($2 < limit ? (5): 1/0):9 ls 4 notitle, \
+        '' u ($2 < limit ? (6): 1/0):10 ls 4 notitle, \
+        '' u ($2 < limit ? (7): 1/0):11 ls 4 notitle
+
 
 if(a==8) set xtics ("x" 1, "y" 2, "z" 3, "n0" 4,"n1" 5,"n2" 6,"n3" 7,"n4" 8) scale 0.0
 
-if(a==8) plot inputfile u ($2 < 8000 ? (1): 1/0):5 ls 1 notitle, \
-        '' u ($2 < 8000 ? (2): 1/0):6 ls 2 notitle, \
-        '' u ($2 < 8000 ? (3): 1/0):7 ls 3 notitle, \
-        '' u ($2 < 8000 ? (4): 1/0):8 ls 4 notitle, \
-        '' u ($2 < 8000 ? (5): 1/0):9 ls 4 notitle, \
-        '' u ($2 < 8000 ? (6): 1/0):10 ls 4 notitle, \
-        '' u ($2 < 8000 ? (7): 1/0):11 ls 4 notitle, \
-        '' u ($2 < 8000 ? (8): 1/0):12 ls 4 notitle
+if(a==8) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 notitle, \
+        '' u ($2 < limit ? (2): 1/0):6 ls 2 notitle, \
+        '' u ($2 < limit ? (3): 1/0):7 ls 3 notitle, \
+        '' u ($2 < limit ? (4): 1/0):8 ls 4 notitle, \
+        '' u ($2 < limit ? (5): 1/0):9 ls 4 notitle, \
+        '' u ($2 < limit ? (6): 1/0):10 ls 4 notitle, \
+        '' u ($2 < limit ? (7): 1/0):11 ls 4 notitle, \
+        '' u ($2 < limit ? (8): 1/0):12 ls 4 notitle
 
-if(a==9) plot ObjectiveOut using 1:3:2:6:5 with candlesticks ls 1 title 'Quartiles' whiskerbars, \
-        '' using 1:4:4:4:4 with candlesticks ls 2 notitle, \
-        inputfile u (1.4):5 ls 1 notitle, \
-        '' u (2.4):6 ls 1 notitle, \
-        '' u (3.4):7 ls 1 notitle, \
-        '' u (4.4):8 ls 1 notitle, \
-        '' u (5.4):9 ls 1 notitle, \
-        '' u (6.4):10 ls 1 notitle, \
-        '' u (7.4):11 ls 1 notitle, \
-        '' u (8.4):12 ls 1 notitle, \
-        '' u (9.4):13 ls 1 notitle
+if(a==9) set xtics ("x" 1, "y" 2, "z" 3, "n0" 4,"n1" 5,"n2" 6,"n3" 7,"n4" 8, "N5" 9) scale 0.0
+
+if(a==9) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 notitle, \
+        '' u ($2 < limit ? (2): 1/0):6 ls 2 notitle, \
+        '' u ($2 < limit ? (3): 1/0):7 ls 3 notitle, \
+        '' u ($2 < limit ? (4): 1/0):8 ls 4 notitle, \
+        '' u ($2 < limit ? (5): 1/0):9 ls 4 notitle, \
+        '' u ($2 < limit ? (6): 1/0):10 ls 4 notitle, \
+        '' u ($2 < limit ? (7): 1/0):11 ls 4 notitle, \
+        '' u ($2 < limit ? (8): 1/0):12 ls 4 notitle, \
+        '' u ($2 < limit ? (9): 1/0):12 ls 4 notitle
 
 unset label
 
@@ -147,24 +148,21 @@ unset label
 
 set boxwidth 0.05 relative
 
+set autoscale
 set xlabel ""
+set logscale y
 set ylabel "Evaluations"
 set size .25, .4
 set origin .0,.0
 unset xtics
 #set xrange [-.2:.4]
-set ytics format "%.0f"
+set ytics format "%.1e"
 
-#plot EvalOut using 1:3:2:6:5 with candlesticks ls 1 title 'Quartiles' whiskerbars, \
-    #''        using 1:4:4:4:4 with candlesticks ls 2 notitle, \
-        #inputfile u (0.2):2 ls 3 notitle
-
-plot inputfile u ($2 < 8000 ? (1): 1/0):2 ls 4 notitle 
+plot inputfile u ($2 < limit ? (1): 1/0):2 ls 4 notitle 
 
 #-------------------------------------------------------------------------
 #setup the 3. plot
 #unset yrange
-set autoscale
 set logscale y
 set ytics 
 
@@ -172,14 +170,10 @@ set xlabel ""
 set ylabel "Function Value"
 set size .25, .4
 set origin .25,.0
-#set xrange [-.2:.4]
 unset xtics
 set ytics format "%.1e" 
-#plot FitnessOut using 1:3:2:6:5 with candlesticks ls 1 title 'Quartiles' whiskerbars, \
-    #''        using 1:4:4:4:4 with candlesticks ls 2 notitle,\
-        #inputfile u (0.2):3 ls 3 notitle
 
-plot inputfile u ($2 < 8000 ? (1): 1/0):3 ls 4 notitle 
+plot inputfile u ($2 < limit ? (1): 1/0):3 ls 4 notitle 
 
 #-------------------------------------------------------------------------
 #setup the 4. plot
@@ -190,19 +184,12 @@ set ytics format "%.1e"
 set size .25, .4
 set origin .50,.0
 
-#set yrange [Sigmas_max:Sigmas_min]
-#unset yrange
 unset logscale
 set autoscale
-#set xrange [-.2:.4]
 unset xtics
 set ytics 
 
-#plot SigmaOut using 1:3:2:6:5 with candlesticks ls 1 title 'Quartiles' whiskerbars, \
-    #''        using 1:4:4:4:4 with candlesticks ls 2 notitle,\
-        #inputfile u (0.2):lastDataCol ls 3 notitle
-
-plot inputfile u ($2 < 8000 ? (1): 1/0):lastDataCol ls 4 notitle 
+plot inputfile u ($2 < limit ? (1): 1/0):lastDataCol ls 4 notitle 
 
 #-------------------------------------------------------------------------
 #setup the 5. plot
@@ -213,20 +200,11 @@ set ytics format "%.1e"
 set size .25, .4
 set origin .75,.0
 
-#set yrange [Vectors_max:Vectors_min]
-#unset yrange
-#set logscale y
 set autoscale
-#set xrange [-.2:.4]
 unset xtics
 set ytics 
 
-#plot VectorOut using 1:3:2:6:5 with candlesticks ls 1 title 'Quartiles' whiskerbars, \
-    #''        using 1:4:4:4:4 with candlesticks ls 2 notitle,\
-        #inputfile u (0.2):vectorCol ls 3 notitle
-
-
-plot inputfile u ($2 < 8000 ? (1): 1/0):vectorCol ls 4 notitle  
+plot inputfile u ($2 < limit ? (1): 1/0):vectorCol ls 4 notitle  
 
 #-------------------------------------------------------------------------
 i=i+1
@@ -236,7 +214,3 @@ unset xtics
 
 if (i < m) reread
 i=0
-#print "rm ".ObjectiveOut.remove( ObjectiveOut )
-#print "rm ".SigmaOut.remove( SigmaOut )
-#print "rm ".FitnessOut.remove( FitnessOut)
-#print "rm ".EvalOut.remove( EvalOut )

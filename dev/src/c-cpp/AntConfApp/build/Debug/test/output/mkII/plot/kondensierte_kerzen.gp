@@ -37,7 +37,8 @@ vectorCol = 3+a+3
 inputfile = "data/single_".i.".dat"
 outMultiplot = "img/kerzen/kondensiert/".i.".png"
 
-print "Processing: Start" 
+#print "Processing: Start" 
+#print " Limit is: ".limit 
 
 set output outMultiplot
 

@@ -1,19 +1,40 @@
-#./plot.sh -f E100 -s 0 -e 20 -a 3 -t 8 -p no -c no -x no 
+#!/bin/bash
+#./plot.sh -f E66 -s 0 -e 50 -a 7 -t 6 -p no -c no -x no -l 50000 -o  
 #exit 0 
 
-#./plot.sh -f E57 -s 0 -e 20 -a 8 -t 6 -p no -c no -x no 
-#exit 0 
 
-./plot.sh -f E57 -s 0 -e 200 -a 7 -t 6 -p no -c yes -x no 
-./plot.sh -f E58 -s 0 -e 200 -a 8 -t 6 -p no -c yes -x no 
-./plot.sh -f E59 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E60 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E61 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E62 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E63 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E64 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E65 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
-./plot.sh -f E66 -s 0 -e 200 -a 9 -t 6 -p no -c yes -x no 
+for (( i=$1 ; i <$2 ; i++ ))
+do
+    
+    ./plot.sh -f E$i -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+
+done
+
+exit 0 
+#./plot.sh -f E56 -s 0 -e 200 -a 7 -t 6 -p no -c no -x no 
+./plot.sh -f E66 -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+./plot.sh -f E67 -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+./plot.sh -f E68 -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+./plot.sh -f E69 -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+./plot.sh -f E70 -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+./plot.sh -f E71 -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+./plot.sh -f E72 -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+./plot.sh -f E73 -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+./plot.sh -f E74 -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+./plot.sh -f E75 -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
+
+exit 0 
+
+./plot.sh -f E56 -s 0 -e 20 -a 7 -t 6 -p no -c yes -x no 
+./plot.sh -f E57 -s 0 -e 20 -a 8 -t 6 -p no -c yes -x no 
+./plot.sh -f E58 -s 0 -e 20 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E59 -s 0 -e 20 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E60 -s 0 -e 20 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E61 -s 0 -e 20 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E62 -s 0 -e 20 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E63 -s 0 -e 20 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E64 -s 0 -e 20 -a 9 -t 6 -p no -c yes -x no 
+./plot.sh -f E65 -s 0 -e 20 -a 9 -t 6 -p no -c yes -x no 
 
 exit 0 
 

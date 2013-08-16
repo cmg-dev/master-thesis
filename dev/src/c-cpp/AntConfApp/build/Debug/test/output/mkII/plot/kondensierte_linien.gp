@@ -22,8 +22,6 @@ inputfile = "data/".i.".dat"
 #outSigma = "img/sigma.".j."_".i.".png"
 outMultiplot = "img/linien/kondensiert/".i.".png"
 
-#print "Processing: '".inputfile."' >> ".outFitness." + ".outObject." + ".outSigma 
-
 file=inputfile ; row=2 ; col=2
 
 set output outMultiplot
@@ -41,8 +39,9 @@ stats inputfile u 1 name "Stat" nooutput
 
 #print "test ".at(file,Stat_records,1)
 
+locallimit=0.2*limit
 #setup the first plot
-set xrange [0:3500]
+set xrange [0:locallimit]
 set clip one
 set xlabel "Funtion Evaluations"
 set ylabel "Objective Values"
@@ -51,64 +50,62 @@ set ytics
 set size 1., .6
 set origin .0,.4
 
-if( a==3 ) plot inputfile u ($2 < 6000  ? $1 : 1/0):4 w lines title "x" ls 1, \
-		"" u ($2 < 6000  ? $1 : 1/0):5 w lines title "y" ls 2, \
-		"" u ($2 < 6000  ? $1 : 1/0):6 w lines title "z" ls 3
 
-if( a==8 ) plot inputfile u ($2 < 6000  ? $1 : 1/0):7 w lines title "n0" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):8 w lines title "n1" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):9 w lines title "n2" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):10 w lines title "n3" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):11 w lines title "n4" ls 4, \
-        "" u ($2 < 6000  ? $1 : 1/0):4 w lines title "x" ls 1, \
-		"" u ($2 < 6000  ? $1 : 1/0):5 w lines title "y" ls 2, \
-		"" u ($2 < 6000  ? $1 : 1/0):6 w lines title "z" ls 3
+#print "local locallimit ",locallimit
 
-if( a==9 ) plot inputfile u ($2 < 6000  ? $1 : 1/0):7 w lines title "n0" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):8 w lines title "n1" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):9 w lines title "n2" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):10 w lines title "n3" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):11 w lines title "n4" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):12 w lines title "n5" ls 4, \
-        """" u($2 < 6000  ? $1 : 1/0):4 w lines title "x" ls 1, \
-		"" u ($2 < 6000  ? $1 : 1/0):5 w lines title "y" ls 2, \
-		"" u ($2 < 6000  ? $1 : 1/0):6 w lines title "z" ls 3
+if( a==3 ) plot inputfile u ($1 < locallimit ? $1 : 1/0):4 w lines title "x" ls 1, \
+		"" u ($1 < locallimit ? $1 : 1/0):5 w lines title "y" ls 2, \
+		"" u ($1 < locallimit ? $1 : 1/0):6 w lines title "z" ls 3
+
+if( a==7 ) plot inputfile u ($1 < locallimit ? $1 : 1/0):4 w lines title "x" ls 1 , \
+		"" u ($1 < locallimit ? $1 : 1/0):5 w lines title "y" ls 2, \
+		"" u ($1 < locallimit ? $1 : 1/0):6 w lines title "z" ls 3, \
+		"" u ($1 < locallimit ? $1 : 1/0):7 w lines title "n0" ls 4, \
+		"" u ($1 < locallimit ? $1 : 1/0):8 w lines title "n1" ls 4, \
+		"" u ($1 < locallimit ? $1 : 1/0):9 w lines title "n2" ls 4, \
+		"" u ($1 < locallimit ? $1 : 1/0):10 w lines title "n3" ls 4
+
+if( a==8 ) plot inputfile u ($1 < locallimit  ? $1 : 1/0):7 w lines title "n0" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):8 w lines title "n1" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):9 w lines title "n2" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):10 w lines title "n3" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):11 w lines title "n4" ls 4, \
+        "" u ($1 < locallimit  ? $1 : 1/0):4 w lines title "x" ls 1, \
+		"" u ($1 < locallimit  ? $1 : 1/0):5 w lines title "y" ls 2, \
+		"" u ($1 < locallimit  ? $1 : 1/0):6 w lines title "z" ls 3
+
+if( a==9 ) plot inputfile u ($1 < locallimit  ? $1 : 1/0):7 w lines title "n0" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):8 w lines title "n1" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):9 w lines title "n2" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):10 w lines title "n3" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):11 w lines title "n4" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):12 w lines title "n5" ls 4, \
+        "" u($1 < locallimit  ? $1 : 1/0):4 w lines title "x" ls 1, \
+		"" u ($1 < locallimit  ? $1 : 1/0):5 w lines title "y" ls 2, \
+		"" u ($1 < locallimit  ? $1 : 1/0):6 w lines title "z" ls 3
 		 
 
-if( a==10 ) plot inputfile u ($2 < 6000  ? $1 : 1/0):4 w lines title "x", \
-		"" u ($2 < 6000  ? $1 : 1/0):5 w lines title "y", \
-		"" u ($2 < 6000  ? $1 : 1/0):6 w lines title "z", \
-		"" u ($2 < 6000  ? $1 : 1/0):7 w lines title "n0", \
-		"" u ($2 < 6000  ? $1 : 1/0):8 w lines title "n1", \
-		"" u ($2 < 6000  ? $1 : 1/0):9 w lines title "n2", \
-		"" u ($2 < 6000  ? $1 : 1/0):10 w lines title "n3", \
-		"" u ($2 < 6000  ? $1 : 1/0):11 w lines title "n4", \
-		"" u ($2 < 6000  ? $1 : 1/0):12 w lines title "n5", \
-		"" u ($2 < 6000  ? $1 : 1/0):13 w lines title "n6"
+if( a==10 ) plot inputfile u ($1 < locallimit  ? $1 : 1/0):4 w lines title "x", \
+		"" u ($1 < locallimit  ? $1 : 1/0):5 w lines title "y", \
+		"" u ($1 < locallimit  ? $1 : 1/0):6 w lines title "z", \
+		"" u ($1 < locallimit  ? $1 : 1/0):7 w lines title "n0", \
+		"" u ($1 < locallimit  ? $1 : 1/0):8 w lines title "n1", \
+		"" u ($1 < locallimit  ? $1 : 1/0):9 w lines title "n2", \
+		"" u ($1 < locallimit  ? $1 : 1/0):10 w lines title "n3", \
+		"" u ($1 < locallimit  ? $1 : 1/0):11 w lines title "n4", \
+		"" u ($1 < locallimit  ? $1 : 1/0):12 w lines title "n5", \
+		"" u ($1 < locallimit  ? $1 : 1/0):13 w lines title "n6"
 
-if( a==7 ) plot inputfile u ($2 < 6000  ? $1 : 1/0):4 w lines title "x" ls 1 , \
-		"" u ($2 < 6000  ? $1 : 1/0):5 w lines title "y" ls 2, \
-		"" u ($2 < 6000  ? $1 : 1/0):6 w lines title "z" ls 3, \
-		"" u ($2 < 6000  ? $1 : 1/0):7 w lines title "n0" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):8 w lines title "n1" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):9 w lines title "n2" ls 4, \
-		"" u ($2 < 6000  ? $1 : 1/0):10 w lines title "n3" ls 4
 
-#set output outFitness
 set autoscale
 
 set logscale y
 set xlabel ""
 set ylabel "Fitness"
-#set xrange [0:3500]
-#set clip one
-
 set size .5, .4
 set yrange [1e-25:20000]
 set origin .0,.0
-plot inputfile u ($2 < 6000  ? $1 : 1/0):2 w lines ls 5 title "fitness"
-
-#set output outSigma
+plot inputfile u ($1 < locallimit  ? $1 : 1/0):2 w lines ls 5 title "fitness"
 
 set size .5, .4
 set origin .5,.0
@@ -118,7 +115,7 @@ set autoscale
 #set clip one
 set ylabel "Sigma"
 
-plot inputfile u ($2 < 6000  ? $1 : 1/0):lastDataCol w lines ls 5 title "{/Symbol s}"
+plot inputfile u ($1 < locallimit  ? $1 : 1/0):lastDataCol w lines ls 5 title "{/Symbol s}"
 
 i=i+1
 

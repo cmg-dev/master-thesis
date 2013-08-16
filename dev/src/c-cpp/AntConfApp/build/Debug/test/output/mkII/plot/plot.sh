@@ -36,7 +36,9 @@ START=
 STOP=
 VARAMOUNT=
 SED=
-while getopts "hf:s:e:t:p:c:a:x:" OPTION
+LIMIT=
+COPY="yes"
+while getopts "hf:s:e:t:p:c:a:x:l:o" OPTION
 do
     case $OPTION in
         h)
@@ -67,6 +69,12 @@ do
         x)
             SED=$OPTARG
             ;;
+        l)
+            LIMIT=$OPTARG
+            ;;
+        o)
+            COPY="no"
+            ;;
         ?)
             usage
             ;;
@@ -82,15 +90,25 @@ then
     exit 1
 fi
 
-echo "****"
-echo "1st copy process "
-echo "****"
-./cp_data_to_printable.sh $FILE $START $STOP $TRIALS $PLOTSINGLE $SED
+if [ -z $LIMIT ]
+then
+    LIMIT=300000
+    echo "LIMIT set to: "$LIMIT
+fi
 
-echo "****"
-echo "2nd copy process "
-echo "****"
-./cp_many_to_single.sh $FILE $TRIALS
+if [ $COPY == "yes" ]
+ then
+    echo "****"
+    echo "1st copy process "
+    echo "****"
+    ./cp_data_to_printable.sh $FILE $START $STOP $TRIALS $PLOTSINGLE $SED
+
+    echo "****"
+    echo "2nd copy process "
+    echo "****"
+    ./cp_many_to_single.sh $FILE $TRIALS
+
+fi
 
 rm init.gp
 echo "i="$START >> init.gp
@@ -100,6 +118,7 @@ echo "n="$STOP >> init.gp
 echo "m="$TRIALS >> init.gp
 echo "h=707" >> init.gp
 echo "w=1000" >> init.gp
+echo "limit="$LIMIT >> init.gp
  
 echo "****"
 echo "Generating plots "
