@@ -179,6 +179,9 @@ namespace PRPSEvolution {
 				c = calcDistanceVector( i++ );
 
 			}
+			std::cout.setf( std::ios_base::fixed );
+			std::cout.precision( 3 );
+				
 			dumpGeometricalMatrix();
 			dumpDistances();
 			dumpDistanceVector();
@@ -282,7 +285,6 @@ namespace PRPSEvolution {
 		/******************************************************************/
 		/* Dump some stuff to somewhere ***********************************/
 		/******************************************************************/
-		
 		template < std::size_t N_ANTA, std::size_t N_CALPOS, typename T >
 		void performCalibration<N_ANTA,N_CALPOS,T>::dumpCoordsToFile()
 		{
@@ -302,7 +304,9 @@ namespace PRPSEvolution {
 		template < std::size_t N_ANTA, std::size_t N_CALPOS, typename T >
 		void performCalibration<N_ANTA,N_CALPOS,T>::dumpDistances()
 		{
+			std::cout << "read distances =" << std::endl;
 			for( auto& pos: distances ) {
+				std::cout << "\t";
 				for( auto& dist: pos ) {
 					std::cout << dist << " ";
 				}
@@ -314,22 +318,26 @@ namespace PRPSEvolution {
 		template < std::size_t N_ANTA, std::size_t N_CALPOS, typename T >
 		void performCalibration<N_ANTA,N_CALPOS,T>::dumpGeometricalMatrix()
 		{
-			std::cout << "A = \t" << std::endl;
+			std::cout << "A =" << std::endl;
 			for( int i = 0; i < A.nrows(); i++ ) {
+				std::cout << "\t";
 				for( int j = 0; j < A.ncols(); j++ ) {
 					std::cout << A[i][j] << " ";
 				}
 				std::cout << std::endl;
 			}
-				
+			std::cout << std::endl;
+			
 		}
 		
 		template < std::size_t N_ANTA, std::size_t N_CALPOS, typename T >
 		void performCalibration<N_ANTA,N_CALPOS,T>::dumpDistanceVector()
 		{
+			std::cout << "d =" << std::endl;
 			for( auto& pos: c_k0 ) {
+				std::cout << "\t";
 				for( int i = 0; i < pos.size(); i++ ) {
-					std::cout << pos[i] << " | ";
+					std::cout << pos[i] << "\t";
 				}
 				std::cout << std::endl;
 			}

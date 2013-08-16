@@ -188,12 +188,11 @@ namespace PRPSEvolution {
 				if( Mu != 0 && Lambda != 0) {
 					RealVector p;
 					model.proposeStartingPoint( p );
-					cma.init(p.size(), Lambda, Mu, p, 1.0 );
+					cma.init(p.size(), Lambda, Mu, p, 3.0 );
 					
 				} else {
 					cma.init( model );
 
-					
 				}
 				/* print out selection of mu and lambda */
 // 				std::cout << "Mu:" << cma.mu() << " Lambda: " << cma.lambda() << std::endl;
@@ -201,15 +200,38 @@ namespace PRPSEvolution {
 				/* solve.. */
 				do {
 					cma.step( model );
-					f << model.evaluationCounter() << " "
-									<< cma.solution().value << " "
-									<< cma.solution().point << " "
-									<< cma.sigma() << " "
-									<< cma.solution().value * 1e10 << " "
-									<< cma.solution().value / epsilon << " "
-									<< (1e-20) * epsilon / cma.solution().value 
-									<< std::endl;
+					auto p = cma.solution().point;
+					auto v = p[0]*p[0] + p[1]*p[1] + p[2]*p[2];
+					v = std::sqrt(v);
 
+// #ifdef _CoordTransform
+					/* get the coords of the ref antenna */
+					auto refAntCoords = coords_k0[std::stoi( names[0].substr(0,1))];
+// #endif
+					f << model.evaluationCounter() << " "
+							<< cma.solution().value << " "
+							<< cma.solution().point << " "
+							<< cma.sigma() << " "
+							<<  v 
+// #ifdef _CoordTransform
+							<< " "
+							<< p[0]-refAntCoords[0] << " "
+							<< p[1]-refAntCoords[1] << " "
+							<< p[2]-refAntCoords[2] << " "
+// #endif
+
+	// 									<< cma.solution().value * 1e10 << " "
+	// 									<< cma.solution().value / epsilon << " "
+	// 									<< (1e-20) * epsilon / cma.solution().value << ""
+
+							<< std::endl;
+/*
+					for( auto p: cma.solution().point ) {
+						std::cout << p << " " ;
+					}
+					
+					std::cout << std::endl;*/
+					
 // 					if( cma.solution().value == 10000 );
 // 						break;
 					
@@ -531,7 +553,17 @@ namespace PRPSEvolution {
 			 */
 			void setMaxEvauations( const int evaluations) { maxEvaluations = evaluations; }
 
+			void setAntennaCoords( std::array< NRvector< Doub >, 8 > coords )
+			{
+				for( auto c : coords ) {
+					coords_k0.push_back( c );
+				}
+			}
+			
 		private:
+			/* store the antenna coordinates */
+			std::vector<NRvector< Doub >> coords_k0;
+			
 			/** The Matrices we need to solve the Problem */
 			std::vector<NRmatrix< Doub >> A;
 

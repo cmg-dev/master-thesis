@@ -474,6 +474,7 @@ namespace PRPSEvolution {
 				ret.push_back( vec );
 			}
 			return ret;
+			
 		}
 		
 		/**
@@ -499,6 +500,7 @@ namespace PRPSEvolution {
 				ret.push_back( vec );
 			}
 			return ret;
+			
 		}
 		
 		/**
@@ -709,13 +711,13 @@ namespace PRPSEvolution {
 			antennasPerGroup	= 3;
 			antennasPerGroup	+= select_size;
 			/* limit */
-			antennasPerGroup	= (antennasPerGroup > 9) ? 9 : antennasPerGroup;
+			antennasPerGroup	= (antennasPerGroup > 6) ? 6 : antennasPerGroup;
 // 			std::cout << " ++" << antennasPerGroup << std::endl;
 
 #else
 			gGroupSize			= select_size;
 			antennasPerGroup	= c;
-				antennas = c;
+			antennas = c;
 #endif			
 
 			
@@ -929,18 +931,18 @@ namespace PRPSEvolution {
 												std::stoi( name.substr(3,1))
 												};
 
-				/* get the thetas */
+				/* get the corresponding thetas */
 				std::array<T_Measure,4> thetas = { normThetas[antennas[0]],
 													normThetas[antennas[1]],
 													normThetas[antennas[2]],
 													normThetas[antennas[3]]
-													};
+													};		
 
 				/* fill in the information */
 				for( int i = 0; i < mat.nrows(); i++ ) {
 					/* col 7 * ref antennas theta */
 					mat[i][6] *= thetas[0];
-						/* col 8-10 * the other antennas thetas */
+					/* col 8-10 * the other antennas thetas */
 					mat[i][7+i] *= thetas[i+1];
 
 				}
@@ -1017,12 +1019,15 @@ namespace PRPSEvolution {
 // 				a_0k[2] *= (a[0] < a[3]) ? d_k0s[a[0]][a[3]]:d_k0s[a[3]][a[0]];
 
 				for( int i = 0; i < 3; i++ ) {
+					/* the matrix is an upper triangle so we need the ? here */
 					a_0k[i] *= (a[0] < a[i+1]) ? d_k0s[a[0]][a[i+1]]:d_k0s[a[i+1]][a[0]];
 
 					a_3k[i] *= (normThetas[a[0]])*(normThetas[a[0]])
 							- (normThetas[a[i+1]])*(normThetas[a[i+1]]);
 
-					b[i]= a_0k[i]-a_3k[i];
+					/*** PROBLEM ***/
+					b[i]= a_3k[i] - a_0k[i];
+// 					b[i]= a_0k[i]-a_3k[i];
 							
 				}
 							

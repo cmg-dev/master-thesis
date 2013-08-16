@@ -126,7 +126,7 @@ int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	Calibration::performCalibration< ANTENNA_AMOUNT, CALIBRATION_POINTS_AVAILABLE, Doub >
 					PC;
-
+					
 	/**********************************************************************/
 	Permutate::permuteAntennas< ANTENNA_AMOUNT, Permutate::MAX_PERMUTATION_AMOUNT, Doub >
 					PA( sys.constants );
@@ -386,7 +386,8 @@ int main ( int argc, char *argv[ ] ) {
 			s << "output/mkII/" << FILENAME << "." << j;
 
 			int dimension = preprocess.antennasPerGroup;
-
+			process.setAntennaCoords( PC.c_k0 );
+			
 			std::cout << " dimension " << dimension << std::endl;
 			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
 
