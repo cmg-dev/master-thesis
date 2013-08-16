@@ -69,15 +69,15 @@ fi
 
 for(( i=$START; i < $STOP;i++ )) {
 
-    #if [ -a $i ] 
-    #then 
-        #rm -R $i
-    #fi
+    if [ -a $i ] 
+    then 
+        rm -R $i
+    fi
 
     mkdir $i
     
     echo "****"
     echo "Extracting archives"
     echo "****"
-    tar -C $i -xvzf ../store/E$i.tar.gz img/
+    tar -C $i -xvzf ../store/E$i.tar.gz data/
 }
