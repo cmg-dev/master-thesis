@@ -101,48 +101,49 @@
 %----------------------------------------------------------------------------
 % Titlepage -----------------------------------------------------------------
 %----------------------------------------------------------------------------
-
 \input{title/title.tex}
-
-
 \pagenumbering{roman} 
 
-%
+%----------------------------------------------------------------------------
+% Tables --------------------------------------------------------------------
+%----------------------------------------------------------------------------
 \tableofcontents 
 %
 \input{tables/TableOfAbbreviations.tex}
 %
 \input{tables/TableOfSymbols.tex}
 
-%\begin{abstract} 
-%This is the abstract. 
-%\end{abstract} 
-
-%\pagenumbering{arabic} 
 \mainmatter 
 %----------------------------------------------------------------------------
 % Chapters ------------------------------------------------------------------
 %----------------------------------------------------------------------------
-%
 % 1. ------------------------------------------------------------------------
 \chapter{Einleitung}
-\lipsum[1]
-\input{chapters/Einleitung.tex}
-
+Dieses Kapitel führt in die Arbeit ein. Zuerst wir die Motivation erläutert. Im Anschluss werden Anforderungen an die Lösung abgeleitet. Weiterhin werden alle wesentlichen Grundlagen werden im Rahmen der folgenden Seiten erörtert. Allgemeine Zusammenhänge und Techniken, denen einen großer Stellenwert in dieser Arbeit zukommt, werden zusammengefasst präsentiert. Für detaillierte Beschreibungen wird auf entsprechende Fachliteratur verwiesen.
+%
+\input{chapters/0_introduction/Einleitung.tex}
+%
 % 2. ------------------------------------------------------------------------
 \chapter{Hauptteil}
-\lipsum[1]
-\input{chapters/Hauptteil.tex}
-
+Im Folgenden werden ausführlich die Lösungen und Ansätze zur beschriebenen Problemstellung präsentiert.
+%
+\input{chapters/1_main/Hauptteil.tex}
+%
+% 3. ------------------------------------------------------------------------
 \chapter{Ergebnisse und Erkenntnisse}
 \lipsum[1]
-\input{chapters/Ergebnisse+Erkenntnisse.tex}
-
-% 3. ------------------------------------------------------------------------
+\input{chapters/2_results/Ergebnisse+Erkenntnisse.tex}
+%
+% 4. ------------------------------------------------------------------------
+\chapter{Diskussion}
+\lipsum[1]
+\input{chapters/3_discussion/discussion.tex}
+%
+% 5. ------------------------------------------------------------------------
 \chapter{Schluss}
 \lipsum[1]
-\input{chapters/Schluss.tex}
-
+\input{chapters/4_final/Schluss.tex}
+%
 %----------------------------------------------------------------------------
 % Appendix ------------------------------------------------------------------
 %----------------------------------------------------------------------------
