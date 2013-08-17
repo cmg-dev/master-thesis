@@ -1,0 +1,23 @@
+%-----------------------------------------------------
+\subsection[mathematisches]{Mathematische Voraussetzungen}
+%
+\subsection{Kondition}
+\input{chapters/0_introduction/sections/condition_number.tex}
+\subsection{SVD}
+\input{chapters/0_introduction/sections/svd.tex}
+%
+%-----------------------------------------------------
+\subsection[technisches]{Technische Voraussetzungen}
+In diesem Abschnitt werden die technischen Grundlagen für diese Arbeit vorgestellt und das Wichtigste erörtert. Es kann nicht im vollem Umfang auf die Details der Technik eingegangen werden ohne den Rahmen dieser Arbeit zu sprengen. Interessierte sei die referenzierte Literatur für eine weite Lektüre empfohlen.
+%
+\subsection{RFID}
+\label{sec:Measurement1}
+%
+\begin{enumerate}
+	\item Die Messung der Position erfolgt über die Auswertung der Phasenlage des empfangenen Signals in Bezug auf ein Referenzsignal. In der EU gibt es verschiedene, zulässige RFID-Frequenzen\footnote{text} (865,5?867,5 MHz) kann man die Wellenlänge mit: $ \lambda\simeq0,35 m $ angeben. Daraus folgt, dass alle 35 cm die gleiche Konfiguration der Phase vorliegt. In dieser Arbeit wird dieser Umstand Isophasen genannt. Die gewonnene Information aus der Phase ist somit redundant, d.h. es lässt sich durch die Kenntnis der Phase nicht unmittelbar auf die korrekte Postion schließen. Man kann das Problem umgehen in dem man auf die errechnete Position ein ganzzahliges Vielfaches der Wellenlänge addiert. Die sog. Wellenzahl (vgl.~\eqref{eq:Wavenumbers}).
+	\item Das System der Amedo STS verwendet eine spezielle Antennenanordnung um die Position zu ermitteln. Dabei wird eine Antennenanzahl >4 eingesetzt. Für jede dieser Antennen muss eine eigene Wellenzahl bestimmt werden. Durch Auslöschung des Signals, Absorption etc. kann es dazu kommen, dass eine Antenne eine unbestimmte Zeit lang kein Signal vom Tag empfängt. Wenn die Antenne nach dieser Zeit erneut ein Signal empfängt ist die ihr zugehörige Wellenzahl unbekannt und muss neu bestimmt werden. 
+	\item In realen Umgebungen treten zusätzlich noch Ruflektionen und ein sog. Multipath-Effekt auf. Dabei wird das Signal nicht auf dem Direkten Weg Antenne-Tag-Antenne empfangen sondern über einen unbekannten, längeren Weg. Dadurch kommt es zu einem Fehler in der Phase. Zusätzlich ist dieser Effekt individuell für jede Antenne.
+\end{enumerate}
+\lipsum[1-2]
+
+%

@@ -1,0 +1,34 @@
+%
+Gegeben ist ein lineares Gleichungssystem der Form:
+$$ \mathbf{A}\mathbf{x}-\mathbf{b} =\mathbf{0} $$
+Eine numerische Lösung für in der Regel zu einer von $\mathbf{0}$ verschiedenen Lösung so das wir:
+$$ \mathbf{A}\mathbf{\tilde{x}}-\mathbf{b} =\mathbf{r} $$
+schreiben. Man nennt $\mathbf{r}$ den Residuumvektor. Es ist offensichtlich, dass ein kleines Residuum nicht hinreichend ist um von einem kleinen relativen Fehler auszugehen.\\
+Aus $\mathbf{A}\mathbf{x}-\mathbf{b} =\mathbf{0}$ und $\mathbf{A}\mathbf{\tilde{x}}-\mathbf{b} =\mathbf{r}$ folgt $$ \mathbf{A}\Delta\mathbf{x}=\mathbf{r}$$
+und damit:
+$ 
+\lVert \mathbf{b} \rVert=\lVert \mathbf{Ax} \rVert \leq \lVert \mathbf{A} \rVert \lVert \mathbf{x} \rVert
+$, 
+$
+\lVert \Delta\mathbf{x} \rVert=\lVert -\mathbf{A^{-1}r} \rVert \leq \lVert \mathbf{A^{-1}} \rVert \lVert \mathbf{r} \rVert
+$
+Wir können nun für den relativen Fehler schreiben:
+$$
+\frac{\lVert \Delta\mathbf{x} \rVert}{\lVert \mathbf{x} \rVert} \leq 
+\frac{\lVert \mathbf{A^{-1}} \rVert \lVert \mathbf{r} \rVert}{\lVert \mathbf{b} \rVert / \lVert \mathbf{A} \rVert} =
+\lVert \mathbf{A} \rVert \lVert \mathbf{A^{-1}} \rVert \frac{\lVert \mathbf{r} \rVert}{\lVert \mathbf{b} \rVert}
+$$
+Der Term $\lVert \mathbf{A} \rVert \lVert \mathbf{A^{-1}} \rVert := \text{cond}(\mathbf{A})$ heißt Konditionszahl. Auch der Begriff Konditionsmaß ist gebräuchlich und bezieht sich auf die gewählte Matrixnorm.
+Es kann gezeigt werden, dass $\text{cond}(\mathbf{A}) \gg 1$  für eine schlechte Konditionierung der Matrix steht. Wird im Folgenden von einer speziellen Matrixnorm gesprochen schreiben wir $\text{cond}(\mathbf{A})$ zu 
+$$ 
+\text{cond}_k(\mathbf{A}) = \lVert \mathbf{A} \rVert_k \lVert \mathbf{A^{-1}} \rVert_k
+$$ \\
+Der Index $k$ wird entsprechend für die verwendete Norm ersetzt. Beispielsweise ergibt sich für die Konditionszahl der Spektralnorm\footnote{\url{http://de.wikipedia.org/w/index.php?title=Spektralnorm&oldid=118988565}}:
+$$ 
+\text{cond}_2(\mathbf{A}) = \lVert \mathbf{A} \rVert_2 \lVert \mathbf{A^{-1}} \rVert_2=
+\sqrt{\frac{\mu_{max}}{\mu_{min}}}\\
+$$
+Die Symbole $\mu_{max}$ und $\mu_{min}$ stehen für die Eigenwerte des Systems.\\
+Nach \cite{hermann2001numerische} kann man folgende Aussage über die Konditionszahl treffen:\\
+\\
+"Wird ein lineares Gleichungssystem $Ax=b$ mit $t$-stelliger dezimaler Gleitpunktarithmetik gelöst und beträgt die Konditionszahl $\text{cond}(A) \approx10^\alpha$, so sind auf Grund der im allgemeinen unvermeidbaren Fehler in den Eingabedaten $A$ und $b$ nur $t-\alpha-1$ Dezimalstellen der berechneten Lösung $\tilde{x}$ (bezogen auf die betragsgrößte Komponente) sicher."
