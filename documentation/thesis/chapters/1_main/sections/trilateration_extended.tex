@@ -1,0 +1,168 @@
+{
+\small
+Folgende Nomenklatur und Symbole gelten für diesen Abschnitt:
+%
+Wie gezeigt werden konnte\footnote{Wochenbericht KW 20, Anhang B} ergibt sich für den Fall der Trilateration und der Annahme, dass vier Antennen Messwerte liefern, die Gleichung:
+\begin{equation}\label{eq:final_trilateration_model}
+0=
+\left(
+	\begin{array}{ccc}
+		x_k-x_0 & y_k-y_0 & z_k-z_0 
+	\end{array}
+\right)
+\left(
+   \begin{array}{c}
+	   x-x_0\\
+	   y-y_0\\
+	   z-z_0
+   \end{array}
+\right)
+-
+\left(
+	\begin{array}{c}
+		c_{kj}
+	\end{array}
+\right) 
+\end{equation}
+%
+Dabei ist:
+\begin{equation}\label{eq:c_kj}
+	c_{kj}=\frac{1}{2}[d_{kj}^2+r_{j}^2-r_k^2]
+\end{equation}
+%
+Ziel dieser Erweiterung ist es, einen Zusammenhang zwischen diesem Modell und der Wellenzahl zu erzeugen. Folgender Ansatz wird gewählt:
+	\begin{equation}\label{eq:r_0_varrho} r(\varrho)=\frac{\lambda}{2}\left(\frac{\varrho}{2\pi}+n\right),\\\lambda=\frac{c}{f}, n:= \text{Wellenzahl}
+\end{equation}
+%
+%
+Weiterhin ist $\varrho$ die gemessene Phase, die das PRPS-System liefert und $n$ die gesuchte Wellenzahl.\\
+Durch einsetzen von \eqref{eq:r_0_varrho} in \eqref{eq:c_kj}, erhalten wir:
+\begin{equation}\label{eq:c_k0_extended}
+	c_{kj}(\varrho_0, \varrho_k, n_0, n_k) =\frac{1}{2}\left[d_{kj}^2+\frac{\lambda^2}{4}\left(\frac{\varrho_j}{2\pi}+n_0\right)^2-\frac{\lambda^2}{4}\left(\frac{\varrho_k}{2\pi}+n_k\right)^2\right]
+\end{equation}
+%
+Wir stellen Gleichung~\eqref{eq:c_k0_extended} um:
+\begin{align}
+%	
+	c_{kj}(\varrho_0, \varrho_k, n_0, n_k) &= \frac{1}{2}\left\{d_{kj}^2+\frac{\lambda^2}{4}\left[\left(\frac{\varrho_j}{2\pi}\right)^2+2\frac{\varrho_j}{2\pi}n_0+n_0^2 \right.\right.\nonumber\\
+	&\phantom{=}\; 
+	\left.\left.-\left(\frac{\varrho_k}{2\pi}\right)^2-2\frac{\varrho_k}{2\pi}n_k-n_k^2\right]\right\}\\
+%    
+    &=\frac{1}{2}\left\{d_{kj}^2+\frac{\lambda^2}{4}\left[\left(\frac{\varrho_j}{2\pi}\right)^2-\left(\frac{\varrho_k}{2\pi}\right)^2 \right.\right.\nonumber\\
+    &\phantom{=}\;
+   	\left.\left.+2\frac{\varrho_j}{2\pi}n_0-2\frac{\varrho_k}{2\pi}n_k+n_0^2-n_k^2\right]\right\}\\
+%	
+	&=\frac{1}{2}d_{kj}^2+\frac{\lambda^2}{8}\left[\frac{1}{(2\pi)^2}\left(\varrho_0^2-\varrho_k^2\right) \right.\nonumber\\
+	&\phantom{=}\;
+	\left. +\frac{1}{\pi}\left(\varrho_0n_0-\varrho_kn_k\right)+\left(n_0^2-n_k^2\right)\right]\label{c_k0_rearragend}
+\end{align}
+%
+Führen wir nun:
+\phantomeq{c_{kj}(\varrho_0, \varrho_k, n_0, n_k)}{a_{0k} := \frac{1}{2}d_{kj}^2\nonumber}
+\phantomeq{c_{kj}(\varrho_0, \varrho_k, n_0, n_k)}{a_1 := \frac{\lambda^2}{8}\nonumber}
+\phantomeq{c_{kj}(\varrho_0, \varrho_k, n_0, n_k)}{a_2 := a_1\frac{1}{\pi}\nonumber}
+\phantomeq{c_{kj}(\varrho_0, \varrho_k, n_0, n_k)}{a_{3kj} := a_1\frac{1}{(2\pi)^2}(\varrho_j^2-\varrho_k^2)\nonumber}
+%
+in Gleichung~\eqref{c_k0_rearragend} ein, erhalten die finale Form der Gleichung:
+\begin{equation}
+c_{kj}(\varrho_0, \varrho_k, n_0, n_k) = a_{0k}+a_1(n_0^2-n_k^2)+a_2(\varrho_0n_0-\varrho_kn_k)-a_{3kj}\label{c_k0_final_form}   
+\end{equation}
+%
+Die Einführung der Konstanten macht zum Einen die Gleichung übersichtlicher. Zum Anderen können so, mit Blick auf eine spätere Softwareimplementation, Rechenschritte gespart werden. Das sollte sich positiv auf den späteren Berechnungsaufwand auswirken.\\
+%
+Im Weiteren erkennt man durch scharfes hinsehen das in Gleichung~\eqref{c_k0_final_form}, für $\varrho_k=\text{const.}$ \& $\varrho_0=\text{const.}$ gilt. Das resultiert aus der Tatsache, dass . Es ermöglicht uns zu schreiben:
+\begin{equation}
+c_{kj}(\varrho_0, \varrho_k, n_0, n_k) = c_{kj}(n_0, n_k)
+\end{equation}
+%
+Im engeren Sinne einer mathematischen Funktion sollten wir die Parameter alle als Argument aufnehmen. Diese Form soll darstellen, welche Größen von Interesse sind. Im späteren Gebrauch wird diese Gleichung in der Optimierung eingesetzt werden.
+Für unser Gleichungssystem aus\eqref{eq:final_trilateration_model} ergibt sich:
+\begin{equation}\label{eq:wavenumber_trilateration_model}
+0=
+\left(
+	\begin{array}{ccc}
+		x_k-x_0 & y_k-y_0 & z_k-z_0 
+	\end{array}
+\right)
+\left(
+   \begin{array}{c}
+	   x-x_0\\
+	   y-y_0\\
+	   z-z_0
+   \end{array}
+\right)
+-
+\left(
+	\begin{array}{c}
+		c_{kj}(n_0, n_k)
+	\end{array}
+\right)
+\end{equation}
+%
+Betrachten wir nun \eqref{eq:wavenumber_trilateration_model}, wählen $N'=4$ (d.h. wir verwenden 4 Antennen) und setzen $j=0$. Wir beschreiben die Konfiguration wie folgt: Antenne 0 ist die Referenz-Antenne und Antenne 0-3 sind Messwertgeber für die Phaseninformation. 
+%
+\begin{equation}\label{eq:wavenumber_trilateration_model_explicit}
+0=
+\underbrace{\left(
+	\begin{array}{ccc}
+		x_1-x_0 & y_1-y_0 & z_1-z_0 \\
+		x_2-x_0 & y_2-y_0 & z_2-z_0 \\
+		x_3-x_0 & y_3-y_0 & z_3-z_0 
+	\end{array}
+\right)}_{\textbf{A}}
+\underbrace{\left(
+   \begin{array}{c}
+	   x-x_0\\
+	   y-y_0\\
+	   z-z_0
+   \end{array}
+\right)}_{\textbf{x}}
+-
+\underbrace{\left(
+	\begin{array}{c}
+		c_{10}(n_0, n_1) \\
+		c_{20}(n_0, n_2) \\
+		c_{30}(n_0, n_3)
+	\end{array}
+\right)}_{\textbf{b}}
+\end{equation}
+%
+\begin{equation}
+\mathbf{b}=
+\left(
+	\begin{array}{c}
+		a_{01}+a_1( n_0^2-n_1^2)+a_2(\varrho_0n_0-\varrho_1n_1)-a_{310} \\
+		a_{02}+a_1(n_0^2-n_2^2)+a_2(\varrho_0n_0-\varrho_2n_2)-a_{320} \\
+		a_{03}+a_1(n_0^2-n_3^2)+a_2(\varrho_0n_0-\varrho_3n_3)-a_{330}
+	\end{array}
+\right)
+\end{equation}
+%
+Das Ergebnis ist ein um $\varrho$ und $n$ erweitertes Gleichungssystem. Zusätzlich enthält  es mehrere geometrische Konstanten ($a_{0k}, k=\{1,..,N-1\}$), mehrere Phasen-Konstanten ($a_{3k0}, k=\{1,..,N-1\}$), sowie zwei allgemeine ($a_1$ und $a_2$). Allgemeiner formuliert ergibt sich:
+%
+\begin{multline}\label{eq:final_equation}
+0=
+\left(
+	\begin{array}{ccc}
+		x_k-x_0 & y_k-y_0 & z_k-z_0 
+	\end{array}
+\right)
+\left(
+   \begin{array}{c}
+	   x-x_0\\
+	   y-y_0\\
+	   z-z_0
+   \end{array}
+\right) \\
+-
+\left(
+	\begin{array}{c}
+		a_{0k}+a_1(n_0^2-n_k^2)+a_2(\varrho_0k_0-\varrho_kn_k)-a_{3kj}
+	\end{array}
+	\right)
+\end{multline}
+%
+Aus Gleichung~\eqref{eq:final_equation} ist durch eine geeignete Wahl von $N'=\{4,..,N\}$ sofort ersichtlich wie viele Veränderliche sich für eine gewählte Konstellation an Antennen ergeben. Für $k$ gilt in diesem Fall $k=\{1,..,N'-1\}$.\\
+%
+Beispielsweise ergibt sich für das Modell aus Gleichung~\eqref{eq:final_equation} mit $N'=4$, insgesamt 7 Variablen ($\mathbf{x},n_0,n_1,n_2,n_3$) . Analog würde sich für ein Modell mit allen 8 Antennen, 11 Variablen ($\mathbf{x},n_0,..,n_7$) ergeben.
+}
