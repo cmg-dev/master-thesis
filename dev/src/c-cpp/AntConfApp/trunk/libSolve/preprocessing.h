@@ -62,14 +62,24 @@ namespace PRPSEvolution {
 			/** Amount of antennas for the solution */
 			int 										antennasPerGroup;
 
-			PreProcessing
-				(
+			PreProcessing (
 				const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &,
 				const NRmatrix<T> &,
+				const PRPSEvolution::NormalizationMethods method,
 				const int,
 				const int
 				);
 
+			PreProcessing (
+				const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &,
+				const NRmatrix<T> &,
+				const PRPSEvolution::NormalizationMethods method,
+				const int,
+				const int,
+				const double,
+				const int
+				);
+				
 			/**
 			 * Returns the possible group size for one antenna
 			 * The group size depends on the amount of antennas that provided
@@ -105,7 +115,11 @@ namespace PRPSEvolution {
 
 			/** The "Names" of the matrices for a solution */
 			std::vector<std::string>	PreprocessedNames;
-			
+
+			double lambda;
+
+			int selectIdealPoint;
+
 			/***************************************************************/
 			/***************************************************************/
 			/***************************************************************/
@@ -119,7 +133,7 @@ namespace PRPSEvolution {
 			 */
 			std::array<T, N_ANTA>
 			normalizeThetas
-			( const std::array<T_Measure,N_ANTA> &, const std::array<T_Measure,N_ANTA> & );
+			( const std::array<T_Measure,N_ANTA> &, const std::array<T_Measure,N_ANTA> &, PRPSEvolution::NormalizationMethods );
 
 			/**
 			 * 
@@ -291,6 +305,7 @@ namespace PRPSEvolution {
 		(
 		const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &precalculatedMatrices,
 		const NRmatrix<T> & d_k0s,
+		const PRPSEvolution::NormalizationMethods method,
 		const int finalAntAmount,
 		const int offset
 		)
@@ -312,7 +327,7 @@ namespace PRPSEvolution {
 			std::cout << "PreProcessing:: normalization in process.. .. ";
 #endif
 
-			auto normThetas = normalizeThetas( measuredPhase, measuredAmp );
+			auto normThetas = normalizeThetas( measuredPhase, measuredAmp, method );
 
 #ifdef _PREPROCESS_OUTPUT
 			std::cout << " done" << std::endl;
@@ -425,6 +440,31 @@ namespace PRPSEvolution {
 
 		}
 
+		int SELECT_IDEAL_POINT;
+		double LAMBDA;
+		
+		/**
+		 *
+		 */
+		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
+		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::PreProcessing
+		(
+		const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &precalculatedMatrices,
+		const NRmatrix<T> & d_k0s,
+		const PRPSEvolution::NormalizationMethods method,
+		const int finalAntAmount,
+		const int offset,
+		const double lambda,
+		const int point
+		)
+		{
+			LAMBDA = lambda;
+			SELECT_IDEAL_POINT = point;
+			PreProcessing( precalculatedMatrices, d_k0s, method, finalAntAmount, offset );
+
+		}
+
+		
 		/**
 		 * Create all possible groups according to @see possibleGroupSize
 		 * @param[in] finalVectors the precalculated final vectors
@@ -572,12 +612,12 @@ namespace PRPSEvolution {
 		 */
 		template<std::size_t N_ANTA,std::size_t N_Configs,typename T,typename T_Measure>
 		std::array<T, N_ANTA> PreProcessing<N_ANTA,N_Configs,T,T_Measure>::normalizeThetas
-		( const std::array<T_Measure,N_ANTA> &phase, const std::array<T_Measure,N_ANTA> &amp )
+		( const std::array<T_Measure,N_ANTA> &phase, const std::array<T_Measure,N_ANTA> &amp, PRPSEvolution::NormalizationMethods method )
 		{
-			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::CMPLX );
-// 			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::RND );
-// 			Normalizer<N_ANTA, T> normalizer( PRPSEvolution::NormalizatioMethodes::Native );
-
+			Normalizer<N_ANTA, T> normalizer( method );
+			normalizer.setLambda( LAMBDA );
+			normalizer.setSelectIdealPoint( SELECT_IDEAL_POINT );
+			
 			auto ret = normalizer.normalize( phase, amp );
 
 			return ret;

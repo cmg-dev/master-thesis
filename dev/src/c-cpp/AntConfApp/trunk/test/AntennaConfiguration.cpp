@@ -24,6 +24,7 @@
 // #define _PREPROCESS_OUTPUT
 #define _REFINE_SELECTION
 #define _PP_FORM_GROUPS
+#define _USE_IDEAL_INPUT
 
 #ifdef _USE_SHARK_3_0_
 	#include "../libSolve/processMkII.h"
@@ -49,6 +50,7 @@
 #endif
 
 #include "../libSolve/preprocessing.h"
+
 #include "../libSolve/postprocessing.h"
 
 #define USAGE_AND_EXIT \
@@ -78,6 +80,7 @@ int			UseNMats			= 1;
 int			EVALUATIONS			= DEFAULT_MAX_EVALUATIONS;
 
 bool		DROPBAD				= false;
+bool		IDEAL_DATA			= false;
 
 std::string	FILENAME			="";
 
@@ -120,6 +123,9 @@ int main ( int argc, char *argv[ ] ) {
 		if(atoi( argv[8] ) > 0)
 			EVALUATIONS = atoi(argv[8]);
 
+	if( argc > 9 )
+		IDEAL_DATA = true;
+	
 	/**********************************************************************/
 	PRPSEvolution::System sys;
 
@@ -137,8 +143,26 @@ int main ( int argc, char *argv[ ] ) {
 	std::cout << std::endl;
 	std::cout << "*PreProcessing.." << std::endl;
 
-	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess( PA.configurations, PA.d_k0_mat, UseNMats , 0 );
-
+#ifdef _USE_IDEAL_INPUT
+// 	LAMBDA_MESS = sys.constants.lambda;
+	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess(
+												PA.configurations,
+												PA.d_k0_mat,
+												PRPSEvolution::NormalizationMethods::Ideal,
+												UseNMats,
+												0,
+												sys.constants.lambda,
+												0
+  												);
+#else
+	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess(
+												PA.configurations,
+												PA.d_k0_mat,
+												PRPSEvolution::NormalizationMethods::Complex,
+												UseNMats,
+												0
+  												);
+#endif
 	std::cout << std::endl;
 
 	std::cout << "*PreProcessing.. done" << std::endl;
@@ -372,6 +396,9 @@ int main ( int argc, char *argv[ ] ) {
 		auto names		= preprocess.nameGroups;
 
 		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 4" << std::endl;
+		if(  As.size() == 0 )
+			std::cout << "        :: Error" << std::endl;
+		
 		for( int j = 0; j < As.size(); j++ ) {
 			auto A		= As[ j ];
 			auto v		= vs[ j ];
