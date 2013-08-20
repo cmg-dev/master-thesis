@@ -85,19 +85,23 @@ unset label
 
 set style data boxplot
 #set boxwidth .2 absolute 
-set xlabel "Objective"
-set ylabel "Final Value"
+set xlabel "Optimzation objective"
+set ylabel "Final Value - Coordinates ( x, y, z )"
+ 
 set size 1, .6
 set origin .0,.4
 set autoscale
 set xrange [.5:a+1]
 set xtics 
 
-set ytics format "%.2e"
+set ytics format "%.1f"
+set yrange [-3:3]
+set y2tics format "%.1f"
+set y2label "Final Value - Wavenumbers ( n )"
 
-if(a==3) plot inputfile u (1):5 ls 1 notitle, \
-        '' u (2):6 ls 2 notitle, \
-        '' u (3):7 ls 3 notitle
+if(a==3) plot inputfile u (1):5 ls 1 axes x1y2 notitle, \
+        '' u (2):6 ls 2 axes x1y2 notitle, \
+        '' u (3):7 ls 3 axes x1y2 notitle
 
 
 if(a==6) plot inputfile u (1):5 ls 1 notitle, \
@@ -109,39 +113,68 @@ if(a==6) plot inputfile u (1):5 ls 1 notitle, \
 
 if(a==7) set xtics ("x" 1, "y" 2, "z" 3, "n0" 4,"n1" 5,"n2" 6,"n3" 7) scale 0.0
 
-if(a==7) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 notitle, \
-        '' u ($2 < limit ? (2): 1/0):6 ls 2 notitle, \
-        '' u ($2 < limit ? (3): 1/0):7 ls 3 notitle, \
-        '' u ($2 < limit ? (4): 1/0):8 ls 4 notitle, \
-        '' u ($2 < limit ? (5): 1/0):9 ls 4 notitle, \
-        '' u ($2 < limit ? (6): 1/0):10 ls 4 notitle, \
-        '' u ($2 < limit ? (7): 1/0):11 ls 4 notitle
+if(a==7) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 axes x1y1 notitle, \
+        '' u ($2 < limit ? (2): 1/0):6 ls 2 axes x1y1 notitle, \
+        '' u ($2 < limit ? (3): 1/0):7 ls 3 axes x1y1 notitle, \
+        '' u ($2 < limit ? (4): 1/0):8 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (5): 1/0):9 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (6): 1/0):10 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (7): 1/0):11 ls 4 axes x1y2 notitle
 
 
 if(a==8) set xtics ("x" 1, "y" 2, "z" 3, "n0" 4,"n1" 5,"n2" 6,"n3" 7,"n4" 8) scale 0.0
 
-if(a==8) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 notitle, \
-        '' u ($2 < limit ? (2): 1/0):6 ls 2 notitle, \
-        '' u ($2 < limit ? (3): 1/0):7 ls 3 notitle, \
-        '' u ($2 < limit ? (4): 1/0):8 ls 4 notitle, \
-        '' u ($2 < limit ? (5): 1/0):9 ls 4 notitle, \
-        '' u ($2 < limit ? (6): 1/0):10 ls 4 notitle, \
-        '' u ($2 < limit ? (7): 1/0):11 ls 4 notitle, \
-        '' u ($2 < limit ? (8): 1/0):12 ls 4 notitle
+if(a==8) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 axes x1y1 notitle, \
+        '' u ($2 < limit ? (2): 1/0):6 ls 2 axes x1y1 notitle, \
+        '' u ($2 < limit ? (3): 1/0):7 ls 3 axes x1y1 notitle, \
+        '' u ($2 < limit ? (4): 1/0):8 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (5): 1/0):9 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (6): 1/0):10 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (7): 1/0):11 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (8): 1/0):12 ls 4 axes x1y2 notitle
 
 if(a==9) set xtics ("x" 1, "y" 2, "z" 3, "n0" 4,"n1" 5,"n2" 6,"n3" 7,"n4" 8, "N5" 9) scale 0.0
 
-if(a==9) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 notitle, \
-        '' u ($2 < limit ? (2): 1/0):6 ls 2 notitle, \
-        '' u ($2 < limit ? (3): 1/0):7 ls 3 notitle, \
-        '' u ($2 < limit ? (4): 1/0):8 ls 4 notitle, \
-        '' u ($2 < limit ? (5): 1/0):9 ls 4 notitle, \
-        '' u ($2 < limit ? (6): 1/0):10 ls 4 notitle, \
-        '' u ($2 < limit ? (7): 1/0):11 ls 4 notitle, \
-        '' u ($2 < limit ? (8): 1/0):12 ls 4 notitle, \
-        '' u ($2 < limit ? (9): 1/0):12 ls 4 notitle
+if(a==9) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 axes x1y1 notitle, \
+        '' u ($2 < limit ? (2): 1/0):6 ls 2 axes x1y1 notitle, \
+        '' u ($2 < limit ? (3): 1/0):7 ls 3 axes x1y1 notitle, \
+        '' u ($2 < limit ? (4): 1/0):8 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (5): 1/0):9 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (6): 1/0):10 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (7): 1/0):11 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (8): 1/0):12 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (9): 1/0):12 ls 4 axes x1y2 notitle
 
+if(a==10) set xtics ("x" 1, "y" 2, "z" 3, "n0" 4,"n1" 5,"n2" 6,"n3" 7,"n4" 8, "N5" 9, "N6" 10) scale 0.0
+
+if(a==10) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 axes x1y1 notitle, \
+        '' u ($2 < limit ? (2): 1/0):6 ls 2 axes x1y1 notitle, \
+        '' u ($2 < limit ? (3): 1/0):7 ls 3 axes x1y1 notitle, \
+        '' u ($2 < limit ? (4): 1/0):8 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (5): 1/0):9 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (6): 1/0):10 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (7): 1/0):11 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (8): 1/0):12 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (9): 1/0):12 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (10): 1/0):12 ls 4 axes x1y2 notitle
+
+if(a==11) set xtics ("x" 1, "y" 2, "z" 3, "n0" 4,"n1" 5,"n2" 6,"n3" 7,"n4" 8, "N5" 9, "N6" 10, "N7" 11) scale 0.0
+
+if(a==11) plot inputfile u ($2 < limit ? (1): 1/0):5 ls 1 axes x1y1 notitle, \
+        '' u ($2 < limit ? (2): 1/0):6 ls 2 axes x1y1 notitle, \
+        '' u ($2 < limit ? (3): 1/0):7 ls 3 axes x1y1 notitle, \
+        '' u ($2 < limit ? (4): 1/0):8 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (5): 1/0):9 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (6): 1/0):10 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (7): 1/0):11 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (8): 1/0):12 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (9): 1/0):12 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (10): 1/0):12 ls 4 axes x1y2 notitle, \
+        '' u ($2 < limit ? (11): 1/0):12 ls 4 axes x1y2 notitle
 unset label
+unset y2label
+unset y2range
+unset y2tics
 
 #-------------------------------------------------------------------------
 #setup the 2. plot

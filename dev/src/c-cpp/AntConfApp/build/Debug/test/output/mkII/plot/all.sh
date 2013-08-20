@@ -1,13 +1,21 @@
 #!/bin/bash
-#./plot.sh -f E66 -s 0 -e 50 -a 7 -t 6 -p no -c no -x no -l 50000 -o  
+#./plot.sh -f E154 -s 0 -e 10  -a 8 -t 8 -p no -c no -x no -l 60000 
+#./plot.sh -f E100 -s 0 -e 50 -a 7 -t 8 -p no -c no -x no -l 60000 -o
 #exit 0 
+# [Start] [End] [Repetitions] [Variables] [Trials] [Increment] [LIMIT]
 
-
-for (( i=$1 ; i <$2 ; i++ ))
+GROUPSIZE=$4
+LIMIT=$7
+for (( i=$1 ; i <$2 ; i+=$6 ))
 do
     
-    ./plot.sh -f E$i -s 0 -e 50 -a 7 -t 6 -p no -c yes -x no -l 50000
-
+    ./plot.sh -f E$i -s 0 -e $3 -a $GROUPSIZE -t $5 -p no -c yes -x no -l 50000
+    GROUPSIZE=$((GROUPSIZE+1))
+    if [ $GROUPSIZE -gt $LIMIT ]
+    then
+        GROUPSIZE=$LIMIT
+        echo "Groupsize limited"
+    fi
 done
 
 exit 0 

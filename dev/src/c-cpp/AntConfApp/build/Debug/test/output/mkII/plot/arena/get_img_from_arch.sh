@@ -24,9 +24,9 @@ EOF
 #TRIALS=
 START=
 STOP=
-#VARAMOUNT=
-#while getopts "hf:s:e:t:p:c:a:" OPTION
-while getopts "hs:e:" OPTION
+REMOVE=
+
+while getopts "hs:e:r" OPTION
 do
     case $OPTION in
         h)
@@ -42,9 +42,9 @@ do
         e)
             STOP=$OPTARG
             ;;
-        #t)
-            #TRIALS=$OPTARG
-            #;;
+        r)
+            REMOVE="yes"
+            ;;
         #p)
             #PLOTSINGLE=$OPTARG
             #;;
@@ -69,15 +69,23 @@ fi
 
 for(( i=$START; i < $STOP;i++ )) {
 
-    #if [ -a $i ] 
-    #then 
-        #rm -R $i
-    #fi
+    if [ -a $i ] 
+    then 
+        rm -R $i
+    fi
 
-    mkdir $i
+    #if -r flag is set. remove only
+    if [ -z $REMOVE ]
+    then
+        mkdir $i
     
-    echo "****"
-    echo "Extracting archives"
-    echo "****"
-    tar -C $i -xvzf ../store/E$i.tar.gz img/
+        echo "****"
+        echo "Extracting archives"
+        echo "****"
+        tar -C $i -xvzf ../store/E$i.tar.gz img/
+
+    else
+        echo "rm "$i
+    fi
+
 }

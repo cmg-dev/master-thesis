@@ -41,7 +41,8 @@ stats inputfile u 1 name "Stat" nooutput
 
 locallimit=0.2*limit
 #setup the first plot
-set xrange [0:locallimit]
+#set xrange [0:locallimit]
+set autoscale
 set clip one
 set xlabel "Funtion Evaluations"
 set ylabel "Objective Values"
@@ -84,18 +85,28 @@ if( a==9 ) plot inputfile u ($1 < locallimit  ? $1 : 1/0):7 w lines title "n0" l
 		"" u ($1 < locallimit  ? $1 : 1/0):5 w lines title "y" ls 2, \
 		"" u ($1 < locallimit  ? $1 : 1/0):6 w lines title "z" ls 3
 		 
+if( a==10 ) plot inputfile u ($1 < locallimit  ? $1 : 1/0):7 w lines title "n0" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):8 w lines title "n1" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):9 w lines title "n2" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):10 w lines title "n3" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):11 w lines title "n4" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):12 w lines title "n5" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):13 w lines title "n6" ls 4, \
+        "" u($1 < locallimit  ? $1 : 1/0):4 w lines title "x" ls 1, \
+		"" u ($1 < locallimit  ? $1 : 1/0):5 w lines title "y" ls 2, \
+		"" u ($1 < locallimit  ? $1 : 1/0):6 w lines title "z" ls 3
 
-if( a==10 ) plot inputfile u ($1 < locallimit  ? $1 : 1/0):4 w lines title "x", \
-		"" u ($1 < locallimit  ? $1 : 1/0):5 w lines title "y", \
-		"" u ($1 < locallimit  ? $1 : 1/0):6 w lines title "z", \
-		"" u ($1 < locallimit  ? $1 : 1/0):7 w lines title "n0", \
-		"" u ($1 < locallimit  ? $1 : 1/0):8 w lines title "n1", \
-		"" u ($1 < locallimit  ? $1 : 1/0):9 w lines title "n2", \
-		"" u ($1 < locallimit  ? $1 : 1/0):10 w lines title "n3", \
-		"" u ($1 < locallimit  ? $1 : 1/0):11 w lines title "n4", \
-		"" u ($1 < locallimit  ? $1 : 1/0):12 w lines title "n5", \
-		"" u ($1 < locallimit  ? $1 : 1/0):13 w lines title "n6"
-
+if( a==11 ) plot inputfile u ($1 < locallimit  ? $1 : 1/0):7 w lines title "n0" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):8 w lines title "n1" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):9 w lines title "n2" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):10 w lines title "n3" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):11 w lines title "n4" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):12 w lines title "n5" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):13 w lines title "n6" ls 4, \
+		"" u ($1 < locallimit  ? $1 : 1/0):14 w lines title "n7" ls 4, \
+        "" u($1 < locallimit  ? $1 : 1/0):4 w lines title "x" ls 1, \
+		"" u ($1 < locallimit  ? $1 : 1/0):5 w lines title "y" ls 2, \
+		"" u ($1 < locallimit  ? $1 : 1/0):6 w lines title "z" ls 3
 
 set autoscale
 
