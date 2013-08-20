@@ -144,7 +144,6 @@ int main ( int argc, char *argv[ ] ) {
 	std::cout << "*PreProcessing.." << std::endl;
 
 #ifdef _USE_IDEAL_INPUT
-// 	LAMBDA_MESS = sys.constants.lambda;
 	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess(
 												PA.configurations,
 												PA.d_k0_mat,
@@ -167,6 +166,7 @@ int main ( int argc, char *argv[ ] ) {
 
 	std::cout << "*PreProcessing.. done" << std::endl;
 
+				
 	/**********************************************************************/
 	std::cout << std::endl;
 	std::cout << "*Processing.. Create Solution(s).." << std::endl;
@@ -389,8 +389,8 @@ int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	/* This will solve for groups of matrices								 */
 	if( VARIANT_SW == 4 ) {
-		t_00			= steady_clock::now();
-		
+
+				
 		auto As 		= preprocess.matGroups;
 		auto vs			= preprocess.vectorGroups;
 		auto names		= preprocess.nameGroups;
@@ -398,8 +398,13 @@ int main ( int argc, char *argv[ ] ) {
 		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 4" << std::endl;
 		if(  As.size() == 0 )
 			std::cout << "        :: Error" << std::endl;
+		if(  vs.size() == 0 )
+			std::cout << "        :: Error" << std::endl;
+		if(  names.size() == 0 )
+			std::cout << "        :: Error" << std::endl;
 		
 		for( int j = 0; j < As.size(); j++ ) {
+			t_00			= steady_clock::now();
 			auto A		= As[ j ];
 			auto v		= vs[ j ];
 			auto name	= names[ j ];

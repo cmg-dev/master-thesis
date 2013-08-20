@@ -67,14 +67,6 @@ namespace PRPSEvolution {
 				const NRmatrix<T> &,
 				const PRPSEvolution::NormalizationMethods method,
 				const int,
-				const int
-				);
-
-			PreProcessing (
-				const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &,
-				const NRmatrix<T> &,
-				const PRPSEvolution::NormalizationMethods method,
-				const int,
 				const int,
 				const double,
 				const int
@@ -116,10 +108,10 @@ namespace PRPSEvolution {
 			/** The "Names" of the matrices for a solution */
 			std::vector<std::string>	PreprocessedNames;
 
-			double lambda;
-
-			int selectIdealPoint;
-
+			int SELECT_IDEAL_POINT;
+			
+			double LAMBDA;
+		
 			/***************************************************************/
 			/***************************************************************/
 			/***************************************************************/
@@ -307,9 +299,13 @@ namespace PRPSEvolution {
 		const NRmatrix<T> & d_k0s,
 		const PRPSEvolution::NormalizationMethods method,
 		const int finalAntAmount,
-		const int offset
+		const int offset,
+		const double lambda,
+		const int point
 		)
 		{
+			LAMBDA					= lambda;
+			SELECT_IDEAL_POINT		= point;
 			/***************************************************************/
 			/* latch in the matrices */
 			precalculatedMats = &precalculatedMatrices;
@@ -429,7 +425,6 @@ namespace PRPSEvolution {
 			dump_selected_vectors();
 			dump_selected_names();
 			
-			
 #ifdef _PREPROCESS_OUTPUT
 			std::cout << "done" << std::endl;
 #endif
@@ -440,29 +435,26 @@ namespace PRPSEvolution {
 
 		}
 
-		int SELECT_IDEAL_POINT;
-		double LAMBDA;
-		
 		/**
 		 *
 		 */
-		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
-		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::PreProcessing
-		(
-		const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &precalculatedMatrices,
-		const NRmatrix<T> & d_k0s,
-		const PRPSEvolution::NormalizationMethods method,
-		const int finalAntAmount,
-		const int offset,
-		const double lambda,
-		const int point
-		)
-		{
-			LAMBDA = lambda;
-			SELECT_IDEAL_POINT = point;
-			PreProcessing( precalculatedMatrices, d_k0s, method, finalAntAmount, offset );
-
-		}
+// 		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
+// 		PreProcessing<N_ANTA,N_Configs,T,T_Measure>::PreProcessing
+// 		(
+// 		const std::array< AntennaPermutations< Permutate::MAX_PERMUTATION_AMOUNT, Doub >, N_ANTA> &precalculatedMatrices,
+// 		const NRmatrix<T> & d_k0s,
+// 		const PRPSEvolution::NormalizationMethods method,
+// 		const int finalAntAmount,
+// 		const int offset,
+// 		const double lambda,
+// 		const int point
+// 		) : PreProcessing( precalculatedMatrices, d_k0s, method, finalAntAmount, offset )
+// 		{
+// // 			LAMBDA = lambda;
+// // 			SELECT_IDEAL_POINT = point;
+// // 			PreProcessing( precalculatedMatrices, d_k0s, method, finalAntAmount, offset );
+// 
+// 		}
 
 		
 		/**
@@ -557,6 +549,14 @@ namespace PRPSEvolution {
 
 			valuesRead = linesRead = 0;
 
+			/* if we want to use ideal input we set everything to 1.0 */
+#ifdef _USE_IDEAL_INPUT
+			for( int i = 0; i < N_ANTA; i++ ) {
+				measuredPhase[ i ] = (T_Measure) 1.0;
+				measuredAmp[ i ] = (T_Measure) 1.0;
+			}
+			
+#else
 			/* simply fill with 0 */
 			for( int i = 0; i < N_ANTA; i++ ) {
 				measuredPhase[ i ] = (T_Measure) 0.0;
@@ -587,6 +587,7 @@ namespace PRPSEvolution {
 			if( linesRead != PRPSEvolution::EXPECTED_LINES_MEASUREMENT_FILE )
 				throw PRPSEvolution::Exceptions::FileIO::MalformedInput();
 
+#endif
 			/* dump everything to std::cout  */
 // 			std::cout << "** PreProcessing:: I've read the following values: " << std::endl;
 // 			std::cout << "Idx Phase" << " | "<< "Amp" << std::endl;
@@ -615,6 +616,10 @@ namespace PRPSEvolution {
 		( const std::array<T_Measure,N_ANTA> &phase, const std::array<T_Measure,N_ANTA> &amp, PRPSEvolution::NormalizationMethods method )
 		{
 			Normalizer<N_ANTA, T> normalizer( method );
+// 			std::cout << "LAMBDA " << LAMBDA
+// 				<< " SELECT_IDEAL_POINT " << SELECT_IDEAL_POINT
+// 				<< std::endl;
+				
 			normalizer.setLambda( LAMBDA );
 			normalizer.setSelectIdealPoint( SELECT_IDEAL_POINT );
 			
@@ -687,7 +692,7 @@ namespace PRPSEvolution {
 			/* finalAntAmount == 0 means Select all antenna */
 			int select_size = ( finalAntAmount == 0 ) ? select.size() : finalAntAmount;
 
-// 			std::cout << "select_size " << select_size << " " << select.size() << std::endl;
+			std::cout << "select_size " << select_size << " " << select.size() << std::endl;
 			
 // 			int select_size = select.size();
 // 			ret.push_back( names[0] );
@@ -740,7 +745,7 @@ namespace PRPSEvolution {
 				}
 			}
 
-			std::cout << c << std::endl;
+// 			std::cout << c << std::endl;
 			if( c < 4 || c > 8 ) {
 				exit(0);
 				/** @todo throw exception */
@@ -751,13 +756,13 @@ namespace PRPSEvolution {
 			antennasPerGroup	= 3;
 			antennasPerGroup	+= select_size;
 			/* limit */
-			antennasPerGroup	= (antennasPerGroup > 6) ? 6 : antennasPerGroup;
-// 			std::cout << " ++" << antennasPerGroup << std::endl;
+			antennasPerGroup	= (antennasPerGroup > 8) ? 8 : antennasPerGroup;
+// 			std::cout << " ++ " << antennasPerGroup << std::endl;
 
 #else
 			gGroupSize			= select_size;
 			antennasPerGroup	= c;
-			antennas = c;
+			antennas 			= c;
 #endif			
 
 			
@@ -893,6 +898,8 @@ namespace PRPSEvolution {
 				else { i++; }
 			}
 
+// 			std::cout << "***" <<  os.str() << std::endl;
+			
 			const std::size_t NoAvailiable = j;
 			const std::size_t GroupSize = DEFAULT_MIN_GROUP_SIZE;
 
@@ -935,9 +942,9 @@ namespace PRPSEvolution {
 			}
 
 			/* print the "names" of the possible matrices */
-// 			std::cout << Names.size() << std::endl;
-// 			for( int i = 0; i < Names.size(); i++ )
-// 				std::cout << Names[i] << std::endl;
+// 			std::cout << NamesPossible.size() << std::endl;
+// 			for( int i = 0; i < NamesPossible.size(); i++ )
+// 				std::cout << NamesPossible[i] << std::endl;
 
 			return NamesPossible;
 

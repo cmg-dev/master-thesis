@@ -31,9 +31,6 @@ namespace PRPSEvolution {
 // 			for( int i = 3; i < m_numberOfVariables; i++)
 // 				if( x[i] < 0. )
 // 					return 10000;
-				
-			if( !constrains(x) )
-				return 10000;
 
 			bool doRecombination = true;
 			if( As.size() == 1 )
@@ -42,9 +39,9 @@ namespace PRPSEvolution {
 			for( int i = 0; i < As.size(); i++ ) {
 				auto idx = idxs[i];
 
-		// 		for( auto c : idx )
-		// 			std::cout << c;
-		// 		std::cout << std::endl;
+// 				for( auto c : idx )
+// 					std::cout << c;
+// 				std::cout << std::endl;
 
 				/* get the indeces for the solution */
 				int j,k;
@@ -52,13 +49,21 @@ namespace PRPSEvolution {
 
 				if( doRecombination ) {
 					/* recompile chromosome x */
-					x[ 3 ] = (double) p[ idx[ 0 ] ];
-					x[ 4 ] = (double) p[ idx[ 1 ] ];
-					x[ 5 ] = (double) p[ idx[ 2 ] ];
-					x[ 6 ] = (double) p[ idx[ 3 ] ];
+// 					x[ 3 ] = (double) p[ idx[ 0 ] ];
+// 					x[ 4 ] = (double) p[ idx[ 1 ] ];
+// 					x[ 5 ] = (double) p[ idx[ 2 ] ];
+// 					x[ 6 ] = (double) p[ idx[ 3 ] ];
+					
+					x[ 3 ] = (double) p[ 3+idx[ 0 ] ];
+					x[ 4 ] = (double) p[ 3+idx[ 1 ] ];
+					x[ 5 ] = (double) p[ 3+idx[ 2 ] ];
+					x[ 6 ] = (double) p[ 3+idx[ 3 ] ];
 
 				}
 
+				if( !constrains(x) )
+					return 10000;
+			
 				/* get a solution for all matrices in this group */
 				res.push_back( this->mkII( As[i], x, bs[i] ) );
 
@@ -68,6 +73,8 @@ namespace PRPSEvolution {
 			/* calc mean */
 			double ret = Solve::meanFromVector( res );
 
+			/* Multiplizieren ???! */
+			
 			/* sort */
 		// 			std::sort( res.begin(), res.end() );
 
@@ -119,6 +126,10 @@ namespace PRPSEvolution {
 
 		inline bool WholeTomatoMkII::constrains(const double* x) const
 		{
+			for( int i = 3; i < m_numberOfVariables; i++)
+				if( x[i] < 0. )
+					return false;
+				
 #ifdef _WT_CONSTRAIN_HARD_
 			for( int i = 3; i < m_numberOfVariables; i++)
 				if( x[i] < 5. )

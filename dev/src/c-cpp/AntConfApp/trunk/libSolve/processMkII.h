@@ -177,6 +177,7 @@ namespace PRPSEvolution {
 				auto dim = Solve::ProblemDimensions::WholeTomatoMkII;
 				dim += dimension;
 				PRPSEvolution::Models::WholeTomatoMkII model( dim );
+				
 				model.setNumberOfVariables( dim );
 
 				model.setParams( A, b, names );

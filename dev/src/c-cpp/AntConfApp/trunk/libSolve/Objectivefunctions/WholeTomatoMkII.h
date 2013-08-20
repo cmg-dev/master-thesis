@@ -46,7 +46,7 @@ namespace PRPSEvolution {
 				x.resize(numberOfVariables());
 
 				for (unsigned int i = 0; i < 3; i++) {
-					x(i) = Rng::uni(-1, 1);
+					x(i) = Rng::uni(-2, 2);
 // 					x(i) = Rng::uni(-10, 10);
 				}
 				for (unsigned int i = 3; i < x.size(); i++) {

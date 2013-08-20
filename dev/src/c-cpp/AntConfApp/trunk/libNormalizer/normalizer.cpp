@@ -172,15 +172,18 @@ namespace PRPSEvolution {
 	template<std::size_t N, typename T>
 	std::array<T, N>
 	idealPhaseFromInput
-	( std::vector<std::array<double,3>> p,
-	  std::vector<std::array<double,3>> c,
-	  int SELECT_IDEAL_POINT,
-	  double LAMBDA  )
+	(
+		std::vector<std::array<double,3>> p,
+		std::vector<std::array<double,3>> c,
+		int SELECT_IDEAL_POINT,
+		double LAMBDA
+	)
 	{
 		std::array<T, N>				ret;
 		/* distance to tag */
 		std::vector<std::array<T, N>>	thetas;
 
+		int j = 0;
 		/* calculate all ideal points */
 		for( auto point : p ) {
 			std::array<T, N> theta;
@@ -196,15 +199,23 @@ namespace PRPSEvolution {
 				
 				double phase = (2*d)/(LAMBDA)-n;
 
-				phase *= 2*pi;
+				double d_test = (LAMBDA/2)*(phase+n);
+// 				std::cout << "[" << j << "," << i << "] d_test-d= "
+// 						<< ( d_test - d ) << std::endl;
 				
+				phase *= 2*pi;
+
 				theta[i++] = phase;
 				
 			}
+// 			j++;
 			thetas.push_back( theta );
 			
 		}
-		std::cout << "4" << std::endl;
+
+		ret[1] = 65535;
+		ret[6] = 65535;
+		
 		/* select the thetas from one point */
 		if( SELECT_IDEAL_POINT > thetas.size() || SELECT_IDEAL_POINT < 0 )
 			return ret;
@@ -224,22 +235,6 @@ namespace PRPSEvolution {
 		auto coords = rCoords();
 		
 		auto ret = idealPhaseFromInput<N,T>( points, coords, SELECT_IDEAL_POINT, LAMBDA );
-/*
-		std::ofstream f;
-		f.open("output/ideal.dat");
-		if ( f.is_open() ) {
-			for( int i = 0; i < ret.size(); ) {
-				f << ret[i];
-				if( ++i < ret.size() ) f << std::endl;
-
-			}
-			f << std::endl;
-			f.close();
-
-		} else {
-			throw PRPSEvolution::Exceptions::FileIO::OutputFailure();
-
-		}*/
 
 		return ret;
 	}
@@ -314,6 +309,8 @@ namespace PRPSEvolution {
 	
 	/** An instance for 8 antennas represented by double values */
 	template class Normalizer<8,double>;
+
+	/* template function */
 	template std::array<double, 8> idealPhaseFromInput(
 		std::vector<std::array<double,3>> p,
 		std::vector<std::array<double,3>> c,
