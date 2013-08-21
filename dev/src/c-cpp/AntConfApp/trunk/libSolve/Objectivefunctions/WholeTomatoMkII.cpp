@@ -49,15 +49,10 @@ namespace PRPSEvolution {
 
 				if( doRecombination ) {
 					/* recompile chromosome x */
-// 					x[ 3 ] = (double) p[ idx[ 0 ] ];
-// 					x[ 4 ] = (double) p[ idx[ 1 ] ];
-// 					x[ 5 ] = (double) p[ idx[ 2 ] ];
-// 					x[ 6 ] = (double) p[ idx[ 3 ] ];
-					
-					x[ 3 ] = (double) p[ 3+idx[ 0 ] ];
-					x[ 4 ] = (double) p[ 3+idx[ 1 ] ];
-					x[ 5 ] = (double) p[ 3+idx[ 2 ] ];
-					x[ 6 ] = (double) p[ 3+idx[ 3 ] ];
+					x[ 3 ] = (double) p[ translation[ idx[ 0 ] ] ];
+					x[ 4 ] = (double) p[ translation[ idx[ 1 ] ] ];
+					x[ 5 ] = (double) p[ translation[ idx[ 2 ] ] ];
+					x[ 6 ] = (double) p[ translation[ idx[ 3 ] ] ];
 
 				}
 
@@ -126,11 +121,12 @@ namespace PRPSEvolution {
 
 		inline bool WholeTomatoMkII::constrains(const double* x) const
 		{
+#ifdef _WT_CONSTRAIN_HARD_
 			for( int i = 3; i < m_numberOfVariables; i++)
 				if( x[i] < 0. )
 					return false;
 				
-#ifdef _WT_CONSTRAIN_HARD_
+
 			for( int i = 3; i < m_numberOfVariables; i++)
 				if( x[i] < 5. )
 					return false;
