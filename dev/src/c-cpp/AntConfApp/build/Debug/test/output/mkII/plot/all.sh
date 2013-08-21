@@ -1,15 +1,84 @@
 #!/bin/bash
-#./plot.sh -f E154 -s 0 -e 10  -a 8 -t 8 -p no -c no -x no -l 60000 
+#
+usage()
+{
+cat << EOF
+usage: $0 options
+
+[Start] [End] [Repetitions] [Variables] [Trials] [Increment] [LIMIT]
+
+This script will plot all the data from an experiment.
+Part of the PRPSEvolution Tool-Suite.
+ 
+Author
+    CG
+ 
+OPTIONS:
+    -h      Show this message
+    -s      Start index of the archive
+    -e      End index of the archive
+EOF
+}
+ 
+ #PLOTSINGLE=
+ #CREATEARCH=
+ #FILE=
+ #TRIALS= 
+ START=  
+ STOP=       
+REMOVE= 
+
+while getopts "hs:e:r" OPTION
+do
+    case $OPTION in
+        h)
+            usage
+            exit 1
+            ;;
+        #f)
+            #FILE=$OPTARG
+            #;;
+        s)  
+            START=$OPTARG
+            ;;
+        e)  
+            STOP=$OPTARG
+            ;;
+        r)  
+            REMOVE="yes"
+            ;;
+        #p) 
+            #PLOTSINGLE=$OPTARG
+            #;;
+        #c) 
+            #CREATEARCH=$OPTARG
+            #;;
+        #a)
+            #VARAMOUNT=$OPTARG
+            #;;
+        ?)
+            usage
+            ;;
+        esac
+done
+ 
+ if [ -z $START ] || [ -z $STOP ]
+ then
+     echo "Arguments not satisfied:"
+     usage
+     #exit 1
+fi
+
+#/plot.sh -f E154 -s 0 -e 10  -a 8 -t 8 -p no -c no -x no -l 60000 
 #./plot.sh -f E100 -s 0 -e 50 -a 7 -t 8 -p no -c no -x no -l 60000 -o
 #exit 0 
-# [Start] [End] [Repetitions] [Variables] [Trials] [Increment] [LIMIT]
 
 GROUPSIZE=$4
 LIMIT=$7
 for (( i=$1 ; i <$2 ; i+=$6 ))
 do
     
-    ./plot.sh -f E$i -s 0 -e $3 -a $GROUPSIZE -t $5 -p no -c yes -x no -l 50000
+    ./plot.sh -f E$i -s 0 -e $3 -a $GROUPSIZE -t $5 -p no -c yes -x no -l 100000
     GROUPSIZE=$((GROUPSIZE+1))
     if [ $GROUPSIZE -gt $LIMIT ]
     then

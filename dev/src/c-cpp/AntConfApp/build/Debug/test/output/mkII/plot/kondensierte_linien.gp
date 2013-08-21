@@ -39,9 +39,9 @@ stats inputfile u 1 name "Stat" nooutput
 
 #print "test ".at(file,Stat_records,1)
 
-locallimit=0.2*limit
+locallimit=0.5*limit
 #setup the first plot
-#set xrange [0:locallimit]
+set xrange [0:locallimit]
 set autoscale
 set clip one
 set xlabel "Funtion Evaluations"
@@ -92,7 +92,7 @@ if( a==10 ) plot inputfile u ($1 < locallimit  ? $1 : 1/0):7 w lines title "n0" 
 		"" u ($1 < locallimit  ? $1 : 1/0):11 w lines title "n4" ls 4, \
 		"" u ($1 < locallimit  ? $1 : 1/0):12 w lines title "n5" ls 4, \
 		"" u ($1 < locallimit  ? $1 : 1/0):13 w lines title "n6" ls 4, \
-        "" u($1 < locallimit  ? $1 : 1/0):4 w lines title "x" ls 1, \
+        "" u ($1 < locallimit  ? $1 : 1/0):4 w lines title "x" ls 1, \
 		"" u ($1 < locallimit  ? $1 : 1/0):5 w lines title "y" ls 2, \
 		"" u ($1 < locallimit  ? $1 : 1/0):6 w lines title "z" ls 3
 

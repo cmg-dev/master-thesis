@@ -292,10 +292,10 @@ else
         VARIANT=4
         START=154
         STOP=155
-        GROUPSIZE=20
+        GROUPSIZE=1
         INCGROUPSIZE="no"
         EVALUATIONS=50000
-        MU=70
+        MU=10
         LAMBDA=150
        
         a=0
@@ -317,6 +317,38 @@ else
     fi
 #=================================================================================================#
     if (( $SET == 10 ))
+    then
+        TRIALS=30
+        VARIANT=4
+        START=170
+        STOP=180
+        GROUPSIZE=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=50000
+        MU=0
+        LAMBDA=0
+       
+        a=0
+        b=30
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+        GROUPSIZE=1
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            MU=$((MU+5))
+            LAMBDA=$((LAMBDA+10))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+10))
+            STOP=$((STOP+10))
+
+        done
+
+    fi
+#=================================================================================================#
+    #test the algorithm against the calibration
+    if (( $SET == 100 ))
     then
         TRIALS=20
         VARIANT=10
