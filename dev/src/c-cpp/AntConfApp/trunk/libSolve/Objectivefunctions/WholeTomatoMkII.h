@@ -5,7 +5,7 @@
 #include <shark/Rng/GlobalRng.h>
 #include <nr3/nr3.h>
 
-#define TEST_translateIdxFromNamesToArrayIdxs_samlple_data
+// #define TEST_translateIdxFromNamesToArrayIdxs_samlple_data
 
 namespace PRPSEvolution {
 	namespace Models {
