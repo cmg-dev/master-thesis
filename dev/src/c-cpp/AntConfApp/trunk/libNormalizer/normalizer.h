@@ -55,6 +55,7 @@ namespace PRPSEvolution {
 		 *
 		 */
 		void setLambda( double l );
+		
 	private:
 		/** Stores the selected normalization method */
 		NormalizationMethods	Method;

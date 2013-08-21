@@ -572,7 +572,7 @@ int main ( int argc, char *argv[ ] ) {
 
 	int i = 0;
 
-	const double fitness = 1e-20;
+	const double fitness = 1e-25;
 	process.setMinSolutionFitness( fitness );
 
 	steady_clock::time_point t_00 = steady_clock::now();
