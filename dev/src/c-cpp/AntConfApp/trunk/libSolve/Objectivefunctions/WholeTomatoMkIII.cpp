@@ -4,13 +4,13 @@
 
 #include "../solve.h"
 
-#include "WholeTomatoMkII.h"
+#include "WholeTomatoMkIII.h"
 
 namespace PRPSEvolution {
 	namespace Models {
 		using namespace shark;
 
-		double WholeTomatoMkII::eval(const SearchPointType &p) const
+		double WholeTomatoMkIII::eval(const SearchPointType &p) const
 		{
 			m_evaluationCounter++;
 
@@ -32,6 +32,9 @@ namespace PRPSEvolution {
 // 				if( x[i] < 0. )
 // 					return 10000;
 
+			if( !constrains(x) )
+				return 10000;
+
 			bool doRecombination = true;
 			if( As.size() == 1 )
 				doRecombination = false;
@@ -47,18 +50,16 @@ namespace PRPSEvolution {
 				int j,k;
 				j = k = 0;
 
+				
 				if( doRecombination ) {
 					/* recompile chromosome x */
-					x[ 3 ] = (double) p[ translation[ idx[ 0 ] ] ];
-					x[ 4 ] = (double) p[ translation[ idx[ 1 ] ] ];
-					x[ 5 ] = (double) p[ translation[ idx[ 2 ] ] ];
-					x[ 6 ] = (double) p[ translation[ idx[ 3 ] ] ];
+					x[ 3 ] = (double) p[ 3+idx[ 0 ] ];
+					x[ 4 ] = (double) p[ 3+idx[ 1 ] ];
+					x[ 5 ] = (double) p[ 3+idx[ 2 ] ];
+					x[ 6 ] = (double) p[ 3+idx[ 3 ] ];
 
 				}
 
-				if( !constrains(x) )
-					return 10000;
-			
 				/* get a solution for all matrices in this group */
 				res.push_back( this->mkII( As[i], x, bs[i] ) );
 
@@ -68,8 +69,6 @@ namespace PRPSEvolution {
 			/* calc mean */
 			double ret = Solve::meanFromVector( res );
 
-			/* Multiplizieren ???! */
-			
 			/* sort */
 		// 			std::sort( res.begin(), res.end() );
 
@@ -86,7 +85,7 @@ namespace PRPSEvolution {
 
 		}
 
-		inline double WholeTomatoMkII::mkII( const NRmatrix<Doub> &A, const double* x, const NRvector<Doub> &b ) const
+		inline double WholeTomatoMkIII::mkII( const NRmatrix<Doub> &A, const double* x, const NRvector<Doub> &b ) const
 		{
 			double res;
 			double prod_Ax[3] = {0.,0.,0.};
@@ -95,6 +94,7 @@ namespace PRPSEvolution {
 			x_[0]=x[0];
 			x_[1]=x[1];
 			x_[2]=x[2];
+
 			x_[3]= (x[3]*x[3])-(x[4]*x[4]);
 			x_[4]= (x[3]*x[3])-(x[5]*x[5]);
 			x_[5]= (x[3]*x[3])-(x[6]*x[6]);
@@ -102,12 +102,12 @@ namespace PRPSEvolution {
 			x_[7]=x[4];
 			x_[8]=x[5];
 			x_[9]=x[6];
-			
+
 			/* multiply the matrix with the vector */
 			for( int i = 0; i < A.nrows(); i++ ) {
 				for( int j = 0; j < A.ncols(); j++ ) {
 					prod_Ax[i] += A[i][j]*x_[j];
-					
+
 				}
 			}
 
@@ -119,14 +119,9 @@ namespace PRPSEvolution {
 
 		}
 
-		inline bool WholeTomatoMkII::constrains(const double* x) const
+		inline bool WholeTomatoMkIII::constrains(const double* x) const
 		{
 #ifdef _WT_CONSTRAIN_HARD_
-			for( int i = 3; i < m_numberOfVariables; i++)
-				if( x[i] < 0. )
-					return false;
-				
-
 			for( int i = 3; i < m_numberOfVariables; i++)
 				if( x[i] < 5. )
 					return false;
@@ -134,13 +129,13 @@ namespace PRPSEvolution {
 			for( int i = 3; i < m_numberOfVariables; i++)
 				if( x[i] > 25. )
 					return false;
-				
+
 			auto v = std::sqrt( x[0]*x[0] + x[1]*x[1] + x[2]*x[2] );
 			if( (double) v > 6. )
 				return false;
 #endif
 			return true;
-			
+
 		}
 	}
 }

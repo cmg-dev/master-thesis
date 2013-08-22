@@ -177,6 +177,7 @@ namespace PRPSEvolution {
 				auto dim = Solve::ProblemDimensions::WholeTomatoMkII;
 				dim += dimension;
 				PRPSEvolution::Models::WholeTomatoMkII model( dim );
+				
 				model.setNumberOfVariables( dim );
 
 				model.setParams( A, b, names );
@@ -215,9 +216,10 @@ namespace PRPSEvolution {
 							<<  v 
 // #ifdef _CoordTransform
 							<< " "
-							<< p[0]-refAntCoords[0] << " "
-							<< p[1]-refAntCoords[1] << " "
-							<< p[2]-refAntCoords[2] << " "
+							<< p[0]+refAntCoords[0] << " "
+							<< p[1]+refAntCoords[1] << " "
+							<< p[2]+
+							refAntCoords[2] << " "
 // #endif
 
 	// 									<< cma.solution().value * 1e10 << " "
@@ -575,7 +577,7 @@ namespace PRPSEvolution {
 			std::vector<std::vector<int>> idxs;
 
 			/* init with base epsilon */
-			double epsilon = 1e-20;
+			double epsilon = 1e-25;
 
 			std::string f_path;
 			
