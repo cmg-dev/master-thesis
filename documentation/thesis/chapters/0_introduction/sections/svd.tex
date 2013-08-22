@@ -1,11 +1,12 @@
 %Um die Konditionszahl zu bestimmen sind aufwändige Berechnungen\footnote{siehe Wochenbericht KW 22} der Eigenwerte der Matrix notwendig. Es wurde nach eine Möglichkeit gesucht diese effizient abzuschätzen oder zu berechnen. Vor Allem soll es auch möglich sein mit dem Verfahren eine nicht symmetrische, nicht quadratische.\\
-%Eine Methode die diese Anforderungen erfüllt, ist die sog. Singulärwertzerlegung (im Folgenden SVD := engl. Singular Value Decomposition). Die SVD basiert auf folgender Theorie der linearen Algebra: Jede $M \times N$ Matrix $\mathbf{A}$ kann als Produkt einer $M \times N$ Spalten-orthogonalen Matrix $\mathbf{U}$, einer $N \times N$ Diagonalmatrix $\mathbf{\Sigma}$ mit Werten $\geq 0$ und einer dritten adjungierten $N \times N$-Matrix $\mathbf{V^*}$, so ergibt sich:
-Bei dem Verfahren der SVD (oder auch Singulärwertzerlegung) handelt es sich um eine Darstellung aus dem Produkt von drei Matrizen. Diese Matrizen enthalten die sog. Singulärwerte. Sie können aus einer der Matrizen abgelesen werden. Die Eigenschaften des Systems sind, ähnlich den Eigenwerten, aus den Singulärwerten bestimmbar. Besonders an der SVD ist, die Existenz für jede Form von Matrix - einschließlich nicht quadratischer Matrizen.
+%Eine Methode die diese Anforderungen erfüllt, ist die sog. Singulärwertzerlegung (im Folgenden SVD := engl. Singular Value Decomposition). 
+Bei dem Verfahren der Singular Value Decompostion (oder auch Singulärwertzerlegung), kurz SVD, handelt es sich um eine Faktorisierung einer Matrix. Die Matrix wird dabei als Produkt von drei Matrizen dargestellt. Diese Matrizen enthalten die sog. Singulärwerte und können aus einer der Matrizen abgelesen werden. Die Eigenschaften des Systems sind, ähnlich den Eigenwerten, aus den Singulärwerten bestimmbar. Besonders an der SVD ist, die Existenz für jede Form von Matrix - einschließlich nicht quadratischer Matrizen.\\
+Die SVD basiert auf folgender Theorie der linearen Algebra: Jede $M \times N$ Matrix $\mathbf{A}$ kann als Produkt einer $M \times N$ Spalten-orthogonalen Matrix $\mathbf{U}$, einer $N \times N$ Diagonalmatrix $\mathbf{\Sigma}$ mit Werten $\geq 0$ und einer dritten adjungierten $N \times N$-Matrix $\mathbf{V^*}$, so ergibt sich:
 %
 \begin{equation}
 \mathbf{A}= \mathbf{U \Sigma V^*} = \mathbf{U \Sigma V}^T
 \end{equation}
-Ist $\mathbf{A}$ eine reelwertige Matrix gilt: $ \mathbf{V^*} = \mathbf{V}^T $. Die Matrix $\mathbf{ \Sigma }$ ist von besonderem Interesse, denn sie enthält die Singulärwerte $\sigma_r$ und hat folgende Gestalt.
+Ist $\mathbf{A}$ eine reelwertige Matrix gilt: $ \mathbf{V^*} = \mathbf{V}^T $. Die Matrix $\mathbf{ \Sigma }$ ist im Rahmen dieser Arbeit von besonderem Interesse, denn sie enthält die Singulärwerte $\sigma_r$. Ihre Gestalt ist wie folgt:
 %
 \begin{equation}
 	\mathbf{\Sigma} = \left(\begin{array}{ccc|ccc}
@@ -19,15 +20,15 @@ Ist $\mathbf{A}$ eine reelwertige Matrix gilt: $ \mathbf{V^*} = \mathbf{V}^T $. 
 	
 	\end{array}\right)\nonumber
 \end{equation}
-\begin{equation}
-\sigma_1\geq\sigma_2\geq\cdots\geq\sigma_r> 0 \nonumber
-\end{equation}
+%
+\phantomeq{\mathbf{\Sigma} = }{ ,wobei~\sigma_1\geq\sigma_2\geq\cdots\geq\sigma_r> 0 \nonumber}
 %
 Da die $\sigma_r$ der Matrix mit den Eigenwerten in Verbindung stehen, kann aus dieser Matrix die Konditionszahl bestimmt werden. Sie ist durch folgendes Verhältnis gegeben: 
 \begin{equation}
 	\label{eq:cond_from_svd}
-	cond(\mathbf{A})=\frac{max(\sigma_r)}{min(\sigma_r)} 
+	cond(\mathbf{A})=\frac{max(\sigma_r)}{min(\sigma_r)}=\frac{max(\sigma_1)}{min(\sigma_r)}
 \end{equation} 
 
 Es gibt bereits viele Implementationen des Verfahrens, z.B. \cite{press2007numerical}. Diese Implementation wird durch den Erwerb der entsprechenden Lizenz im Rahmen dieser Arbeit verwendet.\\
+
 Weiter Informationen zum Verfahren sind in \cite[Kaptiel 4.6.3]{bronstejn2012taschenbuch} zu finden.

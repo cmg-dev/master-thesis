@@ -2,15 +2,16 @@
 \section[Motivation]{Motivation}
 Die Positionsbestimmung mittels RFID ist eine vielversprechende Technik. Die Bestimmung der Position (im Folgenden "Tracking" genannt) mittels RFID  bietet gegenüber vergleichbaren Methoden (z.B. Ultraschall, Optisch) verschiedene Vorteile. Das wesentlichste Unterscheidungsmerkmal ist, dass keine direkte Sichtlinie sog. LOS notwendig ist um ein Objekt zu lokalisieren. Der Grund dafür ist das zugrunde liegende Messprinzip. Es werden elektromagnetische Signale ausgewertet, die anderen Wechselwirkungen unterliegen und somit Materie durchdringen. Insbesondere im Vergleich mit optischen Verfahren ist RFID damit überlegen. Die Eigenschaft Materie zu durchdringen erlaubt es Tags im Patienten zu lokalisieren, entsprechende Untersuchungen über die Positionsgenauigkeit im Körper sind vielversprechend.[REFERENZEN]\\
 Auf den Tags können zusätzliche Informationen hinterlegt werden, beispielsweise eine Identifikationsnummer oder Ähnliches. Dadurch wächst das Anwendungsspektrum weiter[REFERENZEN]. Das Auslesen von zusätzlichen Informationen ist mit keiner der anderen Technologien möglich.\\
-Das von dem Messsystem der {Amedo GmbH} verwendete Verfahren basiert auf der Messung der Phasenlage der Antwort eines Tags. Die Phasenlage ist direkt proportional zu einer Entfernung, sie ist jedoch nicht Eindeutig (siehe \ref{sec:Measurement1})
+Das von dem Messsystem der {Amedo GmbH} verwendete Verfahren basiert auf der Messung der Phasenlage der Antwort eines Tags. Die Phasenlage ist direkt proportional zu einer Entfernung, sie ist jedoch nicht Eindeutig (siehe \ref{sec:Measurement1})\\
 
 Eine analytische Lösung des Problems ist schwierig und bisher nicht gelungen. Diese Ansätze scheiterten an der Komplexität des Problems\footnote{siehe \ref{sec:Komplexity1} und \ref{sec:Komplexity2}} oder benötigen sehr aufwändige Messreihen mit großer Anzahl an Messpunkten \cite{amedo1}. Das limitiert die Praxistauglichkeit der Verfahren.\\
-In dieser Arbeit soll mittels numerischer Methoden und Modellen die beschriebenen Probleme zu gelöst werden.
+
+In dieser Arbeit soll mittels Evolutionärer Verfahren die beschriebenen Probleme zu gelöst werden. Im Endergebnis soll dabei eine Abschätzung der Wellenzahl \ref{eq:wavenumber} möglich sein.
 %
 %-----------------------------------------------------------------------
 \section{Voraussetzungen}
 %
-Dieses Kapite stellt die Grundlagen dieser Arbeit vor. Zuerst werden mathematische und technische Grundlagen erläutert, anschließend wird das Messystem der amedo GmbH vorgestellt.
+Dieses Kapitel stellt die Grundlagen dieser Arbeit vor. Zuerst werden mathematische und technische Grundlagen erläutert, anschließend wird das Messsystem der amedo GmbH vorgestellt.
 %
 \input{chapters/0_introduction/sections/preliminaries.tex}
 %
@@ -25,5 +26,6 @@ Die bisher vorgestellten Überlegungen erlauben Anforderungen an das verwendete 
 %
 \end{enumerate}
 %
+\section{Ziel}
+%
 %-----------------------------------------------------------------------
-\input{chapters/0_introduction/sections/evolutionary-strategies.tex}
