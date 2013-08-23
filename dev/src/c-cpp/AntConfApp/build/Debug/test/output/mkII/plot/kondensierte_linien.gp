@@ -9,7 +9,6 @@ set style line 4 linetype 1 linecolor rgbcolor "#ccbebebe"  linewidth .5
 set style line 5 linetype 1 linecolor rgbcolor "#99696969"  linewidth .3
 
 if( i == 0 ) set terminal pngcairo truecolor transparent background "#ffffff" enhanced font "arial,10" size w, h 
-#if( i == 0 ) set term png small
 
 set key right bottom vertical Left noreverse enhanced box samplen .2 
 set key opaque
@@ -17,20 +16,12 @@ set grid
 
 lastDataCol = 3+a+2
 inputfile = "data/".i.".dat"
-#outFitness = "img/fitness.".j."_".i.".png"
-#outObject = "img/objectVar.".j."_".i.".png"
-#outSigma = "img/sigma.".j."_".i.".png"
 outMultiplot = "img/linien/kondensiert/".i.".png"
 
 file=inputfile ; row=2 ; col=2
 
 set output outMultiplot
-
 set multiplot layout 1,3
-
-#set output outObject
-
-#collect information about the file
 unset logscale
 set autoscale
 
