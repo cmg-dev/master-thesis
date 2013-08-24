@@ -5,7 +5,7 @@ usage()
 cat << EOF
 usage: $0 options
 
-[Start] [End] [Repetitions] [Variables] [Trials] [Increment] [LIMIT]
+[Start] [End] [Repetitions] [Variables] [Trials] [Increment] [LIMIT] [Runs]
 
 This script will plot all the data from an experiment.
 Part of the PRPSEvolution Tool-Suite.
@@ -75,16 +75,29 @@ fi
 
 GROUPSIZE=$4
 LIMIT=$7
+j=0
 for (( i=$1 ; i <$2 ; i+=$6 ))
 do
     
-    ./plot.sh -f E$i -s 0 -e $3 -a $GROUPSIZE -t $5 -p no -c yes -x no -l 100000
+    ./plot.sh -f E$i -s 0 -e $3 -a $GROUPSIZE -t $5 -p no -c yes -x no -l 1000000
     GROUPSIZE=$((GROUPSIZE+1))
+    #increment j 
+    j=$((j+1))
+    
     if [ $GROUPSIZE -gt $LIMIT ]
     then
         GROUPSIZE=$LIMIT
         echo "Groupsize limited"
+       
+        if [ $j -eq $8 ]
+        then 
+            echo "j limited"
+            j=0    
+            GROUPSIZE=$4
+            #exit 0
+        fi
     fi
+
 done
 
 exit 0 
