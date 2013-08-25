@@ -31,6 +31,7 @@ stats inputfile u 1 name "Stat" nooutput
 #print "test ".at(file,Stat_records,1)
 
 locallimit=0.5*limit
+print "local limit is: ",locallimit
 #setup the first plot
 set xrange [0:locallimit]
 set autoscale
