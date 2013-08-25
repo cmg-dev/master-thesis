@@ -30,11 +30,17 @@ stats inputfile u 1 name "Stat" nooutput
 
 #print "test ".at(file,Stat_records,1)
 
-locallimit=0.5*limit
+locallimit=0.001*limit
 print "local limit is: ",locallimit
+
 #setup the first plot
 set xrange [0:locallimit]
-set autoscale
+
+set ytics format "%.0f"
+set yrange [-10:10]
+
+if(a>3) set autoscale
+
 set clip one
 set xlabel "Funtion Evaluations"
 set ylabel "Objective Values"
@@ -102,6 +108,7 @@ if( a==11 ) plot inputfile u ($1 < locallimit  ? $1 : 1/0):7 w lines title "n0" 
 
 set autoscale
 
+set ytics format "%.1e"
 set logscale y
 set xlabel ""
 set ylabel "Fitness"

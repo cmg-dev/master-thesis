@@ -516,8 +516,6 @@ int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	/* the calibration variant */
 	if( VARIANT_SW == 10 ) {
-		t_00			= steady_clock::now();
-
 		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 10" << std::endl;
 
 		meanTime = 0;
@@ -525,13 +523,14 @@ int main ( int argc, char *argv[ ] ) {
 		int j = 0;
 		
 		for( auto b : PC.c_k0 ) {
-	
+			t_00			= steady_clock::now();
 			std::ostringstream s;
 			s << "output/mkII/" << FILENAME << "." << j++;
 
 			Solve::Process_MkII		process(PC.A, b, "1");
 			
 			process.setMaxEvauations( EVALUATIONS );
+			process.setAntennaCoords( PC.c_k0 );
 			
 			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
 
@@ -567,6 +566,7 @@ int main ( int argc, char *argv[ ] ) {
 		return 0;
 
 	}
+
 #else
 	Solve::Process process;
 
