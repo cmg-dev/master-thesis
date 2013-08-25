@@ -69,7 +69,7 @@ unset key
 labelxpos = .1
 labelypos = .5
 
-############################################################################################
+# generate first row
 set label at graph labelxpos,labelypos center LABELX front left font "Arial,24" textcolor rgb "#4f2f2f" 
 plot inputfile u ($2 < limit ? $5: 1/0):5 ls 3 notitle 
 unset label
@@ -85,7 +85,7 @@ if(a>=9)plot inputfile u ($2 < limit ? $5: 1/0):13 ls 1 notitle
 if(a>=10)plot inputfile u ($2 < limit ? $5: 1/0):14 ls 1 notitle 
 if(a>=11)plot inputfile u ($2 < limit ? $5: 1/0):15 ls 1 notitle 
 
-############################################################################################
+# 2.  
 plot inputfile u ($2 < limit ? $6: 1/0):5 ls 1 notitle 
 
 set label at graph labelxpos,labelypos center LABELY front left font "Arial,24" textcolor rgb "#4f2f2f" 
@@ -102,7 +102,7 @@ if(a>=9)plot inputfile u ($2 < limit ? $6: 1/0):13 ls 1 notitle
 if(a>=10)plot inputfile u ($2 < limit ? $6: 1/0):14 ls 1 notitle 
 if(a>=11)plot inputfile u ($2 < limit ? $6: 1/0):15 ls 1 notitle 
 
-############################################################################################
+# 3.
 plot inputfile u ($2 < limit ? $7: 1/0):5 ls 1 notitle 
 plot inputfile u ($2 < limit ? $7: 1/0):6 ls 1 notitle 
 
@@ -119,7 +119,7 @@ if(a>=9)plot inputfile u ($2 < limit ? $7: 1/0):13 ls 1 notitle
 if(a>=10)plot inputfile u ($2 < limit ? $7: 1/0):14 ls 1 notitle 
 if(a>=11)plot inputfile u ($2 < limit ? $7: 1/0):15 ls 1 notitle 
 
-############################################################################################
+# 4.
 if(a>3)plot inputfile u ($2 < limit ? $8: 1/0):5 ls 1 notitle 
 if(a>3)plot inputfile u ($2 < limit ? $8: 1/0):6 ls 1 notitle 
 if(a>3)plot inputfile u ($2 < limit ? $8: 1/0):7 ls 1 notitle 
@@ -136,7 +136,7 @@ if(a>=9)plot inputfile u ($2 < limit ? $8: 1/0):13 ls 1 notitle
 if(a>=10)plot inputfile u ($2 < limit ? $8: 1/0):14 ls 1 notitle 
 if(a>=11)plot inputfile u ($2 < limit ? $8: 1/0):15 ls 1 notitle 
 
-############################################################################################
+# 5.
 if(a>3)plot inputfile u ($2 < limit ? $9: 1/0):5 ls 1 notitle 
 if(a>3)plot inputfile u ($2 < limit ? $9: 1/0):6 ls 1 notitle 
 if(a>3)plot inputfile u ($2 < limit ? $9: 1/0):7 ls 1 notitle 
@@ -153,7 +153,7 @@ if(a>=9)plot inputfile u ($2 < limit ? $9: 1/0):13 ls 1 notitle
 if(a>=10)plot inputfile u ($2 < limit ? $9: 1/0):14 ls 1 notitle 
 if(a>=11)plot inputfile u ($2 < limit ? $9: 1/0):15 ls 1 notitle 
 
-############################################################################################
+# 6.
 if(a>3)plot inputfile u ($2 < limit ? $10: 1/0):5 ls 1 notitle 
 if(a>3)plot inputfile u ($2 < limit ? $10: 1/0):6 ls 1 notitle 
 if(a>3)plot inputfile u ($2 < limit ? $10: 1/0):7 ls 1 notitle 
@@ -170,7 +170,7 @@ if(a>=9)plot inputfile u ($2 < limit ? $10: 1/0):13 ls 1 notitle
 if(a>=10)plot inputfile u ($2 < limit ? $10: 1/0):14 ls 1 notitle 
 if(a>=11)plot inputfile u ($2 < limit ? $10: 1/0):15 ls 1 notitle 
 
-############################################################################################
+# 7.
 if(a>3)plot inputfile u ($2 < limit ? $11: 1/0):5 ls 1 notitle 
 if(a>3)plot inputfile u ($2 < limit ? $11: 1/0):6 ls 1 notitle 
 if(a>3)plot inputfile u ($2 < limit ? $11: 1/0):7 ls 1 notitle 
@@ -186,7 +186,7 @@ if(a>=9)plot inputfile u ($2 < limit ? $11: 1/0):13 ls 1 notitle
 if(a>=10)plot inputfile u ($2 < limit ? $11: 1/0):14 ls 1 notitle 
 if(a>=11)plot inputfile u ($2 < limit ? $11: 1/0):15 ls 1 notitle 
 
-############################################################################################
+# 8.
 if(a>=8)    plot inputfile u ($2 < limit ? $12: 1/0):5 ls 1 notitle 
 if(a>=8)    plot inputfile u ($2 < limit ? $12: 1/0):6 ls 1 notitle 
 if(a>=8)    plot inputfile u ($2 < limit ? $12: 1/0):7 ls 1 notitle 
@@ -203,7 +203,7 @@ if(a>=9)    plot inputfile u ($2 < limit ? $12: 1/0):13 ls 1 notitle
 if(a>=10)   plot inputfile u ($2 < limit ? $12: 1/0):14 ls 1 notitle 
 if(a>=11)   plot inputfile u ($2 < limit ? $12: 1/0):15 ls 1 notitle 
 
-############################################################################################
+# 9.
 if(a>=9)    plot inputfile u ($2 < limit ? $13: 1/0):5 ls 1 notitle 
 if(a>=9)    plot inputfile u ($2 < limit ? $13: 1/0):6 ls 1 notitle 
 if(a>=9)    plot inputfile u ($2 < limit ? $13: 1/0):7 ls 1 notitle 
@@ -220,37 +220,37 @@ if(a>=9)    unset label
 if(a>=10)   plot inputfile u ($2 < limit ? $13: 1/0):14 ls 1 notitle 
 if(a>=11)   plot inputfile u ($2 < limit ? $13: 1/0):15 ls 1 notitle 
 
-############################################################################################
-if(a>=10)    plot inputfile u ($2 < limit ? $13: 1/0):5 ls 1 notitle 
-if(a>=10)    plot inputfile u ($2 < limit ? $13: 1/0):6 ls 1 notitle 
-if(a>=10)    plot inputfile u ($2 < limit ? $13: 1/0):7 ls 1 notitle 
-if(a>=10)    plot inputfile u ($2 < limit ? $13: 1/0):8 ls 1 notitle 
-if(a>=10)    plot inputfile u ($2 < limit ? $13: 1/0):9 ls 1 notitle 
-if(a>=10)    plot inputfile u ($2 < limit ? $13: 1/0):10 ls 1 notitle 
-if(a>=10)    plot inputfile u ($2 < limit ? $13: 1/0):11 ls 1 notitle 
-if(a>=10)    plot inputfile u ($2 < limit ? $13: 1/0):12 ls 1 notitle 
-if(a>=10)    plot inputfile u ($2 < limit ? $13: 1/0):13 ls 3 notitle 
+# 10.
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):5 ls 1 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):6 ls 1 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):7 ls 1 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):8 ls 1 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):9 ls 1 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):10 ls 1 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):11 ls 1 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):12 ls 1 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):13 ls 3 notitle 
 
 if(a>=10)    set label at graph labelxpos,labelypos center LABELN5 front left font "Arial,24" textcolor rgb "#4f2f2f"
-if(a>=10)   plot inputfile u ($2 < limit ? $13: 1/0):14 ls 1 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):14 ls 1 notitle 
 if(a>=10)    unset label
 
-if(a>=11)   plot inputfile u ($2 < limit ? $13: 1/0):15 ls 1 notitle 
+if(a>=11)   plot inputfile u ($2 < limit ? $14: 1/0):15 ls 1 notitle 
 
-############################################################################################
-if(a>=11)    plot inputfile u ($2 < limit ? $13: 1/0):5 ls 1 notitle 
-if(a>=11)    plot inputfile u ($2 < limit ? $13: 1/0):6 ls 1 notitle 
-if(a>=11)    plot inputfile u ($2 < limit ? $13: 1/0):7 ls 1 notitle 
-if(a>=11)    plot inputfile u ($2 < limit ? $13: 1/0):8 ls 1 notitle 
-if(a>=11)    plot inputfile u ($2 < limit ? $13: 1/0):9 ls 1 notitle 
-if(a>=11)    plot inputfile u ($2 < limit ? $13: 1/0):10 ls 1 notitle 
-if(a>=11)    plot inputfile u ($2 < limit ? $13: 1/0):11 ls 1 notitle 
-if(a>=11)    plot inputfile u ($2 < limit ? $13: 1/0):12 ls 1 notitle 
-if(a>=11)    plot inputfile u ($2 < limit ? $13: 1/0):13 ls 3 notitle 
-if(a>=10)   plot inputfile u ($2 < limit ? $13: 1/0):14 ls 1 notitle 
+# Generate last row
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):5 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):6 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):7 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):8 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):9 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):10 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):11 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):12 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):13 ls 3 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $15: 1/0):14 ls 1 notitle 
 
 if(a>=11)    set label at graph labelxpos,labelypos center LABELN5 front left font "Arial,24" textcolor rgb "#4f2f2f"
-if(a>=11)   plot inputfile u ($2 < limit ? $13: 1/0):15 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):15 ls 1 notitle 
 if(a>=11)    unset label
 
 
