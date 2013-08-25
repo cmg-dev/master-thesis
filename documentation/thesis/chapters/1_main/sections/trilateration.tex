@@ -1,6 +1,7 @@
-\begin{figure}[h]
+\begin{figure}
 	\begin{center}
-		\caption[TrilaterationAbbildung]{2D-Übersicht auf die Szene mit drei Antennen, einem Tag und einer Landmarke. Die Position von $\{A_1,A_3,A_3\}$, sowie der Landmarke, zum Koordinatenursprung sind bekannt. Die Vektoren $r_1,r_2,r_3$ sind die gemessene Entfernung zu einer Antenne. Die Landmarke wird im späteren Verlauf eine Antenne sein, die ihrerseits ein gemessene Entfernung $r_0$ produziert. Der Schnittpunkt aller Kreise ist die Lösung der gemessenen Entfernung und der geom. Anordnung, die sich für die Position des Tags ergibt.} 
+		\caption[Antennen-Szene mit einem Tag]{2D-Übersicht auf die Szene mit drei Antennen, einem Tag und einer Landmarke. Die Position von $\{A_1,A_3,A_3\}$, sowie der Landmarke, zum Koordinatenursprung sind bekannt. Die Vektoren $r_1,r_2,r_3$ sind die gemessene Entfernung zu einer Antenne. Die Landmarke wird im späteren Verlauf eine Antenne sein, die ihrerseits ein gemessene Entfernung $r_0$ produziert. Der Schnittpunkt aller Kreise ist die Lösung der gemessenen Entfernung und der geom. Anordnung, die sich für die Position des Tags ergibt.} 
+		\label{fig:TrilaterationScene}
 		\input{img/trilaterationScene.tex}
 		
 	\end{center}
@@ -8,12 +9,11 @@
 %
 Folgende Nomenklatur und Symbole gelten für diesen Abschnitt:
 \begin{itemize}[itemsep=0mm]
-%	\item	$k$ ist der Index der Antennen, es gilt $k = \{1,2,..,8\}$
 	\item	$r_{k}$ := Abstand vom Tag zur Antenne
 	\item	$d_{kJ}$ := Abstand zur Landmarke
-	\item	$N_0:=$Anzahl der verfügbaren Antennen $N=\{1,..,8\}$
-	\item	$N:=$Anzahl der Antennen die für die Optimierung verwendet werden können ($N \subseteq N_0$)
-	\item	$N':=$Anzahl der Antennen die für die Optimierung verwendet werden ($N' \subseteq N$)
+	\item	$N_0:=$ Menge der verfügbaren Antennen $N=\{1,..,8\}$
+	\item	$N:=$ Menge der Antennen die für die Optimierung verwendet werden können ($N \subseteq N_0$)
+	\item	$N':=$ Menge der Antennen die für die Optimierung verwendet werden ($N' \subseteq N$)
 %	; Dabei ist $|N'| \geq 3$
 %	\item	Es gilt $|N'| \geq |N| \geq |N_0|$   
 	\item	$j$ ist der Index der Referenzantenne, es gilt $j = \{1,2,..,8\}$
@@ -22,18 +22,20 @@ Folgende Nomenklatur und Symbole gelten für diesen Abschnitt:
 %
 Wir starten mit der Überlegung über den geometrischen Zusammenhang zwischen der Antennenposition von Antenne $k$ zu der Position des Tags $r_k$:
 \begin{align}
-r_{k}^2 &= (x-x_k)^2+(y-y_k)^2+(z-z_k)^2
-%	
+	\label{eq:base_vactor}
+	r_{k}^2 &= (x-x_k)^2+(y-y_k)^2+(z-z_k)^2
 \end{align}
 %
-Es ergibt sich für den Fall, dass drei Atennen den Tag lesen:
+Diese Gleichung stellt die Euklidische Vektornorm dar und entspricht der Strecke Antenne-Tag. Für die Ermittelung einer Postion (mit drei Raumkoordinaten) sind drei Antennen Notwendig. Daraus ergibt sich:
+%
 \begin{itemize}
-\item 3 Gleichungen
+\item 3 Gleichunge n
 \item 3 Unbekannte
-\item quadr. Gleichungssystem
+\item Quadratisches Gleichungssystem
 \end{itemize}
-
+%
 Das Gleichungssystem sieht wie folgt aus:
+%
 \begin{align}
 	r_{1}^2 &= (x-x_1)^2+(y-y_1)^2+(z-z_1)^2 \nonumber\\
 	r_{2}^2 &= (x-x_2)^2+(y-y_2)^2+(z-z_2)^2 \nonumber\\
@@ -41,15 +43,15 @@ Das Gleichungssystem sieht wie folgt aus:
 %	
 \end{align}
 %
-Es ist trivial und wird in verschiedenen Beispielen gezeigt\footnote{z.B. \url{http://en.wikipedia.org/w/index.php?title=Trilateration&oldid=553215995}}, dass man die Koordinaten aus dem quadratischen Gleichungssystem unmittelbar berechnen kann.\\
-Der Messaufbau der [amedo GmbH] erlaubt die verwendung von mehr als 3 Messwertgebern. Diese zusätzliche Informationen lassen sich für eine Linearisierung des Gleichungssystems verwenden.\\
-Von dieser zusätzlichen Antenne sind die $(x,y,z)-Koordinaten$ bekannt. Und wurden (z.B. durch Kalibrierung) in einem vorherigen Schritt bestimmt.
-\\
-Wir können notieren:
+Es ist trivial und wird in verschiedenen Beispielen gezeigt\footnote{z.B. \url{http://en.wikipedia.org/w/index.php?title=Trilateration&oldid=553215995}}, dass man die Koordinaten aus dem quadratischen Gleichungssystem unmittelbar berechnen kann. Es muss jedoch ein quadratisches Gleichungssystem gelöst werden, was zu den bekannten Problematiken führt \cite{}. Der Messaufbau der \amedogmbh erlaubt die Verwendung von mehr als 3 Messwertgebern. Diese zusätzliche Informationen lassen sich für eine Linearisierung des Gleichungssystems verwenden. Dieser Ansatz wird für ein Modell im Rahmen dieser Arbeit verwendet und wird im Folgenden beschrieben.\\
+%
+Von den Antennen sind die Raumkoordinaten ($x,y,z-Koordinaten$) bekannt, bzw. wurden durch Kalibrierung \ref{sec:calibration} in einem vorherigen Schritt bestimmt. Wir können zusätzlich zu notieren:
 %
 \begin{equation}\label{eq:d_k0}
-d_{kj}^2= (x_k-x_0)^2+(y_k-y_0)^2+(z_k-z_0)^2
+	d_{kj}^2= (x_k-x_0)^2+(y_k-y_0)^2+(z_k-z_0)^2
 \end{equation}
+%
+Linearisierung des Modells. Dazu wird Gleichung~\ref{eq:base_vactor}
 %
 \begin{align}
 	r_{k}^2 &= (x-x_k)^2+(y-y_k)^2+(z-z_k)^2 \nonumber \\
