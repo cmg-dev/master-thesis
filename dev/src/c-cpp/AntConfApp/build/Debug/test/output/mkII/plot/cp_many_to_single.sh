@@ -18,7 +18,7 @@ for(( i=0; i < $trials;i++ )) {
     out=data/$outfilename"_"$i."dat"
     outtemp=data/$outfilename"_"$i."tmp"
 
-    rm $out;
+    #rm $out;
 
     #copy all last lines to one single file
     find $searchfor* -type f -exec tail -n1 {} >> $out \;
