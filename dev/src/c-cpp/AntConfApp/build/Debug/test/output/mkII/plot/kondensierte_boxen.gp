@@ -34,18 +34,20 @@ set ylabel "Final Value - Coordinates ( x, y, z )"
 set size 1, .6
 set origin .0,.4
 set autoscale
-set xrange [.5:a+1]
+set xrange [.5:a+.5]
 set xtics 
 
 set ytics format "%.1f"
 set yrange [-3:3]
-set y2tics format "%.1f"
-set y2label "Final Value - Wavenumbers ( n )"
+if(a>3) set y2tics format "%.1f"
+if(a>3) set y2label "Final Value - Wavenumbers ( n )"
 
-if(a==3) plot inputfile u (1):5 ls 1 axes x1y2 notitle, \
-        '' u (2):6 ls 2 axes x1y2 notitle, \
-        '' u (3):7 ls 3 axes x1y2 notitle
-
+print "a=",a
+if(a==3) plot inputfile u (1):5 ls 1 axes x1y1 notitle, \
+        '' u (2):6 ls 2 axes x1y1 notitle, \
+        '' u (3):7 ls 3 axes x1y1 notitle
+if(a==3) unset y2tics
+if(a==3) unset y2label
 
 if(a==6) plot inputfile u (1):5 ls 1 notitle, \
         '' u (2):6 ls 2 notitle, \
