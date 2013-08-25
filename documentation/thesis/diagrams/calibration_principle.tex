@@ -1,0 +1,63 @@
+\begin{figure}[h]
+	\begin{center}
+		\caption[Ablauf der Kalibierung]{Ablauf der Kalibierung}
+		\label{fig:calibration_flowchart}
+		\vspace{0.5cm}
+		\begin{tikzpicture}[auto]
+		\scriptsize
+			\tikzstyle{decision} = [diamond, draw=black, thick, fill=black!20, text width=5em, text badly centered, inner sep=1pt]
+%			
+			\tikzstyle{block} = [rectangle, draw=black, thick, fill=gray!20, text width=15em, text centered, rounded corners, minimum height=4em]
+%	
+			\tikzstyle{line} = [draw, thick, -latex',shorten >=1pt];
+			\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
+%	
+			\tikzstyle{cloud} = [ dotted, draw=green!50, thick, ellipse,,fill=green!20, minimum height=2em, text width= 10em, text badly centered];
+%	
+			\matrix [column sep=5mm,row sep=7mm]
+			{
+				% row 1
+				& \node [block] (start) { Start }; & \\
+				% row 2
+				& \node [block] (setup) {Aufstellen des Kalibrierstücks}; & 
+					\node [cloud] (comment1) {Gezeigt in Abbildung \ref{fig:calib_piece}}; \\
+				% row 4
+				& \node [block] (measure) {Vermessen der Entfernungen zu den Antennen}; & 
+					\node [cloud] (comment2) {z.B. mit Laser-Entfernungsmesser, gezeigt in Abbildung \ref{fig:laser_meter}}; \\
+				% row 5
+				&\node [block] (writefile) {Eintragen der Vermessenen Werte in Mashinenlesbare Datei}; &\\
+				% row 6
+				\node (temp){}; &\node [block] (startsw) {Starte die Kalibiersoftware}; &\\
+				% row 7
+				&\node [block] (viewresults) {Eintragen der Vermessenen Werte in Mashinenlesbare Datei}; &\\
+				% row 8				
+				& \node [decision] (decide) {$\Delta \geq \Delta_{max}$}; & 
+					\node [cloud] (criteria) {Ergebnisse haben eine geringe Abweichung};\\
+				% row 9
+				& \node [block] (stop) {Ende}; & \\
+			};
+%
+%			Draw the arrows
+%
+			\path (decide) -| node [near start] {Nein} (temp);
+			\tikzstyle{every path}=[line]
+			\path (start) -- (setup);
+			\path (setup) -- (measure);
+			\path (measure) -- (writefile);
+			\path (writefile) -- (startsw);
+			\path (startsw) -- (viewresults);
+			\path (viewresults) -- (decide);
+			\path (decide) -| node [near start] {Nein} (temp);
+			\path (temp) |- (measure);
+			\path (decide) -- node [midway] {Ja} (stop);
+%			
+%			draw the comments 
+%
+			\tikzstyle{every path}=[commentline]
+			\path (criteria) -- (decide);
+			\path (comment1) -- (setup);
+			\path (comment2) -- (measure);
+				
+		\end{tikzpicture}
+	\end{center}
+\end{figure}

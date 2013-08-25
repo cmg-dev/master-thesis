@@ -1,23 +1,27 @@
-\subsection{Vorüberlegung zur Komplexität}
+\section{Vorüberlegung zur Komplexität}
 \label{sec:Komplexity1}
 \input{chapters/1_main/sections/preconsinderations_complexity.tex}
 %
-\subsection{Entwicklung des Modells}
+\section{Entwicklung des Modells}
 \label{sec:model_developement}
 Im folgenden Abschnitt wird das Modell für die Lösung des Zusammenhangs entwickelt. Zur Veranschaulichung des Sachverhalts dient die Abbildung~\ref{fig:TrilaterationScene}. Dort skizziert ist der Messaufbau mit einem Tag. Die Szene ist in 2D dargestellt die Ableitung des Modells erfolgt direkt für drei Raumkoordinaten.
 %
-\input{chapters/1_main/sections/trilateration.tex}
-\input{chapters/1_main/sections/trilateration_extended.tex}
-\input{chapters/1_main/sections/trilateration_final_model.tex}
+\input{chapters/1_main/sections/model.tex}
 %
-\subsection{Erweiterte Betrachtung der Kondition}
+
+\section{Erweiterte Betrachtung der Kondition}
 \input{chapters/1_main/sections/extended_condition.tex}
+%
+\section{Realisierung der Kalibrierung}
+\label{sec:calibration}
+In diesem Abschnitt wir die Implementierung der Kalibrierung des Messaufbaus und die Ergebnisse beschrieben. Es werden zwei unterschiedliche Berechnungsverfahren vorgestellt. Zuerst die Berechnung über das SVD-Verfahren, danach durch das CMA-ES-Verfahren. Es ist sinnvoll zu erwarten, dass beide Ergebnisse die gleichen Koordinaten liefern.
+\input{chapters/1_main/sections/calibration.tex}
 %
 %\subsection{Konkurierende Modelle}
 % SuWi - Zeug 
 %\lipsum[1-1]
 %
-\subsection{Betrachtung der Komplexität}
+\section{Betrachtung der Komplexität}
 \label{sec:Komplexity2}
 \input{chapters/1_main/sections/analyzing_complexity.tex}
 
