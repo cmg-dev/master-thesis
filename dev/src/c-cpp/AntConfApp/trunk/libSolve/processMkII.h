@@ -55,20 +55,9 @@ namespace PRPSEvolution {
 			/**
 			 * Set up basic stuff...
 			 */
-			Process_MkII( )
+ 			Process_MkII( )
 			{
-				// Adjust the floating-point format to scientific and increase output precision.
-				std::cout.setf( std::ios_base::scientific );
-				std::cout.precision( 10 );
-				
-				std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
-
-				auto duration = now.time_since_epoch();
-				/* init the seed */
-				auto seed = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
-
-				shark::Rng::seed( seed );
-				
+				init();
 			}
 
 			/*=============================================================*/
@@ -84,7 +73,8 @@ namespace PRPSEvolution {
 				A.push_back( Mat );
 				b.push_back( Vect );
 				names.push_back( Name );
-				Process_MkII();
+// 				Process_MkII();
+				init();
 			}
 			
 			/*=============================================================*/
@@ -97,12 +87,13 @@ namespace PRPSEvolution {
 				std::string Name,
 				const int mu,
 				const int lambda
-			): Mu( mu ), Lambda( lambda )
+			) : Mu( mu ), Lambda( lambda )
 			{
 				A.push_back( Mat );
 				b.push_back( Vect );
 				names.push_back( Name );
-				Process_MkII();
+// 				Process_MkII();
+				init();
 			}
 			
 			/*=============================================================*/
@@ -115,7 +106,8 @@ namespace PRPSEvolution {
 				std::vector<std::string> Names
 			) : A( Mats ), b( Vects ), names( Names )
 			{
-				Process_MkII();
+// 				Process_MkII();
+				init();
 			}
 			
 			/*=============================================================*/
@@ -130,7 +122,8 @@ namespace PRPSEvolution {
 				const int lambda
 			) : A( Mats ), b( Vects ), names( Names ), Mu( mu ), Lambda( lambda )
 			{
-				Process_MkII();
+// 				Process_MkII();
+				init();
 			}
 			
 			/*=============================================================*/
@@ -145,9 +138,30 @@ namespace PRPSEvolution {
 				double Epsilon
 			) : A( Mats ), b( Vects ), names( Names ), idxs( IDs ), epsilon( Epsilon )
 			{
-				Process_MkII();
+// 				Process_MkII();
+				init();
 			}
 
+			/*=============================================================*/
+			/**
+			 *
+			 */
+			void init()
+			{
+				// Adjust the floating-point format to scientific and increase output precision.
+				std::cout.setf( std::ios_base::scientific );
+				std::cout.precision( 10 );
+
+				std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+
+				auto duration = now.time_since_epoch();
+				/* init the seed */
+				auto seed = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
+
+				shark::Rng::seed( seed );
+
+			}
+			
 			/*=============================================================*/
 			/**
 			 * 
@@ -503,14 +517,41 @@ namespace PRPSEvolution {
 				do {
 					cma.step( model );
 
-					if( !printLastSolutionOnly ) {
-					// Report information on the optimizer state and the current solution to the console.
-						f << model.evaluationCounter() << " "
+					auto p = cma.solution().point;
+					auto v = p[0]*p[0] + p[1]*p[1] + p[2]*p[2];
+					v = std::sqrt(v);
+
+// #ifdef _CoordTransform
+					/* get the coords of the ref antenna */
+					auto refAntCoords = coords_k0[std::stoi( names[0].substr(0,1))];
+// #endif
+					f << model.evaluationCounter() << " "
 							<< cma.solution().value << " "
 							<< cma.solution().point << " "
-							<< cma.sigma() << std::endl;
-					}
-				} while(cma.solution().value > epsilon );
+							<< cma.sigma() << " "
+							<<  v
+// #ifdef _CoordTransform
+							<< " "
+							<< p[0]+refAntCoords[0] << " "
+							<< p[1]+refAntCoords[1] << " "
+							<< p[2]+refAntCoords[2] << " "
+// #endif
+
+	// 									<< cma.solution().value * 1e10 << " "
+	// 									<< cma.solution().value / epsilon << " "
+	// 									<< (1e-20) * epsilon / cma.solution().value << ""
+
+							<< std::endl;
+							
+// 					if( !printLastSolutionOnly ) {
+// 					// Report information on the optimizer state and the current solution to the console.
+// 						f << model.evaluationCounter() << " "
+// 							<< cma.solution().value << " "
+// 							<< cma.solution().point << " "
+// 							<< cma.sigma() << std::endl;
+// 					}
+				} while(cma.solution().value > epsilon
+					&& model.evaluationCounter() < maxEvaluations );
 
 				if( printLastSolutionOnly ) {
 					f << model.evaluationCounter() << " "
