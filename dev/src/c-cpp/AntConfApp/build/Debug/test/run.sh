@@ -360,5 +360,19 @@ else
         action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
 
     fi
+#=================================================================================================#
+    #calculated the fitnes plane of given model
+    if (( $SET == 200 ))
+    then
+        TRIALS=1
+        VARIANT=100
+        START=1000
+        STOP=1001
+        GROUPSIZE=1
+        INCGROUPSIZE="no"
+        EVALUATIONS=0
+        action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+
+    fi
 
 fi
