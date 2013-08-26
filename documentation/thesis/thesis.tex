@@ -1,4 +1,5 @@
-\documentclass[a4paper,12pt,fleqn]{scrbook}
+%\documentclass[a4paper,12pt,fleqn,twoside]{scrbook}
+\documentclass[a4paper,11pt, twoside, openright]{scrbook}
 
 \usepackage[T1]{fontenc}
 \usepackage{ucs}
@@ -10,8 +11,9 @@
 \usepackage{listings}
 \usepackage{pdflscape}
 \usepackage{longtable}
+\usepackage{showframe}
 
-\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+%\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
 
 \usepackage{fancyhdr}
 \usepackage{url}
@@ -51,8 +53,9 @@
 %---- PageLayout
 \pagestyle{fancy}
 
-\setlength{\headsep}{10mm}
-
+\setlength{\headsep}{20mm}
+\setlength{\textheight}{220mm}
+\setlength{\footskip}{25mm}
 \usepackage{eso-pic}
 %\usepackage[numbers,round]{natbib}
 
@@ -60,7 +63,7 @@
 % HEADER --------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \fancyhead[R]{
-  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+%  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
 }
 
 \fancyhead[C]{ }
@@ -96,7 +99,7 @@
 \begin{document}
 \frontmatter 
 
-\setlength{\headheight}{36pt}
+%\setlength{\headheight}{36pt}
 
 %----------------------------------------------------------------------------
 % Titlepage -----------------------------------------------------------------
