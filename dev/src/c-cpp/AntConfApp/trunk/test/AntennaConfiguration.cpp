@@ -566,7 +566,30 @@ int main ( int argc, char *argv[ ] ) {
 		return 0;
 
 	}
+/**********************************************************************/
+	/* the calibration variant */
+	if( VARIANT_SW == 100 ) {
+		std::cout << "Mark II :: Calculating the fitness of Model WholeTomatoMkII" << std::endl;
 
+		auto As 		= preprocess.matGroups;
+		auto vs			= preprocess.vectorGroups;
+		auto names		= preprocess.nameGroups;
+		auto A		= As[ 0 ];
+		auto v		= vs[ 0 ];
+		auto name	= names[ 0 ];
+
+		Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+	
+		process.setAntennaCoords( PC.c_k0 );
+
+		process.calcFitnessMkII( );
+			
+		std::cout << "\tMark II :: done" << std::endl;
+
+		return 0;
+
+	}
+	
 #else
 	Solve::Process process;
 

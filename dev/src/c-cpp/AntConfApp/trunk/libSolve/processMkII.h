@@ -11,6 +11,8 @@
 #include "../libCalibration/calib.h"
 #include "ObjectFunctions.h"
 
+#include "../libFitnessPlanCalculator/FitnessPlaneCalculator.h"
+
 #include <nr3/nr3.h>
 
 /** */
@@ -562,6 +564,74 @@ namespace PRPSEvolution {
 
 				f.close();
 
+			}
+
+			void calcFitnessMkII ()
+			{
+
+				PRPSEvolution::Models::WholeTomatoMkII model( 7 );
+				model.setNumberOfVariables( 7 );
+//
+				model.setParams( A, b, names );
+
+				Support::FitnessPlaneCalculator<7> fpc;
+// 				Support::FitnessPlaneLimits<7> limits;
+				
+// 				limits.increment = 0.1;
+
+				/* 1. */
+// 				limits.lower[0] = -10.;
+// 				limits.upper[0] = 10.;
+// 				limits.lower[1] = -10.;
+// 				limits.upper[1] = 10.;
+// 				limits.lower[2] = 	limits.upper[2] = -1.2;
+// 				limits.lower[3] = 	limits.upper[3] = 7;
+// 				limits.lower[4] = 	limits.upper[4] = 10;
+// 				limits.lower[5] = 	limits.upper[5] = 13;
+// 				limits.lower[6] = 	limits.upper[6] = 9;
+
+// 				limits.idx1 = 0;
+// 				limits.idx2 = 1;
+				
+// 				fpc.setLimits( limits );
+
+				std::cout << " calculate " << std::endl;
+				fpc.calculate( model );
+
+				/* 2. */
+// 				limits.lower[0] = -10.;
+// 				limits.upper[0] = 10.;
+// 				limits.lower[1] = limits.upper[1] = 1.01;
+// 				limits.lower[2] = -10;
+// 				limits.upper[2] = 10;
+// 				limits.lower[3] = 	limits.upper[3] = 7;
+// 				limits.lower[4] = 	limits.upper[4] = 10;
+// 				limits.lower[5] = 	limits.upper[5] = 13;
+// 				limits.lower[6] = 	limits.upper[6] = 9;
+
+// 				limits.idx1 = 0;
+// 				limits.idx2 = 2;
+				
+// 				fpc.setLimits( limits );
+// 				fpc.calculate( model );
+
+				/* 3. */
+// 				limits.lower[0] = limits.upper[0] = -.5;
+// 				limits.lower[1] = -10.;
+// 				limits.upper[1] = 10.;
+// 				limits.lower[2] = -10;
+// 				limits.upper[2] = 10;
+// 				limits.lower[3] = 	limits.upper[3] = 7;
+// 				limits.lower[4] = 	limits.upper[4] = 10;
+// 				limits.lower[5] = 	limits.upper[5] = 13;
+// 				limits.lower[6] = 	limits.upper[6] = 9;
+
+// 				limits.idx1 = 1;
+// 				limits.idx2 = 2;
+				
+// // 				fpc.setLimits( limits );
+// 				fpc.calculate( model );
+				
 			}
 			
 			/**
