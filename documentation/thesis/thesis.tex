@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,fleqn]{scrbook}
+\documentclass[a4paper,12pt, openleft]{scrbook}
 
 \usepackage[T1]{fontenc}
 \usepackage{ucs}
@@ -11,7 +11,7 @@
 \usepackage{pdflscape}
 \usepackage{longtable}
 
-\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+%\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
 
 \usepackage{fancyhdr}
 \usepackage{url}
@@ -51,7 +51,9 @@
 %---- PageLayout
 \pagestyle{fancy}
 
-\setlength{\headsep}{10mm}
+\setlength{\textheight}{220mm}
+\setlength{\headsep}{20mm}
+\setlength{\headsep}{25mm}
 
 \usepackage{eso-pic}
 %\usepackage[numbers,round]{natbib}
@@ -60,7 +62,7 @@
 % HEADER --------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \fancyhead[R]{
-  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+%  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
 }
 
 \fancyhead[C]{ }
@@ -79,12 +81,12 @@
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
-\fancyfoot[L]{Stand: \today}
+%\fancyfoot[L]{Stand: \today}
 \fancyfoot[C]{ Entwurf }
 \fancyfoot[R]{\thepage{} von \pageref{LastPage}}
 
 % Linie unten
-\renewcommand{\footrulewidth}{0.5pt}
+%\renewcommand{\footrulewidth}{0.5pt}
 %----------------------------------------------------------------------------
 
 % Import Macros  ------------------------------------------------------------
@@ -143,12 +145,12 @@ In diesem Kapitel wird die Implementation verifiziert, dafür wird die analytisc
 %
 % 4. ------------------------------------------------------------------------
 \chapter{Diskussion}
-\lipsum[1]
+\lipsum[1-5]
 \input{chapters/3_discussion/discussion.tex}
 %
 % 5. ------------------------------------------------------------------------
 \chapter{Schluss}
-\lipsum[1]
+\lipsum[1-2]
 \input{chapters/4_final/Schluss.tex}
 %
 %----------------------------------------------------------------------------
