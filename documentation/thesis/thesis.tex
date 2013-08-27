@@ -1,5 +1,5 @@
 %\documentclass[a4paper,12pt,fleqn,twoside]{scrbook}
-\documentclass[a4paper,11pt, twoside, openright]{scrbook}
+\documentclass[a4paper,12pt, twoside, openright]{scrbook}
 
 \usepackage[T1]{fontenc}
 \usepackage{ucs}
@@ -11,8 +11,9 @@
 \usepackage{listings}
 \usepackage{pdflscape}
 \usepackage{longtable}
-\usepackage{showframe}
 
+%\usepackage{showframe}
+\usepackage[lmargin=142pt,rmargin=95pt,tmargin=117pt,bmargin=113pt]{geometry}
 %\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
 
 \usepackage{fancyhdr}
@@ -26,14 +27,15 @@
 \usepackage{xcolor} 
 \colorlet{shadecolor}{black} 
 \usepackage{latexsym}
+\usepackage{float}
 
 \usepackage{bbm}
 \usepackage{enumitem}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Entwurf}
-\SetWatermarkScale{4}
-\SetWatermarkLightness{0.9}
+%\usepackage{draftwatermark}
+%\SetWatermarkText{Entwurf}
+%\SetWatermarkScale{4}
+%\SetWatermarkLightness{0.9}
 
 \usepackage{pgfgantt}
 \usepackage{amsmath,amssymb,amsfonts,amstext}
@@ -53,9 +55,8 @@
 %---- PageLayout
 \pagestyle{fancy}
 
-\setlength{\textheight}{220mm}
-\setlength{\headsep}{20mm}
-\setlength{\headsep}{25mm}
+%\setlength{\textheight}{225mm}
+%\setlength{\headsep}{20mm}
 \usepackage{eso-pic}
 %\usepackage[numbers,round]{natbib}
 
@@ -68,12 +69,17 @@
 
 \fancyhead[C]{ }
 
-\fancyhead[L]{
+\fancyhead[LO]{
   \begin{tabular}[b]{l}
   Christoph Gnip\\
   Projekt: PRPS-Evolution
   \end{tabular}
 }
+
+\fancyhead[RE]{
+%  \chaptername
+}
+
 
 %Linie oben
 \renewcommand{\headrulewidth}{0.5pt}
@@ -87,7 +93,7 @@
 \fancyfoot[R]{\thepage{} von \pageref{LastPage}}
 
 % Linie unten
-%\renewcommand{\footrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
 %----------------------------------------------------------------------------
 
 % Import Macros  ------------------------------------------------------------
