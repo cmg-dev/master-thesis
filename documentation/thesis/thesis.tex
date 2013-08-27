@@ -1,4 +1,5 @@
-\documentclass[a4paper,12pt,fleqn]{scrbook}
+%\documentclass[a4paper,12pt,fleqn,twoside]{scrbook}
+\documentclass[a4paper,12pt, twoside, openright]{scrbook}
 
 \usepackage[T1]{fontenc}
 \usepackage{ucs}
@@ -11,7 +12,9 @@
 \usepackage{pdflscape}
 \usepackage{longtable}
 
-\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
+%\usepackage{showframe}
+\usepackage[lmargin=142pt,rmargin=95pt,tmargin=117pt,bmargin=113pt]{geometry}
+%\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
 
 \usepackage{fancyhdr}
 \usepackage{url}
@@ -24,14 +27,15 @@
 \usepackage{xcolor} 
 \colorlet{shadecolor}{black} 
 \usepackage{latexsym}
+\usepackage{float}
 
 \usepackage{bbm}
 \usepackage{enumitem}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Entwurf}
-\SetWatermarkScale{4}
-\SetWatermarkLightness{0.9}
+%\usepackage{draftwatermark}
+%\SetWatermarkText{Entwurf}
+%\SetWatermarkScale{4}
+%\SetWatermarkLightness{0.9}
 
 \usepackage{pgfgantt}
 \usepackage{amsmath,amssymb,amsfonts,amstext}
@@ -51,8 +55,8 @@
 %---- PageLayout
 \pagestyle{fancy}
 
-\setlength{\headsep}{10mm}
-
+%\setlength{\textheight}{225mm}
+%\setlength{\headsep}{20mm}
 \usepackage{eso-pic}
 %\usepackage[numbers,round]{natbib}
 
@@ -60,17 +64,22 @@
 % HEADER --------------------------------------------------------------------
 %----------------------------------------------------------------------------
 \fancyhead[R]{
-  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+%  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
 }
 
 \fancyhead[C]{ }
 
-\fancyhead[L]{
+\fancyhead[LO]{
   \begin{tabular}[b]{l}
   Christoph Gnip\\
   Projekt: PRPS-Evolution
   \end{tabular}
 }
+
+\fancyhead[RE]{
+%  \chaptername
+}
+
 
 %Linie oben
 \renewcommand{\headrulewidth}{0.5pt}
@@ -79,7 +88,7 @@
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
-\fancyfoot[L]{Stand: \today}
+%\fancyfoot[L]{Stand: \today}
 \fancyfoot[C]{ Entwurf }
 \fancyfoot[R]{\thepage{} von \pageref{LastPage}}
 
@@ -96,7 +105,7 @@
 \begin{document}
 \frontmatter 
 
-\setlength{\headheight}{36pt}
+%\setlength{\headheight}{36pt}
 
 %----------------------------------------------------------------------------
 % Titlepage -----------------------------------------------------------------
@@ -143,12 +152,12 @@ In diesem Kapitel wird die Implementation verifiziert, dafür wird die analytisc
 %
 % 4. ------------------------------------------------------------------------
 \chapter{Diskussion}
-\lipsum[1]
+\lipsum[1-5]
 \input{chapters/3_discussion/discussion.tex}
 %
 % 5. ------------------------------------------------------------------------
 \chapter{Schluss}
-\lipsum[1]
+\lipsum[1-2]
 \input{chapters/4_final/Schluss.tex}
 %
 %----------------------------------------------------------------------------

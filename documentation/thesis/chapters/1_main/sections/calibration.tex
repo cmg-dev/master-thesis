@@ -1,6 +1,7 @@
 \subsection{Implementation}
 %
-Der Ablauf der Kalibrierung ist wie folgt:
+Der Ablauf der Kalibrierung ist in Abbildung~\ref{fig:calibration_flowchart} in Form eine Ablaufdiagramms dargestellt. Beschrieben werden die wesentlichen Schritte. Es sind sowohl Interaktion mit der Person enthalten die die Kalibrierung durchführt, als auch die Schritte die von den beteiligten Softwarekomponenten ausgeführt werden enthalten. Es wurden im Rahmen der Arbeit zwei unterschiedliche Wege implementiert, ein Ergebnis für die Kalibrierung zu berechnen. Diese Wege werden nun kurz vorgestellt. Un die Ergebnisse mit einander verglichen. Die Präsentation der Resultate wird auch dazu verwendet werden die gewählte Form der Diagramme zu erläutern. Diese werden in den Ergebnissen des komplexeren Modells ebenfalls verwendet.
+%
 \input{diagrams/calibration_principle.tex}
 
 \subsubsection{SVD}
@@ -15,7 +16,7 @@ Das über den evolutionären Algorithmus gefundene Ergebnis gleicht dem des SVD-
  \item Der Vergleich der beiden Ergebnisse ermöglicht die Verifizierung der Implementation beider Verfahren.
 \end{enumerate}
 %
-Der erste Punkt kommt im Rahmen dieser Arbeit eine besondere Stellung zu, es ist einfacher anhand dieses Übersichtlichen Problems (mit nur drei Unbekannten) den Ablauf des Algorithmus sowie die Visualisierung der Ergebnisse besser zu erläutern. Die Visualisierung gleicht der, die später bei dem Komplexeren Modell Verwendung findet.
+Der erste Punkt kommt im Rahmen dieser Arbeit eine besondere Stellung zu, es ist einfacher anhand dieses Übersichtlichen Problems (mit nur drei Unbekannten) den Ablauf des Algorithmus sowie die Visualisierung der Ergebnisse besser zu erläutern. Die verwendete Darstellung gleicht der, die später bei dem Komplexeren Modell Verwendung findet.
 %
 \subsection{Ergebnis}
 Es werden nun die Ergebnisse der Kalibrierung vorgestellt. Für eine der Vermessenen Antennenkonfigurationen sind in der folgenden Tabelle die Koordinaten der Antennen gezeigt. Die Visualisierung der Konfiguration zeigt die Abbildung~\ref{fig:3dplot_coordinates}.
@@ -38,10 +39,10 @@ Es werden nun die Ergebnisse der Kalibrierung vorgestellt. Für eine der Vermess
 	\end{center}
 \end{table}
 %
-Eine Berechnung mit dem evolutionären Verfahren dauerte ca. $170~ms$ mit dem SVD-verfahren wurde eine Lösung und $\le 1~ms$ gefunden. Für die in der Praxis eingesetzte Software wird es eine Implementation der Kalibrierung mit dem SVD-Verfahren geben. Das Ergebnis der mit dieser Variante berechnete Verfahren wird bei Bedarf mit einer Lösung des evolutionären Verfahrens verglichen.
+Eine Berechnung mit dem evolutionären Verfahren dauerte ca. $170~ms$ mit dem SVD-verfahren wurde eine Lösung und $\le 1~ms$ gefunden. Für die in der Praxis eingesetzte Software wird es eine Implementation der Kalibrierung mit dem SVD-Verfahren geben. Das Ergebnis der mit dieser Variante berechnete Verfahren wird bei Bedarf mit einer Lösung des evolutionären Verfahrens verglichen. Das ermöglicht eine Build-In Verifikation der Kalibrierung  und.
 %
 %---------------------------------------------------------------
-\begin{figure}[h]
+\begin{figure}[H]
          \centering
          \begin{subfigure}[h]{0.4\textwidth}
                  \centering
@@ -68,11 +69,11 @@ Eine Berechnung mit dem evolutionären Verfahren dauerte ca. $170~ms$ mit dem SV
                  \label{fig:Final_Calibration_Ant0_ES-Scatter}
          \end{subfigure}
 %
-         \caption{Ergebnisse der evolutionären Kalibrierung. Es wurden insgesamt $100$ Durchläufe des Algorithmus erstellt. In (a) wird der Endwert einer jeden Lösung gezeigt, Dabei werden oberes und unteres Quartil sowie der Mittelwert mit Hilfe von Boxen dargestellt; (b) zeigt den Verlauf der drei Objektvariablen aller Durchläufe sowie die Entwicklung der Fitness und das mittlere Sigma. Das Abbruchkriterium war eine Fitness von $\leq 10^{-25}$. Die Fähnchen der Boxen, stellen die maximal- bzw. minimal-Werte dar. Die Große enthält der obere und untere Quartil der Daten, der Strich in der Box zeigt den Mittelwert aller Lösungen. }
+         \caption[Ergebnisse der Evolutionären Kalibrierung]{Ergebnisse der evolutionären Kalibrierung. Es wurden insgesamt $100$ Durchläufe des Algorithmus erstellt. In (a) wird der Endwert einer jeden Lösung gezeigt, Dabei werden oberes und unteres Quartil sowie der Mittelwert mit Hilfe von Boxen dargestellt; (b) zeigt den Verlauf der drei Objektvariablen aller Durchläufe sowie die Entwicklung der Fitness und das mittlere Sigma. Das Abbruchkriterium war eine Fitness von $\leq 10^{-25}$. Die Fähnchen der Boxen, stellen die maximal- bzw. minimal-Werte dar. Die Große enthält der obere und untere Quartil der Daten, der Strich in der Box zeigt den Mittelwert aller Lösungen. }
          \label{fig::Final_Calibration_Ant0}
 \end{figure}
 %
-\begin{figure}[h]
+\begin{figure}[H]
          \centering
          \begin{subfigure}[h]{0.4\textwidth}
                  \centering
@@ -99,20 +100,21 @@ Eine Berechnung mit dem evolutionären Verfahren dauerte ca. $170~ms$ mit dem SV
                  \label{fig:abortedFinal_Calibration_Ant0_ES-Scatter}
          \end{subfigure}
 %
-         \caption{Analog zu der Abbildung \ref{fig::Final_Calibration_Ant0} zeigen die Plots die gleichen Darstellungen. Diese zeigt, wie sich eine Statistische Verteilung in den Plots Manifestieren würde. Um das zu demonstrieren wurde das Abbruchkriterium auf lediglich $150$ Evaluationen der Zielfunktion eingestellt. Zu diesem Zeitpunkt können die Objektvariablen bereits einen passablen Wert erreicht haben oder noch abweichende Werte aufweisen (vgl. \ref{fig:Final_Calibration_Ant0_ES-Lines}).}
+         \caption[Statistisch verteilte Ergebnisse der Evolutionären Kalibrierung]{Analog zu der Abbildung \ref{fig::Final_Calibration_Ant0} zeigen die Plots die gleichen Darstellungen. Diese zeigt, wie sich eine Statistische Verteilung in den Plots Manifestieren würde. Um das zu demonstrieren wurde das Abbruchkriterium auf lediglich $150$ Evaluationen der Zielfunktion eingestellt. Zu diesem Zeitpunkt können die Objektvariablen bereits einen passablen Wert erreicht haben oder noch abweichende Werte aufweisen (vgl. \ref{fig:Final_Calibration_Ant0_ES-Lines}).}
          \label{fig::abortedFinal_Calibration_Ant0_ES}
 \end{figure}
 %
-\begin{figure}[h]
+\begin{figure}[H]
          \centering
-         \includegraphics[width=0.4\textwidth]{img/calibration/calibration_results.png}
-         \caption{Das visualisierte Endergebnis der Kalibrierung.}
+         \includegraphics[width=0.7\textwidth]{img/calibration/calibration_results.png}
+         \caption[Visualisierung des Kalibrierendergebnis]{Visualisierung des Kalibrierendergebnis. Abgebildet sind die gefundenen Antennenkoordinaten (Punkte) in drei Raumansichten. Die zusätzliche, dreidimensionale  Ansicht dient der Überischt.}
          \label{fig:3dplot_coordinates}
 %
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
          \centering
+         \caption[Kalibrierwerkzeuge]{Werkzeuge die bei der Kalibrierung verwendet werden.}
          \begin{subfigure}[h]{0.4\textwidth}
                  \centering
                  \includegraphics[width=\textwidth]{img/00_placeholder-sqare.png}
@@ -128,7 +130,6 @@ Eine Berechnung mit dem evolutionären Verfahren dauerte ca. $170~ms$ mit dem SV
                  \caption{Kalibrierstück, verwendet zum Einmessen des Antennenaufbaus}
                  \label{fig:calib_piece}
          \end{subfigure}
-         \caption{Werkzeuge die bei der Kalibrierung verwendet werden.}
          \label{fig:Calibration_Tools}
 \end{figure}
  
