@@ -43,6 +43,7 @@ if(a>3) set y2tics format "%.1f"
 if(a>3) set y2label "Final Value - Wavenumbers ( n )"
 
 print "a=",a
+if(a==7) set xtics ("x" 1, "y" 2, "z" 3 ) scale 0.0
 if(a==3) plot inputfile u (1):5 ls 1 axes x1y1 notitle, \
         '' u (2):6 ls 2 axes x1y1 notitle, \
         '' u (3):7 ls 3 axes x1y1 notitle
