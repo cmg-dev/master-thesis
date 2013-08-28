@@ -29,13 +29,14 @@
 				% row 6
 				\node (temp){}; &\node [block] (startsw) {Starte die Kalibiersoftware}; &\\
 				% row 7
-				&\node [block] (viewresults) {Eintragen der Vermessenen Werte in Mashinenlesbare Datei}; &\\
+				&\node [block] (viewresults) {Speichern der berechneten Werte}; &\\
 				% row 8				
 				& \node [decision] (decide) {$\Delta \geq \Delta_{max}$}; & 
 					\node [cloud] (criteria) {Ergebnisse haben eine geringe Abweichung};\\
 				% row 9
 				& \node [block] (stop) {Ende}; & \\
 			};
+			
 %
 %			Draw the arrows
 %
@@ -47,9 +48,9 @@
 			\path (writefile) -- (startsw);
 			\path (startsw) -- (viewresults);
 			\path (viewresults) -- (decide);
-			\path (decide) -| node [near start] {Nein} (temp);
-			\path (temp) |- (measure);
+			\path (decide)	-| +(-3,0)  |- (measure);
 			\path (decide) -- node [midway] {Ja} (stop);
+			
 %			
 %			draw the comments 
 %
