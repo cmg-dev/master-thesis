@@ -12,6 +12,8 @@
 \usepackage{subcaption}
 \usepackage{wrapfig}
 \usepackage{makeidx}
+\usepackage{transparent}
+
 %%%<
 \usepackage{verbatim}
 \usepackage[active,tightpage]{preview}
@@ -20,16 +22,24 @@
 %%%>
 \usetikzlibrary{positioning}
 
-\newcommand{\yslant}{-0.5}
-\newcommand{\xslant}{1.0}
-\newcommand{\zoffset}[1]{3*#1}
+\newcommand{\ypos}{4}
+\newcommand{\xpos}{0}
+\newcommand{\zpos}{0}
+
+\newcommand{\yslant}{0}
+\newcommand{\xslant}{0}
+
+\newcommand{\xoffset}[1]{\xpos*#1+3}
+\newcommand{\yoffset}[1]{\ypos*#1}
+\newcommand{\zoffset}[1]{\zpos+#1}
 
 \begin{document}
-\begin{tikzpicture}[scale=1.1,every node/.style={minimum size=1cm},on grid]
+\begin{tikzpicture}[scale=1,every node/.style={minimum size=1cm},on grid]
 
-		\tikzstyle{line} = [draw, thick, -latex',shorten >=1pt];
+		\tikzstyle{line} = [draw, thick, -latex',];
 		\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
-			
+		\draw[gray, dotted] (0,0) grid (15,15);
+		
 	% Software level
 %	\begin{scope}[
 %		yshift=-120,
@@ -83,7 +93,7 @@
 		every node/.append style={yslant=\yslant,xslant=\xslant},
 		yslant=\yslant,xslant=\xslant
 	]
-			\node[anchor=south,inner sep=0,xshift=0pt,yshift=10pt,fill=white] at (0,0)
+			\node[anchor=south,inner sep=0,xshift=0pt,yshift=0pt] at (\xoffset{0},\yoffset{0})
 				{\includegraphics[width=5cm]{c1.png}};
 				
 	\end{scope} 
@@ -93,7 +103,8 @@
 		every node/.append style={yslant=\yslant,xslant=\xslant},
 		yslant=\yslant,xslant=\xslant
 	]
-			\node[anchor=south,inner sep=0,xshift=0pt,yshift=10pt,fill=white] at (-3,3)
+%			\fill[white,fill opacity=.75] (0,0) rectangle +(5cm,5cm)
+			\node[anchor=south,inner sep=0,xshift=0pt,yshift=0pt,fill=white] at (\xoffset{1},\yoffset{1})
 				{\includegraphics[width=5cm]{c2.png}};
 				
 	\end{scope} 
@@ -103,7 +114,7 @@
 		every node/.append style={yslant=\yslant,xslant=\xslant},
 		yslant=\yslant,xslant=\xslant
 	]
-			\node[anchor=south,inner sep=0,xshift=0pt,yshift=10pt,fill=white] at (-6,6)
+			\node[anchor=south,inner sep=0,xshift=0pt,yshift=0pt] at (\xoffset{2},\yoffset{2})
 				{\includegraphics[width=5cm]{c3.png}};
 			
 	\end{scope} 
@@ -114,62 +125,68 @@
 		every node/.append style={yslant=\yslant,xslant=\xslant},
 		yslant=\yslant,xslant=\xslant
 	]
-%		% The upper frame:
-%		\fill[white,fill opacity=.70] (-3.1,0) rectangle (9.9,6); % Opacity
-%		\draw[black, dashed, thick] (-3.1,0) rectangle (9.9,6); 
-%		 % Agents:
-%		\draw [fill=red]
-%			(7.5,2) circle (.1) % .pdf file
-%			(5,2) circle (.1) % .ps
-%			(2,2) circle (.1) % .dvi
-%			(-0.5,2) circle (.1); % .tex file
-%
-		% the icons
-%				\node[anchor=south,inner sep=0,xshift=-20pt,yshift=10pt,fill=white] at (0,0)
-%					{\includegraphics[width=5cm]{c1.png}};
-%					
-%				\node[anchor=south,inner sep=0,xshift=0pt,yshift=8pt] at (2,0)
-%					{\includegraphics[width=5cm]{c2.png}};
-%					
-%				\node[anchor=south,inner sep=0,xshift=-5pt,yshift=8pt] at (4,0)
-%					{\includegraphics[width=5cm]{c3.png}};
-%					
-%				\node[anchor=south,inner sep=0,xshift=20pt,yshift=8pt] at (6,0)
-%					{\includegraphics[width=5cm]{c4.png}};
-
-			
-		\node[anchor=south,inner sep=0,xshift=0pt,yshift=8pt] at (-9,9)
-			{\includegraphics[width=5cm]{c4.png}};
-
-%		\fill[black]
-%			(7.5,2) node[below right,,xshift=-20pt,yshift=-5pt,scale=.9,text width=2.5cm,align=left,fill=white]
-%				{\textsf{\bfseries \mbox{Acrobat Reader}}\\ \textsf{\bfseries SumatraPDF}
-%				\\ \textsf{\bfseries Xpdf}}
-%			(-2.5,5.5) node[anchor=west,inner sep=0, scale=1.1] {\textbf{User level}}
-%			(5.1,1.9) node[below right,xshift=-20pt,scale=.9,text width=2cm,align=left,fill=white]
-%				{\textsf{\bfseries Ghostview}\\ \textsf{\bfseries PSview}\\ \textsf{\bfseries Okular}}
-%			(1.9,1.9) node[below right,xshift=-10pt,scale=.9,text width=2cm,align=left,fill=white]
-%				{\textsf{\bfseries Yap}\\ \textsf{\bfseries Xdvi}}
-%			(-0.5,2) node[below right,xshift=-20pt,yshift=-5pt,scale=.9,text width=2.5cm,align=left,fill=white]
-%				{\textsf{\bfseries \TeX{works}}\\ \textsf{\bfseries \TeX{maker}}\\
-%					\textsf{\bfseries \mbox{\TeX{nic Center}}}} 
-%%		;
+			\node[anchor=south,inner sep=0,xshift=0pt,yshift=0pt] at (\xoffset{3},\yoffset{3})
+				{ \includegraphics[width=5cm]{c4.png}};
 	\end{scope} 
+
+
 	\begin{scope}[
-			yshift=0
 	%		every node/.append style={yslant=\yslant,xslant=\xslant},
 		]
-			\node [] (z_0) at (-3,0){ };
+			\node [] (xyz_0) at (2,2){ };
+			\node [] (x) at (1,0){ };
+			\node [] (y) at (1,1){ };
+			\node [] (z) at (0,1){ };
 %			\node [] (test) at (0,\zoffset{0}){ test };
 %			\node [] (test1) at (0,\zoffset{1.3}){ test1 };
 %%			\node [] (test2) at (0,\zoffset{2}){ test2 };
 %			\node [] (test3) at (0,\zoffset{3}){ test3 };
-			\node [] (z_1) at (-3,11){ $z$ };
+			\node [] (z_1) at (0,11){ $z$ };
 			
 			\tikzstyle{every path}=[line]
-			\path (z_0) -- (z_1);
-						
+			\path (xyz_0) -> (x);
+			\path (xyz_0) -> (y);
+			\path (xyz_0) -> (z);
+			
 	\end{scope} 
+		%		% The upper frame:
+		%		\fill[white,fill opacity=.70] (-3.1,0) rectangle (9.9,6); % Opacity
+		%		\draw[black, dashed, thick] (-3.1,0) rectangle (9.9,6); 
+		%		 % Agents:
+		%		\draw [fill=red]
+		%			(7.5,2) circle (.1) % .pdf file
+		%			(5,2) circle (.1) % .ps
+		%			(2,2) circle (.1) % .dvi
+		%			(-0.5,2) circle (.1); % .tex file
+		%
+				% the icons
+		%				\node[anchor=south,inner sep=0,xshift=-20pt,yshift=10pt,fill=white] at (0,0)
+		%					{\includegraphics[width=5cm]{c1.png}};
+		%					
+		%				\node[anchor=south,inner sep=0,xshift=0pt,yshift=8pt] at (2,0)
+		%					{\includegraphics[width=5cm]{c2.png}};
+		%					
+		%				\node[anchor=south,inner sep=0,xshift=-5pt,yshift=8pt] at (4,0)
+		%					{\includegraphics[width=5cm]{c3.png}};
+		%					
+		%				\node[anchor=south,inner sep=0,xshift=20pt,yshift=8pt] at (6,0)
+		%					{\includegraphics[width=5cm]{c4.png}};
 		
+					
+				
+		
+		%		\fill[black]
+		%			(7.5,2) node[below right,,xshift=-20pt,yshift=-5pt,scale=.9,text width=2.5cm,align=left,fill=white]
+		%				{\textsf{\bfseries \mbox{Acrobat Reader}}\\ \textsf{\bfseries SumatraPDF}
+		%				\\ \textsf{\bfseries Xpdf}}
+		%			(-2.5,5.5) node[anchor=west,inner sep=0, scale=1.1] {\textbf{User level}}
+		%			(5.1,1.9) node[below right,xshift=-20pt,scale=.9,text width=2cm,align=left,fill=white]
+		%				{\textsf{\bfseries Ghostview}\\ \textsf{\bfseries PSview}\\ \textsf{\bfseries Okular}}
+		%			(1.9,1.9) node[below right,xshift=-10pt,scale=.9,text width=2cm,align=left,fill=white]
+		%				{\textsf{\bfseries Yap}\\ \textsf{\bfseries Xdvi}}
+		%			(-0.5,2) node[below right,xshift=-20pt,yshift=-5pt,scale=.9,text width=2.5cm,align=left,fill=white]
+		%				{\textsf{\bfseries \TeX{works}}\\ \textsf{\bfseries \TeX{maker}}\\
+		%					\textsf{\bfseries \mbox{\TeX{nic Center}}}} 
+		%%		;
 \end{tikzpicture}
 \end{document}
