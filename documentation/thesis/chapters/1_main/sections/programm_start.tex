@@ -1,0 +1,44 @@
+\begin{figure}[h]
+	\begin{center}
+		\caption[Ablauf Programmstart]{Prozessschritte nach Start des Programms}
+		\label{fig:start_programm}
+		\vspace{0.5cm}
+		\begin{tikzpicture}[auto]
+		\scriptsize
+			\tikzstyle{decision} = [diamond, draw=black, thick, fill=black!20, text width=5em, text badly centered, inner sep=1pt]
+%			
+			\tikzstyle{block} = [rectangle, draw=black, thick, fill=gray!20, text width=15em, text centered, rounded corners, minimum height=4em]
+%	
+			\tikzstyle{line} = [draw, thick, -latex',shorten >=1pt];
+			\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
+%	
+			\tikzstyle{cloud} = [ dotted, draw=green!50, thick, ellipse,,fill=green!20, minimum height=2em, text width= 10em, text badly centered];
+%	
+			\matrix [column sep=5mm,row sep=7mm]
+			{
+				% row 1
+				& \node [block] (start) { Start }; & \\
+				% row 2
+				&\node [block] (load) {Lade System}; &  \\
+				% row 3
+				&\node [block] (perm) {Generiere Permutationen}; & \\
+				% row 4
+				& \node [block] (preprocess) {Vorberechnung der Matrizen}; & \\
+				% row 5
+				& \node [block] (stop) {Ende}; & \\
+			};
+% Arrows
+			\tikzstyle{every path}=[line]
+			\path (start) -- (load);
+			\path (load) -- (perm);
+			\path (perm) -- (preprocess);
+			\path (preprocess) -- (stop);
+%		
+%			\tikzstyle{every path}=[commentline]
+%			\path (criteria) -- (decide);
+%			\path (comment1) -- (init);
+%			
+			
+		\end{tikzpicture}
+	\end{center}
+\end{figure}

@@ -1,0 +1,64 @@
+\begin{figure}[h]
+	\begin{center}
+		\caption[Finde Modelllösung]{Schritte die zur Lösungsfindung abgearbeitet werden}
+		\label{fig:find_model_solution}
+		\vspace{0.5cm}
+		\begin{tikzpicture}[auto]
+		\scriptsize
+			\tikzstyle{decision} = [diamond, draw=black, thick, fill=black!20, text width=5em, text badly centered, inner sep=1pt]
+%			
+			\tikzstyle{block} = [rectangle, draw=black, thick, fill=gray!20, text width=15em, text centered, rounded corners, minimum height=4em]
+%	
+			\tikzstyle{line} = [draw, thick, -latex',shorten >=1pt];
+			\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
+%	
+			\tikzstyle{cloud} = [ dotted, draw=green!40, thick, ellipse,,fill=green!10, minimum height=2em, text width= 12em, text badly centered];
+%	
+			\matrix [column sep=5mm,row sep=7mm]
+			{
+				% row 1
+				& \node [block] (start) { Start }; & \\
+				% row 2
+				&\node [block] (load) {Lade Phasendaten vom Interface}; &  
+					\node [cloud] (comment3) {Verschiedene Quellen sind mögliche (z.B. CSV-Datei, Stream etc.) }; \\
+				% row 3
+				&\node [block] (create1) {Erstelle '\textit{preprocess}'-Instanz}; & 
+					\node [cloud] (comment4) {Berechne die möglichen Matrizen; Treffe Auswahl an 'guten' Matizen für die Lösung }; \\
+				%
+				&\node [block] (create) {Erstelle '\textit{process}'-Instanz}; & 
+					\node [cloud] (comment5) {Übergebe benötigte Informationen) }; \\
+				% row 4
+				& \node [block] (call) {Lösung für Modell finden:\\ process.\textit{model}()}; & 
+					\node [cloud] (comment1) {Finde Lösung für '\textit{model}' - mehrere Modelle sind in '\textit{process}' implementiert}; \\
+				% row 5
+				& \node [decision] (decide) {$i==N$}; & 
+					\node [cloud] (comment2) {Anzahl der Lösungen $N$ erreicht?}; \\
+				% row 6
+				& \node [block] (write) {Schreibe Ergebnisse}; & \\
+				% row 7
+				& \node [block] (stop) {Ende}; & \\
+			};
+% Arrows
+			\tikzstyle{every path}=[line]
+			\path (start) -- (load);
+			\path (load) -- (create1);
+			\path (create1) -- (create);
+			\path (create) -- (call);
+			\path (call) -- (decide);
+%		
+			\path (decide) -- node [near start] {[Ja]} (write);
+			\path (decide) -|  node [above] {[Nein] - i++;} +(-2,0) -- node [] {} +(-3.5,0) |-  (call);
+			
+			\path (write) -- (stop);
+%			
+			\tikzstyle{every path}=[commentline]
+			
+			\path (comment1) -- (call);
+			\path (comment2) -- (decide);
+			\path (comment3) -- (load);
+			\path (comment4) -- (create1);
+			\path (comment5) -- (create);
+%			
+		\end{tikzpicture}
+	\end{center}
+\end{figure}
