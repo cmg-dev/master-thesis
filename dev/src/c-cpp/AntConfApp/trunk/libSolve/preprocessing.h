@@ -1073,8 +1073,8 @@ namespace PRPSEvolution {
 							- (normThetas[a[i+1]])*(normThetas[a[i+1]]);
 
 					/*** PROBLEM ***/
-					b[i]= a_3k[i] - a_0k[i];
-// 					b[i]= a_0k[i]-a_3k[i];
+// 					b[i]= a_3k[i] - a_0k[i];
+					b[i]= a_0k[i] - a_3k[i];
 							
 				}
 							
