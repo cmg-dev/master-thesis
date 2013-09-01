@@ -42,9 +42,10 @@ YTICS = "set ytics ('0' 0,'1' 1,'2' 2,'3' 3,'4' 4,'5' 5,'6' 6,'7' 7,'8' 8, '9' 9
 set style data lines
 set contour base
 
+set autoscale
 set xrange [-1:10]
 set yrange [-1:10]
-set zrange [-300:300]
+
 #set view 20,20,1.0,1.0
 
 set dgrid3d 20,20,3

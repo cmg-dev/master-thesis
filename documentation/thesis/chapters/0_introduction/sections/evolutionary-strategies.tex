@@ -4,18 +4,23 @@ Folgende Information entstammen im Wesentlichen aus \cite{kost2003optimierung},\
 %------------------------------------------------------------------
 \subsection{Evolutionsstrategien - Grundlagen }
 %
-Nach dem Vorbild natürlicher Evolution entworfene stochastische Optimierungsverfahren werden Evolutionsstrategie bezeichnet. Sie verwenden die Prinzipien der Mutation, Rekombination und Selektion analog zu der nat. Evolution.\\
+Nach dem Vorbild natürlicher Evolution entworfene stochastische Optimierungsverfahren werden Evolutionsstrategie bezeichnet. Sie verwenden die Prinzipien der Mutation, Rekombination und Selektion analog zu der nat. Evolution. Der Grundlegende Ablauf dieser Strategien zeigt die Abbildung~\ref{es_flowchart}\\
 Wie in der Natur auch werden Nachkommen aus der Menge der verfügbaren Eltern gebildet. Dabei bezeichnet im Folgenden:
 \begin{itemize}
 \item $\mu$ die Anzahl der Eltern (=> Größe der Population)
-\item $\lambda$ die Anzahl der Eltern die bei Rekombination neue Kinder erzeugt; Die Anzahl der erzeugten Nachkommen einer neuen Generation
+\item $\lambda$\footnote{Anmerkung: Die Verwendung des Symbols $\lambda$ ist in diesem Kontext nicht eindeutig. Im Rahmen dieser Arbeit steht dieses Symbol auch für die Wellenlänge. In diesem Abschnitt wird jedoch weiterhin $\lambda$ verwendet um die gleiche Nomenklatur wie bei dieser Thematik üblich zu verwenden.} die Anzahl der Eltern die bei Rekombination neue Kinder erzeugt; Die Anzahl der erzeugten Nachkommen einer neuen Generation
 \item $\mathbf{x}_p$ Elternpunkt (Parent)
 \item $\mathbf{x}_c$ Nachkomme einer Generation (Child)
 \item $X_p^1$ Die Menge aller Eltern der ersten Generation $X_p = \{\mathbf{x}_{p_1}^1,..,\mathbf{x}_{p_\mu}^1\}$
 \item $X_p^k$ Die Menge aller Eltern der k-ten Generation $X_p = \{\mathbf{x}_{p_1}^k,..,\mathbf{x}_{p_\mu}^k\}$
 \end{itemize}
-\textit{Anmerkung: Die Verwendung des Symbols $\lambda$ ist in diesem Kontext nicht eindeutig. Im Rahmen dieser Arbeit steht dieses Symbol auch für die Wellenlänge. In diesem Abschnitt wird jedoch weiterhin $\lambda$ verwendet um die gleiche Nomenklatur wie bei dieser Thematik üblich zu verwenden.}
 %
+Wir wollen nun in Abbildung~\ref{fig:es_flowchart} einen Blick auf den prinzipiellen Ablauf dieses Algorithmus werfen und anschließend auf die Details eingehen.
+%
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
+\input{chapters/0_introduction/sections/struct_es.tex}
 %------------------------------------------------------------------
 \subsubsection[Mutation]{Mutation}
 Ein Nachkomme $\mathbf{x}_C$ wird aus seinem Elternteil $\mathbf{x}_P$ und einer zufälligen Variation $\mathbf{d}$ gebildet.
@@ -94,11 +99,6 @@ Mithilfe der hier beschrieben Klassifikationen werden die Algorithmen im Folgend
 In Abbildung~\ref{fig:es_flowchart} wird der Ablauf einer Optimierung mit evolutionären Verfahren dargestellt. Es wird die Komma-Strategie gezeigt, ein Struktogramm der Plus-, oder anderer Strategien ist nicht gezeigt. Die Unterschiede würden sich in dem Punkt Rekombination zeigen.
 %
 %------------------------------------------------------------------------------
-%------------------------------------------------------------------------------
-%------------------------------------------------------------------------------
-\input{chapters/0_introduction/sections/struct_es.tex}
-%------------------------------------------------------------------------------
-
 %- Section .6 -----------------------------------------------------------------
 \subsection{Strategien mit mehreren Populationen}
 Es ist möglich die Strategien auf die Ebene von Populationen zu erweitern. Das bedeutet, man lässt ganze Populationen miteinander in Wettstreit treten und nur diejenige überleben, die die besten Ergebnisse liefern. Das mündet in einem zweistufigen Evolutionsprozess. Man kann die Notation um diesen Umstand erweitern und erhält so:
@@ -124,7 +124,8 @@ Sprich aus $\mu_2$-Elternpopulationen werden durch Rekombination mit jeweils $\v
 \lipsum[1]
 %
 %- Section .8 -----------------------------------------------------------------
-\subsection{CMA-ES - Adaption der Kovarianzmatrix}
+\subsection{Covariance Matrix Adaption-ES - Adaption der Kovarianzmatrix}
 %
-Dieses Verfahren stellt den "State of the Art"- der Evolutionären Berechnungsverfahren dar. Für spezialisierte Probleme gibt es einige bessere Lösungen, als allgemeiner Solver hingegen ist dieses Verfahren mehr als tauglich. Es wurde um die Jahrtausendwende Entwickelt und veröffentlicht. Es wurde verscheidene Abwandlungen des Algorithmus vorgestellt und sogar eine Lösung zur Multiobjekt-Optimierung existiert. Der Algorithmus steht in verschiedene Implementationen, in unterschiedlichen Programmiersprachen und Umgebungen zur Verfügung. Teilweise sind die Implementationen Propritär (z.B. Matlab), teilweise quelloffen. Die in dieser Arbeit Zur Anwendung kommende Variante ist die Shark-Library. Diese Bibiliothek ist eine in \cpp geschriebene, quelloffene Software, die am Institut für Neuroinformatik der Ruhr Universität Bochum entwickelt wird. Detailliert wird Shark im Rahmen des Hauptteils, in Abschnitt~\ref{sec:Shark} vorgestellt.\\
+Dieses Verfahren stellt den "State of the Art"- der Evolutionären Berechnungsverfahren dar. Für spezialisierte Probleme gibt es einige bessere Lösungen, als allgemeiner Solver ist dieses Verfahren mehr als tauglich. Es wurde um die Jahrtausendwende Entwickelt und veröffentlicht. Es gibt verscheidene Abwandlungen des Algorithmus und sogar eine Lösung zur Multiobjekt-Optimierung existiert. Das Verfahren wird aktuell stets Weiterentwickelt. [REFERENZEN]\\
+Der Algorithmus steht in verschiedene Implementationen, in unterschiedlichen Programmiersprachen und Umgebungen zur Verfügung. Teilweise sind die Implementationen Propritär (z.B. Matlab), teilweise quelloffen. Die in dieser Arbeit Zur Anwendung kommende Variante ist die Shark-Library. Diese Bibiliothek ist eine in \cpp geschriebene, quelloffene Software, die am Institut für Neuroinformatik der Ruhr Universität Bochum entwickelt wird. Detailliert wird Shark im Rahmen des Hauptteils in Abschnitt~\ref{sec:Shark} vorgestellt.\\
 %

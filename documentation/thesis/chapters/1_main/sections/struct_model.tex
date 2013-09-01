@@ -1,6 +1,6 @@
 \begin{figure}[h]
 	\begin{center}
-		\caption[Finde Modelllösung]{Schritte die zur Lösungsfindung abgearbeitet werden}
+		\caption[Modelllösung bestimmen]{Die Grafik zeigt den Ablauf im Modell um eine Lösung zu finden. Es werden so lange Evolutionsschritte durchgeführt bis das Konvergenzkriterium erreicht wird.}
 		\label{fig:find_model_solution}
 		\vspace{0.5cm}
 		\begin{tikzpicture}[auto]
@@ -12,7 +12,7 @@
 			\tikzstyle{line} = [draw, thick, -latex',shorten >=1pt];
 			\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
 %	
-			\tikzstyle{cloud} = [ dotted, draw=green!40, thick, ellipse,,fill=green!10, minimum height=2em, text width= 12em, text badly centered];
+			\tikzstyle{cloud} = [ dotted, draw=green!40, thick, ellipse,,fill=green!10, minimum height=1em, text width= 15em, text badly centered];
 %	
 			\matrix [column sep=5mm,row sep=7mm]
 			{
@@ -37,7 +37,7 @@
 				& \node [decision] (decide) {Optimum reached?}; & 
 					\node [cloud] (comment5) {Konvergenzkriterium erreicht? (z.B. Ziel-Fitness, max. Evaluationen erreicht etc.)}; \\
 %	 row 6
-				& \node [block] (done) {done}; & \\
+				& \node [block] (done) {done\\ \textbf{return final-solution}}; & \\
 			};
 % Arrows
 			\tikzstyle{every path}=[line]
