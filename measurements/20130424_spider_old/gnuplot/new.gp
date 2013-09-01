@@ -4,8 +4,11 @@ set loadpath '/d/dev/gnuplot-colorbrewer/diverging' \
 set loadpath 'd:/dev/gnuplot-colorbrewer/diverging' \
     'd:/dev/gnuplot-colorbrewer/qualitative' \
     'd:/dev/gnuplot-colorbrewer/sequential'
+set loadpath 'd:/06_dev/gnuplot-colorbrewer/diverging' \
+    'd:/06_dev/gnuplot-colorbrewer/qualitative' \
+    'd:/06_dev/gnuplot-colorbrewer/sequential'
 	
-set terminal pngcairo enhanced size 800,800
+set terminal pngcairo enhanced transparent size 800,800
 set output '1.png'
 
 #set terminal wxt size 2048,512 enhanced font 'Verdana,10' persist
@@ -25,6 +28,7 @@ set contour base
 set cntrparam level incremental -1, .5, 1
 set isosample 250, 250
 unset surface
+
 set table 'cont1.dat'
 splot "gp_ready_a1_1.txt" u 1:2:( $3 > 0 ? $3/A1_max : -$3/A1_min)
 unset table
@@ -50,7 +54,8 @@ set style data lines
 set autoscale
 set xrange [-0.5:9.5]
 set yrange [-.5:9.5]
-
+set xtics left
+set ytics left
 set view 20,20,1.0,1.0
 
 set dgrid3d 30,30,3
@@ -61,22 +66,22 @@ unset grid
 load 'BrBG.plt'
 #set palette cubehelix
 
-set view 60,40
+set view 150,45
 #set palette defined ( 1 0 0 0 , 2 1 1 1 , 3 0 0 0 )
 set isosamples 100,100; set samples 100,100;
 
 unset key
 set zrange [-3:3]
-set output '1.png'
+set output 'Plate0_A1.png'
 splot "gp_ready_a1_1.txt" u 1:2:( $3 > 0 ? $3/A1_max : -$3/A1_min) lc rgb "#2f4f4f"
 
-set output '2.png'
+set output 'Plate0_A2.png'
 splot "gp_ready_a2_1.txt" u 1:2:( $3 > 0 ? $3/A2_max : -$3/A2_min) lc rgb "#2f4f4f"
 
-set output '3.png'
+set output 'Plate0_A3.png'
 splot "gp_ready_a3_1.txt" u 1:2:( $3 > 0 ? $3/A3_max : -$3/A3_min) lc rgb "#2f4f4f"
 
-set output '4.png'
+set output 'Plate0_A4.png'
 splot "gp_ready_a4_1.txt" u 1:2:( $3 > 0 ? $3/A4_max : -$3/A4_min) lc rgb "#2f4f4f"
 
 unset surface
@@ -97,44 +102,52 @@ set yrange [-1:10]
 set xtics 0,1,9
 set ytics 0,1,9
 set grid
-#load 'BrBG.plt'
-load 'PiYg.plt'
+load 'BrBG.plt'
+#load 'PiYg.plt'
 #load 'PRGn.plt'
 #load 'PuOr.plt'
 #load 'RdGy.plt'
 #load 'RdBu.plt'
-set palette rgbformulae 33,13,10
+
 set isosample 250, 250
 unset key
 
 #draw contours ###########################################
+set terminal pngcairo transparent size 900,800
 set output 'c1.png'
-plot "gp_ready_a1_1.txt" u 1:2:( $3 > 0 ? $3/A1_max : -$3/A1_min) with image, "cont1.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
+
+plot "gp_ready_a1_1.txt" u 1:2:( $3 > 0 ? $3/A1_max : -$3/A1_min) with image, "cont1.dat" w l lt -1 lw 2.5 lc rgb "#2f4f4f"
 
 set output 'c2.png'
-plot "gp_ready_a2_1.txt" u 1:2:( $3 > 0 ? $3/A2_max : -$3/A2_min) with image, "cont2.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
+plot "gp_ready_a2_1.txt" u 1:2:( $3 > 0 ? $3/A2_max : -$3/A2_min) with image, "cont2.dat" w l lt -1 lw 2.5 lc rgb "#2f4f4f"
 
 set output 'c3.png'
-plot "gp_ready_a3_1.txt" u 1:2:( $3 > 0 ? $3/A3_max : -$3/A3_min) with image, "cont3.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
+plot "gp_ready_a3_1.txt" u 1:2:( $3 > 0 ? $3/A3_max : -$3/A3_min) with image, "cont3.dat" w l lt -1 lw 2.5 lc rgb "#2f4f4f"
 
 set output 'c4.png'
-plot "gp_ready_a4_1.txt" u 1:2:( $3 > 0 ? $3/A4_max : -$3/A4_min) with image, "cont4.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
+plot "gp_ready_a4_1.txt" u 1:2:( $3 > 0 ? $3/A4_max : -$3/A4_min) with image, "cont4.dat" w l lt -1 lw 2.5 lc rgb "#2f4f4f"
 
 #draw countours wo colormap ###########################################
+set terminal pngcairo transparent enhanced size 800,800
 unset colorbox
+unset xtics
+unset ytics
+unset ztics
+
 set output 'c1_.png'
-plot "gp_ready_a1_1.txt" u 1:2:( $3 > 0 ? $3/A1_max : -$3/A1_min) with image, "cont1.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
+plot "gp_ready_a1_1.txt" u 1:2:( $3 > 0 ? $3/A1_max : -$3/A1_min) with image, "cont1.dat" w l lt -1 lw 2.5 lc rgb "#2f4f4f"
 
 set output 'c2_.png'
-plot "gp_ready_a2_1.txt" u 1:2:( $3 > 0 ? $3/A2_max : -$3/A2_min) with image, "cont2.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
+plot "gp_ready_a2_1.txt" u 1:2:( $3 > 0 ? $3/A2_max : -$3/A2_min) with image, "cont2.dat" w l lt -1 lw 2.5 lc rgb "#2f4f4f"
 
 set output 'c3_.png'
-plot "gp_ready_a3_1.txt" u 1:2:( $3 > 0 ? $3/A3_max : -$3/A3_min) with image, "cont3.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
+plot "gp_ready_a3_1.txt" u 1:2:( $3 > 0 ? $3/A3_max : -$3/A3_min) with image, "cont3.dat" w l lt -1 lw 2.5 lc rgb "#2f4f4f"
 
 set output 'c4_.png'
-plot "gp_ready_a4_1.txt" u 1:2:( $3 > 0 ? $3/A4_max : -$3/A4_min) with image, "cont4.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
+plot "gp_ready_a4_1.txt" u 1:2:( $3 > 0 ? $3/A4_max : -$3/A4_min) with image, "cont4.dat" w l lt -1 lw 2.5 lc rgb "#2f4f4f"
 
 #draw maps ###########################################
+set terminal pngcairo transparent enhanced size 800,800
 set dgrid3d 20,20,3
 set view map
 set contour base 
@@ -144,7 +157,6 @@ set isosample 250, 250
 set style data lines
 
 set colorbox 
-
 #unset surface
 set output 'm1.png'
 splot "gp_ready_a1_1.txt" u 1:2:( $3 > 0 ? $3/A1_max : -$3/A1_min)
