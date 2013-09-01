@@ -146,7 +146,6 @@ if(a>3)set label 6 at 6.2,N2s_mean LABEL6 front left font "Arial,7"
 if(a>3)LABEL7 = sprintf("mean = %.3f \nmax = %.3f \nmin = %.3f \nmedian = %.3f ",N3s_mean, N3s_max, N3s_min, N3s_median )
 if(a>3)set label 7 at 7.2,N3s_mean LABEL7 front left font "Arial,7" 
 
-
 if(a>=8)LABEL8 = sprintf("mean = %.3f \nmax = %.3f \nmin = %.3f \nmedian = %.3f ",N4s_mean, N4s_max, N4s_min, N4s_median )
 if(a>=8)set label 8 at 8.2,N4s_mean LABEL8 front left font "Arial,7"
 

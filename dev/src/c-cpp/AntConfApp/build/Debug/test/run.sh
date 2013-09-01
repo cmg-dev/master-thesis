@@ -347,6 +347,7 @@ else
 
     fi
 #=================================================================================================#
+#fixed mu = 1
     if (( $SET == 11 ))
     then
         TRIALS=20
@@ -375,6 +376,24 @@ else
             STOP=$((STOP+10))
 
         done
+
+    fi
+#=================================================================================================#
+#Test the (1+1) strategy
+    if (( $SET == 12 ))
+    then
+        TRIALS=200
+        VARIANT=4
+        START=500
+        STOP=510
+        GROUPSIZE=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=50000
+        MU=1
+        LAMBDA=2
+        
+        action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+        
 
     fi
 #=================================================================================================#
