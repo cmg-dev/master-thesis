@@ -1,8 +1,8 @@
-\begin{figure}[H]
+\begin{figure}[ht!]
 	\begin{center}
 		\caption[Ablauf der Kalibierung]{Ablauf der Kalibierung}
 		\label{fig:calibration_flowchart}
-		\vspace{0.5cm}
+		\vspace{1cm}
 		\begin{tikzpicture}[auto]
 		\scriptsize
 			\tikzstyle{decision} = [diamond, draw=black, thick, fill=black!20, text width=5em, text badly centered, inner sep=1pt]
@@ -25,7 +25,7 @@
 				& \node [block] (measure) {Vermessen der Entfernungen zu den Antennen}; & 
 					\node [cloud] (comment2) {z.B. mit Laser-Entfernungsmesser, gezeigt in Abbildung \ref{fig:laser_meter}}; \\
 				% row 5
-				&\node [block] (writefile) {Eintragen der Vermessenen Werte in Mashinenlesbare Datei}; &\\
+				&\node [block] (writefile) {Eintragen der Vermessenen Werte in Maschinenlesbare Datei}; &\\
 				% row 6
 				\node (temp){}; &\node [block] (startsw) {Starte die Kalibiersoftware}; &\\
 				% row 7
@@ -62,3 +62,4 @@
 		\end{tikzpicture}
 	\end{center}
 \end{figure}
+%\newpage

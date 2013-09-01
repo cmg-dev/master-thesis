@@ -13,7 +13,7 @@
 \usepackage{longtable}
 
 %\usepackage{showframe}
-\usepackage[lmargin=142pt,rmargin=95pt,tmargin=117pt,bmargin=113pt]{geometry}
+\usepackage[lmargin=130pt,rmargin=80pt,tmargin=117pt,bmargin=113pt]{geometry}
 %\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
 
 \usepackage{fancyhdr}
@@ -81,7 +81,6 @@
 %  \chaptername
 }
 
-
 %Linie oben
 \renewcommand{\headrulewidth}{0.5pt}
 %----------------------------------------------------------------------------
@@ -112,6 +111,11 @@
 % Titlepage -----------------------------------------------------------------
 %----------------------------------------------------------------------------
 \input{title/title.tex}
+
+\input{title/declaration.tex}
+
+\input{title/thanks_and_acknowledgement.tex}
+
 \pagenumbering{roman} 
 
 %----------------------------------------------------------------------------
@@ -135,24 +139,27 @@
 %----------------------------------------------------------------------------
 % 1. ------------------------------------------------------------------------
 \chapter{Einleitung}
-Dieses Kapitel führt in die Arbeit ein. Zuerst wird die Motivation erläutert und der aktuelle Stand der Technik vorgestellt, im Anschluss werden in zwei Teilen die technischen und mathematischen Voraussetzungen beschrieben, zuletzt werden daraus die Anforderungen an die Lösung abgeleitet. Die Voraussetzungen werden in der für das Verständnis dieser Arbeit angebrachten Tiefe beschrieben. Allgemeine Zusammenhänge und Techniken, denen einen großer Stellenwert in dieser Arbeit zukommt, werden zusammengefasst präsentiert. Für detaillierte Beschreibungen wird auf entsprechende Fachliteratur verwiesen. Abschließen wird das Ziel dieser Arbeit aufgestellt.
+Dieses Kapitel führt in die Arbeit ein. Zuerst wird allgemein auf die Technik des Trackings eingegangen und eine Übersicht über den Stand der Technik präsentiert. Anschließend wird die Motivation erläutert. Darauf folgend werden in zwei Teilen die technischen und mathematischen Voraussetzungen beschrieben, zuletzt werden daraus die Anforderungen an die Lösung abgeleitet.Zum Abschluss werden die Ziele dieser Arbeit vorgestellt.
+Zielgruppe dieser Arbeit sind Personen die bereits über Vorkenntnisse im den für die Arbeit wichtigen Gebieten haben. Die Ausführungen werden in der für das Verständnis dieser Arbeit angebrachten Tiefe beschrieben, sind allerdings nur oberflächlich, da die Breite der Themen zu groß ist. Allgemeine Zusammenhänge und Techniken, denen einen großer Stellenwert in dieser Arbeit zukommt, werden zusammengefasst präsentiert. Für detaillierte Beschreibungen wird stets auf entsprechende Fachliteratur verwiesen. 
 %
 \input{chapters/0_introduction/Einleitung.tex}
 %
 % 2. ------------------------------------------------------------------------
 \chapter{Hauptteil}
-Im Folgenden werden ausführlich die Lösungen zur beschriebenen Problemstellung präsentiert. Es werden die Modelle vorgestellt die zum Auffinden der Lösung verwendet wurden, Im Anschluss wird die weiterhin wird die Implementation der ES und die Schnittstellen zum PRPS beschrieben.
+Im Folgenden werden ausführlich die Methoden und Lösungen zur beschriebenen Problemstellung vorgestellt. Zuerst wird eine Betrachtung der Komplexität des Problems präsentiert. Es werden die Modelle vorgestellt die zum Auffinden der Lösung verwendet wurden. Im Anschluss wird die Implementation der ES und die Schnittstellen zum PRPS beschrieben.
 %
 \input{chapters/1_main/Hauptteil.tex}
 %
 % 3. ------------------------------------------------------------------------
 \chapter{Ergebnisse und Erkenntnisse}
-In diesem Kapitel wird die Implementation verifiziert, dafür wird die analytische Lösung für die Kalibrierung der Antennenposition der Lösung des CMA-ES-Verfahrens verglichen. Im Anschluss werden die Ergebnisse das Auffinden der Wellenzahl präsentiert.
+In diesem Kapitel werden die Ergebnisse der Arbeit präsentiert. Zuerst werden künstliche Werte für die gemessene Phase als Eingabe für den Algorithmus verwendet. Darauf folgend werden Reale Messdaten als Input verwendet und die Resultate verglichen. Abschließend werden weitere Erkenntnisse präsentiert die während der Arbeit gewonnen werden konnten.\\
 %
 \input{chapters/2_results/Ergebnisse+Erkenntnisse.tex}
 %
 % 4. ------------------------------------------------------------------------
 \chapter{Diskussion}
+Vergleich der Ergebnisse mit den Zielen der Arbeit.\\
+%
 \lipsum[1-5]
 \input{chapters/3_discussion/discussion.tex}
 %

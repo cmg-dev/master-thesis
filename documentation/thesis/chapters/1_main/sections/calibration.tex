@@ -1,38 +1,39 @@
 \subsection{Implementation}
 %
-Der Ablauf der Kalibrierung ist in Abbildung~\ref{fig:calibration_flowchart} in Form eine Ablaufdiagramms dargestellt. Beschrieben werden die wesentlichen Schritte. Es sind sowohl Interaktion mit der Person enthalten die die Kalibrierung durchführt, als auch die Schritte die von den beteiligten Softwarekomponenten ausgeführt werden enthalten. Es wurden im Rahmen der Arbeit zwei unterschiedliche Wege implementiert, ein Ergebnis für die Kalibrierung zu berechnen. Diese Wege werden nun kurz vorgestellt. Un die Ergebnisse mit einander verglichen. Die Präsentation der Resultate wird auch dazu verwendet werden die gewählte Form der Diagramme zu erläutern. Diese werden in den Ergebnissen des komplexeren Modells ebenfalls verwendet.
+Der Ablauf der Kalibrierung ist in Abbildung~\ref{fig:calibration_flowchart} in Form eine Ablaufdiagramms dargestellt. Beschrieben werden die wesentlichen Schritte. Es sind sowohl Interaktion mit der Person enthalten die die Kalibrierung durchführt, als auch die Schritte die von den beteiligten Softwarekomponenten ausgeführt werden enthalten. Es wurden im Rahmen der Arbeit zwei unterschiedliche Wege implementiert, um ein Ergebnis für die Kalibrierung zu berechnen. Diese Wege werden im Folgenden vorgestellt und die Ergebnisse miteinander verglichen.\\
+Die Präsentation der Resultate wird vor Allem dazu verwendet werden die gewählte Form der Diagramme zu erläutern. Diese werden in den Ergebnissen des komplexeren Modells ebenfalls verwendet.
 %
-\input{diagrams/calibration_principle.tex}
-
 \subsubsection{SVD}
 %
-Das unter \ref{sec:svd} vorgestellte Verfahren der Singular-Value-Decomposition kann dazu verwendet werden eine Lösung eines Gleichungssystems zu berechnen. Das Modell, dass zur Kalibrierung verwendet wird, ist ein Gleichungssystem der Form $\mathbf{b}=\mathbf{A}\mathbf{x}$ und hat drei Gleichungen mit drei Unbekannten. Daher kann sofort eine Lösung mit dem Verfahren hergeleitet werden. Das Ergebnis eines Messaufbaus mit 3 Antennen ist in Tabelle\ref{tab:FinalCoords} und in Abbildung~\ref{fig:3dplot_coordinates} gezeigt. Die Implementation des Algorithmus stammt aus \cite{press2007numerical} und wurde für diese Arbeit angeschafft.
+Das unter \ref{sec:svd} vorgestellte Verfahren der Singular-Value-Decomposition kann dazu verwendet werden eine Lösung eines linearen Gleichungssystems zu berechnen. Das Modell, dass zur Kalibrierung verwendet wird, ist ein Gleichungssystem der Form $\mathbf{b}=\mathbf{A}\mathbf{x}$ und hat drei Gleichungen mit drei Unbekannten. Daher kann sofort eine Lösung mit dem Verfahren hergeleitet werden. Das Ergebnis eines Messaufbaus mit 3 Antennen ist in Tabelle\ref{tab:FinalCoords} und in Abbildung~\ref{fig:3dplot_coordinates} gezeigt. Die Implementation des Algorithmus stammt aus \cite{press2007numerical} und wurde für diese Arbeit angeschafft.
 %
 \subsubsection{CMA-ES}
-Das über den evolutionären Algorithmus gefundene Ergebnis gleicht dem des SVD-Verfahrens. Der SVD-Algorithmus ist um ein vielfaches effizienter beim Lösen des Gleichungssystems. Der Gründe warum an dieser Stelle das Ergebnis dennoch über evolutionäre Verfahren dargestellt wird sind folgende:
+Das über den evolutionären Algorithmus gefundene Ergebnis gleicht dem des SVD-Verfahrens. Der SVD-Algorithmus ist um ein vielfaches effizienter\footnote{Weniger Rechenzeit ist erforderlich} beim Lösen des Gleichungssystems. Der Gründe warum an dieser Stelle das Ergebnis dennoch über evolutionäre Verfahren dargestellt wird sind folgende:
 %
 \begin{enumerate}
  \item Die Komplexität ist gering, daher kann der Ablauf des evolutionären Verfahrens besser dargestellt und verstanden werden
  \item Der Vergleich der beiden Ergebnisse ermöglicht die Verifizierung der Implementation beider Verfahren.
 \end{enumerate}
 %
-Der erste Punkt kommt im Rahmen dieser Arbeit eine besondere Stellung zu, es ist einfacher anhand dieses Übersichtlichen Problems (mit nur drei Unbekannten) den Ablauf des Algorithmus sowie die Visualisierung der Ergebnisse besser zu erläutern. Die verwendete Darstellung gleicht der, die später bei dem Komplexeren Modell Verwendung findet.
+Dem ersten Punkt kommt im Rahmen dieser Arbeit eine besondere Stellung zu, es ist einfacher anhand dieses übersichtlichen Problems (mit nur drei Unbekannten) den Ablauf des Algorithmus sowie die Visualisierung der Ergebnisse zu erläutern. Die verwendete Darstellung gleicht der, die später bei der Präsentation und Beurteilung der komplexeren Modell verwendet wird.
+%
+\input{diagrams/calibration_principle.tex}
 %
 \subsection{Ergebnis}
-Es werden nun die Ergebnisse der Kalibrierung vorgestellt. Für eine der Vermessenen Antennenkonfigurationen sind in der folgenden Tabelle die Koordinaten der Antennen gezeigt. Die Visualisierung der Konfiguration zeigt die Abbildung~\ref{fig:3dplot_coordinates}.
+Es werden nun die Ergebnisse der Kalibrierung vorgestellt. Für eine der vermessenen Antennenkonfigurationen sind in der folgenden Tabelle die Koordinaten der Antennen gezeigt. Die Visualisierung der Konfiguration zeigt die Abbildung~\ref{fig:3dplot_coordinates}.
 %
 \begin{table} [!ht]
 	\begin{center}
-		\begin{tabular}{cccc}
-		      \textbf{Antenne} & \textbf{x} & \textbf{y} & \textbf{z} \\
-		      1 &	0.479	&	-1.012 & 0.60 \\
-		      2 &	-0.77 	&	-1.04 & 1.34 \\
-		      3 &	1.52  	&	-1.05 & 1.37 \\
-		      4 &	-0.92 	&	-0.19 & 1.32 \\
-		      5 &	1.92 	&	0.03 & 1.39 \\
-		      6 &	-0.55 	&	1.09 & 1.43 \\
-		      7 &	1.06 	&	1.07 & 1.35 \\
-		      8 &	0.45 	&	1.35 & 0.67 \\
+		\begin{tabular}{ccccccc}
+		      \textbf{Antenne} & \textbf{$x$} & \textbf{$y$} & \textbf{$z$} & \textbf{$d_{ij}$} & \textbf{$\epsilon_{abs}$} & \textbf{$\epsilon_{rel}$} \\
+		      1 &	0.479	&	-1.012 & 0.60 &&&\\
+		      2 &	-0.77 	&	-1.04 & 1.34 &&&\\
+		      3 &	1.52  	&	-1.05 & 1.37 &&&\\
+		      4 &	-0.92 	&	-0.19 & 1.32 &&&\\
+		      5 &	1.92 	&	0.03 & 1.39 &&&\\
+		      6 &	-0.55 	&	1.09 & 1.43 &&&\\
+		      7 &	1.06 	&	1.07 & 1.35 &&&\\
+		      8 &	0.45 	&	1.35 & 0.67 &&&\\
 %		      
 		\end{tabular}
 		\caption[Finale Antennen Koordinaten]{Tabelle der finalen Antennenkoordinaten [m], berechnet mit dem in dieser Arbeit entwickelten Modell und dem SVD-Verfahren, die Ergebnisse wurden auf zwei Nachkommastellen gerundet und sind identisch für beide Methoden.}
@@ -45,10 +46,10 @@ Eine Berechnung mit dem evolutionären Verfahren dauerte ca. $170~ms$ mit dem SV
 Für die in den folgenden Abbildungen präsentierten Ergebnisse wurden insgesamt $100$ Durchläufe des Algorithmus erstellt. Die Ergebnisse wurden mit einem vom Algorithmus selbst erstellten $\mu$ und $\lambda$ gefunden. In Abbildung~\ref{fig:Final_Calibration_Ant0_ES-boxes} wird eine statistische Auswertung der Ergebnisse gezeigt. In jedem Plot werden die Endwerte der Lösungen in einem sog. Boxplot gezeigt. Dabei wird die Verteilung mit Hilfe von Boxen dargestellt. Die Fähnchen der Boxen, stellen die maximal- bzw. minimal-Werte dar. Die Größe der Boxen enthält das obere und untere Quartil der Daten, der horizontale Strich in der Box zeigt den Mittelwert der Daten. Ausreißer in den Daten werden durch Punkte abseits der Box dargestellt.\\
 %
 
-Die Abbildung.~\ref{fig:Final_Calibration_Ant0_ES-boxes} zeigt den Verlauf der drei Objektvariablen (x,y,z-Koordinaten) sowie die Entwicklung der Fitness und des mittleren Sigmas. Als Darstellungsart wird der Linienplot verwendet und überlagern die Verläufe der einzelnen Lösungen. Das Abbruchkriterium war eine Fitness von $\leq 10^{-25}$. Für Darstellungszwecke wurde die x-Achse nach $500$ Werten beschränkt, erreicht der Fitness-Plot diesen Wert in der Abbildung nicht. Der Verlauf ist typisch für den Verwendeten Algorithmus. Deutlich zu erkennen ist eine Verbesserung des Ergebnisses mit steigender Zahl der Generationen. Der Verlauf der Variablen ist immer für den Erfolgreichsten Nachkommen einer Generation dargestellt.\\
+Die Abbildung.~\ref{fig:Final_Calibration_Ant0_ES-boxes} zeigt den Verlauf der drei Objektvariablen ($x,y,z$-Koordinaten) sowie die Entwicklung der Fitness und des mittleren Sigmas. Als Darstellungsart wird der Linienplot verwendet und die Verläufe einzelner Lösungen überlagern sich in diesem Plot. Das Abbruchkriterium war eine Fitness von $\leq 10^{-25}$. Für Darstellungszwecke wurde die $x$-Achse nach $500$ Werten beschränkt, daher erreicht der Fitness-Plot diesen Wert in der Abbildung nicht. Der Verlauf ist typisch für den verwendeten Algorithmus. Deutlich zu erkennen ist eine Verbesserung des Ergebnisses mit steigender Zahl der Generationen. Der Verlauf der Variablen ist immer für den erfolgreichsten Nachkommen einer Generation dargestellt.\\
 %
 
-Abbildung~\ref{fig:Final_Calibration_Ant0_ES-Scatter} ist ein Scatter-Plot. Die Objektvariablen werden hier gegeneinander aufgetragen. Auf der Diagonalen befinden sich stets die Variable mich sich selbst, daher zeigt sich dort eine Linie bzw. ein einzelner Punkt, sollten die Ergebnisse nicht streuen. Der Plot ist praktisch um die Implementation des Algorithmus zu verifizieren. Er lässt Rückschlüsse auf Abhängigkeiten und Einflüsse der Objektvariablen zu. So können die Ergebnisse mit den Erwartungen verglichen werden.\\
+Abbildung~\ref{fig:Final_Calibration_Ant0_ES-Scatter} ist ein Scatter-Plot. Die Objektvariablen werden hier gegeneinander aufgetragen. Auf der Diagonalen befinden sich stets die Variable gegen sich selbst aufgetragen, daher zeigt sich dort immer eine Linie bzw. ein einzelner Punkt, sollten die Ergebnisse nicht streuen. Der Plot ist praktisch um die Implementation des Algorithmus zu verifizieren. Er lässt Rückschlüsse auf Abhängigkeiten und Einflüsse der Objektvariablen zu. So können die Ergebnisse mit den Erwartungen an die Verläufe verglichen werden.\\
 %
 %---------------------------------------------------------------
 %
@@ -56,7 +57,7 @@ Abbildung~\ref{fig:Final_Calibration_Ant0_ES-Scatter} ist ein Scatter-Plot. Die 
   \begin{center}
     \includegraphics[width=0.9\textwidth]{img/calibration/calibration_ant0-boxes.png}
   \end{center}
-  \caption {Boxplot des Kalibierergebnis aus $100$ Durchläufen. Im oberen Plot der sind die x,y,z-Koordinaten gezeigt, diese landen in allen Durchläufen auf dem selben Ergebnis. Das zeigt sich in der Breite der Linien. Die unteren vier Plots zeigen die Anzahl der Evaluationen der Fitness-Funktion, den finalen Funktionswert, das Sigma für die Variablen, die Entfernung zum Referenzpunkt (v.l.n.r.).}
+  \caption[Box-Plot der Endergebnisse der Kalibierung]{Boxplot des Kalibierergebnis aus $100$ Durchläufen. Im oberen Plot der sind die x,y,z-Koordinaten gezeigt, diese landen in allen Durchläufen auf dem selben Ergebnis. Das zeigt sich in der Breite der Linien. Die unteren vier Plots zeigen die Anzahl der Evaluationen der Fitness-Funktion, den finalen Funktionswert, das Sigma für die Variablen, die Entfernung zum Referenzpunkt (v.l.n.r.).}
   \label{fig:Final_Calibration_Ant0_ES-boxes}
 %
 \end{figure}
@@ -67,7 +68,7 @@ Abbildung~\ref{fig:Final_Calibration_Ant0_ES-Scatter} ist ein Scatter-Plot. Die 
   \begin{center}
     \includegraphics[width=0.9\textwidth]{img/calibration/calibration_ant0-lines.png}
   \end{center}
-  \caption {Zu erkennen ist, das nach ca. 300 Evaluationen der Zielfunktion keine großen Änderungen der Variablen zu erkennen sind. Bis zum erreichen des Abbruchkriteriums (Function Value $\leq10^{-25}$) werden noch ca 400 Evaluationen benötigt, vgl. korrespondierender Boxplot.}
+  \caption[Linien-Plot der Endergebnisse der Kalibierung]{Zu erkennen ist, das nach ca. 300 Evaluationen der Zielfunktion keine großen Änderungen der Variablen zu erkennen sind. Bis zum erreichen des Abbruchkriteriums (Function Value $\leq10^{-25}$) werden noch ca 400 Evaluationen benötigt, vgl. korrespondierender Boxplot.}
   \label{fig:Final_Calibration_Ant0_ES-Lines}  
 %  
 \end{figure}
@@ -77,7 +78,7 @@ Abbildung~\ref{fig:Final_Calibration_Ant0_ES-Scatter} ist ein Scatter-Plot. Die 
   \begin{center}
     \includegraphics[width=0.9\textwidth]{img/calibration/calibration_ant0-scatter.png}
   \end{center}
-  \caption {Scatter-Plot der Ergebnisse der evolutionären Kalibrierung. Die Endergebnisse streuen in keiner Dimension, das wird aus dieser Darstellung deutlich.}
+  \caption[Kalibierung Scatter-Plot]{Scatter-Plot der Ergebnisse der evolutionären Kalibrierung. Die Endergebnisse streuen in keiner Dimension, das wird aus dieser Darstellung deutlich.}
   \label{fig:Final_Calibration_Ant0_ES-Scatter}  
 %  
 \end{figure}
@@ -87,32 +88,32 @@ Abbildung~\ref{fig:Final_Calibration_Ant0_ES-Scatter} ist ein Scatter-Plot. Die 
 %
 \begin{figure}[!ht]
          \centering
-         \begin{subfigure}[h]{0.4\textwidth}
+         \begin{subfigure}[t]{0.4\textwidth}
                  \centering
                  \includegraphics[width=\textwidth]{img/calibration/aborted_calibration_ant0-boxes.png}
-                 \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung. Die Werte für x,y, und z haben noch nicht ihren Endwert erreicht.}
+                 \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung.}
                  \label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
          \end{subfigure}
 %
 \qquad         
 %
-         \begin{subfigure}[h]{0.4\textwidth}
+         \begin{subfigure}[t]{0.4\textwidth}
                  \centering
                  \includegraphics[width=\textwidth]{img/calibration/aborted_calibration_ant0-lines.png}
-                 \caption{lorem}
+                 \caption{Linienplot der bei $140$ Evaluationen abgebrochenen Verläufe. Gut zu sehen ist der Verlauf der Objektvariablen, die sich von Generation zu Generation dem realen Wert nähern}
                  \label{fig:abortedFinal_Calibration_Ant0_ES-Lines}
          \end{subfigure}
 %
 \\
 %
-         \begin{subfigure}[h]{0.4\textwidth}
+         \begin{subfigure}[t]{0.4\textwidth}
                  \centering
                  \includegraphics[width=\textwidth]{img/calibration/aborted_calibration_ant0-scatter.png}
-                 \caption{lorem}
+                 \caption{Statistische Streuung um einen Mittelwert. So in etwa kann man die Lösungen der Komplexen Probleme erwarten.}
                  \label{fig:abortedFinal_Calibration_Ant0_ES-Scatter}
          \end{subfigure}
 %
-         \caption[Statistisch verteilte Ergebnisse der Evolutionären Kalibrierung]{Analog zu der Abbildung \ref{fig::Final_Calibration_Ant0} zeigen die Plots die gleichen Darstellungen. Diese zeigt, wie sich eine Statistische Verteilung in den Plots Manifestieren würde. Um das zu demonstrieren wurde das Abbruchkriterium auf lediglich $150$ Evaluationen der Zielfunktion eingestellt. Zu diesem Zeitpunkt können die Objektvariablen bereits einen passablen Wert erreicht haben oder noch abweichende Werte aufweisen (vgl. \ref{fig:Final_Calibration_Ant0_ES-Lines}).}
+         \caption[Statistisch verteilte Ergebnisse der Kalibrierung mittels ES]{Analog zu der Abbildungen~\ref        {fig:abortedFinal_Calibration_Ant0_ES-Lines}, \ref{fig:abortedFinal_Calibration_Ant0_ES-boxes} und \ref{fig:abortedFinal_Calibration_Ant0_ES-Scatter} zeigen die Plots die gleichen Darstellungen. Hier gezeigt wird wie sich eine statistische Verteilung in den Plots manifestieren würde. Um das zu demonstrieren wurde das Abbruchkriterium auf lediglich $150$ Evaluationen der Zielfunktion eingestellt. Zu diesem Zeitpunkt können die Objektvariablen bereits einen passablen Wert erreicht haben oder noch abweichende Werte aufweisen (vgl. \ref{fig:Final_Calibration_Ant0_ES-Lines}).}
          \label{fig::abortedFinal_Calibration_Ant0_ES}
 \end{figure}
 %

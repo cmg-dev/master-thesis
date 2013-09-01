@@ -22,12 +22,12 @@
 %%%>
 \usetikzlibrary{positioning}
 
-\newcommand{\ypos}{4}
-\newcommand{\xpos}{0}
+\newcommand{\ypos}{3}
+\newcommand{\xpos}{-.7}
 \newcommand{\zpos}{0}
 
-\newcommand{\yslant}{0}
-\newcommand{\xslant}{0}
+\newcommand{\yslant}{-.3}
+\newcommand{\xslant}{.20}
 
 \newcommand{\xoffset}[1]{\xpos*#1+3}
 \newcommand{\yoffset}[1]{\ypos*#1}
@@ -38,7 +38,7 @@
 
 		\tikzstyle{line} = [draw, thick, -latex',];
 		\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
-		\draw[gray, dotted] (0,0) grid (15,15);
+		\draw[gray, dotted] (-1,-2) grid (7,14);
 		
 	% Software level
 %	\begin{scope}[
@@ -92,9 +92,9 @@
 		yshift=0,
 		every node/.append style={yslant=\yslant,xslant=\xslant},
 		yslant=\yslant,xslant=\xslant
-	]
+	]			
 			\node[anchor=south,inner sep=0,xshift=0pt,yshift=0pt] at (\xoffset{0},\yoffset{0})
-				{\includegraphics[width=5cm]{c1.png}};
+			{\includegraphics[width=5cm]{c4_.png}};
 				
 	\end{scope} 
 		
@@ -103,9 +103,8 @@
 		every node/.append style={yslant=\yslant,xslant=\xslant},
 		yslant=\yslant,xslant=\xslant
 	]
-%			\fill[white,fill opacity=.75] (0,0) rectangle +(5cm,5cm)
-			\node[anchor=south,inner sep=0,xshift=0pt,yshift=0pt,fill=white] at (\xoffset{1},\yoffset{1})
-				{\includegraphics[width=5cm]{c2.png}};
+			\node[anchor=south,inner sep=0,xshift=0pt,yshift=0pt] at (\xoffset{1},\yoffset{1})
+				{\includegraphics[width=5cm]{c3_.png}};
 				
 	\end{scope} 
 		
@@ -115,7 +114,7 @@
 		yslant=\yslant,xslant=\xslant
 	]
 			\node[anchor=south,inner sep=0,xshift=0pt,yshift=0pt] at (\xoffset{2},\yoffset{2})
-				{\includegraphics[width=5cm]{c3.png}};
+				{\includegraphics[width=5cm]{c2_.png}};
 			
 	\end{scope} 
 	
@@ -125,28 +124,28 @@
 		every node/.append style={yslant=\yslant,xslant=\xslant},
 		yslant=\yslant,xslant=\xslant
 	]
-			\node[anchor=south,inner sep=0,xshift=0pt,yshift=0pt] at (\xoffset{3},\yoffset{3})
-				{ \includegraphics[width=5cm]{c4.png}};
+			\node[anchor=south,inner sep=0,xshift=0pt,yshift=0pt,fill=white] at (\xoffset{3},\yoffset{3})
+				{ \includegraphics[width=5cm]{c1.png}};
 	\end{scope} 
 
 
 	\begin{scope}[
 	%		every node/.append style={yslant=\yslant,xslant=\xslant},
 		]
-			\node [] (xyz_0) at (2,2){ };
+			\node [] (xyz_0) at (0,0){ };
 			\node [] (x) at (1,0){ };
 			\node [] (y) at (1,1){ };
 			\node [] (z) at (0,1){ };
-%			\node [] (test) at (0,\zoffset{0}){ test };
-%			\node [] (test1) at (0,\zoffset{1.3}){ test1 };
-%%			\node [] (test2) at (0,\zoffset{2}){ test2 };
-%			\node [] (test3) at (0,\zoffset{3}){ test3 };
-			\node [] (z_1) at (0,11){ $z$ };
+			\node [] (A1) at (0,\zoffset{2.5}){ Antenne 4 };
+			\node [] (A2) at (0,\zoffset{5.5}){ Antenne 3 };
+			\node [] (A3) at (0,\zoffset{8.5}){ Antenne 3 };
+			\node [] (A4) at (0,\zoffset{11.5}){ Antenne 1 };
+			\node [] (z_1) at (0,11){};
 			
-			\tikzstyle{every path}=[line]
-			\path (xyz_0) -> (x);
-			\path (xyz_0) -> (y);
-			\path (xyz_0) -> (z);
+%			\tikzstyle{every path}=[line]
+%			\path (xyz_0) -> (x);
+%			\path (xyz_0) -> (y);
+%			\path (xyz_0) -> (z);
 			
 	\end{scope} 
 		%		% The upper frame:

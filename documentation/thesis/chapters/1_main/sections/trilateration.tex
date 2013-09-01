@@ -3,7 +3,7 @@
 		\caption[Antennen-Szene mit einem Tag]{2D-Übersicht auf die Szene mit drei Antennen, einem Tag und einer Landmarke. Die Position von $\{A_1,A_3,A_3\}$, sowie der Landmarke, zum Koordinatenursprung sind bekannt. Die Vektoren $r_1,r_2,r_3$ sind die gemessene Entfernung zu einer Antenne. Die Landmarke wird im späteren Verlauf eine Antenne sein, die ihrerseits ein gemessene Entfernung $r_0$ produziert. Der Schnittpunkt aller Kreise ist die Lösung der gemessenen Entfernung und der geom. Anordnung, die sich für die Position des Tags ergibt.} 
 		\label{fig:TrilaterationScene}
 		\input{img/trilaterationScene.tex}
-		
+%		
 	\end{center}
 \end{figure}
 %
@@ -43,7 +43,7 @@ Das Gleichungssystem sieht wie folgt aus:
 %	
 \end{align}
 %
-Es ist trivial und wird in verschiedenen Beispielen gezeigt\footnote{z.B. \url{http://en.wikipedia.org/w/index.php?title=Trilateration&oldid=553215995}}, dass man die Koordinaten aus dem quadratischen Gleichungssystem unmittelbar berechnen kann. Es muss jedoch ein quadratisches Gleichungssystem gelöst werden, was zu den bekannten Problematiken führt \cite{blabla}. Der Messaufbau der \amedogmbh erlaubt die Verwendung von mehr als 3 Messwertgebern. Diese zusätzliche Informationen lassen sich für eine Linearisierung des Gleichungssystems verwenden. Dieser Ansatz wird für ein Modell im Rahmen dieser Arbeit verwendet und wird im Folgenden beschrieben.\\
+Es ist trivial und wird in verschiedenen Beispielen gezeigt\footnote{z.B. \url{http://en.wikipedia.org/w/index.php?title=Trilateration&oldid=553215995}}, dass man die Koordinaten aus dem quadratischen Gleichungssystem unmittelbar berechnen kann. Es muss jedoch ein quadratisches Gleichungssystem gelöst werden, was zu den bekannten Problematiken führt, insbesondere der Ausschluss mehrdeutiger Ergebnisse. Der Messaufbau der \amedogmbh erlaubt die Verwendung von mehr als 3 Messwertgebern. Diese zusätzliche Informationen lassen sich für eine Linearisierung des Gleichungssystems verwenden. Dieser Ansatz wird für ein Modell im Rahmen dieser Arbeit verwendet und wird im Folgenden beschrieben.\\
 %
 Von den Antennen sind die Raumkoordinaten ($x,y,z-Koordinaten$) bekannt, bzw. wurden durch Kalibrierung \ref{sec:calibration} in einem vorherigen Schritt bestimmt. Wir können zusätzlich zu notieren:
 %
@@ -71,13 +71,15 @@ Um Platz zu sparen sind die y- und z-Terme nicht explizit notiert. Sie ergeben s
 \end{align}
 %
 \begin{multline}\label{eq:rk_final}
-(x-x_0)(x_k-x_0)+(y-y_0)(y_k-y_0)+(z-z_0)(z_k-z_0)= \\\frac{1}{2}[(x_k-x_0)^2+(x-x_0)^2-(y_k-y_0)^2 +(y-y_0)^2-(z_k-z_0)^2 +(z-z_0)^2-r_k^2]
+(x-x_0)(x_k-x_0)+(y-y_0)(y_k-y_0)+(z-z_0)(z_k-z_0)= \\\frac{1}{2}[(x_k-x_0)^2+(x-x_0)^2-(y_k-y_0)^2+(y-y_0)^2
+\\-(z_k-z_0)^2 +(z-z_0)^2-r_k^2]
 \end{multline}
 %
 Vergleich von \eqref{eq:rk_final} mit \eqref{eq:d_k0} bringt: 
 %
 \begin{multline}
-(x-x_0)(x_k-x_0)+(y-y_0)(y_k-y_0)+(z-z_0)(z_k-z_0)= \\\frac{1}{2}[\underbrace{(x_k-x_0)^2+(z_k-z_0)^2+(y_k-y_0)^2}_\text{\boldmath{$d_{kj}^2$}}+\underbrace{(x-x_0)^2+(y-y_0)^2 +(z-z_0)^2}_\text{\boldmath{$r_j^2$}}-r_k^2]
+(x-x_0)(x_k-x_0)+(y-y_0)(y_k-y_0)+(z-z_0)(z_k-z_0)= \\\frac{1}{2}[\underbrace{(x_k-x_0)^2+(z_k-z_0)^2+(y_k-y_0)^2}_\text{\boldmath{$d_{kj}^2$}}
+\\+\underbrace{(x-x_0)^2+(y-y_0)^2 +(z-z_0)^2}_\text{\boldmath{$r_j^2$}}-r_k^2]
 \end{multline}
 %
 \begin{equation}
