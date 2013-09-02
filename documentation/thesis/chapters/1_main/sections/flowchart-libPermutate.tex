@@ -1,0 +1,45 @@
+\begin{figure}[hr!]
+	\begin{center}
+		\caption[Ablauf libPermuatate]{ lorem }
+		\label{fig:libpermutate_flowchart}
+		\vspace{0.5cm}
+		\begin{tikzpicture}[scale=.3]
+		\scriptsize
+			\tikzstyle{decision} = [diamond, draw=black, thick, fill=black!20, text width=5em, text badly centered, inner sep=1pt]
+%			
+			\tikzstyle{block} = [rectangle, draw=black, thick, fill=gray!20, text width=15em, text centered, rounded corners, minimum height=4em]
+%	
+			\tikzstyle{line} = [draw, thick, -latex',shorten >=1pt];
+			\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
+%	
+			\tikzstyle{cloud} = [ dotted, draw=green!50, thick, ellipse,,fill=green!20, minimum height=2em, text width= 10em, text badly centered];
+%	
+			\matrix [column sep=5mm,row sep=7mm]
+			{
+				% row 1
+				& \node [block] (start) { Start }; & \\
+				% row 2
+				&\node [block] (read) { Lese Koordinaten aus der Datei }; &\\
+				% row 4
+				& \node [block] (calcPermutations) {Berechne Permutationen}; & \\
+				%				
+				& \node [block] (calcMatrixes) {Berechne Matrizen}; & \\	
+				% row 5
+				& \node [block] (store) {Speichere die Konfigurationen in entsprechender Struktur}; & \\
+				%				
+				& \node [block] (write) {Schreibe Konfigurationen in CSV-Datei}; & \\
+				% row 6
+				& \node [block] (stop) {Ende}; & \\
+			};
+% Arrows
+			\tikzstyle{every path}=[line]
+			\path (start) -- (read);
+			\path (read) -- (calcPermutations);
+			\path (calcPermutations) -- (calcMatrixes);
+			\path (calcMatrixes) -- (store);
+			\path (store) -- (write);
+			\path (write) -- (stop);
+			
+		\end{tikzpicture}
+	\end{center}
+\end{figure}

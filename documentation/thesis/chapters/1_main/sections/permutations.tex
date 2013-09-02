@@ -1,3 +1,10 @@
+%
+\input{chapters/1_main/sections/flowchart-libPermutate.tex}
+%
+Um die Beurteilung der Konditionszahl der Matrizen effizient durchführen zu können, wurde in dieser Woche ein Tool geschrieben. Es erstellt automatisch, auf Basis der durch die Kalibrierung bestimmten Koordinaten, alle möglichen Permutationen von Antennen. Die sich ergebenen Matrizen sind immer auf eine Referenzantenne bezogen. Es ergeben sich, bezogen auf eine Referenzantenne, folgende Anzahl an Matrizen:
+% 
+\begin{equation}
+\frac{7!}{3!(7-3)!}=35
 Die sich ergebenen Matrizen sind immer auf eine Referenzantenne bezogen. Es ergeben sich für eine Referenzantenne folgende Anzahl an Matrizen:
 % 
 \begin{equation}
@@ -5,3 +12,11 @@ Die sich ergebenen Matrizen sind immer auf eine Referenzantenne bezogen. Es erge
 \end{equation}
 %
 Insgesamt ergeben sich so $8\times 35 = 280$ mögliche Anordnungen. Das erstellte Tool soll in ein entsprechendes C++-Programm portiert werden. Diese Berechnungen werden im späteren System auf jeden Fall anfallen.
+\end{equation}
+%
+Für einen Aufbau mit acht Antennen ergeben sich so $8\times 35 = 280$ mögliche Anordnungen. Die Implementation der Berechnungen der Permutationen findet sich in dem Modul \textit{'libPermutate'}. Das Modul generiert bei der Instanzierung automatisch alle möglichen Kombinationen von Antennen und speichert diese in einer geeigneten Struktur für den späteren Gebrauch. Das Ablaufdiagramm ist in Abbildung~\ref{fig:libpermutate_flowchart} zu finden.\\
+
+
+
+
+
