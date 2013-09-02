@@ -382,7 +382,7 @@ else
 #Test the (1+1) strategy
     if (( $SET == 12 ))
     then
-        TRIALS=200
+        TRIALS=30
         VARIANT=4
         START=500
         STOP=510
