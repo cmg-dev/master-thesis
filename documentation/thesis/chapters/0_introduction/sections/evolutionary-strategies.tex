@@ -6,13 +6,14 @@ Folgende Information entstammen im Wesentlichen aus \cite{kost2003optimierung},\
 %
 Nach dem Vorbild natürlicher Evolution entworfene stochastische Optimierungsverfahren werden Evolutionsstrategie bezeichnet. Sie verwenden die Prinzipien der Mutation, Rekombination und Selektion analog zu der nat. Evolution. Der Grundlegende Ablauf dieser Strategien zeigt die Abbildung~\ref{es_flowchart}\\
 Wie in der Natur auch werden Nachkommen aus der Menge der verfügbaren Eltern gebildet. Dabei bezeichnet im Folgenden:
+%
 \begin{itemize}
-\item $\mu$ die Anzahl der Eltern (=> Größe der Population)
-\item $\lambda$\footnote{Anmerkung: Die Verwendung des Symbols $\lambda$ ist in diesem Kontext nicht eindeutig. Im Rahmen dieser Arbeit steht dieses Symbol auch für die Wellenlänge. In diesem Abschnitt wird jedoch weiterhin $\lambda$ verwendet um die gleiche Nomenklatur wie bei dieser Thematik üblich zu verwenden.} die Anzahl der Eltern die bei Rekombination neue Kinder erzeugt; Die Anzahl der erzeugten Nachkommen einer neuen Generation
-\item $\mathbf{x}_p$ Elternpunkt (Parent)
-\item $\mathbf{x}_c$ Nachkomme einer Generation (Child)
-\item $X_p^1$ Die Menge aller Eltern der ersten Generation $X_p = \{\mathbf{x}_{p_1}^1,..,\mathbf{x}_{p_\mu}^1\}$
-\item $X_p^k$ Die Menge aller Eltern der k-ten Generation $X_p = \{\mathbf{x}_{p_1}^k,..,\mathbf{x}_{p_\mu}^k\}$
+	\item $\mu$ die Anzahl der Eltern (=> Größe der Population)
+	\item $\lambda$\footnote{Anmerkung: Die Verwendung des Symbols $\lambda$ ist in diesem Kontext nicht eindeutig. Im Rahmen dieser Arbeit steht dieses Symbol auch für die Wellenlänge. In diesem Abschnitt wird jedoch weiterhin $\lambda$ verwendet um die gleiche Nomenklatur wie bei dieser Thematik üblich zu verwenden.} die Anzahl der Eltern die bei Rekombination neue Kinder erzeugt; Die Anzahl der erzeugten Nachkommen einer neuen Generation
+	\item $\mathbf{x}_p$ Elternpunkt (Parent)
+	\item $\mathbf{x}_c$ Nachkomme einer Generation (Child)
+	\item $X_p^1$ Die Menge aller Eltern der ersten Generation $X_p = \{\mathbf{x}_{p_1}^1,..,\mathbf{x}_{p_\mu}^1\}$
+	\item $X_p^k$ Die Menge aller Eltern der k-ten Generation $X_p = \{\mathbf{x}_{p_1}^k,..,\mathbf{x}_{p_\mu}^k\}$
 \end{itemize}
 %
 Wir wollen nun in Abbildung~\ref{fig:es_flowchart} einen Blick auf den prinzipiellen Ablauf dieses Algorithmus werfen und anschließend auf die Details eingehen.
@@ -55,7 +56,7 @@ Dabei ist $\mathbf{d}$ ein bei jeder Mutation neu zu bestimmender $(0,\sigma^2)-
 \right)
 \end{equation}
 %
-Die Normalverteilung der Variation ist nützlich, da kleine Änderungen wahrscheinlicher sind als große. Die maximale Größe der Variation wird durch die Standardabweichung $\sigma_i$ bestimmt.
+Die Normalverteilung der Variation ist nützlich, da kleine Änderungen wahrscheinlicher sind als große. Die maximale Größe der Variation wird durch die Standardabweichung $\sigma_i$ bestimmt. Sie steuert somit die Schrittweite von Generation zu Generation.
 %
 %------------------------------------------------------------------
 \subsubsection[Rekombination]{Rekombination}
@@ -124,8 +125,4 @@ Sprich aus $\mu_2$-Elternpopulationen werden durch Rekombination mit jeweils $\v
 \lipsum[1]
 %
 %- Section .8 -----------------------------------------------------------------
-\subsection{Covariance Matrix Adaption-ES - Adaption der Kovarianzmatrix}
-%
-Dieses Verfahren stellt den "State of the Art"- der Evolutionären Berechnungsverfahren dar. Für spezialisierte Probleme gibt es einige bessere Lösungen, als allgemeiner Solver ist dieses Verfahren mehr als tauglich. Es wurde um die Jahrtausendwende Entwickelt und veröffentlicht. Es gibt verscheidene Abwandlungen des Algorithmus und sogar eine Lösung zur Multiobjekt-Optimierung existiert. Das Verfahren wird aktuell stets Weiterentwickelt. [REFERENZEN]\\
-Der Algorithmus steht in verschiedene Implementationen, in unterschiedlichen Programmiersprachen und Umgebungen zur Verfügung. Teilweise sind die Implementationen Propritär (z.B. Matlab), teilweise quelloffen. Die in dieser Arbeit Zur Anwendung kommende Variante ist die Shark-Library. Diese Bibiliothek ist eine in \cpp geschriebene, quelloffene Software, die am Institut für Neuroinformatik der Ruhr Universität Bochum entwickelt wird. Detailliert wird Shark im Rahmen des Hauptteils in Abschnitt~\ref{sec:Shark} vorgestellt.\\
-%
+
