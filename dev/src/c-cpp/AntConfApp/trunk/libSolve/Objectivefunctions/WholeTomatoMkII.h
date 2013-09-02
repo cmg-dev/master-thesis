@@ -17,7 +17,6 @@ namespace PRPSEvolution {
 		struct WholeTomatoMkII : public SingleObjectiveFunction {
 
 			typedef AbstractOptimizer<shark::VectorSpace< double >,double,SingleObjectiveResultSet<typename shark::VectorSpace< double >::PointType> > base_type;
-
 			typedef typename base_type::ObjectiveFunctionType ObjectiveFunctionType;
 
 			WholeTomatoMkII(unsigned int numberOfVariables = 5):m_numberOfVariables(numberOfVariables) {

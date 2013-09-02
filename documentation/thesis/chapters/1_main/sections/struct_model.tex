@@ -1,0 +1,135 @@
+\begin{figure}[h]
+	\begin{center}
+		\caption[Modelllösung bestimmen]{Die Grafik zeigt den Ablauf im Modell um eine Lösung zu finden. Es werden so lange Evolutionsschritte durchgeführt bis das Konvergenzkriterium erreicht wird.}
+		\label{fig:find_model_solution}
+		\vspace{0.5cm}
+		\begin{tikzpicture}[auto]
+		\scriptsize
+			\tikzstyle{decision} = [diamond, draw=black, thick, fill=black!20, text width=5em, text badly centered, inner sep=1pt]
+%			
+			\tikzstyle{block} = [rectangle, draw=black, thick, fill=gray!20, text width=15em, text centered, rounded corners, minimum height=4em]
+%	
+			\tikzstyle{line} = [draw, thick, -latex',shorten >=1pt];
+			\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
+%	
+			\tikzstyle{cloud} = [ dotted, draw=green!40, thick, ellipse,,fill=green!10, minimum height=1em, text width= 15em, text badly centered];
+%	
+			\matrix [column sep=5mm,row sep=7mm]
+			{
+%			 row 1
+				& \node [block] (start) { Start }; & \\
+%	 row 2
+				&\node [block] (create1) {Erstelle '\textit{model}'-Instanz}; & \\
+%	 row 3
+				&\node [block] (set1) {Setze Anzahl der Objektvariablen}; & 
+					\node [cloud] (comment1) { Teile dem Modell die Anzahl der Veränderlichen mit, der Solver verwendet später diese Initialisierung }; \\
+				
+				&\node [block] (set2) {Set Modell-Parameter}; & 
+					\node [cloud] (comment2) { Die Modelle erhalten unterschiedliche Parameter, z.B. die ausgewählten Matrizen }; \\
+%	 row 4
+				& \node [block] (create2) {Erstelle Instanz von \textit{CMA-ES-Solver}}; & 
+					\node [cloud] (comment3) {Hier wird das Modell aufgerufen }; \\
+				& \node [block] (init) {Parametrisiere den Solver}; & 
+					\node [cloud] (comment4) { Einstellen von $\lambda$ und $\mu$ sowie Lösungsstrategie}; \\
+%	 row 5
+				& \node [block] (step) {cma.\textit{step}()}; & \\
+				
+				& \node [decision] (decide) {Optimum reached?}; & 
+					\node [cloud] (comment5) {Konvergenzkriterium erreicht? (z.B. Ziel-Fitness, max. Evaluationen erreicht etc.)}; \\
+%	 row 6
+				& \node [block] (done) {done\\ \textbf{return final-solution}}; & \\
+			};
+% Arrows
+			\tikzstyle{every path}=[line]
+			\path (start) -- (create1);
+			\path (create1) -- (set1);
+			\path (set1) -- (set2);
+			\path (set2) -- (create2);
+			\path (create2) -- (init);
+			\path (init) -- (step);
+			\path (step) -- (decide);
+%		
+			\path (decide) -- node [near start] {[Ja]} (done);
+			\path (decide) -|  node [above] {[Nein] - i++;} +(-2,0) -- node [] {} +(-3.5,0) |-  (step);
+		
+%			
+			\tikzstyle{every path}=[commentline]
+			
+			\path (comment1) -- (set1);
+			\path (comment2) -- (set2);
+			\path (comment3) -- (create2);
+			\path (comment4) -- (init);
+			\path (comment5) -- (decide);
+%			
+		\end{tikzpicture}
+	\end{center}
+\end{figure}
+%\begin{figure}[h]
+%	\begin{center}
+%		\caption[Modellablauf mit CMA-ES]{Ablauf im Modell; Der hier dargestellte Ablauf ist exemplarisch für alle in dieser Arbeit entstandenen Modelle; Die Modelle Variieren nur minimal }
+%		\label{fig:struct_model}
+%		\vspace{0.5cm}
+%		\begin{tikzpicture}[auto]
+%		\scriptsize
+%			\tikzstyle{decision} = [diamond, draw=black, thick, fill=black!20, text width=5em, text badly centered, inner sep=1pt]
+%%			
+%			\tikzstyle{block} = [rectangle, draw=black, thick, fill=gray!20, text width=15em, text centered, rounded corners, minimum height=4em]
+%%	
+%			\tikzstyle{line} = [draw, thick, -latex',shorten >=1pt];
+%			\tikzstyle{commentline} = [draw, dashed, green!50,-latex',shorten >=1pt];
+%%	
+%			\tikzstyle{cloud} = [ dotted, draw=green!40, thick, ellipse,,fill=green!10, minimum height=2em, text width= 12em, text badly centered];
+%%	
+%			\matrix [column sep=5mm,row sep=7mm]
+%			{
+%				% row 1
+%%				& \node [block] (start) { Start }; & \\
+%				% row 2
+%%				&\node [block] (create1) {Erstelle '\textit{model}'-Instanz}; & \\
+%				% row 3
+%%				&\node [block] (set1) {Setze Anzahl der Objektvariablen}; & 
+%%					\node [cloud] (comment2) { Teile dem Modell die Anzahl der Veränderlichen mit, der Solver verwendet später diese Initialisierung }; \\
+%				%
+%%				&\node [block] (set2) {Set Modell-Parameter}; & 
+%%					\node [cloud] (comment2) { Die Modelle erhalten unterschiedliche Parameter, z.B. die ausgewählten Matrizen }; \\
+%				% row 4
+%%				& \node [block] (create2) {Erstelle Instanz von \textit{CMA-ES-Solver}}; & 
+%%					\node [cloud] (comment1) {Hier wird das Modell aufgerufen }; \\
+%%				& \node [block] (init) {Parametrisiere den Solver}; & 
+%%					\node [cloud] (comment3) { Auswahl von $\lambda$ und $\mu$ sowie Lösungsstrategie}; \\
+%				% row 5
+%%				& \node [block] (step) {cma.\textit{step}()}; & \\
+%				%
+%%				& \node [decision] (decide) {Optimum reached?}; & 
+%%					\node [cloud] (comment4) {Konvergenzkriterium erreicht? (z.B. Ziel-Fitness, max. Evaluationen erreicht etc.)}; \\
+%				% row 6
+%%				& \node [block] (done) {done}; & \\
+%
+%			};
+%			
+%% Arrows
+%%			\tikzstyle{every path}=[line]
+%%			\path (start) -- (create1);
+%%			\path (create1) -- (set1);
+%%			\path (set1) -- (set2);
+%%			\path (set2) -- (create2);
+%%			\path (create2) -- (init);
+%%			\path (init) -- (step);
+%%			\path (step) -- (decide);
+%%%		
+%%			\path (decide) -- node [near start] {[Ja]} (done);
+%%			\path (decide) -|  node [above] {[Nein] - i++;} +(-2,0) -- node [] {} +(-3.5,0) |-  (call);
+%%			
+%%			\path (write) -- (stop);
+%%%			
+%%			\tikzstyle{every path}=[commentline]
+%%			
+%%			\path (comment1) -- (call);
+%%			\path (comment2) -- (decide);
+%%			\path (comment3) -- (load);
+%%			\path (comment4) -- (create1);
+%%			\path (comment5) -- (create);
+%%			
+%		\end{tikzpicture}
+%	\end{center}
+%\end{figure}

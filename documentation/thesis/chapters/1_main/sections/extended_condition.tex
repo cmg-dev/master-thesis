@@ -1,4 +1,4 @@
-Die vorgestellte erweiterte Form des Modells erleichtert Implementation und Verifikation. Große Teile des Modells sind statisch (vgl. \ref{eq:block_matrix_form}) und können im Voraus berechnet werden. Es sind nun auch die gemessenen Phasenwerte Teil des Modells, genauer: der Matrix $\mathbf{A}$. Im Folgenden werden die Auswirkungen auf die Kondition der Matrix betrachtet. Dazu wird Untersucht inwieweit die Zerlegung in Blockmatrizen und die Untersuchung der Kondition dieser eine Abschätzung der vollständigen Konditionszahl im Allgemeinen darstellt. 
+Die vorgestellte erweiterte Form des Modells erleichtert Implementation und Verifikation, da große Teile vorberechnet und in geeigneten Strukturen abgelegt werden können. Diese statischen Teile des Models sind in Gleichung~\ref{eq:block_matrix_form} ersichtlich. Es sind nun auch die gemessenen Phasenwerte Teil des Modells, genauer: der Matrix $\mathbf{A}$. Im Folgenden werden die Auswirkungen auf die Kondition der Matrix betrachtet, wenn man diese Phasendaten hinzurechnet. Weiterhin wird Untersucht inwieweit die Zerlegung in Blockmatrizen und die Untersuchung der Kondition dieser eine Abschätzung der vollständigen Konditionszahl im Allgemeinen darstellt. 
 %
 \begin{equation}
 \label{eq:block_matrix_form}
@@ -18,17 +18,17 @@ Die Abbildung~\ref{fig:CondNumberAnalyze} zeigt die bereits angestellte Untersuc
 \item Die Konditionszahl der \textit{schlechteste} ist wesentlich kleiner (ca. Faktor $10$) als im rein geometrischen Modell
 \end{enumerate}
 %
-\begin{figure}[h]
+\begin{figure}[h!]
          \centering
-	     \caption{Analyse der Konditionszahlen aller möglichen Matrizen für den Messaufbau; Die Konditionszahl ist für jede mögliche Permutation an Messantennen für eine Referenzantenne angegeben}\label{fig:CondNumberAnalyze}
-         \begin{subfigure}[h]{0.5\textwidth}
+	     \caption[Ergebnisse der Konditionsanalyse alle Permutationen]{Analyse der Konditionszahlen aller möglichen Matrizen für den Messaufbau; Die Konditionszahl ist für jede mögliche Permutation an Messantennen für eine Referenzantenne angegeben}\label{fig:CondNumberAnalyze}
+         \begin{subfigure}[t]{0.45\textwidth}
                  \centering
                  \includegraphics[width=\textwidth]{img/fenceModell3x3.png}
-                 \caption{Konditionszahl der rein geometrischen $3\times3$ Matrix normiert auf den größten vorkommenden Wert ($=2149,16                 $)}
+                 \caption{Konditionszahl der rein geometrischen $3\times3$ Matrix normiert auf den größten vorkommenden Wert ($=2149,16$). Auf den Achsen finden sich der Index der Referenzantenne sowie die Nummer der Permutation. Die z-Achse enthält die normierte Kondition}
                  \label{fig:AnalyzeOf3x3}
          \end{subfigure}
-%         
-         \begin{subfigure}[h]{0.5\textwidth}
+\qquad        
+         \begin{subfigure}[t]{0.45\textwidth}
                  \centering
                  \includegraphics[width=\textwidth]{img/fenceModell9x3.png}
                  \caption{Konditionszahl der $10\times3$ Matrix normiert auf den größten vorkommenden Wert ($=257,13$); In dieser Konfiguration sind die Konstanten ($a_1$ \& $a_2$) sowie die variablen, gemessenen Phasen $\Theta_k$ enthalten}
@@ -37,9 +37,9 @@ Die Abbildung~\ref{fig:CondNumberAnalyze} zeigt die bereits angestellte Untersuc
 %
 \end{figure}
 %
-Aus der Grafik lässt sich entnehmen, dass es für jede Referenzantenne aus der Geometrie alleine gute Konfigurationen existieren. Aus diesen Erkenntnissen kann in späteren Aufbauten, die Position der Antennen optimiert werden. Diese Verfahren wird in Abschnitt~\ref{sec:Calibration_Optimaztion} weiter beschrieben.
+Aus der Grafik lässt sich entnehmen, dass es für jede Referenzantenne aus der Geometrie alleine gute Konfigurationen existieren. Aus diesen Erkenntnissen kann in späteren Aufbauten, die Position der Antennen optimiert werden. Diese Verfahren wird in Abschnitt~\ref{sec:Calibration_Optimaztion} weiter beschrieben. Die Grafik lässt erkennen, dass eine Konfiguration die ohne Phasendaten eine gut Kondition aufwies, eine ähnliche Kondition behält wenn diese Daten in der Modell einfließen.
 %
 %- Section 2.3 --------------------------------------------------------------
 \subsection{Weitere Anwendung der Konditionszahl}
-Weitere Anwendungen, die sich aus der Konditionszahl der Matrix ableiten, sind denkbar. Für die FPGA-Software ist, parallel zu diesem Projekt, eine intelligente Umschaltung der Antennen in der Planung. Die Kondition der geometrische Matrix verändert sich nach dem Kalibrieren nicht mehr. Dadurch und durch die oben beschriebenen Überlegungen kann statisch eine Abschätzung für die Konditionszahl, von zwei der drei Blockmatrizen, im Vorfeld erstellt werden. Die Konditionszahl dient zum Steuern der Umschaltung. Ordner man die möglichen Konfiguration anhand ihrer Konditionszahl (niedrigste zuerst) in einer statischen Liste an so kann im FPGA eine einfache, schlaue Umschaltung implementiert werden. Diese würde immer dafür sorgen, dass Messdaten von einer Konfiguration bevorzugt werden, die eine niedrige Konditionszahl hat und somit relativ sicher zu einer guten Lösung führen. Diese überlegungen werden im Rahmen dieser Arbeit nicht näher beschrieben.\\
-Eine Weitere Anwendung ergibt sich für die Kalibrierung. Der Aufbau der Antennen kann unter Berücksichtigung der Kondition optimieren. Ziel der Optimierung wäre es durch eine geeignete Positionierung der Antennen, die Anzahl der Antennenpermutationen mit kleiner Konditionszahl zu maximieren.
+Weitere Anwendungen, die sich aus der Konditionszahl der Matrix ableiten, sind denkbar. Für die FPGA-Software ist, parallel zu diesem Projekt, eine intelligente Umschaltung der Antennen in der Planung. Die Kondition der geometrische Matrix verändert sich nach dem Kalibrieren nicht mehr. Dadurch und durch die oben beschriebenen Überlegungen kann statisch eine Abschätzung für die Konditionszahl, von zwei der drei Blockmatrizen, im Vorfeld erstellt werden. Die Konditionszahl dient zum Steuern der Umschaltung. Ordnet man die möglichen Konfiguration anhand ihrer Konditionszahl (niedrigste zuerst) in einer statischen Liste an so kann im FPGA eine einfache, schlaue Umschaltung implementiert werden. Diese würde immer dafür sorgen, dass Messdaten von einer Konfiguration bevorzugt werden, die eine niedrige Konditionszahl hat und somit relativ sicher zu einer guten Lösung führen. Diese Überlegungen werden im Rahmen dieser Arbeit nicht näher beschrieben.\\
+Eine Weitere Anwendung ergibt sich für die Kalibrierung. Der Aufbau der Antennen kann unter Berücksichtigung der Kondition optimiert werden. Ziel der Optimierung wäre es durch eine geeignete Positionierung der Antennen, die Anzahl der Antennenpermutationen mit kleiner Konditionszahl zu maximieren.

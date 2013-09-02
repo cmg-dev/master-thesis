@@ -1,8 +1,4 @@
-./plot.sh -f E1000 -s 0 -e 100 -a 3 -t 8 -p no -c yes -x no -l 500000
-#./plot.sh -f E1001 -s 0 -e 100 -a 3 -t 8 -p no -c yes -x no -l 150000
-exit 0 
-
-#!bin/bash
+#!/bin/bash
 #
 usage()
 {

@@ -11,6 +11,8 @@
 #include "../libCalibration/calib.h"
 #include "ObjectFunctions.h"
 
+#include "../libFitnessPlanCalculator/FitnessPlaneCalculator.h"
+
 #include <nr3/nr3.h>
 
 /** */
@@ -562,6 +564,21 @@ namespace PRPSEvolution {
 
 				f.close();
 
+			}
+
+			void calcFitnessMkII ( int offset )
+			{
+				PRPSEvolution::Models::WholeTomatoMkII model( 7 );
+				model.setNumberOfVariables( 7 );
+//
+				model.setParams( A, b, names );
+
+				Support::FitnessPlaneCalculator<7> fpc( offset );
+				
+				std::cout << " calculate " << std::endl;
+				fpc.calculate( model );
+
+				
 			}
 			
 			/**

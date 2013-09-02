@@ -25,6 +25,7 @@
 #define _REFINE_SELECTION
 #define _PP_FORM_GROUPS
 #define _USE_IDEAL_INPUT
+#define _Write_SOLUTION_STATISTICS
 
 #ifdef _USE_SHARK_3_0_
 	#include "../libSolve/processMkII.h"
@@ -180,6 +181,24 @@ int main ( int argc, char *argv[ ] ) {
 
 	int meanTime = 0;
 
+#ifdef _Write_SOLUTION_STATISTICS
+	std::ofstream f;
+	std::ostringstream s;
+	s << "output/mkII/" << FILENAME << "_SolStat.dat";
+
+	std::string f_path = s.str();
+
+	if( f_path != "" )
+		f.open( f_path );
+
+	if( !f.is_open() ) {
+		std::cout << "ERROR: Could not open '" << f_path << "'" << std::endl;
+		return -1;
+	}
+
+#endif
+	
+	
 	/**********************************************************************/
 	if( VARIANT_SW == 0 ) {
 		t_00			= steady_clock::now();
@@ -389,8 +408,6 @@ int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	/* This will solve for groups of matrices								 */
 	if( VARIANT_SW == 4 ) {
-
-				
 		auto As 		= preprocess.matGroups;
 		auto vs			= preprocess.vectorGroups;
 		auto names		= preprocess.nameGroups;
@@ -443,10 +460,18 @@ int main ( int argc, char *argv[ ] ) {
 
 			t_1 = steady_clock::now();
 
-			std::cout << j <<"\tMark II :: total " << duration_cast<milliseconds>(t_1-t_000).count() << " ms" << std::endl;
+			int total = duration_cast<milliseconds>(t_1-t_000).count();
+			std::cout << j <<"\tMark II :: total " << total << " ms" << std::endl;
 			std::cout << j <<"\tMark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
-			
+
+#ifdef _Write_SOLUTION_STATISTICS
+			f << total << " " << meanTime << " " << meanTime/NO_OF_SOLUTIONS << " " << NO_OF_SOLUTIONS << std::endl;
+			f << std::endl;
+#endif
 		}
+
+		if( f.is_open() )
+			f.close();
 		
 		return 0;
 
@@ -454,8 +479,7 @@ int main ( int argc, char *argv[ ] ) {
 
 	/**********************************************************************/
 	/*
-	 * This will solve for groups of matrices, while using the rounding
-	 * Model
+	 * This will solve for groups of matrices
 	 * 
 	 */
 	if( VARIANT_SW == 5 ) {
@@ -474,6 +498,7 @@ int main ( int argc, char *argv[ ] ) {
 			meanTime = 0;
 
 			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+			
 			process.setMaxEvauations( EVALUATIONS );
 
 			std::ostringstream s;
@@ -504,11 +529,20 @@ int main ( int argc, char *argv[ ] ) {
 
 			t_1 = steady_clock::now();
 
-			std::cout << j <<"\tMark II :: total " << duration_cast<milliseconds>(t_1-t_000).count() << " ms" << std::endl;
+			int total = duration_cast<milliseconds>(t_1-t_000).count();
+			
+			std::cout << j <<"\tMark II :: total " << total << " ms" << std::endl;
 			std::cout << j <<"\tMark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
 
+#ifdef _Write_SOLUTION_STATISTICS
+			f << total << " " << meanTime << " " << meanTime/NO_OF_SOLUTIONS << " " << NO_OF_SOLUTIONS << std::endl;
+			f << std::endl;
+#endif
 		}
 
+		if( f.is_open() )
+			f.close();
+	
 		return 0;
 
 	}
@@ -516,7 +550,7 @@ int main ( int argc, char *argv[ ] ) {
 	/**********************************************************************/
 	/* the calibration variant */
 	if( VARIANT_SW == 10 ) {
-		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 10" << std::endl;
+		std::cout << "EvoCal:: Calculating the calibration via evolutionary algorithm" << std::endl;
 
 		meanTime = 0;
 
@@ -541,17 +575,10 @@ int main ( int argc, char *argv[ ] ) {
 
 				process.incrementFileCounter();
 				t_1 = steady_clock::now();
-	// 				std::cout << j <<"\tMark II :: "
-	// 						<< i
-	// 						<< " "
-	// 						<< duration_cast<milliseconds>(t_1-t_0).count()
-	// 						<< " ms"
-	// 						<< std::endl;
-
 				meanTime += duration_cast<milliseconds>(t_1-t_0).count();
 
 			}
-			std::cout << j << "\tMark II :: "
+			std::cout << j << "\tEvoCal:: "
 					<< duration_cast<milliseconds>(t_1-t_00).count()
 					<< " ms for "
 					<< NO_OF_SOLUTIONS
@@ -560,13 +587,64 @@ int main ( int argc, char *argv[ ] ) {
 		}
 		t_1 = steady_clock::now();
 
-		std::cout << j <<"\tMark II :: total " << duration_cast<milliseconds>(t_1-t_000).count() << " ms" << std::endl;
-		std::cout << j <<"\tMark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
+		int total = duration_cast<milliseconds>(t_1-t_000).count();
+			
+		std::cout << j <<"\tEvoCal:: total " << total << " ms" << std::endl;
+		std::cout << j <<"\tEvoCal:: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
 
+#ifdef _Write_SOLUTION_STATISTICS
+		f << total << " " << meanTime << " " << meanTime/NO_OF_SOLUTIONS << " " << NO_OF_SOLUTIONS << std::endl;
+		f << std::endl;
+#endif
+
+		if( f.is_open() )
+			f.close();
+	
+		return 0;
+
+	}
+	
+	/**********************************************************************/
+	/* Calculate the fitness plane for one Antenna */
+	if( VARIANT_SW == 100 ) {
+		std::cout << "Mark II :: Calculating the fitness of Model WholeTomatoMkII" << std::endl;
+
+		auto As 		= preprocess.matGroups;
+		auto vs			= preprocess.vectorGroups;
+		auto names		= preprocess.nameGroups;
+
+		meanTime = 0;
+		for( int i = 0; i < 8; i++ ) {
+			auto A		= As[ i ];
+			auto v		= vs[ i ];
+			auto name	= names[ i ];
+
+			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+
+			process.setAntennaCoords( PC.c_k0 );
+
+			/* calc the fitness of the model */
+			process.calcFitnessMkII( i );
+			meanTime += duration_cast<milliseconds>(t_1-t_0).count();
+			
+		}
+		std::cout << "\tFitnes plan calculated:: done" << std::endl;
+
+		int total = duration_cast<milliseconds>(t_1-t_000).count();
+		
+#ifdef _Write_SOLUTION_STATISTICS
+		f << total << " " << meanTime << " " << meanTime/8 << " " << 8 << std::endl;
+		f << std::endl;
+#endif
+
+		if( f.is_open() )
+			f.close();
+	
 		return 0;
 
 	}
 
+	
 #else
 	Solve::Process process;
 

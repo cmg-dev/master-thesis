@@ -318,7 +318,7 @@ else
 #=================================================================================================#
     if (( $SET == 10 ))
     then
-        TRIALS=30
+        TRIALS=10
         VARIANT=4
         START=170
         STOP=180
@@ -347,6 +347,56 @@ else
 
     fi
 #=================================================================================================#
+#fixed mu = 1
+    if (( $SET == 11 ))
+    then
+        TRIALS=20
+        VARIANT=4
+        START=300
+        STOP=310
+        GROUPSIZE=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=50000
+        MU=1
+        LAMBDA=10
+       
+        a=0
+        b=10
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+        GROUPSIZE=1
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            #MU=$((MU+5))
+            LAMBDA=$((LAMBDA+10))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+10))
+            STOP=$((STOP+10))
+
+        done
+
+    fi
+#=================================================================================================#
+#Test the (1+1) strategy
+    if (( $SET == 12 ))
+    then
+        TRIALS=30
+        VARIANT=4
+        START=500
+        STOP=510
+        GROUPSIZE=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=50000
+        MU=1
+        LAMBDA=2
+        
+        action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+        
+
+    fi
+#=================================================================================================#
     #test the algorithm against the calibration
     if (( $SET == 100 ))
     then
@@ -357,6 +407,20 @@ else
         GROUPSIZE=1
         INCGROUPSIZE="no"
         EVALUATIONS=3000
+        action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+
+    fi
+#=================================================================================================#
+    #calculated the fitnes plane of given model
+    if (( $SET == 200 ))
+    then
+        TRIALS=1
+        VARIANT=100
+        START=1000
+        STOP=1001
+        GROUPSIZE=1
+        INCGROUPSIZE="no"
+        EVALUATIONS=0
         action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
 
     fi

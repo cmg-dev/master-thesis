@@ -15,16 +15,42 @@
 %
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
+\chapter{Abbildungen}
+\section{Messaufbauten}
+\begin{figure}[h!]
+ \centering
+         \includegraphics[width=\textwidth]{img/00_Placeholder.png}
+         \caption[PRPS-Kalibiersystem]{PRPS-Messsystem in der "Spinnen"-Konfiguration. Es umfasst vier Messwertgeber und eine Recheneinheit.}
+         \label{fig:Spider1}
+\end{figure}
+\newpage
+%
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\begin{figure}[h!]
+ \centering
+         \includegraphics[width=\textwidth]{img/00_Placeholder.png}
+         \caption[Übersicht Kalibrieraufbau]{Aufbau des für die Kalibrierung verwendeten Messaufbaus.}
+         \label{fig:Spider_setup1}
+\end{figure}
+\newpage
+%
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
 \chapter{Gnuplot Skripte}
 \section{Boxplot}
 \tiny
-\lstinputlisting[language=Gnuplot,
+\lstinputlisting[
+		title=Gnuplot Boxplot-Skript,
+		caption=Gnuplot Boxplot-Skript,
+		language=Gnuplot,
 		numbers=left,
 %		frameround=fttt,
 		frame=trbl,
 		breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
    	    breaklines=true,  
-		xleftmargin=1cm]{../../dev/src/c-cpp/AntConfApp/build/Debug/test/output/mkII/plot/kondensierte_boxen.gp}
+		xleftmargin=1cm,
+		showstringspaces=false]{../../dev/src/c-cpp/AntConfApp/build/Debug/test/output/mkII/plot/kondensierte_boxen.gp}
 \label{append_Script_Box-plot}
 \newpage
 %
@@ -34,14 +60,18 @@
 %\begin{footnote}
 \tiny 
 %\input{../macros/matlab_highlighting_lst.tex}
-\lstinputlisting[language=Gnuplot,
+\lstinputlisting[
+		title=Gnuplot Lineplot-Skript,
+		caption=Gnuplot Lineplot-Skript,
+		language=Gnuplot,
 		numbers=left,
 %		frameround=fttt,
 		frame=trbl,
 		breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
    	    breaklines=true,  
-		xleftmargin=1cm]{../../dev/src/c-cpp/AntConfApp/build/Debug/test/output/mkII/plot/kondensierte_linien.gp}
-\label{append_Script_Box-plot}
+		xleftmargin=1cm,
+		showstringspaces=false]{../../dev/src/c-cpp/AntConfApp/build/Debug/test/output/mkII/plot/kondensierte_linien.gp}
+\label{append_Script_Line-plot}
 \newpage
 %
 %----------------------------------------------------------------------------
@@ -50,14 +80,18 @@
 %\begin{footnote}
 %\input{../macros/matlab_highlighting_lst.tex}
 \tiny
-\lstinputlisting[language=Gnuplot,
+\lstinputlisting[
+		title=Gnuplot Scatterplot-Skript,
+		caption=Gnuplot Scatterplot-Skript,
+		language=Gnuplot,
 		numbers=left,
 %		frameround=fttt,
 		frame=trbl,
 		breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
    	    breaklines=true,  
-		xleftmargin=1cm]{../../dev/src/c-cpp/AntConfApp/build/Debug/test/output/mkII/plot/scatter.gp}
-\label{append_Script_Box-plot}
+		xleftmargin=1cm,
+		showstringspaces=false]{../../dev/src/c-cpp/AntConfApp/build/Debug/test/output/mkII/plot/scatter.gp}
+\label{append_Script_Scatter-plot}
 \newpage
 %
 %----------------------------------------------------------------------------
