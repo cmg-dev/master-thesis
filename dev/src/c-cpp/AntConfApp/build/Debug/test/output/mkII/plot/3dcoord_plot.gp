@@ -14,12 +14,12 @@ unset key
 set grid
 set ticslevel 0
 
-#plot "data/coord_plot.dat" u 1:2 every ::1:::
-
 set title "x-y View"
+set xrange [-2:2]
+set yrange [-0:2]
 plot "data/coord_plot.dat" u 1:2 ls 1
 
-set title "x-z - View"
+set title "x-z View"
 set xrange [-2:2]
 set yrange [-0:2]
 plot "data/coord_plot.dat" u 1:3 ls 1
@@ -29,12 +29,13 @@ set xrange [-2:2]
 set yrange [0:2]
 plot "data/coord_plot.dat" u 2:3 ls 1
 
-set title "3d View"
+set title "3D View"
 #3d plot
 set xrange [-3:3]
 set yrange [-3:3]
 set zrange [0:2]
-set view 70, 65
+set view 180, 65
 splot "data/coord_plot.dat" u 1:2:3 ls 1
 
 unset multiplot
+quit
