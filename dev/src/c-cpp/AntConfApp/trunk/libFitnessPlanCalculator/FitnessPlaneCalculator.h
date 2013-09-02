@@ -49,13 +49,13 @@ namespace PRPSEvolution {
 			/**
 			 * 
 			 */
-			FitnessPlaneCalculator()
+			FitnessPlaneCalculator( int offset ) : off( offset )
 			{
 				rPlaneLimitsFromFile();
 
-				std::cout << "dumping limits to std " << std::endl;
-				for( auto limit : limits )
-					limit.dump();
+// 				std::cout << "dumping limits to std " << std::endl;
+// 				for( auto limit : limits )
+// 					limit.dump();
 				
 			}
 
@@ -159,7 +159,7 @@ namespace PRPSEvolution {
 				limits.dump();
 			}
 
-			std::string f_pathBase = "output/plane";
+			std::string f_pathBase = "output/fitness/plane";
 			int f_count = 0;
 			void calculate( ObjectiveFunctionType const& model )
 			{
@@ -167,7 +167,7 @@ namespace PRPSEvolution {
 					std::ofstream f;
 					std::ostringstream s;
 
-					s << f_pathBase << "_" << f_count++ << ".dat";
+					s << f_pathBase << "_" << off << "_" << f_count++ << ".dat";
 
 					std::string f_path = s.str();
 
@@ -216,6 +216,7 @@ namespace PRPSEvolution {
 			}
 			
 		private:
+			int off;
 			
 		};
 		

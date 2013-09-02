@@ -566,14 +566,14 @@ namespace PRPSEvolution {
 
 			}
 
-			void calcFitnessMkII ()
+			void calcFitnessMkII ( int offset )
 			{
 				PRPSEvolution::Models::WholeTomatoMkII model( 7 );
 				model.setNumberOfVariables( 7 );
 //
 				model.setParams( A, b, names );
 
-				Support::FitnessPlaneCalculator<7> fpc;
+				Support::FitnessPlaneCalculator<7> fpc( offset );
 				
 				std::cout << " calculate " << std::endl;
 				fpc.calculate( model );

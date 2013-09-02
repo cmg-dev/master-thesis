@@ -327,7 +327,7 @@ namespace PRPSEvolution {
 				auto& names = c[r].names;
 
 				/* run through all configurations **********************************/
-				for( int i = i_start; i < i_goal; i++  ) {
+				for( int i = i_start; i < i_goal; i++ ) {
 					if( i == r ) {
 						i_start++;
 						continue;

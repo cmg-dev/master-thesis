@@ -623,7 +623,8 @@ int main ( int argc, char *argv[ ] ) {
 
 			process.setAntennaCoords( PC.c_k0 );
 
-			process.calcFitnessMkII( );
+			/* calc the fitness of the model */
+			process.calcFitnessMkII( i );
 			meanTime += duration_cast<milliseconds>(t_1-t_0).count();
 			
 		}
