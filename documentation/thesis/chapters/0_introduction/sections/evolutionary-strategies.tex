@@ -23,6 +23,16 @@ Wir wollen nun in Abbildung~\ref{fig:es_flowchart} einen Blick auf den prinzipie
 %------------------------------------------------------------------------------
 \input{chapters/0_introduction/sections/struct_es.tex}
 %------------------------------------------------------------------
+\begin{figure} [ht!]
+\centering
+         \caption[Konzept direkter Optimierung mittels CMA-ES]{Die Abbildung zeigt sechs Lösungsschritte des CMA-ES-Verfahrens. Eingangs wird eine Population mit einer Gauß-Verteilung generiert. Diese bewegt sich von Generation näher an das globale Optimum. Die gestrichelte Linie zeigt dabei eine Isolinie der Wahrscheinlichkeitsdichte. Wir befinden uns auf einem 2D-Problem, somit wird das vorankommen der Population über zwei $\sigma$'s gesteuert. Dadurch kommt die Ellipse zu Stande. Die Linie bedeutet nicht, dass nur in diesem Bereich Nachkommen erzeugt werden, siehe z.B. Generation 4. Je nach Beschaffenheit des Problems und nach Nähe zum Optimum werden die steuernden $\sigma$'s kleiner. }
+         \label{fig:conecpt_cma.es}
+         \vspace{0.5cm}
+         \includegraphics[width=\textwidth]{img/CMA-ES_algorithm.png}
+%      
+\end{figure}
+%
+%------------------------------------------------------------------
 \subsubsection[Mutation]{Mutation}
 Ein Nachkomme $\mathbf{x}_C$ wird aus seinem Elternteil $\mathbf{x}_P$ und einer zufälligen Variation $\mathbf{d}$ gebildet.
 \begin{equation} \label{eq:Mutation_Child}
