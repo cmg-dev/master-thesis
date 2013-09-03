@@ -1,10 +1,10 @@
-MuPlusLambdaES( Ueber9000<double> *ueber9000, double seed ) {
+MuCommaLambdaES( Ueber9000<double> *ueber9000, double seed ) {
 	steady_clock::time_point t_0 = steady_clock::now();
 
 	const unsigned Mu           = 5;
 	const unsigned Lambda       = 25;
 	const unsigned Dimension    = ueber9000->Dimension;
-	const unsigned Iterations   = 3000;
+	const unsigned Iterations   = 20000;
 	const unsigned Interval     = 10;
 	const unsigned NSigma       = 1;
 
@@ -14,25 +14,21 @@ MuPlusLambdaES( Ueber9000<double> *ueber9000, double seed ) {
 	const double   MaxInit        = 7.;
 	const double   SigmaInit    = 6;
 
-	/* activate elitist strategy */
-	const bool     PlusStrategy = true;
-	bool			Convergence = false;
 
 	unsigned       i, t;
+
+	T res;
 
 	Rng::seed(seed);
 
 	// define populations
-	PopulationT<double> parents(Mu,     
-			ChromosomeT< double >(Dimension),
-			ChromosomeT< double >(NSigma));
-
-	PopulationT<double> offsprings(Lambda, 
-			ChromosomeT< double >(Dimension),
-			ChromosomeT< double >(NSigma));
+	PopulationT<double> parents(Mu,     ChromosomeT< double >(Dimension),
+					ChromosomeT< double >(NSigma));
+	PopulationT<double> offsprings(Lambda, ChromosomeT< double >(Dimension),
+						ChromosomeT< double >(NSigma));
 
 	// minimization task
-	parents   .setMinimize();
+	parents.setMinimize();
 	offsprings.setMinimize();
 
 	// initialize parent population
@@ -41,16 +37,17 @@ MuPlusLambdaES( Ueber9000<double> *ueber9000, double seed ) {
 		parents[ i ][ 1 ].initialize(SigmaInit, SigmaInit);
 	}
 
-	// selection parameters
+	// selection parameters (number of elitists)
 	unsigned numElitists = PlusStrategy ? Mu : 0;
 
 	// standard deviations for mutation of sigma
 	double     tau0 = 1. / sqrt(2. * Dimension);
 	double     tau1 = 1. / sqrt(2. * sqrt((double)Dimension));
 
-	// this is for plus-strategy only
-	for (i = 0; i < parents.size(); ++i)
-		parents[ i ].setFitness((ueber9000->*ueber9000->evaluate)(parents[ i ][ 0 ]));
+	// evaluate parents (only needed for elitist strategy)
+	if (PlusStrategy)
+		for (i = 0; i < parents.size(); ++i)
+			parents[ i ].setFitness((ueber9000->*ueber9000->evaluate)(parents[ i ][ 0 ]));
 
 	std::vector<double> fitness;
 	fitness.reserve(10);
@@ -84,27 +81,13 @@ MuPlusLambdaES( Ueber9000<double> *ueber9000, double seed ) {
 		if( parents.best().fitnessValue() < minSolutionFitness )
 			break;
 
-		/* convergenzkriterium */
-		if( t > 20 ) {
-			double sum = 0.;
-			for( auto i : fitness ) {
-				sum += i;
-
-			}
-			sum /= fitness[fitness.size()-1];
-			sum = abs( sum );
-			if( sum == fitness.size() ) { Convergence = true; break; }
-			fitness.erase( fitness.begin(), fitness.begin() + 1 );
-
-		}
-		fitness.push_back( parents.best().fitnessValue() );
-
 	}
 
-	steady_clock::time_point t_1 = steady_clock::now();
-
 	auto p = parents.best();
+
 	solutionFitness = parents.best().fitnessValue();
+
+	steady_clock::time_point t_1 = steady_clock::now();
 
 	res.fitness = p.fitnessValue();
 	res.iterations = t;
