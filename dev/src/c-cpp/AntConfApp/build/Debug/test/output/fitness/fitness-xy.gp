@@ -1,9 +1,45 @@
 #
 # This plot generates the x-y view of the fitness plane
 #
+at(file, row, col) = system( sprintf("awk -v row=%d -v col=%d 'NR == row {print $col}' %s", row, col, file) )
+
 set terminal pngcairo truecolor transparent background "#ffffff" enhanced font "arial,10" size 1200,1000 
+set macros
+
+SETZOOM="centerx=at(fn,index+1,1);\
+    centery=at(fn, index+1,2);\
+    set xrange[centerx-5.5:centerx+5.5];\
+    set yrange[centery-5.5:centery+5.5]"
+
+############################################
+
+f1="data/plane_".i."_0.dat"
+f2="data/plane_".i."_1.dat"
+f3="data/plane_".i."_2.dat"
+f4="data/plane_".i."_3.dat"
+f5="data/plane_".i."_4.dat"
+f6="data/plane_".i."_5.dat"
+f7="data/plane_".i."_6.dat"
+f8="data/plane_".i."_7.dat"
+f9="data/plane_".i."_8.dat"
+f10="data/plane_".i."_9.dat"
+f11="data/plane_".i."_10.dat"
+f12="data/plane_".i."_11.dat"
+f13="data/plane_".i."_12.dat"
+f14="data/plane_".i."_13.dat"
+f15="data/plane_".i."_14.dat"
+f16="data/plane_".i."_15.dat"
 
 reset
+
+############################################
+
+#set style line 1 linetype 1 linecolor rgb "#708090"  linewidth 1.000 pointtype 9 pointsize 1
+SETSTYLE="set style line 1 lt 1 lc rgb '#000000' lw .5;\
+    set style line 2 lt 1 lc rgb '#2f4f4f' lw 1"
+
+############################################
+
 
 set loadpath '~/dev/gnuplot-colorbrewer/diverging' \
  '~/dev/gnuplot-colorbrewer/qualitavive' \
@@ -12,22 +48,22 @@ set loadpath '~/dev/gnuplot-colorbrewer/diverging' \
 set dgrid3d 20,20,1
 
 ########################################################################
-stats "data/plane_".i."_0.dat" u 8 name "A0" nooutput 
-stats "data/plane_".i."_1.dat" u 8 name "A1" nooutput 
-stats "data/plane_".i."_2.dat" u 8 name "A2" nooutput 
-stats "data/plane_".i."_3.dat" u 8 name "A3" nooutput 
-stats "data/plane_".i."_4.dat" u 8 name "A4" nooutput 
-stats "data/plane_".i."_5.dat" u 8 name "A5" nooutput 
-stats "data/plane_".i."_6.dat" u 8 name "A6" nooutput 
-stats "data/plane_".i."_7.dat" u 8 name "A7" nooutput 
-stats "data/plane_".i."_8.dat" u 8 name "A8" nooutput 
-stats "data/plane_".i."_9.dat" u 8 name "A9" nooutput 
-stats "data/plane_".i."_10.dat" u 8 name "A10" nooutput 
-stats "data/plane_".i."_11.dat" u 8 name "A11" nooutput 
-stats "data/plane_".i."_12.dat" u 8 name "A12" nooutput 
-stats "data/plane_".i."_13.dat" u 8 name "A13" nooutput 
-stats "data/plane_".i."_14.dat" u 8 name "A14" nooutput 
-stats "data/plane_".i."_15.dat" u 8 name "A15" nooutput 
+stats f1 u 8 name "A0" nooutput 
+stats f2 u 8 name "A1" nooutput 
+stats f3 u 8 name "A2" nooutput 
+stats f4 u 8 name "A3" nooutput 
+stats f5 u 8 name "A4" nooutput 
+stats f6 u 8 name "A5" nooutput 
+stats f7 u 8 name "A6" nooutput 
+stats f8 u 8 name "A7" nooutput 
+stats f9 u 8 name "A8" nooutput 
+stats f10 u 8 name "A9" nooutput 
+stats f11 u 8 name "A10" nooutput 
+stats f12 u 8 name "A11" nooutput 
+stats f13 u 8 name "A12" nooutput 
+stats f14 u 8 name "A13" nooutput 
+stats f15 u 8 name "A14" nooutput 
+stats f16 u 8 name "A15" nooutput 
 ########################################################################
 
 print "stats created"
@@ -39,74 +75,143 @@ unset surface
 ########################################################################
 
 set table 'data/processed/1.dat'
-#splot "data/plane_".i."_0.dat" u 1:2:( $8/A0_max )
-splot "data/plane_".i."_0.dat" u 1:2:8
+#splot f1 u 1:2:( $8/A0_max )
+splot f1 u 1:2:8
 unset table
 
 set table 'data/processed/2.dat'
-splot "data/plane_".i."_1.dat" u 1:2:8
+splot f2 u 1:2:8
 unset table
 
 set table 'data/processed/3.dat'
-splot "data/plane_".i."_2.dat" u 1:2:8
+splot f3 u 1:2:8
 unset table
 
 set table 'data/processed/4.dat'
-splot "data/plane_".i."_3.dat" u 1:2:8
+splot f4 u 1:2:8
 unset table
 
 set table 'data/processed/5.dat'
-splot "data/plane_".i."_4.dat" u 1:2:8
+splot f5 u 1:2:8
 unset table
 
 set table 'data/processed/6.dat'
-splot "data/plane_".i."_5.dat" u 1:2:8
+splot f6 u 1:2:8
 unset table
 
 set table 'data/processed/7.dat'
-splot "data/plane_".i."_6.dat" u 1:2:8
+splot f7 u 1:2:8
 unset table
 
 set table 'data/processed/8.dat'
-splot "data/plane_".i."_7.dat" u 1:2:8
+splot f8 u 1:2:8
 unset table
 
 set table 'data/processed/9.dat'
-splot "data/plane_".i."_8.dat" u 1:2:8
+splot f9 u 1:2:8
 unset table
 
 set table 'data/processed/10.dat'
-splot "data/plane_".i."_9.dat" u 1:2:8
+splot f10 u 1:2:8
 unset table
 
 set table 'data/processed/11.dat'
-splot "data/plane_".i."_10.dat" u 1:2:8 
+splot f11 u 1:2:8 
 unset table
 
 set table 'data/processed/12.dat'
-splot "data/plane_".i."_11.dat" u 1:2:8
+splot f12 u 1:2:8
 unset table
 
 set table 'data/processed/13.dat'
-splot "data/plane_".i."_12.dat" u 1:2:8
+splot f13 u 1:2:8
 unset table
 
 set table 'data/processed/14.dat'
-splot "data/plane_".i."_13.dat" u 1:2:8
+splot f14 u 1:2:8
 unset table
 
 set table 'data/processed/15.dat'
-splot "data/plane_".i."_14.dat" u 1:2:8
+splot f15 u 1:2:8
 unset table
 
 set table 'data/processed/16.dat'
-splot "data/plane_".i."_15.dat" u 1:2:8
+splot f16 u 1:2:8
 unset table
 ########################################################################
 
 reset 
 
-set output "img/xy_a".i.".png"
+#@SETSTYLE
+
+set style line 1 lt 1 lc rgb '#000000' lw .5
+set style line 2 lt 1 lc rgb "#2f4f4f" lw 1
+
+set output "img/xy/xy_a".i.".png"
+set multiplot layout 4,4 rowsfirst title "Antenne ".i." x-y - view"
+
+set style data lines
+
+unset key
+set tic scale 0
+set view map
+set dgrid3d 40, 40, 1
+
+set contour base
+
+#set palette negative 
+set xrange[-20:20]
+set yrange[-20:20]
+
+set grid front
+
+#load 'BrBG.plt'
+load 'Greys.plt'
+
+plot f1 u 1:2:( A0_min+$8/A0_max) with image, "data/processed/1.dat"  w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f1 u 1:2:( ($8==(A0_min)) ? "+" : "" ) with labels
+
+#unset xtics
+#unset ytics
+
+plot f2 u 1:2:( A1_min+$8/A1_max) with image, "data/processed/2.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f2 u 1:2:( ($8==(A1_min)) ? "+" : "" ) with labels
+plot f3 u 1:2:( A2_min+$8/A2_max) with image, "data/processed/3.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f3 u 1:2:( ($8==(A2_min)) ? "+" : "" ) with labels
+plot f4 u 1:2:( A3_min+$8/A3_max) with image, "data/processed/4.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f4 u 1:2:( ($8==(A3_min)) ? "+" : "" ) with labels
+plot f5 u 1:2:( A4_min+$8/A4_max) with image, "data/processed/5.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f5 u 1:2:( ($8==(A4_min)) ? "+" : "" ) with labels
+plot f6 u 1:2:( A5_min+$8/A5_max) with image, "data/processed/6.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f6 u 1:2:( ($8==(A5_min)) ? "+" : "" ) with labels
+plot f7 u 1:2:( A6_min+$8/A6_max) with image, "data/processed/7.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f7 u 1:2:( ($8==(A6_min)) ? "+" : "" ) with labels
+plot f8 u 1:2:( A7_min+$8/A7_max) with image, "data/processed/8.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f8 u 1:2:( ($8==(A7_min)) ? "+" : "" ) with labels
+plot f9 u 1:2:( A8_min+$8/A8_max) with image, "data/processed/9.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f9 u 1:2:( ($8==(A8_min)) ? "+" : "" ) with labels
+plot f10 u 1:2:( A9_min+$8/A9_max) with image, "data/processed/10.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f10 u 1:2:( ($8==(A9_min)) ? "+" : "" ) with labels
+plot f11 u 1:2:( A1_min+$8/A1_max) with image, "data/processed/11.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f11 u 1:2:( ($8==(A10_min)) ? "+" : "" ) with labels
+plot f12 u 1:2:( A11_min+$8/A11_max) with image, "data/processed/12.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f12 u 1:2:( ($8==(A11_min)) ? "+" : "" ) with labels
+plot f13 u 1:2:( A12_min+$8/A12_max) with image, "data/processed/13.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f13 u 1:2:( ($8==(A12_min)) ? "+" : "" ) with labels
+plot f14 u 1:2:( A13_min+$8/A13_max) with image, "data/processed/14.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f14 u 1:2:( ($8==(A13_min)) ? "+" : "" ) with labels
+plot f15 u 1:2:( A14_min+$8/A14_max) with image, "data/processed/15.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f15 u 1:2:( ($8==(A14_min)) ? "+" : "" ) with labels
+plot f16 u 1:2:( A15_min+$8/A15_max) with image, "data/processed/16.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f16 u 1:2:( ($8==(A15_min)) ? "+" : "" ) with labels
+
+unset multiplot
+
+##########################################################################
+
+reset 
+
+set output "img/xy/xy_a".i."zoomed.png"
 set multiplot layout 4,4 rowsfirst title "Antenne ".i." x-y - view"
 
 set style data lines
@@ -123,78 +228,108 @@ set contour base
 
 #load 'BrBG.plt'
 load 'Greys.plt'
-unset xtics
-unset ytics
+#unset xtics
+#unset ytics
 
-plot "data/plane_".i."_0.dat" u 1:2:( $8/A0_max) with image, "data/processed/1.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_1.dat" u 1:2:( $8/A1_max) with image, "data/processed/2.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_2.dat" u 1:2:( $8/A2_max) with image, "data/processed/3.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_3.dat" u 1:2:( $8/A3_max) with image, "data/processed/4.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_4.dat" u 1:2:( $8/A4_max) with image, "data/processed/5.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_5.dat" u 1:2:( $8/A5_max) with image, "data/processed/6.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_6.dat" u 1:2:( $8/A6_max) with image, "data/processed/7.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_7.dat" u 1:2:( $8/A7_max) with image, "data/processed/8.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_8.dat" u 1:2:( $8/A8_max) with image, "data/processed/9.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_9.dat" u 1:2:( $8/A9_max) with image, "data/processed/10.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_10.dat" u 1:2:( $8/A1_max) with image, "data/processed/11.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_11.dat" u 1:2:( $8/A11_max) with image, "data/processed/12.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_12.dat" u 1:2:( $8/A12_max) with image, "data/processed/13.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_13.dat" u 1:2:( $8/A13_max) with image, "data/processed/14.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_14.dat" u 1:2:( $8/A14_max) with image, "data/processed/15.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
-plot "data/plane_".i."_15.dat" u 1:2:( $8/A15_max) with image, "data/processed/16.dat" w l lt -1 lw 1.5 lc rgb "#2f4f4f"
+set grid front
 
-w=.25
-h=w
+fn=f1
+index=A0_index_min
+@SETZOOM
+plot f1 u 1:2:( A0_min+$8/A0_max) with image, "data/processed/1.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f1 u 1:2:( ($8==(A0_min)) ? "+" : "" ) with labels 
 
-#set size   w,h
-#set origin .25,.75
+fn=f2
+index=A1_index_min
+@SETZOOM
+plot f2 u 1:2:( A1_min+$8/A1_max) with image, "data/processed/2.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f2 u 1:2:( ($8==(A1_min)) ? "+" : "" ) with labels 
 
-#splot "data/plane_".i."_1.dat" u 1:2:8
-#set size   w,h
-#set origin .50,.75
-#splot "data/plane_".i."_2.dat" u 1:2:8
-#set size   w,h
-#set origin .75,.75
-#splot "data/plane_".i."_3.dat" u 1:2:8
-#set size   w,h
-#set origin .00,.50
-#splot "data/plane_".i."_4.dat" u 1:2:8
-#set size   w,h
-#set origin .25,.50
-#splot "data/plane_".i."_5.dat" u 1:2:8
-#set size   w,h
-#set origin .50,.50
-#splot "data/plane_".i."_6.dat" u 1:2:8
-#set size   w,h
-#set origin .75,.50
-#splot "data/plane_".i."_7.dat" u 1:2:8 
-#set size   w,h
-#set origin .00,.25
-#splot "data/plane_".i."_8.dat" u 1:2:8 
-#set size   w,h
-#set origin .25,.25
-#splot "data/plane_".i."_9.dat" u 1:2:8 
-#set size   w,h
-#set origin .50,.25
-#splot "data/plane_".i."_10.dat" u 1:2:8 
-#set size   w,h
-#set origin .75,.25
-#splot "data/plane_".i."_11.dat" u 1:2:8 
-#set size   w,h
-#set origin .00,.00
-#splot "data/plane_".i."_12.dat" u 1:2:8 
-#set size   w,h
-#set origin .25,.00
-#splot "data/plane_".i."_13.dat" u 1:2:8 
-#set size   w,h
-set origin .50,.00
-#splot "data/plane_".i."_14.dat" u 1:2:8 
-#set size   w,h
-#set origin .75,.00
-#splot "data/plane_".i."_15.dat" u 1:2:8 
+fn=f3
+index=A2_index_min
+@SETZOOM
+plot f3 u 1:2:( A2_min+$8/A2_max) with image, "data/processed/3.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f3 u 1:2:( ($8==(A2_min)) ? "+" : "" ) with labels 
+
+fn=f4
+index=A3_index_min
+@SETZOOM
+plot f4 u 1:2:( A3_min+$8/A3_max) with image, "data/processed/4.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f4 u 1:2:( ($8==(A3_min)) ? "+" : "" ) with labels 
+
+fn=f5
+index=A4_index_min
+@SETZOOM
+plot f5 u 1:2:( A4_min+$8/A4_max) with image, "data/processed/5.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f5 u 1:2:( ($8==(A4_min)) ? "+" : "" ) with labels 
+
+fn=f6
+index=A5_index_min
+@SETZOOM
+plot f6 u 1:2:( A5_min+$8/A5_max) with image, "data/processed/6.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f6 u 1:2:( ($8==(A5_min)) ? "+" : "" ) with labels 
+
+fn=f7
+index=A6_index_min
+@SETZOOM
+plot f7 u 1:2:( A6_min+$8/A6_max) with image, "data/processed/7.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f7 u 1:2:( ($8==(A6_min)) ? "+" : "" ) with labels 
+
+fn=f8
+index=A7_index_min
+@SETZOOM
+plot f8 u 1:2:( A7_min+$8/A7_max) with image, "data/processed/8.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f8 u 1:2:( ($8==(A7_min)) ? "+" : "" ) with labels
+
+fn=f9
+index=A8_index_min
+@SETZOOM
+plot f9 u 1:2:( A8_min+$8/A8_max) with image, "data/processed/9.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f9 u 1:2:( ($8==(A8_min)) ? "+" : "" ) with labels
+
+fn=f10
+index=A9_index_min
+@SETZOOM
+plot f10 u 1:2:( A9_min+$8/A9_max) with image, "data/processed/10.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f10 u 1:2:( ($8==(A9_min)) ? "+" : "" ) with labels
+
+fn=f11
+index=A10_index_min
+@SETZOOM
+plot f11 u 1:2:( A1_min+$8/A1_max) with image, "data/processed/11.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f11 u 1:2:( ($8==(A10_min)) ? "+" : "" ) with labels
+
+fn=f12
+index=A11_index_min
+@SETZOOM
+plot f12 u 1:2:( A11_min+$8/A11_max) with image, "data/processed/12.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f12 u 1:2:( ($8==(A11_min)) ? "+" : "" ) with labels
+
+fn=f13
+index=A12_index_min
+@SETZOOM
+plot f13 u 1:2:( A12_min+$8/A12_max) with image, "data/processed/13.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f13 u 1:2:( ($8==(A12_min)) ? "+" : "" ) with labels
+
+fn=f14
+index=A13_index_min
+@SETZOOM
+plot f14 u 1:2:( A13_min+$8/A13_max) with image, "data/processed/14.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f14 u 1:2:( ($8==(A13_min)) ? "+" : "" ) with labels
+
+fn=f15
+index=A14_index_min
+@SETZOOM
+plot f15 u 1:2:( A14_min+$8/A14_max) with image, "data/processed/15.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f15 u 1:2:( ($8==(A14_min)) ? "+" : "" ) with labels
+
+fn=f16
+index=A15_index_min
+@SETZOOM
+plot f16 u 1:2:( A15_min+$8/A15_max) with image, "data/processed/16.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f16 u 1:2:( ($8==(A15_min)) ? "+" : "" ) with labels
 
 unset multiplot
-
 i=i+1
 if( i < t ) reread
 i=0
