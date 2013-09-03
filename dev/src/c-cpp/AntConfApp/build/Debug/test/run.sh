@@ -53,6 +53,11 @@ Author
 OPTIONS:
     -h      Show this message
     -s      Specifies the experiment set that will be performed
+
+Defined Experiments:
+    200     Calculated the fitness plane of given input
+    100     Performs Evo Calibration
+
 EOF
 }
 ##################################################################################
@@ -329,7 +334,7 @@ else
         LAMBDA=0
        
         a=0
-        b=30
+        b=10
        
         for (( j=i$a ; j < $b ; j++ )) 
         do 
@@ -337,7 +342,7 @@ else
 
             action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
             MU=$((MU+5))
-            LAMBDA=$((LAMBDA+10))
+            LAMBDA=$((LAMBDA+20))
         
             #GROUPSIZE=$((GROUPSIZE+1))
             START=$((START+10))
@@ -350,7 +355,7 @@ else
 #fixed mu = 1
     if (( $SET == 11 ))
     then
-        TRIALS=20
+        TRIALS=10
         VARIANT=4
         START=300
         STOP=310
@@ -369,7 +374,7 @@ else
 
             action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
             #MU=$((MU+5))
-            LAMBDA=$((LAMBDA+10))
+            LAMBDA=$((LAMBDA+20))
         
             #GROUPSIZE=$((GROUPSIZE+1))
             START=$((START+10))
@@ -382,7 +387,7 @@ else
 #Test the (1+1) strategy
     if (( $SET == 12 ))
     then
-        TRIALS=30
+        TRIALS=20
         VARIANT=4
         START=500
         STOP=510
