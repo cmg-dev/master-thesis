@@ -1,4 +1,3 @@
-
 #include "EvolutionaryCalibration.h"
 
 namespace PRPSEvolution {

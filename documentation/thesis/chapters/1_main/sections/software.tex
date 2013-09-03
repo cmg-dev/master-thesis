@@ -1,29 +1,100 @@
-\lipsum[1-2]
+%
+\lstset{
+	basicstyle=\scriptsize,
+	language=C++,
+	breaklines=true,
+	%		frameround=fttt,
+	frame=tbrl,
+	breakatwhitespace=false
+	breaklines=true,  
+	xleftmargin=1cm,
+	tabsize=2,
+	showstringspaces=false}
+%---------------------------------------------------------------------
 %
 \subsection{Shark}
 \label{sec:Shark}
-
+\lipsum[1]
 %
+%---------------------------------------------------------------------
 \subsection{Implementation}
-\lipsum[1-3]
+In diesem Abschnitt wird auf interessante Details der Softwareimplementation eingegangen. Es ist nicht möglich im vollen Umfang die Implementation der Softare aufgrund ihres Umfangs zu besprechen. Lediglich sollen hier die Implementationen verschiedener Evolutionsalgorithmen unter Verwendung von Shark gezeigt werden. Es wird auch beispielhaft eine Implementation einer Objektfunktion beschrieben, wie sie typischerweise in Shark implementiert wird.
+%
+%\input{diagrams/prpsevolution-integration.tex}
+%---------------------------------------------------------------------
+\subsection{Objektfunktion in Shark}
+%
+Als Beispiel für die Implementation einer Objektfunktion wird im Folgenden das Modell der evolutionären Kalibrierung besprochen. Dieses Modell, bzw. Objektfunktion, hat eine überschaubare Komplexität und wurde bereits im Abschnitt~\ref{sec:calibration} zur Veranschaulichung verwendet. Daher eignet es sich gut um die Implementation zu zeigen. Im Rahmen dieser Arbeit sind eine Vielzahl von Modellen entstanden, die nicht in aller Ausführlichkeit diskutiert werden können.\\
+%
+%---------------------------------------------------------------------
+Das Listing~\ref{lst:EvolutionaryCalibration.h} zeigt die Headerdatei für die Implementation einer Objektfunktion, sofort ist zu erkennen, das sie von der abstakten Klasse \textit{SingleObjectiveFunction} abgeleitet ist. Diese ist einer von Shark bereitgestellte Klasse. Sie beschreibt die Funktionen die eine Objektfunktion implementieren muss damit sie von Optimizern verwendet werden kann. Ein von dieser Klasse abgeleitetes Modell erlaubt die Verwendung in verschiedenen Algorithmen. Die Funktion:
+%
+\begin{lstlisting}
+double eval(const SearchPointType &p) const;
+\end{lstlisting}
+%
+wird in von den Optimizern aufgerufen und implementiert die eigentliche Funktion des Modells.
+%
+\begin{lstlisting}[label=EvolutionaryCalibration_2]
+void proposeStartingPoint(SearchPointType &x) const;
+\end{lstlisting}
+%
+Diese Methode wird von einem Solver beim Start aufgerufen und liefert passende Startwerte für das Modell zurück. Der Rückgabewert der Funktion ist ein normalverteilter Vektor der Dimension \textit{m\_numberOfVariables} in einem Intervall von $[-10,10]$ zurück. Der Wert für \textit{m\_numberOfVariables} wird bei der Instanziierung des Modells, in dem Konstruktor, gesetzt. Es wird auch die Eigenschaft \textit{CAN\_PROPOSE\_STARTING\_POINT} gesetzt, sie wird von den unterschiedlichen Optimizern verwendet um zu erkennen, welche Features vom Modell unterstützt werden.
+%
+\begin{lstlisting}[label=EvolutionaryCalibration_3]
+EvolutionaryCalibration( ) {
+	m_numberOfVariables = Solve::ProblemDimensions::Calibration;
+	m_features |= CAN_PROPOSE_STARTING_POINT;
+}
+\end{lstlisting}	
+%
+%---------------------------------------------------------------------
+%
+\lstinputlisting[caption=Quellcode Schnipsel für die Deklaration einer Objektfunktion \vspace{2mm},
+				firstline=18, lastline=108]{src/EvolutionaryCalibration.h}
+\label{lst:EvolutionaryCalibration.h}
+%
+Das Listig~\ref{lst:EvolutionaryCalibration.cpp} gezeigten cpp-Datei ist die Implementation der oben beschriebenen Modellfunktionen. Aus diesen Beiden Dateien ist ersichtlich, dass die Deklaration des Modells sehr überschaubar ist. Praktische jedes Modell hat diese übersichtliche Struktur. 
+%
+\begin{lstlisting}[label=EvolutionaryCalibration_4]
+inline double EvolutionaryCalibration::mkII( const NRmatrix<Doub> &A, const double* x, const NRvector<Doub> &b ) const
+\end{lstlisting}
+%
+Diese Funktion ist die eigentliche Berechnung des Gleichungssystems der Form $\mathbf{A}\mathbf{x}=\textbf{b}$. Die Lösung wird an die Aufrufende Funktion übergeben. Als Eingabe wird der Variablenvektor \textit{const double*x} von Shark sowie die geom. Matrix und der Distanz Vektor erwartet.
+%
+Der komplette Quellcode findet sich im Anhang~\ref{app:EvolutionaryCalibration1} und \ref{app:EvolutionaryCalibration2} gelistet.
+%
+%---------------------------------------------------------------------
+%
+\lstinputlisting[caption=Quellcode Schnipsel für die Implementation einer Objektfunktion für verschiedene Optimzier im Shark\vspace{2mm},
+				 firstline=7, lastline=44]{src/EvolutionaryCalibration.cpp}
+				 \label{lst:EvolutionaryCalibration.cpp}
+%
+\label{lst:shark_model}
 %
 \subsubsection{Schnittstelle für Dateneingabe}
+%
 Im Folgenden wird die implementierte Schnittstelle besprochen mit der die Daten unter den Programmteilen ausgetauscht werden können. Die Schnittstelle umfasst im Wesentliche zwei Teile:
 \begin{enumerate}
 	\item Eingabe für die gemessenen Phasenwerte
 	\item Ausgabe für die ermittelten Wellenzahlen
 \end{enumerate}
 %
-Der restliche Ablauf wird vom PRPS-Dienst als 'Black-Box' angesehen.\\
+Hinzukommt eine pseudo-Schnittstelle über die die Systemparameter eingelesen werden können. Die aktuelle Implementation ließt eine Eingabedatei, mit den Systemparametern in eine entsprechende Struktur ein.
+%
+Die Kommunikation zwischen dem PRPS-Dienst und dem PRPS-Evolution ist einfach. Der Dienst teilt die gemessenen Phasendaten mit, die vom PRPS-Evolution für die Berechnung der Wellenzahlen verwendet werden. Das bedeutet das der Ablauf des Auffindens der Wellenzahl vom PRPS-Dienst als 'Black-Box' angesehen wird.\\
 %
 %\subsubsection{Schnittstelle für Dateneingabe}
 %
 \subsection{Ablaufdiagramme}
+%
+Vieles der Funktionalität der Software ist zu Umfangreich für dieses Dokument. Es kann keine vollständige Besprechung des Quellcodes durchgeführt werden. Im Folgenden werden daher diese Funktionalitäten und Abläufe in Ablaufplänen zusammenfassend dargestellt.
 %
 \input{chapters/1_main/sections/programm_start.tex}
 %
 \input{chapters/1_main/sections/find_solution.tex}
 %
 \input{chapters/1_main/sections/struct_model.tex}
+%
 
-\lipsum[1-5]
+%\lipsum[1-5]
