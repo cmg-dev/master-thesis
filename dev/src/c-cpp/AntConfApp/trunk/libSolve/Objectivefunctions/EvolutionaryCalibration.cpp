@@ -16,15 +16,6 @@ namespace PRPSEvolution {
 			x[ 0 ] = p[ 0 ];
 			x[ 1 ] = p[ 1 ];
 			x[ 2 ] = p[ 2 ];
-			
-// 			/* get a solution for all matrices in this group */
-// 			res.push_back( mkII( A, x, b ) );
-// 
-// 			/***************************************************************/
-// 			/* different return methodes are implemented here */
-// 			/* calc mean */
-// 			double ret = Solve::meanFromVector( res );
-
 			return mkII( A, x, b );
 
 		}
