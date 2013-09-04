@@ -15,17 +15,17 @@ set grid
 set ticslevel 0
 
 set title "x-y View"
-set xrange [-2:2]
-set yrange [-0:2]
+set xrange [-3:3]
+set yrange [-3:3]
 plot "data/coord_plot.dat" u 1:2 ls 1
 
 set title "x-z View"
-set xrange [-2:2]
-set yrange [-0:2]
+set xrange [-3:3]
+set yrange [0:2]
 plot "data/coord_plot.dat" u 1:3 ls 1
 
 set title "y-z View"
-set xrange [-2:2]
+set xrange [-3:3]
 set yrange [0:2]
 plot "data/coord_plot.dat" u 2:3 ls 1
 
@@ -38,4 +38,3 @@ set view 180, 65
 splot "data/coord_plot.dat" u 1:2:3 ls 1
 
 unset multiplot
-quit

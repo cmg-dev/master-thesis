@@ -1,5 +1,5 @@
 %\documentclass[a4paper,12pt,fleqn,twoside]{scrbook}
-\documentclass[a4paper,12pt, twoside, openright]{scrbook}
+\documentclass[a4paper,11pt, twoside, openright]{scrbook}
 
 \usepackage[T1]{fontenc}
 \usepackage{ucs}
@@ -53,6 +53,9 @@
 % highlighting
 \usepackage{xcolor,soul}
 
+%\renewcommand{\sectionmark}[1]{\markboth{#1}{#1}} 
+%\renewcommand{\subsectionmark}[1]{\markboth{#1}{}} 
+
 %---- PageLayout
 \pagestyle{fancy}
 
@@ -64,21 +67,23 @@
 %----------------------------------------------------------------------------
 % HEADER --------------------------------------------------------------------
 %----------------------------------------------------------------------------
-\fancyhead[R]{
+%\fancyhead[R]{
 %  \includegraphics[width=100pt,keepaspectratio]{img/amedo2012.png}
+%}
+
+%\fancyhead[C]{ }
+
+\fancyhead[RO]{
+\thepage{}
 }
-
-\fancyhead[C]{ }
-
-\fancyhead[LO]{
-  \begin{tabular}[b]{l}
-  Christoph Gnip\\
-  Projekt: PRPS-Evolution
-  \end{tabular}
-}
-
-\fancyhead[RE]{
-%  \chaptername
+%\fancyhead[RE]{}
+%\fancyhead[LO]{}
+\fancyhead[LE]{
+\thepage{}
+%  \begin{tabular}[b]{l}
+%  Christoph Gnip\\
+%  Projekt: PRPS-Evolution
+%  \end{tabular}
 }
 
 %Linie oben

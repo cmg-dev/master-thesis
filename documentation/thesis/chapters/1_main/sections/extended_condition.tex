@@ -38,7 +38,15 @@ Die Abbildung~\ref{fig:CondNumberAnalyze} zeigt die bereits angestellte Untersuc
 \end{figure}
 %
 Aus der Grafik lässt sich entnehmen, dass es für jede Referenzantenne aus der Geometrie alleine gute Konfigurationen existieren. Aus diesen Erkenntnissen kann in späteren Aufbauten, die Position der Antennen optimiert werden. Diese Verfahren wird in Abschnitt~\ref{sec:Calibration_Optimaztion} weiter beschrieben. Die Grafik lässt erkennen, dass eine Konfiguration die ohne Phasendaten eine gut Kondition aufwies, eine ähnliche Kondition behält wenn diese Daten in der Modell einfließen.
+\\
 %
+%\begin{floatingfigure}[r!]{4cm}
+% \centering
+%         \includegraphics[width=2cm]{img/ConditionPlot_scaled.png}
+%         \caption[Profil einer Phasenmessung222]{Normiertes Höhenprofil einer Phasenmessung aus der Sicht von Antenne 1 }
+%%         \label{fig:Plate0_A1_}
+%%         
+%\end{floatingfigure}
 %- Section 2.3 --------------------------------------------------------------
 \subsection{Weitere Anwendung der Konditionszahl}
 Weitere Anwendungen, die sich aus der Konditionszahl der Matrix ableiten, sind denkbar. Für die FPGA-Software ist, parallel zu diesem Projekt, eine intelligente Umschaltung der Antennen in der Planung. Die Kondition der geometrische Matrix verändert sich nach dem Kalibrieren nicht mehr. Dadurch und durch die oben beschriebenen Überlegungen kann statisch eine Abschätzung für die Konditionszahl, von zwei der drei Blockmatrizen, im Vorfeld erstellt werden. Die Konditionszahl dient zum Steuern der Umschaltung. Ordnet man die möglichen Konfiguration anhand ihrer Konditionszahl (niedrigste zuerst) in einer statischen Liste an so kann im FPGA eine einfache, schlaue Umschaltung implementiert werden. Diese würde immer dafür sorgen, dass Messdaten von einer Konfiguration bevorzugt werden, die eine niedrige Konditionszahl hat und somit relativ sicher zu einer guten Lösung führen. Diese Überlegungen werden im Rahmen dieser Arbeit nicht näher beschrieben.\\

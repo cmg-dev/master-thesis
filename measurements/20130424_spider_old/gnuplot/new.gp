@@ -4,9 +4,9 @@ set loadpath '/d/dev/gnuplot-colorbrewer/diverging' \
 set loadpath 'd:/dev/gnuplot-colorbrewer/diverging' \
     'd:/dev/gnuplot-colorbrewer/qualitative' \
     'd:/dev/gnuplot-colorbrewer/sequential'
-set loadpath 'd:/06_dev/gnuplot-colorbrewer/diverging' \
-    'd:/06_dev/gnuplot-colorbrewer/qualitative' \
-    'd:/06_dev/gnuplot-colorbrewer/sequential'
+#set loadpath 'd:/06_dev/gnuplot-colorbrewer/diverging' \
+#    'd:/06_dev/gnuplot-colorbrewer/qualitative' \
+#    'd:/06_dev/gnuplot-colorbrewer/sequential'
 	
 set terminal pngcairo enhanced transparent size 800,800
 set output '1.png'

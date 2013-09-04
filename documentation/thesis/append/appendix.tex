@@ -37,6 +37,34 @@
 %
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
+\chapter{Quellcode Auzüge}
+\section{ObjectiveFunktion - Evolutionary Calibration Header}
+
+\lstset{
+%	caption= Modelldeklaration für Shark,
+	basicstyle=\scriptsize,
+	language=C++,
+	numbers=left,
+	breaklines=true,
+	%		frameround=fttt,
+	frame=tbrl,
+	breakatwhitespace=false
+	breaklines=true,  
+	xleftmargin=1cm,
+	tabsize=2,
+	showstringspaces=false}
+
+\lstinputlisting[title=Vollständiger Quellcode der EvolutionaryCalibration.h]{src/EvolutionaryCalibration.h}
+\label{app:EvolutionaryCalibration1}
+\newpage
+
+\section{ObjectiveFunktion - Evolutionary Calibration Source}
+\lstinputlisting[title=Vollständiger Quellcode der EvolutionaryCalibration.cpp]{src/EvolutionaryCalibration.cpp}
+\label{app:EvolutionaryCalibration2}
+\newpage
+%
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
 \chapter{Gnuplot Skripte}
 \section{Boxplot}
 \tiny
@@ -72,6 +100,177 @@
 		xleftmargin=1cm,
 		showstringspaces=false]{../../dev/src/c-cpp/AntConfApp/build/Debug/test/output/mkII/plot/kondensierte_linien.gp}
 \label{append_Script_Line-plot}
+\newpage
+%
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\chapter{Fitness Plots}
+\label{app:fitness:plots1}
+\newpage
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}[t]{0.3\textwidth}
+	     \centering
+	     \includegraphics[width=\textwidth]{img/fitness/xy/a0.png}
+	%             \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung.}
+	%             \label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+	     \includegraphics[width=\textwidth]{img/fitness/xz/a0.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+			\centering
+	   \includegraphics[width=\textwidth]{img/fitness/yz/a0.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+\\
+	\centering
+	\begin{subfigure}[t]{0.3\textwidth}
+	     \centering
+	     \includegraphics[width=\textwidth]{img/fitness/xy/a1.png}
+	%             \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung.}
+	%             \label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+	     \includegraphics[width=\textwidth]{img/fitness/xz/a1.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+			\centering
+	   \includegraphics[width=\textwidth]{img/fitness/yz/a1.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+\\
+	\centering
+	\begin{subfigure}[t]{0.3\textwidth}
+	     \centering
+	     \includegraphics[width=\textwidth]{img/fitness/xy/a2.png}
+	%             \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung.}
+	%             \label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+	     \includegraphics[width=\textwidth]{img/fitness/xz/a2.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+			\centering
+	   \includegraphics[width=\textwidth]{img/fitness/yz/a2.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+\\
+	\centering
+	\begin{subfigure}[t]{0.3\textwidth}
+	     \centering
+	     \includegraphics[width=\textwidth]{img/fitness/xy/a3.png}
+	%             \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung.}
+	%             \label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+	     \includegraphics[width=\textwidth]{img/fitness/xz/a3.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+			\centering
+	   \includegraphics[width=\textwidth]{img/fitness/yz/a3.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+\end{figure}
+%
+\newpage
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}[t]{0.3\textwidth}
+	     \centering
+	     \includegraphics[width=\textwidth]{img/fitness/xy/a4.png}
+	%             \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung.}
+	%             \label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+	     \includegraphics[width=\textwidth]{img/fitness/xz/a4.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+			\centering
+	   \includegraphics[width=\textwidth]{img/fitness/yz/a4.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+\\
+	\centering
+	\begin{subfigure}[t]{0.3\textwidth}
+	     \centering
+	     \includegraphics[width=\textwidth]{img/fitness/xy/a5.png}
+	%             \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung.}
+	%             \label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+	     \includegraphics[width=\textwidth]{img/fitness/xz/a5.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+			\centering
+	   \includegraphics[width=\textwidth]{img/fitness/yz/a5.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+\\
+	\centering
+	\begin{subfigure}[t]{0.3\textwidth}
+	     \centering
+	     \includegraphics[width=\textwidth]{img/fitness/xy/a6.png}
+	%             \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung.}
+	%             \label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+	     \includegraphics[width=\textwidth]{img/fitness/xz/a6.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+			\centering
+	   \includegraphics[width=\textwidth]{img/fitness/yz/a6.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+\\
+	\centering
+	\begin{subfigure}[t]{0.3\textwidth}
+	     \centering
+	     \includegraphics[width=\textwidth]{img/fitness/xy/a7.png}
+	%             \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung.}
+	%             \label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+		\centering
+	     \includegraphics[width=\textwidth]{img/fitness/xz/a7.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.3\textwidth}
+			\centering
+	   \includegraphics[width=\textwidth]{img/fitness/yz/a7.png}
+	%			\caption{x-z-Ebene, vergrößert}
+	%			\label{fig:abortedFinal_Calibration_Ant0_ES-boxes}
+	\end{subfigure}      
+\end{figure}
 \newpage
 %
 %----------------------------------------------------------------------------
