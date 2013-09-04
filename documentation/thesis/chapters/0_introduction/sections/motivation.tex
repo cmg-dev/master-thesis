@@ -2,7 +2,7 @@ Bestimmung der Position (im Folgenden "Tracking" genannt) mittels RFID ist eine 
 %
 \begin{enumerate}
 	\item Es wird keine LOS benötigt
-	\item Separation mehrerer Objekte
+	\item Separation und Identifikation mehrerer Objekte
 \end{enumerate}
 %
 Die Vorteile lassen sich auf dem zugrunde liegende physikalischen Messprinzip ableiten. Es werden elektromagnetische Signale ausgewertet, die anderen Wechselwirkungen unterliegen und in der Lage sind Materie zu durchdringen. Insbesondere im Vergleich mit optischen Verfahren ist die auf Funk basierende RFID damit überlegen. Die Eigenschaft Materie zu durchdringen erlaubt es Objekte im Patienten zu lokalisieren, entsprechende Untersuchungen über die Positionsgenauigkeit im Körper sind vielversprechend.~\cite{Knipscheer1}\\
@@ -12,26 +12,29 @@ Es können mehrere Objekte von einander unterschieden und identifiziert werden. 
 Auf Funk basierende Verfahren bieten zudem ein sehr gute Ortsauflösung. Diese ist essentiell für eine genaue Positions- und Lagebestimmung von Objekten. Die Auflösung ist jedoch abhängig von dem Messprinzip und wird in Abschnitt~\ref{sec:RFID_Accuracy} genauer beschrieben. 
 Das von dem Messsystem der \amedogmbh verwendete Verfahren basiert auf der Messung der Phasendifferenz der Antwort eines Objekts. Aus den dort aufgeführten Gründen verwendet das PRPS der \amedogmbh eine Phasendifferenzmessung. Die Phasenlage ist direkt proportional zu einer Entfernung. Die Messung erreicht in der Theorie eine sehr gute Auflösung, sie ist jedoch nicht Eindeutig (siehe \ref{sec:Measurement1}). Das Problem kann umgangen werden, indem man ein ganzzahliges Vielfaches der Wellenlänge auf das Messergebnis aufaddiert. Man erhält die sog. \textit{Wellenzahl}\footnote{Diese ist nicht identisch mit der in der Physik gebräuchlichen Wellenzahl zur Beschreibung der Eigenschaften einer Welle.}, ist diese für alle Objekte und allen Antennen bekannt kann die Postion sicher bestimmt werden.\\
 
-Die Annahme, dass die Wellenzahl für alle Zeiten $t$ bekannt ist, ist naiv und höchstens unter Laborbedingungen richtig. In der Praxis müssen hier starke Einschränkungen, aufgrund der Komplexität auf EM--basierende Verfahren, gemacht werden. Die Betrachtung der Komplexität wird in Abschnitt~\ref{sec:Komplexity1} und~\ref{sec:Komplexity2} behandelt.\\
-Kann ein Objekt für kurze Zeit nicht erreicht werden ist sofort ersichtlich, dass die Postion nicht mehr bestimmt werden kann. Die Wellenzahl(en) muss neu ermittelt werden.\\ 
+Die Annahme, dass die Wellenzahl für alle Zeiten $t$ bekannt ist, ist naiv und höchstens unter Laborbedingungen richtig. In der Praxis müssen hier starke Einschränkungen, aufgrund der komplexen Wechselwirkungen auf EM--basierende Verfahren, gemacht werden. Die Betrachtung der Komplexität wird in Abschnitt~\ref{sec:Komplexity1} und~\ref{sec:Komplexity2} behandelt. Kann ein Objekt für kurze Zeit nicht abgefragt werden ist sofort ersichtlich, dass die Postion nicht mehr bestimmt werden kann. Die Wellenzahl(en) muss neu ermittelt werden.\\ 
 %
 
-Bisherige Ansätze die Wellenzahl nach Verlust des Objektes zu ermitteln basieren auf Methoden der Statistik. Diese scheitern an der Komplexität des Problems oder sie benötigen sehr aufwändige Messreihen mit großer Anzahl an Messpunkten \cite{amedo1}. Das limitiert die Praxistauglichkeit solcher Methoden.\\
+Bisherige Ansätze die Wellenzahl nach Verlust des Objektes zu ermitteln basieren häufig auf Methoden der Statistik. Diese scheitern an der Komplexität des Problems oder sie benötigen sehr aufwändige Messreihen mit großer Anzahl an Messpunkten \cite{amedo1}. Eine weitere Methode die einen Schätzwert auf Basis des RSSI-Wertes berechnet wurde in vielen Ansätzen implementiert, z.B.~\cite{KALMANandSMOOTHING}. Die Praxistauglichkeit dieser Methoden ist limitiert, die Abschätzung anhand des RSSI-Wertes funktioniert im Labor ausreichend gut, auch hier kommt es zu komplexen Wecheselwirkungen. Ein weiteres Problem ist ihr große Anzahl an Wellenzahlen die bei Messaufbau vorkommen, die ein großes Volumen abdecken. Der Zusammenhang wird mit der Herleitung der Wellenzahl später beschrieben.\\
 %
 
 Zusammenfassend lassen sich über das Problem folgende Aussagen treffen. Das Problem ist: 
 %
-\begin{enumerate}
+\begin{enumerate}[itemsep=0mm]
 	\item Sehr komplex
 	\item Hochdimensional
 	\item Nicht linear\footnote{Positionsbestimmung aus superposition von EM-Wellen}
+	\item Ohne analytische Lösung
 \end{enumerate}
 %
 
-Traditionell werden Probleme dieser Klasse mit Methoden der Stochastik, Optimierung oder des maschinellen Lernens behandelt. Eine vollständige Übersicht und Abgrenzung der verschiedenen Gebiete ist im Rahmen dieser Arbeit nicht möglich bzw. sinnvoll. Eine Übersicht findet ist in Abbildung~\ref{fig:overview_numerical_systems} zu finden.\\
+Traditionell werden Probleme mit diesen Eigenschaften durch Methoden der Stochastik, Optimierung oder des maschinellen Lernens behandelt. Eine vollständige Übersicht und Abgrenzung der verschiedenen Gebiete ist im Rahmen dieser Arbeit nicht möglich bzw. sinnvoll. Eine Übersicht findet ist in Abbildung~\ref{fig:overview_numerical_systems} zu finden.\\
 %
 
-Ein Teilgebiet der Optimierung stellen evolutionäre Berechnungsverfahren dar. Dies sind eine Klasse von Algorithmen, die sich für komplexe Problemfälle eignen. Sie stellen kaum Forderungen an die math. Formulierung des Problems, wie z.B. Stetigkeit etc. Daher sollte es in jedem Fall möglich sein eine Lösung über diesen Ansatz zu finden. Vorüberlegungen und Machbarkeitssstudien wurden vom Institut für Neuroinformatik (INI) an der Ruhr-Unversität Bochum angestellt. \cite{Wil1,Muz1}.\\
+Ein Teilgebiet der Optimierung stellen evolutionäre Berechnungsverfahren dar. Dies sind eine Klasse von Algorithmen, die sich für komplexe Problemfälle eignen. Sie stellen kaum Forderungen an die mathematische Formulierung des Problems, wie z.B. Differenzierbarkeit etc. Unter dem Begriff der Evolutionären Berechnungsverfahren fallen viele verschiedene Techniken, eine Übersicht über die Teilgebiete gibt die Abbildung~\ref{fig:overview_evolutionary_systems}. In dieser Arbeit wird das Teilgebiet der Evolutionären Optimierung verwendet um die Problemstellung zu lösen. Später wird diese Klasse von Verfahren ausführlich dargestellt.
 %
 
-In dieser Arbeit soll mittels evolutionärer Verfahren das beschriebenen Problem gelöst werden. Im Endergebnis soll dabei eine Abschätzung der Entfernung zu einem Referenzpunkt möglich sein. Darüber lässt sich im Anschluss die Wellenzahl ermitteln.
+Es sollte in jedem Fall möglich sein eine Lösung über diesen Ansatz zu finden. Vorüberlegungen und Machbarkeitssstudien wurden vom Institut für Neuroinformatik (INI) an der Ruhr-Unversität Bochum angestellt. \cite{Wil1,Muz1}. An dem Institut wird seit mehreren Jahren an dieser Art von Algorithmen geforscht und unterschiedlichste Problemstellungen sind mit diesen Algorithmen gelöst worden, bspw.~\cite{DBLP:conf/bildmed/RitschelDW12, DBLP:conf/bildmed/WinterRBD10}\\
+%
+
+In dieser Arbeit soll mittels evolutionärer Optimierung das beschriebenen Problem gelöst werden. Im Endergebnis soll dabei eine Abschätzung der Entfernung zu einem Referenzpunkt möglich sein. Darüber lässt sich im Anschluss die Wellenzahl ermitteln.
