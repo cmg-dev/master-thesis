@@ -3,16 +3,15 @@
 #
 at(file, row, col) = system( sprintf("awk -v row=%d -v col=%d 'NR == row {print $col}' %s", row, col, file) )
 
-set terminal pngcairo truecolor transparent background "#ffffff" enhanced font "arial,10" size 1200,1000 
+set terminal pngcairo truecolor transparent background "#ffffff" enhanced font "arial,10" size 1200,600 
 set macros
 
 SETZOOM="centerx=at(fn,index+1,1);\
     centery=at(fn, index+1,3);\
-    set xrange[centerx-5.5:centerx+5.5];\
-    set yrange[centery-5.5:centery+5.5]"
+    set xrange[centerx-1.5:centerx+1.5];\
+    set yrange[centery-1.5:centery+1.5]"
 
 ############################################
-
 f1="data/plane_".i."_32.dat"
 f2="data/plane_".i."_33.dat"
 f3="data/plane_".i."_34.dat"
@@ -28,7 +27,7 @@ f12="data/plane_".i."_43.dat"
 f13="data/plane_".i."_44.dat"
 f14="data/plane_".i."_45.dat"
 f15="data/plane_".i."_46.dat"
-f16="data/plane_".i."_47.dat"
+f16="data/plane_".i."_17.dat"
 
 reset
 
@@ -45,7 +44,7 @@ set loadpath '~/dev/gnuplot-colorbrewer/diverging' \
  '~/dev/gnuplot-colorbrewer/qualitavive' \
  '~/dev/gnuplot-colorbrewer/sequential'
 
-set dgrid3d 20,20,1
+set dgrid3d 30,30,4
 
 ########################################################################
 stats f1 u 8 name "A0" nooutput 
@@ -68,8 +67,9 @@ stats f16 u 8 name "A15" nooutput
 
 print "stats created"
 
-set contour base
-set cntrparam level incremental .0, 75, 5000
+set contour
+#set cntrparam levels incremental 0,50,1000
+set cntrparam levels discrete  0,1,5,10,40,50,100,200,500,1000
 #set isosample 1, 1
 unset surface 
 ########################################################################
@@ -140,6 +140,8 @@ splot f16 u 1:3:8
 unset table
 ########################################################################
 
+print "contour created"
+
 reset 
 
 #@SETSTYLE
@@ -147,8 +149,8 @@ reset
 set style line 1 lt 1 lc rgb '#000000' lw .5
 set style line 2 lt 1 lc rgb "#2f4f4f" lw 1
 
-set output "img/xz/xz_a".i.".png"
-set multiplot layout 4,4 rowsfirst title "Antenne ".i." x-z - view"
+set output "img/xz/a".i.".png"
+set multiplot layout 3,5 rowsfirst title "Antenne ".i." x-y - view"
 
 set style data lines
 
@@ -160,50 +162,83 @@ set dgrid3d 40, 40, 1
 set contour base
 
 #set palette negative 
-set xrange[-20:20]
-set yrange[-20:20]
+set xrange[-10:10]
+set yrange[-10:10]
 
 set grid front
 
 #load 'BrBG.plt'
 load 'Greys.plt'
-
-plot f1 u 1:3:( A0_min+$8/A0_max) with image, "data/processed/1.dat"  w l lt -1 lw 1 lc rgb "#2f4f4f",\
-     f1 u 1:3:( ($8==(A0_min)) ? "+" : "" ) with labels
-
 #unset xtics
 #unset ytics
 
-plot f2 u 1:3:( A1_min+$8/A1_max) with image, "data/processed/2.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+#NORM0="1:3:($8-A0_min)/(A0_max-A0_min)"
+#NORM1="1:3:($8-A1_min)/(A1_max-A1_min)"
+#NORM2="1:3:($8-A2_min)/(A2_max-A2_min)"
+#NORM3="1:3:($8-A3_min)/(A3_max-A3_min)"
+#NORM4="1:3:($8-A4_min)/(A4_max-A4_min)"
+#NORM5="1:3:($8-A5_min)/(A5_max-A5_min)"
+#NORM6="1:3:($8-A6_min)/(A6_max-A6_min)"
+#NORM7="1:3:($8-A7_min)/(A7_max-A7_min)"
+#NORM8="1:3:($8-A8_min)/(A8_max-A8_min)"
+#NORM9="1:3:($8-A9_min)/(A9_max-A9_min)"
+#NORM10="1:3:($8-A10_min)/(A10_max-A10_min)"
+#NORM11="1:3:($8-A11_min)/(A11_max-A11_min)"
+#NORM12="1:3:($8-A12_min)/(A12_max-A12_min)"
+#NORM13="1:3:($8-A13_min)/(A13_max-A13_min)"
+#NORM14="1:3:($8-A14_min)/(A14_max-A14_min)"
+##NORM15="1:3:($8-A15_min)/(A15_max-A15_min)+A15_min"
+
+NORM0="1:3:($8-A0_min)/(A0_max-A0_min)+A0_min"
+NORM1="1:3:($8-A1_min)/(A1_max-A1_min)+A1_min"
+NORM2="1:3:($8-A2_min)/(A2_max-A2_min)+A2_min"
+NORM3="1:3:($8-A3_min)/(A3_max-A3_min)+A3_min"
+NORM4="1:3:($8-A4_min)/(A4_max-A4_min)+A4_min"
+NORM5="1:3:($8-A5_min)/(A5_max-A5_min)+A5_min"
+NORM6="1:3:($8-A6_min)/(A6_max-A6_min)+A6_min"
+NORM7="1:3:($8-A7_min)/(A7_max-A7_min)+A7_min"
+NORM8="1:3:($8-A8_min)/(A8_max-A8_min)+A8_min"
+NORM9="1:3:($8-A9_min)/(A9_max-A9_min)+A9_min"
+NORM10="1:3:($8-A10_min)/(A10_max-A10_min)+A10_min"
+NORM11="1:3:($8-A11_min)/(A11_max-A11_min)+A11_min"
+NORM12="1:3:($8-A12_min)/(A12_max-A12_min)+A12_min"
+NORM13="1:3:($8-A13_min)/(A13_max-A13_min)+A13_min"
+NORM14="1:3:($8-A14_min)/(A14_max-A14_min)+A14_min"
+NORM15="1:3:($8-A15_min)/(A15_max-A15_min)+A15_min"
+
+
+plot f1 u @NORM0 with image, "data/processed/1.dat"  w l lt -1 lw 1 lc rgb "#2f4f4f",\
+     f1 u 1:3:( ($8==(A0_min)) ? "+" : "" ) with labels
+plot f2 u @NORM1 with image, "data/processed/2.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f2 u 1:3:( ($8==(A1_min)) ? "+" : "" ) with labels
-plot f3 u 1:3:( A2_min+$8/A2_max) with image, "data/processed/3.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f3 u @NORM2 with image, "data/processed/3.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f3 u 1:3:( ($8==(A2_min)) ? "+" : "" ) with labels
-plot f4 u 1:3:( A3_min+$8/A3_max) with image, "data/processed/4.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f4 u @NORM3 with image, "data/processed/4.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f4 u 1:3:( ($8==(A3_min)) ? "+" : "" ) with labels
-plot f5 u 1:3:( A4_min+$8/A4_max) with image, "data/processed/5.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f5 u @NORM4 with image, "data/processed/5.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f5 u 1:3:( ($8==(A4_min)) ? "+" : "" ) with labels
-plot f6 u 1:3:( A5_min+$8/A5_max) with image, "data/processed/6.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f6 u @NORM5 with image, "data/processed/6.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f6 u 1:3:( ($8==(A5_min)) ? "+" : "" ) with labels
-plot f7 u 1:3:( A6_min+$8/A6_max) with image, "data/processed/7.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f7 u @NORM6 with image, "data/processed/7.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f7 u 1:3:( ($8==(A6_min)) ? "+" : "" ) with labels
-plot f8 u 1:3:( A7_min+$8/A7_max) with image, "data/processed/8.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f8 u @NORM7 with image, "data/processed/8.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f8 u 1:3:( ($8==(A7_min)) ? "+" : "" ) with labels
-plot f9 u 1:3:( A8_min+$8/A8_max) with image, "data/processed/9.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f9 u @NORM8 with image, "data/processed/9.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f9 u 1:3:( ($8==(A8_min)) ? "+" : "" ) with labels
-plot f10 u 1:3:( A9_min+$8/A9_max) with image, "data/processed/10.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f10 u @NORM9 with image, "data/processed/10.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f10 u 1:3:( ($8==(A9_min)) ? "+" : "" ) with labels
-plot f11 u 1:3:( A1_min+$8/A1_max) with image, "data/processed/11.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f11 u @NORM10 with image, "data/processed/11.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f11 u 1:3:( ($8==(A10_min)) ? "+" : "" ) with labels
-plot f12 u 1:3:( A11_min+$8/A11_max) with image, "data/processed/12.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f12 u @NORM11 with image, "data/processed/12.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f12 u 1:3:( ($8==(A11_min)) ? "+" : "" ) with labels
-plot f13 u 1:3:( A12_min+$8/A12_max) with image, "data/processed/13.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f13 u @NORM12 with image, "data/processed/13.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f13 u 1:3:( ($8==(A12_min)) ? "+" : "" ) with labels
-plot f14 u 1:3:( A13_min+$8/A13_max) with image, "data/processed/14.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f14 u @NORM13 with image, "data/processed/14.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f14 u 1:3:( ($8==(A13_min)) ? "+" : "" ) with labels
-plot f15 u 1:3:( A14_min+$8/A14_max) with image, "data/processed/15.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f15 u @NORM14 with image, "data/processed/15.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f15 u 1:3:( ($8==(A14_min)) ? "+" : "" ) with labels
-plot f16 u 1:3:( A15_min+$8/A15_max) with image, "data/processed/16.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
-     f16 u 1:3:( ($8==(A15_min)) ? "+" : "" ) with labels
+#plot f16 u @NORM15 with image, "data/processed/16.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+#     f16 u 1:3:( ($8==(A15_min)) ? "+" : "" ) with labels
 
 unset multiplot
 
@@ -211,8 +246,9 @@ unset multiplot
 
 reset 
 
-set output "img/xz/xz_a".i."zoomed.png"
-set multiplot layout 4,4 rowsfirst title "Antenne ".i." x-z - view"
+set output "img/xz/a".i."zoomed.png"
+#set multiplot layout 4,4 rowsfirst title "Antenne ".i." x-y - view"
+set multiplot layout 3,5 rowsfirst title "Antenne ".i." x-y - view"
 
 set style data lines
 
@@ -236,100 +272,98 @@ set grid front
 fn=f1
 index=A0_index_min
 @SETZOOM
-
-
-plot f1 u 1:3:( A0_min+$8/A0_max) with image, "data/processed/1.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f1 u @NORM0  with image, "data/processed/1.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f1 u 1:3:( ($8==(A0_min)) ? "+" : "" ) with labels 
 
 fn=f2
 index=A1_index_min
 @SETZOOM
-plot f2 u 1:3:( A1_min+$8/A1_max) with image, "data/processed/2.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f2 u @NORM1  with image, "data/processed/2.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f2 u 1:3:( ($8==(A1_min)) ? "+" : "" ) with labels 
 
 fn=f3
 index=A2_index_min
 @SETZOOM
-plot f3 u 1:3:( A2_min+$8/A2_max) with image, "data/processed/3.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f3 u @NORM2  with image, "data/processed/3.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f3 u 1:3:( ($8==(A2_min)) ? "+" : "" ) with labels 
 
 fn=f4
 index=A3_index_min
 @SETZOOM
-plot f4 u 1:3:( A3_min+$8/A3_max) with image, "data/processed/4.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f4 u @NORM3  with image, "data/processed/4.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f4 u 1:3:( ($8==(A3_min)) ? "+" : "" ) with labels 
 
 fn=f5
 index=A4_index_min
 @SETZOOM
-plot f5 u 1:3:( A4_min+$8/A4_max) with image, "data/processed/5.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f5 u @NORM4  with image, "data/processed/5.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f5 u 1:3:( ($8==(A4_min)) ? "+" : "" ) with labels 
 
 fn=f6
 index=A5_index_min
 @SETZOOM
-plot f6 u 1:3:( A5_min+$8/A5_max) with image, "data/processed/6.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f6 u @NORM5  with image, "data/processed/6.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f6 u 1:3:( ($8==(A5_min)) ? "+" : "" ) with labels 
 
 fn=f7
 index=A6_index_min
 @SETZOOM
-plot f7 u 1:3:( A6_min+$8/A6_max) with image, "data/processed/7.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f7 u @NORM6  with image, "data/processed/7.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f7 u 1:3:( ($8==(A6_min)) ? "+" : "" ) with labels 
 
 fn=f8
 index=A7_index_min
 @SETZOOM
-plot f8 u 1:3:( A7_min+$8/A7_max) with image, "data/processed/8.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f8 u @NORM7  with image, "data/processed/8.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f8 u 1:3:( ($8==(A7_min)) ? "+" : "" ) with labels
 
 fn=f9
 index=A8_index_min
 @SETZOOM
-plot f9 u 1:3:( A8_min+$8/A8_max) with image, "data/processed/9.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f9 u @NORM8  with image, "data/processed/9.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f9 u 1:3:( ($8==(A8_min)) ? "+" : "" ) with labels
 
 fn=f10
 index=A9_index_min
 @SETZOOM
-plot f10 u 1:3:( A9_min+$8/A9_max) with image, "data/processed/10.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f10 u @NORM9  with image, "data/processed/10.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f10 u 1:3:( ($8==(A9_min)) ? "+" : "" ) with labels
 
 fn=f11
 index=A10_index_min
 @SETZOOM
-plot f11 u 1:3:( A1_min+$8/A1_max) with image, "data/processed/11.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f11 u @NORM10 with image, "data/processed/11.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f11 u 1:3:( ($8==(A10_min)) ? "+" : "" ) with labels
 
 fn=f12
 index=A11_index_min
 @SETZOOM
-plot f12 u 1:3:( A11_min+$8/A11_max) with image, "data/processed/12.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f12 u @NORM11 with image, "data/processed/12.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f12 u 1:3:( ($8==(A11_min)) ? "+" : "" ) with labels
 
 fn=f13
 index=A12_index_min
 @SETZOOM
-plot f13 u 1:3:( A12_min+$8/A12_max) with image, "data/processed/13.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f13 u @NORM12 with image, "data/processed/13.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f13 u 1:3:( ($8==(A12_min)) ? "+" : "" ) with labels
 
 fn=f14
 index=A13_index_min
 @SETZOOM
-plot f14 u 1:3:( A13_min+$8/A13_max) with image, "data/processed/14.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f14 u @NORM13 with image, "data/processed/14.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f14 u 1:3:( ($8==(A13_min)) ? "+" : "" ) with labels
 
 fn=f15
 index=A14_index_min
 @SETZOOM
-plot f15 u 1:3:( A14_min+$8/A14_max) with image, "data/processed/15.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+plot f15 u @NORM14 with image, "data/processed/15.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
      f15 u 1:3:( ($8==(A14_min)) ? "+" : "" ) with labels
 
-fn=f16
-index=A15_index_min
-@SETZOOM
-plot f16 u 1:3:( A15_min+$8/A15_max) with image, "data/processed/16.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
-     f16 u 1:3:( ($8==(A15_min)) ? "+" : "" ) with labels
+#fn=f16
+#index=A15_index_min
+#@SETZOOM
+#plot f16 u @NORM15 with image, "data/processed/16.dat" w l lt -1 lw 1 lc rgb "#2f4f4f",\
+#     f16 u 1:3:( ($8==(A15_min)) ? "+" : "" ) with labels
 
 unset multiplot
 i=i+1
