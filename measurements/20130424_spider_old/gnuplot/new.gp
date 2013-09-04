@@ -25,7 +25,7 @@ stats "gp_ready_a3_1.txt"  u 3 name "A3"
 stats "gp_ready_a4_1.txt"  u 3 name "A4"
 
 set contour base
-set cntrparam level incremental -1, .5, 1
+set cntrparam level incremental -.1, .01, .1
 set isosample 250, 250
 unset surface
 
@@ -64,6 +64,7 @@ set ticslevel 0.0
 set pm3d at b
 unset grid
 load 'BrBG.plt'
+
 #set palette cubehelix
 
 set view 150,45
