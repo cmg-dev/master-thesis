@@ -67,8 +67,79 @@ stats f16 u 8 name "A15" nooutput
 
 print "stats created"
 
+########################################################################
 set contour
-#set cntrparam levels incremental 0,50,1000
+set cntrparam levels incremental 0,50,1000
+#set isosample 1, 1
+unset surface 
+
+set table 'data/processed/01.dat'
+#splot f1 u 1:2:( $8/A0_max )
+splot f1 u 1:2:8
+unset table
+
+set table 'data/processed/02.dat'
+splot f2 u 1:2:8
+unset table
+
+set table 'data/processed/03.dat'
+splot f3 u 1:2:8
+unset table
+
+set table 'data/processed/04.dat'
+splot f4 u 1:2:8
+unset table
+
+set table 'data/processed/05.dat'
+splot f5 u 1:2:8
+unset table
+
+set table 'data/processed/06.dat'
+splot f6 u 1:2:8
+unset table
+
+set table 'data/processed/07.dat'
+splot f7 u 1:2:8
+unset table
+
+set table 'data/processed/08.dat'
+splot f8 u 1:2:8
+unset table
+
+set table 'data/processed/09.dat'
+splot f9 u 1:2:8
+unset table
+
+set table 'data/processed/010.dat'
+splot f10 u 1:2:8
+unset table
+
+set table 'data/processed/011.dat'
+splot f11 u 1:2:8 
+unset table
+
+set table 'data/processed/012.dat'
+splot f12 u 1:2:8
+unset table
+
+set table 'data/processed/013.dat'
+splot f13 u 1:2:8
+unset table
+
+set table 'data/processed/014.dat'
+splot f14 u 1:2:8
+unset table
+
+set table 'data/processed/015.dat'
+splot f15 u 1:2:8
+unset table
+
+set table 'data/processed/016.dat'
+splot f16 u 1:2:8
+unset table
+#######################################################################
+
+set contour
 set cntrparam levels discrete  0,1,5,10,40,50,100,200,500,1000
 #set isosample 1, 1
 unset surface 
@@ -149,7 +220,7 @@ reset
 set style line 1 lt 1 lc rgb '#000000' lw .5
 set style line 2 lt 1 lc rgb "#2f4f4f" lw 1
 
-set output "img/xy/xy_a".i.".png"
+set output "img/xy/a".i.".png"
 set multiplot layout 3,5 rowsfirst title "Antenne ".i." x-y - view"
 
 set style data lines
@@ -246,7 +317,7 @@ unset multiplot
 
 reset 
 
-set output "img/xy/xy_a".i."zoomed.png"
+set output "img/xy/a".i."zoomed.png"
 #set multiplot layout 4,4 rowsfirst title "Antenne ".i." x-y - view"
 set multiplot layout 3,5 rowsfirst title "Antenne ".i." x-y - view"
 
