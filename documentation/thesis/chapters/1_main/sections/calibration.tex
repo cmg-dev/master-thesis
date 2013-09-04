@@ -1,17 +1,16 @@
 \subsection{Implementation}
 %
-Der Ablauf der Kalibrierung ist in Abbildung~\ref{fig:calibration_flowchart} in Form eine Ablaufdiagramms dargestellt. Beschrieben werden die wesentlichen Schritte. Es sind sowohl Interaktion mit der Person enthalten die die Kalibrierung durchführt, als auch die Schritte die von den beteiligten Softwarekomponenten ausgeführt werden enthalten. Es wurden im Rahmen der Arbeit zwei unterschiedliche Wege implementiert, um ein Ergebnis für die Kalibrierung zu berechnen. Diese Wege werden im Folgenden vorgestellt und die Ergebnisse miteinander verglichen.\\
-Die Präsentation der Resultate wird vor Allem dazu verwendet werden die gewählte Form der Diagramme zu erläutern. Diese werden in den Ergebnissen des komplexeren Modells ebenfalls verwendet.
+Der Ablauf der Kalibrierung ist in Abbildung~\ref{fig:calibration_flowchart} in Form eine Ablaufdiagramms dargestellt. Beschrieben werden die wesentlichen Schritte. Es sind sowohl Interaktion mit der Person enthalten die die Kalibrierung durchführt, als auch die Schritte die von den beteiligten Softwarekomponenten ausgeführt werden enthalten. Es wurden im Rahmen der Arbeit zwei unterschiedliche Wege implementiert, um ein Ergebnis für die Kalibrierung zu berechnen. Diese Wege werden im Folgenden vorgestellt und die Ergebnisse miteinander verglichen. Die Präsentation der Resultate wird vor Allem dazu verwendet werden die gewählte Form der Diagramme zu erläutern. Diese werden in den Ergebnissen des komplexeren Modells ebenfalls verwendet.
 %
 \subsubsection{SVD}
 %
 Das unter \ref{sec:svd} vorgestellte Verfahren der Singular-Value-Decomposition kann dazu verwendet werden eine Lösung eines linearen Gleichungssystems zu berechnen. Das Modell, dass zur Kalibrierung verwendet wird, ist ein Gleichungssystem der Form $\mathbf{A}\mathbf{x}=\mathbf{b}$ und hat drei Gleichungen mit drei Unbekannten. Daher kann sofort eine Lösung mit dem Verfahren hergeleitet werden. Das Ergebnis eines Messaufbaus mit 3 Antennen ist in Tabelle\ref{tab:FinalCoords} und in Abbildung~\ref{fig:3dplot_coordinates} gezeigt. Die Implementation des Algorithmus stammt aus \cite{press2007numerical} und wurde für diese Arbeit angeschafft.
 %
 \subsubsection{CMA-ES}
-Das über den evolutionären Algorithmus gefundene Ergebnis gleicht dem des SVD-Verfahrens. Der SVD-Algorithmus ist um ein vielfaches effizienter\footnote{d.h. weniger Rechenzeit ist erforderlich} beim Lösen des Gleichungssystems. Der Gründe warum an dieser Stelle das Ergebnis dennoch über evolutionäre Verfahren dargestellt wird sind folgende:
+Das über den evolutionären Algorithmus gefundene Ergebnis gleicht dem des SVD-Verfahrens (siehe Tabelle~\ref{tab:FinalCoords}). Der SVD-Algorithmus ist um ein vielfaches effizienter\footnote{d.h. weniger Rechenzeit ist erforderlich} beim Lösen des Gleichungssystems. Der Gründe warum an dieser Stelle die Berechnung mit dem evolutionären Verfahren durchgeführt und hier dargestellt wird sind folgende:
 %
 \begin{enumerate}
- \item Die Komplexität ist gering, daher kann der Ablauf des evolutionären Verfahrens besser dargestellt und verstanden werden
+ \item Die Komplexität ist gering, daher kann der Ablauf des evolutionären Verfahrens besser dargestellt und für später verstanden werden
  \item Der Vergleich der beiden Ergebnisse ermöglicht die Verifizierung der Implementation beider Verfahren.
 \end{enumerate}
 %
@@ -25,7 +24,7 @@ Dem ersten Punkt kommt im Rahmen dieser Arbeit eine besondere Stellung zu, es is
 \subsection{Ergebnis}
 Es werden nun die Ergebnisse der Kalibrierung vorgestellt. Für eine der vermessenen Antennenkonfigurationen sind in der folgenden Tabelle die Koordinaten der Antennen gezeigt. Die Visualisierung der Konfiguration zeigt die Abbildung~\ref{fig:3dplot_coordinates}.
 %
-\begin{table} [H]
+\begin{table} [ht!]
 	\begin{center}
 		\begin{tabular}{cccccccc}
 		      \textbf{Antenne} & \textbf{$x$} & \textbf{$y$} & \textbf{$z$} & \textbf{$d_{meas}$} & \textbf{$d_{result}$}& \textbf{$\epsilon_{abs}$} & \textbf{$\epsilon_{rel}$} \\
@@ -58,10 +57,11 @@ Abbildung~\ref{fig:Final_Calibration_Ant0_ES-Scatter} ist ein Scatter-Plot. Die 
 %
 \begin{figure}[!ht]
   \begin{center}
+   \caption[Box-Plot der Endergebnisse der Kalibierung]{Boxplot des Kalibierergebnis aus $100$ Durchläufen. Im oberen Plot der sind die x,y,z-Koordinaten gezeigt, diese landen in allen Durchläufen auf dem selben Ergebnis. Was nicht verwundert, das Problem ist eines der Art drei Gleichungen und drei Unbekannte. Die Streuung der Lösung zeigt sich in der Breite der Linien. Die unteren vier Plots zeigen die Anzahl der Evaluationen der Fitness-Funktion, den finalen Funktionswert, das Sigma für die Variablen, die Entfernung zum Referenzpunkt (v.l.n.r.).}
+    \label{fig:Final_Calibration_Ant0_ES-boxes}
     \includegraphics[width=0.9\textwidth]{img/calibration/calibration_ant0-boxes.png}
   \end{center}
-  \caption[Box-Plot der Endergebnisse der Kalibierung]{Boxplot des Kalibierergebnis aus $100$ Durchläufen. Im oberen Plot der sind die x,y,z-Koordinaten gezeigt, diese landen in allen Durchläufen auf dem selben Ergebnis. Das zeigt sich in der Breite der Linien. Die unteren vier Plots zeigen die Anzahl der Evaluationen der Fitness-Funktion, den finalen Funktionswert, das Sigma für die Variablen, die Entfernung zum Referenzpunkt (v.l.n.r.).}
-  \label{fig:Final_Calibration_Ant0_ES-boxes}
+ 
 %
 \end{figure}
 %
@@ -69,27 +69,29 @@ Abbildung~\ref{fig:Final_Calibration_Ant0_ES-Scatter} ist ein Scatter-Plot. Die 
 %
 \begin{figure}[!ht]
   \begin{center}
+  
+    \caption[Linien-Plot der Endergebnisse der Kalibierung]{Zu erkennen ist, das nach ca. 300 Evaluationen der Zielfunktion keine großen Änderungen der Variablen zu erkennen sind. Bis zum erreichen des Abbruchkriteriums (Function Value $\leq10^{-25}$) werden noch ca 400 Evaluationen benötigt, vgl. korrespondierender Boxplot.}
+    \label{fig:Final_Calibration_Ant0_ES-Lines}  
     \includegraphics[width=0.9\textwidth]{img/calibration/calibration_ant0-lines.png}
   \end{center}
-  \caption[Linien-Plot der Endergebnisse der Kalibierung]{Zu erkennen ist, das nach ca. 300 Evaluationen der Zielfunktion keine großen Änderungen der Variablen zu erkennen sind. Bis zum erreichen des Abbruchkriteriums (Function Value $\leq10^{-25}$) werden noch ca 400 Evaluationen benötigt, vgl. korrespondierender Boxplot.}
-  \label{fig:Final_Calibration_Ant0_ES-Lines}  
 %  
 \end{figure}
 %---------------------------------------------------------------
 %
 \begin{figure}[!ht]
   \begin{center}
+  
+    \caption[Kalibierung Scatter-Plot]{Scatter-Plot der Ergebnisse der evolutionären Kalibrierung. Die Endergebnisse streuen in keiner Dimension, das wird aus dieser Darstellung deutlich. Wenngleich der Plot etwas langweilig anmutet.}
+    \label{fig:Final_Calibration_Ant0_ES-Scatter}  
     \includegraphics[width=0.9\textwidth]{img/calibration/calibration_ant0-scatter.png}
   \end{center}
-  \caption[Kalibierung Scatter-Plot]{Scatter-Plot der Ergebnisse der evolutionären Kalibrierung. Die Endergebnisse streuen in keiner Dimension, das wird aus dieser Darstellung deutlich.}
-  \label{fig:Final_Calibration_Ant0_ES-Scatter}  
 %  
 \end{figure}
 %---------------------------------------------------------------
 %
 \begin{figure}[!ht]
      \centering
-     \begin{subfigure}[t]{0.4\textwidth}
+     \begin{subfigure}[t]{0.45\textwidth}
              \centering
              \includegraphics[width=\textwidth]{img/calibration/aborted_calibration_ant0-boxes.png}
              \caption{Statistisch verteilte Endwerte für die Koordinaten der Kalibrierung.}
@@ -98,7 +100,7 @@ Abbildung~\ref{fig:Final_Calibration_Ant0_ES-Scatter} ist ein Scatter-Plot. Die 
 %
 \qquad         
 %
-     \begin{subfigure}[t]{0.4\textwidth}
+     \begin{subfigure}[t]{0.45\textwidth}
              \centering
              \includegraphics[width=\textwidth]{img/calibration/aborted_calibration_ant0-lines.png}
              \caption{Linienplot der bei $140$ Evaluationen abgebrochenen Verläufe. Gut zu sehen ist der Verlauf der Objektvariablen, die sich von Generation zu Generation dem realen Wert nähern}

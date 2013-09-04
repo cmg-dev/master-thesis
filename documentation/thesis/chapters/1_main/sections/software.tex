@@ -72,7 +72,27 @@ Der komplette Quellcode findet sich im Anhang~\ref{app:EvolutionaryCalibration1}
 %
 \label{lst:shark_model}
 %
-\subsubsection{Schnittstelle für Dateneingabe}
+%
+\subsection{Paralleler Ablauf}
+\label{lst:parallel_computing}
+%
+Die \textit{ProcessMkII}-Klasse ist Threadfähig. Eine Implementierung wurde im Rahmen der Arbeit durchgeführt. Durch das parallele Ablaufen verschiedener Optimierungen kann die Performance wesentlicher verbessert werden und so die Multi-Kern-Architektur aktueller Rechner ausgenutzt werden. Einen großen Beitrag zur schnellen Umsetzung lieferte der neue Standard \cpp11. Dieser Implementiert ein High-Level Konstrukt für Threads und Tasks, sodass es einfacher ist, Abläufe zu Synchronisieren und Ergebnisse abzufragen. Zusätzlich ist die Implementation sehr leicht, wie im folgenden Listing gezeigt:
+%
+\lstinputlisting[caption=Erstellen von mehreren Threads bei gleichzeitiger Übergabe der Parameter\vspace{2mm},
+				 firstline=1, lastline=19]{src/async.cpp}
+				 \label{lst:Parallel_example1.cpp}
+%
+\vspace{2mm}
+Das Abfragen der Ergebnisse ist genauso einfach:
+\vspace{2mm}
+%
+\lstinputlisting[caption=Abfragen der Asynchronen Ergebnisse mit Hilfe des auto-Datentyp. Ausgabe des Ergebnisses in einer Datei.\vspace{2mm},
+				 firstline=23, lastline=36]{src/async.cpp}
+				 \label{lst:Parallel_example2.cpp}
+%
+\vspace{2mm}
+%
+\subsection{Schnittstelle für Dateneingabe}
 %
 Im Folgenden wird die implementierte Schnittstelle besprochen mit der die Daten unter den Programmteilen ausgetauscht werden können. Die Schnittstelle umfasst im Wesentliche zwei Teile:
 \begin{enumerate}
@@ -80,7 +100,7 @@ Im Folgenden wird die implementierte Schnittstelle besprochen mit der die Daten 
 	\item Ausgabe für die ermittelten Wellenzahlen
 \end{enumerate}
 %
-Hinzukommt eine pseudo-Schnittstelle über die die Systemparameter eingelesen werden können. Die aktuelle Implementation ließt eine Eingabedatei, mit den Systemparametern in eine entsprechende Struktur ein.
+Hinzukommt eine pseudo-Schnittstelle über die die Systemparameter eingelesen werden können. Die aktuelle Implementation ließt lediglich eine CSV-Eingabedatei, mit den Systemparametern in eine entsprechende Struktur ein. Diese Parameter stehen Anschließend dem PRPS-Evolution System zur Verfügung.
 %
 Die Kommunikation zwischen dem PRPS-Dienst und dem PRPS-Evolution ist einfach. Der Dienst teilt die gemessenen Phasendaten mit, die vom PRPS-Evolution für die Berechnung der Wellenzahlen verwendet werden. Das bedeutet das der Ablauf des Auffindens der Wellenzahl vom PRPS-Dienst als 'Black-Box' angesehen wird.\\
 %
@@ -88,7 +108,7 @@ Die Kommunikation zwischen dem PRPS-Dienst und dem PRPS-Evolution ist einfach. D
 %
 \subsection{Ablaufdiagramme}
 %
-Vieles der Funktionalität der Software ist zu Umfangreich für dieses Dokument. Es kann keine vollständige Besprechung des Quellcodes durchgeführt werden. Im Folgenden werden daher diese Funktionalitäten und Abläufe in Ablaufplänen zusammenfassend dargestellt.
+Vieles der Funktionalität der Software ist zu umfangreich für dieses Dokument. Es kann in diesem Rahmen keine vollständige Besprechung des Quellcodes durchgeführt werden. Wichtige Funktionalitäten und Abläufe werden in Ablaufplänen zusammenfassend dargestellt.
 %
 \input{chapters/1_main/sections/programm_start.tex}
 %

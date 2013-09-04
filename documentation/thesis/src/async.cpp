@@ -24,7 +24,7 @@ for( auto res = results.begin(); res != results.end(); ++res ) {
 	while(res->wait_for(chrono::seconds(0)) != future_status::ready );
 
 	auto r = res->get();
-	f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (µs)" << " " << r.converged <<std::endl;
+	f_fitness << r.iterations << " " << r.fitness <<" in: " << r.duration << " (us)" << " " << r.converged <<std::endl;
 
 	for( auto values : r.valCont )
 		f << values << "\t";

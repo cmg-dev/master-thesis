@@ -10,7 +10,7 @@
 \newcommand{\A}{360/\D} % calculated angle between dimension axes  
 
 \begin{tikzpicture}[scale=1]
-\def\firstcircle{\draw  [color=gray,line width=1.5pt,opacity=0.5, pattern=north west lines,pattern color=gray] (D2-3) -- (D3-4) -- (D4-4) -- (D3-3) -- (D2-3)}
+\def\firstcircle{\draw  [color=gray,line width=1.5pt,opacity=0.5, pattern=north east lines,pattern color=gray] (D2-4) -- (D3-4) -- (D4-5) -- (D3-3) -- (D2-4)}
 \def\secondcircle{(45:2cm) circle (1.5cm)}
 
   \path (0:0cm) coordinate (O); % define coordinate for origin
@@ -38,7 +38,7 @@
 %  \path (5*\A:\L) node (L5) {\tiny Usability};
 %  \path (6*\A:\L) node (L6) {\tiny Generality};
   \path (1*\A:\L) node (L1) { Unabhängigkeit };
-  \path (2*\A:\L) node (L2) { Sicherheit };
+  \path (2*\A:\L) node (L2) { Genauigkeit };
   \path (3*\A:\L*1.2) node (L3) { Performance };
   \path (4*\A:\L) node (L4) { Großes Messvolumen };
   \path (5*\A:\L) node (L5) { Integration };
@@ -74,14 +74,13 @@
   % D1 (Security): 2/7; D2 (Content Quality): 2/7; D3 (Performance): 5/7;
   % D4 (Stability): 1/7; D5 (Usability): 4/7; D6 (Generality): 1/7;
   % D7 (Popularity): 7/7
-%  \draw [color=green,line width=1.5pt,opacity=0.5, pattern=north west lines,pattern color=green]
-%    (D1-4) --
-%    (D2-3) --
-%    (D3-3) --
-%    (D4-4) --
-%    (D5-5) --
-%    (D6-3) -- cycle;
-%    (D7-7) -- cycle;
+  \draw [color=green,line width=1.5pt,opacity=0.5, pattern=north west lines,pattern color=green]
+    (D1-4) --
+    (D2-4) --
+    (D3-3) --
+    (D4-5) --
+    (D5-5) --
+    (D6-3) -- cycle;
 
   % Example Case 3 (blue)
   %
