@@ -1,5 +1,5 @@
 #
-# This plot generates the x-y view of the fitness plane
+# This plot generates the y-z view of the fitness plane
 #
 at(file, row, col) = system( sprintf("awk -v row=%d -v col=%d 'NR == row {print $col}' %s", row, col, file) )
 
@@ -150,7 +150,7 @@ set style line 1 lt 1 lc rgb '#000000' lw .5
 set style line 2 lt 1 lc rgb "#2f4f4f" lw 1
 
 set output "img/yz/a".i.".png"
-set multiplot layout 3,5 rowsfirst title "Antenne ".i." x-y - view"
+set multiplot layout 3,5 rowsfirst title "Antenne ".i." y-z - view"
 
 set style data lines
 
@@ -247,8 +247,8 @@ unset multiplot
 reset 
 
 set output "img/yz/a".i."zoomed.png"
-#set multiplot layout 4,4 rowsfirst title "Antenne ".i." x-y - view"
-set multiplot layout 3,5 rowsfirst title "Antenne ".i." x-y - view"
+#set multiplot layout 4,4 rowsfirst title "Antenne ".i." y-z - view"
+set multiplot layout 3,5 rowsfirst title "Antenne ".i." y-z - view"
 
 set style data lines
 
