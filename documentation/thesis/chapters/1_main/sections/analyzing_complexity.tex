@@ -1,15 +1,21 @@
 %
-Im Folgenden wird eine Betrachtung der Komplexität des in Abschnitt~\ref{sec:model_developement} entwickelten Modells präsentiert. Diese Betrachtung ist wichtig für die Parametrisierung des Optimierungsverfahrens sowie für eine Beurteilung der Generellen Lösbarkeit mit den verwendeten Verfahren. Es wird eine Visualisierung des Fitness-Raums vorgestellt und im Vergleich mit sog. Benchmark-Funktionen diskutiert.\\
+Im Folgenden wird eine Betrachtung der Komplexität des in Abschnitt~\ref{sec:model_developement} entwickelten Modells präsentiert. Diese Betrachtung ist wichtig für die Parametrisierung des Optimierungsverfahrens sowie für eine Beurteilung der Generellen Lösbarkeit mit den verwendeten Verfahren. Es wird eine Visualisierung der Fitness-Landschaft\footnote{Auch Fitness-Raum genannt} vorgestellt.\\
 %
 
-Für die Erstellung der Fitness-Ebenen wurde ein Programmteil (der \textit{FitnessPlaneCalculator}) entwickelt, der ein Modell mit vorgegebenen Daten füttert und den Rückgabewert in eine Datei schreibt. Das Programm lässt sich per Eingabedatei steuern und erlaubt die Definition der Ebenen die dargestellt werden sollen. Es lassen sich immer zwei Variablen der Objektfunktion variieren und der Rest wird dabei auf feste Werte gesetzt. Das erlaubt eine Visualisierung durch eine 2D-Heatmap (siehe folgende Plots). Aus der Visualisierung können Rückschlüsse auf die Gestalt der Fitnessebene gezogen werden.\\
+Um einen Ausschnitt der Fitnesslandschaft zu erstellen, die sog. Fitness-Ebenen, wurde ein eigener Programmteil (der \textit{FitnessPlaneCalculator}) entwickelt. Das Programm nimmt ein in dieser Arbeit entwickeltes Modell und füttert es mit vorgegebenen Daten und schreibt den Rückgabewert in eine Datei. Das Programm lässt sich per Eingabedatei steuern und erlaubt die Definition der Ebenen die dargestellt werden sollen. Es lassen sich immer zwei Variablen der Objektfunktion variieren und der Rest wird dabei auf feste Werte gesetzt. Das erlaubt eine Visualisierung durch eine 2D-Heatmap (siehe folgende Plots). Formal lässt sich das vorgehen wie folgt beschreiben:
+%
+\begin{equation}
+f(\mathbf{x}) \in \mathbb{R}^{N} \rightarrow \mathbb{R}^{2}\nonumber
+\end{equation}
+%
+Aus der Visualisierung können Rückschlüsse auf die Gestalt der Fitnessebene gezogen werden.\\
 %
 
 Die Parameter wurde für diese Plots so gewählt das sie über einen Bereich iterieren, indem die richtige Lösung liegen sollten. Eingezeichnet sind verschiedene Höhenlinien, die zur Orientierung dienen sollen. Diese sind für die Werte des diskreten Intervalls: $[0,1,5,10,50,100,200]$ ausgeführt. Sie tragen zur besseren Übersicht bei. Die Farbskala das Heatmap skaliert den Plot auf den Wertebereich $[0,1]$ und addiert das im Plot vorkommende Minimum dazu. So kann man leicht eine qualitative Beurteilung der Ebene ablesen. Da nur drei Parameter variiert werden, erhalten die übrigen vier auf analytisch bestimmte, wahre Werte. Diese sind in Tabelle~\ref{tab:complexity1} zusammen mit den wahren Werten aufgeführt.\\
 
 %
 \begin{figure}[h!]
-  \caption[Fitness Ebenen Heatmap]{Diese Grafik zeigt die Fitnessebenen des Problems für eine Anordnung aus vier Antennen und einem Sweep über die $x-y$ - Ebene. Jeder Plot ist für einen festen Wert $z$ erstellt worden. In der Oberen linken Ecke beginnend und nach rechts laufend. Die $x, y$-Werte wurden über ein Intervall von $[-5,5]$ m und mit einem Inkrement von $0.2$ variiert. Daraus ergibt eine für die Abschätzung der Gestalt der Fitnessebene ausreichende Datengrundlage. Die $z$-Werte der $16$-Plots stammen aus dem Intervall $[-7,-7]$ mit einem Inkrement von $1$. Bereits in dieser Ansicht, ist zu erkennen, dass der Verlauf sehr Flach ist. Eine Schlucht bildet sich etwa in Nord-Süd-Richtung aus. Jeweils verzeichnet ist das lokale Minima ($+$) eins Plots, sowie die Höhenlinien\footnote{Die Höhenlinien sind für diskrete Werte ${0,1,10,40,50,100,200,500,1000}$ erstellt worden}. Die farbliche Kodierung gibt den Fitnesswert an diesem Punkt an. Die Fitnesswerte wurden normiert und um den Wert ihres Minimums verschoben.}
+  \caption[Fitness Ebenen Heatmap]{Diese Grafik zeigt die Fitnessebenen $\mathbb{R}^{2}$ des Problems.für eine Anordnung aus vier Antennen und einem Sweep über die $x-y$ - Ebene. Jeder Plot ist für einen festen Wert $z$ erstellt worden. In der Oberen linken Ecke beginnend und nach rechts laufend. Die $x, y$-Werte wurden über ein Intervall von $[-5,5]$ m und mit einem Inkrement von $0.2$ variiert. Daraus ergibt eine für die Abschätzung der Gestalt der Fitnessebene ausreichende Datengrundlage. Die $z$-Werte der $15$-Plots stammen aus dem Intervall $[-7,-7]$ mit einem Inkrement von $1$. Bereits in dieser Ansicht, ist zu erkennen, dass der Verlauf sehr Flach ist. Eine Schlucht bildet sich etwa in Nord-Süd-Richtung aus. Jeweils verzeichnet ist das lokale Minima ($+$) eins Plots, sowie die Höhenlinien\footnote{Die Höhenlinien sind für diskrete Werte ${0,1,10,40,50,100,200,500,1000}$ erstellt worden}. Die farbliche Kodierung gibt den Fitnesswert an diesem Punkt an. Die Fitnesswerte wurden normiert und um den Wert ihres Minimums verschoben.}
   \begin{center}
     \includegraphics[width=\textwidth]{img/fitness/xy_a0.png}
   \end{center}
@@ -65,7 +71,7 @@ Aufgrund der Komplexität des in dieser Arbeit erstellten Modells \ref{fig:Compl
 %
 \begin{table} [h]
 	\begin{center}
-		\caption[Parameter der Fitness Ebenen]{Tabellarisch sind hier die Parameter (Intervalle) der Fitness Ebenen aufgelistet. Zusätzlich sind die Werte angegeben, in denen eine optimale Lösung liegen sollte. }
+		\caption[Parameter der Fitness Ebenen]{Tabellarisch sind hier die Parameter (Intervalle) der Fitness Ebenen aufgelistet. Zusätzlich sind die Werte angegeben, in denen eine optimale Lösung liegen sollte. Notation: [Start:Inkrement:Ende] }
 		\label{tab:complexity1}
 		\begin{tabular}{lccccccc}
 		\textbf{Ebene} & $\mathbf{x}$ & $\mathbf{y}$ & $\mathbf{z}$ & $\mathbf{n_0}$ & $\mathbf{n_1}$& $\mathbf{n_2}$ & $\mathbf{n_3}$ \\
