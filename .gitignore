@@ -86,3 +86,4 @@ dev/src/c-cpp/playground/*
 *.toc
 *.out
 *.stackdump
+*.jpg
