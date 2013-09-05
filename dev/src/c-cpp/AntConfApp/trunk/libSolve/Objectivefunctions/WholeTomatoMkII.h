@@ -51,7 +51,7 @@ namespace PRPSEvolution {
 // 					x(i) = Rng::uni(-10, 10);
 				}
 				for (unsigned int i = 3; i < x.size(); i++) {
-					x(i) = std::round( Rng::uni(2, 20) );
+					x(i) = std::round( Rng::uni(10, 30) );
 				
 				}
 				

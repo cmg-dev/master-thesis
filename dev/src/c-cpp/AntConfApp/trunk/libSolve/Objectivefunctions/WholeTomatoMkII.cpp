@@ -6,6 +6,8 @@
 
 #include "WholeTomatoMkII.h"
 
+#define _WT_CONSTRAIN_HARD_
+
 namespace PRPSEvolution {
 	namespace Models {
 		using namespace shark;
@@ -127,17 +129,17 @@ namespace PRPSEvolution {
 					return false;
 				
 
-			for( int i = 3; i < m_numberOfVariables; i++)
-				if( x[i] < 5. )
+			for( int i = 0; i < 3; i++)
+				if( x[i] > 5. || x[i] < -5. )
 					return false;
 
-			for( int i = 3; i < m_numberOfVariables; i++)
-				if( x[i] > 25. )
-					return false;
+// 			for( int i = 0; i < 3; i++)
+ // 				if( x[i] < 1. || x[i] > -1. )
+// 					return false;
 				
-			auto v = std::sqrt( x[0]*x[0] + x[1]*x[1] + x[2]*x[2] );
-			if( (double) v > 6. )
-				return false;
+// 			auto v = std::sqrt( x[0]*x[0] + x[1]*x[1] + x[2]*x[2] );
+// 			if( (double) v > 6. )
+// 				return false;
 #endif
 			return true;
 			
