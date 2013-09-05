@@ -1,3 +1,4 @@
+/* result vector; Solve::solveresult_t defines the return from the model */
 std::vector<std::future<Solve::solveresult_t<ChromosomeT<double>,ChromosomeT<double>,Doub>>> results;
 
 /* create tasks */
@@ -5,7 +6,7 @@ for( int Solution = 0; Solution < NO_OF_SOLUTIONS; Solution++ ) {
 
 	t_0 = steady_clock::now();
 
-	resultsA.push_back( std::async( std::launch::async,
+	results.push_back( std::async( std::launch::async,
 					&Solve::Process::findSolution<Solve::solveresult_t<ChromosomeT<double>,Doub>>,
 					&process,
 					A,
