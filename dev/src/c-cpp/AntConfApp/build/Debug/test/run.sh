@@ -7,7 +7,7 @@
 # [Start] [Stop] [Variant] [Trials] [Evaluations] [DropBad] [Mu] [Lambda] [StartGroupSize] [IncrementGroupSize]
 function action {
 
-GROUPSIZE=$9
+GS=$9
 
 for (( i=$1 ; i < $2 ; i++ )) 
 do
@@ -18,17 +18,17 @@ do
     echo "  Variant       "$3
     echo "  Trials        "$4
     echo "  Name          '"$NAME"'"
-    echo "  Groupsize     "$GROUPSIZE
+    echo "  Groupsize     "$GS
     echo "  Evaluations   "$5
     echo "  Mu            "$7
     echo "  Lambda        "$8
     echo ""
 
-    ./AntConfApp $3 $4 $7 $NAME $7 $8 $GROUPSIZE $5
+    ./AntConfApp $3 $4 $7 $NAME $7 $8 $GS $5
    
     if [ ${10} == "yes" ]
     then
-        GROUPSIZE=$(($GROUPSIZE+1))
+        GS=$(($GS+1))
         echo " New Group size "$GROUPSIZE
     fi
 
@@ -326,27 +326,29 @@ else
         TRIALS=10
         VARIANT=4
         START=170
-        STOP=180
-        GROUPSIZE=1
+        STOP=175
+        GROUPSIZE=3
+        LOCALGS=3
         INCGROUPSIZE="yes"
         EVALUATIONS=50000
-        MU=0
-        LAMBDA=0
+        MU=5
+        LAMBDA=10
        
         a=0
-        b=10
+        b=25
        
         for (( j=i$a ; j < $b ; j++ )) 
         do 
-        GROUPSIZE=1
+            GROUPSIZE=$LOCALGS
 
             action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            echo "run done"
             MU=$((MU+5))
-            LAMBDA=$((LAMBDA+20))
+            LAMBDA=$((LAMBDA+10))
         
             #GROUPSIZE=$((GROUPSIZE+1))
-            START=$((START+10))
-            STOP=$((STOP+10))
+            START=$((START+5))
+            STOP=$((STOP+5))
 
         done
 
@@ -361,7 +363,7 @@ else
         STOP=310
         GROUPSIZE=1
         INCGROUPSIZE="yes"
-        EVALUATIONS=50000
+        EVALUATIONS=500000
         MU=1
         LAMBDA=10
        

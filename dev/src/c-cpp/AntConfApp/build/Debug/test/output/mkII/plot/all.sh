@@ -79,7 +79,7 @@ j=0
 for (( i=$1 ; i <$2 ; i+=$6 ))
 do
     
-    ./plot.sh -f E$i -s 0 -e $3 -a $GROUPSIZE -t $5 -p no -c yes -x no -l 1000000
+    ./plot.sh -f E$i -s 0 -e $3 -a $GROUPSIZE -t $5 -p no -c yes -x no -l 100000
     GROUPSIZE=$((GROUPSIZE+1))
     #increment j 
     j=$((j+1))
