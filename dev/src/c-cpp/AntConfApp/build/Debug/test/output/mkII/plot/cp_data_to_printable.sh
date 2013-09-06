@@ -56,6 +56,8 @@ do
         fi
 
         echo "" >> $fn_out_single
+
+        cp ../$filenamebase"_SolStat.dat" data/
     done
     echo "Trial "$j" done" 
 done
