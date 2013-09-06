@@ -38,7 +38,7 @@ set xrange [.5:a+.5]
 set xtics 
 
 set ytics format "%.1f"
-set yrange [-3:3]
+set yrange [-4:4]
 if(a>3) set y2tics format "%.1f"
 if(a>3) set y2label "Final Value - Wavenumbers ( n )"
 
@@ -129,7 +129,7 @@ set boxwidth 0.05 relative
 
 set autoscale
 set xlabel ""
-set logscale y
+#set logscale y
 set ylabel "Evaluations"
 set size .25, .4
 set origin .0,.0
@@ -141,7 +141,7 @@ plot inputfile u ($2 < limit ? (1): 1/0):2 ls 4 notitle
 
 #-------------------------------------------------------------------------
 #setup the 3. plot
-set logscale y
+#set logscale y
 set ytics 
 
 set xlabel ""
@@ -173,7 +173,7 @@ plot inputfile u ($2 < limit ? (1): 1/0):lastDataCol ls 4 notitle
 #setup the 5. plot
 set xlabel ""
 set ylabel "Distance"
-set ytics format "%.1e" 
+set ytics format "%.2e" 
 
 set size .25, .4
 set origin .75,.0

@@ -135,7 +135,7 @@ then
     echo "****"
     echo "Creating Archiv"
     echo "****"
-    ./create_arch.sh $FILE
+#    ./create_arch.sh $FILE
     ./create_arch.temp.sh $FILE
     
     echo "****"
