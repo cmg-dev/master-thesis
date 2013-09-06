@@ -1,37 +1,36 @@
-# set terminal pngcairo  transparent enhanced font "arial,10" fontscale 1.0 size 500, 350 
-# set output 'rgb_variable.5.png'
-unset border
-set angles degrees
-set label 99 "" at 0, 0, 0 left norotate back nopoint offset character 0, 0, 0
-set xzeroaxis linetype -1 linecolor rgb "red"  linewidth 2.000
-set yzeroaxis linetype -1 linecolor rgb "green"  linewidth 2.000
-set zzeroaxis linetype -1 linecolor rgb "blue"  linewidth 2.000
-set xyplane at 0
-set xtics axis in scale 1,0.5 nomirror norotate  offset character 0, 0, 0 autojustify
-set ytics axis in scale 1,0.5 nomirror norotate  offset character 0, 0, 0 autojustify
-set ztics axis in scale 1,0.5 nomirror norotate  offset character 0, 0, 0 autojustify
-set title "Both RGB color information\n and point size controlled by input" 
-set xlabel "Red" 
-set xlabel  offset character 0, 0, 0 font "" textcolor rgb "red"  norotate
-set xrange [ 0.00000 : 255.000 ] noreverse nowriteback
-set ylabel "Green" 
-set ylabel  offset character 0, 0, 0 font "" textcolor rgb "green"  rotate by -270
-set yrange [ 0.00000 : 255.000 ] noreverse nowriteback
-set zlabel "Blue" 
-set zlabel  offset character 0, 0, 0 font "" textcolor rgb "blue"  norotate
-set zrange [ 0.00000 : 255.000 ] noreverse nowriteback
-set lmargin  5
-set bmargin  2
-set rmargin  5
-rgb(r,g,b) = int(r)*65536 + int(g)*256 + int(b)
-xrgb(r,g,b) = (g-b)/255. * cos(30.)
-yrgb(r,g,b) = r/255. - (g+b)/255. * sin(30.)
-GPFUN_rgb = "rgb(r,g,b) = int(r)*65536 + int(g)*256 + int(b)"
-GPFUN_xrgb = "xrgb(r,g,b) = (g-b)/255. * cos(30.)"
-GPFUN_yrgb = "yrgb(r,g,b) = r/255. - (g+b)/255. * sin(30.)"
+#
+# Demo of reading color information from the data file itself
+#
 
-splot 'data.dat' using 1:2:3:4:(rgb($1,$2,$3)) with points pt 7 ps variable lc rgb variable\
-	title "variable pointsize and rgb color computed from coords"
-	
-#splot 'rgb_variable.dat' using 1:2:3::(rgb($1,$2,$3)) with points pt 7 ps variable lc rgb variable\
-#	title "variable pointsize and rgb color computed from coords"
+#
+rgb(r,g,b) = int(r)*65536 + int(g)*256 + int(b)
+
+#
+set border -1 front linetype -1 linewidth 1.000
+set ticslevel 0
+set xtics border
+set ytics border
+set ztics border
+#
+#
+set xlabel "Red" tc rgb "red"
+set xrange [0:255]
+set ylabel "Green" tc rgb "green"
+set yrange [0:255]
+set zlabel "Blue" tc rgb "blue"
+set zrange [0:255]
+
+#
+#
+# Unfortunately, not all platforms allow us to read hexadecimal constants
+# from a data file. Warn the user if that is the case.
+#
+if (0 == int('0x01')) \
+   set label 99 at screen .05, screen .15 "If you see only black dots,\nthis means your platform does not \nsupport reading hexadecimal constants\nfrom a data file. Get a newer libc."
+
+set hidden3d
+#splot 'data.dat' using 1:2:3:(5):4 with points pt 7 ps variable lc rgb variable \
+ #     title "variable pointsize and rgb color read as hexidecimal"
+
+splot 'data.dat' using 1:2:3:4 with points lt 1 pt 6 ps variable \
+      title "variable pointsize and rgb color read as hexidecimal"
