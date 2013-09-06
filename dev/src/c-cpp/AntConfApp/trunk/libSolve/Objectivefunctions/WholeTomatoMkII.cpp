@@ -127,7 +127,6 @@ namespace PRPSEvolution {
 			for( int i = 3; i < m_numberOfVariables; i++)
 				if( x[i] < 0. )
 					return false;
-				
 
 			for( int i = 0; i < 3; i++)
 				if( x[i] > 5. || x[i] < -5. )

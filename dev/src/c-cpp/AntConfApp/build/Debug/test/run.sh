@@ -335,7 +335,7 @@ else
         LAMBDA=10
        
         a=0
-        b=25
+        b=35
        
         for (( j=i$a ; j < $b ; j++ )) 
         do 
@@ -401,6 +401,39 @@ else
         
         action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
         
+
+    fi
+#=================================================================================================#
+    if (( $SET == 13 ))
+    then
+        TRIALS=100
+        VARIANT=4
+        START=2000
+        STOP=2010
+        GROUPSIZE=1
+        LOCALGS=3
+        INCGROUPSIZE="yes"
+        EVALUATIONS=100000
+        MU=30
+        LAMBDA=500
+       
+        a=0
+        b=30
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            echo "run done"
+            MU=$((MU+5))
+            LAMBDA=$((LAMBDA+10))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+5))
+            STOP=$((STOP+5))
+
+        done
 
     fi
 #=================================================================================================#

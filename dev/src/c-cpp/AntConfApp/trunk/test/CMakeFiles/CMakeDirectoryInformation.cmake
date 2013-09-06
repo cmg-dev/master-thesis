@@ -13,7 +13,7 @@ SET(CMAKE_C_INCLUDE_PATH
   "/libPermutate"
   "/libCalibration"
   "/libPRPSSystem"
-  "/libPRPSolve"
+  "/libSolve"
   "/libNormalizer"
   )
 SET(CMAKE_CXX_INCLUDE_PATH ${CMAKE_C_INCLUDE_PATH})

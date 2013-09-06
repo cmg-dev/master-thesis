@@ -151,6 +151,19 @@ Solve/fast:
 .PHONY : Solve/fast
 
 #=============================================================================
+# Target rules for targets named Normalizer
+
+# Build rule for target.
+Normalizer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Normalizer
+.PHONY : Normalizer
+
+# fast build rule for target.
+Normalizer/fast:
+	$(MAKE) -f libNormalizer/CMakeFiles/Normalizer.dir/build.make libNormalizer/CMakeFiles/Normalizer.dir/build
+.PHONY : Normalizer/fast
+
+#=============================================================================
 # Target rules for targets named AntConfApp
 
 # Build rule for target.
@@ -175,6 +188,7 @@ help:
 	@echo "... Calibration"
 	@echo "... PRPSEvolutionSystem"
 	@echo "... Solve"
+	@echo "... Normalizer"
 	@echo "... AntConfApp"
 .PHONY : help
 
