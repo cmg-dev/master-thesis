@@ -14,15 +14,21 @@
 %
 \subsection{Shark}
 \label{sec:Shark}
-\lipsum[1]
+Shark ist eine Open-Source \cpp Library für Maschinelles Lernen und Optimierung ~\cite{Shark:1}. Es Implementiert Methoden für lineare und nicht lineare Optimierung, Kernel-basierte Lernverfahren, künstliche neuronale Netzwerke, und Weitere. Details der Umsetzung finden sich in~\cite{shark08}. Es wird sowohl in Forschung als auch industriellem Umfeld eingesetzt und implementiert, nach eigenen Angaben, Algorithmen die in anderen Libraries nicht verfügbar sind. Shark baut auf den \textit{Boost C++ Libraries} auf und verwendet CMake\footnote{CMake (cross-platform make) ist ein plattformunabhängiges Programmierwerkzeug für die Entwicklung und Erstellung von Software.}. Dadurch ist es nahezu auf jeder Plattform verfügbar. Die Integration in ein Projekt ist sehr einfach und daher wird es in dieser Arbeit eingesetzt.\\
+
+Eine Integration von Shark in dem Software Ökosystem ist aufgrund der vielen Features sehr sinnvoll. Weitere Entwicklungen können vom Funktionsumfang partizipieren.
+
 %
 %---------------------------------------------------------------------
 \subsection{Implementation}
-In diesem Abschnitt wird auf interessante Details der Softwareimplementation eingegangen. Es ist nicht möglich im vollen Umfang die Implementation der Softare aufgrund ihres Umfangs zu besprechen. Lediglich sollen hier die Implementationen verschiedener Evolutionsalgorithmen unter Verwendung von Shark gezeigt werden. Es wird auch beispielhaft eine Implementation einer Objektfunktion beschrieben, wie sie typischerweise in Shark implementiert wird.
+\label{sec:Implementation}
+In diesem Abschnitt wird auf interessante Details der Softwareimplementation eingegangen. Es ist nicht möglich im vollen Umfang die Implementation der Softare besprechen, dafür ist die Software zu Umfangreich\footnote{Für diese Arbeit wurden ca. $5000$ Zeilen Quellcode erstellt - einzelne Modelle nicht mitgerechnet}. Lediglich sollen hier die Implementationen verschiedener Evolutionsalgorithmen unter Verwendung von Shark gezeigt werden. Verschiedene Algorithmen wurden in Kapitel~\ref{sec:es-common} Es wird beispielhaft die Implementation einer Objektfunktion beschrieben, wie sie typischerweise in Shark vorgenommen wird.
 %
 %\input{diagrams/prpsevolution-integration.tex}
+%
 %---------------------------------------------------------------------
-\subsection{Objektfunktion in Shark}
+\subsubsection{Objektfunktion in Shark}
+\label{sec:Shark_model}
 %
 Als Beispiel für die Implementation einer Objektfunktion wird im Folgenden das Modell der evolutionären Kalibrierung besprochen. Dieses Modell, bzw. Objektfunktion, hat eine überschaubare Komplexität und wurde bereits im Abschnitt~\ref{sec:calibration} zur Veranschaulichung verwendet. Daher eignet es sich gut um die Implementation zu zeigen. Im Rahmen dieser Arbeit sind eine Vielzahl von Modellen entstanden, die nicht in aller Ausführlichkeit diskutiert werden können.\\
 %
@@ -39,10 +45,10 @@ wird in von den Optimizern aufgerufen und implementiert die eigentliche Funktion
 void proposeStartingPoint(SearchPointType &x) const;
 \end{lstlisting}
 %
-Diese Methode wird von einem Solver beim Start aufgerufen und liefert passende Startwerte für das Modell zurück. Der Rückgabewert der Funktion ist ein normalverteilter Vektor der Dimension \textit{m\_numberOfVariables} in einem Intervall von $[-10,10]$ zurück. Der Wert für \textit{m\_numberOfVariables} wird bei der Instanziierung des Modells, in dem Konstruktor, gesetzt. Es wird auch die Eigenschaft \textit{CAN\_PROPOSE\_STARTING\_POINT} gesetzt, sie wird von den unterschiedlichen Optimizern verwendet um zu erkennen, welche Features vom Modell unterstützt werden.
+Diese Methode wird von einem Solver beim Start aufgerufen und liefert passende Startwerte für das Modell zurück. Der Rückgabewert der Funktion ist ein gleichverteilter Vektor der Dimension \textit{m\_numberOfVariables} in einem Intervall von $[-10,10]$ zurück. Der Wert für \textit{m\_numberOfVariables} wird bei der Instanziierung des Modells, beim Aufruf des Konstruktors, gesetzt. Dort wird auch die Eigenschaft \textit{CAN\_PROPOSE\_STARTING\_POINT} gesetzt, sie wird von den unterschiedlichen Optimizern verwendet um zu erkennen, welche Features vom Modell unterstützt werden.
 %
 \begin{lstlisting}[label=EvolutionaryCalibration_3]
-EvolutionaryCalibration( ) {
+	EvolutionaryCalibration( ) {
 	m_numberOfVariables = Solve::ProblemDimensions::Calibration;
 	m_features |= CAN_PROPOSE_STARTING_POINT;
 }
@@ -51,30 +57,29 @@ EvolutionaryCalibration( ) {
 %---------------------------------------------------------------------
 %
 \lstinputlisting[caption=Quellcode Schnipsel für die Deklaration einer Objektfunktion \vspace{2mm},
-				firstline=18, lastline=108]{src/EvolutionaryCalibration.h}
-\label{lst:EvolutionaryCalibration.h}
+				firstline=18, lastline=108, label=lst:EvolutionaryCalibration.h]{src/EvolutionaryCalibration.h}
 %
-Das Listig~\ref{lst:EvolutionaryCalibration.cpp} gezeigten cpp-Datei ist die Implementation der oben beschriebenen Modellfunktionen. Aus diesen Beiden Dateien ist ersichtlich, dass die Deklaration des Modells sehr überschaubar ist. Praktische jedes Modell hat diese übersichtliche Struktur. 
+Die in Listig~\ref{lst:EvolutionaryCalibration.cpp} gezeigte cpp-Datei ist die Implementation der oben beschriebenen Modellfunktionen. Aus diesen beiden Dateien ist ersichtlich, dass die Deklaration des Modells sehr überschaubar ist. Praktische jedes Modell hat diese übersichtliche Struktur, das erhöht die Wartbarkeit enorm. Außerdem erlaubt es einen einfachen Austausch in der Implementation sowie die Verwendung in unterschiedlichen Algorithmen. 
 %
 \begin{lstlisting}[label=EvolutionaryCalibration_4]
 inline double EvolutionaryCalibration::mkII( const NRmatrix<Doub> &A, const double* x, const NRvector<Doub> &b ) const
 \end{lstlisting}
 %
-Diese Funktion ist die eigentliche Berechnung des Gleichungssystems der Form $\mathbf{A}\mathbf{x}=\textbf{b}$. Die Lösung wird an die Aufrufende Funktion übergeben. Als Eingabe wird der Variablenvektor \textit{const double*x} von Shark sowie die geom. Matrix und der Distanz Vektor erwartet.
+Diese Funktion ist die eigentliche Berechnung des Gleichungssystems der Form $\mathbf{A}\mathbf{x}=\textbf{b}$. Die Lösung wird an die Aufrufende Funktion übergeben. Als Eingabe wird der Variablenvektor \textit{const double*x} von Shark sowie die geom. Matrix $\mathbf{A}$ und der Distanzvektor $\mathbf{b}$ erwartet.
 %
-Der komplette Quellcode findet sich im Anhang~\ref{app:EvolutionaryCalibration1} und \ref{app:EvolutionaryCalibration2} gelistet.
+Der vollständige Quellcode des Modells ist im Anhang~\ref{app:EvolutionaryCalibration1} und \ref{app:EvolutionaryCalibration2} gelistet.
 %
 %---------------------------------------------------------------------
 %
 \lstinputlisting[caption=Quellcode Schnipsel für die Implementation einer Objektfunktion für verschiedene Optimzier im Shark\vspace{2mm},
-				 firstline=7, lastline=44]{src/EvolutionaryCalibration.cpp}
-				 \label{lst:EvolutionaryCalibration.cpp}
+				 firstline=7, lastline=44, label=lst:EvolutionaryCalibration.cpp]{src/EvolutionaryCalibration.cpp}
 %
-\label{lst:shark_model}
 %
+\subsection{Process MkII - Finde die Lösung}
+
 %
 \subsection{Paralleler Ablauf}
-\label{lst:parallel_computing}
+\label{parallel_computing}
 %
 Die \textit{ProcessMkII}-Klasse ist Threadfähig. Eine Implementierung wurde im Rahmen der Arbeit durchgeführt. Durch das parallele Ablaufen verschiedener Optimierungen kann die Performance wesentlicher verbessert werden und so die Multi-Kern-Architektur aktueller Rechner ausgenutzt werden. Einen großen Beitrag zur schnellen Umsetzung lieferte der neue Standard \cpp11. Dieser Implementiert ein High-Level Konstrukt für Threads und Tasks, sodass es einfacher ist, Abläufe zu Synchronisieren und Ergebnisse abzufragen. Zusätzlich ist die Implementation sehr leicht, wie im folgenden Listing gezeigt:
 %
