@@ -1,10 +1,10 @@
 %- Section 1 ----------------------------------------------------------------
 \label{seq:EvolutionaryStrategies}
-Folgende Information entstammen im Wesentlichen aus \cite{kost2003optimierung},\cite{bronstejn2012taschenbuch}\ sowie \cite{Hansen:1} und sind auf den folgenden Seiten lediglich zusammengefasst und neu arrangiert um eine Einarbeitung in die Thematik zu ermöglichen.\\
+Folgende Informationen entstammen im Wesentlichen aus \cite{kost2003optimierung},\cite{bronstejn2012taschenbuch}\ sowie \cite{Hansen:1} und sind auf den folgenden Seiten zusammengefasst und neu arrangiert. Das erleichtert die Einarbeitung in die Thematik, das das Thema eine sehr großes Feld und dazu sehr komplex ist.\\
 %------------------------------------------------------------------
 \subsection{Evolutionsstrategien - Grundlagen }
 %
-Nach dem Vorbild natürlicher Evolution entworfene stochastische Optimierungsverfahren werden Evolutionsstrategie bezeichnet. Sie verwenden die Prinzipien der Mutation, Rekombination und Selektion analog zu der nat. Evolution. Der Grundlegende Ablauf dieser Strategien zeigt die Abbildung~\ref{es_flowchart}\\
+Nach dem Vorbild natürlicher Evolution entworfene stochastische Optimierungsverfahren werden als Evolutionsstrategie bezeichnet. Sie verwenden die Prinzipien der Mutation, Rekombination und Selektion analog zu der nat. Evolution. Der Grundlegende Ablauf dieser Strategien zeigt die Abbildung~\ref{es_flowchart}\\
 Wie in der Natur auch werden Nachkommen aus der Menge der verfügbaren Eltern gebildet. Dabei bezeichnet im Folgenden:
 %
 \begin{itemize}
@@ -22,15 +22,6 @@ Wir wollen nun in Abbildung~\ref{fig:es_flowchart} einen Blick auf den prinzipie
 %------------------------------------------------------------------------------
 %------------------------------------------------------------------------------
 \input{chapters/0_introduction/sections/struct_es.tex}
-%------------------------------------------------------------------
-\begin{figure} [ht!]
-\centering
-         \caption[Konzept direkter Optimierung mittels CMA-ES]{Die Abbildung zeigt sechs Lösungsschritte des CMA-ES-Verfahrens. Eingangs wird eine Population mit einer Gauß-Verteilung generiert. Diese bewegt sich von Generation näher an das globale Optimum. Die gestrichelte Linie zeigt dabei eine Isolinie der Wahrscheinlichkeitsdichte. Wir befinden uns auf einem 2D-Problem, somit wird das vorankommen der Population über zwei $\sigma$'s gesteuert. Dadurch kommt die Ellipse zu Stande. Die Linie bedeutet nicht, dass nur in diesem Bereich Nachkommen erzeugt werden, siehe z.B. Generation 4. Je nach Beschaffenheit des Problems und nach Nähe zum Optimum werden die steuernden $\sigma$'s kleiner. }
-         \label{fig:conecpt_cma.es}
-         \vspace{0.5cm}
-         \includegraphics[width=\textwidth]{img/CMA-ES_algorithm.png}
-%      
-\end{figure}
 %
 %------------------------------------------------------------------
 \subsubsection[Mutation]{Mutation}
@@ -66,7 +57,7 @@ Dabei ist $\mathbf{d}$ ein bei jeder Mutation neu zu bestimmender $(0,\sigma^2)-
 \right)
 \end{equation}
 %
-Die Normalverteilung der Variation ist nützlich, da kleine Änderungen wahrscheinlicher sind als große. Die maximale Größe der Variation wird durch die Standardabweichung $\sigma_i$ bestimmt. Sie steuert somit die Schrittweite von Generation zu Generation.
+Die Normalverteilung der Variation ist nützlich, da kleine Änderungen wahrscheinlicher sind als Große. Die maximale Größe der Variation wird durch die Standardabweichung $\sigma_i$ bestimmt. Sie steuert somit die Schrittweite von Generation zu Generation.
 %
 %------------------------------------------------------------------
 \subsubsection[Rekombination]{Rekombination}
@@ -87,36 +78,37 @@ Bei der \textit{diskreten Rekombination} vom $\varrho$-Eltern wird die \textit{i
 %
 %- Section .4 -----------------------------------------------------------------
 \subsubsection[Selektion]{Selektion}
-Die durch Rekombination und/oder Mutation erzeugten Nachkommen werden in dem Schritt Ausgewählt um einen Evolutionsfortschritt zu erreichen. Dies erfolgt anhand des Vergleichs mit dem Zielfunktionswert $f(\mathbf{x})$. Das beste Individuum oder die besten werden für die nachfolgende Generation ausgewählt. Dabei gibt es Strategien bei denen nur die Nachkommen an der Auswahl beteiligt sind und welche bei denen Eltern und Kinder teilnehmen.
+Die durch Rekombination und/oder Mutation erzeugten Nachkommen werden in dem Schritt ausgewählt um einen Evolutionsfortschritt zu erreichen. Dies erfolgt anhand des Vergleichs mit dem Zielfunktionswert $f(\mathbf{x})$. Das beste Individuum, bzw. die besten, werden für die nachfolgende Generation ausgewählt. Dabei gibt es Strategien, bei denen zum einen nur die Nachkommen an der Auswahl beteiligt sind oder Andere bei denen Eltern und Kinder teilnehmen.
 
 %- Section .5 -----------------------------------------------------------------
 \subsubsection{Evolutionsalgorithmus}
 %
-Der eigentliche Evolutionsalgorithmus ist in Abbildung~\ref{fig:es_flowchart} dargestellt. Er enthält im wesentlichen die in den vorherigen Abschnitten beschriebenen Schritte. Der prinzipielle Ablauf ist für alle Evolutionsalgorithmen gleich. Eine Unterscheidung der Verfahren kann durch verschiedene Parameter beschrieben werden. Wesentlich dabei sind die Populationsgröße $\mu$, die Anzahl an der Rekombination beteiligten Eltern $\varrho$, die gewählte Selektionsstrategie sowie die Anzahl der Nachkommen $\lambda$. Im Folgenden sind zuerst einige Beispiele für die Nomenklatur der Selektionsstrategie aufgeführt, die im Anschluss genauer beschrieben werden.\\
+Der eigentliche Evolutionsalgorithmus ist in Abbildung~\ref{fig:es_flowchart} dargestellt. Er enthält im Wesentlichen die in den vorherigen Abschnitten beschriebenen Schritte. Der prinzipielle Ablauf ist für alle Evolutionsalgorithmen gleich. Eine Unterscheidung der Verfahren kann durch verschiedene Parameter beschrieben werden. Wesentlich dabei sind die Populationsgröße $\mu$, die Anzahl an der Rekombination beteiligten Eltern $\varrho$, die gewählte Selektionsstrategie sowie die Anzahl der Nachkommen $\lambda$. Im Folgenden sind zuerst einige Beispiele für die Nomenklatur der Selektionsstrategie aufgeführt, die im Anschluss genauer beschrieben werden.\\
 Für Strategien die nur auf Mutation für die Erzeugung von Nachkommen setzten sind folgende Nomenklaturen gebräuchlich:
 \begin{itemize}
 \item $(\mu+\lambda)$ Elternelemente werden in der Selektion berücksichtigt
 \item $(\mu,\lambda)$ Ausschließlich Nachkommen nehmen an der Selektion teil
 \end{itemize}
 %
-Die Strategien werden Plus- bzw. Komma-Strategie genannt. bei der Plus-Strategie wird zusätzlich noch ein gewichtungsfaktor eingeführt, der das "altern" der Elterngeneration darstellt. Dieser Mechanismus soll verhindern, dass die Eltern, nach einer gewissen Anzahl an Generationen, nicht mehr berücksichtigt werden.\\
-Wird die Rekombination eingesetzt kann auch die Anzahl der beteiligten Elternelemente angegeben werden:
+Die Strategien werden Plus- bzw. Komma-Strategie genannt. bei der Plus-Strategie wird zusätzlich noch ein Gewichtungsfaktor benötigt, der das \textit{Altern} der Elterngeneration darstellt. Dieser Mechanismus soll verhindern, dass die Eltern für alle Zeiten überlegen. Somit werden sie nach einer gewissen Anzahl an Generationen, nicht mehr berücksichtigt werden. Sie sind zu \textit{alt}. Wird die Rekombination eingesetzt kann auch die Anzahl der beteiligten Elternelemente angegeben werden:
+%
 \begin{itemize}
 \item $({\mu}/{\varrho}+\lambda)$ \& $({\mu}/{\varrho},\lambda)$ Angabe der Anzahl beteiligter Eltern bei der Rekombination.
 \end{itemize}
 %
-Mithilfe der hier beschrieben Klassifikationen werden die Algorithmen im Folgenden stets angegeben.\\
-
+Mit Hilfe der hier beschrieben Klassifikationen werden die Algorithmen im Folgenden stets angegeben.\\
+%
 In Abbildung~\ref{fig:es_flowchart} wird der Ablauf einer Optimierung mit evolutionären Verfahren dargestellt. Es wird die Komma-Strategie gezeigt, ein Struktogramm der Plus-, oder anderer Strategien ist nicht gezeigt. Die Unterschiede würden sich in dem Punkt Rekombination zeigen.
 %
 %------------------------------------------------------------------------------
 %- Section .6 -----------------------------------------------------------------
 \subsection{Strategien mit mehreren Populationen}
-Es ist möglich die Strategien auf die Ebene von Populationen zu erweitern. Das bedeutet, man lässt ganze Populationen miteinander in Wettstreit treten und nur diejenige überleben, die die besten Ergebnisse liefern. Das mündet in einem zweistufigen Evolutionsprozess. Man kann die Notation um diesen Umstand erweitern und erhält so:
+Es ist möglich die Strategien auf die Ebene von Populationen zu erweitern. Das bedeutet, man lässt ganze Populationen miteinander in Wettstreit treten und nur diejenigen überleben, die die besten Ergebnisse liefern. Das mündet in einem zweistufigen Evolutionsprozess. Man kann die Notation um diesen Umstand erweitern und erhält so:
+%
 $$
 [\mu_2/\varrho_2,^{+}\lambda_2(\mu_1/\varrho_1,^{+}\lambda_1)]
 $$
-Sprich aus $\mu_2$-Elternpopulationen werden durch Rekombination mit jeweils $\varrho_2$ Populationen, $\lambda_2$ Nachkommenpopulationen generiert. Innerhalb der Populationen erfolgt die Optimierung anhand einer $({\mu_1}/{\varrho_1}+\lambda_1)$ oder $({\mu_1}/{\varrho_1},\lambda_1)$-Strategie. Nun kann nach einer bestimmten Zahl von Generationen die besten Populationen für die nächste Generation ausgewählt werden. Auch hier stehen verschiedene Auswahlkriterien zur Verfügung. Man kann z.B. die Population anhand des Zielfunktionswert des besten Individuums wählen oder den Mittelwert über alle Individuen wählen.
+Sprich aus $\mu_2$-Elternpopulationen werden durch Rekombination mit jeweils $\varrho_2$ Populationen, $\lambda_2$ Nachkommenpopulationen generiert. Innerhalb der Populationen erfolgt die Optimierung anhand einer $({\mu_1}/{\varrho_1}+\lambda_1)$ oder $({\mu_1}/{\varrho_1},\lambda_1)$-Strategie. Nun können nach einer bestimmten Zahl von Generationen die besten Populationen für die nächste Generation ausgewählt werden. Auch hier stehen verschiedene Auswahlkriterien zur Verfügung. Man kann z.B. die Population anhand des Zielfunktionswert des besten Individuums wählen oder den Mittelwert über alle Individuen wählen.
 %
 %- Section .7 -----------------------------------------------------------------
 \subsection{Optimierungsräume}
@@ -134,5 +126,11 @@ Sprich aus $\mu_2$-Elternpopulationen werden durch Rekombination mit jeweils $\v
 %
 \lipsum[1]
 %
-%- Section .8 -----------------------------------------------------------------
-
+\subsubsection{Nicht behandelte Themen}
+%
+Das Gebiet der Evolutionären Optimierung/- Algorithmen ist groß. Daher werden einige Gebiete in dieser Arbeit nicht behandelt, wie z.B.:
+%
+\begin{itemize}[itemsep=0mm]
+\item lorem1
+\item lorem2
+\end{itemize}

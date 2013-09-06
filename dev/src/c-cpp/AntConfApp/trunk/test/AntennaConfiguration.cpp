@@ -26,6 +26,7 @@
 #define _PP_FORM_GROUPS
 #define _USE_IDEAL_INPUT
 #define _Write_SOLUTION_STATISTICS
+#define _WT_CONSTRAIN_HARD_
 
 #ifdef _USE_SHARK_3_0_
 	#include "../libSolve/processMkII.h"

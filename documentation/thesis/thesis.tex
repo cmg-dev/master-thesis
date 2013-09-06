@@ -11,6 +11,7 @@
 \usepackage{listings}
 \usepackage{pdflscape}
 \usepackage{longtable}
+\usepackage[font=sf, labelfont={sf}, margin=1cm,size=small]{caption}
 
 %\usepackage{showframe}
 \usepackage[lmargin=130pt,rmargin=80pt,tmargin=117pt,bmargin=113pt]{geometry}
@@ -49,10 +50,10 @@
 \usepackage{wrapfig}
 \usepackage{makeidx}
 \usepackage{transparent}
-
+%\usepackage{nimbus}
 % highlighting
 \usepackage{xcolor,soul}
-
+\usepackage{threeparttable}
 %\renewcommand{\sectionmark}[1]{\markboth{#1}{#1}} 
 %\renewcommand{\subsectionmark}[1]{\markboth{#1}{}} 
 
@@ -139,16 +140,31 @@
 \input{tables/TableOfSymbols.tex}
 
 \mainmatter 
+
+%\setkomafont{caption}{\footnotesize\itshape}
+%\setkomafont{captionlabel}{\usekomafont{caption}}
+
+
+\widowpenalty=1000
+\clubpenalty=1000
+
 %----------------------------------------------------------------------------
 % Chapters ------------------------------------------------------------------
 %----------------------------------------------------------------------------
 % 1. ------------------------------------------------------------------------
 \chapter{Einleitung}
-Dieses Kapitel führt in die Arbeit ein. Zuerst wird allgemein auf die Technik des Trackings eingegangen und eine Übersicht über den Stand der Technik präsentiert. Anschließend wird die Motivation erläutert. Darauf folgend werden in zwei Teilen die technischen und mathematischen Voraussetzungen beschrieben, zuletzt werden daraus die Anforderungen an die Lösung abgeleitet.Zum Abschluss werden die Ziele dieser Arbeit vorgestellt.
-Zielgruppe dieser Arbeit sind Personen die bereits über Vorkenntnisse im den für die Arbeit wichtigen Gebieten haben. Die Ausführungen werden in der für das Verständnis dieser Arbeit angebrachten Tiefe beschrieben, sind allerdings nur oberflächlich, da die Breite der Themen zu groß ist. Allgemeine Zusammenhänge und Techniken, denen einen großer Stellenwert in dieser Arbeit zukommt, werden zusammengefasst präsentiert. Für detaillierte Beschreibungen wird stets auf entsprechende Fachliteratur verwiesen. 
 %
 \input{chapters/0_introduction/Einleitung.tex}
 %
+% 1. ------------------------------------------------------------------------
+\chapter{Grundlagen}
+Im Rahmen dieses Kapitels werden die Grundlagen für diese Arbeit beschrieben. 
+Zielgruppe dieser Arbeit sind fachkundige Personen die ein gewisses Grundwissen/ -verständnis mitbringen oder solche die es werden wollen. Die Ausführungen werden in der für das Verständnis dieser Arbeit angebrachten Tiefe beschrieben. Da das Spektrum der Themen zu groß ist, kann nicht auf Alles im Detail eingegangen werden. Allgemeine Zusammenhänge und Techniken, denen einen großen Stellenwert in dieser Arbeit zukommt, werden zusammengefasst präsentiert. Für detaillierte Beschreibungen wird stets auf entsprechende Fachliteratur verwiesen.\\
+%
+
+\input{chapters/0_introduction/Grundlagen.tex}
+%
+
 % 2. ------------------------------------------------------------------------
 \chapter{Hauptteil}
 Im Folgenden werden ausführlich die Methoden und Lösungen zur beschriebenen Problemstellung vorgestellt. Zuerst wird eine Betrachtung der Komplexität des Problems präsentiert. Es werden die Modelle vorgestellt die zum Auffinden der Lösung verwendet wurden. Im Anschluss wird die Implementation der ES und die Schnittstellen zum PRPS beschrieben.

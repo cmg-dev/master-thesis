@@ -1,9 +1,30 @@
 \section{Ergebnisse}
 %
-Die Ergebnisse der Arbeit werden hier vorgestellt. Die Modelle die in \ref{sec:model_developement} entwickelt wurde, wurden in verschiedenen Experimenten untersucht.
+Die Ergebnisse der Arbeit werden hier vorgestellt. Das Modell aus \ref{sec:model_developement}, wird in verschiedenen Experimenten untersucht. Die Experimente untersuchen einige interessante Parameter. Es wird analysiert wie gut die Lösbarkeit registrierter und unregistrierter Probleme ist. Dazu werden zuerst für jede Referenzantenne immer eine mögliche Konfiguration gewählt und das Ergebnis aus $M$-Durchläufen untersucht. Im Anschluss 
 \\
 Zunächst werden die Ergebnisse der idealen Messwerte vorgestellt. Dazu wurden eine Reihe von Punkten definiert, von denen die Idealen Phasenwerte ermittelt wurden.
-
+%
+\subsubsection{Unregistiertes Problem}
+%
+Unregistrierte Probleme nennt man im Jargon der EO, Probleme ohne Randbedingungen. Im Folgenden werden die Modelle analysiert ohne Randbedingungen vorzugeben. 
+%
+\subsubsection{Registiertes Problem}
+%
+Den Objektfunktionen werden im Folgenden Randbedingungen vorgegeben. Folgende Randbedingungen werden umgesetzt:
+%
+\begin{table} [ht!]
+	\begin{center}
+		\begin{tabular}{rc}
+			\textbf{Nummer} & \textbf{Bedingung} \\
+			1 & $n_k\ge0$ \\
+			2 & $x,y,z \ge |5|0$\\
+			3 & $x,y,z \le |25|$\\
+%			
+		\end{tabular}
+	\end{center}
+	\caption[Randbedingungen für Optimierung]{Die implementierten Randbedingungen für das Problem.}
+	\label{tab:registrations}
+\end{table}
 %
 \section{Erkenntnisse}
 %

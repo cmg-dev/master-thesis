@@ -30,7 +30,7 @@ stats inputfile u 1 name "Stat" nooutput
 
 #print "test ".at(file,Stat_records,1)
 
-locallimit=0.001*limit
+locallimit=0.5*limit
 if(a<=3)print "local limit is: ",locallimit
 
 #setup the first plot
