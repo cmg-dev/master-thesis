@@ -1,0 +1,2 @@
+/usr/bin/ar cr libNormalizer.a  CMakeFiles/Normalizer.dir/normalizer.cpp.o
+/usr/bin/ranlib libNormalizer.a

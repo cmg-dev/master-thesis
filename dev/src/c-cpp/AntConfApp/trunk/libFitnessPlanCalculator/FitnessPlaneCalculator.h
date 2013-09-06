@@ -159,7 +159,7 @@ namespace PRPSEvolution {
 				limits.dump();
 			}
 
-			std::string f_pathBase = "output/fitness/plane";
+			std::string f_pathBase = "output/fitness/data/plane";
 			int f_count = 0;
 			void calculate( ObjectiveFunctionType const& model )
 			{
