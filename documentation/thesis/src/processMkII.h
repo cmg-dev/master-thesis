@@ -1,3 +1,63 @@
+/*=============================================================*/
+/**
+ * 
+ */
+int WholeTomatoMkII( int dimension ) {
+	auto dim = Solve::ProblemDimensions::WholeTomatoMkII;
+	dim += dimension;
+	PRPSEvolution::Models::WholeTomatoMkII model( dim );
+
+	model.setNumberOfVariables( dim );
+
+	model.setParams( A, b, names );
+
+	/* init the algorithm */
+	shark::CMA cma;
+	cma.init( model );
+
+	do {
+		cma.step( model );
+	
+	} while(cma.solution().value > epsilon	
+		&& model.evaluationCounter() < maxEvaluations);
+}
+/*=============================================================*/
+/**
+ *
+ */
+void init()
+{
+	// Adjust the floating-point format to scientific and increase output precision.
+	std::cout.setf( std::ios_base::scientific );
+	std::cout.precision( 10 );
+
+	std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+
+	auto duration = now.time_since_epoch();
+	/* init the seed */
+	auto seed = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
+
+	shark::Rng::seed( seed );
+
+}
+
+/*=============================================================*/
+/**
+ * 
+ */
+Process_MkII(
+	std::vector<NRmatrix< Doub >> Mats,
+	std::vector<NRvector< Doub >> Vects,
+	std::vector<std::string> Names,
+	std::vector<std::vector<int>> IDs,
+	double Epsilon
+) : A( Mats ), b( Vects ), names( Names ), idxs( IDs ), epsilon( Epsilon )
+{
+	init();
+}
+
+###################################################
+
 #ifndef _PROCESS_MK_II_H_
 	#define _PROCESS_MK_II_H_
 
@@ -40,6 +100,7 @@
 						<< std::endl;										\
 	} while(cma.solution().value > epsilon									\
 		&& model.evaluationCounter() < maxEvaluations);					\
+		
 
 namespace PRPSEvolution {
 	namespace Solve {

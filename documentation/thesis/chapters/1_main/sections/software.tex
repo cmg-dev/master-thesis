@@ -75,8 +75,38 @@ Der vollständige Quellcode des Modells ist im Anhang~\ref{app:EvolutionaryCalib
 				 firstline=7, lastline=44, label=lst:EvolutionaryCalibration.cpp]{src/EvolutionaryCalibration.cpp}
 %
 %
-\subsection{Process MkII - Finde die Lösung}
-
+\subsubsection{Process MkII - Finde die Lösung}
+%
+Die Klasse \textit{ProcessMkII} steht im Zentrum der Lösungsfindung. Sie erlaubt die Ausführung und Parametrierung von verschiedenen, in dieser Arbeit erprobten Testfunktionen. Die Klasse hat verschiedene Konstruktoren um den verschiedenen Modellen gerecht zu werden. Diese erwarten häufig unterschiedliche Parameter. Bei der  Instanziierung werden gleichzeitig alle Wichtigen Parameter übergeben. Dies zeigt folgendes Schnipsel Quellcode:
+%
+\begin{lstlisting}[label=InstanceOfProcessMkII]
+Solve::Process_MkII	process( A, b, names, MU, LAMBDA );
+\end{lstlisting}
+%
+Das Listing~\ref{lst:WholeTomatoMkII3.cpp} zeigt einen der implementierten Konstruktoren und seine Übergabeparameter, dieser Konstruktor bereitet das Objekt auf das Model '\textit{WholeTomatoMkII}' vor.
+%
+\lstinputlisting[caption=Quellcode Schnipsel für die Implementation einer Objektfunktion für verschiedene Optimzier im Shark\vspace{2mm},
+				 firstline=48, lastline=57, label=lst:WholeTomatoMkII3.cpp]{src/processMkII.h}
+%
+Ein wichtiger Schritt ist noch für alle Solver durchzuführen. Eine Initiierung des Zufallszahlengenerator muss durchgeführt werden, das übernimmt die \textit{init}-Funktion, gezeigt in Listing~\ref{lst:WholeTomatoMkII2.cpp}. Dort wird über den Aufruf 'shark::Rng::seed( seed )' der Generator initialisiert. Die Variable \textit{seed} wird über die Systemzeit gefüllt. Die Funktionen des in \cpp11 eingeführte Namespace '\textit{std::chrono}' erleichtern diese Aufgabe durch den einfachen Zugriff auf Zeitfunktionen.
+%
+\lstinputlisting[caption=Quellcode Schnipsel für die Implementation einer Objektfunktion für verschiedene Optimzier im Shark\vspace{2mm},
+				 firstline=28, lastline=42, label=lst:WholeTomatoMkII2.cpp]{src/processMkII.h}
+%				
+%
+Nach erfolgreicher Instanziierung kann einfach das gewünschte Modell ausgeführt werden. Beispielsweise das Modell der Evolutionären Kalibrierung wird unter Angabe der Problemdimension ausgeführt:
+%
+\begin{lstlisting}[label=CallModel]
+process.EvoCal( Solve::ProblemDimensions::Calibration );
+\end{lstlisting}
+%
+Intern wird im Anschluss an diesen Aufruf eine Instanz des Solvers erstellt, hier: \textit{shark::CMA}. Nach der Initialisierung des Solvers kann das dieser ausgeführt werden. Das zeigt das Listing~\ref{lst:WholeTomatoMkII1.cpp}. Dort wird ein anderes Modell '\textit{WholeTomatoMkII}' ausgeführt. Anhand der \textit{while}-Schleife kann man die Konvergenzkriterien erkennen. Der Algorithmus läuft so lange bis das gewünschte epsilon unterschritten oder die maximale Anzahl an Evaluationen erreicht ist.
+%
+%---------------------------------------------------------------------
+%
+\lstinputlisting[caption=Quellcode Schnipsel für die Implementation einer Objektfunktion für verschiedene Optimzier im Shark\vspace{2mm},
+				 firstline=5, lastline=23, label=lst:WholeTomatoMkII1.cpp]{src/processMkII.h}
+%
 %
 \subsection{Paralleler Ablauf}
 \label{parallel_computing}
@@ -88,7 +118,7 @@ Die \textit{ProcessMkII}-Klasse ist Threadfähig. Eine Implementierung wurde im 
 				 \label{lst:Parallel_example1.cpp}
 %
 \vspace{2mm}
-Das Abfragen der Ergebnisse ist genauso einfach:
+Das Abfragen der Ergebnisse ist ähnlich einfach:
 \vspace{2mm}
 %
 \lstinputlisting[caption=Abfragen der Asynchronen Ergebnisse mit Hilfe des auto-Datentyp. Ausgabe des Ergebnisses in einer Datei.\vspace{2mm},
@@ -97,7 +127,7 @@ Das Abfragen der Ergebnisse ist genauso einfach:
 %
 \vspace{2mm}
 %
-\subsection{Schnittstelle für Dateneingabe}
+\subsection{Schnittstellen für Dateneingabe}
 %
 Im Folgenden wird die implementierte Schnittstelle besprochen mit der die Daten unter den Programmteilen ausgetauscht werden können. Die Schnittstelle umfasst im Wesentliche zwei Teile:
 \begin{enumerate}
@@ -108,8 +138,6 @@ Im Folgenden wird die implementierte Schnittstelle besprochen mit der die Daten 
 Hinzukommt eine pseudo-Schnittstelle über die die Systemparameter eingelesen werden können. Die aktuelle Implementation ließt lediglich eine CSV-Eingabedatei, mit den Systemparametern in eine entsprechende Struktur ein. Diese Parameter stehen Anschließend dem PRPS-Evolution System zur Verfügung.
 %
 Die Kommunikation zwischen dem PRPS-Dienst und dem PRPS-Evolution ist einfach. Der Dienst teilt die gemessenen Phasendaten mit, die vom PRPS-Evolution für die Berechnung der Wellenzahlen verwendet werden. Das bedeutet das der Ablauf des Auffindens der Wellenzahl vom PRPS-Dienst als 'Black-Box' angesehen wird.\\
-%
-%\subsubsection{Schnittstelle für Dateneingabe}
 %
 \subsection{Ablaufdiagramme}
 %
