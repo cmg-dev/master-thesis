@@ -1,6 +1,12 @@
 \begin{figure}
 	\begin{center}
-		\caption[Antennen-Szene mit einem Tag]{2D-Übersicht auf die Szene mit drei Antennen, einem Tag und einer Landmarke. Die Position von $\{A_1,A_3,A_3\}$, sowie der Landmarke, zum Koordinatenursprung sind bekannt. Die Vektoren $r_1,r_2,r_3$ sind die gemessene Entfernung zu einer Antenne. Die Landmarke wird im späteren Verlauf eine Antenne sein, die ihrerseits ein gemessene Entfernung $r_0$ produziert. Der Schnittpunkt aller Kreise ist die Lösung der gemessenen Entfernung und der geom. Anordnung, die sich für die Position des Tags ergibt.} 
+		\caption[Antennen-Szene mit einem Tag]{2D-Übersicht auf die Szene mit drei Antennen, einem Tag und einer Landmarke. Die Position von $\{A_1,A_3,A_3\}$, sowie der Landmarke, zum Koordinatenursprung sind bekannt.
+Die Vektoren $r_1,r_2,r_3$ sind die gemessene Entfernung zu einer Antenne.
+% Die Länge der Vektoren $r_1,r_2,r_3$ entspricht der gemessenen Entfernung zu einer Antenne.
+Die Landmarke wird im späteren Verlauf eine Antenne sein, die ihrerseits eine gemessene Entfernung $r_0$ produziert.
+Der Schnittpunkt aller Kreise ist die Lösung der gemessenen Entfernung und der geom. Anordnung, die sich für die Position des Tags ergibt.
+% Aus dem Schnittpunkt aller Kreise ergibt sich die ...?
+} 
 		\label{fig:TrilaterationScene}
 		\input{img/trilaterationScene.tex}
 %		
@@ -12,7 +18,7 @@ Folgende Nomenklatur und Symbole gelten für diesen Abschnitt:
 	\item	$r_{k}$ := Abstand vom Tag zur Antenne
 	\item	$d_{kJ}$ := Abstand zur Landmarke
 	\item	$N_0:=$ Menge der verfügbaren Antennen $N=\{1,..,8\}$
-	\item	$N:=$ Menge der Antennen für die Optimierung verfügbar sind\footnote{d.h. ein Messergebnis liefern}($N \subseteq N_0$)
+	\item	$N:=$ Menge der Antennen für die Optimierungen verfügbar sind\footnote{d.h. ein Messergebnis liefern}($N \subseteq N_0$)
 	\item	$N':=$ Menge der Antennen für die Optimierung ($N' \subseteq N$)
 %	; Dabei ist $|N'| \geq 3$
 %	\item	Es gilt $|N'| \geq |N| \geq |N_0|$   
@@ -26,10 +32,10 @@ Wir starten mit der Überlegung über den geometrischen Zusammenhang zwischen de
 	r_{k}^2 &= (x-x_k)^2+(y-y_k)^2+(z-z_k)^2
 \end{align}
 %
-Diese Gleichung stellt die Euklidische Vektornorm dar und entspricht der Strecke Antenne-Tag. Für die Ermittelung einer Postion (mit drei Raumkoordinaten) sind drei Antennen Notwendig. Daraus ergibt sich:
+Diese Gleichung stellt die euklidische Vektornorm dar und entspricht der Strecke Antenne-Tag. Für die Ermittelung einer Postion (mit drei Raumkoordinaten) sind drei Antennen Notwendig. Daraus ergibt sich:
 %
 \begin{itemize}[itemsep=0mm]
-\item 3 Gleichunge n
+\item 3 Gleichungen
 \item 3 Unbekannte
 \item Quadratisches Gleichungssystem
 \end{itemize}
@@ -43,15 +49,17 @@ Das Gleichungssystem sieht wie folgt aus:
 %	
 \end{align}
 %
-Es ist trivial und wird in verschiedenen Beispielen gezeigt\footnote{z.B. \url{http://en.wikipedia.org/w/index.php?title=Trilateration&oldid=553215995}}, dass man die Koordinaten aus dem quadratischen Gleichungssystem unmittelbar berechnen kann. Es muss jedoch ein quadratisches Gleichungssystem gelöst werden, was zu den bekannten Problematiken führt, insbesondere der Ausschluss mehrdeutiger Ergebnisse. Der Messaufbau der \amedogmbh erlaubt die Verwendung von mehr als 3 Messwertgebern. Diese zusätzliche Informationen lassen sich für eine Linearisierung des Gleichungssystems verwenden. Dieser Ansatz wird für ein Modell im Rahmen dieser Arbeit verwendet und wird im Folgenden beschrieben.\\
+Es ist trivial und es wird in verschiedenen Beispielen gezeigt\footnote{z.B. \url{http://en.wikipedia.org/w/index.php?title=Trilateration&oldid=553215995}}, dass man die Koordinaten aus dem quadratischen Gleichungssystem unmittelbar berechnen kann. Es muss jedoch ein quadratisches Gleichungssystem gelöst werden, was zu den bekannten Problematiken führt, insbesondere der Ausschluss mehrdeutiger Ergebnisse. Der Messaufbau der \amedogmbh erlaubt die Verwendung von mehr als 3 Messwertgebern. Diese zusätzlichen Informationen lassen sich für eine Linearisierung des Gleichungssystems verwenden. Dieser Ansatz wird für ein Modell im Rahmen dieser Arbeit verwendet und wird im Folgenden beschrieben.\\
 %
-Von den Antennen sind die Raumkoordinaten ($x,y,z-Koordinaten$) bekannt, bzw. wurden durch Kalibrierung \ref{sec:calibration} in einem vorherigen Schritt bestimmt. Wir können zusätzlich zu notieren:
+Von den Antennen sind die Raumkoordinaten ($x,y,z-Koordinaten$) bekannt, bzw. wurden durch Kalibrierung (vgl. Abschnitt \ref{sec:calibration}) in einem vorherigen Schritt bestimmt. Wir können zusätzlich zu notieren: % zusätzlich zu was?
 %
 \begin{equation}\label{eq:d_k0}
 	d_{kj}^2= (x_k-x_0)^2+(y_k-y_0)^2+(z_k-z_0)^2
 \end{equation}
 %
-Linearisierung des Modells. Dazu wird Gleichung~\ref{eq:base_vactor} in mehreren Schritten umgebaut. Zuerst wird eine neutrale Erweiterung durchgeführt und die Terme geschickt zusammengefasst. Das führt zu:
+% Soll das eine Überschrift sein?
+Linearisierung des Modells.
+Dazu wird Gleichung~\ref{eq:base_vactor} in mehreren Schritten umgebaut. Zuerst wird eine neutrale Erweiterung durchgeführt und die Terme zusammengefasst. Das führt zu:
 %
 \begin{align}
 	r_{k}^2 &= (x-x_k)^2+(y-y_k)^2+(z-z_k)^2 \nonumber \\
@@ -63,7 +71,7 @@ Linearisierung des Modells. Dazu wird Gleichung~\ref{eq:base_vactor} in mehreren
 %
 \end{align}
 %
-Um Platz zu sparen sind die y- und z-Terme nicht explizit notiert. Sie ergeben sich durch einfaches Ersetzen der Indizes und werden im Finalen Modell eingefügt. Durch Umstellen von \eqref{eq:tri_temp1} erhalten wir:
+Um Platz zu sparen sind die y- und z-Terme nicht explizit notiert. Sie ergeben sich durch einfaches Ersetzen der Indizes und werden im finalen Modell eingefügt. Durch Umstellen von \eqref{eq:tri_temp1} erhalten wir:
 \begin{align}
 (x-x_0)(x_k-x_0)+\dots{}+\dots{}&=-\frac{1}{2}[r_k^2-(x_k-x_0)^2 -(x-x_0)^2 +\dots{} +\dots{}]\nonumber\\
 (x-x_0)(x_k-x_0)+\dots{}+\dots{}&=\phantom{-}\frac{1}{2}[(x_k-x_0)^2 +(x-x_0)^2 +\dots{}+\dots{}-r_k^2]\nonumber
@@ -89,7 +97,7 @@ mit
 \begin{equation}\label{eq:c_kj}
 \mathbf{c_{kj}}=\frac{1}{2}[d_{kj}^2+r_{j}^2-r_k^2]
 \end{equation}
-können wir das lineare Gleichungssystem abschließend schreiben:
+können wir für das lineare Gleichungssystem abschließend schreiben:
 %
 \begin{equation}
 %\label{eq:final_trilateration_model}
@@ -118,7 +126,7 @@ können wir das lineare Gleichungssystem abschließend schreiben:
 \right)
 \end{equation}
 %
-Das Gleichungssystem entspricht ist linear und hat die allg. Form: $\mathbf{0} = \mathbf{Ax}+\mathbf{b}$ es lässt sich mit bekannten Methoden lösen.
+Das Gleichungssystem ist linear und hat die allg. Form: $\mathbf{0} = \mathbf{Ax}+\mathbf{b}$. Es lässt sich daher mit bekannten Methoden lösen.
 
 
 
