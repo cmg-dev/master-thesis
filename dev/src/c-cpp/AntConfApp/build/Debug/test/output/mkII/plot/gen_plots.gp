@@ -22,6 +22,6 @@ load "scatter.gp"
 print "**** Plotting Lines"
 load "kondensierte_linien.gp"
 
-#print "**** Plotting Candles"
-#load "kondensierte_kerzen.gp"
+print "**** Plotting Candles"
+load "kondensierte_kerzen.gp"
 

@@ -230,10 +230,10 @@ if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):9 ls 1 notitle
 if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):10 ls 1 notitle 
 if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):11 ls 1 notitle 
 if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):12 ls 1 notitle 
-if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):13 ls 3 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):13 ls 1 notitle 
 
 if(a>=10)    set label at graph labelxpos,labelypos center LABELN6 front left font "Arial,24" textcolor rgb "#4f2f2f"
-if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):14 ls 1 notitle 
+if(a>=10)    plot inputfile u ($2 < limit ? $14: 1/0):14 ls 3 notitle 
 if(a>=10)    unset label
 
 if(a>=11)   plot inputfile u ($2 < limit ? $14: 1/0):15 ls 1 notitle 
@@ -247,11 +247,11 @@ if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):9 ls 1 notitle
 if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):10 ls 1 notitle 
 if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):11 ls 1 notitle 
 if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):12 ls 1 notitle 
-if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):13 ls 3 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):13 ls 1 notitle 
 if(a>=10)    plot inputfile u ($2 < limit ? $15: 1/0):14 ls 1 notitle 
 
 if(a>=11)    set label at graph labelxpos,labelypos center LABELN7 front left font "Arial,24" textcolor rgb "#4f2f2f"
-if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):15 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):15 ls 3 notitle 
 if(a>=11)    unset label
 
 

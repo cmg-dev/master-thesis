@@ -16,13 +16,13 @@ f1="data.tar.gz"
 f2="img.tar.gz"
 
 echo "moving data to archive"
-tar -czf $f1 data/$Experiment*
+tar -czf $f1 data/$Experiment* *Stats.dat
 
 echo "moving images to archive"
 tar -czf $f2 img
 
 tar -czf store/$experiment.tar.gz $f1 $f2
-tar -czf store/$experiment.tar.gz data/$Experiment* img *Stats.dat
+#tar -czf store/$experiment.tar.gz data/$Experiment* img *Stats.dat
 
 #tar -cjf store/$experiment.tar.gz2 $f1 $f2
 
