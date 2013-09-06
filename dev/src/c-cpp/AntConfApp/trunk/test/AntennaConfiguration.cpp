@@ -628,7 +628,7 @@ int main ( int argc, char *argv[ ] ) {
 			meanTime += duration_cast<milliseconds>(t_1-t_0).count();
 			
 		}
-		std::cout << "\tFitnes plan calculated:: done" << std::endl;
+		std::cout << "\tFitnes plane calculated:: done" << std::endl;
 
 		int total = duration_cast<milliseconds>(t_1-t_000).count();
 		
