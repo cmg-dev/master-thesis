@@ -1,17 +1,31 @@
 %- Section 1 ----------------------------------------------------------------
 \label{seq:EvolutionaryStrategies}
-Folgende Informationen entstammen im Wesentlichen aus \cite{kost2003optimierung},\cite{bronstejn2012taschenbuch}\ sowie \cite{Hansen:1} und sind auf den folgenden Seiten zusammengefasst und neu arrangiert. Das erleichtert die Einarbeitung in die Thematik, das das Thema eine sehr großes Feld und dazu sehr komplex ist.\\
+Folgende Informationen entstammen im Wesentlichen aus \cite[Kapitel 7]{kost2003optimierung},\cite{bronstejn2012taschenbuch}\ sowie \cite{Hansen:1} und sind auf den folgenden Seiten zusammengefasst und neu arrangiert. Das erleichtert die Einarbeitung in die Thematik und das Verständnis der Arbeit. Evolutionsstrategien nach natürlichem Vorbild gehen auf die Arbeiten von RECHENBERG~\cite{Rechenberg3} und SCHWEFEL~\cite{Schwefel2} zurück. Ihr Ansatz war von Anfang an für die Optimierung gedacht, anders als z.B. Evolutionäre Programmierung (EP). Im Gegensatz zu Genetischen Algorithmen spielt die Repräsentationsform der Daten keine Rolle. Der Variablenvektor kann sowohl diskrete als auch kontinuierliche Komponenten haben. 
+%
 %------------------------------------------------------------------
+%
+\begin{figure}[ht!]
+	\centering
+	\caption[Übersicht nichtlinearer Optimierungsstrategien]{ Klassifizierung von nicht linearen Optimierungsstrategien. Die evolutionären Strategien gehören zu den ableitungsfreien Verfahren. Diese grenzen sich zu anderen Verfahren ab, da sie keine stetige Differenzeierbarkeit erwarten. Das ist ein Vorteil, da damit praktisch alle Probleme gelöst werden können. }
+	\label{fig:overview_optimizations}
+		\vspace{2mm}
+	\input{drawings/overview_optimizataions.tex}
+\end{figure}
+%
+%------------------------------------------------------------------
+%
 \subsection{Evolutionsstrategien - Grundlagen }
 %
-Nach dem Vorbild natürlicher Evolution entworfene stochastische Optimierungsverfahren werden als Evolutionsstrategie bezeichnet. Sie verwenden die Prinzipien der Mutation, Rekombination und Selektion analog zu der nat. Evolution. Der Grundlegende Ablauf dieser Strategien zeigt die Abbildung~\ref{es_flowchart}\\
-Wie in der Natur auch werden Nachkommen aus der Menge der verfügbaren Eltern gebildet. Dabei bezeichnet im Folgenden:
+Nach dem Vorbild natürlicher Evolution entworfene stochastische Optimierungsverfahren werden als Evolutionsstrategie bezeichnet. Sie verwenden die Prinzipien der Mutation, Rekombination und Selektion analog zu der natürlichen Evolution. Die Vorgänge werden dabei abstrahiert und vereinfacht implementiert, bilden die Prozesses der Evolution jedoch nach. Durch ihre Allgemeingültigkeit haben diese Verfahren ein großes Anwendungsspektrum in Wissenschaft und Industrie. Einige Anwendungsmöglichkeiten und Beispiele sind in~\cite[Kapitel 11]{kost2003optimierung} zu finden. \\
+%Der Grundlegende Ablauf dieser Strategien zeigt die Abbildung~\ref{es_flowchart}\\
+
+Die Abstrahierung der Prozesse verwendet dabei die selbe Nomenklatur, wie im biologischen Kontext üblich. Dabei bezeichnet im Folgenden:
 %
-\begin{itemize}
+\begin{itemize} [itemsep=1mm]
 	\item $\mu$ die Anzahl der Eltern (=> Größe der Population)
-	\item $\lambda$\footnote{Anmerkung: Die Verwendung des Symbols $\lambda$ ist in diesem Kontext nicht eindeutig. Im Rahmen dieser Arbeit steht dieses Symbol auch für die Wellenlänge. In diesem Abschnitt wird jedoch weiterhin $\lambda$ verwendet um die gleiche Nomenklatur wie bei dieser Thematik üblich zu verwenden.} die Anzahl der Eltern die bei Rekombination neue Kinder erzeugt; Die Anzahl der erzeugten Nachkommen einer neuen Generation
-	\item $\mathbf{x}_p$ Elternpunkt (Parent)
-	\item $\mathbf{x}_c$ Nachkomme einer Generation (Child)
+	\item $\lambda$ die Anzahl der Eltern die bei Rekombination neue Kinder erzeugt; Die Anzahl der erzeugten Nachkommen einer neuen Generation\footnote{Anmerkung: Die Verwendung des Symbols $\lambda$ ist in diesem Kontext nicht eindeutig. Im Rahmen dieser Arbeit steht dieses Symbol auch für die Wellenlänge. In diesem Abschnitt wird jedoch weiterhin $\lambda$ verwendet um die gleiche Nomenklatur wie bei dieser Thematik üblich zu verwenden.}
+	\item $\mathbf{x}_p$ Eltern (Parent)
+	\item $\mathbf{x}_c$ Nachkommen einer Generation (Child)
 	\item $X_p^1$ Die Menge aller Eltern der ersten Generation $X_p = \{\mathbf{x}_{p_1}^1,..,\mathbf{x}_{p_\mu}^1\}$
 	\item $X_p^k$ Die Menge aller Eltern der k-ten Generation $X_p = \{\mathbf{x}_{p_1}^k,..,\mathbf{x}_{p_\mu}^k\}$
 \end{itemize}
@@ -61,7 +75,7 @@ Die Normalverteilung der Variation ist nützlich, da kleine Änderungen wahrsche
 %
 %------------------------------------------------------------------
 \subsubsection[Rekombination]{Rekombination}
-Durch Rekombination zweier oder mehr Eltern aus der Menge aller $\mu$-Eltern $X_{\varrho} \subset X_E$. Die Wahl der Eltern sollte zufällig erfolgen um Inzuchtprobleme zu verhindern.\\
+Durch Rekombination zweier oder mehr Eltern aus der Menge aller $\mu$-Eltern $X_{\varrho} \subset X_E$. Die Wahl der Eltern sollte zufällig erfolgen um \textit{Inzuchtprobleme}\footnote{d.h. sich schlechte Ergebnisse weiter durchsetzen} zu verhindern.\\
 Zwei Arten der Rekombination sind denkbar:\\
 
 Die \textit{intermediär Rekombination} erstellt einen Nachkommen durch das gewichtete Mittel von $\varrho$ Eltern.
@@ -96,9 +110,7 @@ Die Strategien werden Plus- bzw. Komma-Strategie genannt. bei der Plus-Strategie
 \item $({\mu}/{\varrho}+\lambda)$ \& $({\mu}/{\varrho},\lambda)$ Angabe der Anzahl beteiligter Eltern bei der Rekombination.
 \end{itemize}
 %
-Mit Hilfe der hier beschrieben Klassifikationen werden die Algorithmen im Folgenden stets angegeben.\\
-%
-In Abbildung~\ref{fig:es_flowchart} wird der Ablauf einer Optimierung mit evolutionären Verfahren dargestellt. Es wird die Komma-Strategie gezeigt, ein Struktogramm der Plus-, oder anderer Strategien ist nicht gezeigt. Die Unterschiede würden sich in dem Punkt Rekombination zeigen.
+Mit Hilfe der hier beschrieben Klassifikationen werden die Algorithmen im Folgenden stets angegeben. In Abbildung~\ref{fig:es_flowchart} wird der Ablauf einer Optimierung mit evolutionären Verfahren dargestellt. Es wird die Komma-Strategie gezeigt, ein Struktogramm der Plus-, oder anderer Strategien ist nicht gezeigt. Die Unterschiede würden sich in dem Punkt Rekombination zeigen.
 %
 %------------------------------------------------------------------------------
 %- Section .6 -----------------------------------------------------------------
@@ -110,27 +122,14 @@ $$
 $$
 Sprich aus $\mu_2$-Elternpopulationen werden durch Rekombination mit jeweils $\varrho_2$ Populationen, $\lambda_2$ Nachkommenpopulationen generiert. Innerhalb der Populationen erfolgt die Optimierung anhand einer $({\mu_1}/{\varrho_1}+\lambda_1)$ oder $({\mu_1}/{\varrho_1},\lambda_1)$-Strategie. Nun können nach einer bestimmten Zahl von Generationen die besten Populationen für die nächste Generation ausgewählt werden. Auch hier stehen verschiedene Auswahlkriterien zur Verfügung. Man kann z.B. die Population anhand des Zielfunktionswert des besten Individuums wählen oder den Mittelwert über alle Individuen wählen.
 %
-%- Section .7 -----------------------------------------------------------------
-\subsection{Optimierungsräume}
-\lipsum[1]
-%
-\subsubsection{Kontinuierliche Optimierung}
-%
-\lipsum[1]
-%
-\subsubsection{Diskrete Optimierung}
-%
-\lipsum[1]
-%
-\subsubsection{Gemischte Optimierung}
-%
-\lipsum[1]
-%
 \subsubsection{Nicht behandelte Themen}
 %
-Das Gebiet der Evolutionären Optimierung/- Algorithmen ist groß. Daher werden einige Gebiete in dieser Arbeit nicht behandelt, wie z.B.:
+Das Gebiet der Evolutionären Optimierung/- Algorithmen ist groß. Daher wurden in diesem Abschnitt nur die für das Verständnis unbedingt notwendigen Grundlagen erläutert. Eine Reihe von Themen, die in der Evolutionären eine Rolle spielen, wurde ausgelassen. Beispielsweise:
 %
 \begin{itemize}[itemsep=0mm]
-\item lorem1
-\item lorem2
+\item Schrittweitensteuerung
+\item Diskrete Optimierungsprobleme/ Variationsmechanismen
+\item Neustart mit andere Population
+\item Behandlung von Nebenbedingungen
 \end{itemize}
+%
