@@ -22,8 +22,8 @@ Eine Integration von Shark in dem Software Ökosystem ist aufgrund der vielen Fe
 %---------------------------------------------------------------------
 \subsection{Implementation}
 \label{sec:Implementation}
-In diesem Abschnitt wird auf interessante Details der Softwareimplementation eingegangen. Es ist nicht möglich im vollen Umfang die Implementation der Software zu besprechen, dafür ist die Software zu Umfangreich\footnote{Für diese Arbeit wurden ca. $5000$ Zeilen Quellcode erstellt -- einzelne Modelle nicht mitgerechnet}. Lediglich sollen hier die Implementationen verschiedener Evolutionsalgorithmen unter Verwendung von Shark gezeigt werden.
-Verschiedene Algorithmen wurden in Kapitel~\ref{sec:es-common} besprochen.% ?
+In diesem Abschnitt wird auf interessante Details der Softwareimplementation eingegangen. Es ist nicht möglich im vollen Umfang die Implementation der Software zu besprechen, dafür ist die Software zu Umfangreich\footnote{Für diese Arbeit wurden ca. $5000$ Zeilen Quellcode erstellt -- einzelne Modelle nicht mitgerechnet}. Lediglich sollen hier die Implementationen verschiedener Evolutionsalgorithmen unter Verwendung von Shark gezeigt werden. Verschiedene evolutionäre Algorithmen wurden in Kapitel~\ref{sec:es-common} besprochen.% ?
+\lipsum[1]
 Es wird beispielhaft die Implementation einer Objektfunktion beschrieben, wie sie typischerweise in Shark vorgenommen wird.
 %
 %\input{diagrams/prpsevolution-integration.tex}
@@ -50,9 +50,8 @@ void proposeStartingPoint(SearchPointType &x) const;
 Diese Methode wird von einem Solver beim Start aufgerufen und liefert passende Startwerte für das Modell zurück.
 Der Rückgabewert der Funktion ist ein Vektor der Dimensionalität  \textit{m\_numberOfVariables}, dessen Werte in einem Intervall von $[-10,10]$ gleichverteilt sind.
 Der Wert für \textit{m\_numberOfVariables} wird bei der Instanziierung des Modells, also beim Aufruf des Konstruktors, gesetzt.
-Dort wird auch das Flag \textit{CAN\_PROPOSE\_STARTING\_POINT} gesetzt.% Eigenschaft hat in c++ und generell in OOP eine andere Bedeutung
-Sie wird von den unterschiedlichen Optimizern verwendet, um zu erkennen, welche Features vom Modell unterstützt werden.
-% Listing ist redundant, ich würde einfach auf "den Konstruktor" verweisen
+Dort wird auch das die Eigenschaft des Modells \textit{CAN\_PROPOSE\_STARTING\_POINT} gesetzt. Diese teilt den unterschiedlichen Optimizern mit, welche Features vom Modell unterstützt werden. Hier geben wir bekannt, dass das Modell seine eigenen Startwerte generieren kann.
+%
 \begin{lstlisting}[label=EvolutionaryCalibration_3]
 	EvolutionaryCalibration( ) {
 	m_numberOfVariables = Solve::ProblemDimensions::Calibration;
@@ -81,7 +80,7 @@ Der vollständige Quellcode des Modells ist im Anhang~\ref{app:EvolutionaryCalib
 				 firstline=7, lastline=44, label=lst:EvolutionaryCalibration.cpp]{src/EvolutionaryCalibration.cpp}
 %
 %
-\subsubsection{Process MkII -- Finde die Lösung} % Ich würde den Untertitle weglassen, oder "Finden der Lösung"
+\subsubsection{Process MkII -- Finde die Lösung}
 %
 Die Klasse \textit{ProcessMkII} steht im Zentrum der Lösungsfindung. Sie erlaubt die Ausführung und Parametrierung von verschiedenen, in dieser Arbeit erprobten Testfunktionen. Die Klasse hat verschiedene Konstruktoren um den verschiedenen Modellen gerecht zu werden. Diese erwarten häufig unterschiedliche Parameter. Bei der  Instanziierung werden gleichzeitig alle wichtigen Parameter übergeben. Dies zeigt folgendes Schnipsel Quellcode:
 %
