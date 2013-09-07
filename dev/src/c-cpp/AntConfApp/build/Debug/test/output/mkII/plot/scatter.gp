@@ -3,6 +3,12 @@
 #prerequesites set i, n and the number of antennas to proper values
 #
 
+set macros
+SETRANGE="set xrange [-5:5];\
+        set yrange [-5:5]"
+UNSETRANGE=" set autoscale"
+
+
 at(file, row, col) = system( sprintf("awk -v row=%d -v col=%d 'NR == row {print $col}' %s", row, col, file) )
 to(file, min, first, mean, third, max, row) = system( sprintf("echo %d %e %e %e %e %e >> %s", row, min, first, mean, third, max ,file) )
 header(file) = system( sprintf("echo \"#Idx min first mean third max\" >> %s", file) )
@@ -70,6 +76,7 @@ unset key
 labelxpos = .1
 labelypos = .5
 
+@SETRANGE
 # generate first row
 set label at graph labelxpos,labelypos center LABELX front left font "Arial,24" textcolor rgb "#4f2f2f" 
 plot inputfile u ($2 < limit ? $5: 1/0):5 ls 3 notitle 
@@ -77,6 +84,7 @@ unset label
 
 plot inputfile u ($2 < limit ? $5: 1/0):6 ls 1 notitle 
 plot inputfile u ($2 < limit ? $5: 1/0):7 ls 1 notitle 
+@UNSETRANGE
 if(a>=4)plot inputfile u ($2 < limit ? $5: 1/0):8 ls 1 notitle 
 if(a>=5)plot inputfile u ($2 < limit ? $5: 1/0):9 ls 1 notitle 
 if(a>=6)plot inputfile u ($2 < limit ? $5: 1/0):10 ls 1 notitle 
@@ -87,6 +95,7 @@ if(a>=10)plot inputfile u ($2 < limit ? $5: 1/0):14 ls 1 notitle
 if(a>=11)plot inputfile u ($2 < limit ? $5: 1/0):15 ls 1 notitle 
 
 # 2.  
+@SETRANGE
 plot inputfile u ($2 < limit ? $6: 1/0):5 ls 1 notitle 
 
 set label at graph labelxpos,labelypos center LABELY front left font "Arial,24" textcolor rgb "#4f2f2f" 
@@ -94,6 +103,7 @@ plot inputfile u ($2 < limit ? $6: 1/0):6 ls 3 notitle
 unset label
 
 plot inputfile u ($2 < limit ? $6: 1/0):7 ls 1 notitle 
+@UNSETRANGE
 if(a>=4)plot inputfile u ($2 < limit ? $6: 1/0):8 ls 1 notitle 
 if(a>=5)plot inputfile u ($2 < limit ? $6: 1/0):9 ls 1 notitle 
 if(a>=6)plot inputfile u ($2 < limit ? $6: 1/0):10 ls 1 notitle 
@@ -104,12 +114,14 @@ if(a>=10)plot inputfile u ($2 < limit ? $6: 1/0):14 ls 1 notitle
 if(a>=11)plot inputfile u ($2 < limit ? $6: 1/0):15 ls 1 notitle 
 
 # 3.
+@SETRANGE
 plot inputfile u ($2 < limit ? $7: 1/0):5 ls 1 notitle 
 plot inputfile u ($2 < limit ? $7: 1/0):6 ls 1 notitle 
 
 set label at graph labelxpos,labelypos center LABELZ front left font "Arial,24" textcolor rgb "#4f2f2f" 
 plot inputfile u ($2 < limit ? $7: 1/0):7 ls 3 notitle 
 unset label
+@UNSETRANGE
 
 if(a>=4)plot inputfile u ($2 < limit ? $7: 1/0):8 ls 1 notitle 
 if(a>=5)plot inputfile u ($2 < limit ? $7: 1/0):9 ls 1 notitle 
@@ -241,7 +253,7 @@ if(a>=11)   plot inputfile u ($2 < limit ? $14: 1/0):15 ls 1 notitle
 # Generate last row
 if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):5 ls 1 notitle 
 if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):6 ls 1 notitle 
-if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):7 ls 1 notitle 
+if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):7 ls 1 notitle
 if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):8 ls 1 notitle 
 if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):9 ls 1 notitle 
 if(a>=11)    plot inputfile u ($2 < limit ? $15: 1/0):10 ls 1 notitle 

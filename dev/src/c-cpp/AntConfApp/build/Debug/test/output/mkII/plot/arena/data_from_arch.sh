@@ -77,8 +77,9 @@ for(( i=$START; i < $STOP;i++ )) {
     mkdir $i
     
     echo "****"
-    echo "Extracting archives"
+    echo "Extracting archive "$i
     echo "****"
-    tar -C $i -xvzf ../store/E$i.tar.gz data/ SigmaStats.dat VectorStats.dat EvaluationStats.dat FitnessStats.dat ObjectivStats.dat  
+    #tar -C $i -xzf ../store/E$i.tar.gz data/ SigmaStats.dat VectorStats.dat EvaluationStats.dat FitnessStats.dat ObjectivStats.dat  
+    tar -C $i -xzf ../store/E$i.tar.gz data/ 
 
 }

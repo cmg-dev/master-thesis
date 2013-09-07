@@ -75,21 +75,21 @@ stats inputfile u vectorCol name "Vectors" nooutput
 #-------------------------------------------------------------------------
 #-------------------------------------------------------------------------
 #1
-EvalOut = "EvaluationStats.dat"
+EvalOut = "data/EvaluationStats".i.".dat"
 
 print "rm ".EvalOut.remove( EvalOut )
 print "wr head".header( EvalOut )
 print "wr ".to( EvalOut, Counts_min, Counts_lo_quartile, Counts_mean, Counts_up_quartile, Counts_max, 0)
 
 #2
-FitnessOut = "FitnessStats.dat"
+FitnessOut = "data/FitnessStats".i.".dat"
 
 print "rm ".FitnessOut.remove( FitnessOut)
 print "wr head".header( FitnessOut )
 print "wr".to( FitnessOut, Fitness_min, Fitness_lo_quartile, Fitness_mean, Fitness_up_quartile, Fitness_max, 0)
 
 #3
-ObjectiveOut = "ObjectivStats.dat"
+ObjectiveOut = "data/ObjectivStats".i.".dat"
 
 print "rm ".ObjectiveOut.remove( ObjectiveOut )
 print "wr head".header( ObjectiveOut )
@@ -107,18 +107,43 @@ if(a>=9) print "  *".to( ObjectiveOut, N5s_min, N5s_lo_quartile, N5s_mean, N5s_u
 stats ObjectiveOut u 5 name "Objective" nooutput
 
 #4
-SigmaOut = "SigmaStats.dat"
+SigmaOut = "data/SigmaStats".i.".dat"
 
 print "rm ".SigmaOut.remove( SigmaOut )
 print "wr head".header( SigmaOut )
 print "wr".to( SigmaOut, Sigmas_min, Sigmas_lo_quartile, Sigmas_mean, Sigmas_up_quartile, Sigmas_max, 0)
 
 #5
-VectorOut = "VectorStats.dat"
+VectorOut = "data/VectorStats".i.".dat"
 
 print "rm ".VectorOut.remove( VectorOut )
 print "wr head".header( VectorOut )
 print "wr".to( VectorOut, Vectors_min, Vectors_lo_quartile, Vectors_mean, Vectors_up_quartile, Vectors_max, 0)
+
+#6
+ObjectiveOut = "data/ObjectivStatsMedian".i.".dat"
+
+print "rm ".ObjectiveOut.remove( ObjectiveOut )
+print "wr head".header( ObjectiveOut )
+print "wr ".to( ObjectiveOut, Xs_min, Xs_lo_quartile, Xs_median, Xs_up_quartile, Xs_max, 1)
+print "  *".to( ObjectiveOut, Ys_min, Ys_lo_quartile, Ys_median, Ys_up_quartile, Ys_max, 2)
+print "  *".to( ObjectiveOut, Zs_min, Zs_lo_quartile, Zs_median, Zs_up_quartile, Zs_max, 3)
+if(a>3)print "  *".to( ObjectiveOut, N0s_min, N0s_lo_quartile, N0s_median, N0s_up_quartile, N0s_max, 4)
+if(a>3)print "  *".to( ObjectiveOut, N1s_min, N1s_lo_quartile, N1s_median, N1s_up_quartile, N1s_max, 5)
+if(a>3)print "  *".to( ObjectiveOut, N2s_min, N2s_lo_quartile, N2s_median, N2s_up_quartile, N2s_max, 6)
+if(a>3)print "  *".to( ObjectiveOut, N3s_min, N3s_lo_quartile, N3s_median, N3s_up_quartile, N3s_max, 7)
+
+if(a>=8) print "  *".to( ObjectiveOut, N4s_min, N4s_lo_quartile, N4s_median, N4s_up_quartile, N4s_max, 8)
+if(a>=9) print "  *".to( ObjectiveOut, N5s_min, N5s_lo_quartile, N5s_median, N5s_up_quartile, N5s_max, 9)
+
+stats ObjectiveOut u 5 name "Objective" nooutput
+
+#7
+VectorOut = "data/VectorStatsMedian".i.".dat"
+
+print "rm ".VectorOut.remove( VectorOut )
+print "wr head".header( VectorOut )
+print "wr".to( VectorOut, Vectors_min, Vectors_lo_quartile, Vectors_median, Vectors_up_quartile, Vectors_max, 0)
 
 unset label
 
