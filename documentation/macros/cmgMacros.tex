@@ -49,6 +49,83 @@
   amedo GmbH
 }
 
+%--------------------------------------------------------------
+%- seraches for input in the "common" folder ------------------
+%--------------------------------------------------------------
+\newcommand{\Gitter}[4]{
+    \draw[very thin,color=gray] (#1,#3) grid (#2,#4);
+}
+\newcommand{\Koordinatenkreuz}[6]{
+    \draw[->, >=latex, color=gray!50!black] (#1,0) -- (#2,0) node[right] {#5};
+    \draw[->, >=latex, color=gray!50!black] (0,#3) -- (0,#4) node[left] {#6};
+}
+\newcommand{\KoordinatenkreuzOhneLabelsVerschobenKeinPfeil}[5]{
+    \draw[-] (#1,0) -- (#2,0);
+    \draw[-] (#5,#3) -- (#5,#4);
+
+}
+\newcommand{\ZeigerdiagrammText}[4]{
+\begin{tikzpicture}[scale=1, samples=100, >=latex]
+
+    \def\Alpha{#1}
+    \def\Phase{#2}
+    \def\AmplitudeSpannung{#3}
+    \def\AmplitudeStrom{#4}
+    \def\SpannungsWert{{\AmplitudeSpannung*sin(\Alpha)}}
+    \def\StromWert{{\AmplitudeStrom*sin(\Alpha+\Phase)}}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \def\FarbeSpannung{gray!90!white}
+    \def\FarbeStrom{black!90!white}
+    \def\FarbeWinkelZeichnung{gray}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \def\Beta{\Alpha+\Phase}
+    \def\AlphaRad{\Alpha*3.141592654/180}
+    \def\PhaseRad{\Phase*3.141592654/180}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    \Gitter{-.1}{7}{-2-5}{2.5}
+    \Koordinatenkreuz{-.2}{7}{-2.5}{2.5}{$\omega t$}{}
+    \draw (1.570795,0) node[above=4pt]{$\frac{\pi}{2}$};
+    \draw (3.14159,0) node[above=4pt]{${\pi}$};
+    \draw (4.71238898,0) node[above=4pt]{$\frac{3\pi}{2}$};
+    \draw (6.283185307,0) node[above=4pt]{${2\pi}$};
+    \draw (-2.5,0) circle (2.3cm);
+    \KoordinatenkreuzOhneLabelsVerschobenKeinPfeil{-5.2}{-.3}{-2.6}{2.6}{-2.5}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % voltage
+    \draw[color=\FarbeSpannung, very thick] plot[id=voltage, domain=0:7] function{\AmplitudeSpannung*sin(x)} node[right] {\textsf{Reference}};
+    % voltage circle
+    \draw[color=\FarbeSpannung, loosely dashed] (-2.5,0) circle (\AmplitudeSpannung cm);
+    % angle
+    \draw[color=\FarbeWinkelZeichnung!50!black, thick] (\AlphaRad, \SpannungsWert)--(\AlphaRad,\StromWert) node[below=18pt] {$\alpha$};
+    % angle in the circle
+%    \filldraw[fill=\FarbeWinkelZeichnung!20,draw=\FarbeWinkelZeichnung!50!black] (-2.5,0) -- (-3,0) arc (0:\Alpha:1) -- cycle node[right] {$\alpha$};
+    % voltage pointer
+    \draw[<-,color=\FarbeSpannung, very thick] (\Alpha:\AmplitudeSpannung)++(-2.5,0) --(-2.5,0);
+    \draw[color=\FarbeSpannung,  dashed] (\Alpha:\AmplitudeSpannung)++(-2.5,0) -- (\AlphaRad,\SpannungsWert);
+    % current
+    \draw[color=\FarbeStrom, very thick] plot[id=current, domain=0:7] function{\AmplitudeStrom*sin(x+\PhaseRad)} node[right] {\textsf{Incomming}};		
+    % current circle
+    \draw[color=\FarbeStrom, loosely dashed]    (-2.5,0) circle (\AmplitudeStrom cm);
+    % current pointer
+    \draw[<-,color=\FarbeStrom, very thick] (\Beta:\AmplitudeStrom)++(-2.5,0) --(-2.5,0);
+    \draw[color=\FarbeStrom,  dashed](\Beta:\AmplitudeStrom)++(-2.5,0) -- (\AlphaRad,\StromWert);
+    % phase difference
+    \ifthenelse{\Phase<0}{
+        \draw[snake=brace] (pi/2 ,2.3)--(pi/2-\PhaseRad ,2.3) node[pos=0.5, above=5pt] {$\Theta$};
+    }
+    {
+        \draw[snake=brace] (pi/2-\PhaseRad ,2.3)--(pi/2 ,2.3) node[pos=0.5, above=5pt] {$\Theta$};
+    }
+    \draw[<->] (0,-2.2) -- (2*pi,-2.2) node[pos=0.5, below]{$\lambda$};
+    \draw (2*pi,.2) -- (2*pi,-2.5);
+    
+%    \draw[snake=brace, mirror snake] (0 ,-2.3)--(pi*2 ,-2.3) node[above=10pt, left=10pt]  {$\Theta$} ;
+    
+    % angular velocity \omega
+    \draw[->, xshift=-2.5cm]  (120:2cm) arc (120:170:2) node[below] {$\omega$};
+\end{tikzpicture}
+}
 %\renewenvironment{itemize}[1]{\begin{compactitem}#1}{\end{compactitem}}
 %\renewenvironment{enumerate}[1]{\begin{compactenum}#1}{\end{compactenum}}
 %\renewenvironment{description}[0]{\begin{compactdesc}}{\end{compactdesc}}

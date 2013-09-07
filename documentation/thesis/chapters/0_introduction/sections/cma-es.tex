@@ -3,7 +3,7 @@ Der Folgende Abschnitt behandelt ein spezielles Verfahren der Evolutionären Opt
 %------------------------------------------------------------------
 \begin{figure} [ht!]
 \centering
-         \caption[Konzept direkter Optimierung mittels CMA-ES]{Die Abbildung zeigt sechs Lösungsschritte des CMA-ES-Verfahrens. Eingangs wird eine Population mit einer Gauß-Verteilung generiert. Diese bewegt sich von Generation näher an das globale Optimum. Die gestrichelte Linie zeigt dabei eine Isolinie der Wahrscheinlichkeitsdichte. Wir befinden uns auf einem 2D-Problem, somit wird das vorankommen der Population über zwei $\sigma$'s gesteuert. Dadurch kommt die Ellipse zu Stande. Die Linie bedeutet nicht, dass nur in diesem Bereich Nachkommen erzeugt werden, siehe z.B. Generation 4. Je nach Beschaffenheit des Problems und nach Nähe zum Optimum werden die steuernden $\sigma$'s kleiner. \cite{Wiki:Images:1}}
+         \caption[Konzept direkter Optimierung mittels CMA-ES]{Die Abbildung zeigt sechs Lösungsschritte des CMA-ES-Verfahrens. Eingangs wird eine Population mit einer Gauß-Verteilung generiert. Diese bewegt sich in jeder Generation näher an das globale Optimum heran. Die gestrichelte Linie zeigt dabei eine Isolinie der Wahrscheinlichkeitsdichte. Wir befinden uns auf einem 2D-Problem, somit wird das vorankommen der Population über zwei $\sigma$'s gesteuert. Dadurch kommt die Ellipse zu Stande. Die Linie bedeutet nicht, dass nur in diesem Bereich Nachkommen erzeugt werden, siehe z.B. Generation 4. Je nach Beschaffenheit des Problems und nach Nähe zum Optimum werden die steuernden $\sigma$'s kleiner. \cite{Wiki:Images:1}}
          \label{fig:conecpt_cma.es}
          \vspace{0.5cm}
          \includegraphics[width=\textwidth]{img/CMA-ES_algorithm.png}

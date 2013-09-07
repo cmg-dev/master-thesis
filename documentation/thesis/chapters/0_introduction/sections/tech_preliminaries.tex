@@ -80,11 +80,11 @@ In realen Umgebungen treten zusätzlich noch Reflektionen und ein sog. Multipath
 Diese Arbeit wird für das Messsystem der \amedogmbh entwickelt. Die Entwicklung wird Teil der Softwarekomponenten des Systems werden. Aktuelle befindet sich das gesamte System in der Revision, in diesem Abschnitt wird der Stand der Entwicklung dargestellt. Details über Hardware und Software werden im Rahmen der Arbeit nicht besprochen, sofern sie diese Arbeit nicht unmittelbar betreffen. \\
 %
 
-Das auf RFID basierende PRPS (Passiv RFID Positioning System) besteht aus mehreren frei positionierbaren Antennen. Eine Mess- und Steuereinheit sowie einem Rechner zur Kommunikation mit Endkundensoftware. Die Systemkomponenten für die Messwertaufnahme und Steuerung sind in einem Gehäuse untergebracht, dieses zeigt Abbildung~\ref{fig:System}. Eine typische Installation ist in Abbildung~\ref{fig:Setup} gezeigt. Dort wurde ein System mit insgesamt acht Antennen installiert. Vier Antennen sind frei aufgestellt, vier Weitere in einer festen Anordnung (\textit{Spinne}) installiert. Der Aufbau ist auf ein Messvolumina gerichtet.\\
+Das auf RFID basierende PRPS (Passiv RFID Positioning System) besteht aus mehreren frei positionierbaren Antennen, einer Mess- und Steuereinheit, sowie einem Rechner zur Kommunikation mit Endkundensoftware. Die Systemkomponenten für die Messwertaufnahme und Steuerung sind in einem Gehäuse untergebracht, dieses zeigt Abbildung~\ref{fig:System}. Eine typische Installation ist in Abbildung~\ref{fig:Setup} gezeigt. Dort wurde ein System mit insgesamt acht Antennen installiert. Vier Antennen sind frei aufgestellt, vier Weitere in einer festen Anordnung (\textit{Spinne}) installiert. Der Aufbau ist auf ein Messvolumina gerichtet.\\
 %
 \subsubsection{Leistungsmerkmale}
 %
-Das PRPS erlaubt eine Identifikation mehrerer Objekte oder genauer: RFID-Tags die auf den Objekten angebracht sind. Wird ein einzelner Tag ausgewählt kann seine Postion mit einer einer sehr hohen Frequenz ausgegeben werden. Die momentan Erreichbare Werte liegen bei $60$~Hz. Je nach Umgebung kann dieser Wert jedoch Variieren, siehe Kapitel~\ref{sec:Komplexity1}. Sollen mehrere Tags ausgegeben werden, verringert sich die Frequenz entsprechend. Bei der Verwendung von drei Tags ist einer Leserate von $20$~Hz pro Tag realistisch. Die Positionsgenauigkeit liegt aktuell bei $\approxeq 5$~mm. Die Antennen können frei Arrangiert werden. Das erlaubt eine Anpassung an nahezu jeden Raum und jeden Kundenbedarf. Als Tags kommen jeder Handelsübliche RFID-Tag im verwendeten Frequenzband im Bereicht der ETSI-Frequenzen~\cite{etsi1} in Frage. Der Messbereich liegt bei mehreren Kubikmetern und einer erprobten maximalen Entfernung von $6-7$~Metern. Theoretisch ist das maximale Volumen noch größer. Die leistungstarke Messeinheit besteht aus einer sehr flexiblen Messelektronik. Diese ist in der Lage eine sehr hohe Güte und Frequenz der Messwerte zu realisieren.\\
+Das PRPS erlaubt eine Identifikation mehrerer Objekte oder genauer: RFID-Tags, die auf den Objekten angebracht sind. Wird ein einzelner Tag ausgewählt, kann seine Postion mit einer einer sehr hohen Frequenz ausgegeben werden. Die momentan Erreichbare Werte liegen bei $60$~Hz. Je nach Umgebung kann dieser Wert jedoch Variieren, siehe Kapitel~\ref{sec:Komplexity1}. Sollen mehrere Tags ausgegeben werden, verringert sich die Frequenz entsprechend. Bei der Verwendung von drei Tags ist eine Leserate von $20$~Hz pro Tag realistisch. Die Positionsgenauigkeit liegt aktuell bei $\approxeq 5$~mm. Die Antennen können frei Arrangiert werden. Das erlaubt eine Anpassung an nahezu jeden Raum und jeden Kundenbedarf. Als Tags kommen alle handelsüblichen RFID-Tags im verwendeten Frequenzband im Bereicht der ETSI-Frequenzen~\cite{etsi1} in Frage. Der Messbereich liegt bei mehreren Kubikmetern und einer erprobten maximalen Entfernung von $6-7$~Metern. Theoretisch ist das maximale Volumen noch größer. Die leistungstarke Messeinheit besteht aus einer sehr flexiblen Messelektronik. Diese ist in der Lage eine sehr hohe Güte und Frequenz der Messwerte zu realisieren.\\
 
 %
 \begin{figure}[h]
@@ -95,3 +95,9 @@ Das PRPS erlaubt eine Identifikation mehrerer Objekte oder genauer: RFID-Tags di
          \includegraphics[width=\textwidth]{img/RFID-Okto.png}
          
 \end{figure}
+%
+
+\subsection{Phase und Wellenzahl}
+\label{sec:wavenumber}
+\input{chapters/0_introduction/sections/phase_wavenumber.tex}
+%

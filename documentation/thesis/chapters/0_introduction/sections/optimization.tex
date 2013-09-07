@@ -1,0 +1,141 @@
+%
+Dieser Abschnitt führt in die Optimierung ein und gibt einen Überblick über die Grundbegriffe, die im Rahmen dieser Arbeit verwendet werden. Tiefe Einsichten und die theoretischen Grundlagen sind z.B. in \cite{Bomze1,Spellucci1} zu finden.
+%
+\begin{figure}[ht!]
+	\centering
+	\caption[Übersicht numerische Verfahren]{ Übersicht über numerische Verfahren (unvollständig). Interessant für diese Arbeit ist der teil \textit{nichtlineare Optimierung}. Dieser wird an andere Stelle ausführlicher gezeigt. }
+	\label{fig:overview_numericals}
+	\vspace{2mm}
+	\input{drawings/overview_numerics.tex}
+\end{figure}
+%
+\subsection[Objektfunktion]{Objektfunktion}
+%
+Für eine Optimierung wird eine Größe benötigt, die optimal werden soll. Dazu bedarf es einer Formulierung der Funktion die das Optimierungsziel enthält. Diese Funktion wird Objektfunktion\footnote{Wird in dieser Arbeit verwendet}, Fitnessfunktion oder Zielfunktion genannt Auch Güte- oder Qualitätsfunktion sind gebräuchlich. Es sind eine Reihe von Optimierungskriterien denkbar, z.B. können Gewicht, Größe, Fläche etc. optimiert werden. Es kann auch mehr als ein Ziel Bedingung sein, in diesem Fall spricht man von Mehrzieloptimierung\footnote{Keine weitere Erläuterung im Rahmen dieser Arbeit}.\\
+Damit man eine Optimierung durchführen kann, muss die Objektfunktion freie Parameter (Variablen) enthalten. 
+$$
+y=f(x),\qquad x\in\mathbb{R}
+$$
+Diese Formulierung ist eine eindimensionale Objektfunktion. Dabei ist $x$ der freie Parameter den man variieren kann, um ein Optimum der Funktion $f(x)]$ zu finden.  In der Regel ist der Wert des erreichten Optimums nicht sehr interessant. Vielmehr ist man an dem auffinden der Optimalen Einstellung der freien Parameter interessiert.
+%
+\subsection[Arten von Optima]{Arten von Optima}
+%
+Man kann leicht verstehen, dass es unterschiedliche Optima gibt. Es kann das z.B. das geringste Gewicht oder der größte Gewinn Ziel der Optimierung sein. Dazu notieren wir:
+$$
+y=min\{f(\mathbf{x})\} = -max\{-f(\mathbf{x})\},\qquad \mathbf{x}\in\mathbb{R}^n
+$$
+Die Gleichung drückt aus, dass ich jedes Maximierungsproblem in ein äquivalentes Minimierungsproblem überführen lässt. Daraus kann eine allg. Formulierung des Optimierungsproblem angegeben werden.
+\subsubsection{Allgemeine Formulierung des Optimierungsproblems}
+%
+Ableitung der allgemeinem Formulierung aus den bisherigen Ausführungen. Die Funktion:
+$$
+y=f(\mathbf{x}), \qquad \mathbf{x}\in\mathbb{R}^n
+$$
+sei zu optimieren. Dabei ist eine Minimierungsaufgabe gleich der Maximierungsaufgabe. Das bring die Formulierung:
+%
+\begin{equation}
+\label{eq:optimazion1}
+min\{~y(\mathbf{x})~|~\mathbf{x}\in\mathbf{X}~\}
+\end{equation}
+%
+In der Formulierung ist eine Einschränkung enthalten. Wir fordern, dass $\mathbf{x}\in\mathbf{X}$ sein soll. Diese Einschränkung entstammt den Nebenbedingung des Problems. Herleitung:
+$$
+g_j(\mathbf{x})\leq 0, \qquad j=1,2,...,n
+$$
+Ergibt den zulässigen Bereich:
+$$
+\mathbf{X}=\{\mathbf{x}\in \mathbb{R}^n | g_j(\mathbf{x})\leq 0, \qquad j=1,2,...,n\}
+$$
+%
+\subsubsection{Allgemeine von Minima}
+%
+Eine Objektfunktion kann zwei Arten von Minima enthalten:
+\begin{itemize}[itemsep=1mm]
+\item \textbf{Lokales Minimum} - Ein zulässiger Punkt, bei dem in der Nachbarschaft keine niedrigeren Funktionswerte zu finden sind
+\item \textbf{Globales Minimum} - Ein zulässiger Punkt, der den geringsten Funktionswert des gesamten zulässigen Bereichs aufweist. Gleichzeitig ein lokales Minimum.
+\end{itemize}
+%
+Wir haben ein mathematisches Modell der Optimierungsaufgabe erstellt. Wir können noch keine Aussage über die Komplexität des Problem treffen. Um den Schwierigkeitsgrad bestimmen zu können muss man die Zielfunktion analysieren. Eine Analyse der in dieser Arbeit verwendeten Objektfunktion wird im Hauptteil gezeigt.
+
+Ein Optimierungsproblem mit Nebenbedingungen wird registiertes Optimierungsproblem genannt. Ohne spricht man von unregistrierten Optimierungsproblemen.
+%
+\section{Auffinden von Minima}
+%
+Die Kenntnis der Zielfunktion und des mathematischen Modells erlaubt die Anwendung eine Algorithmus, der das Minima bestimmt. Übergibt man die Zielfunktion und die Fragestellung an einen solchen Algorithmus berechnet dieser auf unterschiedlichen Wegen mögliche Optima. Man kann zwei Hauptklassen von Verfahren unterscheiden:
+%
+\begin{itemize}
+\item Lineare Optimierungsverfahren
+\item Nichtlineare Optimierungsverfahren
+\end{itemize}
+%
+Auf die linearen Verfahren wird im Rahmen dieser Arbeit nicht eingegangen. Sie eignen sich nicht für Komplexe Fragestellungen. Eine Übersicht über die nichtlinearen Verfahren ist in der Abbildung~\ref{fig:overview_optimizations}
+%
+%- Section .7 -----------------------------------------------------------------
+\subsection{Optimierungsräume}
+%
+In der Optimierung kann man verschiedene Optimierungsräume betrachten. Der häufigste und auf den alle Algorithmen Anwendbar sind ist der reellwertige oder kontinuierliche Raum. Daneben kommen Probleme vor, die auf einem ganzzahligen (diskreten) Raum ablaufen sowie gemischte Probleme. Im Folgenden wird die Modellformulierung für alle Räume besprochen.
+%
+\subsubsection{Kontinuierliche Optimierung}
+%
+Es wurde bereits das Modell für die kontinuierliche Optimierung besprochen siehe Gleichung~\ref{eq:optimazion1}. Wird im Folgenden von kontinuierlichen Problemen gesprochen, wird ein $_k$ an die Bezeichnungen angehängt.
+%
+\subsubsection{Diskrete Optimierung}
+%
+Darf ein Variablenvektor nur Werte einer diskreten Wertemenge annehmen, spricht man von einer diskreten Optimierung. Als Spezialfälle lassen sich eine ganzzahlige sowie eine binäre Optimierung ableiten, siehe unten. Die Definition von kontinuierlichen und diskreten Optimierungsproblem sind gleich:
+\begin{equation}
+	min\{~y(\mathbf{x})~|~\mathbf{x}\in\mathbf{X}_D~\}
+\end{equation}
+%
+Dabei stammt der zulässige Bereich $\mathbf{X_D}$ aus der Menge diskreter Werte:
+$$
+\mathbf{X}_D=\{~\mathbf{x}\in \mathbb{R}^n~|~x_i\in \mathbf{D}_i,\qquad i=1,2,..,m;\qquad g_j(\mathbf{x})\leq 0, \qquad j=1,2,...,n~\}
+$$
+Für den diskreten Charakter sorgt die Auswahl von $m$ Wertemengen aus $\mathbb{R}$:
+$$
+\mathbf{D}_i=\{x_{i1},x_{i2}..x_{id_i}\},\qquad \mathbf{D}_i \subset \mathbb{R},\qquad i=1,2,..,m;
+$$
+\subsubsection{Spezialfall - Ganzzahlige Optimierung}
+%
+Der Spezialfall einer diskreten Optimiering ist die ganzzahlige
+\begin{equation}
+	min\{~y(\mathbf{x})~|~\mathbf{x}\in\mathbf{X}_Z~\}
+\end{equation}
+%
+$$
+\mathbf{X}_Z=\{~\mathbf{x}\in \mathbb{Z}^n~|~x_i\in \mathbf{Z}_i,\qquad i=1,2,..,m;\qquad g_j(\mathbf{x})\leq 0, \qquad j=1,2,...,n~\}
+$$
+Dadurch entstehen die $m$ Wertemengen:
+$$
+\mathbf{Z}_i=\{-d_1^-,..,-1,0,+1,..d_{i}^+\},\qquad \mathbf{Z}_i \subset \mathbb{Z},\qquad i=1,2,..,m;
+$$
+Ein weiterer Spezialfall ist die binäre Optimierung. Die Erweiterung ist für diesen Fall trivial und wird hier nicht gezeigt.
+%
+\subsubsection{Gemischte Optimierung}
+%
+Die auch als diskret-kontinuierliche Optimierung bekannte Methode formuliert das Modell für einen gemischten Variablenvektor. Mann kann in einem solchen Fall den Variablenvektor aus zwei Teilen zusammensetzen:
+$$
+\mathbf{x} = [\mathbf{x}_K~\mathbf{x}_D]^T
+$$
+Die Notation meint mit
+\begin{itemize}
+\item $\mathbf{x}_K$ den Vektor der $m_K$ kont. Variablen und mit
+\item $\mathbf{x}_D$ den Vektor der $m_D$ disk. Varaiblen.
+\end{itemize}
+%
+Analog dazu lässt sich der Suchraum in zwei Teile Zerlegen:
+$$
+\mathbf{x}_K\in\mathbf{X}_K \qquad und \qquad \mathbf{x}_D\in\mathbf{X}_D
+$$
+Nun lautet das disk.-kont. Optimierungsproblem wie folgt:
+%
+\begin{equation}
+	min\{~y(\mathbf{x})~|~\mathbf{x}_K\in\mathbf{X}_K,\mathbf{x}_D\in\mathbf{X}_D~\}
+\end{equation}
+%
+Diskret-kontinuierliche Probleme sind nur schlecht lösbar. In dieser Arbeit wird ein rein reellwertiges Problem behandelt.
+%
+%\section[Konvexität]{Formulierung}
+%%
+%\section[Konvexität]{Konvexität}
+%%
+%\section[Objektfunktion]{Konvexität}

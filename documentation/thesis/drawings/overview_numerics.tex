@@ -1,0 +1,25 @@
+\begin{tikzpicture}
+	  \path[small mindmap,concept color=black,text=white]
+	    node[concept] {\tiny\textsf{Numerische Mathematik}}
+	    [clockwise from=0]
+	    child[concept color=green!55!black] {
+	      node[concept] {\tiny\textsf{Optimierung}}
+	      [clockwise from=100]
+%	      
+	      child [concept color=green!55!black] {
+	      		      node[concept] {\tiny\textsf{lineare-Opti-mierung}}
+	      }
+%	      
+	      child { node[concept] {\tiny\textsf{nichtlinear-Opti-mierung}} }
+	      child { node[concept] {\tiny\textsf{skalare-Opti-mierung}} }
+	      child { node[concept] {\tiny\textsf{Vektor-opti-mierung}} }
+	    }
+	    child[concept color=blue] {
+	      node[concept] {\tiny\textsf{Approximation}}
+	      [clockwise from=-35]
+%	      child { node[concept] {databases} }
+%	      child { node[concept] {WWW} }	      
+	    }	    
+	    child[concept color=red] { node[concept] {\tiny\textsf{partiellen Differentialgleichungen}} }
+	    child[concept color=orange] { node[concept] {\tiny\textsf{Integral\-gleichungen}} };
+	\end{tikzpicture}

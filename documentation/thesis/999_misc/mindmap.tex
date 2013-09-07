@@ -1,34 +1,61 @@
-%\documentclass{article}
-%
-%\usepackage{tikz}
-%\usetikzlibrary{mindmap,trees}
-%\begin{document}
-%\pagestyle{empty}
-%\begin{tikzpicture}
+% Interaction diagram, LaTeX user level and TeX system software level
+% Author: Agostino De Marco
+% Based on diagram from Marco Miani and Pascal Seppecher.
 \documentclass{article}
-
 \usepackage{tikz}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{makeidx}
+\usepackage{transparent}
+
 \usetikzlibrary{mindmap,trees}
+%%%<
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+%%%>
+\usetikzlibrary{positioning}
+
+\newcommand{\ypos}{3}
+\newcommand{\xpos}{-.7}
+\newcommand{\zpos}{0}
+
+\newcommand{\yslant}{-.3}
+\newcommand{\xslant}{.20}
+
+\newcommand{\xoffset}[1]{\xpos*#1+3}
+\newcommand{\yoffset}[1]{\ypos*#1}
+\newcommand{\zoffset}[1]{\zpos+#1}
+
+
 \begin{document}
+
+\def\pgfsnakecirclestartradius{1cm}
+\def\pgfsnakecircleendradius{.2cm}
+\def\pgfsnakesegmentamplitude{1mm}
+\def\pgfsnakesegmentangle{10}
 	\begin{tikzpicture}
 	  \path[small mindmap,concept color=black,text=white]
 	    node[concept] {Numerische Mathematik}
 	    [clockwise from=0]
-	    child[concept color=green!50!black] {
+	    child[concept color=green!55!black] {
 	      node[concept] {Optimierung}
-	      [clockwise from=90]
-	      child [concept color=green!30!black] {
-		      node[concept] {Evo\-lutionäre Algo\-rithmen}
-		      [clockwise from=100]
-%		      child[concept color=green!50!black] {
-				child { node[concept] { Genetische Algorithmen (GA)} }
-			 	child { node[concept] {Evolutions\-strategien (ES)} }
-			 	child { node[concept] {Genetische Programmierung (GP)} }
-			 	child { node[concept] {Evolutionäre Programmierung (EP)} }
-%			 }
+	      [clockwise from=100]
+%	      
+	      child [concept color=green!55!black] {
+	      		      node[concept] {lineare-Optimierung}
 	      }
-	      child { node[concept] {1} }
-	      child { node[concept] {Lösen von lin. und n.lin. GS} }
+%	      
+	      child { node[concept] {nichtlinear-Optimierung} }
+	      child { node[concept] {skalare-Optimierung} }
+	      child { node[concept] {Vektor-optimierung} }
 	    }
 	    child[concept color=blue] {
 	      node[concept] {Approximation}
@@ -39,6 +66,39 @@
 	    child[concept color=red] { node[concept] {partiellen Differentialgleichungen} }
 	    child[concept color=orange] { node[concept] {Integral\-gleichungen} };
 	\end{tikzpicture}
+
+	\begin{tikzpicture}
+		  \path[small mindmap,concept color=green!60!black,text=white]
+		      node[concept] {Nichtlineare\\Optimierung}
+		     	[clockwise from=0]
+	%	      
+				child [concept color=green!35!black]{ node[concept] {Ableitungs-freie}
+				[clockwise from=110]
+%	   			   		       
+		       child[concept color=violet!80!black]{ node[concept] {\tiny Enum-erations-verfahren} }
+		       child [concept color=violet!80!black]{ node[concept] {\tiny Monte-Carlo} }
+		       child [concept color=violet!100!black] {
+ 	   			    node[concept] {Evo\-lutionäre Algo\-rithmen}
+ 	   			    [clockwise from=45]
+       			%		      child[concept color=green!50!black] {
+       							child[grow=55] { node[concept] {\tiny Genetische Algorithmen (GA)} }
+       						 	child[grow=15] { node[concept] {\tiny Evolutions\-strategien (ES)} }
+       						 	child[grow=-25] { node[concept] {\tiny Genetische Programmierung (GP)} }
+       						 	child[grow=-70] { node[concept] {\tiny Evolutionäre Programmierung (EP)} }
+       			%			 }
+ 	   			   }
+		       child [concept color=violet!80!black]{ node[concept] {\tiny Diskrete Suche} }
+		      }
+		      child [concept color=green!35!black]{ node[concept]  (test) {mit part. Ableitungen}
+%	      		      [clockwise from=-20]
+     						child[concept color=blue!45!black, grow=-90] { node[concept] {\tiny Gradienten-verfahren} }
+							child[concept color=blue!45!black,grow=-120] { node[concept] {\tiny NEWTON-Verfahren} }
+							child[concept color=blue!45!black,grow=-150] { node[concept] {\tiny Quasi-NEWTON-Verfahren} }
+%    	   			   
+    		     };
+				\node [annotation] at (test.west)
+				{\tiny Keine \\weitere \\Betrachtung\\ hier};
+		\end{tikzpicture}
 \end{document}
 %
 %Approximation
