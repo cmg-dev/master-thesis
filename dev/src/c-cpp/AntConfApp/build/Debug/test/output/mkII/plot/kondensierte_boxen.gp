@@ -25,7 +25,7 @@ unset logscale
 set autoscale
 unset label
 
-#-------------------------------------------------------------------------
+#----------------------------------------------
 #setup the 1. plot
 set style data boxplot
 set xlabel "Optimzation objective"
@@ -122,7 +122,7 @@ unset y2label
 unset y2range
 unset y2tics
 
-#-------------------------------------------------------------------------
+#----------------------------------------------
 #setup the 2. plot
 
 set boxwidth 0.05 relative
@@ -139,7 +139,7 @@ set ytics format "%.1e"
 
 plot inputfile u ($2 < limit ? (1): 1/0):2 ls 4 notitle 
 
-#-------------------------------------------------------------------------
+#----------------------------------------------
 #setup the 3. plot
 #set logscale y
 set ytics 
@@ -153,7 +153,7 @@ set ytics format "%.1e"
 
 plot inputfile u ($2 < limit ? (1): 1/0):3 ls 4 notitle 
 
-#-------------------------------------------------------------------------
+#----------------------------------------------
 #setup the 4. plot
 set xlabel ""
 set ylabel "Sigma"
@@ -169,7 +169,7 @@ set ytics
 
 plot inputfile u ($2 < limit ? (1): 1/0):lastDataCol ls 4 notitle 
 
-#-------------------------------------------------------------------------
+#----------------------------------------------
 #setup the 5. plot
 set xlabel ""
 set ylabel "Distance"
@@ -184,7 +184,7 @@ set ytics
 
 plot inputfile u ($2 < limit ? (1): 1/0):vectorCol ls 4 notitle  
 
-#-------------------------------------------------------------------------
+#----------------------------------------------
 i=i+1
 
 unset multiplot
