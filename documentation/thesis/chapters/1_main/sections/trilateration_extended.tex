@@ -62,7 +62,7 @@ in Gleichung~\eqref{c_k0_rearragend} ein, erhalten wir die finale Form der Gleic
 c_{kj}(\varrho_0, \varrho_k, n_0, n_k) = a_{0k}+a_1(n_0^2-n_k^2)+a_2(\varrho_0n_0-\varrho_kn_k)-a_{3kj}\label{c_k0_final_form}   
 \end{equation}
 %
-Die Einführung der Konstanten macht zum einen die Gleichung übersichtlicher. Zum anderen können so in der spätere Softwareimplementation Rechenschritte gespart werden, was sich günstig auf den Rechenaufwand auswirkt. Im Weiteren erkennt man, dass in Gleichung~\eqref{c_k0_final_form}, für $\varrho_k=\text{const.}$ \& $\varrho_0=\text{const.}$ gilt. Der Grund dafür liegt darin, dass $\varrho$ zwar die Messwerte beschreibt, diese jedoch nur in dem Modell eingeführt werden. Im Sinne der später durchgeführten Optimierung sind diese Parameter keine Variablen. Es ermöglicht uns zu schreiben:
+Die Einführung der Konstanten macht zum einen die Gleichung übersichtlicher und zum anderen können so in der spätere Softwareimplementation Rechenschritte gespart werden. Das wirkt sich günstig auf den Rechenaufwand aus. Im Weiteren erkennt man, dass in Gleichung~\eqref{c_k0_final_form}, für $\varrho_k=\text{const.}$ \& $\varrho_0=\text{const.}$ gilt. Der Grund dafür liegt darin, dass $\varrho$ zwar die Messwerte beschreibt, diese jedoch nur in dem Modell eingeführt werden. Im Sinne der später durchgeführten Optimierung sind diese Parameter keine Variablen. Es ermöglicht uns zu schreiben:
 \begin{equation}
 c_{kj}(\varrho_0, \varrho_k, n_0, n_k) = c_{kj}(n_0, n_k)
 \end{equation}

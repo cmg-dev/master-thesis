@@ -11,19 +11,12 @@
 		set isosamples 200,15
 		splot [-3*pi:3*pi][-pi:pi] cos(u)*cos(v)+3*cos(u)*(1.5+sin(u*5/3)/2),\
 		sin(u)*cos(v)+3*sin(u)*(1.5+sin(u*5/3)/2), sin(v)+2*cos(u*5/3)
-	\end{gnuplot}
+	\end{gnuplot}	
+%	
+	\ZeigerdiagrammText{110}{-80}{2}{2}
+%	
 \end{figure}
-%%
-%% usage: {alpha}{phasedifferenceUI}{voltage}{current}{Ualpha}{Ialpha}
-%% resistor
-\ZeigerdiagrammText{110}{-80}{2}{2}
-%
-%\begin{figure} [h]
-%\centering
-%        
-%         \includegraphics[width=\textwidth]{img/00_placeholder.png}
-%%      
-%\end{figure}
+
 
 Aus der Abbildung~\ref{fig:wavenumber_wavelength} lässt sich folgender Zusammenhang ableiten.
 %
@@ -31,3 +24,17 @@ Aus der Abbildung~\ref{fig:wavenumber_wavelength} lässt sich folgender Zusammen
 \label{eq:Phase_Wavenumber}
 	d(\Theta, n)=\lambda(\sfrac{\Theta}{2\pi}+n)
 \end{equation}
+%
+\subsubsection{Berechnung idealer Phasenwerte}
+\label{sec:PhaseCalculation}
+%
+Die Gleichung~\ref{eq:Phase_Wavenumber} kann dazu verwendet werden künstliche Messdaten zu generieren. Dazu muss zuerst die Wellenzahl aus der bekannten Entfernung und der Wellenlänge ermittelt werden.
+$$
+n_k=\frac{d_k}{\lambda}
+$$
+Nachdem die Wellenzahl für Antenne $k$ ermittelt wurde kann man das jeweilige $\Theta$ bestimmen.
+$$
+\Theta= 2\pi(\frac{d_k }{\lambda}-n)
+$$
+%
+Die Berechnung idealer Messwerte wird im in späteren Kapiteln verwendet um die Ergebnisse der Modelle mit echten Messdaten zu verifizieren.

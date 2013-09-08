@@ -1,21 +1,31 @@
 %
 \input{chapters/1_main/sections/flowchart-libPermutate.tex}
 %
-Um die Beurteilung der Konditionszahl der Matrizen effizient durchführen zu können, wurde im Rahmen dieser Arbeit ein Programm geschrieben. Es erstellt automatisch, auf Basis der durch die Kalibrierung bestimmten Koordinaten, alle möglichen Permutationen von Antennen. Die sich ergebenden Matrizen sind immer auf eine Referenzantenne bezogen. Es ergeben sich, bezogen auf eine Referenzantenne, folgende Anzahl an Matrizen:
+Um die Beurteilung der Konditionszahl der Matrizen effizient durchführen zu können, wurde im Rahmen dieser Arbeit ein Programm geschrieben, das diese Aufgabe erledigt. Es erstellt automatisch, auf Basis der durch die Kalibrierung bestimmten Koordinaten, alle möglichen Permutationen von Antennen. Die sich ergebenden Matrizen sind immer auf eine Referenzantenne bezogen (vgl. Gleichung~\ref{eq:final_equation}). Ausgehen von einem Aufbau aus $8$ Antennen und der Auswahl von $4$ Antennen pro Matrix, wobei eine die Referenzantenne ist, ergeben sich folgende Anzahl an möglichen Matrizen:
 % 
 \begin{equation}
 	\frac{7!}{3!(7-3)!}=35
 % 
 \end{equation}
-%Wdh, steht oben schon: Die sich ergebenen Matrizen sind immer auf eine Referenzantenne bezogen. Es ergeben sich für eine Referenzantenne folgende Anzahl an Matrizen:
-%
-Für einen Aufbau mit acht Antennen ergeben sich so $8\times 35 = 280$ mögliche Anordnungen. Die Implementation der Berechnungen der Permutationen findet sich in dem Modul \textit{'libPermutate'}. Das Modul generiert bei der Instanziierung automatisch alle möglichen Kombinationen von Antennen und speichert diese in einer geeigneten Struktur für den späteren Gebrauch. Das Ablaufdiagramm ist in Abbildung~\ref{fig:libpermutate_flowchart} zu finden.\\
-%
-%\begin{equation}
-%\frac{7!}{3!(7-3)!}=35
-%\end{equation}
-%%
-%Insgesamt ergeben sich so $8\times 35 = 280$ mögliche Anordnungen. Das erstellte Tool soll in ein entsprechendes C++-Programm portiert werden. Diese Berechnungen werden im späteren System auf jeden Fall anfallen.
 
+%
+Für einen Aufbau mit acht Antennen ergeben sich so $8\times 35 = 280$ mögliche Anordnungen. Aus dem Zusammenhang kann man unmittelbar bestimmen wie viele mögliche Matrixkombinationen sich ergeben, sollten einige Antennen keine Messwerte zu einem Zeitpunkt beitragen können.
+%
+\subsubsection{Beispiel}
+%
+Wenn zu einem Messzeitpunkt nur $6$ von $8$ Antennen einen Messwert liefern, verringert sich die Anzahl der für die Berechnung benutzbaren Kombinationen auf
+%
+\begin{equation}
+	\frac{5!}{3!(5-3)!}=10 \nonumber
+% 
+\end{equation}
+Möglichkeiten. Damit erhalten wie eine Gesamtheit von $10\times6=60$ Matrizen. \\
+%
 
+Die Implementation  der Permutationsberechnung findet sich in dem Modul \textit{'libPermutate'}. Das Modul generiert bei der Instanziierung automatisch alle möglichen Kombinationen von Antennen und speichert diese in einer geeigneten Struktur für den späteren Gebrauch. Das Ablaufdiagramm ist in Abbildung~\ref{fig:libpermutate_flowchart} zu finden.\\
+%
+\subsection{Anwendung der Permuationen}
+\label{sec:Groupsize}
+%
+Durch das Einbringen der Kombinationen von Antennen in ein Modell, ist es möglich der Optimierung zusätzliche Informationen zum Lösen des Problems zu geben. In dieser Arbeit wird in diesem Zusammenhang von \Index{Gruppengröße} gesprochen.
 
