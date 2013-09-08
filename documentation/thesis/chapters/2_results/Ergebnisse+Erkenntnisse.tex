@@ -178,7 +178,7 @@ Die Tabellen~\ref{tab:experiments} und~\ref{tab:experiments2} geben an welche Pa
 %
 \begin{figure}[h!]
 	\centering
-	\caption[Ergebnis-Heatmap - Idealisierte Werte]{ Ergebnisse verschiedener Experimente mit idealen Messwerten. Die Abbildung zeigt farbkodiert den Betrag der Abweichung vom wahren Wert der Entfernung (Ausgemessen). Zu beachten gilt, dass die Farbskala eine unterschiedliche Skalierung hat und somit jede Antenne separat betrachtet werden muss. Die Parameter die in diesen Experimenten variiert wurden sind die Populationsgröße ($\mu$ und $\lambda$) und die Gruppengröße $L$. Mit der $x$-Achse steigt die Populationsgröße an. Die $y$-Achse trägt die steigende Gruppengrößen auf.}
+	\caption[Ergebnis-Heatmap - Ideale Messwerte]{ Ergebnisse verschiedener Experimente mit idealen Messwerten. Die Abbildung zeigt farbkodiert den Betrag der Abweichung vom wahren Wert der Entfernung (Ausgemessen). Zu beachten gilt, dass die Farbskala eine unterschiedliche Skalierung hat und somit jede Antenne separat betrachtet werden muss. Die Parameter die in diesen Experimenten variiert wurden sind die Populationsgröße ($\mu$ und $\lambda$) und die Gruppengröße $L$. Mit der $x$-Achse steigt die Populationsgröße an. Die $y$-Achse trägt die steigende Gruppengrößen auf.}
 	\label{fig:results1}
 	\includegraphics[width=0.65\textwidth]{img/result.png}
 \end{figure}
@@ -203,7 +203,7 @@ In Abbildung~\ref{fig:results4} wurden die Ergebnisse anders eingefärbt, es wer
 %
 \begin{figure}[h!]
 	\centering
-	\caption[Ergebnis-Heatmap - Messwerte]{ Ergebnisse mit realen Messwerten. Die Antennen $2$ und $6$ lieferten bei dieser Messung keine Messdaten. Daher fehlen diese Plots in der Grafik. Das Antennen keine Daten liefern ist der Regelfall den man in der Praxis begegnet. Das Ergebnis ist in etwa identisch mit dem der idealen Messwerte. Auch hier finden sich gute Ergebnisse bei mittlerer Gruppen- und großer Populationsgröße.}
+	\caption[Ergebnis-Heatmap - Reale Messwerte]{ Ergebnisse mit realen Messwerten. Die Antennen $2$ und $6$ lieferten bei dieser Messung keine Messdaten. Daher fehlen diese Plots in der Grafik. Das Antennen keine Daten liefern ist der Regelfall den man in der Praxis begegnet. Das Ergebnis ist in etwa identisch mit dem der idealen Messwerte. Auch hier finden sich gute Ergebnisse bei mittlerer Gruppen- und großer Populationsgröße.}
 	\label{fig:results2}
 	\includegraphics[width=0.65\textwidth]{img/resultRealData.png}
 \end{figure}
@@ -222,11 +222,18 @@ Abschließend ist in Abbildung~\ref{fig:results3} der Verlauf der letzten beiden
 %
 \subsection{Performance}
 %
-Abschließend soll die Performance der Experimente gezeigt werden. Dabei wird die gleiche farbkodierte Darstellung verwendet, die auch bei den anderen Ergebnissen verwendet wird. Die Ausführungszeiten der Experimente sind in der Abbildung~\ref{fig:results6} als Falschfarbenbild dargestellt. Die maximale Ausführungszeit betrug $\sim1200$~ms. Durch eine vernünftige Wahl von Populations- und Gruppengröße würde ein Ergebnis zwischen $400-600$~ms in Anspruch nehmen. Die Performance lässt sich durch Multithreading weiter verbessern.
+Abschließend soll die Performance der Experimente gezeigt werden. Dabei wird die gleiche farbkodierte Darstellung verwendet, die auch bei den anderen Ergebnissen verwendet wird. Die Ausführungszeiten der Experimente sind in der Abbildung~\ref{fig:results6} und Abbildung~\ref{fig:results7} als Falschfarbenbild dargestellt. Die maximale Ausführungszeit betrug $\sim1200$~ms. Durch eine vernünftige Wahl von Populations- und Gruppengröße würde ein Ergebnis zwischen $400-600$~ms in Anspruch nehmen. Die Performance lässt sich durch Multithreading weiter verbessern.
 %
+
+%\textsc{First Letter}
+%
+%or
+%
+%{\scshape First Letter}
+
 \begin{figure}[!ht]
 	\centering
-	\caption[Limitierte Ergebnisse - Idealer Messwerte]{ Alternative Visualisierung der zuvor gezeigten Ergebnisse, \textit{idealer} Messdaten. Zur besseren Übersicht wurde die Farbskala auf eine Wellenlänge reduziert. Abweichungen $\ge35$~cm werden rot eingefärbt. Gut $50\%$ der Werte führen nicht zu einen zufriedenstellenden Ergebnis. }
+	\caption[Limitierte Ergebnisse - Ideale Messwerte]{ Alternative Visualisierung der zuvor gezeigten Ergebnisse, \textit{idealer} Messdaten. Zur besseren Übersicht wurde die Farbskala auf eine Wellenlänge reduziert. Abweichungen $\ge35$~cm werden rot eingefärbt. Gut $50\%$ der Werte führen nicht zu einen zufriedenstellenden Ergebnis. }
 	\label{fig:results4}
 	\vspace{3mm}
 	\includegraphics[width=0.65\textwidth]{img/limitedIdeal.png}
@@ -298,9 +305,18 @@ Abschließend soll die Performance der Experimente gezeigt werden. Dabei wird di
 %
 \begin{figure}[!ht]
 	\centering
-	\caption[Performance Ergebnisse]{ Visualisierung der Performance. Die Resultate wurde in einer virtuellen Umgebung generiert. Aufgrund limitierter Ressourcen (nur ein Prozessor verfügbar). Konnte die Multithreading-Fähigkeit nicht genutzt werden. Die Ausführungszeiten für vernünftige Konfigurationen liegen bei $\sim800$~ms ohne Threading. Gut zu erkennen ist, dass mit steigendem Aufwand die Ausführungszeit, wie erwartet steigt. }
+	\caption[Performance Ergebnisse - Ideale Messwerte]{ Visualisierung der Performance. Die Resultate wurde in einer virtuellen Umgebung generiert. Aufgrund limitierter Ressourcen (nur ein Prozessor verfügbar). Konnte die Multithreading-Fähigkeit nicht genutzt werden. Die Ausführungszeiten für vernünftige Konfigurationen liegen bei $\sim800$~ms ohne Threading. Gut zu erkennen ist, dass mit steigendem Aufwand die Ausführungszeit, wie erwartet steigt. }
 	\label{fig:results6}
 	\vspace{3mm}
 	\includegraphics[width=0.65\textwidth]{img/resultstiming.png}
+\end{figure}
+%
+%
+\begin{figure}[!ht]
+	\centering
+	\caption[Performance Ergebnisse -- Reale Messwerte]{ Keine Überraschungen hier. Mit zunehmender Komplexität zeigt sich eine Zunahme der Ausführungszeit. Gleiches Ergebnis wie bei den idealen Messdaten. }
+	\label{fig:results7}
+	\vspace{3mm}
+	\includegraphics[width=0.65\textwidth]{img/resultstimingreal.png}
 \end{figure}
 %

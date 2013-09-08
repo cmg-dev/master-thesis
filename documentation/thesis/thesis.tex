@@ -157,6 +157,9 @@
 \widowpenalty=1000
 \clubpenalty=1000
 
+\renewcommand{\chaptermark}[1]{\markboth{\scshape{\thechapter.\ #1}}{ }}
+\renewcommand{\sectionmark}[1]{ \markright{\scshape{\thesection.\  #1}}{} }
+
 %----------------------------------------------------------------------------
 % Chapters ------------------------------------------------------------------
 %----------------------------------------------------------------------------
@@ -190,7 +193,6 @@ In diesem Kapitel werden die Ergebnisse der Arbeit präsentiert. Zuerst werden k
 \chapter{Diskussion}
 Vergleich der Ergebnisse mit den Zielen der Arbeit.\\
 %
-%\lipsum[1-5]
 \input{chapters/3_discussion/discussion.tex}
 %
 % 5. ------------------------------------------------------------------------
