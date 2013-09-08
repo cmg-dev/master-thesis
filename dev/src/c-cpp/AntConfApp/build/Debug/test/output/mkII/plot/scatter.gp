@@ -54,7 +54,7 @@ unset label
 unset xlabel
 unset ylabel
 
-#-------------------------------------------------------------------------
+#-----------------------------
 #setup the 1. plot
 unset ytics
 unset xtics

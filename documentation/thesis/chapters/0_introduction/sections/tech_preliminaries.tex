@@ -18,14 +18,26 @@ Die Positionsgenauigkeit eines auf EM basierenden Systems ist von dem Messprinzi
 %
 
 Eine Laufzeitmessung des Signals kommt aufgrund der Ausbreitungsgeschwindigkeit der EM-Welle nicht in Frage, da diese typischerweise gleich der Lichtgeschwindigkeit ist und die Distanz zwischen Sender und Empfänger zu gering ist. Das reduziert die Möglichkeiten auf zwei Verfahren.
-Bei der RSSI wird die Stärke des empfangenen Signals ausgewertet. Dies stellt eine einfache Art der Positionsermittelung dar. Jedoch kann die Signalstärke stark schwanken und erlaubt nur eine geringe Ortsauflösung.
-Bei der PD wird die Postion anhand der zurückgestrahlten Welle ermittelt, genauer der Phase der Welle.
-
+Bei der RSSI wird die Stärke des empfangenen Signals ausgewertet. Dies stellt eine einfache Art der Positionsermittelung dar. Jedoch kann die Signalstärke stark schwanken und erlaubt nur eine geringe Ortsauflösung. Bei der PD wird die Postion anhand der zurückgestrahlten Welle ermittelt, genauer der Phase der Welle. Das Auflösungsvermögen dieser Methode kann sehr gute Werte erreichen. Ist die Messelektronik Empfindlich genug, lassen sich leicht Ortsauflösungen von $\le 1$~mm Erreichen. Zusätzlich ist es für die Ortsauflösung von Vorteil eine möglichst hohe Messfrequenz zu verwenden, dazu betrachten wir ein Beispiel. Sei $a $ die Empfindlichkeit des Messelektronik in $[^\circ]$ und $\lambda$ die Wellenlänge in $[m]$, die Ortsauflösung $\tilde{x}$ kann man angeben mit:
+$$
+\tilde{x}=\frac{a}{360^{\circ}}\times\lambda
+$$
+Bereits bei $\lambda =0.35~m$ und $a=1^\circ$ beträgt die Ortsauflösung:
+$$
+\tilde{x}=\frac{1^{\circ}}{360^{\circ}}\times 0.35~m=9.722^{-4}~m
+$$
+%
+Die angenommenen Werte sind in der Realität gut zu erreichen. Setzt man nun $\lambda=\frac{c_0}{f}$, wobei $c_0$ die Ausbreitungsgeschwindigkeit vom EM-Wellen im Vakuum und $f$ die Frequenz der Welle meint.  Durch
+$$
+\tilde{x}=\frac{1^{\circ}}{360^{\circ}}\times\frac{c_0}{f} =\frac{c_0}{360^{\circ}}\times\frac{1}{f} = \text{const.}\times\frac{1}{f}
+$$
+erkennt man, dass sich $\tilde{x}\sim\frac{1}{f}$ verhält.
+%
 \subsection{RFID}
 %
 Bei \textit{Radio-Frequency Identification} (RFID) handelt es sich um einen Funkstandard der die kontaktlose Identifikation bei gleichzeitiger Erfassung zusätzlicher Informationen ermöglicht (Payload). Zur Technik gehört ein Auslesegerät (Reader) und ein oder mehrere Transponder (Tags). Eine sehr grobe Übersicht über typische Bauformen von Tags und Reader ist in \ref{fig:RFID_TAGS_AND_READER} zu finden. Die dargestellten Tags sind für verschiedene Frequenzbänder. Heute verfügbare Transponder lassen sich auf nahezu jeder beliebigen Oberfläche anbringen. Das ermöglicht ein großes Anwendungsspektrum, praktisch wird die Technik in jeder Umgebung eingesetzt in der es erforderlich oder nützlich ist Dinge kontaktlos zu identifizieren. \\
 
-Im Rahmen dieser Arbeit wird kein umfassender Überblick über die Technik geboten, da die Bauformen und Spezifikationen sehr stark variieren. Ein umfassendes Werk, das eine gute Einführung und Übersicht zur Technik bietet ist das Standardwert FINKENZELLER~\cite{finkenzeller2008rfid}. Dort werden detailliert die physikalischen Grundlagen verschiedener Antennenbauformen und Tags erläutert. Eine gute Übersicht über Branchen und Anwendungsgebiete für RFID bietet \cite{RFIDJournal}. Aufgrund des großen Anwendungsspektrums und der weiten Verbreitung ist die Technik in die Kritik geraten. Unter dem Dach des Vereins \textit{digitalcourage e.V.} existiert die Kampange \textit{StopRFID}. Die Kampagne hat sich zum Thema gemacht über die Anwendungsmöglichkeiten und Risiken von RFID aufzuklären \cite{stoprfid2013}. Die Webseiten der Kampagne bieten eine sehr weitgehende Auflistung der Anwendungen für RFID.\\
+Im Rahmen dieser Arbeit wird kein umfassender Überblick über die Technik geboten, da die Bauformen und Spezifikationen sehr stark variieren. Ein umfassendes Werk, das eine gute Einführung und Übersicht zur Technik bietet ist das Standardwert FINKENZELLER~\cite{finkenzeller2008rfid}. Dort werden detailliert die physikalischen Grundlagen verschiedener Antennenbauformen und Tags erläutert. Eine gute Übersicht über Branchen und Anwendungsgebiete für RFID bietet \cite{RFIDJournal}. Aufgrund des großen Anwendungsspektrums und der weiten Verbreitung ist die Technik in die Kritik geraten. Unter dem Dach des Vereins \textit{digitalcourage e.V.} existiert die Kampagne \textit{StopRFID}. Die Kampagne hat sich zum Thema gemacht über die Anwendungsmöglichkeiten und Risiken von RFID aufzuklären \cite{stoprfid2013}. Die Webseiten der Kampagne bieten eine sehr weitgehende Auflistung der Anwendungen für RFID.\\
 %Ziel der Kampagne ist es die Gefahren in den gesellschaftlichen Fokus zu rücken und für den Umgang mit der allgegenwärtigen Technik zu sensibilisieren. Die Kampagne über sich selbst:
 %\begin{quote}
 %"Wir wollen RFID nicht komplett verhindern. Es geht uns nicht darum, die RFID-Entwicklung zum Erliegen zu bringen ... Im Gegenteil." \footnote{\url{http://www.foebud.org/rfid/was-kann-ich-tun/}}
@@ -59,7 +71,7 @@ Im Rahmen dieser Arbeit wird kein umfassender Überblick über die Technik gebot
 %
 %
 
-In der EU sind verschiedene RFID-Frequenzen zulässig, sie reichen von $865,0$ MHz bis $868,0$ MHz~\cite{etsi1}. Man kann damit die Wellenlänge mit: $ \lambda\simeq0,35 m $ angeben. Daraus folgt, dass alle 35 cm die gleiche Konfiguration der Phase vorliegt. Man spricht auch von \textit{Isophasen}. Daraus folgt, dass die gewonnene Information aus der Phase ist nicht eindeutig ist. Das bedeutet es lässt sich durch die Kenntnis der Phase nicht unmittelbar auf die korrekte Postion des Tags schließen. Man kann das Problem umgehen in dem man auf die errechnete Position ein ganzzahliges Vielfaches der Wellenlänge addiert, siehe Gleichung~\ref{eq:Phase_Wavenumber}. Die dort beschriebene Konstante $n$ wird Wellenzahl genannt.\\
+In der EU sind verschiedene RFID-Frequenzen zulässig, sie reichen von $865,0$ MHz bis $868,0$ MHz~\cite{etsi1}. Man kann damit die Wellenlänge mit: $ \lambda\simeq0,35 m $ angeben. Daraus folgt, dass alle 35 cm die gleiche Konfiguration der Phase vorliegt. Man spricht auch von \textit{Isophasen}. Daraus folgt, dass die gewonnene Information aus der Phase ist nicht eindeutig ist. Das bedeutet es lässt sich durch die Kenntnis der Phase nicht unmittelbar auf die korrekte Postion des Tags schließen. Man kann das Problem umgehen in dem man auf die errechnete Position ein ganzzahliges Vielfaches der Wellenlänge, die Wellenzahl, hinzu-addiert wird.
 %
 
 Das System der \amedogmbh verwendet eine spezielle Antennenanordnung um die Position zu ermitteln. Dabei wird eine Antennenanzahl >4 eingesetzt. Für jede dieser Antennen muss eine eigene Wellenzahl bestimmt werden. Durch Auslöschung des Signals, Absorption etc. kann es dazu kommen, dass eine Antenne eine unbestimmte Zeit lang kein Signal vom Tag empfängt. Wenn die Antenne nach dieser Zeit erneut ein Signal empfängt ist die ihr zugehörige Wellenzahl unbekannt und muss neu bestimmt werden. \\

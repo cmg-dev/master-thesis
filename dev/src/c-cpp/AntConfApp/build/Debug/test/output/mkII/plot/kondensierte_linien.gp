@@ -25,7 +25,7 @@ set multiplot layout 1,3
 unset logscale
 set autoscale
 
-#-------------------------------------------------------------------------
+#-----------------------------
 stats inputfile u 1 name "Stat" nooutput
 
 #print "test ".at(file,Stat_records,1)
