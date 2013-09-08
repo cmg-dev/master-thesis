@@ -1,7 +1,9 @@
 %\section{Ergebnisse}
 %
-\subsection{Ergebnis}
-Es werden nun die Ergebnisse der Kalibrierung vorgestellt. Für eine der vermessenen Antennenkonfigurationen sind in der folgenden Tabelle die Koordinaten der Antennen gezeigt. Die Visualisierung der Konfiguration zeigt die Abbildung~\ref{fig:3dplot_coordinates}.
+\section{Ergebnisse der Kalibrierung}
+\label{sec:calibrationResults}
+%
+Es werden die Ergebnisse der Kalibrierung vorgestellt. Für eine der vermessenen Antennenkonfigurationen sind in der folgenden Tabelle die Koordinaten der Antennen gezeigt. Die Visualisierung der Konfiguration zeigt die Abbildung~\ref{fig:3dplot_coordinates}.
 %
 \begin{table} [ht!]
 	\begin{center}
@@ -24,7 +26,7 @@ Es werden nun die Ergebnisse der Kalibrierung vorgestellt. Für eine der vermess
 %
 Eine Berechnung mit dem evolutionären Verfahren dauerte ca. $170$~ms mit dem SVD-verfahren wurde eine Lösung in $\le 1$~ms gefunden. Für die in der Praxis eingesetzte Software wird es eine Implementation der Kalibrierung mit dem SVD-Verfahren geben. Das mit dieser Variante berechnete Ergebnis wird bei Bedarf mit einer Lösung des evolutionären Verfahrens verglichen. Das ermöglicht eine Build-In Verifikation der Kalibrierung.\\
 
-\subsubsection{Visualisierung der Ergebnisse}
+\subsection{Visualisierung der Ergebnisse}
 Für die in den folgenden Abbildungen präsentierten Ergebnisse wurden insgesamt $100$ Durchläufe des Algorithmus erstellt. Die Ergebnisse wurden mit einem vom Algorithmus selbst erstellten $\mu$ und $\lambda$ gefunden. In Abbildung~\ref{fig:Final_Calibration_Ant0_ES-boxes} wird eine statistische Auswertung der Ergebnisse gezeigt. In jedem Plot werden die Endwerte der Lösungen in einem sog. Boxplot gezeigt. Dabei wird die Verteilung mit Hilfe von Boxen dargestellt. Die Fähnchen der Boxen stellen die maximal- bzw. minimal-Werte dar. Die Größe der Boxen enthält das obere und untere Quartil der Daten, der horizontale Strich in der Box zeigt den Mittelwert der Daten. Ausreißer\footnote{Hier Werte die mindestens den $2$-Fachen Wert des oberen- bzw. unteren-Quartils aufweisen} in den Daten werden durch Punkte abseits der Box dargestellt.\\
 %
 
@@ -107,29 +109,6 @@ Abbildung~\ref{fig:Final_Calibration_Ant0_ES-Scatter} ist ein Scatter-Plot. Die 
          \label{fig:3dplot_coordinates}
 %
 \end{figure}
-%
-\begin{figure}[ht!]
-         \centering
-         \caption[Kalibrierwerkzeuge]{Werkzeuge, die bei der Kalibrierung verwendet werden.}
-         \begin{subfigure}[t]{0.4\textwidth}
-                 \centering
-                 \includegraphics[width=\textwidth]{img/Lasermeter.png}
-                 \caption{Laser Distanzmesser}
-                 \label{fig:laser_meter}
-         \end{subfigure}
-%
-\qquad         
-%
-         \begin{subfigure}[t]{0.4\textwidth}
-                 \centering
-                 \includegraphics[width=\textwidth]{img/Calibration_Phantom.png}
-                 \caption{Kalibrierstück mit vier Messpositionen. }
-                 \label{fig:calib_piece}
-         \end{subfigure}
-         \label{fig:Calibration_Tools}
-\end{figure}
-
-%
 
 Das Modell aus \ref{sec:model_developement} wurde in verschiedenen Experimenten untersucht. Dabei wurden die Parameter der Optimierung variiert und die Auswirkungen untersucht.
 
@@ -139,14 +118,20 @@ Zunächst werden die Ergebnisse der Experimente für idealen Messwerte vorgestel
 %
 %-----------------------------------------------------------------------------
 %
+\section{Ergebnisse des Trilaterationsmodells}
+%
+\label{sec:Results1}
+%
+Dieser Abschnitt enthält die Ergebnisse der evolutionären Optimierung für das entwickelte Modell der Trilateration. Es werden Experimente definiert und ihre Resultate als Falschfarbenbild (Heatmap) dargestellt. Es werden die Ergebnisse von künstlichen Eingabedaten und realen Messdaten verglichen. Im Anschluss wird der Verlauf der Optimierung auf Besonderheiten hin untersucht. Abschließend wir die Performance der evolutionären Lösung visualisiert.
+%
 \subsection{Experimente}
 %
 Die Tabellen~\ref{tab:experiments} und~\ref{tab:experiments2} geben an welche Parameter wie variiert wurden. Diese Experimente wurde für die Präsentation der Ergebnisse in dieser Arbeit entworfen. Alle wurden mit der gleichen Objektfunktion durchgeführt. Diese trägt den Namen '\textit{WholeTomatoMkII}'\footnote{Implementation des in dieser Arbeit entwickelten Trilaterationsmodells}. Der eingesetzte Algorithmus ist das CMA-ES. Andere evolutionäre Strategien werden nicht in separaten Experimenten untersucht und präsentiert. Die spätere Darstellung kondensieren die Parameter und Erkenntnisse die in dieser Arbeit gewonnen wurden. Ziel ist es insgesamt die Lösung zu quantifizieren. Wie im Rahmen der Komplexitätsuntersuchung beschrieben ist die Fragestellung die hier bearbeitet wird recht komplex. Es werden daher die Parameter der Evolutionsstrategie variiert. Dabei wird untersucht ob und wie sich die Güte der Lösung durch diese Parameter verbessern lässt. In den Abbildungen~\ref{fig:results1} und~\ref{fig:results2} sind die Ergebnisse der Experimente als Heatmap dargestellt.
 
 %
-\begin{table} [H]	
-	\label{tab:experiments}
+\begin{table} [ht!]	
 	\caption[Experimente - Ideale Messdaten]{Aufstellung der Experimente die in diesem Abschnitt vorgestellt werden. Die Gruppengröße wird bei jedem Experiment Variiert. Jedes Unterexperiment erhält seinen eigenen Namen. Daher steigt der Name der Experimente bei jedem Eintrag entsprechend der Anzahl der untersuchten Gruppen an. In dieser Untersuchung wurden auch Parameter des Evolutionären Algorithmus variiert. Es werde $\mu$ und $\lambda$ variiert. Der Einfluss der Populations- und Gruppengröße wird damit gleichzeitig untersucht. Es ergeben sich $100$ einzelne Experimente.}
+	\label{tab:experiments}
 	\begin{center}
 		\begin{tabular}{ccccc}
 			\textbf{Name} 	& \textbf{Trials $M$} 	& \textbf{Gruppengröße $L$} & \textbf{$\mathbf{\mu}+\mathbf{\lambda}$}\\
@@ -166,9 +151,9 @@ Die Tabellen~\ref{tab:experiments} und~\ref{tab:experiments2} geben an welche Pa
 \end{table}
 %
 
-\begin{table} [H]	
-	\label{tab:experiments2}
-	\caption[Experimente - Reale Messdaten]{Für bestmögliche Vergleichbarkeit wurden diese Experimente mit den gleichen Parametern durchgeführt wie die für ideale Daten.}
+\begin{table} [ht!]	
+	\caption[Experimente - Reale Messdaten]{Für bestmögliche Vergleichbarkeit wurden diese Experimente mit den gleichen Parametern durchgeführt wie die für ideale Daten. In diesem Experiment werden die realen Messwerte des PRPS in der Positionsberechnung verwendet. }
+		\label{tab:experiments2}
 	\begin{center}
 		\begin{tabular}{ccccc}
 			\textbf{Name} 	& \textbf{Trials $M$} 	& \textbf{Gruppengröße $L$} & \textbf{$\mathbf{\mu}+\mathbf{\lambda}$}\\
@@ -193,20 +178,24 @@ Die Tabellen~\ref{tab:experiments} und~\ref{tab:experiments2} geben an welche Pa
 %
 \begin{figure}[h!]
 	\centering
-	\caption[Ergebnis-Heatmap - Idealisierte Werte]{ Ergebnisse verschiedener Experimente. Die Abbildung zeigt farbkodiert den Betrag der Abweichung vom wahren Wert der Entfernung (Ausgemessen). Zu beachten gilt, dass die Farbskala eine unterschiedliche Skalierung hat und somit jede Antenne separat betrachtet werden muss. Die Parameter die in diesen Experimenten variiert wurden sind die Populationsgröße ($\mu$ und $\lambda$) und die Gruppengröße $L$. Mit der $x$-Achse steigt die Populationsgröße an. Die $y$-Achse trägt die steigende Gruppengrößen auf.}
+	\caption[Ergebnis-Heatmap - Idealisierte Werte]{ Ergebnisse verschiedener Experimente mit idealen Messwerten. Die Abbildung zeigt farbkodiert den Betrag der Abweichung vom wahren Wert der Entfernung (Ausgemessen). Zu beachten gilt, dass die Farbskala eine unterschiedliche Skalierung hat und somit jede Antenne separat betrachtet werden muss. Die Parameter die in diesen Experimenten variiert wurden sind die Populationsgröße ($\mu$ und $\lambda$) und die Gruppengröße $L$. Mit der $x$-Achse steigt die Populationsgröße an. Die $y$-Achse trägt die steigende Gruppengrößen auf.}
 	\label{fig:results1}
 	\includegraphics[width=0.65\textwidth]{img/result.png}
 \end{figure}
 % 
 Um die idealen Messwerte zu generieren wurde ein eigenes Modul entwickelt. Es verwendet die in Kapitel~\ref{sec:PhaseCalculation} beschrieben Formeln. Es wurden eine Reihe von Punkten definiert, von denen die idealen Phasenwerte ermittelt wurden. Um im Rahmen dieser Arbeit in der Präsentation der Ergebnisse konsistent zu bleiben, wird als Punkt der Ursprung der Kalibrierung genutzt. Dieser muss von dem Algorithmus wiedergefunden werden. Seine Koordinaten wurden bereits in Kapitel~\ref{sec:calibration} besprochen. Die in den Abbildungen gezeigte Darstellung stellt die Abweichung von dem korrekten Wert dar.
+%
 $$
 \varepsilon=~|~d_{true}-d_{found}~|
 $$
-Die Dimension von $\varepsilon$ ist dementsprechend [m].
+%
+Die Dimension von $\varepsilon$ ist dementsprechend [m]. Für die Visualisierung wurden auf den bestimmten $M$-Lösungen der Median-Wert (mittlere) genommen. 
 %
 \subsection{Ergebnisse ideale Messwerte}
 %
-Die idealen Messewerte zeigen insgesamt ein gutes Ergebnis. Im Mittel werden die Besten Ergebnisse, bei mittlerer Gruppengröße und großer Populationsgröße gefunden. Es zeigt sich, dass eine steigende Populationsgröße das Ergebnis in der Regel verbessert. Bei der Gruppengröße kann ab einer bestimmten Größe keine weitere Verbesserung festgestellt werden. Eine Besonderheit zeigt sich bei den Antennen $3$ und $5$. Diese zeigen ein umgekehrtes Verhalten, bei niedriger Gruppengröße und kleiner Populationsgröße zeigen sie die geringste Abweichungen. Woran das liegt konnte nicht weiter untersucht werden. Die meisten Lösungen zeigen eine Abweichung von unter einer Wellenlänge, die wir mit $\lambda\simeq35$~cm angeben konnten. Das erlaubt prinzipiell eine korrekte Berechnung der Wellenzahl.
+Die idealen Messewerte zeigen insgesamt ein gutes Ergebnis (Abbildung~\ref{fig:results1}). Im Mittel werden die besten Ergebnisse, bei mittlerer Gruppengröße und großer Populationsgröße gefunden. Es zeigt sich, dass eine steigende Populationsgröße das Ergebnis in der Regel verbessert. Bei der Gruppengröße kann ab einer bestimmten Größe keine weitere Verbesserung festgestellt werden. Eine Besonderheit zeigt sich bei den Antennen $3$ und $5$. Diese zeigen ein umgekehrtes Verhalten, bei niedriger Gruppengröße und kleiner Populationsgröße zeigen sie die geringste Abweichungen. Woran das liegt konnte nicht weiter untersucht werden. Die meisten Lösungen zeigen eine Abweichung von unter einer Wellenlänge, die wir mit $\lambda\simeq35$~cm angeben konnten. Das erlaubt prinzipiell eine korrekte Berechnung der Wellenzahl.\\
+
+In Abbildung~\ref{fig:results4} wurden die Ergebnisse anders eingefärbt, es werden Abweichungen über $35$~cm konsequent rot eingefärbt. Damit zeigt sich deutlicher, dass eine recht große Population und eine geeignete Gruppengröße gewählt werden muss um vernünftige Resultate zu erhalten.
 %
 %-----------------------------------------------------------------------------
 %
@@ -214,18 +203,44 @@ Die idealen Messewerte zeigen insgesamt ein gutes Ergebnis. Im Mittel werden die
 %
 \begin{figure}[h!]
 	\centering
-	\caption[Ergebnis-Heatmap - Messwerte]{Die Antennen $2$ und $6$ lieferten bei dieser Messung keine Messdaten. Daher fehlen diese Plots in der Grafik. Das Antennen keine Daten liefern ist der Regelfall den man in der Praxis begegnet. }
+	\caption[Ergebnis-Heatmap - Messwerte]{ Ergebnisse mit realen Messwerten. Die Antennen $2$ und $6$ lieferten bei dieser Messung keine Messdaten. Daher fehlen diese Plots in der Grafik. Das Antennen keine Daten liefern ist der Regelfall den man in der Praxis begegnet. Das Ergebnis ist in etwa identisch mit dem der idealen Messwerte. Auch hier finden sich gute Ergebnisse bei mittlerer Gruppen- und großer Populationsgröße.}
 	\label{fig:results2}
 	\includegraphics[width=0.65\textwidth]{img/resultRealData.png}
 \end{figure}
 %
-Die Ergebnisse für reale Messwerte zeigen ein ähnliches Bild wie die idealen Messwerte. Eine steigende Gruppen- und Populationsgröße verbessert das Ergebnis in der Regel. Es fehlen die Plots der Antenne $2$ und $6$. Das liegt daran, dass diese beiden Antennen keine Messdaten lieferten. Es wurde der selbe Punkt ausgewählt, wie bei Vorstellung der ideal Messergebnisse. Damit sind die Ergebnisse unmittelbar vergleichbar. Genau wie bei den idealen Messdaten wurde der Ursprung der Kalibrierung als Messpunkt genommen. Das Ergebnis der realen Messwerte mutet sogar sicherer an, als das der idealen Phasenwerte. Der Grund dafür kann nicht exakt angegeben werden. Man kann sich dazu überlegen, da jeder Messwert ein Messrauschen enthält. Dieses Rauschen wird Teil des Modell und variiert dadurch unmittelbar die Fitnesslandschaft. Das Aussehen der Fitnesslandschaft wurde in Kapitel~\ref{sec:Komplexity2} untersucht. Weitere Untersuchungen und größere Messreihen müssen dieses Verhalten bestätigen. 
+Die Ergebnisse (Abbildung~\ref{fig:results2}) für reale Messwerte zeigen ein ähnliches Bild wie die idealen Messwerte. Eine steigende Gruppen- und Populationsgröße verbessert das Ergebnis in der Regel. Es fehlen die Plots der Antenne $2$ und $6$. Das liegt daran, dass diese beiden Antennen keine Messdaten lieferten. Es wurde der selbe Punkt ausgewählt, wie bei Vorstellung der ideal Messergebnisse. Damit sind die Ergebnisse unmittelbar vergleichbar. Genau wie bei den idealen Messdaten wurde der Ursprung der Kalibrierung als Messpunkt genommen. Das Ergebnis der realen Messwerte mutet sogar sicherer an, als das der idealen Phasenwerte. Der Grund dafür kann nicht exakt angegeben werden. Man kann sich dazu überlegen, da jeder Messwert ein Messrauschen enthält. Dieses Rauschen wird Teil des Modell und variiert dadurch unmittelbar die Fitnesslandschaft. Das Aussehen der Fitnesslandschaft wurde in Kapitel~\ref{sec:Komplexity2} untersucht. Weitere Untersuchungen und größere Messreihen müssen dieses Verhalten bestätigen.\\
+
+Auch die neu kolorierte Darstellung der Ergebnisse in Abbildung~\ref{fig:results5} zeigt, wie die der idealen Messwerte, eine Verbesserung der Positionsbestimmung für steigende Populations- und Gruppengrößen.
 %
 %-----------------------------------------------------------------------------
 %
 \subsection{Evolutionsverlauf - real vs ideal}
 %
-Abschließend ist in Abbildung~\ref{fig:results3} der Verlauf der letzten beiden Experimente $2099$ und $3099$ gezeigt. Dort werden in $3$ Plots die Lösungen charakterisiert und die statistischen Eigenschaften sowie der Verlauf der Optimierung quantifiziert. Zu erkennen ist, dass sie die beiden Ergebnisse grundsätzlich ähneln. Unterschiede zeigen sich nur in Einzelheiten, so zeigt sich z.B., dass die Streuung der Parameter bei idealen Messwerten geringer, jedoch mehr Evaluationen notwendig waren. Allgemein zeigt sich der erwartete Verlauf einer evolutionären Optimierung.
+Abschließend ist in Abbildung~\ref{fig:results3} der Verlauf der letzten beiden Experimente $2099$ und $3099$ gezeigt. Dort werden in $3$ Plots die Lösungen charakterisiert und die statistischen Eigenschaften sowie der Verlauf der Optimierung quantifiziert. Zu erkennen ist, dass sie die beiden Ergebnisse grundsätzlich ähneln. Unterschiede zeigen sich nur in Einzelheiten. So zeigt sich z.B., dass die Streuung der Parameter bei idealen Messwerten geringer ist, jedoch mehr Evaluationen notwendig waren. Allgemein zeigt sich der erwartete Verlauf einer evolutionären Optimierung.
+%
+%-----------------------------------------------------------------------------
+%
+\subsection{Performance}
+%
+Abschließend soll die Performance der Experimente gezeigt werden. Dabei wird die gleiche farbkodierte Darstellung verwendet, die auch bei den anderen Ergebnissen verwendet wird. Die Ausführungszeiten der Experimente sind in der Abbildung~\ref{fig:results6} als Falschfarbenbild dargestellt. Die maximale Ausführungszeit betrug $\sim1200$~ms. Durch eine vernünftige Wahl von Populations- und Gruppengröße würde ein Ergebnis zwischen $400-600$~ms in Anspruch nehmen. Die Performance lässt sich durch Multithreading weiter verbessern.
+%
+\begin{figure}[!ht]
+	\centering
+	\caption[Limitierte Ergebnisse - Idealer Messwerte]{ Alternative Visualisierung der zuvor gezeigten Ergebnisse, \textit{idealer} Messdaten. Zur besseren Übersicht wurde die Farbskala auf eine Wellenlänge reduziert. Abweichungen $\ge35$~cm werden rot eingefärbt. Gut $50\%$ der Werte führen nicht zu einen zufriedenstellenden Ergebnis. }
+	\label{fig:results4}
+	\vspace{3mm}
+	\includegraphics[width=0.65\textwidth]{img/limitedIdeal.png}
+	
+
+\end{figure}
+%
+\begin{figure}[!ht]
+	\centering
+	\caption[Limitierte Ergebnisse - Reale Messwerte]{Alternative Visualisierung der zuvor gezeigten Ergebnisse, \textit{realer} Messdaten.  Abweichungen $\ge35$~cm werden rot eingefärbt. Gut $50\%$ der Werte führen nicht zu einen zufriedenstellenden Ergebnis. Das Ergebnis gleicht dem der idealen Messdaten. }
+	\label{fig:results5}
+	\vspace{3mm}
+	\includegraphics[width=0.65\textwidth]{img/limitedReal.png}
+\end{figure}
 %
 \begin{landscape}
 \begin{figure}[!ht]
@@ -280,5 +295,12 @@ Abschließend ist in Abbildung~\ref{fig:results3} der Verlauf der letzten beiden
 \end{figure}
 \newpage
 \end{landscape}
-
+%
+\begin{figure}[!ht]
+	\centering
+	\caption[Performance Ergebnisse]{ Visualisierung der Performance. Die Resultate wurde in einer virtuellen Umgebung generiert. Aufgrund limitierter Ressourcen (nur ein Prozessor verfügbar). Konnte die Multithreading-Fähigkeit nicht genutzt werden. Die Ausführungszeiten für vernünftige Konfigurationen liegen bei $\sim800$~ms ohne Threading. Gut zu erkennen ist, dass mit steigendem Aufwand die Ausführungszeit, wie erwartet steigt. }
+	\label{fig:results6}
+	\vspace{3mm}
+	\includegraphics[width=0.65\textwidth]{img/resultstiming.png}
+\end{figure}
 %

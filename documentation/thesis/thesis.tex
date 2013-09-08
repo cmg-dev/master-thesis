@@ -1,5 +1,5 @@
 %\documentclass[a4paper,12pt,fleqn,twoside]{scrbook}
-\documentclass[a4paper,11pt, twoside, openright]{scrbook}
+\documentclass[a4paper,12pt, twoside, openright]{scrbook}
 
 \usepackage[T1]{fontenc}
 \usepackage{ucs}
@@ -14,7 +14,7 @@
 \usepackage[font=sf, labelfont={sf}, margin=1cm,size=small]{caption}
 \usepackage{ifthen}
 %\usepackage{showframe}
-\usepackage[lmargin=130pt,rmargin=80pt,tmargin=117pt,bmargin=113pt]{geometry}
+\usepackage[lmargin=130pt,rmargin=80pt,tmargin=117pt,bmargin=100pt]{geometry}
 %\usepackage[inner=2cm,outer=2cm,top=1cm,bottom=1.5cm,includeheadfoot]{geometry}
 \usepackage{xfrac} 
 \usepackage{fancyhdr}
@@ -47,6 +47,7 @@
 \usepackage{wrapfig}
 \usepackage{makeidx}
 \usepackage{transparent}
+%\usepackage{makeidx}
 
 \usepackage{pgf}
 
@@ -83,8 +84,8 @@
 \fancyhead[RO]{
 \thepage{}
 }
-%\fancyhead[RE]{}
-%\fancyhead[LO]{}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
 \fancyhead[LE]{
 \thepage{}
 %  \begin{tabular}[b]{l}
@@ -94,22 +95,24 @@
 }
 
 %Linie oben
-\renewcommand{\headrulewidth}{0.5pt}
+%\renewcommand{\headrulewidth}{0.5pt}
 %----------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 %----------------------------------------------------------------------------
 %\fancyfoot[L]{Stand: \today}
-\fancyfoot[C]{ Entwurf }
-\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
+\fancyfoot[C]{  }
+%\fancyfoot[R]{\thepage{} von \pageref{LastPage}}
 
 % Linie unten
-\renewcommand{\footrulewidth}{0.5pt}
+%\renewcommand{\footrulewidth}{0.5pt}
 %----------------------------------------------------------------------------
 
 % Import Macros  ------------------------------------------------------------
 \input{../macros/cmgMacros.tex}
+
+%\makeindex
 
 %----------------------------------------------------------------------------
 % Start the Document --------------------------------------------------------
@@ -124,9 +127,9 @@
 %----------------------------------------------------------------------------
 \input{title/title.tex}
 
-\input{title/declaration.tex}
+%\input{title/declaration.tex}
 
-\input{title/thanks_and_acknowledgement.tex}
+%\input{title/thanks_and_acknowledgement.tex}
 
 \pagenumbering{roman} 
 
@@ -165,7 +168,7 @@
 % 1. ------------------------------------------------------------------------
 \chapter{Grundlagen}
 Im Rahmen dieses Kapitels werden die Grundlagen für diese Arbeit beschrieben. 
-Zielgruppe dieser Arbeit sind fachkundige Personen die ein gewisses Grundwissen/ -verständnis mitbringen oder solche die es werden wollen. Die Ausführungen werden in der für das Verständnis dieser Arbeit angebrachten Tiefe beschrieben. Da das Spektrum der Themen zu groß ist, kann nicht auf Alles im Detail eingegangen werden. Allgemeine Zusammenhänge und Techniken, denen einen großen Stellenwert in dieser Arbeit zukommt, werden zusammengefasst präsentiert. Für detaillierte Beschreibungen wird stets auf entsprechende Fachliteratur verwiesen.\\
+Zielgruppe dieser Arbeit sind fachkundige Personen die ein gewisses Grundwissen/ -verständnis mitbringen oder solche die es werden wollen. Die Ausführungen werden in der, für das Verständnis dieser Arbeit angebrachten Tiefe, beschrieben. Da das Spektrum der Themen zu groß ist, kann nicht auf alles im Detail eingegangen werden. Allgemeine Zusammenhänge und Techniken, denen einen großen Stellenwert in dieser Arbeit zukommt, werden \Index{zusammengefasst} präsentiert. Für detaillierte Beschreibungen wird stets auf entsprechende Fachliteratur verwiesen.\\
 %
 
 \input{chapters/0_introduction/Grundlagen.tex}
@@ -173,7 +176,7 @@ Zielgruppe dieser Arbeit sind fachkundige Personen die ein gewisses Grundwissen/
 
 % 2. ------------------------------------------------------------------------
 \chapter{Hauptteil}
-Im Folgenden werden ausführlich die Methoden und Lösungen zur beschriebenen Problemstellung vorgestellt. Zuerst wird eine Betrachtung der Komplexität des Problems präsentiert. Es werden die Modelle vorgestellt die zum Auffinden der Lösung verwendet wurden. Im Anschluss wird die Implementation der ES und die Schnittstellen zum PRPS beschrieben.
+Im Folgenden werden ausführlich die Methoden und Lösungen zur beschriebenen Problemstellung vorgestellt. Zuerst wird eine Betrachtung der Komplexität des Problems präsentiert. Es werden die Modelle vorgestellt die zum Auffinden der Lösung verwendet wurden. Im Anschluss wird die Implementation der evolutionären Optimierung und die Integration in die PRPS-Software beschrieben.
 %
 \input{chapters/1_main/Hauptteil.tex}
 %
@@ -201,6 +204,9 @@ Vergleich der Ergebnisse mit den Zielen der Arbeit.\\
 \input{append/appendix.tex}
 
 \newpage
+%
+
+%\printindex
 %----------------------------------------------------------------------------
 % Bibliography --------------------------------------------------------------
 %----------------------------------------------------------------------------
