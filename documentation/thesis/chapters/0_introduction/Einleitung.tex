@@ -15,12 +15,12 @@
 Aus den bisher vorgestellten Überlegungen können nun folgende Anforderungen abgeleitet werden:
 %
 \begin{enumerate}[itemsep=0mm]
-	\item Lösung muss schnell (ideal < 1 Sekunde) gefunden werden
+	\item Gute Performance
 	\item Unabhängigkeit von Stütz- und Kalibrierpunkten
 	\item Eindeutigkeit der Lösung
 	\item Eignung für ein großes Messvolumen
 	\item Nahtlose Integration in das bestehende Software Ökosystem
-	\item Stand der Softwaretechnik entsprechend
+	\item Aktualität; Stand der Softwaretechnik entsprechend
 %
 \end{enumerate}
 %
@@ -35,5 +35,5 @@ Aus den bisher vorgestellten Überlegungen können nun folgende Anforderungen ab
 %
 \section{Ziel und Herangehensweise}
 %
-Das Ziel der Arbeit ist die Entwicklung eines Systems zur Abschätzung der Postion eines Tags. Das Auffinden der Lösung soll die oben abgeleiteten Anforderungen erfüllt. Die Ermittelung einer korrekten Lösung ist jedoch das Wichtigste. Das System wird im Kern die Lösung über ein numerisches Optimierungsverfahren finden, im speziellen kommt das sog. \textit{'Covarianz Matrix Adaption - Evolutionary Strategy'} (CMA-ES) zum Einsatz. Bei diesem Verfahren handelt es sich um ein stochastische, Ableitungsfreies Verfahren, dass für nicht lineare, nicht konvexe, kontinuierliche Probleme geeignet ist. Dazu wird zuerst ein Modell entworfen werden, dass sich für einen Einsatz in diesem Verfahren eignet. Das eingesetzte Lösungsverfahren stellt praktisch keine Anforderungen an ein solches Modell. Daher soll es mit möglichst wenig Annahmen/ Einschränkungen auskommen und dennoch ein relativ sicheres, reproduzierbares Ergebnis liefern. Weiterhin soll eine eine Integration der Lösung in das Software-Ökosystem der \amedogmbh erfolgen. Ferner sollen Methoden in weiteren Projekten zum Einsatz kommen, beider Umsetzung ist auf eine größtmögliche Wiederverwendbarkeit zu achten. Es werden verschiedene Implementationen des CMA-ES-Algorithmus recherchiert, verglichen und die geeignetste gewählt. Das System soll unmittelbar in den Produkten der \amedogmbh zum Einsatz kommen können, daher wird eine entsprechende Schnittstelle für andere Software implementiert werden. Im Rahmen dieser Arbeit wird eine Methode entwickelt werden, um die Position von frei im Raum angeordnete Antennen zu ermitteln und dem Messaufbau zu kalibrieren.
+Das Ziel der Arbeit ist die Entwicklung eines Systems zur Abschätzung der Postion eines Tags. Das Auffinden der Lösung soll die oben abgeleiteten Anforderungen erfüllt. Die Ermittlung einer korrekten Lösung ist jedoch das Wichtigste. Das System wird im Kern die Lösung über ein numerisches Optimierungsverfahren finden, im speziellen kommt das sog. \textit{'Covarianz Matrix Adaption - Evolutionary Strategy'} (CMA-ES) zum Einsatz. Bei diesem Verfahren handelt es sich um ein stochastische, ableitungsfreies Verfahren, dass für nicht lineare, nicht konvexe, kontinuierliche Probleme geeignet ist. Dazu wird zuerst ein Modell entworfen, dass sich für einen Einsatz in diesem Verfahren eignet. Das eingesetzte Lösungsverfahren stellt praktisch keine Anforderungen an ein solches Modell. Daher soll es mit möglichst wenig Annahmen bzw. Einschränkungen auskommen und dennoch ein relativ sicheres, reproduzierbares Ergebnis liefern. Weiterhin soll eine Integration der Lösung in das Software-Ökosystem der \amedogmbh erfolgen. Softwarekomponenten sollen in weiteren Projekten zum Einsatz kommen. Daher wird bei der Umsetzung auf eine größtmögliche Wiederverwendbarkeit geachtet. Es werden verschiedene Implementationen des CMA-ES-Algorithmus recherchiert, verglichen und die geeignetste gewählt. Das System soll unmittelbar in den Produkten der \amedogmbh zum Einsatz kommen können, daher wird eine entsprechende Schnittstelle für andere Software implementiert. Im Rahmen dieser Arbeit wird eine Methode entwickelt, um die Position von frei im Raum angeordnete Antennen zu ermitteln und dem Messaufbau zu kalibrieren.
 %

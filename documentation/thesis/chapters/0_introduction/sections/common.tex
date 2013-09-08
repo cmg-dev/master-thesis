@@ -22,17 +22,17 @@ Die Anwendung solcher Systeme erlaubt außerdem eine softwaregestützte Planung 
 Die Anforderungen an ein solches System sind somit sehr hoch. Sie müssen über eine entsprechende technische Leistungsfähigkeit verfügen (Genauigkeit, Verfügbarkeit etc.) und gleichzeitig muss der Umgang mit ihnen leicht sein und dürfen keine hohen Kosten für Anschaffung und Betrieb generieren.\\
 %
 \subsubsection{Stand der Technik}
-Es befinden sich Trackingsysteme unterschiedlicher Hersteller am Markt. Sie beruhen auf unterschiedlichsten Messprinzipien und unterliegen den daraus resultierenden Limitierungen. Die wichtigsten Technischen Unterschiede sind im Folgenden tabellarisch zusammengefasst:
+Es befinden sich Trackingsysteme unterschiedlicher Hersteller am Markt. Sie beruhen auf unterschiedlichsten Messprinzipien und unterliegen den daraus resultierenden Limitierungen. Die wichtigsten technischen Unterschiede sind im Folgenden tabellarisch zusammengefasst:
 %
 \begin{table} [H]
 	\begin{center}
 		\begin{tabular}{rllll}
 			\textbf{Arbeitsweise} & Optisch & Magnetisch & Ultraschall & Funk (UHF) \\
-			\textbf{Genauigkeit} & gut & ausreichend & gut & sehr gut\footnote{Abhängig vom Messprinzip} \\
+			\textbf{Genauigkeit} & gut & ausreichend & gut & sehr gut \\
 			\textbf{Frequenz} & mittel & hoch & gering & hoch \\
 			\textbf{Volumen} & mittel & klein & mittel & groß \\
-			\textbf{LOS} & Ja & Ja & Nein & Ja \\
-			\textbf{IV\footnote{in vivo lat. im Lebendigen; med. im Patienten}} & Nein   & Nein & Nein & Ja \\
+			\textbf{LOS} & Ja & Ja & Nein & Nein \\
+			\textbf{In Vivo} & Nein   & Nein & Nein & Ja \\
 %			
 		\end{tabular}
 	\end{center}
@@ -40,7 +40,8 @@ Es befinden sich Trackingsysteme unterschiedlicher Hersteller am Markt. Sie beru
 	\label{tab:overview_tracking}
 \end{table}
 %
-Die Tabelle~\ref{tab:overview_tracking} teilt die unterschiedlichen Systeme anhand ihres physikalischen Messprinzips ein. Herausgestellt werden vor Allem die wesentlichen Messparameter der betreffende Aspekte der Verfahren. Aus der Auflistung lassen sich Vor. und Nachteile ableiten.\\
-Das größte Problem ist das eine direkten Sicht auf die Objekte vorausgesetzt wird, Line of Sight (LOS) genannt. Dem sog. LOS-Problem unterliegen fast alle Verfahren, die ein großes Messvolumen abdecken. Auf Funk basierende Methoden erfahren dieses Problem nicht, ihre Wechselwirkungsmechanismen erlauben die Durchdringung von Materie. Andere Wechselwirkungen machen diesen Verfahren zu schaffen und verursachen Schwierigkeiten. Der größte Vorteil des auf Funk basierenden RFID-Verfahrens ist es verschiedene Objekte von einander zu unterscheiden, bzw. sogar zu identifizieren. Die Genauigkeit (im technischen Sinne: hohe Präzision plus hohe Richtigkeit) der Messung ist bei allen Verfahren mindestens ausreichend. \\
+Die Tabelle~\ref{tab:overview_tracking} teilt die unterschiedlichen Systeme anhand ihres physikalischen Messprinzips ein. Herausgestellt werden vor allem die wesentlichen Messparameter der Verfahren. Zusätzlich sind die Punkte LOS und In Vivo aufgeführt. In Vivo ist lateinisch und bedeutet: im Lebenden. Damit ist gemeint, dass Messsignale aus dem Patienten empfangen können. Aus der Auflistung lassen sich Vor- und Nachteile ableiten. Das größte Problem ist das eine direkten Sicht auf die Objekte vorausgesetzt wird, Line of Sight (LOS) genannt. Dem sog. LOS-Problem unterliegen fast alle Verfahren, die ein großes Messvolumen abdecken. Auf Funk basierende Methoden erfahren dieses Problem nicht, ihre Wechselwirkungsmechanismen erlauben die Durchdringung von Materie. Andere Wechselwirkungen beeinflussen die in Tabelle~\ref{tab:requirements_system} beschriebenen Anforderungen negativ und limitieren das jeweilige Verfahren zusätzlich. Der größte Vorteil des auf Funk basierenden RFID-Verfahrens ist es verschiedene Objekte von einander zu unterscheiden, bzw. sogar zu identifizieren. Die Genauigkeit (im technischen Sinne: hohe Präzision plus hohe Richtigkeit) der Messung ist bei allen Verfahren mindestens ausreichend. \\
+%
+
 Diese Anforderungen allein sind eine große Herausforderung an die Technik. Hinzukommen weitere Anforderungen, die sich z.B. aus dem Ablauf einer Intervention ergeben. Ein System muss eine einfache Integrationsmöglichkeit in diesen Arbeitsablauf bieten. Zusätzlich dürfen durch die Anschaffung und das Material keine großen Kosten entstehen.\\
 %
