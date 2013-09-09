@@ -14,7 +14,7 @@
 %
 \subsection{Shark}
 \label{sec:Shark}
-Shark ist eine Open-Source \cpp Bibliothek für maschinelles Lernen und Optimierung~\cite{Shark:1}. Es implementiert Methoden für lineare und nicht lineare Optimierung, Kernel-basierte Lernverfahren, künstliche neuronale Netzwerke, und Weitere. Details der Umsetzung finden sich in~\cite{shark08}. Es wird sowohl in Forschung als auch in industriellem Umfeld eingesetzt und implementiert, nach eigenen Angaben, Algorithmen, die in anderen Bibliotheken nicht verfügbar sind. Shark baut auf den \textit{Boost C++ Libraries} auf und verwendet CMake\footnote{CMake (cross-platform make) ist ein plattformunabhängiges Programmierwerkzeug für die Entwicklung und Erstellung von Software.}. Dadurch ist es auf nahezu jeder Plattform verfügbar. Die Integration in ein Projekt ist sehr einfach und daher wird es in dieser Arbeit eingesetzt.\\
+Shark ist eine Open-Source \cpp Bibliothek für maschinelles Lernen und Optimierung~\cite{Shark:1}. Es implementiert Methoden für lineare und nicht lineare Optimierung, Kernel-basierte Lernverfahren, künstliche neuronale Netzwerke, und Weitere. Details der Umsetzung finden sich in~\cite{shark08}. Es wird sowohl in Forschung als auch in industriellem Umfeld eingesetzt und implementiert, nach eigenen Angaben, Algorithmen, die in anderen Bibliotheken nicht verfügbar sind. Shark baut auf den \textit{Boost \cpp Libraries} auf und verwendet CMake\footnote{CMake (cross-platform make) ist ein plattformunabhängiges Programmierwerkzeug für die Entwicklung und Erstellung von Software.}. Dadurch ist es auf nahezu jeder Plattform verfügbar. Die Integration in ein Projekt ist sehr einfach und daher wird es in dieser Arbeit eingesetzt.\\
 
 Eine Integration von Shark in dem Software Ökosystem ist aufgrund der vielen Features sehr sinnvoll. Weitere Entwicklungen können vom Funktionsumfang partizipieren.
 
@@ -22,8 +22,9 @@ Eine Integration von Shark in dem Software Ökosystem ist aufgrund der vielen Fe
 %---------------------------------------------------------------------
 \subsection{Implementation}
 \label{sec:Implementation}
-In diesem Abschnitt wird auf interessante Details der Softwareimplementation eingegangen. Es ist nicht möglich die gesamte Implementation der Software zu besprechen, dafür ist die Software zu Umfangreich\footnote{Für diese Arbeit wurden ca. $5000$ Zeilen Quellcode erstellt -- einzelne Modelle nicht mitgerechnet}. Lediglich sollen hier die Implementationen verschiedener Evolutionsalgorithmen unter Verwendung von Shark gezeigt werden. Verschiedene evolutionäre Algorithmen wurden in Kapitel~\ref{sec:es-common} besprochen.% ?
-\lipsum[1]
+In diesem Abschnitt wird auf interessante Details der Softwareimplementation eingegangen. Es ist nicht möglich die gesamte Implementation der Software zu besprechen, dafür ist die Software zu Umfangreich\footnote{Für diese Arbeit wurden ca. $5000$ Zeilen Quellcode erstellt -- einzelne Modelle nicht mitgerechnet}. Lediglich sollen hier die Implementationen verschiedener Evolutionsalgorithmen unter Verwendung von Shark gezeigt werden. 
+%Verschiedene evolutionäre Algorithmen wurden in Kapitel~\ref{sec:es-common} besprochen.% ?
+%\lipsum[1]
 Es wird beispielhaft die Implementation einer Objektfunktion beschrieben, wie sie typischerweise in Shark vorgenommen wird.
 %
 %\input{diagrams/prpsevolution-integration.tex}
