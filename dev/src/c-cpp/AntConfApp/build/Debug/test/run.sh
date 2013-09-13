@@ -406,16 +406,16 @@ else
 #=================================================================================================#
     if (( $SET == 13 ))
     then
-        TRIALS=50
+        TRIALS=30
         VARIANT=4
-        START=2000
-        STOP=2010
-        GROUPSIZE=1
+        START=2050
+        STOP=2060
+        GROUPSIZE=20
         LOCALGS=1
         INCGROUPSIZE="yes"
         EVALUATIONS=100000
-        MU=30
-        LAMBDA=100
+        MU=35
+        LAMBDA=350
        
         a=0
         b=30
@@ -470,6 +470,105 @@ else
 
     fi
 #=================================================================================================#
+    if (( $SET == 15 ))
+    then
+        TRIALS=5
+        VARIANT=6
+        START=15000
+        STOP=15010
+        GROUPSIZE=1
+        LOCALGS=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=100000
+        MU=30
+        LAMBDA=100
+       
+        a=0
+        b=30
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            echo "run done"
+            MU=$((MU+10))
+            LAMBDA=$((LAMBDA+50))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+10))
+            STOP=$((STOP+10))
+
+        done
+
+    fi
+#=================================================================================================#
+    if (( $SET == 16 ))
+    then
+        TRIALS=10
+        VARIANT=6
+        START=16000
+        STOP=16001
+        GROUPSIZE=5
+        LOCALGS=5
+        INCGROUPSIZE="yes"
+        EVALUATIONS=100000
+        MU=10
+        LAMBDA=50
+       
+        a=0
+        b=300
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            echo "run done"
+            MU=$((MU+20))
+            LAMBDA=$((LAMBDA+100))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+1))
+            STOP=$((STOP+1))
+
+        done
+
+    fi
+#=================================================================================================#
+    if (( $SET == 17 ))
+    then
+        TRIALS=10
+        VARIANT=7
+        START=17000
+        STOP=17001
+        GROUPSIZE=1
+        LOCALGS=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=100000
+        MU=10
+        LAMBDA=50
+       
+        a=0
+        b=300
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            echo "run done"
+            MU=$((MU+20))
+            LAMBDA=$((LAMBDA+100))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+1))
+            STOP=$((STOP+1))
+
+        done
+
+    fi
+#=================================================================================================#
     #test the algorithm against the calibration
     if (( $SET == 100 ))
     then
@@ -484,7 +583,7 @@ else
 
     fi
 #=================================================================================================#
-    #calculated the fitnes plane of given model
+    #calculated the fitnes plane of given model according to given input set
     if (( $SET == 200 ))
     then
         TRIALS=1
