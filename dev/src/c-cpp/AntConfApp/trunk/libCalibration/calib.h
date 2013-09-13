@@ -31,7 +31,7 @@ namespace PRPSEvolution {
 			/**
 			 * This is the array where the result is stored
 			 */
-			std::array< NRvector< T >, N_ANTA>				AntennaCoordinates;
+			std::array< NRvector< T >, N_ANTA>			AntennaCoordinates;
 			Positioning::CoordContainer< N_CALPOS, T >	CalibrationPointsCoordinates;
 
 			/* store the distances for every calibration point belonging to every antenna */
@@ -133,31 +133,34 @@ namespace PRPSEvolution {
 		}
 
 		/**
-		 * @todo comment
-		 * @todo clean up
+		 * 
 		 */
 		template < std::size_t N_ANTA, std::size_t N_CALPOS, typename T >
 		std::array< NRvector< T >, N_ANTA > performCalibration<N_ANTA,N_CALPOS,T>::SolveCalibration()
 		{
+			/* load svd solver with matrix of calibration setup A */
 			SVD svd( A );
+			
+			/* create an array for every antenna for the result */
 			std:array< NRvector< T >, N_ANTA > x;
 
 			for( auto& x_ : x ) x_.assign( A.nrows(), 0.0 );
 
 			int i = 0;
+
+			/* calculate the calibration for all antennas */
 			for( auto& b:c_k0 ) {
 				svd.solve( b, x[i++] );
-// 				AntennaCoordinates[ i++ ] = x;
+				
 			}
 
 			return x;
-// 			throw( "Not implemented" );
+			
 		}
 
 		/******************************************************************/
 		/* Constructors ***************************************************/
 		/******************************************************************/
-		
 		template < std::size_t N_ANTA, std::size_t N_CALPOS, typename T >
 		performCalibration<N_ANTA,N_CALPOS,T>::performCalibration ()
 		{

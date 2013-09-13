@@ -676,6 +676,9 @@ namespace PRPSEvolution {
 
 			/* k is the n over k, k */
 			std::size_t k = quantity;
+// 			ostringstream os;
+			
+			os << "01234567";
 			std::string s_ = os.str();
 
 			/* determine the unique permutations */

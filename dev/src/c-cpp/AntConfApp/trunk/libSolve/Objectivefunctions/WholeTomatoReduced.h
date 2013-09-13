@@ -1,5 +1,5 @@
-#ifndef _WHOLETOMATO_MARKII_
-#define _WHOLETOMATO_MARKII_
+#ifndef _WHOLETOMATO_REDUCED_
+#define _WHOLETOMATO_REDUCED_
 
 #include <shark/ObjectiveFunctions/AbstractObjectiveFunction.h>
 #include <shark/Rng/GlobalRng.h>
@@ -14,12 +14,13 @@ namespace PRPSEvolution {
 		/**
 		*
 		*/
-		struct WholeTomatoMkII : public SingleObjectiveFunction {
+		struct WholeTomatoReduced : public SingleObjectiveFunction {
 
 			typedef AbstractOptimizer<shark::VectorSpace< double >,double,SingleObjectiveResultSet<typename shark::VectorSpace< double >::PointType> > base_type;
 			typedef typename base_type::ObjectiveFunctionType ObjectiveFunctionType;
 
-			WholeTomatoMkII(unsigned int numberOfVariables = 5):m_numberOfVariables(numberOfVariables) {
+			WholeTomatoReduced( unsigned int numberOfVariables = Solve::ProblemDimensions::WholeTomatoReduced )
+			:m_numberOfVariables(numberOfVariables) {
 				m_features |= CAN_PROPOSE_STARTING_POINT;
 			}
 
@@ -52,9 +53,9 @@ namespace PRPSEvolution {
 				}
 				for (unsigned int i = 3; i < x.size(); i++) {
 					x(i) = std::round( Rng::uni(10, 30) );
-				
+
 				}
-				
+
 			}
 
 			/**
@@ -68,9 +69,9 @@ namespace PRPSEvolution {
 			* @param[in] x	The x vector, contains the free parameter
 			* @param[in] b	The b vector for this solution
 			* @return
-			* 
+			*
 			*/
-			inline double mkII( const NRmatrix<Doub> &A, const double* x, const NRvector<Doub> &b ) const;
+			inline double reduced( const NRmatrix<Doub> &A, const double* x, const NRvector<Doub> &b ) const;
 
 			/**
 			 * Collects the constrains for this model
@@ -79,13 +80,15 @@ namespace PRPSEvolution {
 			 *
 			 */
 			inline bool constrains(const double* x) const;
-			
+
 			/**
 			 *
 			 */
 			void setParams( const std::vector<NRmatrix< Doub >> &M,
 							const std::vector<NRvector< Doub >> &v,
-							const std::vector<std::string> &n
+							const std::vector<std::string> &n,
+							const std::vector<NRvector< Doub >> &c,
+							const double l
 						) {
 				setMats( M );
 				setVecs( v );
@@ -93,6 +96,9 @@ namespace PRPSEvolution {
 
 				setIdx( parseIdxFromNames( n ) );
 				setTranslation( translateIdxFromNamesToArrayIdxs( idxs ) );
+				
+				setAntennaCoords( c );
+				setLambda( l );
 
 			}
 
@@ -101,17 +107,19 @@ namespace PRPSEvolution {
 			 */
 			void setParams( const std::vector<NRmatrix< Doub >> &M,
 							const std::vector<NRvector< Doub >> &v,
-							const std::vector<std::vector<int>> &i
+							const std::vector<std::vector<int>> &i,
+							const std::vector<NRvector< Doub >> &c
 						) {
 				setMats( M );
 				setVecs( v );
 				setIdx( i );
+				setAntennaCoords( c );
 
 			}
 
 		private:
 			int WAVENUMBER_OFFSET = 3;
-			
+
 			std::size_t m_numberOfVariables;
 
 			/** The Matrices we need to solve the Problem */
@@ -131,6 +139,14 @@ namespace PRPSEvolution {
 			std::vector<int> translation;
 			bool Translation_isSet = false;
 
+			std::vector<NRvector< Doub >> antennaCoords;
+			bool AntennaCoords_isSet = false;
+
+			double lambda;
+			bool Lambda_isSet = false;
+			
+			bool continuesWavenumbers = true;
+			
 			/**
 			 *
 			 */
@@ -163,7 +179,7 @@ namespace PRPSEvolution {
 				idxs = i;
 				Idx_isSet = true;
 			}
-			
+
 			/**
 			 *
 			 */
@@ -171,7 +187,17 @@ namespace PRPSEvolution {
 				translation = t;
 				Translation_isSet = true;
 			}
+
 			
+			void setAntennaCoords( const std::vector<NRvector< Doub >> &c ) {
+				antennaCoords = c;
+				AntennaCoords_isSet = true;
+			}
+
+			void setLambda( const double l) {
+				lambda = l;
+				Lambda_isSet = true;
+			}
 			
 			/**
 			* This function will parse the indeces used for a solution
@@ -214,7 +240,7 @@ namespace PRPSEvolution {
 			std::vector<int>
 			translateIdxFromNamesToArrayIdxs
 			( const std::vector<std::vector<int>> &idxsAntennas ) {
-				
+
 				int translation[8];
 				int j = 0;
 				std::vector<std::vector<int>> IN;
@@ -224,7 +250,7 @@ namespace PRPSEvolution {
 					t = -1;
 
 				IN = idxsAntennas;
-				
+
 #ifdef TEST_translateIdxFromNamesToArrayIdxs_samlple_data
 				std::vector<std::vector<int>> temps;
 				std::vector<int> temp;
@@ -236,7 +262,7 @@ namespace PRPSEvolution {
 
 				temps.push_back( temp );
 				IN = temps;
-				
+
 #endif
 
 				/* create the translation */
@@ -245,7 +271,7 @@ namespace PRPSEvolution {
 						translation[idx] =
 							( translation[idx] == -1 ) ?
 								(WAVENUMBER_OFFSET + j++) : translation[idx];
-						
+
 					}
 				}
 
@@ -262,12 +288,15 @@ namespace PRPSEvolution {
 				std::vector<int> res;
 				for( auto idx: translation )
 					res.push_back( idx );
-				
+
 				return res;
 			}
+
+			inline std::array<double, 8> calcWavenumbers( const double *x ) const ;
+			
 		};
 
-		ANNOUNCE_SINGLE_OBJECTIVE_FUNCTION(WholeTomatoMkII, soo::RealValuedObjectiveFunctionFactory);
+		ANNOUNCE_SINGLE_OBJECTIVE_FUNCTION(WholeTomatoReduced, soo::RealValuedObjectiveFunctionFactory);
 
 	}
 }

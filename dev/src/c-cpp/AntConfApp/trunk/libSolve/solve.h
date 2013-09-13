@@ -70,9 +70,10 @@ namespace PRPSEvolution {
 			static const int Rosenbrock = 15;
 
 			static const int Calibration = 3;
-			
 
-			
+			/* reduced problem dimension */
+			static const int WholeTomatoReduced = 3;
+
 		};
 
 		inline double meanFromVector( std::vector<double> &res ) {
