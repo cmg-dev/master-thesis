@@ -536,18 +536,55 @@ else
 
     fi
 #=================================================================================================#
+# Perform the new Variant with the reduced model. 
+#=================================================================================================#
     if (( $SET == 17 ))
     then
         TRIALS=10
         VARIANT=7
         START=17000
-        STOP=17001
+        STOP=17010
         GROUPSIZE=1
         LOCALGS=1
         INCGROUPSIZE="yes"
         EVALUATIONS=100000
-        MU=10
-        LAMBDA=50
+        MU=0
+        LAMBDA=0
+       
+        a=0
+        b=300
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            echo "run done"
+            MU=$((MU+20))
+            LAMBDA=$((LAMBDA+100))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+10))
+            STOP=$((STOP+10))
+
+        done
+
+    fi
+#=================================================================================================#
+# Perform the new Variant with the reduced model. 
+#=================================================================================================#
+    if (( $SET == 18 ))
+    then
+        TRIALS=10
+        VARIANT=7
+        START=18000
+        STOP=18001
+        GROUPSIZE=1
+        LOCALGS=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=100000
+        MU=0
+        LAMBDA=0
        
         a=0
         b=300
@@ -583,13 +620,29 @@ else
 
     fi
 #=================================================================================================#
-    #calculated the fitnes plane of given model according to given input set
+# calculated the fitnes plane of given model according to given input set
+#=================================================================================================#
     if (( $SET == 200 ))
     then
         TRIALS=1
         VARIANT=100
         START=1000
         STOP=1001
+        GROUPSIZE=1
+        INCGROUPSIZE="no"
+        EVALUATIONS=0
+        action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+
+    fi
+#=================================================================================================#
+# calculated the fitnes plane of the reduced model
+#=================================================================================================#
+    if (( $SET == 201 ))
+    then
+        TRIALS=1
+        VARIANT=101
+        START=2000
+        STOP=2001
         GROUPSIZE=1
         INCGROUPSIZE="no"
         EVALUATIONS=0
