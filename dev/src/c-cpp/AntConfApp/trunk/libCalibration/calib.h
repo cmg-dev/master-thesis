@@ -100,6 +100,7 @@ namespace PRPSEvolution {
 
 				a[i][2] = CalibrationPointsCoordinates.z_[ i + 1 ]-
 							CalibrationPointsCoordinates.z_[ 0 ];
+							
 			}
 
 			return a;
@@ -117,9 +118,11 @@ namespace PRPSEvolution {
 			std::array< T, MAT_ROWS > d_k0;
 			
 			for( int i = 0; i < d_k0.size(); i++ ) {
-				d_k0[ i ] = (xyz.x_[i+1]-xyz.x_[0])
-							+ (xyz.y_[i+1]-xyz.y_[0])
-							+ (xyz.z_[i+1]-xyz.z_[0]);
+				d_k0[ i ] = std::pow( xyz.x_[i+1]-xyz.x_[0], 2 )
+							+ std::pow( xyz.y_[i+1]-xyz.y_[0], 2 )
+							+ std::pow( xyz.z_[i+1]-xyz.z_[0], 2 );
+
+				d_k0[ i ] = std::sqrt( d_k0[ i ] );
 
 			}
 			for( int i = 0; i < c.size(); i++ ) {
@@ -177,6 +180,7 @@ namespace PRPSEvolution {
 			A = calcGeometricalMatrix();
 
 			int i = 0;
+			
 			/* fill the vactor c_k0 */
 			for( auto& c: c_k0 ) {
 				c = calcDistanceVector( i++ );

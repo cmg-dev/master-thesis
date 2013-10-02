@@ -198,13 +198,16 @@ namespace PRPSEvolution {
 						while( x[ limit.idx2 ] < limit.upper[ limit.idx2 ] ) {
 							x[ limit.idx2 ] += limit.increment;
 
+							f << model.eval( x ) << " "; 
+							
 							for( auto val : x ) {
 								f <<  val << " ";
 	// 							std::cout << val << "";
 							}
+							f << std::endl;
+
 	// 						std::cout << std::cout;
 
-							f << model.eval( x ) << std::endl;
 
 						}
 						x[ limit.idx1 ] += limit.increment;

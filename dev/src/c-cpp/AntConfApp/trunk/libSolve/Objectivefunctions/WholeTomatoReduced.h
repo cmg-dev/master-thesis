@@ -83,6 +83,7 @@ namespace PRPSEvolution {
 
 			/**
 			 *
+			 * 
 			 */
 			void setParams( const std::vector<NRmatrix< Doub >> &M,
 							const std::vector<NRvector< Doub >> &v,
@@ -104,6 +105,7 @@ namespace PRPSEvolution {
 
 			/**
 			 *
+			 * 
 			 */
 			void setParams( const std::vector<NRmatrix< Doub >> &M,
 							const std::vector<NRvector< Doub >> &v,
@@ -117,6 +119,13 @@ namespace PRPSEvolution {
 
 			}
 
+			/** */
+			std::array<double, 8> calcWavenumbers2( double x, double y, double z);
+// 			{
+// 				double xyz [] {x,y,z};
+// 				return WholeTomatoReduced::calcWavenumbers(xyz);
+// 			}
+			
 		private:
 			int WAVENUMBER_OFFSET = 3;
 
@@ -146,6 +155,8 @@ namespace PRPSEvolution {
 			bool Lambda_isSet = false;
 			
 			bool continuesWavenumbers = true;
+
+			std::array<Doub,8> Wavenumbers;
 			
 			/**
 			 *
@@ -292,7 +303,9 @@ namespace PRPSEvolution {
 				return res;
 			}
 
-			inline std::array<double, 8> calcWavenumbers( const double *x ) const ;
+			/** */
+			inline std::array<double, 8> calcWavenumbers( const double *x ) const;
+
 			
 		};
 

@@ -7,18 +7,21 @@
 
 #include "WholeTomatoReduced.h"
 
-#define _WT_CONSTRAIN_HARD_
+// #define _WT_CONSTRAIN_HARD_
 
 namespace PRPSEvolution {
 	namespace Models {
 		using namespace shark;
 
+		/**
+		 * 
+		 */
 		double WholeTomatoReduced::eval(const SearchPointType &p) const
 		{
 			m_evaluationCounter++;
 
 			std::vector<double> res;
-			std::array<double,8> wavenumbers;
+ 			std::array<double,8> wavenumbers;
 		
 			int I = 0;
 
@@ -49,7 +52,7 @@ namespace PRPSEvolution {
 					/* recompile chromosome x */
 					x[ 3 ] = wavenumbers[  idx[ 0 ]  ];
 					x[ 4 ] = wavenumbers[  idx[ 1 ]  ];
-					x[ 5 ] = wavenumbers[  idx[ 2 ] ];
+					x[ 5 ] = wavenumbers[  idx[ 2 ]  ];
 					x[ 6 ] = wavenumbers[  idx[ 3 ]  ];
 
 				}
@@ -84,6 +87,10 @@ namespace PRPSEvolution {
 
 		}
 
+		/**
+		 *
+		 * 
+		 */
 		inline double WholeTomatoReduced::reduced( const NRmatrix<Doub> &A, const double* x, const NRvector<Doub> &b ) const
 		{
 			double res;
@@ -117,6 +124,10 @@ namespace PRPSEvolution {
 
 		}
 
+		/**
+		 *
+		 * 
+		 */
 		inline bool WholeTomatoReduced::constrains(const double* x) const
 		{
 #ifdef _WT_CONSTRAIN_HARD_
@@ -125,7 +136,7 @@ namespace PRPSEvolution {
 					return false;
 
 			for( int i = 0; i < 3; i++)
-				if( x[i] > 2. || x[i] < -2. )
+				if( x[i] > 5. || x[i] < -5. )
 					return false;
 
 // 			for( int i = 0; i < 3; i++)
@@ -140,71 +151,58 @@ namespace PRPSEvolution {
 
 		}
 
-		bool printYN = false;
+		/**
+		 *
+		 * 
+		 */
 		inline std::array<double, 8> WholeTomatoReduced::calcWavenumbers( const double *x ) const
 		{
 			std::array<double, 8> ret;
 
 // 			std::cout << "1";
-			
-			if( continuesWavenumbers ) {
-				int i = 0;
+// 			
+			int i = 0;
+			for( auto a : antennaCoords ) {
+				double d = std::sqrt( pow( x[0]-a[0] , 2 )
+										+ pow( x[1]-a[1] , 2 )
+										+ pow( x[2]-a[2] , 2 ) );
 
-				/* for all antenna coords calc the wavenumbers */
-				for( auto a : antennaCoords ) {
-					double d = std::sqrt( pow( x[0]-a[0] , 2 )
-							+ pow( x[1]-a[1] , 2 )
-							+ pow( x[2]-a[2] , 2 ) );
-
+				ret[i] = 2 * ( d/lambda );
+				
+// 				if( continuesWavenumbers ) {
+				
+				
+// 				} else {
 // 					for( auto &wn : ret ) {
-					ret[i++] = 2 * ( d/lambda );
+					ret[i] = std::floor( ret[i] );
 
 // 					}
-				}
-				
-			} else {
-// 				std::cout << x[0] << " " << x[1] << " " << x[2] << std::endl;
-				int i = 0;
-				
-				/* for all antenna coords calc the wavenumbers */
-				for( auto a : antennaCoords ) {
-					double d = std::sqrt( pow( x[0]-a[0] , 2 )
-							+ pow( x[1]-a[1] , 2 )
-							+ pow( x[2]-a[2] , 2 ) );
-
-// 					for( auto &wn : ret ) {
-					ret[i++] = std::floor( 2 * ( d/lambda ) );
-
-// 					}
-				}
+// 				}
+				i++;
 	
 			}
-			
-			if( printYN ) {
-				for( auto wn : ret ) {
-					std::cout << wn << " ";
+// 			for( auto wn : ret ) {
+// 				std::cout << wn << " ";
+// 
+// 			}
+// 			std::cout<<std::endl;
 
-				}
-				std::cout<<std::endl;
-			}
-			
+				
+// 			std::cout << "1";
 			return ret;
 			
 		}
 
-
-		std::array<double, 8> WholeTomatoReduced::calcWavenumbers2( double x, double y, double z)
+		/**
+		 *
+		 * 
+		 */
+		std::array<double, 8> WholeTomatoReduced::calcWavenumbers( double x, double y, double z)
 		{
-			
-			double xyz [] {x,y,z};
+			double xyz[] {x,y,z};
 
-// 			printYN = true;
-// 			auto ret = calcWavenumbers(xyz);
-// 			printYN = false;
+			return calcWavenumbers( xyz );
 			
-			return calcWavenumbers(xyz);;
 		}
-
-		
 	}
 }

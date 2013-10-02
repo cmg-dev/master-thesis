@@ -292,8 +292,6 @@ namespace PRPSEvolution {
 #endif
 				PRPSEvolution::Models::WholeTomatoReduced model;
 
-// 				model.setNumberOfVariables( dim );
-
 				model.setParams( A, b, names, coords_k0, lambda );
 				
 #ifdef _Write_Result
@@ -311,9 +309,13 @@ namespace PRPSEvolution {
 
 				}
 
-				/* print out selection of mu and lambda */
-// 				std::cout << "Mu:" << cma.mu() << " Lambda: " << cma.lambda() << std::endl;
-
+				auto refAntCoords = coords_k0[ std::stoi( names[0].substr(0,1)) ];
+// 				for( auto p: refAntCoords ) {
+				std::cout << refAntCoords[0] << " "
+					<< refAntCoords[1] << " "
+					<< refAntCoords[2]
+					<< std::endl;
+				
 				/* solve.. */
 				do {
 					cma.step( model );
@@ -321,39 +323,45 @@ namespace PRPSEvolution {
 					auto v = p[0]*p[0] + p[1]*p[1] + p[2]*p[2];
 					v = std::sqrt(v);
 
+					
+					
 // #ifdef _CoordTransform
 					/* get the coords of the ref antenna */
-					auto refAntCoords = coords_k0[std::stoi( names[0].substr(0,1))];
+// 					auto refAntCoords = coords_k0[ std::stoi( names[0].substr(0,1)) ];
 // #endif
 					f << model.evaluationCounter() << " "
 							<< cma.solution().value << " "
 							<< cma.solution().point << " "
 							<< cma.sigma() << " "
 							<<  v
-// #ifdef _CoordTransform
 							<< " "
 							<< p[0]+refAntCoords[0] << " "
 							<< p[1]+refAntCoords[1] << " "
 							<< p[2]+refAntCoords[2] << " "
-// #endif
-
-	// 									<< cma.solution().value * 1e10 << " "
-	// 									<< cma.solution().value / epsilon << " "
-	// 									<< (1e-20) * epsilon / cma.solution().value << ""
-
 							<< std::endl;
-/*
-					for( auto p: cma.solution().point ) {
-						std::cout << p << " " ;
-					}
 
-					std::cout << std::endl;*/
+// 					for( auto p: cma.solution().point ) {
+// 						std::cout << p << " " ;
+// 					}
 
-// 					if( cma.solution().value == 10000 );
-// 						break;
+// 					std::cout << std::endl;
 
-				} while(cma.solution().value > epsilon
-					&& model.evaluationCounter() < maxEvaluations);
+				} while( cma.solution().value > epsilon
+					&& model.evaluationCounter() < maxEvaluations );
+
+				/* print the wavenumbers */
+				auto p = cma.solution().point;
+
+				for( auto _p: p )
+					std::cout << _p << " ";
+
+				std::cout << std::endl;
+
+				auto wave = model.calcWavenumbers2( p[0], p[1], p[2] );
+				for( auto wn: wave )
+					std::cout << wn << " ";
+				
+				std::cout << std::endl << std::endl;
 				
 #else
 				SOLVE(model);
@@ -365,9 +373,10 @@ namespace PRPSEvolution {
 			
 			/*=============================================================*/
 			/**
-			 *
+			 * Concurrent variant of the WholeTomatoMkII approach
+			 * 
 			 */
-			int WholeTomatoMkII_1( int dimension, int n ) {
+			int cWholeTomatoMkII( int dimension, int n ) {
 
 				std::cerr << " WholeTomatoMkII:: Start with " << n;
 
@@ -404,10 +413,10 @@ namespace PRPSEvolution {
 				/* init the algorithm */
 				shark::CMA cma;
 				/* if we specify the Mu and Lamdba ourself */
-				if( Mu != 0 && Lambda != 0) {
+				if( Mu != 0 && Lambda != 0 ) {
 					RealVector p;
 					model.proposeStartingPoint( p );
-					cma.init(p.size(), Lambda, Mu, p, 3.0 );
+					cma.init( p.size(), Lambda, Mu, p, 3.0 );
 
 				} else {
 					cma.init( model );
@@ -697,6 +706,7 @@ namespace PRPSEvolution {
 
 				f_path = "";
 #endif
+
 				// Adjust the floating-point format to scientific and increase output precision.
 				std::cout.setf( std::ios_base::scientific );
 				std::cout.precision( 10 );
@@ -774,7 +784,7 @@ namespace PRPSEvolution {
 			{
 				PRPSEvolution::Models::WholeTomatoMkII model( 7 );
 				model.setNumberOfVariables( 7 );
-//
+				
 				model.setParams( A, b, names );
 
 				Support::FitnessPlaneCalculator<7> fpc( offset );
@@ -785,6 +795,26 @@ namespace PRPSEvolution {
 				
 			}
 
+			/*=============================================================*/
+			void calcFitnessMkIIReduced ( int offset, const double _lambda )
+			{
+				PRPSEvolution::Models::WholeTomatoReduced model;
+
+				model.setParams( A, b, names, coords_k0, _lambda );
+				
+// 				PRPSEvolution::Models::WholeTomatoMkII model( 7 );
+// 				model.setNumberOfVariables( 7 );
+				
+// 				model.setParams( A, b, names );
+
+				Support::FitnessPlaneCalculator<3> fpc( offset );
+
+				std::cout << " calculate " << std::endl;
+				fpc.calculate( model );
+
+
+			}
+			
 			/*=============================================================*/
 			/**
 			 * 
@@ -835,7 +865,17 @@ namespace PRPSEvolution {
 			{
 				for( auto c : coords ) {
 					coords_k0.push_back( c );
+					
 				}
+
+// 				int i = 0;
+// 				for( auto vec : coords_k0 ) {
+// 					std::cout << vec[0] << " "
+// 						<< vec[1] << " "
+// 						<< vec[2] << std::endl;
+// 
+// 				}
+
 			}
 			
 		private:

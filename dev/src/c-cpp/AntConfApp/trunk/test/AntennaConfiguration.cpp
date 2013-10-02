@@ -61,6 +61,7 @@
 	<< " [VARIANT_SW] [NO_OF_SOLUTIONS] [DROPBAD] [FILENAME] [MU] [Lambda] [UseNMats] [DEFAULT_MAX_EVALUATIONS]"<< std::endl; \
 	exit(-1); 																\
 	}
+
 // #include <EALib/ChromosomeCMA.h>
 
 const int EXPECTED = 9;
@@ -550,8 +551,8 @@ int main ( int argc, char *argv[ ] ) {
 
 	/**********************************************************************/
 	/* This variant will use mutlithreading to improve performance        */
+	/**********************************************************************/
 	std::vector<std::future<int>> results;
-// 	std::future<int> foo;
 	
 	if( VARIANT_SW == 6 ) {
 		auto As 		= preprocess.matGroups;
@@ -592,7 +593,7 @@ int main ( int argc, char *argv[ ] ) {
 
 			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
 				std::cout << "        :: Start2" << std::endl;
-				results.push_back( std::async( std::launch::async, &Solve::Process_MkII::WholeTomatoMkII_1, &process, dimension, i) );
+				results.push_back( std::async( std::launch::async, &Solve::Process_MkII::cWholeTomatoMkII, &process, dimension, i) );
 
 				for( auto res = results.begin(); res != results.end(); ++res ) {
 				std::cout << "        :: Start3 " << i++ << std::endl;
@@ -670,10 +671,8 @@ int main ( int argc, char *argv[ ] ) {
 			std::ostringstream s;
 			s << "output/mkII/" << FILENAME << "." << j;
 
-			int dimension = preprocess.antennasPerGroup;
-			process.setAntennaCoords( PC.c_k0 );
+			process.setAntennaCoords( PC.AntennaCoordinates );
 
-			std::cout << " dimension " << dimension << std::endl;
 			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
 
 				process.setOutputFilePathBase( s.str() );
@@ -809,7 +808,47 @@ int main ( int argc, char *argv[ ] ) {
 		return 0;
 
 	}
+	
+	/**********************************************************************/
+	/* Calculate the fitness plane for one Antenna */
+	if( VARIANT_SW == 101 ) {
+		std::cout << "Mark II :: Calculating the fitness of the reduced model" << std::endl;
 
+		auto As 		= preprocess.matGroups;
+		auto vs			= preprocess.vectorGroups;
+		auto names		= preprocess.nameGroups;
+
+		meanTime = 0;
+		for( int i = 0; i < 8; i++ ) {
+			auto A		= As[ i ];
+			auto v		= vs[ i ];
+			auto name	= names[ i ];
+
+			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+
+			process.setAntennaCoords( PC.c_k0 );
+
+			/* calc the fitness of the model */
+			process.calcFitnessMkIIReduced( i, sys.constants.lambda  );
+			
+			meanTime += duration_cast<milliseconds>(t_1-t_0).count();
+
+		}
+		std::cout << "\tFitnes plane calculated:: done" << std::endl;
+
+		int total = duration_cast<milliseconds>(t_1-t_000).count();
+
+#ifdef _Write_SOLUTION_STATISTICS
+		f << total << " " << meanTime << " " << meanTime/8 << " " << 8 << std::endl;
+		f << std::endl;
+#endif
+
+		if( f.is_open() )
+			f.close();
+
+		return 0;
+
+	}
 	
 #else
 	Solve::Process process;
