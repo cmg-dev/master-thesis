@@ -4,7 +4,7 @@
 #
 
 ##################################################################################
-# [Start] [Stop] [Variant] [Trials] [Evaluations] [DropBad] [Mu] [Lambda] [StartGroupSize] [IncrementGroupSize]
+# [Start] [Stop] [Variant] [Trials] [Evaluations] [DropBad] [Mu] [Lambda] [StartGroupSize] [IncrementGroupSize] [Offset]
 function action {
 
 GS=$9
@@ -22,9 +22,10 @@ do
     echo "  Evaluations   "$5
     echo "  Mu            "$7
     echo "  Lambda        "$8
+    echo "  Offset        "${11}
     echo ""
 
-    ./AntConfApp $3 $4 $7 $NAME $7 $8 $GS $5
+    ./AntConfApp $3 $4 $7 $NAME $7 $8 $GS $5 ${11}
    
     if [ ${10} == "yes" ]
     then
@@ -583,8 +584,8 @@ else
         LOCALGS=1
         INCGROUPSIZE="yes"
         EVALUATIONS=100000
-        MU=0
-        LAMBDA=0
+        MU=10
+        LAMBDA=50
        
         a=0
         b=300
@@ -595,8 +596,46 @@ else
 
             action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
             echo "run done"
-            MU=$((MU+20))
-            LAMBDA=$((LAMBDA+100))
+            MU=$((MU+10))
+            LAMBDA=$((LAMBDA+20))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+1))
+            STOP=$((STOP+1))
+
+        done
+
+    fi
+#=================================================================================================#
+# Perform the new Variant with the reduced model with all matrices availiable 
+#=================================================================================================#
+    if (( $SET == 19 ))
+    then
+        TRIALS=10
+        VARIANT=7
+        START=19000
+        STOP=19001
+        GROUPSIZE=1
+        LOCALGS=1
+        INCGROUPSIZE="no"
+        EVALUATIONS=100000
+        MU=100
+        LAMBDA=500
+       
+        a=0
+        b=35
+       
+        OFFSET=0
+
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE $OFFSET
+            echo "run done"
+            OFFSET=$((OFFSET+1))
+            #MU=$((MU+10))
+            #LAMBDA=$((LAMBDA+20))
         
             #GROUPSIZE=$((GROUPSIZE+1))
             START=$((START+1))
