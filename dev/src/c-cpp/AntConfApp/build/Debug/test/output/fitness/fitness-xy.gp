@@ -233,8 +233,8 @@ set dgrid3d 40, 40, 1
 set contour base
 
 #set palette negative 
-set xrange[-2:2]
-set yrange[-2:2]
+set xrange[-10:10]
+set yrange[-10:10]
 
 set grid front
 
