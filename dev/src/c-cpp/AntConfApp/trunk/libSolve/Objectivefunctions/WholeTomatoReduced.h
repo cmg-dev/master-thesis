@@ -48,12 +48,7 @@ namespace PRPSEvolution {
 				x.resize(numberOfVariables());
 
 				for (unsigned int i = 0; i < 3; i++) {
-					x(i) = Rng::uni(-2, 2);
-// 					x(i) = Rng::uni(-10, 10);
-				}
-				for (unsigned int i = 3; i < x.size(); i++) {
-					x(i) = std::round( Rng::uni(10, 30) );
-
+					x(i) = Rng::uni(-1, 1);
 				}
 
 			}
@@ -155,6 +150,7 @@ namespace PRPSEvolution {
 			bool Lambda_isSet = false;
 			
 			bool continuesWavenumbers = true;
+// 			bool continuesWavenumbers = false;
 
 			std::array<Doub,8> Wavenumbers;
 			

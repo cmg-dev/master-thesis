@@ -310,8 +310,9 @@ namespace PRPSEvolution {
 				}
 
 				auto refAntCoords = coords_k0[ std::stoi( names[0].substr(0,1)) ];
-// 				for( auto p: refAntCoords ) {
-				std::cout << refAntCoords[0] << " "
+	
+				std::cout << "Searching for: "
+					<< refAntCoords[0] << " "
 					<< refAntCoords[1] << " "
 					<< refAntCoords[2]
 					<< std::endl;
@@ -352,14 +353,17 @@ namespace PRPSEvolution {
 				/* print the wavenumbers */
 				auto p = cma.solution().point;
 
+				std::cout << "Found Points: ";
 				for( auto _p: p )
 					std::cout << _p << " ";
 
 				std::cout << std::endl;
 
 				auto wave = model.calcWavenumbers2( p[0], p[1], p[2] );
+				
+				std::cout << "Found Wavenumbers: ";
 				for( auto wn: wave )
-					std::cout << wn << " ";
+					std::cout << wn << " | ";
 				
 				std::cout << std::endl << std::endl;
 				

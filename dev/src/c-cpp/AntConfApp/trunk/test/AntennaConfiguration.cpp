@@ -21,9 +21,14 @@
 #define _USE_SHARK_3_0_
 #define _Write_Result
 #define _DROP_BAD_
-// #define _PREPROCESS_OUTPUT
+#define _PREPROCESS_OUTPUT
 #define _REFINE_SELECTION
+
+/* control the preprocessing */
 #define _PP_FORM_GROUPS
+// #define _PP_FORM_UNIQUE_SELECTION
+// #define _PP_FORM_SUBGROUP
+
 #define _USE_IDEAL_INPUT
 #define _Write_SOLUTION_STATISTICS
 #define _WT_CONSTRAIN_HARD_
@@ -81,6 +86,7 @@ int			MU					= 0;
 int			LAMBDA				= 0;
 int			UseNMats			= 1;
 int			EVALUATIONS			= DEFAULT_MAX_EVALUATIONS;
+int			MatOffset			= 0;
 
 bool		DROPBAD				= false;
 bool		IDEAL_DATA			= false;
@@ -126,9 +132,12 @@ int main ( int argc, char *argv[ ] ) {
 		if(atoi( argv[8] ) > 0)
 			EVALUATIONS = atoi(argv[8]);
 
+// 	if( argc > 9 )
+// 		IDEAL_DATA = true;
+
 	if( argc > 9 )
-		IDEAL_DATA = true;
-	
+		MatOffset = atoi(argv[9]);
+
 	/**********************************************************************/
 	PRPSEvolution::System sys;
 
@@ -152,7 +161,7 @@ int main ( int argc, char *argv[ ] ) {
 												PA.d_k0_mat,
 												PRPSEvolution::NormalizationMethods::Ideal,
 												UseNMats,
-												0,
+												MatOffset,
 												sys.constants.lambda,
 												0
   												);

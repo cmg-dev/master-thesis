@@ -90,16 +90,16 @@ namespace PRPSEvolution {
 			double prod_Ax[3] = {0.,0.,0.};
 			double x_[10];
 
-			x_[0]=x[0];
-			x_[1]=x[1];
-			x_[2]=x[2];
-			x_[3]= (x[3]*x[3])-(x[4]*x[4]);
-			x_[4]= (x[3]*x[3])-(x[5]*x[5]);
-			x_[5]= (x[3]*x[3])-(x[6]*x[6]);
-			x_[6]=x[3];
-			x_[7]=x[4];
-			x_[8]=x[5];
-			x_[9]=x[6];
+			x_[0] = x[0];
+			x_[1] = x[1];
+			x_[2] = x[2];
+			x_[3] = (x[3]*x[3])-(x[4]*x[4]);
+			x_[4] = (x[3]*x[3])-(x[5]*x[5]);
+			x_[5] = (x[3]*x[3])-(x[6]*x[6]);
+			x_[6] = x[3];
+			x_[7] = x[4];
+			x_[8] = x[5];
+			x_[9] = x[6];
 
 			/* multiply the matrix with the vector */
 			for( int i = 0; i < A.nrows(); i++ ) {
@@ -120,12 +120,8 @@ namespace PRPSEvolution {
 		inline bool WholeTomatoReduced::constrains(const double* x) const
 		{
 #ifdef _WT_CONSTRAIN_HARD_
-			for( int i = 3; i < m_numberOfVariables; i++)
-				if( x[i] < 0. )
-					return false;
-
 			for( int i = 0; i < 3; i++)
-				if( x[i] > 2. || x[i] < -2. )
+				if( x[i] > 5. || x[i] < -5. )
 					return false;
 
 // 			for( int i = 0; i < 3; i++)
