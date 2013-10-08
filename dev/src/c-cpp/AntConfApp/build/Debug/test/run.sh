@@ -618,9 +618,9 @@ else
         GROUPSIZE=1
         LOCALGS=1
         INCGROUPSIZE="no"
-        EVALUATIONS=100000
-        MU=100
-        LAMBDA=500
+        EVALUATIONS=10000
+        MU=0
+        LAMBDA=0
        
         a=0
         b=35
