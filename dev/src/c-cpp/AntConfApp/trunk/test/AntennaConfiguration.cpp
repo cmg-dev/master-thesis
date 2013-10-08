@@ -21,7 +21,7 @@
 #define _USE_SHARK_3_0_
 #define _Write_Result
 #define _DROP_BAD_
-#define _PREPROCESS_OUTPUT
+// #define _PREPROCESS_OUTPUT
 #define _REFINE_SELECTION
 
 /* control the preprocessing */
@@ -681,7 +681,7 @@ int main ( int argc, char *argv[ ] ) {
 			s << "output/mkII/" << FILENAME << "." << j;
 
 			process.setAntennaCoords( PC.AntennaCoordinates );
-
+// 			process.setAntennaCoords( PC.c_k0 );
 			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
 
 				process.setOutputFilePathBase( s.str() );
@@ -835,8 +835,8 @@ int main ( int argc, char *argv[ ] ) {
 
 			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
 
-			process.setAntennaCoords( PC.c_k0 );
-
+// 			process.setAntennaCoords( PC.c_k0 );
+			process.setAntennaCoords( PC.AntennaCoordinates );
 			/* calc the fitness of the model */
 			process.calcFitnessMkIIReduced( i, sys.constants.lambda  );
 			

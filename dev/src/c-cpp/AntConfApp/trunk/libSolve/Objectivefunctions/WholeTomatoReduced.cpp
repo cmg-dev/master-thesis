@@ -13,7 +13,7 @@ namespace PRPSEvolution {
 	namespace Models {
 		using namespace shark;
 
-		double WholeTomatoReduced::eval(const SearchPointType &p) const
+		double WholeTomatoReduced::eval( const SearchPointType &p ) const
 		{
 			m_evaluationCounter++;
 
@@ -34,6 +34,8 @@ namespace PRPSEvolution {
 // 			if( As.size() == 1 )
 // 				doRecombination = false;
 
+			double pan = panalty(x);
+			
 			for( int i = 0; i < As.size(); i++ ) {
 				auto idx = idxs[i];
 
@@ -54,8 +56,12 @@ namespace PRPSEvolution {
 
 				}
 
-				if( !constrains(x) )
-					return 10000;
+				double pan = panalty(x);
+
+// 				std::cout << "panalty: " << pan ;
+				
+// 				if( !constrains(x) )
+// 					return 10000;
 
 				/* get a solution for all matrices in this group */
 				res.push_back( this->reduced( As[i], x, bs[i] ) );
@@ -80,7 +86,7 @@ namespace PRPSEvolution {
 			/* return median value */
 		//  			auto ret = res[ (int)res.size()/2 ];
 
-			return ret;
+			return ret + pan ;
 
 		}
 
@@ -118,7 +124,7 @@ namespace PRPSEvolution {
 		}
 
 		inline bool WholeTomatoReduced::constrains(const double* x) const
-		{
+		{ 
 #ifdef _WT_CONSTRAIN_HARD_
 			for( int i = 0; i < 3; i++)
 				if( x[i] > 5. || x[i] < -5. )
@@ -136,6 +142,33 @@ namespace PRPSEvolution {
 
 		}
 
+		inline double WholeTomatoReduced::panalty(const double* x) const
+		{
+			double panalty = 0.0;
+
+			for( int i = 0; i < 3; i++) {
+				if( x[i] >= 3. || x[i] <= -3. ) {
+// 					std::cout << "applying panalty";
+					for( int j = 0; j < 3; j++) {
+						panalty += std::pow( x[j], 2 );
+					}
+// 					panalty = std::sqrt( panalty );
+					break;
+				}
+			}
+
+// 			for( int i = 0; i < 3; i++)
+// 				if( x[i] < 1. || x[i] > -1. )
+// 					return false;
+
+// 			auto v = std::sqrt( x[0]*x[0] + x[1]*x[1] + x[2]*x[2] );
+// 			if( (double) v > 6. )
+// 				return false;
+
+			return panalty;
+
+		}
+		
 		bool printYN = false;
 		inline std::array<double, 8> WholeTomatoReduced::calcWavenumbers( const double *x ) const
 		{

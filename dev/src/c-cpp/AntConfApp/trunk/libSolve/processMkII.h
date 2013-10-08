@@ -316,7 +316,12 @@ namespace PRPSEvolution {
 					<< refAntCoords[1] << " "
 					<< refAntCoords[2]
 					<< std::endl;
-				
+
+				std::array<std::array<double,3>,5> lastfive;
+
+				int i = 0;
+				double test = .0;
+// 				bool test = true;
 				/* solve.. */
 				do {
 					cma.step( model );
@@ -324,12 +329,6 @@ namespace PRPSEvolution {
 					auto v = p[0]*p[0] + p[1]*p[1] + p[2]*p[2];
 					v = std::sqrt(v);
 
-					
-					
-// #ifdef _CoordTransform
-					/* get the coords of the ref antenna */
-// 					auto refAntCoords = coords_k0[ std::stoi( names[0].substr(0,1)) ];
-// #endif
 					f << model.evaluationCounter() << " "
 							<< cma.solution().value << " "
 							<< cma.solution().point << " "
@@ -341,6 +340,27 @@ namespace PRPSEvolution {
 							<< p[2]+refAntCoords[2] << " "
 							<< std::endl;
 
+
+					lastfive[i][0] = p[0];
+					lastfive[i][1] = p[1];
+					lastfive[i][2] = p[2];
+					i++;
+					
+					test = .0;
+					
+					for( int j = 0; j < 5; j++ ) {
+						test += std::pow( lastfive[j][0] - p[0],2);
+						test += std::pow( lastfive[j][1] - p[1],2);
+						test += std::pow( lastfive[j][2] - p[2],2);
+
+					}
+// 					std::cout << "test = " << test << std::endl; 
+					
+					if( test < 10e-5 )
+						break;
+
+					if( i >= 5 )
+						i=0;
 // 					for( auto p: cma.solution().point ) {
 // 						std::cout << p << " " ;
 // 					}
@@ -350,6 +370,9 @@ namespace PRPSEvolution {
 				} while( cma.solution().value > epsilon
 					&& model.evaluationCounter() < maxEvaluations );
 
+				std::cout << "Fitness: "<< cma.solution().value << std::endl;
+				
+				std::cout << "Sigma: " << cma.sigma() << std::endl;
 				/* print the wavenumbers */
 				auto p = cma.solution().point;
 

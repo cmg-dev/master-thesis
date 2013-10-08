@@ -150,7 +150,7 @@ namespace PRPSEvolution {
 			bool Lambda_isSet = false;
 			
 			bool continuesWavenumbers = true;
-// 			bool continuesWavenumbers = false;
+// 			bool continuesWavenumbers = /*false*/;
 
 			std::array<Doub,8> Wavenumbers;
 			
@@ -302,6 +302,7 @@ namespace PRPSEvolution {
 			/** */
 			inline std::array<double, 8> calcWavenumbers( const double *x ) const;
 
+			inline double panalty(const double* x) const;
 			
 		};
 
