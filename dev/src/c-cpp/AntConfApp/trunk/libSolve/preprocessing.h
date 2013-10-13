@@ -290,6 +290,9 @@ namespace PRPSEvolution {
 		 * 				the euklidean distances between the Antennas
 		 * @param[in] finalAntAmount This field determines the Amount of Matrices
 		 * 				we want to use for a calculation
+		 * @param[in] offset
+		 * @param[in] lambda
+		 * @param[in] point
 		 * 
 		 */
 		template < std::size_t N_ANTA, std::size_t N_Configs, typename T, typename T_Measure >
@@ -343,19 +346,21 @@ namespace PRPSEvolution {
 
 			/***************************************************************/
 #ifdef _PREPROCESS_OUTPUT
-			std::cout << "PreProcessing:: Selecting names.. .. ";
+			std::cout << "PreProcessing:: Selecting names.. .. " << std::endl;
+			std::cout << "PreProcessing:: offset " << offset << std::endl;
+			std::cout << "PreProcessing:: final " << finalAntAmount << std::endl;
 #endif
 
 #ifdef _REFINE_SELECTION
-			std::vector<int> idxs = {0,2,3,4};
+			std::vector<int> idxs = {0,1,2,3};
 			int quantity = 4;
 			auto selectedNames = selectNamesForProcessing(
-															allPossibleNames,
-															idxs,
-															quantity,
-															finalAntAmount,
-															offset
-															);
+														allPossibleNames,
+														idxs,
+														quantity,
+														finalAntAmount,
+														offset
+													);
 
 #else
 			auto selectedNames = allPossibleNames;
@@ -666,25 +671,31 @@ namespace PRPSEvolution {
 				i++;
 				
 			}
-// #ifdef _PREPROCESS_OUTPUT
+
+#ifdef _PREPROCESS_OUTPUT
 // 			std::cout << "Selecting "<< quantity << " from " << indices.size() << std::endl;
-// 			std::cout << "string "<< os.str() << std::endl;
-// #endif
+			std::cout << "string "<< os.str() << std::endl;
+			std::cout << "offset "<< offset << std::endl;
+#endif
 
 			/**/
 			std::vector< std::string > select;
 
 			/* k is the n over k, k */
 			std::size_t k = quantity;
+// 			ostringstream os;
+			
+			os << "01234567";
 			std::string s_ = os.str();
 
+			int j = 0;
 			/* determine the unique permutations */
 			do {
 				/* create the name */
 				ostringstream name;
 				name << std::string( s_.begin(),s_.begin() + k );
 
-// 				std::cout << " name " << name.str() << std::endl;
+// 				std::cout << j++ << " name " << name.str() << std::endl;
 				select.push_back(name.str());
 
 			} while( Permutate::next_combination( s_.begin(), s_.begin() + k, s_.end() ) );
@@ -692,7 +703,8 @@ namespace PRPSEvolution {
 			/* finalAntAmount == 0 means Select all antenna */
 			int select_size = ( finalAntAmount == 0 ) ? select.size() : finalAntAmount;
 
-			std::cout << "select_size " << select_size << " " << select.size() << std::endl;
+			std::cout << "selecting " << select_size << " of " << names.size() << std::endl;
+			std::cout << "Uniques possible:  " << select.size() << std::endl;
 			
 // 			int select_size = select.size();
 // 			ret.push_back( names[0] );
@@ -706,7 +718,7 @@ namespace PRPSEvolution {
 			int AvailiablePerGroup = names.size()/ antennasPerGroup;
 
 			for( int j = 0; j < possibleGroups; j++ ) {
-				for( int i = 0; i < select_size; i++ ) {
+				for( int i = offset; (i-offset) < select_size; i++ ) {
 						ret.push_back( names[ (AvailiablePerGroup*j) + i] );
 // 					}
 // 					if( (i-offset) >= select_size )
@@ -716,18 +728,35 @@ namespace PRPSEvolution {
 			}
 // 			for( auto a : ret )
 // 				std::cout << " *" << a << std::endl;
-#else
+#endif
+
+#ifdef _PP_FORM_UNIQUE_SELECTION
 			/* recheck if the permutation exists in possible names, it should exist thou! */
 			i = offset;
+			int increment = 1;
 			for( auto name: names ) {
 				if( name == select[i] ) {
 					ret.push_back( name );
-					i++;
+					i+=increment;
 				}
 				if( (i-offset) >= select_size )
 					break;
 
 			}
+#endif
+
+#ifdef _PP_FORM_SUBGROUP
+			i = offset;
+			int increment = 35;
+			int l = 0;
+			
+			do {
+				ret.push_back( names[i] );
+				i+=increment;
+				l++;
+				
+			} while( l < select_size );
+
 #endif /* _PP_FORM_GROUPS */
 
 			/* we need to determine the amount of antennas finally used */
@@ -741,16 +770,18 @@ namespace PRPSEvolution {
 					if( string::npos != name.find(os1.str()[i] ) ) {
 						c++;
 						break;
+
 					}
 				}
 			}
 
 // 			std::cout << c << std::endl;
 			if( c < 4 || c > 8 ) {
-				exit(0);
+				exit( 0 );
 				/** @todo throw exception */
 
 			}
+
 #ifdef _PP_FORM_GROUPS
 			gGroupSize			= select_size;
 			antennasPerGroup	= 3;

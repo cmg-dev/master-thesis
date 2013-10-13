@@ -5,6 +5,7 @@ set(
 	solve.cpp
 	process.cpp
 	Objectivefunctions/WholeTomatoMkII.cpp
+	Objectivefunctions/WholeTomatoReduced.cpp
 	Objectivefunctions/WholeTomatoMkII_B.cpp
 	Objectivefunctions/EvolutionaryCalibration.cpp
 	processMkII.cpp

@@ -8,6 +8,7 @@
 
 #include "Objectivefunctions/EvolutionaryCalibration.h"
 #include "Objectivefunctions/WholeTomatoMkII.h"
+#include "Objectivefunctions/WholeTomatoReduced.h"
 #include "Objectivefunctions/WholeTomatoMkII_B.h"
 #include "Objectivefunctions/WholeTomatoMkI_A.h"
 #include "Objectivefunctions/WholeTomatoMkI_B.h"

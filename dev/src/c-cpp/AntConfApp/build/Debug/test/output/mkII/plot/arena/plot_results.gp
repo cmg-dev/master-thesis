@@ -11,7 +11,7 @@ set multiplot layout 4,2 rowsfirst
 set view map
 
 set autoscale 
-#set cbrange [0:.35]
+set cbrange [0:.35]
 set xrange [-1:9]
 set yrange [-1:10]
 #load '~/dev/gnuplot-colorbrewer/sequential/PuBuGn.plt
@@ -40,14 +40,14 @@ ROW3="set tmargin at screen .23; set bmargin at screen .02"
 COL0="set lmargin at screen .02; set rmargin at screen .42"
 COL1="set lmargin at screen .52; set rmargin at screen .92"
 
-D0="d=1.259"
-D1="d=1.894"
-D2="d=2.334"
-D3="d=1.661"
-D4="d=2.399"
-D5="d=1.851"
-D6="d=2.055"
-D7="d=1.574"
+D0="d=1.259; print '',d"
+D1="d=1.894; print '',d"
+D2="d=2.334; print '',d"
+D3="d=1.661; print '',d"
+D4="d=2.399; print '',d"
+D5="d=1.851; print '',d"
+D6="d=2.055; print '',d"
+D7="d=1.574; print '',d"
 
 
 F0="f=base.'_A0.dat'"
@@ -62,7 +62,7 @@ F7="f=base.'_A7.dat'"
 PLOT="splot f u 6:3:(($10>d) ? ($10-d) : (d-$10)) w image"
 
 #timing plot
-PLOT="splot f u 6:3:9 w image"
+#PLOT="splot f u 6:3:9 w image"
 #PLOT="splot f u 6:3:(($10<d) ? (1-($10/d)) : (1-(d/$10))) w image"
 #PLOT="splot f u 6:3:10 w image"
 

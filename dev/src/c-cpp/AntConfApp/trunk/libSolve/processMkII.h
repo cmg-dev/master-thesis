@@ -169,6 +169,8 @@ namespace PRPSEvolution {
 			 * 
 			 */
 			int WholeTomatoMkII( int dimension ) {
+// 				std::cout << " WholeTomatoMkII:: Start with " << f_count;
+				
 #ifdef _Write_Result
 				std::ofstream f;
 				std::ostringstream s;
@@ -258,8 +260,245 @@ namespace PRPSEvolution {
 				SOLVE(model);
 #endif
 
+				return 0;
 			}
 
+			/*=============================================================*/
+			/**
+			 *
+			 */
+			int WholeTomatoReduced( double lambda ) {
+// 				std::cout << " WholeTomatoMkII:: Start with " << f_count;
+
+#ifdef _Write_Result
+				std::ofstream f;
+				std::ostringstream s;
+				if( f_path == "")
+					s << f_pathBase << "_" << f_count << ".dat";
+
+				f_path = s.str();
+
+				if( f_path != "" )
+					f.open( f_path );
+
+				if( !f.is_open() )
+					return -1;
+
+				f_path = "";
+
+				for( auto name : names )
+					f << name << " ";
+
+#endif
+				PRPSEvolution::Models::WholeTomatoReduced model;
+
+				model.setParams( A, b, names, coords_k0, lambda );
+				
+#ifdef _Write_Result
+				/* init the algorithm */
+				shark::CMA cma;
+
+				/* if we specify the Mu and Lamdba ourself */
+				if( Mu != 0 && Lambda != 0) {
+					RealVector p;
+					model.proposeStartingPoint( p );
+					cma.init(p.size(), Lambda, Mu, p, 3.0 );
+
+				} else {
+					cma.init( model );
+
+				}
+
+				auto refAntCoords = coords_k0[ std::stoi( names[0].substr(0,1)) ];
+	
+				std::cout << "Searching for: "
+					<< refAntCoords[0] << " "
+					<< refAntCoords[1] << " "
+					<< refAntCoords[2]
+					<< std::endl;
+
+				std::array<std::array<double,3>,5> lastfive;
+
+				int i = 0;
+				double test = .0;
+// 				bool test = true;
+				/* solve.. */
+				do {
+					cma.step( model );
+					auto p = cma.solution().point;
+					auto v = p[0]*p[0] + p[1]*p[1] + p[2]*p[2];
+					v = std::sqrt(v);
+
+					f << model.evaluationCounter() << " "
+							<< cma.solution().value << " "
+							<< cma.solution().point << " "
+							<< cma.sigma() << " "
+							<<  v
+							<< " "
+							<< p[0]+refAntCoords[0] << " "
+							<< p[1]+refAntCoords[1] << " "
+							<< p[2]+refAntCoords[2] << " "
+							<< std::endl;
+
+
+					lastfive[i][0] = p[0];
+					lastfive[i][1] = p[1];
+					lastfive[i][2] = p[2];
+					i++;
+					
+					test = .0;
+					
+					for( int j = 0; j < 5; j++ ) {
+						test += std::pow( lastfive[j][0] - p[0],2);
+						test += std::pow( lastfive[j][1] - p[1],2);
+						test += std::pow( lastfive[j][2] - p[2],2);
+
+					}
+// 					std::cout << "test = " << test << std::endl; 
+					
+					if( test < 10e-5 )
+						break;
+
+					if( i >= 5 )
+						i=0;
+// 					for( auto p: cma.solution().point ) {
+// 						std::cout << p << " " ;
+// 					}
+
+// 					std::cout << std::endl;
+
+				} while( cma.solution().value > epsilon
+					&& model.evaluationCounter() < maxEvaluations );
+
+				std::cout << "Fitness: "<< cma.solution().value << std::endl;
+				
+				std::cout << "Sigma: " << cma.sigma() << std::endl;
+				/* print the wavenumbers */
+				auto p = cma.solution().point;
+
+				std::cout << "Found Points: ";
+				for( auto _p: p )
+					std::cout << _p << " ";
+
+				std::cout << std::endl;
+
+				auto wave = model.calcWavenumbers2( p[0], p[1], p[2] );
+				
+				std::cout << "Found Wavenumbers: ";
+				for( auto wn: wave )
+					std::cout << wn << " | ";
+				
+				std::cout << std::endl << std::endl;
+				
+#else
+				SOLVE(model);
+				
+#endif
+
+				return 0;
+			}
+			
+			/*=============================================================*/
+			/**
+			 * Concurrent variant of the WholeTomatoMkII approach
+			 * 
+			 */
+			int cWholeTomatoMkII( int dimension, int n ) {
+
+				std::cerr << " WholeTomatoMkII:: Start with " << n;
+
+#ifdef _Write_Result
+				std::ofstream f;
+				std::ostringstream s;
+				if( f_path == "")
+					s << f_pathBase << "_" << n << ".dat";
+
+				f_path = s.str();
+
+				if( f_path != "" )
+					f.open( f_path );
+
+				if( !f.is_open() )
+					return -1;
+
+				f_path = "";
+
+				for( auto name : names )
+					f << name << " ";
+				f << dimension << std::endl;
+
+#endif
+				auto dim = Solve::ProblemDimensions::WholeTomatoMkII;
+				dim += dimension;
+				PRPSEvolution::Models::WholeTomatoMkII model( dim );
+
+				model.setNumberOfVariables( dim );
+
+				model.setParams( A, b, names );
+
+#ifdef _Write_Result
+				/* init the algorithm */
+				shark::CMA cma;
+				/* if we specify the Mu and Lamdba ourself */
+				if( Mu != 0 && Lambda != 0 ) {
+					RealVector p;
+					model.proposeStartingPoint( p );
+					cma.init( p.size(), Lambda, Mu, p, 3.0 );
+
+				} else {
+					cma.init( model );
+
+				}
+				/* print out selection of mu and lambda */
+// 				std::cout << "Mu:" << cma.mu() << " Lambda: " << cma.lambda() << std::endl;
+
+				/* solve.. */
+				do {
+					cma.step( model );
+					auto p = cma.solution().point;
+					auto v = p[0]*p[0] + p[1]*p[1] + p[2]*p[2];
+					v = std::sqrt(v);
+
+// #ifdef _CoordTransform
+					/* get the coords of the ref antenna */
+					auto refAntCoords = coords_k0[std::stoi( names[0].substr(0,1))];
+// #endif
+					f << model.evaluationCounter() << " "
+							<< cma.solution().value << " "
+							<< cma.solution().point << " "
+							<< cma.sigma() << " "
+							<<  v
+// #ifdef _CoordTransform
+							<< " "
+							<< p[0]+refAntCoords[0] << " "
+							<< p[1]+refAntCoords[1] << " "
+							<< p[2]+refAntCoords[2] << " "
+// #endif
+
+	// 									<< cma.solution().value * 1e10 << " "
+	// 									<< cma.solution().value / epsilon << " "
+	// 									<< (1e-20) * epsilon / cma.solution().value << ""
+
+							<< std::endl;
+/*
+					for( auto p: cma.solution().point ) {
+						std::cout << p << " " ;
+					}
+
+					std::cout << std::endl;*/
+
+// 					if( cma.solution().value == 10000 );
+// 						break;
+
+				} while(cma.solution().value > epsilon
+					&& model.evaluationCounter() < maxEvaluations);
+#else
+				SOLVE(model);
+#endif
+
+				return 0;
+			}
+			
 			/*=============================================================*/
 			/**
 			 *
@@ -472,6 +711,7 @@ namespace PRPSEvolution {
 				
 			}
 
+			/*=============================================================*/
 			/**
 			 * 
 			 */
@@ -493,6 +733,7 @@ namespace PRPSEvolution {
 
 				f_path = "";
 #endif
+
 				// Adjust the floating-point format to scientific and increase output precision.
 				std::cout.setf( std::ios_base::scientific );
 				std::cout.precision( 10 );
@@ -565,11 +806,12 @@ namespace PRPSEvolution {
 
 			}
 
+			/*=============================================================*/
 			void calcFitnessMkII ( int offset )
 			{
 				PRPSEvolution::Models::WholeTomatoMkII model( 7 );
 				model.setNumberOfVariables( 7 );
-//
+				
 				model.setParams( A, b, names );
 
 				Support::FitnessPlaneCalculator<7> fpc( offset );
@@ -579,44 +821,88 @@ namespace PRPSEvolution {
 
 				
 			}
+
+			/*=============================================================*/
+			void calcFitnessMkIIReduced ( int offset, const double _lambda )
+			{
+				PRPSEvolution::Models::WholeTomatoReduced model;
+
+				model.setParams( A, b, names, coords_k0, _lambda );
+				
+// 				PRPSEvolution::Models::WholeTomatoMkII model( 7 );
+// 				model.setNumberOfVariables( 7 );
+				
+// 				model.setParams( A, b, names );
+
+				Support::FitnessPlaneCalculator<3> fpc( offset );
+
+				std::cout << " calculate " << std::endl;
+				fpc.calculate( model );
+
+
+			}
 			
+			/*=============================================================*/
 			/**
 			 * 
 			 */
 			void setEpsilon( double Value) { epsilon = Value; }
 
+			/*=============================================================*/
 			/**
 			 * 
 			 */
 			void setOutputFilePath( std::string file ) { f_path = file; }
 
 			void setOutputFilePathBase( std::string file ) { f_pathBase = file; }
-			
+
+			/*=============================================================*/
 			/**
 			 * 
 			 */
 			void setPrintLastOnly( void ) { printLastSolutionOnly = !printLastSolutionOnly; }
 
+			/*=============================================================*/
 			/**
 			 * increment the File counter 
 			 */
 			void incrementFileCounter( void ) { f_count++; }
-			
+
+			/*=============================================================*/
+			/**
+			 * increment the File counter
+			 */
+			void setFileCounter( int count ) { f_count=count; }
+
+			/*=============================================================*/
 			void resetFileCounter() { f_count = 0; }
 
+			/*=============================================================*/
 			void toggleVariant() { VariantA = !VariantA; }
 
+			/*=============================================================*/
 			/**
 			 * @param[in] evaluations The new value for the evaluations
 			 * @todo remove typo
 			 */
 			void setMaxEvauations( const int evaluations) { maxEvaluations = evaluations; }
 
+			/*=============================================================*/
 			void setAntennaCoords( std::array< NRvector< Doub >, 8 > coords )
 			{
 				for( auto c : coords ) {
 					coords_k0.push_back( c );
+					
 				}
+
+// 				int i = 0;
+// 				for( auto vec : coords_k0 ) {
+// 					std::cout << vec[0] << " "
+// 						<< vec[1] << " "
+// 						<< vec[2] << std::endl;
+// 
+// 				}
+
 			}
 			
 		private:

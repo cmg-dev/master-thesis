@@ -15,6 +15,7 @@ OPTIONS:
     -h      Show this message
     -s      Start index of the archive
     -e      End index of the archive
+    -r      Remove only
 EOF
 }
 

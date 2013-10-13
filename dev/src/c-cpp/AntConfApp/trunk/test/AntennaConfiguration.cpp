@@ -23,7 +23,12 @@
 #define _DROP_BAD_
 // #define _PREPROCESS_OUTPUT
 #define _REFINE_SELECTION
+
+/* control the preprocessing */
 #define _PP_FORM_GROUPS
+// #define _PP_FORM_UNIQUE_SELECTION
+// #define _PP_FORM_SUBGROUP
+
 #define _USE_IDEAL_INPUT
 #define _Write_SOLUTION_STATISTICS
 #define _WT_CONSTRAIN_HARD_
@@ -61,6 +66,7 @@
 	<< " [VARIANT_SW] [NO_OF_SOLUTIONS] [DROPBAD] [FILENAME] [MU] [Lambda] [UseNMats] [DEFAULT_MAX_EVALUATIONS]"<< std::endl; \
 	exit(-1); 																\
 	}
+
 // #include <EALib/ChromosomeCMA.h>
 
 const int EXPECTED = 9;
@@ -80,6 +86,7 @@ int			MU					= 0;
 int			LAMBDA				= 0;
 int			UseNMats			= 1;
 int			EVALUATIONS			= DEFAULT_MAX_EVALUATIONS;
+int			MatOffset			= 0;
 
 bool		DROPBAD				= false;
 bool		IDEAL_DATA			= false;
@@ -125,9 +132,12 @@ int main ( int argc, char *argv[ ] ) {
 		if(atoi( argv[8] ) > 0)
 			EVALUATIONS = atoi(argv[8]);
 
+// 	if( argc > 9 )
+// 		IDEAL_DATA = true;
+
 	if( argc > 9 )
-		IDEAL_DATA = true;
-	
+		MatOffset = atoi(argv[9]);
+
 	/**********************************************************************/
 	PRPSEvolution::System sys;
 
@@ -151,7 +161,7 @@ int main ( int argc, char *argv[ ] ) {
 												PA.d_k0_mat,
 												PRPSEvolution::NormalizationMethods::Ideal,
 												UseNMats,
-												0,
+												MatOffset,
 												sys.constants.lambda,
 												0
   												);
@@ -407,7 +417,7 @@ int main ( int argc, char *argv[ ] ) {
 	}
 
 	/**********************************************************************/
-	/* This will solve for groups of matrices								 */
+	/* This will solve for groups of matrices							  */	
 	if( VARIANT_SW == 4 ) {
 		auto As 		= preprocess.matGroups;
 		auto vs			= preprocess.vectorGroups;
@@ -422,7 +432,7 @@ int main ( int argc, char *argv[ ] ) {
 			std::cout << "        :: Error" << std::endl;
 		
 		for( int j = 0; j < As.size(); j++ ) {
-			t_00			= steady_clock::now();
+			t_00		= steady_clock::now();
 			auto A		= As[ j ];
 			auto v		= vs[ j ];
 			auto name	= names[ j ];
@@ -547,6 +557,169 @@ int main ( int argc, char *argv[ ] ) {
 		return 0;
 
 	}
+
+	/**********************************************************************/
+	/* This variant will use mutlithreading to improve performance        */
+	/**********************************************************************/
+	std::vector<std::future<int>> results;
+	
+	if( VARIANT_SW == 6 ) {
+		auto As 		= preprocess.matGroups;
+		auto vs			= preprocess.vectorGroups;
+		auto names		= preprocess.nameGroups;
+
+		std::cout << "Mark II :: Solving for WholeTomato Mark II Variant 4" << std::endl;
+		if(  As.size() == 0 )
+			std::cout << "        :: Error" << std::endl;
+		if(  vs.size() == 0 )
+			std::cout << "        :: Error" << std::endl;
+		if(  names.size() == 0 )
+			std::cout << "        :: Error" << std::endl;
+
+		for( int j = 0; j < As.size(); j++ ) {
+			t_00		= steady_clock::now();
+			auto A		= As[ j ];
+			auto v		= vs[ j ];
+			auto name	= names[ j ];
+
+			meanTime = 0;
+
+// 			t_0 = steady_clock::now();
+
+			std::ostringstream s;
+			s << "output/mkII/" << FILENAME << "." << j;
+			std::cout << "        :: Start1" << std::endl;
+
+			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+
+			int dimension = preprocess.antennasPerGroup;
+			process.setAntennaCoords( PC.c_k0 );
+
+			/* set max evaluations */
+			process.setMaxEvauations( EVALUATIONS );
+
+			process.setOutputFilePathBase( s.str() );
+
+			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+				std::cout << "        :: Start2" << std::endl;
+				results.push_back( std::async( std::launch::async, &Solve::Process_MkII::cWholeTomatoMkII, &process, dimension, i) );
+
+				for( auto res = results.begin(); res != results.end(); ++res ) {
+				std::cout << "        :: Start3 " << i++ << std::endl;
+// 				while(res->wait_for(chrono::seconds(0)) != future_status::ready );
+				auto r = res->get();
+			}
+			
+			}
+			
+			int i = 0;
+			/* wait for all processes to finish */
+			
+
+// 			while(1);
+// 			auto res = results.begin();
+// // 			while(res->wait_for(chrono::seconds(0)) != future_status::ready );
+// 			auto r = foo.get();
+// 			std::cout << "        :: Start3 says " << r << std::endl;
+			
+			std::cout << "        :: Start3" << std::endl;
+			t_1 = steady_clock::now();
+			
+			std::cout << j << "\tMark II :: "
+					<< duration_cast<milliseconds>(t_1-t_00).count()
+					<< " ms for "
+					<< NO_OF_SOLUTIONS
+					<< " Solutions"
+					<< std::endl;
+
+			t_1 = steady_clock::now();
+
+			int total = duration_cast<milliseconds>(t_1-t_000).count();
+			std::cout << j <<"\tMark II :: total " << total << " ms" << std::endl;
+			std::cout << j <<"\tMark II :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
+
+#ifdef _Write_SOLUTION_STATISTICS
+			f << total << " " << meanTime << " " << meanTime/NO_OF_SOLUTIONS << " " << NO_OF_SOLUTIONS << std::endl;
+			f << std::endl;
+#endif
+		}
+
+		if( f.is_open() )
+			f.close();
+
+		return 0;
+
+	}
+
+	/**********************************************************************/
+	/* We use the reduced model here */
+	if( VARIANT_SW == 7 ) {
+		auto As 		= preprocess.matGroups;
+		auto vs			= preprocess.vectorGroups;
+		auto names		= preprocess.nameGroups;
+
+		std::cout << "Reduced :: Solving for WholeTomatoReduced " << std::endl;
+		if(  As.size() == 0 )
+			std::cout << "        :: Error" << std::endl;
+		if(  vs.size() == 0 )
+			std::cout << "        :: Error" << std::endl;
+		if(  names.size() == 0 )
+			std::cout << "        :: Error" << std::endl;
+
+		for( int j = 0; j < As.size(); j++ ) {
+			t_00		= steady_clock::now();
+			auto A		= As[ j ];
+			auto v		= vs[ j ];
+			auto name	= names[ j ];
+
+			meanTime = 0;
+
+			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+			process.setMaxEvauations( EVALUATIONS );
+
+			std::ostringstream s;
+			s << "output/mkII/" << FILENAME << "." << j;
+
+			process.setAntennaCoords( PC.AntennaCoordinates );
+// 			process.setAntennaCoords( PC.c_k0 );
+			for( int i = 0; i < NO_OF_SOLUTIONS; i++ ) {
+
+				process.setOutputFilePathBase( s.str() );
+
+				t_0 = steady_clock::now();
+				process.WholeTomatoReduced( sys.constants.lambda );
+
+				process.incrementFileCounter();
+				t_1 = steady_clock::now();
+
+				meanTime += duration_cast<milliseconds>(t_1-t_0).count();
+
+			}
+			std::cout << j << "\tReduced :: "
+					<< duration_cast<milliseconds>(t_1-t_00).count()
+					<< " ms for "
+					<< NO_OF_SOLUTIONS
+					<< " Solutions"
+					<< std::endl;
+
+			t_1 = steady_clock::now();
+
+			int total = duration_cast<milliseconds>(t_1-t_000).count();
+			std::cout << j <<"\tReduced :: total " << total << " ms" << std::endl;
+			std::cout << j <<"\tReduced :: " << meanTime/NO_OF_SOLUTIONS << " ms / solution" << std::endl;
+
+#ifdef _Write_SOLUTION_STATISTICS
+			f << total << " " << meanTime << " " << meanTime/NO_OF_SOLUTIONS << " " << NO_OF_SOLUTIONS << std::endl;
+			f << std::endl;
+#endif
+		}
+
+		if( f.is_open() )
+			f.close();
+
+		return 0;
+
+	}
 	
 	/**********************************************************************/
 	/* the calibration variant */
@@ -644,7 +817,47 @@ int main ( int argc, char *argv[ ] ) {
 		return 0;
 
 	}
+	
+	/**********************************************************************/
+	/* Calculate the fitness plane for one Antenna */
+	if( VARIANT_SW == 101 ) {
+		std::cout << "Mark II :: Calculating the fitness of the reduced model" << std::endl;
 
+		auto As 		= preprocess.matGroups;
+		auto vs			= preprocess.vectorGroups;
+		auto names		= preprocess.nameGroups;
+
+		meanTime = 0;
+		for( int i = 0; i < 8; i++ ) {
+			auto A		= As[ i ];
+			auto v		= vs[ i ];
+			auto name	= names[ i ];
+
+			Solve::Process_MkII		process( A, v, name, MU, LAMBDA );
+
+// 			process.setAntennaCoords( PC.c_k0 );
+			process.setAntennaCoords( PC.AntennaCoordinates );
+			/* calc the fitness of the model */
+			process.calcFitnessMkIIReduced( i, sys.constants.lambda  );
+			
+			meanTime += duration_cast<milliseconds>(t_1-t_0).count();
+
+		}
+		std::cout << "\tFitnes plane calculated:: done" << std::endl;
+
+		int total = duration_cast<milliseconds>(t_1-t_000).count();
+
+#ifdef _Write_SOLUTION_STATISTICS
+		f << total << " " << meanTime << " " << meanTime/8 << " " << 8 << std::endl;
+		f << std::endl;
+#endif
+
+		if( f.is_open() )
+			f.close();
+
+		return 0;
+
+	}
 	
 #else
 	Solve::Process process;

@@ -31,7 +31,7 @@ namespace PRPSEvolution {
 			/**
 			 * This is the array where the result is stored
 			 */
-			std::array< NRvector< T >, N_ANTA>				AntennaCoordinates;
+			std::array< NRvector< T >, N_ANTA>			AntennaCoordinates;
 			Positioning::CoordContainer< N_CALPOS, T >	CalibrationPointsCoordinates;
 
 			/* store the distances for every calibration point belonging to every antenna */
@@ -100,6 +100,7 @@ namespace PRPSEvolution {
 
 				a[i][2] = CalibrationPointsCoordinates.z_[ i + 1 ]-
 							CalibrationPointsCoordinates.z_[ 0 ];
+							
 			}
 
 			return a;
@@ -117,9 +118,11 @@ namespace PRPSEvolution {
 			std::array< T, MAT_ROWS > d_k0;
 			
 			for( int i = 0; i < d_k0.size(); i++ ) {
-				d_k0[ i ] = (xyz.x_[i+1]-xyz.x_[0])
-							+ (xyz.y_[i+1]-xyz.y_[0])
-							+ (xyz.z_[i+1]-xyz.z_[0]);
+				d_k0[ i ] = std::pow( xyz.x_[i+1]-xyz.x_[0], 2 )
+							+ std::pow( xyz.y_[i+1]-xyz.y_[0], 2 )
+							+ std::pow( xyz.z_[i+1]-xyz.z_[0], 2 );
+
+				d_k0[ i ] = std::sqrt( d_k0[ i ] );
 
 			}
 			for( int i = 0; i < c.size(); i++ ) {
@@ -133,31 +136,34 @@ namespace PRPSEvolution {
 		}
 
 		/**
-		 * @todo comment
-		 * @todo clean up
+		 * 
 		 */
 		template < std::size_t N_ANTA, std::size_t N_CALPOS, typename T >
 		std::array< NRvector< T >, N_ANTA > performCalibration<N_ANTA,N_CALPOS,T>::SolveCalibration()
 		{
+			/* load svd solver with matrix of calibration setup A */
 			SVD svd( A );
+			
+			/* create an array for every antenna for the result */
 			std:array< NRvector< T >, N_ANTA > x;
 
 			for( auto& x_ : x ) x_.assign( A.nrows(), 0.0 );
 
 			int i = 0;
+
+			/* calculate the calibration for all antennas */
 			for( auto& b:c_k0 ) {
 				svd.solve( b, x[i++] );
-// 				AntennaCoordinates[ i++ ] = x;
+				
 			}
 
 			return x;
-// 			throw( "Not implemented" );
+			
 		}
 
 		/******************************************************************/
 		/* Constructors ***************************************************/
 		/******************************************************************/
-		
 		template < std::size_t N_ANTA, std::size_t N_CALPOS, typename T >
 		performCalibration<N_ANTA,N_CALPOS,T>::performCalibration ()
 		{
@@ -174,6 +180,7 @@ namespace PRPSEvolution {
 			A = calcGeometricalMatrix();
 
 			int i = 0;
+			
 			/* fill the vactor c_k0 */
 			for( auto& c: c_k0 ) {
 				c = calcDistanceVector( i++ );

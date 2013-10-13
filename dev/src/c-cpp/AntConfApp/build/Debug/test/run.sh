@@ -4,7 +4,7 @@
 #
 
 ##################################################################################
-# [Start] [Stop] [Variant] [Trials] [Evaluations] [DropBad] [Mu] [Lambda] [StartGroupSize] [IncrementGroupSize]
+# [Start] [Stop] [Variant] [Trials] [Evaluations] [DropBad] [Mu] [Lambda] [StartGroupSize] [IncrementGroupSize] [Offset]
 function action {
 
 GS=$9
@@ -22,9 +22,10 @@ do
     echo "  Evaluations   "$5
     echo "  Mu            "$7
     echo "  Lambda        "$8
+    echo "  Offset        "${11}
     echo ""
 
-    ./AntConfApp $3 $4 $7 $NAME $7 $8 $GS $5
+    ./AntConfApp $3 $4 $7 $NAME $7 $8 $GS $5 ${11}
    
     if [ ${10} == "yes" ]
     then
@@ -406,16 +407,16 @@ else
 #=================================================================================================#
     if (( $SET == 13 ))
     then
-        TRIALS=50
+        TRIALS=30
         VARIANT=4
-        START=2000
-        STOP=2010
-        GROUPSIZE=1
+        START=2050
+        STOP=2060
+        GROUPSIZE=20
         LOCALGS=1
         INCGROUPSIZE="yes"
         EVALUATIONS=100000
-        MU=30
-        LAMBDA=100
+        MU=35
+        LAMBDA=350
        
         a=0
         b=30
@@ -470,6 +471,180 @@ else
 
     fi
 #=================================================================================================#
+    if (( $SET == 15 ))
+    then
+        TRIALS=5
+        VARIANT=6
+        START=15000
+        STOP=15010
+        GROUPSIZE=1
+        LOCALGS=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=100000
+        MU=30
+        LAMBDA=100
+       
+        a=0
+        b=30
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            echo "run done"
+            MU=$((MU+10))
+            LAMBDA=$((LAMBDA+50))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+10))
+            STOP=$((STOP+10))
+
+        done
+
+    fi
+#=================================================================================================#
+    if (( $SET == 16 ))
+    then
+        TRIALS=10
+        VARIANT=6
+        START=16000
+        STOP=16001
+        GROUPSIZE=5
+        LOCALGS=5
+        INCGROUPSIZE="yes"
+        EVALUATIONS=100000
+        MU=10
+        LAMBDA=50
+       
+        a=0
+        b=300
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            echo "run done"
+            MU=$((MU+20))
+            LAMBDA=$((LAMBDA+100))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+1))
+            STOP=$((STOP+1))
+
+        done
+
+    fi
+#=================================================================================================#
+# Perform the new Variant with the reduced model. 
+#=================================================================================================#
+    if (( $SET == 17 ))
+    then
+        TRIALS=10
+        VARIANT=7
+        START=17000
+        STOP=17010
+        GROUPSIZE=1
+        LOCALGS=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=100000
+        MU=0
+        LAMBDA=0
+       
+        a=0
+        b=300
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            echo "run done"
+            MU=$((MU+20))
+            LAMBDA=$((LAMBDA+100))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+10))
+            STOP=$((STOP+10))
+
+        done
+
+    fi
+#=================================================================================================#
+# Perform the new Variant with the reduced model. 
+#=================================================================================================#
+    if (( $SET == 18 ))
+    then
+        TRIALS=10
+        VARIANT=7
+        START=18000
+        STOP=18001
+        GROUPSIZE=1
+        LOCALGS=1
+        INCGROUPSIZE="yes"
+        EVALUATIONS=100000
+        MU=10
+        LAMBDA=50
+       
+        a=0
+        b=300
+       
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+            echo "run done"
+            MU=$((MU+10))
+            LAMBDA=$((LAMBDA+20))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+1))
+            STOP=$((STOP+1))
+
+        done
+
+    fi
+#=================================================================================================#
+# Perform the new Variant with the reduced model with all matrices availiable 
+#=================================================================================================#
+    if (( $SET == 19 ))
+    then
+        TRIALS=10
+        VARIANT=7
+        START=19000
+        STOP=19001
+        GROUPSIZE=1
+        LOCALGS=1
+        INCGROUPSIZE="no"
+        EVALUATIONS=10000
+        MU=0
+        LAMBDA=0
+       
+        a=0
+        b=35
+       
+        OFFSET=0
+
+        for (( j=i$a ; j < $b ; j++ )) 
+        do 
+            GROUPSIZE=$LOCALGS
+
+            action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE $OFFSET
+            echo "run done"
+            OFFSET=$((OFFSET+1))
+            #MU=$((MU+10))
+            #LAMBDA=$((LAMBDA+20))
+        
+            #GROUPSIZE=$((GROUPSIZE+1))
+            START=$((START+1))
+            STOP=$((STOP+1))
+
+        done
+
+    fi
+#=================================================================================================#
     #test the algorithm against the calibration
     if (( $SET == 100 ))
     then
@@ -484,13 +659,29 @@ else
 
     fi
 #=================================================================================================#
-    #calculated the fitnes plane of given model
+# calculated the fitnes plane of given model according to given input set
+#=================================================================================================#
     if (( $SET == 200 ))
     then
         TRIALS=1
         VARIANT=100
         START=1000
         STOP=1001
+        GROUPSIZE=1
+        INCGROUPSIZE="no"
+        EVALUATIONS=0
+        action $START $STOP $VARIANT $TRIALS $EVALUATIONS $DROPBAD $MU $LAMBDA $GROUPSIZE $INCGROUPSIZE
+
+    fi
+#=================================================================================================#
+# calculated the fitnes plane of the reduced model
+#=================================================================================================#
+    if (( $SET == 201 ))
+    then
+        TRIALS=1
+        VARIANT=101
+        START=2000
+        STOP=2001
         GROUPSIZE=1
         INCGROUPSIZE="no"
         EVALUATIONS=0
