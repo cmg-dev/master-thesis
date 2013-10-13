@@ -1,0 +1,139 @@
+
+\definecolor{c808080}{RGB}{128,128,128}
+\definecolor{c800000}{RGB}{128,0,0}
+\definecolor{cd40000}{RGB}{212,0,0}
+\definecolor{cd45500}{RGB}{212,85,0}
+\definecolor{c008000}{RGB}{0,128,0}
+\definecolor{cb3b3b3}{RGB}{179,179,179}
+
+\begin{tikzpicture}[
+    scale=1,
+    axis/.style={thick, ->, >=stealth'},
+    vector/.style={thick, ->,-latex, >=stealth'},
+    antenna/.style={thick},
+    important line/.style={thick},
+    dashed line/.style={dashed, thin},
+    pile/.style={thick, ->, >=stealth', shorten <=2pt, shorten
+    >=2pt},
+    every node/.style={color=black},
+    main node/.style={circle,fill=blue!20,draw},
+    help lines/.style={gray,very thin}
+    ]
+    % axis
+    \draw[axis] (-.1,0)  -- (1,0) node(xline)[right] {$x$};
+    \draw[axis] (0,-.1) -- (0,1) node(yline)[above] {$z$};
+
+	\draw[gray, very thin, dotted] (0,0) grid (9,6);
+
+	\coordinate [label=left:$A_1$] (A1) at (.5,3);
+	\coordinate [label=right:$A_2$] (A2) at (8,0.5);
+	\coordinate [label=above:$C$](SP) at (6,4);
+	\coordinate (ISO_Start) at (6.8,4.8);
+	\coordinate (ISO_End) at (4,0.2);
+	
+	\coordinate (SP_0) at ($(A1)!0.5!(A2)$);
+	\coordinate (Int1) at ($(A1)!(SP)!(A2)$);
+	\coordinate (help1) at (5,3);
+			
+    \draw [gray, dashed] plot [smooth] coordinates { (ISO_Start) (SP) (help1) (SP_0) (ISO_End)};;
+	
+	\node [gray, right,font=\scriptsize ] at (ISO_End.west) {$Iso-Phase$};
+			
+	\tikzstyle{every node}=[sloped, midway,below,font=\scriptsize]
+
+	\draw[important line, -latex] (A1) -- node[above] {$l_1+\Delta$}(SP);
+	\draw[important line, -latex] (A2) -- node[above] {$l_2+\Delta$}(SP);
+
+	\draw [important line]  (Int1) -- node[above] {$h$} (SP);
+				
+	\draw [thick, blue, -latex] (A1) --  node {$l_1$} (SP_0) ;
+	\draw [thick, blue, latex-latex] (SP_0) --  node {$\delta$} (Int1);
+
+	\draw [thick, blue, -latex] (A2) --  node[black] {$l_2 - \delta$}(Int1);
+
+	\draw[snake=brace,raise snake=12pt,black, mirror snake] (A1) -- node [yshift=-12pt, below] {$l_1 + \delta$}(Int1); 
+	\draw[snake=brace,raise snake=15pt,black, mirror snake] (SP_0) -- node [yshift=-15pt, below, blue] {$l_2$}(A2); 
+		
+	\fill[red] (SP_0) circle [radius=2pt];
+		
+%	 \draw[important line] let \p1=(alphaas), \p2=(cfas) in 
+%	    (\p1) node[left] {$\alpha_s^\A$} -| (\x2, \y1) -| (\p2)
+%	    node[below] {$\mathit{NV^\A_s}$};
+	    
+%	\coordinate [label=left:$A$] (A) at (0,0);
+%	\coordinate [label=right:$B$] (B) at (2,2);
+
+	
+	\draw [->,thick] (A1) -- ($(A1)!.1!(A2)$,0) node (x_axis) [below] {$x'$};
+	\draw [->,thick] (A1) --  ($(A1)!.1!90:(A2)$) node (z_axis) [right, above] {$z'$};
+%	\draw (A) -- (B);
+%	\draw[blue] let \p1 = ($(A2)-(SP)$) in (A2) -- ++({veclen(\x1,\y1)},0); 
+	%arc (0:95:({veclen(\x1,\y1)}););
+	
+%
+%	\coordinate (A1_s) at (A)+(.07,.0);
+%	\coordinate (A2_s) at (.25,.60);
+%	\coordinate (A3_s) at (.75,.65);
+%	\coordinate (A4_s) at (.80,.25);
+%
+%	\coordinate (A1_c) at (A);	
+%	\coordinate (A2_c) at (.32,.60);
+%	\coordinate (A3_c) at (.82,.65);
+%	\coordinate (A4_c) at (.87,.25);
+%	
+%	\coordinate (A1_e) at (A)+(-.07,.0);	
+%	\coordinate (A2_e) at (.39,.60);
+%	\coordinate (A3_e) at (.89,.65);
+%	\coordinate (A4_e) at (.94,.25);
+%	
+%	\coordinate (Tag) at (.5,.59);
+%	
+%% draw the first antenna.
+%    \draw[antenna,rotate around={130:(A1_c)}] (.27,.30) -- (.13,.30) coordinate (b) node[right, below, text width=5em] {$A_1$};
+%
+%%    \draw[antenna,rotate around={220:(A)}] (A) -- (.40,.32);
+%
+%% coordinate system for antenna 1
+%    \draw[axis,rotate around={40:(A)},gray] (A)  -- ( .25,.30) node(xline)[above, left] {$x'$};
+%    \draw[axis,rotate around={40:(A)},gray] (A) -- ( .20,.35) node(yline)[above] {$z'$};
+%	
+%		
+%    \draw[antenna,rotate around={35:(A2_c)}] (A2_s) -- (.39,.60) node[right, text width=5em] {$A_2$};
+%
+%    \draw[antenna,rotate around={90:(A3_c)}] (A3_s) -- (.89,.65) node[right, text width=5em] {$A_3$};
+%
+%    \draw[antenna,rotate around={56:(A4_c)}] (A4_s) -- (.94,.25) node[right, text width=5em] {$A_4$};                
+%    
+%    \node[main node] (Tag){};
+%%        
+%%    \draw[important line] (0.9,0.5) coordinate (C) -- (D) node[right, text width=5em]
+%%%    \draw[important line] (D) -- (0.5,0.9) coordinate (F) node[right, text width=5em]
+%%%         {$\mathit{NX}=x$};
+%%
+%%	\fill[red] (-.075,-.2) coordinate (out) circle (.2pt)
+%%        node[below left] {$B$};
+%
+%%    % Intersection of lines
+%%    \fill[red] (intersection cs:
+%%       first line={(A) -- (B)},
+%%       second line={(C) -- (D)}) coordinate (E) circle (.4pt)
+%%       node[above,] {$A$};
+%%    % The E point is placed more or less randomly
+%%    \fill[red]  (E) +(-.075cm,-.2cm) coordinate (out) circle (.4pt)
+%%        node[below left] {$B$};
+%%    % Line connecting out and ext balances
+%%    \draw [pile] (out) -- (intersection of A--B and out--[shift={(0:1pt)}]out)
+%%        coordinate (extbal);
+%%    \fill[red] (extbal) circle (.4pt) node[above] {$C$};
+%%    % line connecting  out and int balances
+%%    \draw [pile] (out) -- (intersection of C--D and out--[shift={(0:1pt)}]out)
+%%        coordinate (intbal);
+%%    \fill[red] (intbal) circle (.4pt) node[above] {$D$};
+%%    % line between out og all balanced out :)
+%%    \draw[pile] (out) -- (E);
+\end{tikzpicture}
+%
+%%%% Local Variables:
+%%%% mode: latex
+%%%% TeX-master: t
+%%%% End:
