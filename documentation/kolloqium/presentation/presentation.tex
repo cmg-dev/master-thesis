@@ -1,10 +1,16 @@
-\documentclass{beamer}
+\documentclass[10pt, draft]{beamer}
+%\documentclass[10pt,aspectratio=169]{beamer}
 %\usetheme{Frankfurt}  %% Themenwahl
 \usetheme[height=7mm]{Boadilla}
 \usefonttheme{structuresmallcapsserif} 
 \usepackage[utf8x]{inputenc}
 \usecolortheme{crane} 
-%\useinnertheme{umbcboxes}
+\usepackage{ngerman}
+\usepackage[ngerman]{babel}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{graphicx}
+
+
 %------------------------------------------------------
 \title{Kolloqium}
 \subtitle{Entwicklung eines Systems zur
@@ -38,9 +44,17 @@
 \section{Ergebnisse}
 \input{sections/ergebnisse.tex}
 %------------------------------------------------------
-\section{Fazit}
-\input{sections/fazit.tex}
+\section{Schluss}
+\input{sections/schluss.tex}
+%\input{sections/fazit.tex}
 %------------------------------------------------------
+\section{Appendix}
+\input{sections/appendix.tex}
+%\input{sections/fazit.tex}
+%------------------------------------------------------
+\bibliographystyle{plaindin}
+\bibliography{../../bib/mathesis_collection1}
 \end{document}
+
 
 %Cg2to187gc@gmX

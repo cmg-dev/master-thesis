@@ -1,30 +1,55 @@
 \subsection{Motivation}
 \begin{frame} %%Eine Folie
-  \frametitle{Motivation}
-  
-  	Tabelle mit Gegenüberstellung verschiedener Verfahren.
-  	
+  	\frametitle{Motivation}
+  	\begin{center}
+  	\small Technologieübersicht verschiedener Tracking-Methoden.
+  	\end{center}
+%
+	\begin{table} [H]
+		\begin{center}
+			\begin{tabular}{rllll}
+				\textbf{Arbeitsweise} & \textbf{Optisch} & \textbf{Magnetisch} & \textbf{Ultraschall} & \textbf{ Funk (UHF)} \\
+				\textbf{Genauigkeit} & gut & ausreichend & gut & sehr gut \\
+				\textbf{Frequenz} & mittel & hoch & gering & hoch \\
+				\textbf{Volumen} & mittel & klein & mittel & groß \\
+				\textbf{LOS} & Ja & Ja & Nein & Nein \\
+				\textbf{In Vivo} & Nein   & Nein & Nein & Ja \\
+%			
+			\end{tabular}
+		\end{center}
+%		\caption[Übersicht Navigationsverfahren]{Grobe Übersicht und Einteilung verschiedener Navigationsverfahren anhand ihres physikalischen Messprinzips.}
+		\label{tab:overview_tracking}
+	\end{table}  	
 \end{frame}
 %------------------------------------------------------
 \subsection{Grundlagen}
 \begin{frame} %%Eine Folie
   \frametitle{Mathematische Grundlagen}
-  	- Mathematische Optimierung
+  	- Numerische Optimierung
 	- Evolutionäre verfahren
 	- CMA-ES
 \end{frame}
 %------------------------------------------------------
 \begin{frame}{Graphics} 
-	\frametitle{Mathematische Grundlagen 1 }
-	bla bla bla bla bla bla bla bla \\ bla bla bla bla  bla bla bla bla 
-%	\begin{right} 
-	\includegraphics[page=2, width=.6\textwidth]{../img/mindmap.pdf}
-%	\end{right} 
+	\frametitle{Mathematische Grundlagen I }
+	\centering
+	\includegraphics[page=1, width=.6\textwidth]{../img/mindmap.pdf}\\
+%--
+	\tiny Evolutionäre Verfahren sind Teilgebiet der \textbf{nichtlinearen Optimierung}
 \end{frame}
 %------------------------------------------------------
 \begin{frame}{Graphics} 
-  	\frametitle{Mathematische Grundlagen }
-	\includegraphics[page=1, width=.6\textwidth]{../img/mindmap.pdf}
+  	\frametitle{Mathematische Grundlagen II}
+
+\end{frame}
+%------------------------------------------------------
+\begin{frame}{Graphics} 
+  	\frametitle{Mathematische Grundlagen III}
+%  	
+  	\begin{textblock*}{6cm}(6cm,2cm) % {block width} (coords)
+  		\includegraphics[width=6cm]{../img/Concept_of_directional_optimization_in_CMA-ES_algorithm.png}
+  	\end{textblock*}
+%  	
 \end{frame}
 %------------------------------------------------------
 \begin{frame}
