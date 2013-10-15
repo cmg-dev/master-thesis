@@ -13,7 +13,7 @@
 \usepackage{wrapfig}
 \usepackage{makeidx}
 \usepackage{transparent}
-
+\usepackage[utf8x]{inputenc}
 \usetikzlibrary{mindmap,trees}
 %%%<
 \usepackage{verbatim}
@@ -42,62 +42,62 @@
 \def\pgfsnakesegmentamplitude{1mm}
 \def\pgfsnakesegmentangle{10}
 	\begin{tikzpicture}
-	  \path[small mindmap,concept color=black,text=white]
-	    node[concept] {Numerische Mathematik}
-	    [clockwise from=0]
-	    child[concept color=green!55!black] {
-	      node[concept] {Optimierung}
-	      [clockwise from=100]
-%	      
-	      child [concept color=green!55!black] {
-	      		      node[concept] {lineare-Optimierung}
-	      }
-%	      
-	      child { node[concept] {nichtlinear-Optimierung} }
-	      child { node[concept] {skalare-Optimierung} }
-	      child { node[concept] {Vektor-optimierung} }
-	    }
-	    child[concept color=blue] {
-	      node[concept] {Approximation}
-	      [clockwise from=-35]
-%	      child { node[concept] {databases} }
-%	      child { node[concept] {WWW} }	      
-	    }	    
-	    child[concept color=red] { node[concept] {partiellen Differentialgleichungen} }
-	    child[concept color=orange] { node[concept] {Integral\-gleichungen} };
-	\end{tikzpicture}
+		  \path[small mindmap,concept color=black,text=white]
+		    node[concept] {\tiny\textsf{Numerische Mathematik}}
+		    [clockwise from=0]
+		    child[concept color=green!55!black] {
+		      node[concept] {\tiny\textsf{Optimierung}}
+		      [clockwise from=100]
+	%	      
+		      child [concept color=green!55!black] {
+		      		      node[concept] {\tiny\textsf{lineare-Opti-mierung}}
+		      }
+	%	      
+		      child { node[concept] {\tiny\textsf{nichtlinear-Opti-mierung}} }
+		      child { node[concept] {\tiny\textsf{skalare-Opti-mierung}} }
+		      child { node[concept] {\tiny\textsf{Vektor-opti-mierung}} }
+		    }
+		    child[concept color=blue] {
+		      node[concept] {\tiny\textsf{Approximation}}
+		      [clockwise from=-35]
+	%	      child { node[concept] {databases} }
+	%	      child { node[concept] {WWW} }	      
+		    }	    
+		    child[concept color=red] { node[concept] {\tiny\textsf{partiellen Differentialgleichungen}} }
+		    child[concept color=orange] { node[concept] {\tiny\textsf{Integral\-gleichungen}} };
+		\end{tikzpicture}
 
 	\begin{tikzpicture}
-		  \path[small mindmap,concept color=green!60!black,text=white]
-		      node[concept] {Nichtlineare\\Optimierung}
+	 \path[small mindmap,concept color=green!60!black,text=white]
+	    node[concept] {\tiny\textsf{ Nichtlineare\\Optimierung}}
 		     	[clockwise from=0]
 	%	      
-				child [concept color=green!35!black]{ node[concept] {Ableitungs-freie}
+				child [concept color=green!35!black]{ node[concept] {\tiny\textsf{Ableitungs-freie}}
 				[clockwise from=110]
-%	   			   		       
-		       child[concept color=violet!80!black]{ node[concept] {\tiny Enum-erations-verfahren} }
-		       child [concept color=violet!80!black]{ node[concept] {\tiny Monte-Carlo} }
-		       child [concept color=violet!100!black] {
- 	   			    node[concept] {Evo\-lutionäre Algo\-rithmen}
- 	   			    [clockwise from=45]
-       			%		      child[concept color=green!50!black] {
-       							child[grow=55] { node[concept] {\tiny Genetische Algorithmen (GA)} }
-       						 	child[grow=15] { node[concept] {\tiny Evolutions\-strategien (ES)} }
-       						 	child[grow=-25] { node[concept] {\tiny Genetische Programmierung (GP)} }
-       						 	child[grow=-70] { node[concept] {\tiny Evolutionäre Programmierung (EP)} }
-       			%			 }
- 	   			   }
-		       child [concept color=violet!80!black]{ node[concept] {\tiny Diskrete Suche} }
-		      }
-		      child [concept color=green!35!black]{ node[concept]  (test) {mit part. Ableitungen}
-%	      		      [clockwise from=-20]
-     						child[concept color=blue!45!black, grow=-90] { node[concept] {\tiny Gradienten-verfahren} }
-							child[concept color=blue!45!black,grow=-120] { node[concept] {\tiny NEWTON-Verfahren} }
-							child[concept color=blue!45!black,grow=-150] { node[concept] {\tiny Quasi-NEWTON-Verfahren} }
-%    	   			   
-    		     };
-				\node [annotation] at (test.west)
-				{\tiny Keine \\weitere \\Betrachtung\\ hier};
+	%	   			   		       
+	     child[concept color=violet!80!black]{ node[concept] {\tiny\textsf{Enum-erations-verfahren}} }
+	     child [concept color=violet!80!black]{ node[concept] {\tiny\textsf{Monte-Carlo}} }
+	     child [concept color=violet!100!black] {
+	 			    node[concept] {\tiny\textsf{Evo\-lutionäre Algo\-rithmen}}
+	 			    [clockwise from=45]
+	      			%		      child[concept color=green!50!black] {
+	      							child[grow=55] { node[concept] {\tiny\textsf{Genetische Algorithmen (GA)}} }
+	      						 	child[grow=15] { node[concept] {\tiny\textsf{Evolutions\-strategien (ES)}} }
+	      						 	child[grow=-25] { node[concept] {\tiny\textsf{Genetische Programmierung (GP)}} }
+	      						 	child[grow=-70] { node[concept] {\tiny\textsf{Evolutionäre Programmierung (EP)}} }
+	      			%			 }
+	 			   }
+	     child [concept color=violet!80!black]{ node[concept] {\tiny\textsf{Diskrete Suche}} }
+	    }
+	    child [concept color=green!35!black]{ node[concept]  (test) {\tiny\textsf{mit part. Ableitungen}}
+	%	      		      [clockwise from=-20]
+	    						child[concept color=orange!90!black, grow=-70] { node[concept] {\tiny\textsf{ Gradienten-verfahren}} }
+							child[concept color=orange!90!black,grow=-110] { node[concept] {\tiny\textsf{ NEWTON-Verfahren}} }
+							child[concept color=orange!90!black,grow=-150] { node[concept] {\tiny\textsf{ Quasi-NEWTON-Verfahren}} }
+	%    	   			   
+			     };
+	%			\node [annotation] at (test.west)
+	%			{\tiny Keine \\weitere \\Betrachtung\\ hier};
 		\end{tikzpicture}
 \end{document}
 %
