@@ -621,9 +621,9 @@ namespace PRPSEvolution {
 		( const std::array<T_Measure,N_ANTA> &phase, const std::array<T_Measure,N_ANTA> &amp, PRPSEvolution::NormalizationMethods method )
 		{
 			Normalizer<N_ANTA, T> normalizer( method );
-// 			std::cout << "LAMBDA " << LAMBDA
-// 				<< " SELECT_IDEAL_POINT " << SELECT_IDEAL_POINT
-// 				<< std::endl;
+			std::cout << "LAMBDA " << LAMBDA
+				<< " SELECT_IDEAL_POINT " << SELECT_IDEAL_POINT
+				<< std::endl;
 				
 			normalizer.setLambda( LAMBDA );
 			normalizer.setSelectIdealPoint( SELECT_IDEAL_POINT );
@@ -1106,7 +1106,7 @@ namespace PRPSEvolution {
 					/*** PROBLEM ***/
 // 					b[i]= a_3k[i] - a_0k[i];
 					b[i]= a_0k[i] - a_3k[i];
-							
+
 				}
 							
 // 				a_3k[0] *= (normThetas[a[0]])*(normThetas[a[0]])

@@ -118,9 +118,32 @@ libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII.cpp.o.provides:
 
 libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII.cpp.o.provides.build: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII.cpp.o
 
+libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o: libSolve/CMakeFiles/Solve.dir/flags.make
+libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o: libSolve/Objectivefunctions/WholeTomatoReduced.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o"
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o -c /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/Objectivefunctions/WholeTomatoReduced.cpp
+
+libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.i"
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/Objectivefunctions/WholeTomatoReduced.cpp > CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.i
+
+libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.s"
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/Objectivefunctions/WholeTomatoReduced.cpp -o CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.s
+
+libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o.requires:
+.PHONY : libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o.requires
+
+libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o.provides: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o.requires
+	$(MAKE) -f libSolve/CMakeFiles/Solve.dir/build.make libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o.provides.build
+.PHONY : libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o.provides
+
+libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o.provides.build: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o
+
 libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o: libSolve/CMakeFiles/Solve.dir/flags.make
 libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o: libSolve/Objectivefunctions/WholeTomatoMkII_B.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o"
 	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o -c /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/Objectivefunctions/WholeTomatoMkII_B.cpp
 
@@ -143,7 +166,7 @@ libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o.provide
 
 libSolve/CMakeFiles/Solve.dir/Objectivefunctions/EvolutionaryCalibration.cpp.o: libSolve/CMakeFiles/Solve.dir/flags.make
 libSolve/CMakeFiles/Solve.dir/Objectivefunctions/EvolutionaryCalibration.cpp.o: libSolve/Objectivefunctions/EvolutionaryCalibration.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object libSolve/CMakeFiles/Solve.dir/Objectivefunctions/EvolutionaryCalibration.cpp.o"
 	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Solve.dir/Objectivefunctions/EvolutionaryCalibration.cpp.o -c /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/Objectivefunctions/EvolutionaryCalibration.cpp
 
@@ -166,7 +189,7 @@ libSolve/CMakeFiles/Solve.dir/Objectivefunctions/EvolutionaryCalibration.cpp.o.p
 
 libSolve/CMakeFiles/Solve.dir/processMkII.cpp.o: libSolve/CMakeFiles/Solve.dir/flags.make
 libSolve/CMakeFiles/Solve.dir/processMkII.cpp.o: libSolve/processMkII.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object libSolve/CMakeFiles/Solve.dir/processMkII.cpp.o"
 	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Solve.dir/processMkII.cpp.o -c /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/processMkII.cpp
 
@@ -189,7 +212,7 @@ libSolve/CMakeFiles/Solve.dir/processMkII.cpp.o.provides.build: libSolve/CMakeFi
 
 libSolve/CMakeFiles/Solve.dir/postprocessing.cpp.o: libSolve/CMakeFiles/Solve.dir/flags.make
 libSolve/CMakeFiles/Solve.dir/postprocessing.cpp.o: libSolve/postprocessing.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object libSolve/CMakeFiles/Solve.dir/postprocessing.cpp.o"
 	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Solve.dir/postprocessing.cpp.o -c /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/postprocessing.cpp
 
@@ -212,7 +235,7 @@ libSolve/CMakeFiles/Solve.dir/postprocessing.cpp.o.provides.build: libSolve/CMak
 
 libSolve/CMakeFiles/Solve.dir/preprocessing.cpp.o: libSolve/CMakeFiles/Solve.dir/flags.make
 libSolve/CMakeFiles/Solve.dir/preprocessing.cpp.o: libSolve/preprocessing.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object libSolve/CMakeFiles/Solve.dir/preprocessing.cpp.o"
 	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Solve.dir/preprocessing.cpp.o -c /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/preprocessing.cpp
 
@@ -235,7 +258,7 @@ libSolve/CMakeFiles/Solve.dir/preprocessing.cpp.o.provides.build: libSolve/CMake
 
 libSolve/CMakeFiles/Solve.dir/ueber9000.cpp.o: libSolve/CMakeFiles/Solve.dir/flags.make
 libSolve/CMakeFiles/Solve.dir/ueber9000.cpp.o: libSolve/ueber9000.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object libSolve/CMakeFiles/Solve.dir/ueber9000.cpp.o"
 	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Solve.dir/ueber9000.cpp.o -c /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/ueber9000.cpp
 
@@ -261,6 +284,7 @@ Solve_OBJECTS = \
 "CMakeFiles/Solve.dir/solve.cpp.o" \
 "CMakeFiles/Solve.dir/process.cpp.o" \
 "CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII.cpp.o" \
+"CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o" \
 "CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o" \
 "CMakeFiles/Solve.dir/Objectivefunctions/EvolutionaryCalibration.cpp.o" \
 "CMakeFiles/Solve.dir/processMkII.cpp.o" \
@@ -274,6 +298,7 @@ Solve_EXTERNAL_OBJECTS =
 libSolve/libSolve.a: libSolve/CMakeFiles/Solve.dir/solve.cpp.o
 libSolve/libSolve.a: libSolve/CMakeFiles/Solve.dir/process.cpp.o
 libSolve/libSolve.a: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII.cpp.o
+libSolve/libSolve.a: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o
 libSolve/libSolve.a: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o
 libSolve/libSolve.a: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/EvolutionaryCalibration.cpp.o
 libSolve/libSolve.a: libSolve/CMakeFiles/Solve.dir/processMkII.cpp.o
@@ -293,6 +318,7 @@ libSolve/CMakeFiles/Solve.dir/build: libSolve/libSolve.a
 libSolve/CMakeFiles/Solve.dir/requires: libSolve/CMakeFiles/Solve.dir/solve.cpp.o.requires
 libSolve/CMakeFiles/Solve.dir/requires: libSolve/CMakeFiles/Solve.dir/process.cpp.o.requires
 libSolve/CMakeFiles/Solve.dir/requires: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII.cpp.o.requires
+libSolve/CMakeFiles/Solve.dir/requires: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o.requires
 libSolve/CMakeFiles/Solve.dir/requires: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o.requires
 libSolve/CMakeFiles/Solve.dir/requires: libSolve/CMakeFiles/Solve.dir/Objectivefunctions/EvolutionaryCalibration.cpp.o.requires
 libSolve/CMakeFiles/Solve.dir/requires: libSolve/CMakeFiles/Solve.dir/processMkII.cpp.o.requires

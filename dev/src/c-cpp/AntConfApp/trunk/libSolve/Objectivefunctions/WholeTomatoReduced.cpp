@@ -49,10 +49,10 @@ namespace PRPSEvolution {
 
 				if( doRecombination ) {
 					/* recompile chromosome x */
-					x[ 3 ] = wavenumbers[  idx[ 0 ]  ];
-					x[ 4 ] = wavenumbers[  idx[ 1 ]  ];
-					x[ 5 ] = wavenumbers[  idx[ 2 ] ];
-					x[ 6 ] = wavenumbers[  idx[ 3 ]  ];
+					x[ 3 ] = wavenumbers[ idx[ 0 ] ];
+					x[ 4 ] = wavenumbers[ idx[ 1 ] ];
+					x[ 5 ] = wavenumbers[ idx[ 2 ] ];
+					x[ 6 ] = wavenumbers[ idx[ 3 ] ];
 
 				}
 
@@ -86,7 +86,7 @@ namespace PRPSEvolution {
 			/* return median value */
 		//  			auto ret = res[ (int)res.size()/2 ];
 
-			return ret + pan ;
+			return ret + pan;
 
 		}
 
@@ -147,7 +147,7 @@ namespace PRPSEvolution {
 			double panalty = 0.0;
 
 			for( int i = 0; i < 3; i++) {
-				if( x[i] >= 3. || x[i] <= -3. ) {
+				if( x[i] >= 2. || x[i] <= -2. ) {
 // 					std::cout << "applying panalty";
 					for( int j = 0; j < 3; j++) {
 						panalty += std::pow( x[j], 2 );
@@ -176,9 +176,10 @@ namespace PRPSEvolution {
 
 // 			std::cout << "1";
 			
-			if( continuesWavenumbers ) {
+			if ( continuesWavenumbers ) {
 				int i = 0;
 
+// 				std::cout << i << "" << x[0] << " " << x[1] << " " << x[2] << std::endl;
 				/* for all antenna coords calc the wavenumbers */
 				for( auto a : antennaCoords ) {
 					double d = std::sqrt( pow( x[0]-a[0] , 2 )

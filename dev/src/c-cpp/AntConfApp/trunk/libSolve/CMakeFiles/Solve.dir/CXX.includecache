@@ -66,15 +66,25 @@ shark/Rng/GlobalRng.h
 nr3/nr3.h
 -
 
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/postprocessing.cpp
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/Objectivefunctions/WholeTomatoReduced.cpp
+shark/Algorithms/DirectSearch/CMA.h
+-
+shark/Algorithms/AbstractOptimizer.h
+-
+shark/ObjectiveFunctions/AbstractObjectiveFunction.h
+-
+math.h
+-
+../solve.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/Objectivefunctions/../solve.h
+WholeTomatoReduced.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/Objectivefunctions/WholeTomatoReduced.h
 
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/preprocessing.cpp
-
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/process.cpp
-
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/processMkII.cpp
-
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/solve.cpp
-
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/ueber9000.cpp
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/Objectivefunctions/WholeTomatoReduced.h
+shark/ObjectiveFunctions/AbstractObjectiveFunction.h
+-
+shark/Rng/GlobalRng.h
+-
+nr3/nr3.h
+-
 

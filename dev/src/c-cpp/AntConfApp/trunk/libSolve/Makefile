@@ -184,6 +184,30 @@ Objectivefunctions/WholeTomatoMkII_B.cpp.s:
 	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libSolve/CMakeFiles/Solve.dir/build.make libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.s
 .PHONY : Objectivefunctions/WholeTomatoMkII_B.cpp.s
 
+Objectivefunctions/WholeTomatoReduced.o: Objectivefunctions/WholeTomatoReduced.cpp.o
+.PHONY : Objectivefunctions/WholeTomatoReduced.o
+
+# target to build an object file
+Objectivefunctions/WholeTomatoReduced.cpp.o:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libSolve/CMakeFiles/Solve.dir/build.make libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o
+.PHONY : Objectivefunctions/WholeTomatoReduced.cpp.o
+
+Objectivefunctions/WholeTomatoReduced.i: Objectivefunctions/WholeTomatoReduced.cpp.i
+.PHONY : Objectivefunctions/WholeTomatoReduced.i
+
+# target to preprocess a source file
+Objectivefunctions/WholeTomatoReduced.cpp.i:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libSolve/CMakeFiles/Solve.dir/build.make libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.i
+.PHONY : Objectivefunctions/WholeTomatoReduced.cpp.i
+
+Objectivefunctions/WholeTomatoReduced.s: Objectivefunctions/WholeTomatoReduced.cpp.s
+.PHONY : Objectivefunctions/WholeTomatoReduced.s
+
+# target to generate assembly for a file
+Objectivefunctions/WholeTomatoReduced.cpp.s:
+	cd /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk && $(MAKE) -f libSolve/CMakeFiles/Solve.dir/build.make libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.s
+.PHONY : Objectivefunctions/WholeTomatoReduced.cpp.s
+
 postprocessing.o: postprocessing.cpp.o
 .PHONY : postprocessing.o
 
@@ -346,6 +370,9 @@ help:
 	@echo "... Objectivefunctions/WholeTomatoMkII_B.o"
 	@echo "... Objectivefunctions/WholeTomatoMkII_B.i"
 	@echo "... Objectivefunctions/WholeTomatoMkII_B.s"
+	@echo "... Objectivefunctions/WholeTomatoReduced.o"
+	@echo "... Objectivefunctions/WholeTomatoReduced.i"
+	@echo "... Objectivefunctions/WholeTomatoReduced.s"
 	@echo "... postprocessing.o"
 	@echo "... postprocessing.i"
 	@echo "... postprocessing.s"

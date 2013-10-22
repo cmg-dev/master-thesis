@@ -13,6 +13,10 @@ libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o: libSol
 libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o: libSolve/Objectivefunctions/WholeTomatoMkII_B.cpp
 libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o: libSolve/Objectivefunctions/WholeTomatoMkII_B.h
 
+libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o: libSolve/Objectivefunctions/../solve.h
+libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o: libSolve/Objectivefunctions/WholeTomatoReduced.cpp
+libSolve/CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o: libSolve/Objectivefunctions/WholeTomatoReduced.h
+
 libSolve/CMakeFiles/Solve.dir/postprocessing.cpp.o: libSolve/postprocessing.cpp
 
 libSolve/CMakeFiles/Solve.dir/preprocessing.cpp.o: libSolve/preprocessing.cpp

@@ -22,6 +22,7 @@ test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: test/../libSolve/Obje
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: test/../libSolve/Objectivefunctions/WholeTomatoMkII_B.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: test/../libSolve/Objectivefunctions/WholeTomatoMkI_A.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: test/../libSolve/Objectivefunctions/WholeTomatoMkI_B.h
+test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: test/../libSolve/Objectivefunctions/WholeTomatoReduced.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: test/../libSolve/postprocessing.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: test/../libSolve/preprocessing.h
 test/CMakeFiles/AntConfApp.dir/AntennaConfiguration.cpp.o: test/../libSolve/process.h
