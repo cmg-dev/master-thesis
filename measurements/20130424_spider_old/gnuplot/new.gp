@@ -85,6 +85,13 @@ splot "gp_ready_a3_1.txt" u 1:2:( $3 > 0 ? $3/A3_max : -$3/A3_min) lc rgb "#2f4f
 set output 'Plate0_A4.png'
 splot "gp_ready_a4_1.txt" u 1:2:( $3 > 0 ? $3/A4_max : -$3/A4_min) lc rgb "#2f4f4f"
 
+set autoscale
+do for [ii=1:4] {
+	set output 'Plate0_A'.ii.'_native.png'
+	splot 'gp_ready_a'.ii.'_1.txt' u 1:2:3 lc rgb "#2f4f4f"
+
+}
+
 unset surface
 
 unset grid

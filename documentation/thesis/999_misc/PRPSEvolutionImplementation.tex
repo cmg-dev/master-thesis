@@ -1,0 +1,112 @@
+% Interaction diagram, LaTeX user level and TeX system software level
+% Author: Agostino De Marco
+% Based on diagram from Marco Miani and Pascal Seppecher.
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,amsfonts,amstext}
+\usepackage{floatflt}
+\usetikzlibrary[arrows,snakes,backgrounds,shapes]
+\usetikzlibrary{through}
+\usetikzlibrary{calc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{makeidx}
+\usepackage{transparent}
+\usepackage[utf8x]{inputenc}
+\usetikzlibrary{positioning} 
+\usetikzlibrary{mindmap,trees}
+%%%<
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+%%%>
+\usetikzlibrary{positioning}
+
+\newcommand{\ypos}{3}
+\newcommand{\xpos}{-.7}
+\newcommand{\zpos}{0}
+
+\newcommand{\yslant}{-.3}
+\newcommand{\xslant}{.20}
+
+\newcommand{\xoffset}[1]{\xpos*#1+3}
+\newcommand{\yoffset}[1]{\ypos*#1}
+\newcommand{\zoffset}[1]{\zpos+#1}
+
+\begin{document}
+
+\begin{tikzpicture}[auto]
+	\scriptsize
+		\tikzstyle{decision} = [diamond, draw=black, thick, fill=gray!5, text width=5em, text badly centered, inner sep=1pt]
+%			
+		\tikzstyle{block} = [rectangle, draw=black, thick, fill=gray!15, text width=15em, text centered, rounded corners, minimum height=5em]
+%	
+		\tikzstyle{blocknew} = [rectangle, draw=green!50!black!80, dashed, fill=green!5, text width=10em, text centered, rounded corners, minimum height=4em]
+%
+		\tikzstyle{input} = [circle, draw=black, thick, fill=gray!5, text width=5em, text centered, rounded corners, minimum height=4em]
+%
+		\tikzstyle{output} = [circle, draw=black, thick, fill=gray!5, text width=5em, text centered, rounded corners, minimum height=4em]
+%
+		\tikzstyle{line} = [draw, thick, -latex',shorten >=0.1pt];
+		\tikzstyle{commentline} = [draw, dashed, green!50!black!80,-latex',shorten >=1pt];
+%	
+		\tikzstyle{cloud} = [ dotted, draw=gray!50, thick, ellipse,fill=gray!5, minimum height=2em, text width= 10em, text badly centered];
+%	
+		\matrix [column sep=7mm,row sep=5mm]
+		{
+			% row 1
+			\node [input] (one) { Messwerte }; & \node [block] (two) { PRPS-Software }; &  \node [output] (three) { Kunde };\\
+			 &  & \\
+			% row 2
+			&\node [blocknew] (four) { PRPS Evolution }; & \\
+			% row 4
+%																						 v--- durch Rekombination und/ oder Mutation
+%			& \node [block] (identify) {Erzeuge $\lambda$ Nachkommen $X_c^k$ aus $X_p^k$ }; & \\
+			% row 5
+%			\node [block] (update) {Nächste Stufe der Evolution; k++}; &
+%			\node [block] (evaluate) {Selektion von $\mu$ Nachkommen für die Generation $X_p^{k+1}$ }; & \\
+			% row 6
+%			& \node [decision] (decide) {$\Delta \geq \Delta_{min}$}; & \\
+			% row 7
+%			& \node [block] (stop) {Ende}; & \\
+		};
+		\draw[gray, thin, dashed] (-2.7,-3) -- (-2.7,3);
+		\draw[gray, thin, dashed] (2.7,-3) -- (2.7,3);
+		
+%		edge[pil,bend left=45] (market.east)
+%		\draw[green, thin, dashed,-latex', bend left=45 ,shorten >=1pt] 
+		\tikzstyle{every path}=[commentline];
+		\path[every node/.style={font=\sffamily\tiny}]
+			(two) edge[bend right] node [left] {$\mathbf{\Theta_k}$} (four)
+			(four) edge[bend right] node [right] {$\mathbf{n_k}$} (two);
+%		\edge[thick,<->, bend left=45] (one);
+		
+% Arrows
+		\tikzstyle{every path}=[line]
+		\path (one) -- (two);
+		\path (two) -- (three);
+%		\path (evaluate) -- (decide);
+%		\path (update) |- (identify);
+%		\path (decide) -| node [near start] {Ja} (update);
+%		\path (decide) -- node [midway] {Nein} (stop);
+%		\path (start) -- (init);
+		
+%		\tikzstyle{every path}=[commentline]
+%		\path (criteria) -- (decide);
+%		\path (comment1) -- (init);
+		
+\end{tikzpicture}
+\end{document}
+%
+%Approximation
+%Die Theorie des numerischen Lösens linearer und nichtlinearer Gleichungen
+%Die Theorie des numerischen Lösens von partiellen Differentialgleichungen
+%Die Theorie des numerischen Lösens von Integralgleichungen
+%Experimentelle Mathematik
+%
+%6.1.1 Genetische Algorithmen (GA)
+%6.1.2 Evolutionsstrategien (ES)
+%6.1.3 Genetische Programmierung (GP)
+%6.1.4 Evolutionäre Programmierung (EP)
