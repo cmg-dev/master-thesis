@@ -7,7 +7,7 @@
 \end{frame}
 %------------------------------------------------------
 \begin{frame}
-  \frametitle{Modellierung}
+  \frametitle{Anforderungen}
 %
 \begin{itemize} 
   \item Auf der Basis der Trilateration
@@ -99,8 +99,31 @@ r_k^2= (x_k-x )^2 + (y_k-y )^2 + (z_k-z )^2
   	\begin{itemize}
 		\item Ermöglicht Positionsberechnung durch vier beliebige Antennen 
 		\item Kann eine eindeutige Lösung liefern
-		\item Als Objektfunktion für evol. Optimierung geeignet
-		\item 'Vertauschen' erlaubt Realisierung eines Kalibrieraufbaus
+		\item Als Objektfunktion für evol. Optimierung geeignet*
+		\item 'Vertauschen' erlaubt Bestimmung der Antennenposition
   	\end{itemize}
+%  	
+\end{frame}
+%------------------------------------------------------
+\subsection{Implementation}
+\begin{frame}
+%
+  	\frametitle{Implementation}
+%  	
+	\begin{textblock*}{8cm}(4cm,2.5cm) % {block width} (coords)
+		\centering
+  		\includegraphics[width=7cm]{../img/PRPSEvolutionImplementation.pdf}
+%  		\footnote{Grafik entnommen aus \url{http://en.wikipedia.org/w/index.php?title=File:Concept_of_directional_optimization_in_CMA-ES_algorithm.png&oldid=532567533}}
+  	\end{textblock*}
+%  	
+	\begin{textblock*}{4cm}(0cm,2cm) % {block width} (coords)
+  			\begin{itemize}
+  				\item Parallel zur PRPS-Software
+  				\item Plattform\-unabhängig
+   				\item Einfaches Interface
+   				\item Nahtlose Implementation
+  		  	\end{itemize}
+  	\end{textblock*}
+  
 %  	
 \end{frame}
