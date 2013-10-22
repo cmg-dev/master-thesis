@@ -75,9 +75,9 @@
 	\coordinate (Int3) at ($(A3_start)!.5!(A3_end_)$);
 	
 	\begin{scope}
-		\node [draw,orange!50,dashed] at (Int1) [circle through={(Tag_0)}] {};
-		\node [draw,orange!50,dashed] at (Int2) [circle through={(Tag_0)}] {};
-		\node [draw,orange!50,dashed] at (Int3) [circle through={(Tag_0)}] {};
+		\node [draw,thick,orange!50,dashed] at (Int1) [circle through={(Tag_0)}] {};
+		\node [draw,thick,orange!50,dashed] at (Int2) [circle through={(Tag_0)}] {};
+		\node [draw,thick,orange!50,dashed] at (Int3) [circle through={(Tag_0)}] {};
 	\end{scope}
 	
 	\draw[antenna] (A1_start) node[font=\scriptsize,black,below] {$A_1$} -- ($(A1_start)!1!-10:(A1_end)$);
@@ -89,11 +89,11 @@
 	\draw[latex-latex] (Tag_0) -- node[sloped,above,midway] {$r_1$}(Int1);
 	\draw[latex-latex] (Tag_0) -- node[sloped,above,midway] {$r_2$}(Int2);
 	\draw[latex-latex] (Tag_0) -- node[sloped,above,midway] {$r_3$}(Int3);
-	\draw[-latex,dashed,green!60!black!90] (REF_0) -- node[sloped,above,midway] {$r_0$}(Tag_0);
+	\draw[-latex,dashed,thick,green!60!black!90] (REF_0) -- node[sloped,above,midway] {$r_0$}(Tag_0);
 	
-	\draw[ -latex,violet!60,font=\scriptsize,dotted] (REF_0) -- node[sloped,above,midway] {$d_{10}$}(Int1);
-	\draw[ -latex,violet!60,font=\scriptsize,dotted] (REF_0) -- node[sloped,above,midway] {$d_{20}$}(Int2);
-	\draw[ -latex,violet!60,font=\scriptsize,dotted] (REF_0) -- node[sloped,above,midway] {$d_{30}$}(Int3);
+	\draw[ -latex,violet!60,font=\scriptsize,dashed] (REF_0) -- node[sloped,above,midway] {$d_{10}$}(Int1);
+	\draw[ -latex,violet!60,font=\scriptsize,dashed] (REF_0) -- node[sloped,above,midway] {$d_{20}$}(Int2);
+	\draw[ -latex,violet!60,font=\scriptsize,dashed] (REF_0) -- node[sloped,above,midway] {$d_{30}$}(Int3);
 		
 	\fill[red!70] (Tag_0) circle [radius=2pt];
 	\node[font=\scriptsize,black,below] at (Tag_0) {$Tag$} ;
