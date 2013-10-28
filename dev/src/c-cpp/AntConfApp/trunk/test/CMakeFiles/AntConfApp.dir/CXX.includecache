@@ -99,6 +99,8 @@ Objectivefunctions/EvolutionaryCalibration.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libFitnessPlanCalculator/../libSolve/Objectivefunctions/EvolutionaryCalibration.h
 Objectivefunctions/WholeTomatoMkII.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libFitnessPlanCalculator/../libSolve/Objectivefunctions/WholeTomatoMkII.h
+Objectivefunctions/WholeTomatoReduced.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libFitnessPlanCalculator/../libSolve/Objectivefunctions/WholeTomatoReduced.h
 Objectivefunctions/WholeTomatoMkII_B.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/../libFitnessPlanCalculator/../libSolve/Objectivefunctions/WholeTomatoMkII_B.h
 Objectivefunctions/WholeTomatoMkI_A.h
@@ -121,6 +123,8 @@ Objectivefunctions/EvolutionaryCalibration.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/Objectivefunctions/EvolutionaryCalibration.h
 Objectivefunctions/WholeTomatoMkII.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/Objectivefunctions/WholeTomatoMkII.h
+Objectivefunctions/WholeTomatoReduced.h
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/Objectivefunctions/WholeTomatoReduced.h
 Objectivefunctions/WholeTomatoMkII_B.h
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/Objectivefunctions/WholeTomatoMkII_B.h
 Objectivefunctions/WholeTomatoMkI_A.h
@@ -169,6 +173,14 @@ nr3/nr3.h
 -
 
 /home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/Objectivefunctions/WholeTomatoMkI_B.h
+shark/ObjectiveFunctions/AbstractObjectiveFunction.h
+-
+shark/Rng/GlobalRng.h
+-
+nr3/nr3.h
+-
+
+/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/../libSolve/Objectivefunctions/WholeTomatoReduced.h
 shark/ObjectiveFunctions/AbstractObjectiveFunction.h
 -
 shark/Rng/GlobalRng.h

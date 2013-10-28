@@ -150,7 +150,7 @@ namespace PRPSEvolution {
 			bool Lambda_isSet = false;
 			
 			bool continuesWavenumbers = true;
-// 			bool continuesWavenumbers = /*false*/;
+// 			bool continuesWavenumbers = false;
 
 			std::array<Doub,8> Wavenumbers;
 			

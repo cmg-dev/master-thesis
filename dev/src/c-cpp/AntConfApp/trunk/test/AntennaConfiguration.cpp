@@ -87,6 +87,7 @@ int			LAMBDA				= 0;
 int			UseNMats			= 1;
 int			EVALUATIONS			= DEFAULT_MAX_EVALUATIONS;
 int			MatOffset			= 0;
+int			PointOffset			= 0;
 
 bool		DROPBAD				= false;
 bool		IDEAL_DATA			= false;
@@ -138,6 +139,10 @@ int main ( int argc, char *argv[ ] ) {
 	if( argc > 9 )
 		MatOffset = atoi(argv[9]);
 
+	if( argc > 10 )
+		PointOffset = atoi(argv[10]);
+	
+	
 	/**********************************************************************/
 	PRPSEvolution::System sys;
 
@@ -156,6 +161,10 @@ int main ( int argc, char *argv[ ] ) {
 	std::cout << "*PreProcessing.." << std::endl;
 
 #ifdef _USE_IDEAL_INPUT
+	std::cout << "*PreProcessing:: Using ideal data "
+				<< " Point is: " << PointOffset
+				<< std::endl;
+				
 	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess(
 												PA.configurations,
 												PA.d_k0_mat,
@@ -163,7 +172,7 @@ int main ( int argc, char *argv[ ] ) {
 												UseNMats,
 												MatOffset,
 												sys.constants.lambda,
-												0
+												PointOffset
   												);
 #else
 	Solve::PreProcessing<ANTENNA_AMOUNT, 5, Doub, Doub> preprocess(

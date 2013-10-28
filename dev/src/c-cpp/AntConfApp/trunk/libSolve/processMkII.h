@@ -382,7 +382,14 @@ namespace PRPSEvolution {
 
 				std::cout << std::endl;
 
-				auto wave = model.calcWavenumbers2( p[0], p[1], p[2] );
+				auto wave = model.calcWavenumbers2( 0, 0, 0 );
+				std::cout << "Ref Wavenumbers: ";
+				for( auto wn: wave )
+					std::cout << wn << " | ";
+
+				std::cout << std::endl;
+				
+				wave = model.calcWavenumbers2( p[0], p[1], p[2] );
 				
 				std::cout << "Found Wavenumbers: ";
 				for( auto wn: wave )

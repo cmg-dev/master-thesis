@@ -2,6 +2,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/Solve.dir/solve.cpp.o"
   "CMakeFiles/Solve.dir/process.cpp.o"
   "CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII.cpp.o"
+  "CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoReduced.cpp.o"
   "CMakeFiles/Solve.dir/Objectivefunctions/WholeTomatoMkII_B.cpp.o"
   "CMakeFiles/Solve.dir/Objectivefunctions/EvolutionaryCalibration.cpp.o"
   "CMakeFiles/Solve.dir/processMkII.cpp.o"

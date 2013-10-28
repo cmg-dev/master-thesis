@@ -152,7 +152,7 @@ namespace PRPSEvolution {
 			int i = 0;
 
 			/* calculate the calibration for all antennas */
-			for( auto& b:c_k0 ) {
+			for( auto& b : c_k0 ) {
 				svd.solve( b, x[i++] );
 				
 			}

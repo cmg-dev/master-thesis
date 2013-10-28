@@ -94,8 +94,12 @@ namespace PRPSEvolution {
 
 			valuesRead = 0;
 			std::array<double,3> point;
-			while( getline( linestream, value, ' ' ) ) {
-					point[ valuesRead++ ] = std::stod( value );
+			
+			while( getline( linestream, value, '	' ) ) {
+					point[ 0 ] = ( valuesRead == 0 ) ? std::stod( value ):( point[ 0 ] ) ;
+					point[ 1 ] = ( valuesRead == 1 ) ? std::stod( value ):( point[ 1 ] ) ;
+					point[ 2 ] = ( valuesRead == 2 ) ? std::stod( value ):( point[ 2 ] ) ;
+					valuesRead++;
 
 			}
 			points.push_back(point);
@@ -190,9 +194,9 @@ namespace PRPSEvolution {
 			int i = 0;
 			for( auto coord : c ) {
 				double d = std::sqrt (
-						  ( coord[0]-point[0] )*( coord[0]-point[0] )
-						+ ( coord[1]-point[1] )*( coord[1]-point[1] )
-						+ ( coord[2]-point[2] )*( coord[2]-point[2] )
+						  ( coord[0]-point[0] ) * ( coord[0]-point[0] )
+						+ ( coord[1]-point[1] ) * ( coord[1]-point[1] )
+						+ ( coord[2]-point[2] ) * ( coord[2]-point[2] )
 					);
 
 				int n = std::floor( (d)/(LAMBDA/2) );
@@ -213,8 +217,8 @@ namespace PRPSEvolution {
 			
 		}
 
-		ret[1] = 65535;
-		ret[6] = 65535;
+// 		ret[1] = 65535;
+// 		ret[6] = 65535;
 		
 		/* select the thetas from one point */
 		if( SELECT_IDEAL_POINT > thetas.size() || SELECT_IDEAL_POINT < 0 )
@@ -233,6 +237,8 @@ namespace PRPSEvolution {
 	{
 		auto points = rPoints();
 		auto coords = rCoords();
+
+		std::cout << "using ideal norm" << std::endl;
 		
 		auto ret = idealPhaseFromInput<N,T>( points, coords, SELECT_IDEAL_POINT, LAMBDA );
 
