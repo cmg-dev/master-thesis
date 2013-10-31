@@ -42,7 +42,7 @@
 #include "../include/PRPSError.h"
 #include "../include/PRPSEvolutionGeneralExceptions.h"
 
-#include "AntennaConfiguration.h"
+#include "PRPSEvolution.h"
 
 #include "../libPermutate/permutate.h"
 #include "../libPRPSSystem/prpsevolutionsystem.h"
