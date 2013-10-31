@@ -12,7 +12,7 @@ link_directories ( ${ANTCONFAPP_BINARY_DIR}/libPRPSSystem )
 link_directories ( ${ANTCONFAPP_BINARY_DIR}/libSolve )
 link_directories ( ${ANTCONFAPP_BINARY_DIR}/libNormalizer )
 
-set(test_SRCS AntennaConfiguration.cpp)
+set(test_SRCS PRPSEvolution.cpp)
 set(test_LIBS
 	Permutate
 	Calibration
@@ -29,11 +29,11 @@ set(test_LIBS
 	boost_serialization
 	)
 
-add_executable( AntConfApp ${test_SRCS})
+add_executable( PRPSEvolution ${test_SRCS} )
 
 
 
-target_link_libraries (AntConfApp ${test_LIBS})
+target_link_libraries ( PRPSEvolution ${test_LIBS} )
 
 
 # 	-lpthread -lboost_system -lboost_filesystem -lboost_program_options -lboost_signals -lboost_serialization
