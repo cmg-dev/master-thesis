@@ -1,0 +1,114 @@
+\hypertarget{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator}{\section{\-P\-R\-P\-S\-Evolution\-:\-:\-Support\-:\-:\-Fitness\-Plane\-Calculator$<$ \-N $>$ \-Class \-Template \-Reference}
+\label{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator}\index{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator$<$ N $>$@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator$<$ N $>$}}
+}
+
+
+{\ttfamily \#include $<$\-Fitness\-Plane\-Calculator.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a0701ccf267c1e389d2cf975e0d307a98}{\-Fitness\-Plane\-Calculator} (int offset)
+\item 
+void \hyperlink{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a0a11a6f84f210798240be91350d7a3a0}{r\-Plane\-Limits\-From\-File} ()
+\item 
+void \hyperlink{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a34f54b4251566494e0d1e9dd22d513be}{set\-Limits} (\hyperlink{struct_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_limits}{\-Fitness\-Plane\-Limits}$<$ \-N $>$ \-Limits)
+\item 
+void \hyperlink{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_aab1a3bf7d3a48d3d435536d3e32cfb21}{calculate} (\-Objective\-Function\-Type const \&model)
+\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\-::vector\*
+$<$ \hyperlink{struct_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_limits}{\-Fitness\-Plane\-Limits}$<$ \-N $>$ $>$ \hyperlink{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a9caf2e6ac9dec08e8d052c57f0455f18}{limits}
+\item 
+std\-::string \hyperlink{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_ac49be73b0a0e5e8642f3a328061f75cb}{f\-\_\-path\-Base} = \char`\"{}output/fitness/data/plane\char`\"{}
+\item 
+int \hyperlink{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a3caff6f9344aa5fe2acd0815b2d55bbe}{f\-\_\-count} = 0
+\end{DoxyCompactItemize}
+\subsubsection*{template$<$std\-::size\-\_\-t \-N$>$ class P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator$<$ N $>$}
+
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a0701ccf267c1e389d2cf975e0d307a98}{\index{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}!\-Fitness\-Plane\-Calculator@{\-Fitness\-Plane\-Calculator}}
+\index{\-Fitness\-Plane\-Calculator@{\-Fitness\-Plane\-Calculator}!PRPSEvolution::Support::FitnessPlaneCalculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}}
+\subsubsection[{\-Fitness\-Plane\-Calculator}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\-::size\-\_\-t \-N$>$ {\bf \-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}$<$ \-N $>$\-::{\bf \-Fitness\-Plane\-Calculator} (
+\begin{DoxyParamCaption}
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a0701ccf267c1e389d2cf975e0d307a98}
+
+
+\-Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a0701ccf267c1e389d2cf975e0d307a98_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_aab1a3bf7d3a48d3d435536d3e32cfb21}{\index{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}!calculate@{calculate}}
+\index{calculate@{calculate}!PRPSEvolution::Support::FitnessPlaneCalculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}}
+\subsubsection[{calculate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\-::size\-\_\-t \-N$>$ void {\bf \-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}$<$ \-N $>$\-::{\bf calculate} (
+\begin{DoxyParamCaption}
+\item[{\-Objective\-Function\-Type const \&}]{model}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_aab1a3bf7d3a48d3d435536d3e32cfb21}
+
+
+\-Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_aab1a3bf7d3a48d3d435536d3e32cfb21_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a0a11a6f84f210798240be91350d7a3a0}{\index{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}!r\-Plane\-Limits\-From\-File@{r\-Plane\-Limits\-From\-File}}
+\index{r\-Plane\-Limits\-From\-File@{r\-Plane\-Limits\-From\-File}!PRPSEvolution::Support::FitnessPlaneCalculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}}
+\subsubsection[{r\-Plane\-Limits\-From\-File}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\-::size\-\_\-t \-N$>$ void {\bf \-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}$<$ \-N $>$\-::{\bf r\-Plane\-Limits\-From\-File} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a0a11a6f84f210798240be91350d7a3a0}
+
+
+\-Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a0a11a6f84f210798240be91350d7a3a0_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a34f54b4251566494e0d1e9dd22d513be}{\index{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}!set\-Limits@{set\-Limits}}
+\index{set\-Limits@{set\-Limits}!PRPSEvolution::Support::FitnessPlaneCalculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}}
+\subsubsection[{set\-Limits}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\-::size\-\_\-t \-N$>$ void {\bf \-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}$<$ \-N $>$\-::{\bf set\-Limits} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Fitness\-Plane\-Limits}$<$ \-N $>$}]{\-Limits}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a34f54b4251566494e0d1e9dd22d513be}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a3caff6f9344aa5fe2acd0815b2d55bbe}{\index{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}!f\-\_\-count@{f\-\_\-count}}
+\index{f\-\_\-count@{f\-\_\-count}!PRPSEvolution::Support::FitnessPlaneCalculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}}
+\subsubsection[{f\-\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\-::size\-\_\-t \-N$>$ int {\bf \-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}$<$ \-N $>$\-::{\bf f\-\_\-count} = 0}}\label{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a3caff6f9344aa5fe2acd0815b2d55bbe}
+\hypertarget{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_ac49be73b0a0e5e8642f3a328061f75cb}{\index{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}!f\-\_\-path\-Base@{f\-\_\-path\-Base}}
+\index{f\-\_\-path\-Base@{f\-\_\-path\-Base}!PRPSEvolution::Support::FitnessPlaneCalculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}}
+\subsubsection[{f\-\_\-path\-Base}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\-::size\-\_\-t \-N$>$ std\-::string {\bf \-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}$<$ \-N $>$\-::{\bf f\-\_\-path\-Base} = \char`\"{}output/fitness/data/plane\char`\"{}}}\label{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_ac49be73b0a0e5e8642f3a328061f75cb}
+\hypertarget{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a9caf2e6ac9dec08e8d052c57f0455f18}{\index{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}!limits@{limits}}
+\index{limits@{limits}!PRPSEvolution::Support::FitnessPlaneCalculator@{\-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}}
+\subsubsection[{limits}]{\setlength{\rightskip}{0pt plus 5cm}template$<$std\-::size\-\_\-t \-N$>$ std\-::vector$<${\bf \-Fitness\-Plane\-Limits}$<$\-N$>$ $>$ {\bf \-P\-R\-P\-S\-Evolution\-::\-Support\-::\-Fitness\-Plane\-Calculator}$<$ \-N $>$\-::{\bf limits}}}\label{class_p_r_p_s_evolution_1_1_support_1_1_fitness_plane_calculator_a9caf2e6ac9dec08e8d052c57f0455f18}
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+trunk/lib\-Fitness\-Plan\-Calculator/\hyperlink{_fitness_plane_calculator_8h}{\-Fitness\-Plane\-Calculator.\-h}\end{DoxyCompactItemize}
