@@ -1,6 +1,0 @@
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/test/CMakeFiles/AntConfApp.dir
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libCalibration/CMakeFiles/Calibration.dir
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libNormalizer/CMakeFiles/Normalizer.dir
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPRPSSystem/CMakeFiles/PRPSEvolutionSystem.dir
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libPermutate/CMakeFiles/Permutate.dir
-/home/cg/dev/master-thesis/dev/src/c-cpp/AntConfApp/trunk/libSolve/CMakeFiles/Solve.dir

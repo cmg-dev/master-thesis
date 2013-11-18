@@ -1,0 +1,240 @@
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i}{\section{\-P\-R\-P\-S\-Evolution\-:\-:\-Models\-:\-:\-Whole\-Tomato\-Mk\-I\-I\-I \-Struct \-Reference}
+\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i}\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+}
+
+
+{\ttfamily \#include $<$\-Whole\-Tomato\-Mk\-I\-I\-I.\-h$>$}
+
+\subsection*{\-Public \-Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \-Abstract\-Optimizer\*
+$<$ shark\-::\-Vector\-Space$<$ double $>$\*
+, double, \*
+\-Single\-Objective\-Result\-Set\*
+$<$ typename shark\-::\-Vector\-Space\*
+$<$ double $>$\-::\-Point\-Type $>$ $>$ \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_af8af1233b8b6856f203b8221e7bf8c17}{base\-\_\-type}
+\item 
+typedef \*
+base\-\_\-type\-::\-Objective\-Function\-Type \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a6e749ad14992120fc55c0064c508ca88}{\-Objective\-Function\-Type}
+\end{DoxyCompactItemize}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_aa4db9e9785e0e7a1f5e6c49ed7c95395}{\-Whole\-Tomato\-Mk\-I\-I\-I} (unsigned int \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a85792d89d03da848278db64680022b2c}{number\-Of\-Variables}=5)
+\item 
+std\-::string \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a42f641b446898c27451a01c273d42c18}{name} () const 
+\begin{DoxyCompactList}\small\item\em \-From \-I\-Nameable\-: return the class name. \end{DoxyCompactList}\item 
+std\-::size\-\_\-t \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a85792d89d03da848278db64680022b2c}{number\-Of\-Variables} () const 
+\item 
+bool \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_aea7e628603370d6277f9e4bebfa52a19}{has\-Scalable\-Dimensionality} () const 
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a0d7379ad6808d60abfda40888f249d36}{set\-Number\-Of\-Variables} (std\-::size\-\_\-t \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a85792d89d03da848278db64680022b2c}{number\-Of\-Variables})
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_acdd9aa0db9d1925887b63d71f3d0690c}{configure} (const \-Property\-Tree \&node)
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_ab8a4380846b7dbc3863c355a0d34607c}{propose\-Starting\-Point} (\-Search\-Point\-Type \&x) const 
+\item 
+double \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_ab4685d9e0ead2a4d8f7508c768d6bb1d}{eval} (const \-Search\-Point\-Type \&p) const 
+\item 
+double \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a200ad3b00ced958f70cbcfff6c30538e}{mk\-I\-I} (const \-N\-Rmatrix$<$ \-Doub $>$ \&\-A, const double $\ast$x, const \-N\-Rvector$<$ \-Doub $>$ \&b) const 
+\item 
+bool \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_abf53346cab12984807b3ccf85d1af106}{constrains} (const double $\ast$x) const 
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_aeabd43e961b7a8d16d66b07382563a8b}{set\-Params} (const std\-::vector$<$ \-N\-Rmatrix$<$ \-Doub $>$$>$ \&\-M, const std\-::vector$<$ \-N\-Rvector$<$ \-Doub $>$$>$ \&v, const std\-::vector$<$ std\-::string $>$ \&n)
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a366c1b547c3546940ebe54574c6c3d5b}{set\-Params} (const std\-::vector$<$ \-N\-Rmatrix$<$ \-Doub $>$$>$ \&\-M, const std\-::vector$<$ \-N\-Rvector$<$ \-Doub $>$$>$ \&v, const std\-::vector$<$ std\-::vector$<$ int $>$$>$ \&i)
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a34af798bfed9a3fb55f7fb13d0dc73a8}{set\-Mats} (const std\-::vector$<$ \-N\-Rmatrix$<$ \-Doub $>$$>$ \&\-M)
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a318b3ba97451f3198fd6063cb3866c31}{set\-Vecs} (const std\-::vector$<$ \-N\-Rvector$<$ \-Doub $>$$>$ \&v)
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a9fff71f0fa970f7eeec99462c294968a}{set\-Names} (const std\-::vector$<$ std\-::string $>$ \&n)
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a4a137430e7f12069552212ff9347d03f}{set\-Idx} (const std\-::vector$<$ std\-::vector$<$ int $>$$>$ \&i)
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Member \-Typedef \-Documentation}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_af8af1233b8b6856f203b8221e7bf8c17}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!base\-\_\-type@{base\-\_\-type}}
+\index{base\-\_\-type@{base\-\_\-type}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{base\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}typedef \-Abstract\-Optimizer$<$shark\-::\-Vector\-Space$<$ double $>$,double,\-Single\-Objective\-Result\-Set$<$typename shark\-::\-Vector\-Space$<$ double $>$\-::\-Point\-Type$>$ $>$ {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::base\-\_\-type}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_af8af1233b8b6856f203b8221e7bf8c17}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a6e749ad14992120fc55c0064c508ca88}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!\-Objective\-Function\-Type@{\-Objective\-Function\-Type}}
+\index{\-Objective\-Function\-Type@{\-Objective\-Function\-Type}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{\-Objective\-Function\-Type}]{\setlength{\rightskip}{0pt plus 5cm}typedef base\-\_\-type\-::\-Objective\-Function\-Type {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::\-Objective\-Function\-Type}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a6e749ad14992120fc55c0064c508ca88}
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_aa4db9e9785e0e7a1f5e6c49ed7c95395}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!\-Whole\-Tomato\-Mk\-I\-I\-I@{\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\index{\-Whole\-Tomato\-Mk\-I\-I\-I@{\-Whole\-Tomato\-Mk\-I\-I\-I}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{\-Whole\-Tomato\-Mk\-I\-I\-I}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::\-Whole\-Tomato\-Mk\-I\-I\-I} (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{number\-Of\-Variables = {\ttfamily 5}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_aa4db9e9785e0e7a1f5e6c49ed7c95395}
+
+
+\-Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_aa4db9e9785e0e7a1f5e6c49ed7c95395_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_acdd9aa0db9d1925887b63d71f3d0690c}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!configure@{configure}}
+\index{configure@{configure}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{configure}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::configure} (
+\begin{DoxyParamCaption}
+\item[{const \-Property\-Tree \&}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_acdd9aa0db9d1925887b63d71f3d0690c}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_abf53346cab12984807b3ccf85d1af106}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!constrains@{constrains}}
+\index{constrains@{constrains}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{constrains}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::constrains} (
+\begin{DoxyParamCaption}
+\item[{const double $\ast$}]{x}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_abf53346cab12984807b3ccf85d1af106}
+\-Collects the constrains for this model 
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em x} & \-The vector containing the variables \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+
+\end{DoxyReturn}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_ab4685d9e0ead2a4d8f7508c768d6bb1d}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!eval@{eval}}
+\index{eval@{eval}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{eval}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::eval} (
+\begin{DoxyParamCaption}
+\item[{const \-Search\-Point\-Type \&}]{p}
+\end{DoxyParamCaption}
+) const}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_ab4685d9e0ead2a4d8f7508c768d6bb1d}
+
+
+\-Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_ab4685d9e0ead2a4d8f7508c768d6bb1d_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_aea7e628603370d6277f9e4bebfa52a19}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!has\-Scalable\-Dimensionality@{has\-Scalable\-Dimensionality}}
+\index{has\-Scalable\-Dimensionality@{has\-Scalable\-Dimensionality}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{has\-Scalable\-Dimensionality}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::has\-Scalable\-Dimensionality} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_aea7e628603370d6277f9e4bebfa52a19}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a200ad3b00ced958f70cbcfff6c30538e}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!mk\-I\-I@{mk\-I\-I}}
+\index{mk\-I\-I@{mk\-I\-I}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{mk\-I\-I}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::mk\-I\-I} (
+\begin{DoxyParamCaption}
+\item[{const \-N\-Rmatrix$<$ \-Doub $>$ \&}]{\-A, }
+\item[{const double $\ast$}]{x, }
+\item[{const \-N\-Rvector$<$ \-Doub $>$ \&}]{b}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a200ad3b00ced958f70cbcfff6c30538e}
+\-The model itself. 
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt in}  & {\em \-A} & \-The \-Matrix \-A. for this \-Solution \\
+\hline
+\mbox{\tt in}  & {\em x} & \-The x vector, contains the free parameter \\
+\hline
+\mbox{\tt in}  & {\em b} & \-The b vector for this solution \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{\-Returns}
+
+\end{DoxyReturn}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a42f641b446898c27451a01c273d42c18}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!name@{name}}
+\index{name@{name}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::name} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a42f641b446898c27451a01c273d42c18}
+
+
+\-From \-I\-Nameable\-: return the class name. 
+
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a85792d89d03da848278db64680022b2c}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!number\-Of\-Variables@{number\-Of\-Variables}}
+\index{number\-Of\-Variables@{number\-Of\-Variables}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{number\-Of\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}std\-::size\-\_\-t {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::number\-Of\-Variables} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a85792d89d03da848278db64680022b2c}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_ab8a4380846b7dbc3863c355a0d34607c}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!propose\-Starting\-Point@{propose\-Starting\-Point}}
+\index{propose\-Starting\-Point@{propose\-Starting\-Point}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{propose\-Starting\-Point}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::propose\-Starting\-Point} (
+\begin{DoxyParamCaption}
+\item[{\-Search\-Point\-Type \&}]{x}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_ab8a4380846b7dbc3863c355a0d34607c}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a4a137430e7f12069552212ff9347d03f}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!set\-Idx@{set\-Idx}}
+\index{set\-Idx@{set\-Idx}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{set\-Idx}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::set\-Idx} (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ std\-::vector$<$ int $>$$>$ \&}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a4a137430e7f12069552212ff9347d03f}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a34af798bfed9a3fb55f7fb13d0dc73a8}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!set\-Mats@{set\-Mats}}
+\index{set\-Mats@{set\-Mats}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{set\-Mats}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::set\-Mats} (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ \-N\-Rmatrix$<$ \-Doub $>$$>$ \&}]{\-M}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a34af798bfed9a3fb55f7fb13d0dc73a8}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a9fff71f0fa970f7eeec99462c294968a}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!set\-Names@{set\-Names}}
+\index{set\-Names@{set\-Names}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{set\-Names}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::set\-Names} (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ std\-::string $>$ \&}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a9fff71f0fa970f7eeec99462c294968a}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a0d7379ad6808d60abfda40888f249d36}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!set\-Number\-Of\-Variables@{set\-Number\-Of\-Variables}}
+\index{set\-Number\-Of\-Variables@{set\-Number\-Of\-Variables}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{set\-Number\-Of\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::set\-Number\-Of\-Variables} (
+\begin{DoxyParamCaption}
+\item[{std\-::size\-\_\-t}]{number\-Of\-Variables}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a0d7379ad6808d60abfda40888f249d36}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_aeabd43e961b7a8d16d66b07382563a8b}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!set\-Params@{set\-Params}}
+\index{set\-Params@{set\-Params}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{set\-Params}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::set\-Params} (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ \-N\-Rmatrix$<$ \-Doub $>$$>$ \&}]{\-M, }
+\item[{const std\-::vector$<$ \-N\-Rvector$<$ \-Doub $>$$>$ \&}]{v, }
+\item[{const std\-::vector$<$ std\-::string $>$ \&}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_aeabd43e961b7a8d16d66b07382563a8b}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a366c1b547c3546940ebe54574c6c3d5b}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!set\-Params@{set\-Params}}
+\index{set\-Params@{set\-Params}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{set\-Params}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::set\-Params} (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ \-N\-Rmatrix$<$ \-Doub $>$$>$ \&}]{\-M, }
+\item[{const std\-::vector$<$ \-N\-Rvector$<$ \-Doub $>$$>$ \&}]{v, }
+\item[{const std\-::vector$<$ std\-::vector$<$ int $>$$>$ \&}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a366c1b547c3546940ebe54574c6c3d5b}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a318b3ba97451f3198fd6063cb3866c31}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}!set\-Vecs@{set\-Vecs}}
+\index{set\-Vecs@{set\-Vecs}!PRPSEvolution::Models::WholeTomatoMkIII@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I}}
+\subsubsection[{set\-Vecs}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Whole\-Tomato\-Mk\-I\-I\-I\-::set\-Vecs} (
+\begin{DoxyParamCaption}
+\item[{const std\-::vector$<$ \-N\-Rvector$<$ \-Doub $>$$>$ \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_whole_tomato_mk_i_i_i_a318b3ba97451f3198fd6063cb3866c31}
+
+
+\-The documentation for this struct was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+trunk/lib\-Solve/\-Objectivefunctions/\hyperlink{_whole_tomato_mk_i_i_i_8h}{\-Whole\-Tomato\-Mk\-I\-I\-I.\-h}\item 
+trunk/lib\-Solve/\-Objectivefunctions/\hyperlink{_whole_tomato_mk_i_i_i_8cpp}{\-Whole\-Tomato\-Mk\-I\-I\-I.\-cpp}\end{DoxyCompactItemize}

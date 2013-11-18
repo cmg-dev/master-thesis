@@ -1,2 +1,0 @@
-/usr/bin/ar cr libPRPSEvolutionSystem.a  CMakeFiles/PRPSEvolutionSystem.dir/prpsevolutionsystem.cpp.o
-/usr/bin/ranlib libPRPSEvolutionSystem.a

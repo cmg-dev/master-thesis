@@ -1,0 +1,175 @@
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration}{\section{\-P\-R\-P\-S\-Evolution\-:\-:\-Models\-:\-:\-Evolutionary\-Calibration \-Struct \-Reference}
+\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration}\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+}
+
+
+{\ttfamily \#include $<$\-Evolutionary\-Calibration.\-h$>$}
+
+\subsection*{\-Public \-Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \-Abstract\-Optimizer\*
+$<$ shark\-::\-Vector\-Space$<$ double $>$\*
+, double, \*
+\-Single\-Objective\-Result\-Set\*
+$<$ typename shark\-::\-Vector\-Space\*
+$<$ double $>$\-::\-Point\-Type $>$ $>$ \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_aa7969f9a9c8eda5919cac2a20344151f}{base\-\_\-type}
+\item 
+typedef \*
+base\-\_\-type\-::\-Objective\-Function\-Type \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a591c286e6ffdb08ea30590f82b63b1f2}{\-Objective\-Function\-Type}
+\end{DoxyCompactItemize}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a7375734d251cd63c4475242e3651b63b}{\-Evolutionary\-Calibration} ()
+\item 
+std\-::string \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a3acaa04f259b75a5dc43a206b1060943}{name} () const 
+\begin{DoxyCompactList}\small\item\em \-From \-I\-Nameable\-: return the class name. \end{DoxyCompactList}\item 
+std\-::size\-\_\-t \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_aa81f7e465db11bac69dfa0d542ef895e}{number\-Of\-Variables} () const 
+\item 
+bool \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a1f88db30ba2cd85a2074bd4702955923}{has\-Scalable\-Dimensionality} () const 
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_af5bcd9e4565b8ad6df2606be58f17295}{set\-Number\-Of\-Variables} (std\-::size\-\_\-t \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_aa81f7e465db11bac69dfa0d542ef895e}{number\-Of\-Variables})
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a1fcdcb29434052f199275acb66604db9}{configure} (const \-Property\-Tree \&node)
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_ab1d36c1213c574b3c4ae834e0065499d}{propose\-Starting\-Point} (\-Search\-Point\-Type \&x) const 
+\item 
+double \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a3ed0ecd4c26571c67ff645c57b16c09a}{eval} (const \-Search\-Point\-Type \&p) const 
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a740048f0940d610576ed01555f5d09a4}{set\-Params} (const \-N\-Rmatrix$<$ \-Doub $>$ \&\-M, const \-N\-Rvector$<$ \-Doub $>$ \&v)
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a9ccabf28551278dd6e2c4531b3e967b8}{set\-Mat} (const \-N\-Rmatrix$<$ \-Doub $>$ \&\-M)
+\item 
+void \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a78084b91a2318eca69bb11f189c6c8af}{set\-Vec} (const \-N\-Rvector$<$ \-Doub $>$ \&v)
+\item 
+double \hyperlink{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a56996a4a6438cbe4071525d14409a49e}{mk\-I\-I} (const \-N\-Rmatrix$<$ \-Doub $>$ \&\-A, const double $\ast$x, const \-N\-Rvector$<$ \-Doub $>$ \&b) const 
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Member \-Typedef \-Documentation}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_aa7969f9a9c8eda5919cac2a20344151f}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!base\-\_\-type@{base\-\_\-type}}
+\index{base\-\_\-type@{base\-\_\-type}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{base\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}typedef \-Abstract\-Optimizer$<$shark\-::\-Vector\-Space$<$ double $>$,double,\-Single\-Objective\-Result\-Set$<$typename shark\-::\-Vector\-Space$<$ double $>$\-::\-Point\-Type$>$ $>$ {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::base\-\_\-type}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_aa7969f9a9c8eda5919cac2a20344151f}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a591c286e6ffdb08ea30590f82b63b1f2}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!\-Objective\-Function\-Type@{\-Objective\-Function\-Type}}
+\index{\-Objective\-Function\-Type@{\-Objective\-Function\-Type}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{\-Objective\-Function\-Type}]{\setlength{\rightskip}{0pt plus 5cm}typedef base\-\_\-type\-::\-Objective\-Function\-Type {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::\-Objective\-Function\-Type}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a591c286e6ffdb08ea30590f82b63b1f2}
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a7375734d251cd63c4475242e3651b63b}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!\-Evolutionary\-Calibration@{\-Evolutionary\-Calibration}}
+\index{\-Evolutionary\-Calibration@{\-Evolutionary\-Calibration}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{\-Evolutionary\-Calibration}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::\-Evolutionary\-Calibration} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a7375734d251cd63c4475242e3651b63b}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a1fcdcb29434052f199275acb66604db9}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!configure@{configure}}
+\index{configure@{configure}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{configure}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::configure} (
+\begin{DoxyParamCaption}
+\item[{const \-Property\-Tree \&}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a1fcdcb29434052f199275acb66604db9}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a3ed0ecd4c26571c67ff645c57b16c09a}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!eval@{eval}}
+\index{eval@{eval}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{eval}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::eval} (
+\begin{DoxyParamCaption}
+\item[{const \-Search\-Point\-Type \&}]{p}
+\end{DoxyParamCaption}
+) const}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a3ed0ecd4c26571c67ff645c57b16c09a}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a1f88db30ba2cd85a2074bd4702955923}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!has\-Scalable\-Dimensionality@{has\-Scalable\-Dimensionality}}
+\index{has\-Scalable\-Dimensionality@{has\-Scalable\-Dimensionality}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{has\-Scalable\-Dimensionality}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::has\-Scalable\-Dimensionality} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a1f88db30ba2cd85a2074bd4702955923}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a56996a4a6438cbe4071525d14409a49e}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!mk\-I\-I@{mk\-I\-I}}
+\index{mk\-I\-I@{mk\-I\-I}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{mk\-I\-I}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::mk\-I\-I} (
+\begin{DoxyParamCaption}
+\item[{const \-N\-Rmatrix$<$ \-Doub $>$ \&}]{\-A, }
+\item[{const double $\ast$}]{x, }
+\item[{const \-N\-Rvector$<$ \-Doub $>$ \&}]{b}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a56996a4a6438cbe4071525d14409a49e}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a3acaa04f259b75a5dc43a206b1060943}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!name@{name}}
+\index{name@{name}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::name} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a3acaa04f259b75a5dc43a206b1060943}
+
+
+\-From \-I\-Nameable\-: return the class name. 
+
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_aa81f7e465db11bac69dfa0d542ef895e}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!number\-Of\-Variables@{number\-Of\-Variables}}
+\index{number\-Of\-Variables@{number\-Of\-Variables}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{number\-Of\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}std\-::size\-\_\-t {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::number\-Of\-Variables} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_aa81f7e465db11bac69dfa0d542ef895e}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_ab1d36c1213c574b3c4ae834e0065499d}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!propose\-Starting\-Point@{propose\-Starting\-Point}}
+\index{propose\-Starting\-Point@{propose\-Starting\-Point}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{propose\-Starting\-Point}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::propose\-Starting\-Point} (
+\begin{DoxyParamCaption}
+\item[{\-Search\-Point\-Type \&}]{x}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_ab1d36c1213c574b3c4ae834e0065499d}
+\-Generate a starting value 
+\begin{DoxyParams}[1]{\-Parameters}
+\mbox{\tt out}  & {\em x} & \-The suggested search point \\
+\hline
+\end{DoxyParams}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a9ccabf28551278dd6e2c4531b3e967b8}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!set\-Mat@{set\-Mat}}
+\index{set\-Mat@{set\-Mat}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{set\-Mat}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::set\-Mat} (
+\begin{DoxyParamCaption}
+\item[{const \-N\-Rmatrix$<$ \-Doub $>$ \&}]{\-M}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a9ccabf28551278dd6e2c4531b3e967b8}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_af5bcd9e4565b8ad6df2606be58f17295}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!set\-Number\-Of\-Variables@{set\-Number\-Of\-Variables}}
+\index{set\-Number\-Of\-Variables@{set\-Number\-Of\-Variables}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{set\-Number\-Of\-Variables}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::set\-Number\-Of\-Variables} (
+\begin{DoxyParamCaption}
+\item[{std\-::size\-\_\-t}]{number\-Of\-Variables}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_af5bcd9e4565b8ad6df2606be58f17295}
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a740048f0940d610576ed01555f5d09a4}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!set\-Params@{set\-Params}}
+\index{set\-Params@{set\-Params}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{set\-Params}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::set\-Params} (
+\begin{DoxyParamCaption}
+\item[{const \-N\-Rmatrix$<$ \-Doub $>$ \&}]{\-M, }
+\item[{const \-N\-Rvector$<$ \-Doub $>$ \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a740048f0940d610576ed01555f5d09a4}
+
+
+\-Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a740048f0940d610576ed01555f5d09a4_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a78084b91a2318eca69bb11f189c6c8af}{\index{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}!set\-Vec@{set\-Vec}}
+\index{set\-Vec@{set\-Vec}!PRPSEvolution::Models::EvolutionaryCalibration@{\-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration}}
+\subsubsection[{set\-Vec}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-P\-R\-P\-S\-Evolution\-::\-Models\-::\-Evolutionary\-Calibration\-::set\-Vec} (
+\begin{DoxyParamCaption}
+\item[{const \-N\-Rvector$<$ \-Doub $>$ \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}\label{struct_p_r_p_s_evolution_1_1_models_1_1_evolutionary_calibration_a78084b91a2318eca69bb11f189c6c8af}
+
+
+\-The documentation for this struct was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+trunk/lib\-Solve/\-Objectivefunctions/\hyperlink{_evolutionary_calibration_8h}{\-Evolutionary\-Calibration.\-h}\item 
+trunk/lib\-Solve/\-Objectivefunctions/\hyperlink{_evolutionary_calibration_8cpp}{\-Evolutionary\-Calibration.\-cpp}\end{DoxyCompactItemize}
